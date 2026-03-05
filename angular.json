@@ -27,11 +27,19 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/bootstrap-italia/dist",
+                "output": "/bootstrap-italia/dist"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/design-angular-kit/assets/i18n",
+                "output": "/bootstrap-italia/i18n/"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
