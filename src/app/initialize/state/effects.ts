@@ -1,10 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { InitializeAppService } from "./service";
-import { SmartHospitalState } from "../../store/reducers";
-import { Store } from "@ngrx/store";
-import { ActivatedRoute, Router } from "@angular/router";
-import { catchError, concatMap, map, switchMap, take } from 'rxjs/operators'
+import { catchError, map, switchMap } from 'rxjs/operators'
 import { of } from 'rxjs'
 import * as InitializeAppActions from './actions'
 
