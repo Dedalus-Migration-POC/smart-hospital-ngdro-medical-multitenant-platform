@@ -23,7 +23,7 @@
     "@ngrx/store-devtools": "^21.0.1",
     "@ngx-translate/core": "^17.0.0",
     "@ngx-translate/http-loader": "^17.0.0",
-    "bootstrap-italia": "^2.17.5",
+    "bootstrap-italia": "^2.18.0",
     "design-angular-kit": "^21.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
