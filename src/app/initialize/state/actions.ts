@@ -1,13 +1,12 @@
-import { createAction, props } from '@ngrx/store'
+import { createAction, props } from '@ngrx/store';
+import { AppConfig } from './model';
 
-export const fetchAppConfig = createAction(
-    '[InitializeApp] Fetch AppConfig',
-)
-export const fetchAppConfigSuccess = createAction(
-    '[InitializeApp] Fetch AppConfig Success',
-    props<{ data: any }>(),
-)
-export const fetchAppConfigFailure = createAction(
-    '[InitializeApp] Fetch AppConfig Failure',
-    props<{ error: any }>(),
-)
+export const setAppConfig = createAction(
+  '[InitializeApp] Set AppConfig',
+  props<{ data: AppConfig }>(),
+);
+
+export const setAppConfigFailure = createAction(
+  '[InitializeApp] Set AppConfig Failure',
+  props<{ error: unknown }>(),
+);

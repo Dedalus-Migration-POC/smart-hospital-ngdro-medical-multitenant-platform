@@ -2,3 +2,11 @@
 <h1 class="mb-5">Hello, {{ title() }}</h1>
 <pre>{{ appConfig() | json }}</pre>
 <router-outlet></router-outlet>
+
+@if (appConfig(); as config) {
+  <pre>{{ appConfig() | json }}</pre>
+  <!-- <router-outlet /> -->
+  <!-- <it-notifications /> -->
+} @else {
+  <div>Caricamento configurazione...</div>
+}

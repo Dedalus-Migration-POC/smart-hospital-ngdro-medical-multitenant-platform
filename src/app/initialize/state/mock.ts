@@ -1,52 +1,46 @@
-export const APP_CONFIG = {
-    "name": "<string>",
-    "favicon": "<string>",
-    "theme": {
-        "colors": {
-            "primary": "<string>",
-            "secondary": "<string>",
-            "accent": "<string>",
-            "success": "<string>",
-            "warning": "<string>",
-            "danger": "<string>",
-            "info": "<string>",
-            "light": "<string>",
-            "dark": "<string>"
-        },
-        "typography": {
-            "fontFamily": "Titillium Web, sans-serif",
-            "fontSize": {
-                "small": "16px",
-                "normal": "14px",
-                "large": "18px",
-                "extraLarge": "20px"
-            },
-            "lineHeight": {
-                "base": 1.5
-            },
-            "fontWeight": {
-                "normal": 400,
-                "semibold": 500,
-                "bold": 700
-            }
-        }
+import { AppConfig } from './model';
+
+export const APP_CONFIG: AppConfig = {
+  name: '<string>',
+  favicon: '<string>',
+  theme: {
+    colors: {
+      primary: '#0d6efd',
+      secondary: '#6c757d',
+      success: '#198754',
+      warning: '#ffc107',
+      danger: '#dc3545',
+      info: '#0dcaf0',
+      light: '#f8f9fa',
+      dark: '#212529',
     },
-    "translate?": {
-        "googleTranslate?": {
-            "supportedLanguages": ["it", "en"]
-        },
-        "i18n?": {
-            "defaultLanguage": "it",
-            "supportedLanguages": ["it", "en"]
-        }
+    typography: {
+      fontFamily: 'Titillium Web, sans-serif',
+      fontSize: {
+        small: '14px',
+        normal: '16px',
+        large: '18px',
+        extraLarge: '20px',
+      },
+      lineHeight: {
+        title: 1.2,
+        base: 1.5,
+        paragraphs: 1.75,
+      },
+      fontWeight: {
+        normal: 400,
+        semibold: 500,
+        bold: 700,
+      },
     },
-    "header": "<object>",
-    "footer": "<object>",
-    "pages": [
-        {
-            "id": "<string>",
-            "route": "<string>",
-            "page": "<object>"
-        }
-    ]
-}
+  },
+  header: '<object>',
+  footer: '<object>',
+  pages: [
+    {
+      id: '<string>',
+      route: '<string>',
+      page: '<object>',
+    },
+  ],
+};

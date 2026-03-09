@@ -1,1 +1,51 @@
-
+export interface AppConfig {
+  name: string;
+  favicon: string;
+  theme: {
+    colors: {
+      primary: string;
+      secondary: string;
+      success: string;
+      warning: string;
+      danger: string;
+      info: string;
+      light: string;
+      dark: string;
+    };
+    typography: {
+      fontFamily: string;
+      fontSize: {
+        small: string;
+        normal: string;
+        large: string;
+        extraLarge: string;
+      };
+      lineHeight: {
+        title: number;
+        base: number;
+        paragraphs: number;
+      };
+      fontWeight: {
+        normal: number;
+        semibold: number;
+        bold: number;
+      };
+    };
+  };
+  translate?: {
+    googleTranslate?: {
+      supportedLanguages: string[];
+    };
+    i18n?: {
+      defaultLanguage: string;
+      supportedLanguages: string[];
+    };
+  };
+  header: unknown;
+  footer: unknown;
+  pages: Array<{
+    id: string;
+    route: string;
+    page: unknown;
+  }>;
+}
