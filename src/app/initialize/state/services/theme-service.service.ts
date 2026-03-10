@@ -54,8 +54,8 @@ export class ThemeService {
         bold: '--tenant-font-weight-bold',
       }),
 
-      ...this.buildPropertyIfValue('--bs-body-font-size', typography.fontSize?.normal),
-      ...this.buildPropertyIfValue('--bs-body-line-height', typography.lineHeight?.base),
+      ...this.buildPropertyIfValue('--bs-body-font-size', typography.fontSize?.md),
+      ...this.buildPropertyIfValue('--bs-body-line-height', typography.lineHeight?.md),
       ...this.buildPropertyIfValue('--bs-body-font-weight', typography.fontWeight?.normal),
     ];
   }
