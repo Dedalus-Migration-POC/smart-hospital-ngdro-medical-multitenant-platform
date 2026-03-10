@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { AppConfig } from '../state/model';
-import { APP_CONFIG } from '../state/mock';
+import { AppConfig } from '../model';
+import { APP_CONFIG } from '../mock';
 
 @Injectable({ providedIn: 'root' })
 export class AppConfigApiService {

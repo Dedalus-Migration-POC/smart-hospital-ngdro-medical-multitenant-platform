@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AppConfig } from '../state/model';
+import { AppConfig } from '../model';
 
 type TypographyConfig = AppConfig['theme']['typography'];
 type ColorConfig = AppConfig['theme']['colors'];

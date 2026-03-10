@@ -8,8 +8,8 @@ import { firstValueFrom } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as InitializeAppActions from '../state/actions';
 import { AppConfig } from '../state/model';
-import { ThemeService } from '../services/theme-service.service';
-import { AppConfigApiService } from '../services/app-config-api.service';
+import { ThemeService } from '../state/services/theme-service.service';
+import { AppConfigApiService } from '../state/services/app-config-api.service';
 
 export function provideInitializeApp(): EnvironmentProviders {
   return makeEnvironmentProviders([
