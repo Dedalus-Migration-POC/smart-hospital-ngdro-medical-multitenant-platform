@@ -17,12 +17,14 @@ export interface AppConfig {
       fontSize: {
         sm: string;
         md: string;
+        lg: string;
         xl: string;
         xxl?: string;
       };
       lineHeight: {
         sm: number;
         md: number;
+        lg: number;
         xl: number;
         xxl?: number;
       };

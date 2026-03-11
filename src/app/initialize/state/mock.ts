@@ -19,13 +19,15 @@ export const APP_CONFIG: AppConfig = {
       fontSize: {
         sm: '14px',
         md: '16px',
-        xl: '18px',
-        xxl: '20px',
+        lg: '18px',
+        xl: '20px',
+        xxl: '22px',
       },
       lineHeight: {
         sm: 1.2,
         md: 1.5,
-        xl: 1.75,
+        lg: 1.6,
+        xl: 1.7,
       },
       fontWeight: {
         normal: 400,
