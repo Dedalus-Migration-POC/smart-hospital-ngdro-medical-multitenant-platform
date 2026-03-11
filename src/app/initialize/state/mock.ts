@@ -17,15 +17,17 @@ export const APP_CONFIG: AppConfig = {
     typography: {
       fontFamily: 'Titillium Web, sans-serif',
       fontSize: {
-        small: '14px',
-        normal: '16px',
-        large: '18px',
-        extraLarge: '20px',
+        sm: '14px',
+        md: '16px',
+        lg: '18px',
+        xl: '20px',
+        xxl: '22px',
       },
       lineHeight: {
-        title: 1.2,
-        base: 1.5,
-        paragraphs: 1.75,
+        sm: 1.2,
+        md: 1.5,
+        lg: 1.6,
+        xl: 1.7,
       },
       fontWeight: {
         normal: 400,

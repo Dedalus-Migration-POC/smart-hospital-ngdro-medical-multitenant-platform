@@ -15,19 +15,22 @@ export interface AppConfig {
     typography: {
       fontFamily: string;
       fontSize: {
-        small: string;
-        normal: string;
-        large: string;
-        extraLarge: string;
+        sm: string;
+        md: string;
+        lg: string;
+        xl: string;
+        xxl?: string;
       };
       lineHeight: {
-        title: number;
-        base: number;
-        paragraphs: number;
+        sm: number;
+        md: number;
+        lg: number;
+        xl: number;
+        xxl?: number;
       };
       fontWeight: {
-        normal: number;
         semibold: number;
+        normal: number;
         bold: number;
       };
     };

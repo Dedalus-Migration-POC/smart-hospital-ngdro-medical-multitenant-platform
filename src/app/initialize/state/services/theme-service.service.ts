@@ -36,26 +36,29 @@ export class ThemeService {
       ...this.buildPropertyIfValue('--bs-font-sans-serif', typography.fontFamily),
 
       ...this.buildMappedProperties(typography.fontSize, {
-        small: '--tenant-font-size-sm',
-        normal: '--tenant-font-size-base',
-        large: '--tenant-font-size-lg',
-        extraLarge: '--tenant-font-size-xl',
+        sm: '--tenant-font-size-sm',
+        md: '--tenant-font-size-md',
+        lg: '--tenant-font-size-lg',
+        xl: '--tenant-font-size-xl',
+        xxl: '--tenant-font-size-xxl',
       }),
 
       ...this.buildMappedProperties(typography.lineHeight, {
-        title: '--tenant-line-height-title',
-        base: '--tenant-line-height-base',
-        paragraphs: '--tenant-line-height-paragraphs',
+        sm: '--tenant-line-height-sm',
+        md: '--tenant-line-height-md',
+        lg: '--tenant-line-height-lg',
+        xl: '--tenant-line-height-xl',
+        xxl: '--tenant-line-height-xxl',
       }),
 
       ...this.buildMappedProperties(typography.fontWeight, {
-        normal: '--tenant-font-weight-normal',
         semibold: '--tenant-font-weight-semibold',
+        normal: '--tenant-font-weight-normal',
         bold: '--tenant-font-weight-bold',
       }),
 
-      ...this.buildPropertyIfValue('--bs-body-font-size', typography.fontSize?.normal),
-      ...this.buildPropertyIfValue('--bs-body-line-height', typography.lineHeight?.base),
+      ...this.buildPropertyIfValue('--bs-body-font-size', typography.fontSize?.md),
+      ...this.buildPropertyIfValue('--bs-body-line-height', typography.lineHeight?.md),
       ...this.buildPropertyIfValue('--bs-body-font-weight', typography.fontWeight?.normal),
     ];
   }
