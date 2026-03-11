@@ -57,7 +57,95 @@
               ],
               "outputHashing": "all"
             },
+            "integration": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "staging": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
+            "admin/production": {
+              "browser": "src/main.admin.ts",
+              "styles": ["src/app/admin/style/styles.scss"],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "admin/integration": {
+              "browser": "src/main.admin.ts",
+              "styles": ["src/app/admin/style/styles.scss"],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "admin/staging": {
+              "browser": "src/main.admin.ts",
+              "styles": ["src/app/admin/style/styles.scss"],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2MB",
+                  "maximumError": "4MB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "admin/development": {
+              "browser": "src/main.admin.ts",
+              "styles": ["src/app/admin/style/styles.scss"],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -73,6 +161,12 @@
             },
             "development": {
               "buildTarget": "medical-multitenant-platform:build:development"
+            },
+            "admin/production": {
+              "buildTarget": "medical-multitenant-platform:build:admin/production"
+            },
+            "admin/development": {
+              "buildTarget": "medical-multitenant-platform:build:admin/development"
             }
           },
           "defaultConfiguration": "development"
