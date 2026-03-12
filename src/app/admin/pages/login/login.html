@@ -1,1 +1,45 @@
-<p>login works!</p>
+<div class="d-flex flex-column align-items-center">
+  <h1 class="mt-4 mb-4 h3 fw-normal">Accedi alla dashboard</h1>
+
+  <form class="login-form d-flex flex-column gap-4" [formGroup]="loginForm" (submit)="onSubmit()">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control"
+        id="login"
+        [placeholder]="'admin.access-page.login' | translate"
+        formControlName="login"
+        autocomplete="username"
+      />
+      <label for="login">{{ 'admin.access-page.login' | translate }}</label>
+      @if (loginForm.controls.login.errors?.['required'] && loginForm.get('login')?.touched) {
+        <div class="disabled-error text-danger position-absolute">
+          {{ 'admin.access-page.error-required' | translate }}
+        </div>
+      }
+    </div>
+    <div class="form-floating">
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        [placeholder]="'admin.access-page.password' | translate"
+        formControlName="password"
+        autocomplete="current-password"
+      />
+      <label for="password">{{ 'admin.access-page.password' | translate }}</label>
+      @if (loginForm.controls.password.errors?.['required'] && loginForm.get('password')?.touched) {
+        <div class="disabled-error text-danger position-absolute">
+          {{ 'admin.access-page.error-required' | translate }}
+        </div>
+      }
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary btn-login"
+      [attr.aria-label]="'admin.access-page.login-button-aria-label' | translate"
+    >
+      {{ 'admin.access-page.login-button' | translate }}
+    </button>
+  </form>
+</div>

@@ -7,6 +7,9 @@ import { metaReducers, reducers } from './store/reducers';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient } from '@angular/common/http';
 import { provideDesignAngularKit } from 'design-angular-kit';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+
 
 export const appAdminConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +22,12 @@ export const appAdminConfig: ApplicationConfig = {
     }),
     provideDesignAngularKit(),
     provideHttpClient(),
+    provideTranslateService({
+      fallbackLang: 'it',
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json',
+      }),
+    }),
   ],
 };

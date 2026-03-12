@@ -1,0 +1,19 @@
+{
+  "it": {
+    "errors": {
+      "required-field": "Il campo è obbligatorio",
+      "invalid-field": "Il valore inserito non è valido"
+    }
+  },
+  "admin": {
+    "header": {
+      "access": "Accedi all'area personale"
+    },
+    "access-page": {
+      "login": "Login",
+      "password": "Password",
+      "login-button": "Accedi",
+      "error-required": "Il campo è obbligatorio"
+    }
+  }
+}

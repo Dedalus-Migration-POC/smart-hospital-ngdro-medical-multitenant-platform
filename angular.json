@@ -37,6 +37,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/design-angular-kit/assets/i18n",
                 "output": "/bootstrap-italia/i18n/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/bootstrap-italia/dist/fonts",
+                "output": "/bootstrap-italia/dist/fonts"
               }
             ],
             "styles": ["src/styles.scss"]
@@ -95,6 +100,15 @@
             "admin/production": {
               "browser": "src/main.admin.ts",
               "styles": ["src/app/admin/style/styles.scss"],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -112,6 +126,15 @@
             "admin/integration": {
               "browser": "src/main.admin.ts",
               "styles": ["src/app/admin/style/styles.scss"],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -129,6 +152,15 @@
             "admin/staging": {
               "browser": "src/main.admin.ts",
               "styles": ["src/app/admin/style/styles.scss"],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -146,6 +178,15 @@
             "admin/development": {
               "browser": "src/main.admin.ts",
               "styles": ["src/app/admin/style/styles.scss"],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true

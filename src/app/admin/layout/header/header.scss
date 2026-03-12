@@ -1,0 +1,6 @@
+@use '../../style/variables' as vars;
+
+.fa-user {
+  color: vars.$primary;
+  margin-left: -1.5px;
+}

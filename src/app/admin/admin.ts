@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { ItNotificationsComponent } from 'design-angular-kit';
 import { AdminState } from './store/reducers';
 import { CommonModule } from '@angular/common';
-import { Header } from "./components/header/header";
+import { Header } from "./layout/header/header";
 
 @Component({
   selector: 'app-root',

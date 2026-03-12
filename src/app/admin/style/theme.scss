@@ -1,0 +1,16 @@
+@use './variables' as vars;
+
+@use 'bootstrap-italia/src/scss/bootstrap-italia' with (
+  $primary: vars.$primary,
+  $secondary: vars.$secondary,
+  $success: vars.$success,
+  $warning: vars.$warning,
+  $danger: vars.$danger,
+  $info: vars.$info,
+  $light: vars.$light,
+  $dark: vars.$dark
+);
+
+.it-header-slim-wrapper {
+  background-color: vars.$primary !important;
+}
