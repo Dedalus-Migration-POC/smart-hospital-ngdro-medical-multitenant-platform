@@ -1,0 +1,10 @@
+@if (header(); as header) {
+  <header class="it-header-wrapper">
+    @if (header?.topbar) {
+      <app-topbar [topbar]="header.topbar"></app-topbar>
+    }
+
+    <app-main-header [main]="header.main"></app-main-header>
+    <!--  <app-bottombar></app-bottombar> -->
+  </header>
+}

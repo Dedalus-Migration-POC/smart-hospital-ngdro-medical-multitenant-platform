@@ -1,0 +1,46 @@
+// ****** TYPOGRAPHY *****
+
+// font-size
+.fs-sm {
+  font-size: var(--tenant-font-size-sm, 14px) !important;
+}
+.fs-md {
+  font-size: var(--tenant-font-size-md, 16px) !important;
+}
+.fs-lg {
+  font-size: var(--tenant-font-size-lg, 18px) !important;
+}
+.fs-xl {
+  font-size: var(--tenant-font-size-xl, 22px) !important;
+}
+.fs-xxl {
+  font-size: var(--tenant-font-size-xxl, 28px) !important;
+}
+
+// line-height
+.lh-sm {
+  line-height: var(--tenant-line-height-sm, 1.15) !important;
+}
+.lh-md {
+  line-height: var(--tenant-line-height-md, 1.5) !important;
+}
+.lh-lg {
+  line-height: var(--tenant-line-height-lg, 1.6) !important;
+}
+.lh-xl {
+  line-height: var(--tenant-line-height-xl, 1.7) !important;
+}
+.lh-xxl {
+  line-height: var(--tenant-line-height-xxl, 2) !important;
+}
+
+// font-weight
+.fw-semibold {
+  font-weight: var(--tenant-font-weight-semibold, 600) !important;
+}
+.fw-normal {
+  font-weight: var(--tenant-font-weight-normal, 400) !important;
+}
+.fw-bold {
+  font-weight: var(--tenant-font-weight-bold, 700) !important;
+}

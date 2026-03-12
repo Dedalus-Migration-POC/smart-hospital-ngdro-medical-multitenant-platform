@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { AppConfig } from '../model';
+import { AppConfig } from '../app-config.model';
 import { APP_CONFIG } from '../mock';
 
 @Injectable({ providedIn: 'root' })
