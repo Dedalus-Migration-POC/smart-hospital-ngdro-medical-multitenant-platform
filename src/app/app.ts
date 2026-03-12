@@ -1,15 +1,14 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ItNotificationsComponent } from 'design-angular-kit';
 import { SmartHospitalState } from './store/reducers';
 import { selectAppConfig } from './initialize/state/selector';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Header } from './layout/header/header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ItNotificationsComponent, CommonModule],
+  imports: [CommonModule, Header],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

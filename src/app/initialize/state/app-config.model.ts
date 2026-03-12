@@ -1,3 +1,5 @@
+import { HeaderConfig } from '../../layout/header/header.model';
+
 export interface AppConfig {
   name: string;
   favicon: string;
@@ -44,7 +46,7 @@ export interface AppConfig {
       supportedLanguages: string[];
     };
   };
-  header: unknown;
+  header: HeaderConfig;
   footer: unknown;
   pages: Array<{
     id: string;

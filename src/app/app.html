@@ -1,10 +1,6 @@
-<it-notifications></it-notifications>
-<h1 class="mb-5">Hello, {{ title() }}</h1>
-<pre>{{ appConfig() | json }}</pre>
-<router-outlet></router-outlet>
-
 @if (appConfig(); as config) {
-  <pre>{{ appConfig() | json }}</pre>
+  <app-header [config]="appConfig()"></app-header>
+  <!-- <pre>{{ appConfig() | json }}</pre> -->
   <!-- <router-outlet /> -->
   <!-- <it-notifications /> -->
 } @else {

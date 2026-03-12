@@ -1,0 +1,21 @@
+@if (topbar(); as topbar) {
+  <div
+    class="it-header-slim-wrapper"
+    [style.height]="topbar?.height"
+    [ngClass]="[topbar?.background ? 'bg-' + topbar.background : '', topbar?.className]"
+    [attr.data-bs-toggle]="topbar?.position?.type ? 'sticky' : null"
+    [attr.data-bs-stackable]="topbar?.position?.stackable ? true : null"
+    [attr.data-bs-position-type]="topbar?.position?.type ?? null"
+    [attr.data-bs-sticky-class-name]="topbar?.position?.className ?? null"
+  >
+    <div class="container-xxl">
+      <div class="row">
+        <div class="col-12">
+          <div class="it-header-slim-wrapper-content">
+            <app-areas-layout [areas]="topbar.areas"></app-areas-layout>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

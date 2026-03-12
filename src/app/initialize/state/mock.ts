@@ -1,8 +1,9 @@
-import { AppConfig } from './model';
+import { AppConfig } from './app-config.model';
 
 export const APP_CONFIG: AppConfig = {
-  name: '<string>',
-  favicon: '<string>',
+  name: 'Smart Hospital',
+  favicon: '/assets/favicon.ico',
+
   theme: {
     colors: {
       primary: '#0d6efd',
@@ -36,13 +37,202 @@ export const APP_CONFIG: AppConfig = {
       },
     },
   },
-  header: '<object>',
-  footer: '<object>',
+
+  header: {
+    topbar: {
+      height: '50px',
+      position: {
+        type: 'sticky',
+      },
+      background: 'primary', //TODO: scegli il tenant da una select con i colori
+      className: 'topbar-custom',
+      areas: {
+        layout: {
+          direction: 'row',
+          gap: 'gap-2',
+          align: 'center',
+          justify: 'between',
+        },
+        start: {
+          size: { grow: 1, width: '240px' },
+          layout: {
+            direction: 'column',
+            gap: 'gap-0',
+            align: 'start',
+          },
+          items: [
+            {
+              id: 'topbar-text-1',
+              type: 'TEXT',
+              enabled: true,
+              props: {
+                text: 'Servizio sanitario digitale',
+              },
+            },
+          ],
+        },
+        center: {
+          size: { grow: 1, basis: '0' },
+          layout: {
+            direction: 'row',
+            gap: 'gap-2',
+            align: 'center',
+          },
+          items: [],
+        },
+        end: {
+          size: { width: '240px' },
+          layout: {
+            direction: 'row',
+            gap: 'gap-3',
+            align: 'end',
+          },
+          items: [
+            {
+              id: 'topbar-link-1',
+              type: 'LINK',
+              enabled: true,
+              props: {
+                label: 'Accedi',
+                href: '/login',
+              },
+            },
+            {
+              id: 'topbar-link-2',
+              type: 'LINK',
+              enabled: true,
+              props: {
+                label: 'Contatti',
+                href: '/contatti',
+              },
+            },
+          ],
+        },
+      },
+    },
+
+    main: {
+      height: '88px',
+      position: {
+        type: 'sticky',
+      },
+      background: 'warning',
+      className: 'main-header-custom',
+      areas: {
+        start: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-3',
+            align: 'center',
+            wrap: 'nowrap',
+          },
+          items: [
+            {
+              id: 'header-logo',
+              type: 'IMAGE_BLOCK',
+              enabled: true,
+              props: {
+                src: '/assets/logo.svg',
+                alt: 'Logo azienda sanitaria',
+              },
+            },
+            {
+              id: 'header-title',
+              type: 'TEXT',
+              enabled: true,
+              props: {
+                text: 'Smart Hospital Platform',
+              },
+            },
+          ],
+        },
+        // center: {
+        //   layout: {
+        //     direction: 'row',
+        //     gap: 'gap-2',
+        //     align: 'center',
+        //     wrap: 'nowrap',
+        //   },
+        //   items: [],
+        // },
+        end: {
+          size: {
+            grow: 1,
+          },
+          layout: {
+            direction: 'row',
+            justify: 'end',
+            wrap: 'nowrap',
+          },
+          items: [
+            // {
+            //   id: 'header-help',
+            //   type: 'LINK',
+            //   enabled: true,
+            //   props: {
+            //     label: 'Supporto',
+            //     href: '/supporto',
+            //   },
+            // },
+          ],
+        },
+      },
+    },
+
+    // bottombar: {
+    //   height: '48px',
+    //   sticky: false,
+    //   background: 'light',
+    //   className: 'bottombar-custom',
+    //   areas: {
+    //     start: {
+    //       layout: {
+    //         direction: 'row',
+    //         gap: 'gap-3',
+    //         align: 'center',
+    //         wrap: true,
+    //       },
+    //       items: [
+    //         {
+    //           id: 'nav-home',
+    //           type: 'LINK',
+    //           enabled: true,
+    //           props: {
+    //             label: 'Home',
+    //             href: '/',
+    //           },
+    //         },
+    //       ],
+    //     },
+    //     center: {
+    //       layout: {
+    //         direction: 'row',
+    //         gap: 'gap-2',
+    //         align: 'center',
+    //         wrap: false,
+    //       },
+    //       items: [],
+    //     },
+    //     end: {
+    //       layout: {
+    //         direction: 'row',
+    //         gap: 'gap-2',
+    //         align: 'end',
+    //         wrap: false,
+    //       },
+    //       items: [],
+    //     },
+    //   },
+    // },
+  },
+
+  footer: {} as any,
+
   pages: [
     {
-      id: '<string>',
-      route: '<string>',
-      page: '<object>',
+      id: 'home',
+      route: '/',
+      page: {},
     },
   ],
 };
