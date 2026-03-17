@@ -1,0 +1,19 @@
+@if (main(); as main) {
+  <div
+    class="it-footer-main d-flex"
+    [style.min-height]="main?.height"
+    [ngClass]="[main?.background ? 'bg-' + main.background : '', main?.className]"
+    [attr.data-bs-toggle]="main?.position?.type ? 'sticky' : null"
+    [attr.data-bs-stackable]="main?.position?.stackable ? true : null"
+    [attr.data-bs-position-type]="main?.position?.type ?? null"
+    [attr.data-bs-sticky-class-name]="main?.position?.className ?? null"
+  >
+    <div class="container-xxl">
+      <div class="row h-100">
+        <div class="col-12">
+          <app-areas-layout [areas]="main.areas"></app-areas-layout>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,8 @@
+@if (footer(); as footer) {
+  <footer class="it-footer">
+    <app-main-footer [main]="footer.main"></app-main-footer>
+    @if (footer?.bottombar) {
+      <app-bottombar-footer [bottombar]="footer.bottombar!"></app-bottombar-footer>
+    }
+  </footer>
+}

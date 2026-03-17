@@ -40,7 +40,7 @@ export const APP_CONFIG: AppConfig = {
 
   header: {
     topbar: {
-      height: '50px',
+      height: '48px',
       position: {
         type: 'sticky',
       },
@@ -50,8 +50,9 @@ export const APP_CONFIG: AppConfig = {
         layout: {
           direction: 'row',
           gap: 'gap-2',
-          align: 'center',
+          // align: 'center',
           justify: 'between',
+          wrap: 'wrap'
         },
         start: {
           size: { grow: 1, width: '240px' },
@@ -119,6 +120,12 @@ export const APP_CONFIG: AppConfig = {
       background: 'warning',
       className: 'main-header-custom',
       areas: {
+        layout: {
+          direction: 'row',
+          gap: 'gap-3',
+          // align: 'center',
+          wrap: 'wrap',
+        },
         start: {
           layout: {
             direction: 'row',
@@ -162,6 +169,7 @@ export const APP_CONFIG: AppConfig = {
           layout: {
             direction: 'row',
             justify: 'end',
+            align: 'start',
             wrap: 'nowrap',
           },
           items: [
@@ -179,54 +187,195 @@ export const APP_CONFIG: AppConfig = {
       },
     },
 
-    // bottombar: {
-    //   height: '48px',
-    //   sticky: false,
-    //   background: 'light',
-    //   className: 'bottombar-custom',
-    //   areas: {
-    //     start: {
-    //       layout: {
-    //         direction: 'row',
-    //         gap: 'gap-3',
-    //         align: 'center',
-    //         wrap: true,
-    //       },
-    //       items: [
-    //         {
-    //           id: 'nav-home',
-    //           type: 'LINK',
-    //           enabled: true,
-    //           props: {
-    //             label: 'Home',
-    //             href: '/',
-    //           },
-    //         },
-    //       ],
-    //     },
-    //     center: {
-    //       layout: {
-    //         direction: 'row',
-    //         gap: 'gap-2',
-    //         align: 'center',
-    //         wrap: false,
-    //       },
-    //       items: [],
-    //     },
-    //     end: {
-    //       layout: {
-    //         direction: 'row',
-    //         gap: 'gap-2',
-    //         align: 'end',
-    //         wrap: false,
-    //       },
-    //       items: [],
-    //     },
-    //   },
-    // },
+    bottombar: {
+      height: '48px',
+      position: {
+        type: 'sticky',
+      },
+      background: 'light',
+      className: 'bottombar-custom',
+      areas: {
+        layout: {
+          direction: 'row',
+          gap: 'gap-2',
+          // align: 'center',
+          justify: 'between',
+          wrap: 'wrap',
+
+        },
+        start: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-3',
+            align: 'start',
+            wrap: 'nowrap',
+          },
+          items: [
+            {
+              id: 'nav-home',
+              type: 'LINK',
+              enabled: true,
+              props: {
+                label: 'Home',
+                href: '/',
+              },
+            },
+          ],
+        },
+        center: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-2',
+            align: 'center',
+            wrap: 'nowrap',
+          },
+          items: [],
+        },
+        end: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-2',
+            align: 'end',
+            wrap: 'nowrap',
+          },
+          items: [],
+        },
+      },
+    },
   },
 
-  footer: {} as any,
+  footer: {
+    main: {
+      height: '100px',
+      position: {
+        type: 'sticky',
+      },
+      background: 'warning',
+      className: 'main-footer-custom',
+      areas: {
+        layout: {
+          direction: 'row',
+          gap: 'gap-3',
+          // align: 'center',
+          wrap: 'wrap',
+          justify: 'between',
+        },
+        start: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-3',
+            align: 'center',
+            wrap: 'nowrap',
+          },
+          items: [
+            {
+              id: 'header-logo',
+              type: 'IMAGE_BLOCK',
+              enabled: true,
+              props: {
+                src: '/assets/logo.svg',
+                alt: 'Logo azienda sanitaria',
+              },
+            },
+            {
+              id: 'header-title',
+              type: 'TEXT',
+              enabled: true,
+              props: {
+                text: 'Smart Hospital Platform',
+              },
+            },
+          ],
+        },
+        center: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-3',
+            align: 'center',
+            wrap: 'nowrap',
+          },
+          items: [],
+        },
+        end: {
+          size: {
+            // grow: 1,
+          },
+          layout: {
+            direction: 'row',
+            justify: 'end',
+            align: 'start',
+            wrap: 'nowrap',
+          },
+          items: [
+            // {
+            //   id: 'header-help',
+            //   type: 'LINK',
+            //   enabled: true,
+            //   props: {
+            //     label: 'Supporto',
+            //     href: '/supporto',
+            //   },
+            // },
+          ],
+        },
+      },
+    },
+
+    bottombar: {
+      height: '48px',
+      position: {
+        type: 'sticky',
+      },
+      background: 'light',
+      className: 'bottombar-custom',
+      areas: {
+        layout: {
+          direction: 'row',
+          gap: 'gap-2',
+          // align: 'center',
+          justify: 'between',
+          wrap: 'wrap',
+        },
+        start: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-3',
+            align: 'start',
+            wrap: 'nowrap',
+          },
+          items: [
+            {
+              id: 'nav-home',
+              type: 'LINK',
+              enabled: true,
+              props: {
+                label: 'Home',
+                href: '/',
+              },
+            },
+          ],
+        },
+        center: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-2',
+            align: 'center',
+            wrap: 'nowrap',
+          },
+          items: [],
+        },
+        end: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-2',
+            align: 'end',
+            wrap: 'nowrap',
+          },
+          items: [],
+        },
+      },
+    },
+  } as any,
 
   pages: [
     {

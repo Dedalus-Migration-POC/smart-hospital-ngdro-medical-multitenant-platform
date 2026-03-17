@@ -5,10 +5,12 @@ import { selectAppConfig } from './initialize/state/selector';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Header } from './layout/header/header';
+import { Footer } from "./layout/footer/footer";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, Header],
+  imports: [CommonModule, Header, Footer, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

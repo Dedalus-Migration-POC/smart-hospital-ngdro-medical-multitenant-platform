@@ -1,7 +1,15 @@
 @if (appConfig(); as config) {
-  <app-header [config]="appConfig()"></app-header>
-  <!-- <pre>{{ appConfig() | json }}</pre> -->
-  <!-- <router-outlet /> -->
+  <div class="d-flex flex-column h-100">
+    <app-header [config]="appConfig().header"></app-header>
+
+    <main class="flex-grow-1">
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+
+    <app-footer [config]="appConfig().footer"></app-footer>
+  </div>
   <!-- <it-notifications /> -->
 } @else {
   <div>Caricamento configurazione...</div>

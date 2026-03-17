@@ -5,6 +5,7 @@
         ITEM SX: COMPONENTE
         @for (item of start.items; track item.id) {
           @if (item.enabled) {
+            <!-- <div>{{ item.props?.['text'] }}</div> -->
             <!-- <app-layout-item [item]="item"></app-layout-item> -->
           }
         }
@@ -27,6 +28,8 @@
         ITEM DX: COMPONENTE
         @for (item of end.items; track item.id) {
           @if (item.enabled) {
+            <!-- <div>{{ item.props?.['label'] }}</div> -->
+
             <!-- <app-layout-item [item]="item"></app-layout-item> -->
           }
         }

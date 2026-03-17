@@ -1,1 +1,19 @@
-<p>bottombar works!</p>
+@if (bottombar(); as bottombar) {
+  <div
+    class="it-header-navbar-wrapper"
+    [style.height]="bottombar?.height"
+    [ngClass]="[bottombar?.background ? 'bg-' + bottombar.background : '', bottombar?.className]"
+    [attr.data-bs-toggle]="bottombar?.position?.type ? 'sticky' : null"
+    [attr.data-bs-stackable]="bottombar?.position?.stackable ? true : null"
+    [attr.data-bs-position-type]="bottombar?.position?.type ?? null"
+    [attr.data-bs-sticky-class-name]="bottombar?.position?.className ?? null"
+  >
+    <div class="container-xxl h-100">
+      <div class="row h-100">
+        <div class="col-12">
+          <app-areas-layout [areas]="bottombar.areas"></app-areas-layout>
+        </div>
+      </div>
+    </div>
+  </div>
+}
