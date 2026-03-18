@@ -1,5 +1,7 @@
 @if (topbar(); as topbar) {
   <div
+    [appOverflowDetector]="content"
+    [appOverflowDetectorHeight]="topbar?.height"
     class="it-header-slim-wrapper"
     [style.height]="topbar?.height"
     [ngClass]="[topbar?.background ? 'bg-' + topbar.background : '', topbar?.className]"
@@ -11,7 +13,7 @@
     <div class="container-xxl">
       <div class="row h-100">
         <div class="col-12">
-          <div class="it-header-slim-wrapper-content h-100">
+          <div #content class="it-header-slim-wrapper-content h-100">
             <app-areas-layout [areas]="topbar.areas"></app-areas-layout>
           </div>
         </div>

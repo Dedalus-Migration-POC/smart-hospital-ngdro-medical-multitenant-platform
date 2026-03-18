@@ -1,0 +1,14 @@
+@use 'styles/breakpoints' as bp;
+
+.it-header-slim-wrapper {
+  &.is-overflowing {
+    height: auto !important;
+  }
+
+  // override boostrap-italia
+  // without this removes the padding and sets a fixed height.
+  @include bp.media-breakpoint-up(lg) {
+    height: auto;
+    padding: 6.5px 18px;
+  }
+}

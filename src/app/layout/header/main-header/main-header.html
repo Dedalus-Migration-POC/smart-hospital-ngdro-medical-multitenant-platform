@@ -1,5 +1,7 @@
 @if (main(); as main) {
   <div
+    [appOverflowDetector]="content"
+    [appOverflowDetectorHeight]="main?.height"
     class="it-header-center-wrapper"
     [style.height]="main?.height"
     [ngClass]="[main?.background ? 'bg-' + main.background : '', main?.className]"
@@ -10,7 +12,7 @@
   >
     <div class="container-xxl">
       <div class="row h-100">
-        <div class="col-12">
+        <div #content class="col-12">
           <app-areas-layout [areas]="main.areas"></app-areas-layout>
         </div>
       </div>
