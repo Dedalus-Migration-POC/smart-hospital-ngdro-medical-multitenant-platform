@@ -1,0 +1,11 @@
+@if (item(); as item) {
+  @if (item.type === 'LINK') {
+    <app-link [link]="item.props"></app-link>
+  }
+  @if (item.type === 'SOCIAL') {
+    <app-socials [socials]="item.props"> </app-socials>
+  }
+  @if (item.type === 'IMAGE_BLOCK') {
+    <app-image-block [config]="item.props"> </app-image-block>
+  }
+}

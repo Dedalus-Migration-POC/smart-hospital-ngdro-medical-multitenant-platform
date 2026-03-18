@@ -1,0 +1,46 @@
+@if (link(); as link) {
+  @if (link.external) {
+    <!-- LINK ESTERNO -->
+    <a
+      [href]="link.url"
+      [attr.target]="link.target"
+      [attr.rel]="'noopener noreferrer'"
+      [ngClass]="[
+        'text-' + link.style.color,
+        'text-decoration-' + link.style.textDecoration,
+        'fw-' + link.style.fontWeight,
+        'fs-' + link.style.font,
+      ]"
+      [class.disabled]="link.disabled"
+      [attr.aria-disabled]="link.disabled"
+    >
+      {{ link.text.it }}
+      @if (link.description) {
+        <span class="visually-hidden">
+          {{ link.description.it }}
+        </span>
+      }
+    </a>
+  } @else {
+    <!-- LINK INTERNO (Angular Router) -->
+    <a
+      [routerLink]="link.url"
+      [ngClass]="[
+        'text-' + link.style.color,
+        'text-decoration-' + link.style.textDecoration,
+        'fw-' + link.style.fontWeight,
+        'fs-' + link.style.font,
+      ]"
+      [class.disabled]="link.disabled"
+      [attr.aria-disabled]="link.disabled"
+    >
+      {{ link.text.it }}
+
+      @if (link.description) {
+        <small class="visually-hidden">
+          {{ link.description.it }}
+        </small>
+      }
+    </a>
+  }
+}

@@ -5,6 +5,7 @@ export type LayoutWrap = 'wrap' | 'nowrap' | 'reverse';
 export type LayoutGap = 'gap-0' | 'gap-1' | 'gap-2' | 'gap-3' | 'gap-4' | 'gap-5';
 
 export type Background =
+  | 'white'
   | 'primary'
   | 'secondary'
   | 'success'
@@ -12,7 +13,8 @@ export type Background =
   | 'warning'
   | 'info'
   | 'light'
-  | 'dark';
+  | 'dark'
+  | 'black';
 
 // TODO: vanno implementati i componenti
 export type ItemType = 'IMAGE_BLOCK' | 'SOCIAL' | 'LINK' | 'LINKS' | 'TEXT' | 'DIVIDER' | 'SPACER';
@@ -21,7 +23,7 @@ export interface Item {
   id: string;
   type: ItemType;
   enabled: boolean;
-  props?: Record<string, unknown>;
+  props?: Record<string, unknown> | any;
 }
 
 export interface AreaSize {

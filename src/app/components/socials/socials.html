@@ -1,0 +1,46 @@
+@if (socials(); as socials) {
+  <div
+    class="section-social d-flex"
+    [ngClass]="[
+      'flex-' + socials.layout.direction,
+      'align-items-' + socials.layout.align,
+      socials.layout.gap,
+    ]"
+  >
+    <div
+      class="social-title"
+      [ngClass]="[
+        'fs-' + socials.title.fontSize,
+        socials.title.bold ? 'fw-bold' : 'fw-normal',
+        'text-' + socials.title.color,
+      ]"
+    >
+      {{ socials.title.text.it }}
+    </div>
+    <ul class="list-inline social it-socials m-0" aria-label="Social">
+      @for (social of socials.socials; track social.id; let last = $last) {
+        <li class="list-inline-item">
+          <a
+            [href]="social.url"
+            [target]="social.target"
+            [ngClass]="'text-' + social.color"
+            rel="noopener noreferrer"
+            [attr.aria-label]="social.ariaLabel"
+          >
+            @if (social.icon.type === 'font') {
+              <i class="icon-social" [ngClass]="social.icon.value" aria-hidden="true"></i>
+            }
+            @if (social.icon.type === 'svg') {
+              <img [src]="encodeSvg(social.icon.value)" alt="" class="icon-svg pb-1" />
+            }
+            @if (social.icon.type === 'img') {
+              <img [src]="social.icon.value" alt="" class="icon-img" />
+            }
+
+            <span class="visually-hidden">{{ social.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+}

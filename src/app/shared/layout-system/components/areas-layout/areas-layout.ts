@@ -8,10 +8,11 @@ import {
   LayoutWrap,
 } from '../../models/layout.model';
 import { CommonModule } from '@angular/common';
+import { LayoutItem } from '../layout-item/layout-item';
 
 @Component({
   selector: 'app-areas-layout',
-  imports: [CommonModule],
+  imports: [CommonModule, LayoutItem],
   templateUrl: './areas-layout.html',
   styleUrl: './areas-layout.scss',
 })

@@ -1,0 +1,67 @@
+@if (config(); as config) {
+  <div
+    class="image-block-container"
+    [ngClass]="[
+      config.className || '',
+      layoutClasses(),
+      flexOrder(),
+      config.clickable ? 'cursor-pointer' : '',
+    ]"
+    (click)="handleClick()"
+    (keydown)="handleKeydown($event)"
+    [attr.role]="config.clickable ? 'button' : null"
+    [attr.tabindex]="config.clickable ? '0' : null"
+    [attr.title]="tooltipLabel()"
+  >
+    <!-- IMAGE -->
+    <div class="image-wrapper">
+      <!-- IMG -->
+      @if (config.type === 'url' || config.type === 'file') {
+        <img
+          class="img-fluid"
+          [src]="config.value"
+          [style.width]="config.width"
+          [style.height]="config.height"
+          loading="lazy"
+          [attr.alt]="altText()"
+          [attr.aria-label]="ariaLabel()"
+          [attr.aria-hidden]="ariaHidden()"
+        />
+      }
+
+      <!-- INLINE SVG -->
+      @if (config.type === 'inlineSvg') {
+        <div
+          [innerHTML]="sanitizeSvg(config.value.replace(/\n/g, ''))"
+          role="img"
+          [attr.aria-label]="ariaLabel()"
+          [attr.aria-hidden]="ariaHidden()"
+        ></div>
+      }
+    </div>
+
+    <!-- TEXT -->
+    @if (config.text?.enabled) {
+      <div class="text-wrapper">
+        <!-- TITLE -->
+        <div
+          [ngClass]="['fs-' + config.text?.title?.fontSize, 'fw-' + config.text?.title?.fontWeight]"
+        >
+          {{ config.text?.title?.text && config.text?.title?.text![lang] }}
+        </div>
+
+        <!-- DESCRIPTION -->
+        @if (config.text?.description && config.text?.description?.text) {
+          <div
+            [ngClass]="[
+              'fs-' + config.text?.description?.fontSize,
+              'fw-' + config.text!.description?.fontWeight,
+            ]"
+          >
+            <!-- {{ config.text?.description?.text[lang] }} -->
+          </div>
+        }
+      </div>
+    }
+  </div>
+}

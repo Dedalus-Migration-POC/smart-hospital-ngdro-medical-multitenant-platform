@@ -1,3 +1,4 @@
+import { FooterConfig } from '../../layout/footer/footer.model';
 import { HeaderConfig } from '../../layout/header/header.model';
 
 export interface AppConfig {
@@ -47,7 +48,7 @@ export interface AppConfig {
     };
   };
   header: HeaderConfig;
-  footer: unknown;
+  footer: FooterConfig;
   pages: Array<{
     id: string;
     route: string;
