@@ -1,8 +1,8 @@
 @if (areas(); as areas) {
   <div class="w-100" [ngClass]="getLayoutClasses(areas.layout)">
     @if (areas.start; as start) {
-      <div [ngClass]="getLayoutClasses(start.layout)" [ngStyle]="getAreaStyles(start.size)">
-        <!-- ITEM SX: COMPONENTE -->
+      <div [ngClass]="getLayoutClasses(start.layout)" [ngStyle]="getAreaStyles(start?.size)">
+        ITEM SX: COMPONENTE
         @for (item of start.items; track item.id) {
           @if (item.enabled) {
             <app-layout-item [item]="item"></app-layout-item>
@@ -12,7 +12,7 @@
     }
 
     @if (areas.center; as center) {
-      <div [ngClass]="getLayoutClasses(center.layout)" [ngStyle]="getAreaStyles(center.size)">
+      <div [ngClass]="getLayoutClasses(center.layout)" [ngStyle]="getAreaStyles(center?.size)">
         ITEM CENTRALI: COMPONENTE
         @for (item of center.items; track item.id) {
           @if (item.enabled) {
@@ -23,7 +23,8 @@
     }
 
     @if (areas.end; as end) {
-      <div [ngClass]="getLayoutClasses(end.layout)" [ngStyle]="getAreaStyles(end.size)">
+      <div [ngClass]="getLayoutClasses(end.layout)" [ngStyle]="getAreaStyles(end?.size)">
+        ITEM DX: COMPONENTE
         @for (item of end.items; track item.id) {
           @if (item.enabled) {
             <app-layout-item [item]="item"></app-layout-item>

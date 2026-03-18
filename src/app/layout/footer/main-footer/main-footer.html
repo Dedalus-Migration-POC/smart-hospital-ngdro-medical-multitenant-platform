@@ -1,7 +1,9 @@
 @if (main(); as main) {
   <div
+    [appOverflowDetector]="content"
+    [appOverflowDetectorHeight]="main?.height"
     class="it-footer-main d-flex"
-    [style.min-height]="main?.height"
+    [style.height]="main?.height"
     [ngClass]="[main?.background ? 'bg-' + main.background : '', main?.className]"
     [attr.data-bs-toggle]="main?.position?.type ? 'sticky' : null"
     [attr.data-bs-stackable]="main?.position?.stackable ? true : null"
@@ -10,7 +12,7 @@
   >
     <div class="container-xxl">
       <div class="row h-100">
-        <div class="col-12">
+        <div #content class="col-12">
           <app-areas-layout [areas]="main.areas"></app-areas-layout>
         </div>
       </div>

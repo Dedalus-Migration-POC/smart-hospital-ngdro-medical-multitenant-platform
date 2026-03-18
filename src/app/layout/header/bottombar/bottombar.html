@@ -1,5 +1,7 @@
 @if (bottombar(); as bottombar) {
   <div
+    [appOverflowDetector]="content"
+    [appOverflowDetectorHeight]="bottombar?.height"
     class="it-header-navbar-wrapper"
     [style.height]="bottombar?.height"
     [ngClass]="[bottombar?.background ? 'bg-' + bottombar.background : '', bottombar?.className]"
@@ -10,7 +12,7 @@
   >
     <div class="container-xxl h-100">
       <div class="row h-100">
-        <div class="col-12">
+        <div #content class="col-12">
           <app-areas-layout [areas]="bottombar.areas"></app-areas-layout>
         </div>
       </div>

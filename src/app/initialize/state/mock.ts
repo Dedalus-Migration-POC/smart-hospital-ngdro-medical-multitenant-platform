@@ -40,7 +40,7 @@ export const APP_CONFIG: AppConfig = {
 
   header: {
     topbar: {
-      height: '48px',
+      height: '35px',
       position: {
         type: 'sticky',
       },
@@ -55,7 +55,7 @@ export const APP_CONFIG: AppConfig = {
           wrap: 'wrap',
         },
         start: {
-          size: { grow: 1, width: '240px' },
+          //  size: { grow: 1, width: '240px' },
           layout: {
             direction: 'column',
             gap: 'gap-0',
@@ -73,7 +73,7 @@ export const APP_CONFIG: AppConfig = {
           ],
         },
         center: {
-          size: { grow: 1, basis: '0' },
+          //    size: { grow: 1, basis: '0' },
           layout: {
             direction: 'row',
             gap: 'gap-2',
@@ -82,7 +82,7 @@ export const APP_CONFIG: AppConfig = {
           items: [],
         },
         end: {
-          size: { width: '240px' },
+          //   size: { width: '240px' },
           layout: {
             direction: 'row',
             gap: 'gap-3',

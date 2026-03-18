@@ -1,7 +1,7 @@
 import { AreaLayout, Background, LayoutArea } from '../../shared/layout-system/models/layout.model';
 
 export interface HeaderSection {
-  height: string;
+  height?: string;
   position?: {
     type: 'sticky' | 'fixed';
     className?: string;
