@@ -25,7 +25,8 @@ export type ItemType =
   | 'TEXT'
   | 'DIVIDER'
   | 'SPACER'
-  | 'SELECT_LANG';
+  | 'SELECT_LANG'
+  | 'GOOGLE_TRASLATE';
 
 export interface Item {
   id: string;

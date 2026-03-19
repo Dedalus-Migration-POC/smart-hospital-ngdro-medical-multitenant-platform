@@ -39,7 +39,7 @@ export const APP_CONFIG: AppConfig = {
   },
   translate: {
     // googleTranslate: {
-    //   supportedLanguages: ['it', 'en'],
+    //   supportedLanguages: 'bn,fr,en,es,de,ur,ru,ro',
     // },
     i18n: {
       defaultLanguage: 'it',
@@ -124,6 +124,12 @@ export const APP_CONFIG: AppConfig = {
                 color: 'white',
               },
             },
+            // {
+            //   id: 'topbar-link-1',
+            //   type: 'GOOGLE_TRASLATE',
+            //   enabled: true,
+            //   props: {},
+            // },
           ],
         },
       },
@@ -634,7 +640,7 @@ export const APP_CONFIG: AppConfig = {
               props: {
                 text: {
                   it: 'Link Esterno',
-                  en: 'External link',
+                  // en: 'External link',
                 },
                 description: {
                   it: 'Apri external link',
@@ -645,7 +651,7 @@ export const APP_CONFIG: AppConfig = {
                 target: '_blank',
                 disabled: false,
                 style: {
-                  color: 'primary',
+                  color: 'danger',
                   textDecoration: 'none',
                   font: 'md',
                   fontWeight: 'semibold',

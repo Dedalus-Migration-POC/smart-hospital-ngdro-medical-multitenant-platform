@@ -18,4 +18,22 @@ export class LanguageService {
     if (saved) return saved;
     return 'it';
   }
+
+  //loadGoogleTranslate
+  loadGoogleTranslate(supportedLanguages: string) {
+    const script = document.createElement('script');
+    script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.body.appendChild(script);
+    (window as any).googleTranslateElementInit = () => {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: 'it',
+          includedLanguages: supportedLanguages,
+          layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
+        },
+        'google_translate_element',
+      );
+    };
+  }
 }
+declare var google: any;

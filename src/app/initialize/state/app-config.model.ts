@@ -40,7 +40,7 @@ export interface AppConfig {
   };
   translate?: {
     googleTranslate?: {
-      supportedLanguages: string[];
+      supportedLanguages: string;
     };
     i18n?: {
       defaultLanguage: string;

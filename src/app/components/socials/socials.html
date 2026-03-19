@@ -15,7 +15,7 @@
         'text-' + socials.title.color,
       ]"
     >
-      {{ socials.title.text[lang()] }}
+      {{ socials.title.text[lang()] || 'socials.title.text' }}
     </div>
     <ul class="list-inline social it-socials m-0" aria-label="Social">
       @for (social of socials.socials; track social.id; let last = $last) {
@@ -39,12 +39,12 @@
             @if (social.icon.type === 'img') {
               <img
                 [src]="social.icon.value"
-                [attr.alt]="social.ariaLabel[lang()]"
+                [attr.alt]="social.ariaLabel[lang()] || 'social.ariaLabel'"
                 class="icon-img"
               />
             }
 
-            <span class="visually-hidden">{{ social.label[lang()] }}</span>
+            <span class="visually-hidden">{{ social.label[lang()] || 'social.label' }}</span>
           </a>
         </li>
       }
