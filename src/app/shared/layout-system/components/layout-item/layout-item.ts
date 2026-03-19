@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { Socials } from '../../../../components/socials/socials';
 import { Link } from '../../../../components/link/link';
 import { ImageBlock } from '../../../../components/image-block/image-block';
+import { SelectLanguage } from '../../../../components/select-language/select-language';
 
 @Component({
   selector: 'app-layout-item',
-  imports: [CommonModule, Socials, Link, ImageBlock],
+  imports: [CommonModule, Socials, Link, ImageBlock, SelectLanguage],
   templateUrl: './layout-item.html',
   styleUrl: './layout-item.scss',
 })

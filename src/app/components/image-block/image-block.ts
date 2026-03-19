@@ -93,40 +93,17 @@ export class ImageBlock {
   });
 
   sanitizeSvg(svgString: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(svgString);
+    const cfg = this.config();
+
+    if (!cfg) return svgString;
+
+    if (cfg.decorative) {
+      return svgString.replace('<svg', '<svg aria-hidden="true" focusable="false"');
+    }
+
+    const label = this.ariaLabel();
+    return this.sanitizer.bypassSecurityTrustHtml(
+      svgString.replace('<svg', `<svg role="img" aria-label="${label}" focusable="false"`),
+    );
   }
-  // config: ImageBlockConfig = {
-  //   id: 'hero-image',
-  //   type: 'url',
-  //   value: 'https://via.placeholder.com/300',
-  //   decorative: false,
-  //   alt: {
-  //     it: 'Immagine esempio',
-  //     en: 'Example image',
-  //   },
-  //   clickable: true,
-  //   action: {
-  //     type: 'externalLink',
-  //     url: 'https://google.com',
-  //     target: '_blank',
-  //   },
-  //   text: {
-  //     enabled: true,
-  //     title: {
-  //       text: {
-  //         it: 'Titolo',
-  //         en: 'Title',
-  //       },
-  //       fontSize: 'md',
-  //       fontWeight: 'bold',
-  //       color: 'primary',
-  //     },
-  //     layout: {
-  //       direction: 'column',
-  //       placement: 'end',
-  //       gap: 'gap-2',
-  //       align: 'center',
-  //     },
-  //   },
-  // };
 }

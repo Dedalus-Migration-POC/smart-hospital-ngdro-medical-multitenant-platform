@@ -8,4 +8,7 @@
   @if (item.type === 'IMAGE_BLOCK') {
     <app-image-block [config]="item.props"> </app-image-block>
   }
+  @if (item.type === 'SELECT_LANG') {
+    <app-select-language [config]="item.props"> </app-select-language>
+  }
 }

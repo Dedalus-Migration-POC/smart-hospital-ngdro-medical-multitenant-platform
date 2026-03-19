@@ -1,9 +1,11 @@
 export interface ILink {
   text: {
     it: string;
+    en: string;
   };
   description?: {
     it: string;
+    en: string;
   };
   url: string;
   external: boolean;

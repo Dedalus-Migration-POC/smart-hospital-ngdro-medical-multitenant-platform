@@ -1,0 +1,14 @@
+::ng-deep .it-header-slim-wrapper .it-header-slim-wrapper-content .dropdown-menu {
+  top: 0 !important;
+}
+.fa-angle-down,
+.fa-angle-up {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+li:hover {
+  button {
+    font-weight: 700;
+  }
+}

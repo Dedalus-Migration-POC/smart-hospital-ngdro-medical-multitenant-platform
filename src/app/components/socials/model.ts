@@ -23,9 +23,11 @@ export interface ISocials {
     showLabel: boolean;
     label: {
       it: string;
+      en: string;
     };
     ariaLabel: {
       it: string;
+      en: string;
     };
 
     icon: {

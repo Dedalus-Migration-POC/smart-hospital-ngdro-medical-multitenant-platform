@@ -1,0 +1,36 @@
+@if (config(); as config) {
+  <div class="nav-item dropdown">
+    <button
+      class="btn btn-link nav-link dropdown-toggle p-0"
+      type="button"
+      data-bs-toggle="dropdown"
+      [attr.aria-expanded]="isOpen"
+      (click)="toggleDropdown()"
+      [attr.aria-label]="config.arialabel"
+      [ngClass]="'text-' + config.color"
+    >
+      <span>{{ lang().toUpperCase() }}</span>
+
+      <i
+        [ngClass]="{
+          'fa-angle-down': !isOpen,
+          'fa-angle-up': isOpen,
+        }"
+        class="fa-solid"
+        aria-hidden="true"
+      ></i>
+    </button>
+
+    <div class="dropdown-menu" role="menu">
+      <ul class="link-list">
+        @for (lang of config.supportedLanguages; track lang) {
+          <li role="menuitem">
+            <button class="dropdown-item list-item" type="button" (click)="switchLanguage(lang)">
+              {{ lang.toUpperCase() }}
+            </button>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+}

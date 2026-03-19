@@ -17,7 +17,15 @@ export type Background =
   | 'black';
 
 // TODO: vanno implementati i componenti
-export type ItemType = 'IMAGE_BLOCK' | 'SOCIAL' | 'LINK' | 'LINKS' | 'TEXT' | 'DIVIDER' | 'SPACER';
+export type ItemType =
+  | 'IMAGE_BLOCK'
+  | 'SOCIAL'
+  | 'LINK'
+  | 'LINKS'
+  | 'TEXT'
+  | 'DIVIDER'
+  | 'SPACER'
+  | 'SELECT_LANG';
 
 export interface Item {
   id: string;

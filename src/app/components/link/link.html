@@ -14,10 +14,10 @@
       [class.disabled]="link.disabled"
       [attr.aria-disabled]="link.disabled"
     >
-      {{ link.text.it }}
+      {{ link.text[lang()] }}
       @if (link.description) {
         <span class="visually-hidden">
-          {{ link.description.it }}
+          {{ link.description[lang()] }}
         </span>
       }
     </a>
@@ -34,11 +34,11 @@
       [class.disabled]="link.disabled"
       [attr.aria-disabled]="link.disabled"
     >
-      {{ link.text.it }}
+      {{ link.text[lang()] }}
 
       @if (link.description) {
         <small class="visually-hidden">
-          {{ link.description.it }}
+          {{ link.description[lang()] }}
         </small>
       }
     </a>

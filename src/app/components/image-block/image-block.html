@@ -24,19 +24,13 @@
           [style.height]="config.height"
           loading="lazy"
           [attr.alt]="altText()"
-          [attr.aria-label]="ariaLabel()"
           [attr.aria-hidden]="ariaHidden()"
         />
       }
 
       <!-- INLINE SVG -->
       @if (config.type === 'inlineSvg') {
-        <div
-          [innerHTML]="sanitizeSvg(config.value.replace(/\n/g, ''))"
-          role="img"
-          [attr.aria-label]="ariaLabel()"
-          [attr.aria-hidden]="ariaHidden()"
-        ></div>
+        <div [innerHTML]="sanitizeSvg(config.value.replace(/\n/g, ''))"></div>
       }
     </div>
 

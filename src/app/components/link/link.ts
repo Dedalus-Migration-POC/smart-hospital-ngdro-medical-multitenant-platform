@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { ILink } from './model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../initialize/state/services/language.service';
 
 @Component({
   selector: 'app-link',
@@ -11,32 +12,15 @@ import { CommonModule } from '@angular/common';
 })
 export class Link {
   readonly link = input<ILink | null>(null);
+
+  private langService = inject(LanguageService);
+
+  lang = this.langService.lang;
+
   onClick(event: MouseEvent, link: ILink) {
     if (link.disabled) {
       event.preventDefault();
       event.stopPropagation();
     }
   }
-
-  // link: ILink = {
-  //   text: {
-  //     it: 'External link',
-  //   },
-  //   // description: {
-  //   //   it: 'Apri external link',
-  //   // },
-  //   url: '/home',
-  //   external: false,
-  //   target: '_blank',
-  //   ariaLabel: {
-  //     it: '<string>',
-  //   },
-  //   disabled: false,
-  //   style: {
-  //     color: 'primary',
-  //     textDecoration: 'none',
-  //     font: 'normal',
-  //     fontWeight: 'bold',
-  //   },
-  // };
 }

@@ -37,10 +37,19 @@ export const APP_CONFIG: AppConfig = {
       },
     },
   },
+  translate: {
+    // googleTranslate: {
+    //   supportedLanguages: ['it', 'en'],
+    // },
+    i18n: {
+      defaultLanguage: 'it',
+      supportedLanguages: ['it', 'en'],
+    },
+  },
 
   header: {
     topbar: {
-      height: '35px',
+      height: '48px',
       position: {
         type: 'sticky',
       },
@@ -50,7 +59,7 @@ export const APP_CONFIG: AppConfig = {
         layout: {
           direction: 'row',
           gap: 'gap-2',
-          // align: 'center',
+          align: 'center',
           justify: 'between',
           wrap: 'wrap',
         },
@@ -64,10 +73,26 @@ export const APP_CONFIG: AppConfig = {
           items: [
             {
               id: 'topbar-text-1',
-              type: 'TEXT',
+              type: 'LINK',
               enabled: true,
               props: {
-                text: 'Servizio sanitario digitale',
+                text: {
+                  it: 'Servizio sanitario digitale',
+                  en: 'Digital Services',
+                },
+                description: {
+                  it: 'Apri external link',
+                  en: 'Open external link',
+                },
+                url: 'https://www.dedalus.com/italy/it/',
+                external: true,
+                disabled: false,
+                style: {
+                  color: 'white',
+                  textDecoration: 'none',
+                  font: 'md',
+                  fontWeight: 'normal',
+                },
               },
             },
           ],
@@ -86,27 +111,19 @@ export const APP_CONFIG: AppConfig = {
           layout: {
             direction: 'row',
             gap: 'gap-3',
-            align: 'end',
+            align: 'center',
           },
           items: [
-            // {
-            //   id: 'topbar-link-1',
-            //   type: 'LINK',
-            //   enabled: true,
-            //   props: {
-            //     label: 'Accedi',
-            //     href: '/login',
-            //   },
-            // },
-            // {
-            //   id: 'topbar-link-2',
-            //   type: 'LINK',
-            //   enabled: true,
-            //   props: {
-            //     label: 'Contatti',
-            //     href: '/contatti',
-            //   },
-            // },
+            {
+              id: 'topbar-link-1',
+              type: 'SELECT_LANG',
+              enabled: true,
+              props: {
+                supportedLanguages: ['it', 'en'],
+                arialabel: 'Lingua selezionata:',
+                color: 'white',
+              },
+            },
           ],
         },
       },
@@ -273,14 +290,16 @@ export const APP_CONFIG: AppConfig = {
                     showLabel: false,
                     label: {
                       it: 'Facebook',
+                      en: 'Facebook',
                     },
                     ariaLabel: {
                       it: 'Facebook (si apre in una nuova scheda)',
+                      en: 'Facebook (open new tab)',
                     },
                     icon: {
                       type: 'svg', //"<svg | img | font>",
                       value:
-                        '<svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>',
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>',
                     },
                     url: 'https://www.facebook.com',
                     target: '_blank',
@@ -292,9 +311,11 @@ export const APP_CONFIG: AppConfig = {
                     showLabel: false,
                     label: {
                       it: 'Instagram',
+                      en: 'Instagram',
                     },
                     ariaLabel: {
                       it: 'Instagram (si apre in una nuova scheda)',
+                      en: 'Instagram (open new tab)',
                     },
                     icon: {
                       type: 'font', //"<svg | img | font>",
@@ -310,9 +331,11 @@ export const APP_CONFIG: AppConfig = {
                     showLabel: false,
                     label: {
                       it: 'Linkedin',
+                      en: 'Linkedin',
                     },
                     ariaLabel: {
                       it: 'Linkedin (si apre in una nuova scheda)',
+                      en: 'Linkedin (open new tab)',
                     },
                     icon: {
                       type: 'font', //"<svg | img | font>",
@@ -389,6 +412,7 @@ export const APP_CONFIG: AppConfig = {
               props: {
                 text: {
                   it: 'Home link',
+                  en: 'Home link',
                 },
                 // description: {
                 //   it: 'Apri external link',
@@ -411,6 +435,7 @@ export const APP_CONFIG: AppConfig = {
               props: {
                 text: {
                   it: 'Login',
+                  en: 'Login',
                 },
                 // description: {
                 //   it: 'Apri external link',
@@ -608,10 +633,12 @@ export const APP_CONFIG: AppConfig = {
               enabled: true,
               props: {
                 text: {
-                  it: 'External link',
+                  it: 'Link Esterno',
+                  en: 'External link',
                 },
                 description: {
                   it: 'Apri external link',
+                  en: 'Open external link',
                 },
                 url: 'https://italia.github.io/bootstrap-italia/',
                 external: true,
@@ -631,10 +658,12 @@ export const APP_CONFIG: AppConfig = {
               enabled: true,
               props: {
                 text: {
-                  it: 'External link2',
+                  it: 'Link Esterno2',
+                  en: 'External link2',
                 },
                 description: {
                   it: 'Apri external link',
+                  en: 'Open external link',
                 },
                 url: 'https://fontawesome.com/search',
                 external: true,

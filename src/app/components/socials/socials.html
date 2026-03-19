@@ -15,7 +15,7 @@
         'text-' + socials.title.color,
       ]"
     >
-      {{ socials.title.text.it }}
+      {{ socials.title.text[lang()] }}
     </div>
     <ul class="list-inline social it-socials m-0" aria-label="Social">
       @for (social of socials.socials; track social.id; let last = $last) {
@@ -25,19 +25,26 @@
             [target]="social.target"
             [ngClass]="'text-' + social.color"
             rel="noopener noreferrer"
-            [attr.aria-label]="social.ariaLabel"
           >
             @if (social.icon.type === 'font') {
               <i class="icon-social" [ngClass]="social.icon.value" aria-hidden="true"></i>
             }
             @if (social.icon.type === 'svg') {
-              <img [src]="encodeSvg(social.icon.value)" alt="" class="icon-svg pb-1" />
+              <div
+                [innerHTML]="sanitizeSvg(social)"
+                class="icon-svg d-inline-block align-text-bottom"
+                aria-hidden="true"
+              ></div>
             }
             @if (social.icon.type === 'img') {
-              <img [src]="social.icon.value" alt="" class="icon-img" />
+              <img
+                [src]="social.icon.value"
+                [attr.alt]="social.ariaLabel[lang()]"
+                class="icon-img"
+              />
             }
 
-            <span class="visually-hidden">{{ social.label }}</span>
+            <span class="visually-hidden">{{ social.label[lang()] }}</span>
           </a>
         </li>
       }
