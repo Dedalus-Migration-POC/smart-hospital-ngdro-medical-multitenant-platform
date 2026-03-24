@@ -6,10 +6,19 @@ import { Link } from '../../../../components/link/link';
 import { ImageBlock } from '../../../../components/image-block/image-block';
 import { SelectLanguage } from '../../../../components/select-language/select-language';
 import { GoogleTranslate } from '../../../../components/google-translate/google-translate';
+import { TextComponent } from '../../../../components/text-component/text-component';
 
 @Component({
   selector: 'app-layout-item',
-  imports: [CommonModule, Socials, Link, ImageBlock, SelectLanguage, GoogleTranslate],
+  imports: [
+    CommonModule,
+    Socials,
+    Link,
+    ImageBlock,
+    SelectLanguage,
+    GoogleTranslate,
+    TextComponent,
+  ],
   templateUrl: './layout-item.html',
   styleUrl: './layout-item.scss',
 })

@@ -4,7 +4,7 @@ export interface ISocials {
       it: string;
       en: string;
     };
-    fontSize: 'small' | 'normal' | 'large' | 'extraLarge';
+    fontSize: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
     bold: boolean;
     color:
       | 'primary'

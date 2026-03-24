@@ -383,15 +383,15 @@ export const APP_CONFIG: AppConfig = {
             wrap: 'nowrap',
           },
           items: [
-            {
-              id: 'nav-home',
-              type: 'TEXT',
-              enabled: true,
-              props: {
-                label: 'Home',
-                href: '/',
-              },
-            },
+            // {
+            //   id: 'nav-home',
+            //   type: 'LINK',
+            //   enabled: true,
+            //   props: {
+            //     label: 'Home',
+            //     href: '/',
+            //   },
+            // },
           ],
         },
         center: {
@@ -465,7 +465,7 @@ export const APP_CONFIG: AppConfig = {
 
   footer: {
     main: {
-      height: '100px',
+      height: '150px',
       position: {
         type: 'sticky',
       },
@@ -473,22 +473,55 @@ export const APP_CONFIG: AppConfig = {
       className: 'main-footer-custom',
       areas: {
         layout: {
-          direction: 'row',
-          gap: 'gap-3',
+          direction: 'column',
+          gap: 'gap-1',
           // align: 'center',
           wrap: 'wrap',
-          justify: 'between',
+          justify: 'space-between',
         },
         start: {
           layout: {
             direction: 'row',
-            gap: 'gap-3',
+            gap: 'gap-2',
             align: 'center',
-            wrap: 'nowrap',
+            wrap: 'wrap',
           },
           items: [
             {
-              id: 'header-logo',
+              id: 'footer-text',
+              type: 'TEXT',
+              enabled: true,
+              props: {
+                id: 'footer-text',
+                className: '',
+                text: {
+                  it: 'In collaborazione con',
+                  en: 'In collaboration with',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'white',
+                layout: {
+                  marginTop: '3',
+                  marginBottom: '1',
+                  marginRight: '1',
+                  marginLeft: '0',
+                  lineHeight: 'xxl',
+                },
+              },
+            },
+          ],
+        },
+        center: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-5',
+            align: 'center',
+            wrap: 'wrap',
+          },
+          items: [
+            {
+              id: 'footer-logo1',
               type: 'IMAGE_BLOCK',
               enabled: true,
               props: {
@@ -555,7 +588,55 @@ export const APP_CONFIG: AppConfig = {
                 },
                 tooltipClassName: 'tooltip-test',
                 text: {
-                  enabled: true,
+                  enabled: false,
+                  title: {
+                    text: {
+                      it: 'In collaborazione con',
+                      en: 'In collaboration with',
+                    },
+                    fontSize: 'md',
+                    fontWeight: 'semibold',
+                    color: 'white',
+                  },
+                  layout: {
+                    direction: 'column-reverse',
+                    placement: 'end',
+                    gap: 'gap-2',
+                    align: 'center',
+                  },
+                },
+              },
+            },
+            {
+              id: 'footer-logo2',
+              type: 'IMAGE_BLOCK',
+              enabled: true,
+              props: {
+                id: 'hero-image',
+                type: 'file',
+                value: 'assets/images/logo-ue.svg',
+                decorative: false,
+                // width: '290px',
+                // height: '120px',
+                className: 'img-logo',
+                alt: {
+                  it: 'Immagine esempio',
+                  en: 'Example image',
+                },
+                clickable: true,
+                action: {
+                  type: 'externalLink',
+                  url: 'https://commission.europa.eu/',
+                  target: '_blank',
+                },
+                tooltip: false,
+                // tooltipLabel: {
+                //   it: 'Tooltip Label',
+                //   en: 'Tooltip Label',
+                // },
+                // tooltipClassName: 'tooltip-test',
+                text: {
+                  enabled: false,
                   title: {
                     // text: {
                     //   it: 'Titolo',
@@ -574,16 +655,188 @@ export const APP_CONFIG: AppConfig = {
                 },
               },
             },
+            {
+              id: 'footer-logo3',
+              type: 'IMAGE_BLOCK',
+              enabled: true,
+              props: {
+                id: 'hero-image',
+                type: 'file',
+                value: 'assets/images/logo-ministero-salute.svg',
+                decorative: false,
+                // width: '290px',
+                // height: '120px',
+                className: 'img-logo',
+                alt: {
+                  it: 'Immagine esempio',
+                  en: 'Example image',
+                },
+                clickable: true,
+                action: {
+                  type: 'externalLink',
+                  url: 'https://www.pnrr.salute.gov.it/',
+                  target: '_blank',
+                },
+                tooltip: false,
+                // tooltipLabel: {
+                //   it: 'Tooltip Label',
+                //   en: 'Tooltip Label',
+                // },
+                // tooltipClassName: 'tooltip-test',
+                text: {
+                  enabled: false,
+                  title: {
+                    // text: {
+                    //   it: 'Titolo',
+                    //   en: 'Title',
+                    // },
+                    fontSize: 'md',
+                    fontWeight: 'bold',
+                    color: 'primary',
+                  },
+                  layout: {
+                    direction: 'column',
+                    placement: 'end',
+                    gap: 'gap-2',
+                    align: 'center',
+                  },
+                },
+              },
+            },
+            {
+              id: 'footer-logo4',
+              type: 'IMAGE_BLOCK',
+              enabled: true,
+              props: {
+                id: 'hero-image',
+                type: 'file',
+                value: 'assets/images/italia-domani.svg',
+                decorative: false,
+                // width: '290px',
+                // height: '120px',
+                className: 'img-logo',
+                alt: {
+                  it: 'Immagine esempio',
+                  en: 'Example image',
+                },
+                clickable: true,
+                action: {
+                  type: 'externalLink',
+                  url: 'https://commission.europa.eu/',
+                  target: '_blank',
+                },
+                tooltip: false,
+                // tooltipLabel: {
+                //   it: 'Tooltip Label',
+                //   en: 'Tooltip Label',
+                // },
+                // tooltipClassName: 'tooltip-test',
+                text: {
+                  enabled: false,
+                  title: {
+                    // text: {
+                    //   it: 'Titolo',
+                    //   en: 'Title',
+                    // },
+                    fontSize: 'md',
+                    fontWeight: 'bold',
+                    color: 'primary',
+                  },
+                  layout: {
+                    direction: 'column',
+                    placement: 'end',
+                    gap: 'gap-2',
+                    align: 'center',
+                  },
+                },
+              },
+            },
+            {
+              id: 'header-socials',
+              type: 'SOCIAL',
+              enabled: true,
+              props: {
+                layout: {
+                  direction: 'column',
+                  placement: 'end',
+                  gap: 'gap-2',
+                  align: 'end',
+                },
+                title: {
+                  text: {
+                    it: 'Seguici su',
+                    en: 'Follow us',
+                  },
+                  fontSize: 'md',
+                  bold: false,
+                  color: 'white',
+                },
+                socials: [
+                  {
+                    id: 'fb',
+                    showLabel: false,
+                    label: {
+                      it: 'Facebook',
+                      en: 'Facebook',
+                    },
+                    ariaLabel: {
+                      it: 'Facebook (si apre in una nuova scheda)',
+                      en: 'Facebook (open new tab)',
+                    },
+                    icon: {
+                      type: 'svg', //"<svg | img | font>",
+                      value:
+                        '<svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>',
+                    },
+                    url: 'https://www.facebook.com',
+                    target: '_blank',
+                    disabled: false,
+                    color: 'black',
+                  },
+                  {
+                    id: 'instagram',
+                    showLabel: false,
+                    label: {
+                      it: 'Instagram',
+                      en: 'Instagram',
+                    },
+                    ariaLabel: {
+                      it: 'Instagram (si apre in una nuova scheda)',
+                      en: 'Instagram (open new tab)',
+                    },
+                    icon: {
+                      type: 'font', //"<svg | img | font>",
+                      value: 'fa-brands fa-instagram',
+                    },
+                    url: 'https://www.instagram.com',
+                    target: '_blank',
+                    disabled: false,
+                    color: 'white',
+                  },
+                  {
+                    id: 'in',
+                    showLabel: false,
+                    label: {
+                      it: 'Linkedin',
+                      en: 'Linkedin',
+                    },
+                    ariaLabel: {
+                      it: 'Linkedin (si apre in una nuova scheda)',
+                      en: 'Linkedin (open new tab)',
+                    },
+                    icon: {
+                      type: 'font', //"<svg | img | font>",
+                      value: 'fa-brands fa-linkedin-in',
+                    },
+                    url: 'https://www.linkedin.com',
+                    target: '_blank',
+                    disabled: false,
+                    color: 'primary',
+                  },
+                ],
+              },
+            },
           ],
-        },
-        center: {
-          layout: {
-            direction: 'row',
-            gap: 'gap-3',
-            align: 'center',
-            wrap: 'nowrap',
-          },
-          items: [],
         },
         end: {
           size: {

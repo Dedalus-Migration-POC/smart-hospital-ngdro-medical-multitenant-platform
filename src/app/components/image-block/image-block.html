@@ -39,9 +39,13 @@
       <div class="text-wrapper">
         <!-- TITLE -->
         <div
-          [ngClass]="['fs-' + config.text?.title?.fontSize, 'fw-' + config.text?.title?.fontWeight]"
+          [ngClass]="[
+            'fs-' + config.text?.title?.fontSize,
+            'fw-' + config.text?.title?.fontWeight,
+            'text-' + config.text?.title?.color,
+          ]"
         >
-          {{ config.text?.title?.text && config.text?.title?.text![lang] }}
+          {{ config.text?.title?.text && config.text?.title?.text![lang()] }}
         </div>
 
         <!-- DESCRIPTION -->
@@ -52,7 +56,7 @@
               'fw-' + config.text!.description?.fontWeight,
             ]"
           >
-            <!-- {{ config.text?.description?.text[lang] }} -->
+            {{ config.text?.description?.text![lang()] }}
           </div>
         }
       </div>

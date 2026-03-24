@@ -51,6 +51,15 @@
           },
           "configurations": {
             "production": {
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -66,6 +75,15 @@
               "outputHashing": "all"
             },
             "integration": {
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -81,6 +99,15 @@
               "outputHashing": "all"
             },
             "staging": {
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -96,6 +123,15 @@
               "outputHashing": "all"
             },
             "development": {
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/bootstrap-italia/dist/fonts",
+                  "output": "/bootstrap-italia/dist/fonts"
+                }
+              ],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { ImageBlockConfig } from './model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LanguageService } from '../../initialize/state/services/language.service';
 
 @Component({
   selector: 'app-image-block',
@@ -16,20 +17,22 @@ export class ImageBlock {
     private router: Router,
     private sanitizer: DomSanitizer,
   ) {}
-  lang: 'it' | 'en' = 'it';
+  private langService = inject(LanguageService);
+
+  lang = this.langService.lang;
   // ACCESSIBILITY
   altText = computed(() => {
     const cfg = this.config();
     if (!cfg || cfg.decorative) return null;
 
-    return cfg.alt?.[this.lang] ?? '';
+    return cfg.alt?.[this.lang()] ?? '';
   });
 
   ariaLabel = computed(() => {
     const cfg = this.config();
     if (!cfg || cfg.decorative) return null;
 
-    return cfg.ariaLabel?.[this.lang] ?? this.altText();
+    return cfg.ariaLabel?.[this.lang()] ?? this.altText();
   });
 
   ariaHidden = computed(() => {
@@ -89,7 +92,7 @@ export class ImageBlock {
     const cfg = this.config();
     if (!cfg?.tooltip) return null;
 
-    return cfg.tooltipLabel?.[this.lang] ?? null;
+    return cfg.tooltipLabel?.[this.lang()] ?? null;
   });
 
   sanitizeSvg(svgString: string) {

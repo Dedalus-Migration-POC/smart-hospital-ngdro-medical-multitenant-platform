@@ -1,0 +1,17 @@
+@if (config(); as config) {
+  <div
+    [innerHTML]="config.text[lang()]"
+    [ngClass]="[
+      'text-' + config.color,
+      'text-' + config.textTransform,
+      'text-decoration-' + config.textDecoration,
+      'fw-' + config.fontWeight,
+      'fs-' + config.fontSize,
+      'mt-' + config.layout?.marginTop,
+      'mb-' + config.layout?.marginBottom,
+      'ms-' + config.layout?.marginLeft,
+      'me-' + config.layout?.marginRight,
+      'lh-' + config.layout?.lineHeight,
+    ]"
+  ></div>
+}
