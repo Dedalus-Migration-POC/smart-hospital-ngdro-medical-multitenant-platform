@@ -466,7 +466,7 @@ export const APP_CONFIG: AppConfig = {
         layout: {
           direction: 'row',
           gap: 'gap-3',
-          align: 'center',
+          // align: 'center',
           wrap: 'wrap',
           justify: 'start',
         },
@@ -492,13 +492,13 @@ export const APP_CONFIG: AppConfig = {
                 fontSize: 'md',
                 fontWeight: 'normal',
                 color: 'white',
-                // layout: {
-                //   marginTop: '3',
-                //   marginBottom: '1',
-                //   marginRight: '1',
-                //   marginLeft: '0',
-                //   lineHeight: 'xxl',
-                // },
+                layout: {
+                  marginTop: 'mt-3',
+                  // marginBottom: '1',
+                  // marginRight: '1',
+                  // marginLeft: '0',
+                  // lineHeight: 'xxl',
+                },
               },
             },
             {
@@ -580,7 +580,7 @@ export const APP_CONFIG: AppConfig = {
           },
           layout: {
             direction: 'row',
-            justify: 'center',
+            justify: 'start',
             gap: 'gap-3',
             align: 'center',
             wrap: 'wrap',
@@ -692,7 +692,7 @@ export const APP_CONFIG: AppConfig = {
           layout: {
             direction: 'row',
             justify: 'start',
-            align: 'start',
+            align: 'center',
             wrap: 'nowrap',
             gap: 'gap-3',
           },
@@ -716,6 +716,7 @@ export const APP_CONFIG: AppConfig = {
                   fontSize: 'md',
                   bold: false,
                   color: 'white',
+                  textTransform: 'uppercase',
                 },
                 socials: [
                   {

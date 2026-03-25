@@ -6,6 +6,7 @@ import {
   Gap,
   LinkTarget,
   Placement,
+  TextTransform,
 } from '../../shared/models/shared_model';
 
 export interface ISocials {
@@ -17,6 +18,7 @@ export interface ISocials {
     fontSize: FontSize;
     bold: boolean;
     color: Colors;
+    textTransform?: TextTransform;
   };
   socials: {
     id: string;

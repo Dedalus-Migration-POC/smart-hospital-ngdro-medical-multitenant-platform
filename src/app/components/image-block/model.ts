@@ -1,11 +1,11 @@
 import { LayoutDirection } from '../../shared/layout-system/models/layout.model';
-import { LocalizedText } from '../../shared/layout-system/models/localized.model';
 import {
   Align,
   Colors,
   FontSize,
   FontWeight,
   LinkTarget,
+  LocalizedText,
   Placement,
 } from '../../shared/models/shared_model';
 

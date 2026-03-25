@@ -7,10 +7,10 @@
       'text-decoration-' + config.textDecoration,
       'fw-' + config.fontWeight,
       'fs-' + config.fontSize,
-      'mt-' + config.layout?.marginTop,
-      'mb-' + config.layout?.marginBottom,
-      'ms-' + config.layout?.marginLeft,
-      'me-' + config.layout?.marginRight,
+      config.layout?.marginTop || '',
+      config.layout?.marginBottom || '',
+      config.layout?.marginLeft || '',
+      config.layout?.marginRight || '',
       'lh-' + config.layout?.lineHeight,
     ]"
   ></div>
