@@ -1,22 +1,22 @@
+import { LayoutDirection } from '../../shared/layout-system/models/layout.model';
+import {
+  Align,
+  Colors,
+  FontSize,
+  Gap,
+  LinkTarget,
+  Placement,
+} from '../../shared/models/shared_model';
+
 export interface ISocials {
   title: {
     text: {
       it: string;
       en: string;
     };
-    fontSize: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+    fontSize: FontSize;
     bold: boolean;
-    color:
-      | 'primary'
-      | 'secondary'
-      | 'success'
-      | 'danger'
-      | 'warning'
-      | 'info'
-      | 'light'
-      | 'dark'
-      | 'white'
-      | 'black';
+    color: Colors;
   };
   socials: {
     id: string;
@@ -35,24 +35,14 @@ export interface ISocials {
       value: string;
     };
     url: string;
-    target: '_self' | '_blank' | '_parent' | '_top';
+    target: LinkTarget;
     disabled: boolean;
-    color:
-      | 'primary'
-      | 'secondary'
-      | 'success'
-      | 'danger'
-      | 'warning'
-      | 'info'
-      | 'light'
-      | 'dark'
-      | 'white'
-      | 'black';
+    color: Colors;
   }[];
   layout: {
-    direction: 'row' | 'column';
-    placement: 'start' | 'end';
-    gap: 'gap-1' | 'gap-2' | 'gap-3' | 'gap-4' | 'gap-5';
-    align: 'start' | 'center' | 'end';
+    direction: LayoutDirection;
+    placement: Placement;
+    gap: Gap;
+    align: Align;
   };
 }

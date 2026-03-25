@@ -1,4 +1,4 @@
-export type LayoutDirection = 'row' | 'column';
+export type LayoutDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type LayoutAlign = 'start' | 'center' | 'end' | 'baseline' | 'stretch';
 export type LayoutJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 export type LayoutWrap = 'wrap' | 'nowrap' | 'reverse';

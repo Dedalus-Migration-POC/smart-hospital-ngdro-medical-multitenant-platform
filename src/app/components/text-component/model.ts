@@ -1,3 +1,12 @@
+import {
+  Colors,
+  FontSize,
+  FontWeight,
+  LineHeight,
+  TextDecoration,
+  TextTransform,
+} from '../../shared/models/shared_model';
+
 export interface TextProps {
   id: string;
   className?: string;
@@ -5,26 +14,16 @@ export interface TextProps {
     it: string;
     en: string;
   };
-  fontSize?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-  fontWeight?: 'normal' | 'semibold' | 'bold';
-  textDecoration?: 'none' | 'underline' | 'overline';
-  textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
-  color:
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'danger'
-    | 'warning'
-    | 'info'
-    | 'light'
-    | 'dark'
-    | 'white'
-    | 'black';
+  fontSize?: FontSize;
+  fontWeight?: FontWeight;
+  textDecoration?: TextDecoration;
+  textTransform?: TextTransform;
+  color: Colors;
   layout?: {
     marginTop?: string; //da 1 a 5
     marginBottom?: string;
     marginRight?: string;
     marginLeft?: string;
-    lineHeight?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+    lineHeight?: LineHeight;
   };
 }

@@ -1,3 +1,11 @@
+import {
+  Colors,
+  FontSize,
+  FontWeight,
+  LinkTarget,
+  TextDecoration,
+} from '../../shared/models/shared_model';
+
 export interface ILink {
   text: {
     it: string;
@@ -9,26 +17,16 @@ export interface ILink {
   };
   url: string;
   external: boolean;
-  target?: '_self' | '_blank' | '_parent' | '_top';
+  target?: LinkTarget;
   //Se c è già testo visibile ariaLabel non serve perche sovrascrive quel testo per screen reader
   ariaLabel?: {
     it: string;
   };
   disabled: boolean;
   style: {
-    color:
-      | 'primary'
-      | 'secondary'
-      | 'success'
-      | 'danger'
-      | 'warning'
-      | 'info'
-      | 'light'
-      | 'dark'
-      | 'white'
-      | 'black';
-    textDecoration: 'none' | 'underline' | 'overline';
-    font: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-    fontWeight: 'normal' | 'semibold' | 'bold';
+    color: Colors;
+    textDecoration: TextDecoration;
+    font: FontSize;
+    fontWeight: FontWeight;
   };
 }

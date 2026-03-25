@@ -1,3 +1,13 @@
+import { LayoutDirection } from '../../shared/layout-system/models/layout.model';
+import {
+  Align,
+  Colors,
+  FontSize,
+  FontWeight,
+  LinkTarget,
+  Placement,
+} from '../../shared/models/shared_model';
+
 export type ImageType = 'url' | 'inlineSvg' | 'file';
 export type ActionType = 'route' | 'externalLink';
 
@@ -24,7 +34,7 @@ export interface ImageBlockConfig {
   action?: {
     type: ActionType;
     url: string;
-    target?: '_self' | '_blank' | '_parent' | '_top';
+    target?: LinkTarget;
   };
 
   tooltip?: boolean;
@@ -35,21 +45,21 @@ export interface ImageBlockConfig {
     enabled: boolean;
     title: {
       text: LocalizedText;
-      fontSize: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-      fontWeight: 'normal' | 'semibold' | 'bold';
-      color: string;
+      fontSize: FontSize;
+      fontWeight: FontWeight;
+      color: Colors;
     };
     description?: {
       text: LocalizedText;
-      fontSize: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
-      fontWeight: 'normal' | 'semibold' | 'bold';
+      fontSize: FontSize;
+      fontWeight: FontWeight;
       color: string;
     };
     layout: {
-      direction: 'row' | 'column';
-      placement: 'start' | 'end';
+      direction: LayoutDirection;
+      placement: Placement;
       gap: string;
-      align: 'start' | 'center' | 'end';
+      align: Align;
     };
   };
 }
