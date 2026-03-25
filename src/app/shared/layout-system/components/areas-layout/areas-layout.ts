@@ -40,6 +40,9 @@ export class AreasLayout {
       width: size.width ?? null,
       minWidth: size.minWidth ?? null,
       maxWidth: size.maxWidth ?? null,
+      height: size.height ?? null,
+      minHeight: size.minHeight ?? null,
+      maxHeight: size.maxHeight ?? null,
     };
   }
 

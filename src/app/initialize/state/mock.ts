@@ -686,6 +686,9 @@ export const APP_CONFIG: AppConfig = {
           ],
         },
         end: {
+          size: {
+            height: '90px',
+          },
           layout: {
             direction: 'row',
             justify: 'start',

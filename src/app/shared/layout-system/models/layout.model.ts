@@ -39,8 +39,11 @@ export interface AreaSize {
   shrink?: number; // flex property
   basis?: string; // flex property
   width?: string;
+  height?: string;
   minWidth?: string;
   maxWidth?: string;
+  minHeight?: string;
+  maxHeight?: string;
 }
 
 export interface LayoutArea {

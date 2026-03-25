@@ -107,7 +107,10 @@ export class ImageBlock {
 
     const label = this.ariaLabel();
     return this.sanitizer.bypassSecurityTrustHtml(
-      svgString.replace('<svg', `<svg role="img" aria-label="${label}" focusable="false"`),
+      svgString.replace(
+        '<svg',
+        `<svg role="img" class="img-fluid"  aria-label="${label}" focusable="false"`,
+      ),
     );
   }
 }
