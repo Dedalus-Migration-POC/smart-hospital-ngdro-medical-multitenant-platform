@@ -1,6 +1,7 @@
 @if (config(); as config) {
   <div
     [innerHTML]="config.text[lang()]"
+    class="cursor-default"
     [ngClass]="[
       'text-' + config.color,
       'text-' + config.textTransform,
