@@ -1,11 +1,10 @@
 @if (config(); as config) {
   <div
-    class="image-block-container"
     [ngClass]="[
       config.className || '',
       layoutClasses(),
       flexOrder(),
-      config.clickable ? 'cursor-pointer' : '',
+      config.clickable ? 'cursor-pointer' : 'cursor-default',
     ]"
     (click)="handleClick()"
     (keydown)="handleKeydown($event)"
@@ -13,53 +12,46 @@
     [attr.tabindex]="config.clickable ? '0' : null"
     [attr.title]="tooltipLabel()"
   >
-    <!-- IMAGE -->
-    <div class="image-wrapper">
-      <!-- IMG -->
-      @if (config.type === 'url' || config.type === 'file') {
+    @if (config.image) {
+      @if (config.image.type === 'url' || config.image.type === 'file') {
         <img
           class="img-fluid"
-          [src]="config.value"
-          [style.width]="config.width"
-          [style.height]="config.height"
+          [src]="config.image.value"
+          [style.width]="config.image.width"
+          [style.height]="config.image.height"
           loading="lazy"
           [attr.alt]="altText()"
           [attr.aria-hidden]="ariaHidden()"
         />
       }
 
-      <!-- INLINE SVG -->
-      @if (config.type === 'inlineSvg') {
-        <div [innerHTML]="sanitizeSvg(config.value.replace(/\n/g, ''))"></div>
+      @if (config.image.type === 'inlineSvg') {
+        <div [innerHTML]="sanitizeSvg(config.image.value.replace(/\n/g, ''))"></div>
       }
-    </div>
+    }
 
-    <!-- TEXT -->
-    @if (config.text?.enabled) {
-      <div class="text-wrapper">
-        <!-- TITLE -->
+    @if (config.text) {
+      <div
+        [ngClass]="[
+          config.text.title.fontSize ? 'fs-' + config.text.title.fontSize : '',
+          config.text.title.fontWeight ? 'fw-' + config.text.title.fontWeight : '',
+          config.text.title.color ? 'text-' + config.text.title.color : '',
+        ]"
+      >
+        {{ config.text.title.text && config.text.title.text![lang()] }}
+      </div>
+
+      @if (config.text.description) {
         <div
           [ngClass]="[
-            'fs-' + config.text?.title?.fontSize,
-            'fw-' + config.text?.title?.fontWeight,
-            'text-' + config.text?.title?.color,
+            config.text.description.fontSize ? 'fs-' + config.text.description.fontSize : '',
+            config.text.description.fontWeight ? 'fw-' + config.text.description.fontWeight : '',
+            config.text.description.color ? 'text-' + config.text.description.color : '',
           ]"
         >
-          {{ config.text?.title?.text && config.text?.title?.text![lang()] }}
+          {{ config.text.description.text[lang()] }}
         </div>
-
-        <!-- DESCRIPTION -->
-        @if (config.text?.description && config.text?.description?.text) {
-          <div
-            [ngClass]="[
-              'fs-' + config.text?.description?.fontSize,
-              'fw-' + config.text!.description?.fontWeight,
-            ]"
-          >
-            {{ config.text?.description?.text![lang()] }}
-          </div>
-        }
-      </div>
+      }
     }
   </div>
 }

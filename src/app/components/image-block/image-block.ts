@@ -20,24 +20,25 @@ export class ImageBlock {
   private langService = inject(LanguageService);
 
   lang = this.langService.lang;
+
   // ACCESSIBILITY
   altText = computed(() => {
     const cfg = this.config();
-    if (!cfg || cfg.decorative) return null;
+    if (!cfg || cfg.image.decorative) return null;
 
-    return cfg.alt?.[this.lang()] ?? '';
+    return cfg.image.alt?.[this.lang()] ?? '';
   });
 
   ariaLabel = computed(() => {
     const cfg = this.config();
-    if (!cfg || cfg.decorative) return null;
+    if (!cfg || cfg.image.decorative) return null;
 
-    return cfg.ariaLabel?.[this.lang()] ?? this.altText();
+    return cfg.image.ariaLabel?.[this.lang()] ?? this.altText();
   });
 
   ariaHidden = computed(() => {
     const cfg = this.config();
-    return cfg?.decorative ? true : null;
+    return cfg?.image.decorative ? true : null;
   });
 
   // ACTION HANDLER
@@ -67,7 +68,7 @@ export class ImageBlock {
   // LAYOUT
   layoutClasses = computed(() => {
     const cfg = this.config();
-    const layout = cfg?.text?.layout;
+    const layout = cfg?.layout;
 
     if (!layout) return '';
 
@@ -82,17 +83,17 @@ export class ImageBlock {
 
   flexOrder = computed(() => {
     const cfg = this.config();
-    const placement = cfg?.text?.layout?.placement;
+    const placement = cfg?.layout?.placement;
 
     return placement === 'start' ? 'flex-row-reverse' : '';
   });
-  // TOOLTIP
 
+  // TOOLTIP
   tooltipLabel = computed(() => {
     const cfg = this.config();
-    if (!cfg?.tooltip) return null;
+    if (!cfg?.image?.tooltip) return null;
 
-    return cfg.tooltipLabel?.[this.lang()] ?? null;
+    return cfg.image?.tooltipLabel?.[this.lang()] ?? null;
   });
 
   sanitizeSvg(svgString: string) {
@@ -100,7 +101,7 @@ export class ImageBlock {
 
     if (!cfg) return svgString;
 
-    if (cfg.decorative) {
+    if (cfg.image?.decorative) {
       return svgString.replace('<svg', '<svg aria-hidden="true" focusable="false"');
     }
 

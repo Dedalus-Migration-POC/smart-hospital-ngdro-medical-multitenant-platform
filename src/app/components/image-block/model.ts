@@ -1,4 +1,5 @@
 import { LayoutDirection } from '../../shared/layout-system/models/layout.model';
+import { LocalizedText } from '../../shared/layout-system/models/localized.model';
 import {
   Align,
   Colors,
@@ -11,55 +12,49 @@ import {
 export type ImageType = 'url' | 'inlineSvg' | 'file';
 export type ActionType = 'route' | 'externalLink';
 
-export interface LocalizedText {
-  it: string;
-  en: string;
-}
-
 export interface ImageBlockConfig {
   id: string;
-  type: ImageType;
-  value: string;
-  decorative: boolean;
-
-  alt?: LocalizedText;
-  ariaLabel?: LocalizedText;
-
-  width?: string;
-  height?: string;
   className?: string;
-
-  clickable?: boolean;
-
+  layout: {
+    // layout container (for image and text)
+    direction: LayoutDirection;
+    placement: Placement;
+    gap: string;
+    align: Align;
+  };
   action?: {
+    // for container (image + test)
     type: ActionType;
     url: string;
     target?: LinkTarget;
   };
-
-  tooltip?: boolean;
-  tooltipLabel?: LocalizedText;
-  tooltipClassName?: string;
-
+  clickable?: boolean; // for container (image + test)
+  image: {
+    type: ImageType;
+    value: string;
+    decorative: boolean;
+    alt?: LocalizedText;
+    ariaLabel?: LocalizedText;
+    width?: string;
+    height?: string;
+    className?: string;
+    tooltip?: boolean;
+    tooltipLabel?: LocalizedText;
+    tooltipClassName?: string;
+  };
   text?: {
-    enabled: boolean;
+    // the layout consists of a title and a description bottom
     title: {
       text: LocalizedText;
-      fontSize: FontSize;
-      fontWeight: FontWeight;
-      color: Colors;
+      fontSize?: FontSize;
+      fontWeight?: FontWeight;
+      color?: Colors;
     };
     description?: {
       text: LocalizedText;
-      fontSize: FontSize;
-      fontWeight: FontWeight;
-      color: string;
-    };
-    layout: {
-      direction: LayoutDirection;
-      placement: Placement;
-      gap: string;
-      align: Align;
+      fontSize?: FontSize;
+      fontWeight?: FontWeight;
+      color?: string;
     };
   };
 }

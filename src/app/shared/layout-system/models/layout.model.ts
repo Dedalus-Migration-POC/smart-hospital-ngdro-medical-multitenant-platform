@@ -16,7 +16,6 @@ export type Background =
   | 'dark'
   | 'black';
 
-// TODO: vanno implementati i componenti
 export type ItemType =
   | 'IMAGE_BLOCK'
   | 'SOCIAL'
