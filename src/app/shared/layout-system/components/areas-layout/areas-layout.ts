@@ -1,14 +1,8 @@
 import { Component, input } from '@angular/core';
-import {
-  AreaLayout,
-  AreasConfig,
-  AreaSize,
-  LayoutAlign,
-  LayoutJustify,
-  LayoutWrap,
-} from '../../models/layout.model';
+import { AreaLayout, AreasConfig, AreaSize } from '../../models/layout.model';
 import { CommonModule } from '@angular/common';
 import { LayoutItem } from '../layout-item/layout-item';
+import { Align, Justify, Wrap } from '../../../models/shared_model';
 
 @Component({
   selector: 'app-areas-layout',
@@ -46,7 +40,7 @@ export class AreasLayout {
     };
   }
 
-  private getAlignClass(align?: LayoutAlign): string {
+  private getAlignClass(align?: Align): string {
     switch (align) {
       case 'start':
         return 'align-items-start';
@@ -63,7 +57,7 @@ export class AreasLayout {
     }
   }
 
-  private getJustifyClass(justify?: LayoutJustify): string {
+  private getJustifyClass(justify?: Justify): string {
     switch (justify) {
       case 'start':
         return 'justify-content-start';
@@ -82,7 +76,7 @@ export class AreasLayout {
     }
   }
 
-  private getWrapClass(wrap?: LayoutWrap): string {
+  private getWrapClass(wrap?: Wrap): string {
     switch (wrap) {
       case 'wrap':
         return 'flex-wrap';

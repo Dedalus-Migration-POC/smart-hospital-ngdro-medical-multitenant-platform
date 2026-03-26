@@ -1,7 +1,7 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { Topbar } from './topbar/topbar';
 import { MainHeader } from './main-header/main-header';
-import { Bottombar } from "./bottombar/bottombar";
+import { Bottombar } from './bottombar/bottombar';
 import { HeaderConfig } from './header.model';
 
 @Component({

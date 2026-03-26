@@ -1,20 +1,4 @@
-export type LayoutDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
-export type LayoutAlign = 'start' | 'center' | 'end' | 'baseline' | 'stretch';
-export type LayoutJustify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
-export type LayoutWrap = 'wrap' | 'nowrap' | 'reverse';
-export type LayoutGap = 'gap-0' | 'gap-1' | 'gap-2' | 'gap-3' | 'gap-4' | 'gap-5';
-
-export type Background =
-  | 'white'
-  | 'primary'
-  | 'secondary'
-  | 'success'
-  | 'danger'
-  | 'warning'
-  | 'info'
-  | 'light'
-  | 'dark'
-  | 'black';
+import { Align, Direction, Gap, Justify, Wrap } from '../../models/shared_model';
 
 export type ItemType =
   | 'IMAGE_BLOCK'
@@ -53,11 +37,11 @@ export interface LayoutArea {
 }
 
 export interface AreaLayout {
-  direction: LayoutDirection;
-  align?: LayoutAlign;
-  justify?: LayoutJustify;
-  wrap?: LayoutWrap;
-  gap?: LayoutGap;
+  direction: Direction;
+  align?: Align;
+  justify?: Justify;
+  wrap?: Wrap;
+  gap?: Gap;
 }
 
 export interface AreasConfig {

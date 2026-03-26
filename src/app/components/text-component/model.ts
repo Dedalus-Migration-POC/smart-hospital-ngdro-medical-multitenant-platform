@@ -3,10 +3,7 @@ import {
   FontSize,
   FontWeight,
   LineHeight,
-  MarginBottom,
-  MarginLeft,
-  MarginRight,
-  MarginTop,
+  Margin,
   TextDecoration,
   TextTransform,
 } from '../../shared/models/shared_model';
@@ -24,10 +21,10 @@ export interface TextProps {
   textTransform?: TextTransform;
   color: Colors;
   layout?: {
-    marginTop?: MarginTop;
-    marginBottom?: MarginBottom;
-    marginRight?: MarginLeft;
-    marginLeft?: MarginRight;
+    marginTop?: Margin;
+    marginBottom?: Margin;
+    marginRight?: Margin;
+    marginLeft?: Margin;
     lineHeight?: LineHeight;
   };
 }

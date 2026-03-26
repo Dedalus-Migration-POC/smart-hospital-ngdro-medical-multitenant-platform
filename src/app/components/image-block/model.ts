@@ -1,7 +1,7 @@
-import { LayoutDirection } from '../../shared/layout-system/models/layout.model';
 import {
   Align,
   Colors,
+  Direction,
   FontSize,
   FontWeight,
   LinkTarget,
@@ -17,7 +17,7 @@ export interface ImageBlockConfig {
   className?: string;
   layout?: {
     // layout container (for image and text)
-    direction: LayoutDirection;
+    direction: Direction;
     placement: Placement;
     gap: string;
     align: Align;

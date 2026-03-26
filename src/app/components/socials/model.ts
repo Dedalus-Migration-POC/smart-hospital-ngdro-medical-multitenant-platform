@@ -1,7 +1,7 @@
-import { LayoutDirection } from '../../shared/layout-system/models/layout.model';
 import {
   Align,
   Colors,
+  Direction,
   FontSize,
   Gap,
   LinkTarget,
@@ -42,7 +42,7 @@ export interface ISocials {
     color: Colors;
   }[];
   layout: {
-    direction: LayoutDirection;
+    direction: Direction;
     placement: Placement;
     gap: Gap;
     align: Align;

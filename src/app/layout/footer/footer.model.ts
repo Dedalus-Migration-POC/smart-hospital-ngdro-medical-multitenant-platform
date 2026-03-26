@@ -1,4 +1,5 @@
-import { AreaLayout, Background, LayoutArea } from '../../shared/layout-system/models/layout.model';
+import { AreaLayout, LayoutArea } from '../../shared/layout-system/models/layout.model';
+import { Colors } from '../../shared/models/shared_model';
 
 export interface FooterSection {
   height: string;
@@ -7,7 +8,7 @@ export interface FooterSection {
     className?: string;
     stackable?: boolean;
   };
-  background: Background;
+  background: Colors;
   className?: string;
   areas?: {
     layout?: AreaLayout;
