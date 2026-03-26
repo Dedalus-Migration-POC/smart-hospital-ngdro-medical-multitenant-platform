@@ -4,6 +4,7 @@ import {
   Direction,
   FontSize,
   Gap,
+  FlexLayoutConfig,
   LinkTarget,
   TextTransform,
 } from '../../shared/models/shared_model';
@@ -40,9 +41,5 @@ export interface ISocials {
     disabled: boolean;
     color: Colors;
   }[];
-  layout: {
-    direction: Direction;
-    gap: Gap;
-    align: Align;
-  };
+  layout: FlexLayoutConfig;
 }

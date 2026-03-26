@@ -3,6 +3,7 @@ import {
   FontSize,
   FontWeight,
   LineHeight,
+  LocalizedText,
   Margin,
   TextDecoration,
   TextTransform,
@@ -10,21 +11,16 @@ import {
 
 export interface TextProps {
   id: string;
+  text: LocalizedText;
   className?: string;
-  text: {
-    it: string;
-    en: string;
-  };
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   textDecoration?: TextDecoration;
   textTransform?: TextTransform;
-  color: Colors;
-  layout?: {
-    marginTop?: Margin;
-    marginBottom?: Margin;
-    marginRight?: Margin;
-    marginLeft?: Margin;
-    lineHeight?: LineHeight;
-  };
+  color?: Colors;
+  marginTop?: Margin;
+  marginBottom?: Margin;
+  marginRight?: Margin;
+  marginLeft?: Margin;
+  lineHeight?: LineHeight;
 }

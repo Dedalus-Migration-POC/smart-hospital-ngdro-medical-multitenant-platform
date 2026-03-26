@@ -29,3 +29,11 @@ export interface LocalizedText {
   it: string;
   en: string;
 }
+
+export interface FlexLayoutConfig {
+  direction?: Direction;
+  align?: Align;
+  justify?: Justify;
+  wrap?: Wrap;
+  gap?: string;
+}

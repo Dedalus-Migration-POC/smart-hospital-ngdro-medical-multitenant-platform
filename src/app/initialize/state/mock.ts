@@ -491,13 +491,11 @@ export const APP_CONFIG: AppConfig = {
                 fontSize: 'md',
                 fontWeight: 'normal',
                 color: 'white',
-                layout: {
-                  marginTop: 'mt-3',
-                  // marginBottom: '1',
-                  // marginRight: '1',
-                  // marginLeft: '0',
-                  // lineHeight: 'xxl',
-                },
+                marginTop: 'mt-3',
+                // marginBottom: '1',
+                // marginRight: '1',
+                // marginLeft: '0',
+                // lineHeight: 'xxl',
               },
             },
             {

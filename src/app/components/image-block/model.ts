@@ -4,6 +4,7 @@ import {
   Direction,
   FontSize,
   FontWeight,
+  FlexLayoutConfig,
   LinkTarget,
   LocalizedText,
 } from '../../shared/models/shared_model';
@@ -14,12 +15,7 @@ export type ActionType = 'route' | 'externalLink';
 export interface ImageBlockConfig {
   id: string;
   className?: string;
-  layout?: {
-    // layout container (for image and text)
-    direction: Direction;
-    gap: string;
-    align: Align;
-  };
+  layout?: FlexLayoutConfig; // layout container (for image and text)
   action?: {
     // for container (image + test)
     type: ActionType;
