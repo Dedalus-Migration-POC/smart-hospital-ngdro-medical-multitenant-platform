@@ -3,7 +3,6 @@
     [ngClass]="[
       config.className || '',
       layoutClasses(),
-      flexOrder(),
       config.clickable ? 'cursor-pointer' : 'cursor-default',
     ]"
     (click)="handleClick()"

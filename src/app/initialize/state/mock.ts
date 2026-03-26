@@ -164,8 +164,7 @@ export const APP_CONFIG: AppConfig = {
               props: {
                 id: 'hero-image',
                 layout: {
-                  direction: 'column',
-                  placement: 'end',
+                  direction: 'column-reverse',
                   gap: 'gap-2',
                   align: 'center',
                 },
@@ -268,7 +267,7 @@ export const APP_CONFIG: AppConfig = {
               props: {
                 layout: {
                   direction: 'row',
-                  placement: 'start',
+                  placement: 'row-reverse',
                   gap: 'gap-2',
                   align: 'center',
                 },
@@ -703,8 +702,7 @@ export const APP_CONFIG: AppConfig = {
               enabled: true,
               props: {
                 layout: {
-                  direction: 'column',
-                  placement: 'end',
+                  direction: 'column-reverse',
                   gap: 'gap-2',
                   align: 'end',
                 },

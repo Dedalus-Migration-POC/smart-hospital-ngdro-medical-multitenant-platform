@@ -42,7 +42,6 @@ export class ImageBlock {
   });
 
   // ACTION HANDLER
-
   handleClick(): void {
     const cfg = this.config();
     if (!cfg?.clickable || !cfg.action) return;
@@ -79,13 +78,6 @@ export class ImageBlock {
       `align-items-${layout.align}`,
       layout.gap,
     ].join(' ');
-  });
-
-  flexOrder = computed(() => {
-    const cfg = this.config();
-    const placement = cfg?.layout?.placement;
-
-    return placement === 'start' ? 'flex-row-reverse' : '';
   });
 
   // TOOLTIP

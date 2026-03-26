@@ -5,7 +5,6 @@ import {
   FontSize,
   Gap,
   LinkTarget,
-  Placement,
   TextTransform,
 } from '../../shared/models/shared_model';
 
@@ -43,7 +42,6 @@ export interface ISocials {
   }[];
   layout: {
     direction: Direction;
-    placement: Placement;
     gap: Gap;
     align: Align;
   };

@@ -6,7 +6,6 @@ import {
   FontWeight,
   LinkTarget,
   LocalizedText,
-  Placement,
 } from '../../shared/models/shared_model';
 
 export type ImageType = 'url' | 'inlineSvg' | 'file';
@@ -18,7 +17,6 @@ export interface ImageBlockConfig {
   layout?: {
     // layout container (for image and text)
     direction: Direction;
-    placement: Placement;
     gap: string;
     align: Align;
   };
