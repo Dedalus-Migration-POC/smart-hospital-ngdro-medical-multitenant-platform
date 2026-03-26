@@ -18,7 +18,6 @@ export interface HeaderSection {
   };
 }
 
-// TODO poi togli ? da header
 export interface HeaderConfig {
   topbar?: HeaderSection;
   main: HeaderSection;
