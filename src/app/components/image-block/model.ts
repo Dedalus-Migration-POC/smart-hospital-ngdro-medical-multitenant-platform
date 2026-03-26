@@ -15,7 +15,7 @@ export type ActionType = 'route' | 'externalLink';
 export interface ImageBlockConfig {
   id: string;
   className?: string;
-  layout: {
+  layout?: {
     // layout container (for image and text)
     direction: LayoutDirection;
     placement: Placement;
