@@ -1,16 +1,10 @@
 import {
-  Align,
-  Colors,
-  Direction,
-  FontSize,
-  FontWeight,
   FlexLayoutConfig,
   LinkTarget,
-  LocalizedText,
+  ActionType,
+  TextSection,
+  ImageConfig,
 } from '../../shared/models/shared_model';
-
-export type ImageType = 'url' | 'inlineSvg' | 'file';
-export type ActionType = 'route' | 'externalLink';
 
 export interface ImageBlockConfig {
   id: string;
@@ -23,32 +17,7 @@ export interface ImageBlockConfig {
     target?: LinkTarget;
   };
   clickable?: boolean; // for container (image + test)
-  image: {
-    type: ImageType;
-    value: string;
-    decorative: boolean;
-    alt?: LocalizedText;
-    ariaLabel?: LocalizedText;
-    width?: string;
-    height?: string;
-    className?: string;
-    tooltip?: boolean;
-    tooltipLabel?: LocalizedText;
-    tooltipClassName?: string;
-  };
-  text?: {
-    // the layout consists of a title and a description bottom
-    title: {
-      text: LocalizedText;
-      fontSize?: FontSize;
-      fontWeight?: FontWeight;
-      color?: Colors;
-    };
-    description?: {
-      text: LocalizedText;
-      fontSize?: FontSize;
-      fontWeight?: FontWeight;
-      color?: string;
-    };
-  };
+  image: ImageConfig;
+  // the layout consists of a title and a description bottom
+  text?: TextSection;
 }

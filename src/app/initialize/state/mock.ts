@@ -64,7 +64,6 @@ export const APP_CONFIG: AppConfig = {
           wrap: 'wrap',
         },
         start: {
-          //  size: { grow: 1, width: '240px' },
           layout: {
             direction: 'column',
             gap: 'gap-0',
@@ -98,7 +97,6 @@ export const APP_CONFIG: AppConfig = {
           ],
         },
         center: {
-          //    size: { grow: 1, basis: '0' },
           layout: {
             direction: 'row',
             gap: 'gap-2',
@@ -250,9 +248,6 @@ export const APP_CONFIG: AppConfig = {
         //   items: [],
         // },
         end: {
-          size: {
-            grow: 1,
-          },
           layout: {
             direction: 'row',
             justify: 'end',
@@ -267,7 +262,6 @@ export const APP_CONFIG: AppConfig = {
               props: {
                 layout: {
                   direction: 'row',
-                  placement: 'row-reverse',
                   gap: 'gap-2',
                   align: 'center',
                 },
@@ -572,9 +566,6 @@ export const APP_CONFIG: AppConfig = {
           ],
         },
         center: {
-          size: {
-            grow: 1,
-          },
           layout: {
             direction: 'row',
             justify: 'start',
@@ -688,10 +679,10 @@ export const APP_CONFIG: AppConfig = {
           },
           layout: {
             direction: 'row',
-            justify: 'start',
+            justify: 'end',
             align: 'center',
             wrap: 'nowrap',
-            gap: 'gap-3',
+            grow: 'grow-1',
           },
           items: [
             {
@@ -700,7 +691,7 @@ export const APP_CONFIG: AppConfig = {
               enabled: true,
               props: {
                 layout: {
-                  direction: 'column-reverse',
+                  direction: 'column',
                   gap: 'gap-2',
                   align: 'end',
                 },

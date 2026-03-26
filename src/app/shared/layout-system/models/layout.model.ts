@@ -1,4 +1,4 @@
-import { Align, Direction, Gap, Justify, Wrap } from '../../models/shared_model';
+import { FlexLayoutConfig } from '../../models/shared_model';
 
 export type ItemType =
   | 'IMAGE_BLOCK'
@@ -19,9 +19,7 @@ export interface Item {
 }
 
 export interface AreaSize {
-  grow?: number; // flex property
-  shrink?: number; // flex property
-  basis?: string; // flex property
+  basis?: string;
   width?: string;
   height?: string;
   minWidth?: string;
@@ -31,21 +29,13 @@ export interface AreaSize {
 }
 
 export interface LayoutArea {
-  layout: AreaLayout;
+  layout: FlexLayoutConfig;
   size?: AreaSize;
   items: Item[];
 }
 
-export interface AreaLayout {
-  direction: Direction;
-  align?: Align;
-  justify?: Justify;
-  wrap?: Wrap;
-  gap?: Gap;
-}
-
 export interface AreasConfig {
-  layout?: AreaLayout;
+  layout?: FlexLayoutConfig;
   start?: LayoutArea;
   center?: LayoutArea;
   end?: LayoutArea;

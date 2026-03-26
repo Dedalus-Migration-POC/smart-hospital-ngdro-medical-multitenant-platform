@@ -40,15 +40,15 @@
         {{ config.text.title.text && config.text.title.text![lang()] }}
       </div>
 
-      @if (config.text.description) {
+      @if (config.text.subTitle) {
         <div
           [ngClass]="[
-            config.text.description.fontSize ? 'fs-' + config.text.description.fontSize : '',
-            config.text.description.fontWeight ? 'fw-' + config.text.description.fontWeight : '',
-            config.text.description.color ? 'text-' + config.text.description.color : '',
+            config.text.subTitle.fontSize ? 'fs-' + config.text.subTitle.fontSize : '',
+            config.text.subTitle.fontWeight ? 'fw-' + config.text.subTitle.fontWeight : '',
+            config.text.subTitle.color ? 'text-' + config.text.subTitle.color : '',
           ]"
         >
-          {{ config.text.description.text[lang()] }}
+          {{ config.text.subTitle.text[lang()] }}
         </div>
       }
     }

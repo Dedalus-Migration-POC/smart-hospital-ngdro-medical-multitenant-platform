@@ -1,5 +1,5 @@
-import { AreaLayout, LayoutArea } from '../../shared/layout-system/models/layout.model';
-import { Colors } from '../../shared/models/shared_model';
+import { LayoutArea } from '../../shared/layout-system/models/layout.model';
+import { Colors, FlexLayoutConfig } from '../../shared/models/shared_model';
 
 export interface HeaderSection {
   height?: string;
@@ -11,7 +11,7 @@ export interface HeaderSection {
   background: Colors;
   className?: string;
   areas?: {
-    layout?: AreaLayout;
+    layout?: FlexLayoutConfig;
     start?: LayoutArea;
     center?: LayoutArea;
     end?: LayoutArea;

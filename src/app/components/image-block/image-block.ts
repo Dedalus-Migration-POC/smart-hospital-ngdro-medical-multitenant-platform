@@ -94,7 +94,10 @@ export class ImageBlock {
     if (!cfg) return svgString;
 
     if (cfg.image?.decorative) {
-      return svgString.replace('<svg', '<svg aria-hidden="true" focusable="false"');
+      return svgString.replace(
+        '<svg',
+        '<svg  class="img-fluid" aria-hidden="true" focusable="false"',
+      );
     }
 
     const label = this.ariaLabel();
