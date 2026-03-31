@@ -1,4 +1,4 @@
-import { LocalizedText } from '../../shared/models/shared_model';
+import { Align, LocalizedText } from '../../shared/models/shared_model';
 
 export interface AuthMethodTabsProps {
   id: string;
@@ -16,6 +16,7 @@ interface BaseAuthMethod {
   button: {
     text: LocalizedText;
     showIcon: boolean;
+    align: Align;
   };
 }
 export interface SpidAuthMethod extends BaseAuthMethod {

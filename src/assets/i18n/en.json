@@ -1,0 +1,26 @@
+{
+  "it": {
+    "errors": {
+      "required-field": "Il campo è obbligatorio",
+      "invalid-field": "Il valore inserito non è valido"
+    }
+  },
+  "tenant": {
+    "access-page": {
+      "spid-main-info": "More information on SPID",
+      "have-spid": "Don't have SPID?",
+      "need-help": "Need help?"
+    }
+  },
+  "admin": {
+    "header": {
+      "access": "Accedi all'area personale"
+    },
+    "access-page": {
+      "login": "Login",
+      "password": "Password",
+      "login-button": "Accedi",
+      "error-required": "Il campo è obbligatorio"
+    }
+  }
+}

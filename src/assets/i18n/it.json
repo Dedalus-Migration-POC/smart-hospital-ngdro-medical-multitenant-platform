@@ -5,6 +5,13 @@
       "invalid-field": "Il valore inserito non è valido"
     }
   },
+  "tenant": {
+    "access-page": {
+      "spid-main-info": "Maggiori informazioni su SPID",
+      "have-spid": "Non hai SPID?",
+      "need-help": "Serve aiuto?"
+    }
+  },
   "admin": {
     "header": {
       "access": "Accedi all'area personale"

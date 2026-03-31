@@ -8,6 +8,8 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient } from '@angular/common/http';
 import { provideDesignAngularKit } from 'design-angular-kit';
 import { provideInitializeApp } from './initialize/providers/initialize-app.provider';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,5 +23,12 @@ export const appConfig: ApplicationConfig = {
     provideDesignAngularKit(),
     provideHttpClient(),
     provideInitializeApp(),
+    provideTranslateService({
+      fallbackLang: 'it',
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json',
+      }),
+    }),
   ],
 };

@@ -19,6 +19,7 @@ export class SelectLanguage {
 
   switchLanguage(lang: Lang) {
     this.langService.setLang(lang);
+    this.langService.select(lang);
   }
 
   toggleDropdown() {

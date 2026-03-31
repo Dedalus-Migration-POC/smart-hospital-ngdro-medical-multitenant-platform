@@ -24,6 +24,7 @@ export function provideInitializeApp(): EnvironmentProviders {
         const config: AppConfig = await firstValueFrom(api.loadAppConfig());
         themeService.apply(config);
         store.dispatch(InitializeAppActions.setAppConfig({ data: config }));
+        languageService.init();
         if (config.translate?.googleTranslate) {
           languageService.loadGoogleTranslate(config.translate.googleTranslate!.supportedLanguages);
         }

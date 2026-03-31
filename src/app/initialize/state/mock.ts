@@ -6,7 +6,7 @@ export const APP_CONFIG: AppConfig = {
 
   theme: {
     colors: {
-      primary: '#0d6efd',
+      primary: '#fd510d',
       secondary: '#6c757d',
       success: '#198754',
       warning: '#ffc107',
@@ -959,6 +959,7 @@ export const APP_CONFIG: AppConfig = {
                       button: {
                         text: { it: 'Entra con SPID', en: 'Log in with SPID' },
                         showIcon: true,
+                        align: 'start',
                       },
                       config: {
                         spidConfigUa: false,
@@ -972,7 +973,27 @@ export const APP_CONFIG: AppConfig = {
                           test: 'provaTest-',
                           prod: 'provaProd-',
                         },
-                        returnUrl: 'http://54.155.59.59:5041/ui/',
+                        returnUrl: null,
+                        additionalLinks: {
+                          info: {
+                            enable: true,
+                            title: {
+                              it: 'Maggiori informazioni su SPID',
+                              en: 'More information about SPID',
+                            },
+                          },
+                          getSpid: {
+                            enable: true,
+                            title: { it: 'Non hai SPID?', en: "Don't have SPID?e" },
+                          },
+                          help: {
+                            enable: true,
+                            title: {
+                              it: 'Serve aiuto?',
+                              en: 'Need help?',
+                            },
+                          },
+                        },
                       },
                     },
                     {

@@ -5,10 +5,11 @@ import { DEFAULT_PROVIDERS } from './default-providers';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-spid',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './spid.html',
   styleUrl: './spid.scss',
 })
@@ -46,6 +47,12 @@ export class Spid {
       ? spidConfig?.config.returnUrl
       : window.location.origin + '/ui/idp-redirect';
   });
+
+  spidConfigUa = computed(() => {
+    const spidConfig = this.spidConfig();
+    return spidConfig?.config.spidConfigUa ? true : false;
+  });
+  formAction = computed(() => (this.spidConfigUa() ? 'oauth/login/spid' : 'oauth/auth'));
 
   baseUrl = window.location.origin + '/';
 
