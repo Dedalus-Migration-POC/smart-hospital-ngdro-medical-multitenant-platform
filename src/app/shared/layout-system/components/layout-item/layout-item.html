@@ -17,4 +17,7 @@
   @if (item.type === 'TEXT') {
     <app-text-component [config]="item.props"> </app-text-component>
   }
+  @if (item.type === 'AUTH_METHODS') {
+    <app-auth-methods [authConfig]="item.props"> </app-auth-methods>
+  }
 }

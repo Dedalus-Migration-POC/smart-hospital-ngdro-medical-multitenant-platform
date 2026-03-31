@@ -1,0 +1,21 @@
+.spid-idp-button {
+  position: absolute;
+  z-index: 1039;
+  display: none;
+}
+.spid-idp-button-menu {
+  max-height: 400px;
+  height: 35vh;
+  overflow: auto;
+  position: absolute;
+}
+
+// .spid-info {
+//   @include media-breakpoint-down(xl) {
+//     flex-direction: column !important;
+
+//     .spid-container-logo {
+//       margin-top: 1.5rem;
+//     }
+//   }
+// }

@@ -11,7 +11,7 @@
       class="social-title"
       [ngClass]="[
         'fs-' + socials.title.fontSize,
-        socials.title.bold ? 'fw-bold' : 'fw-normal',
+        'fw-' + socials.title.fontWeight,
         'text-' + socials.title.color,
         'text-' + socials.title.textTransform,
       ]"

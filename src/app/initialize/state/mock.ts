@@ -153,6 +153,7 @@ export const APP_CONFIG: AppConfig = {
             gap: 'gap-3',
             align: 'center',
             wrap: 'nowrap',
+            grow: 'grow-1',
           },
           items: [
             {
@@ -432,7 +433,7 @@ export const APP_CONFIG: AppConfig = {
                 // },
                 url: '/login',
                 external: false,
-                disabled: true,
+                disabled: false,
                 style: {
                   color: 'primary',
                   textDecoration: 'none',
@@ -572,6 +573,7 @@ export const APP_CONFIG: AppConfig = {
             gap: 'gap-3',
             align: 'center',
             wrap: 'wrap',
+            grow: 'grow-1',
           },
           items: [
             {
@@ -679,10 +681,9 @@ export const APP_CONFIG: AppConfig = {
           },
           layout: {
             direction: 'row',
-            justify: 'end',
+            justify: 'start',
             align: 'center',
             wrap: 'nowrap',
-            grow: 'grow-1',
           },
           items: [
             {
@@ -701,7 +702,7 @@ export const APP_CONFIG: AppConfig = {
                     en: 'Follow us',
                   },
                   fontSize: 'md',
-                  bold: false,
+                  fontWeight: 'semibold',
                   color: 'white',
                   textTransform: 'uppercase',
                 },
@@ -865,9 +866,135 @@ export const APP_CONFIG: AppConfig = {
 
   pages: [
     {
-      id: 'home',
+      id: 'auth',
       route: '/',
-      page: {},
+      page: {
+        background: 'light',
+        areas: {
+          layout: {
+            direction: 'row',
+            gap: 'gap-5',
+            align: 'start',
+            // justify: 'between',
+            // wrap: 'wrap',
+          },
+          start: {
+            size: { basis: '50%' },
+            layout: {
+              direction: 'column',
+              gap: 'gap-3',
+              align: 'start',
+              wrap: 'nowrap',
+            },
+            items: [
+              {
+                id: 'auth-text',
+                type: 'TEXT',
+                enabled: true,
+                props: {
+                  id: 'auth-title',
+                  text: {
+                    it: `I servizi online dell’ASL di Latina`,
+                    en: `Online services from the Latina Local Health Authority`,
+                  },
+                  fontSize: 'xxl',
+                  fontWeight: 'semibold',
+                  textDecoration: 'none',
+                  color: 'black',
+                  // layout?: {
+                  //   marginTop?: Margin;
+                  //   marginBottom?: Margin;
+                  //   marginRight?: Margin;
+                  //   marginLeft?: Margin;
+                  //   lineHeight?: LineHeight;
+                  // };
+                },
+              },
+              {
+                id: 'auth-text-info',
+                type: 'TEXT',
+                enabled: true,
+                props: {
+                  id: 'auth-into',
+                  text: {
+                    it: `Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Latina, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>`,
+                    en: `From this section you can access the main digital services of the Latina Local Health Authority, <strong>designed to simplify interaction with the healthcare system.</strong>`,
+                  },
+                  fontSize: 'md',
+                  fontWeight: 'normal',
+                  textDecoration: 'none',
+                  color: 'black',
+                },
+              },
+            ],
+          },
+          end: {
+            size: { basis: '50%' },
+            layout: {
+              direction: 'row',
+              gap: 'gap-2',
+              align: 'center',
+              justify: 'center',
+              wrap: 'nowrap',
+            },
+            items: [
+              {
+                id: 'auth-card',
+                type: 'AUTH_METHODS',
+                className: 'w-100',
+                enabled: true,
+                props: {
+                  id: 'auth-methods',
+                  isDarkTheme: false,
+                  isCard: false,
+                  isVertical: false,
+                  authMethods: [
+                    {
+                      type: 'SPID',
+                      title: { it: 'SPID', en: 'SPID' }, // Titolo di Tab
+                      description: {
+                        it: `SPID, il <strong> Sistema Pubblico di Identità Digitale</strong> è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati. Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.`,
+                        en: `SPID, the <strong>Public Digital Identity System</strong>, is the access system that allows you to use online services offered by the Public Administration and accredited private entities with a single digital identity. If you already have a digital identity, log in with your provider's credentials. If you don't yet have a digital identity, request one from one of the providers.`,
+                      },
+                      button: {
+                        text: { it: 'Entra con SPID', en: 'Log in with SPID' },
+                        showIcon: true,
+                      },
+                      config: {
+                        spidConfigUa: false,
+                        testProvider: {
+                          dev: { enable: true, name: 'spid-test' }, //name es: 'spid-messina', 'spid-latina'
+                          test: { enable: true, name: 'spid-test' },
+                          prod: { enable: false, name: '' },
+                        },
+                        prefixProvider: {
+                          dev: 'provaDev-',
+                          test: 'provaTest-',
+                          prod: 'provaProd-',
+                        },
+                        returnUrl: 'http://54.155.59.59:5041/ui/',
+                      },
+                    },
+                    {
+                      type: 'LOCAL',
+                      title: { it: 'Login', en: 'Login' }, // Titolo di Tab
+                      description: {
+                        it: `Inserisci login e password`,
+                        en: `Enter with your login and password`,
+                      },
+                      button: {
+                        text: { it: 'Entra', en: 'Login' },
+                        showIcon: true,
+                      },
+                      config: {},
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      },
     },
   ],
 };

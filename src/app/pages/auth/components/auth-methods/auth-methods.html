@@ -1,0 +1,32 @@
+<!-- <pre>{{ authConfig() | json }}</pre> -->
+@if (authConfig(); as authConfig) {
+  <div class="auth-container bg-white">
+    <it-tab-container
+      [dark]="authConfig.isDarkTheme"
+      [cards]="authConfig.isCard"
+      [vertical]="authConfig.isVertical"
+    >
+      @for (tab of authConfig.authMethods; track tab; let i = $index) {
+        <it-tab-item [label]="tab.title[lang()]" [active]="i === 0">
+          @switch (tab.type) {
+            @case ('SPID') {
+              <app-spid [spidConfig]="tab"></app-spid>
+            }
+            @case ('CIE') {
+              <p>Login con CIE</p>
+            }
+            @case ('MYID') {
+              <p>>Login con MYID</p>
+            }
+            @case ('LOCAL') {
+              <p>Login con LOCAL</p>
+            }
+            @default {
+              <p>Unknown state</p>
+            }
+          }
+        </it-tab-item>
+      }
+    </it-tab-container>
+  </div>
+}

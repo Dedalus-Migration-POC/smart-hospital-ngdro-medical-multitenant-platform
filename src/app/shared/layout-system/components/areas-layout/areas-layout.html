@@ -5,7 +5,7 @@
         <div [ngClass]="getFlexLayoutClasses(start.layout)" [ngStyle]="getSizeStyles(start?.size)">
           @for (item of start.items; track item.id) {
             @if (item.enabled) {
-              <app-layout-item [item]="item"></app-layout-item>
+              <app-layout-item [item]="item" [ngClass]="item.className"></app-layout-item>
             }
           }
         </div>
@@ -20,7 +20,7 @@
         >
           @for (item of center.items; track item.id) {
             @if (item.enabled) {
-              <app-layout-item [item]="item"></app-layout-item>
+              <app-layout-item [item]="item" [ngClass]="item.className"></app-layout-item>
             }
           }
         </div>
@@ -32,7 +32,7 @@
         <div [ngClass]="getFlexLayoutClasses(end.layout)" [ngStyle]="getSizeStyles(end?.size)">
           @for (item of end.items; track item.id) {
             @if (item.enabled) {
-              <app-layout-item [item]="item"></app-layout-item>
+              <app-layout-item [item]="item" [ngClass]="item.className"></app-layout-item>
             }
           }
         </div>

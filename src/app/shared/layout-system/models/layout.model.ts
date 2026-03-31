@@ -9,12 +9,14 @@ export type ItemType =
   | 'DIVIDER'
   | 'SPACER'
   | 'SELECT_LANG'
-  | 'GOOGLE_TRASLATE';
+  | 'GOOGLE_TRASLATE'
+  | 'AUTH_METHODS';
 
 export interface Item {
   id: string;
   type: ItemType;
   enabled: boolean;
+  className?: string;
   props?: Record<string, unknown> | any;
 }
 

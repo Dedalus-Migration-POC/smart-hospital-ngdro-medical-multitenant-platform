@@ -3,6 +3,7 @@ import {
   Colors,
   Direction,
   FontSize,
+  FontWeight,
   Gap,
   FlexLayoutConfig,
   LinkTarget,
@@ -16,7 +17,7 @@ export interface ISocials {
       en: string;
     };
     fontSize: FontSize;
-    bold: boolean;
+    fontWeight?: FontWeight;
     color: Colors;
     textTransform?: TextTransform;
   };
