@@ -37,7 +37,7 @@ export interface LayoutArea {
 }
 
 export interface AreasConfig {
-  layout?: FlexLayoutConfig;
+  layout: FlexLayoutConfig;
   start?: LayoutArea;
   center?: LayoutArea;
   end?: LayoutArea;
