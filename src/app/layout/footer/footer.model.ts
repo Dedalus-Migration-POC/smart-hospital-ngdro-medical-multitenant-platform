@@ -11,7 +11,7 @@ export interface FooterSection {
   background: Colors;
   className?: string;
   areas?: {
-    layout?: FlexLayoutConfig;
+    layout: FlexLayoutConfig;
     start?: LayoutArea;
     center?: LayoutArea;
     end?: LayoutArea;
