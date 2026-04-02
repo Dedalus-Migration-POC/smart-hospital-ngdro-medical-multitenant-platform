@@ -1,0 +1,38 @@
+@if (card(); as card) {
+  @if (layout(); as layout) {
+    <button
+      [attr.id]="card.id"
+      [attr.aria-label]="card?.ariaLabel?.[lang()] ?? null"
+      type="button"
+      class="btn p-3 border border-light shadow-sm"
+      [ngClass]="card.className"
+      (click)="onCardClick($event, card.action)"
+    >
+      <div class="h-100" [ngClass]="getFlexLayoutClasses(layout)">
+        @if (card.blocked) {
+          <img
+            [ngClass]="[layout.direction === 'column' ? 'ms-auto' : 'order-last']"
+            src="assets/images/lock.png"
+            alt=""
+            aria-hidden="true"
+          />
+        }
+
+        @if (card.action.type === 'externalLink') {
+          <img
+            [ngClass]="[layout.direction === 'column' ? 'ms-auto' : 'order-last']"
+            src="assets/images/external_link.png"
+            alt=""
+            aria-hidden="true"
+          />
+        }
+
+        @if (card.image) {
+          <app-image-block [config]="toImageBlockConfig(card)"></app-image-block>
+        }
+      </div>
+    </button>
+
+    <it-notifications />
+  }
+}

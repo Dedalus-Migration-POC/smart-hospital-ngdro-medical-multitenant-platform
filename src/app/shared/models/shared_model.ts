@@ -37,9 +37,11 @@ export interface ImageConfig {
   width?: string;
   height?: string;
   className?: string;
-  tooltip?: boolean;
-  tooltipLabel?: LocalizedText;
-  tooltipClassName?: string;
+  tooltip?: {
+    enabled: boolean;
+    tooltipLabel?: LocalizedText;
+    tooltipClassName?: string;
+  };
 }
 
 export interface TextSection {
@@ -55,11 +57,12 @@ export interface TextConfig {
   lineHeight?: LineHeight;
 }
 
-export type ActionType = 'route' | 'externalLink' | 'coomingSoon';
+export type ActionType = 'route' | 'externalLink' | 'comingSoon';
 export interface ActionConfig {
   type: ActionType;
-  url: string;
+  url?: string;
   target?: LinkTarget;
+  comingSoonMessage?: TextSection;
 }
 
 export interface LocalizedText {
