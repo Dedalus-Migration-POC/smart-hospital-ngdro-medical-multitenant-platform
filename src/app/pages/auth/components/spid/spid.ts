@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { IDP_REDIRECT_KEY } from '../../../../../constants';
 
 @Component({
   selector: 'app-spid',
@@ -80,7 +81,7 @@ export class Spid {
   submit() {
     const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl'];
     const redirectUrl = returnUrl || '/';
-    // localStorage.setItem(IDP_REDIRECT_KEY, redirectUrl);
+    localStorage.setItem(IDP_REDIRECT_KEY, redirectUrl);
     // this.userProfileService.logout().subscribe();
   }
 }

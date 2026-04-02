@@ -1,0 +1,22 @@
+@if (myIdConfig(); as myIdConfig) {
+  <div>
+    <div class="p-0 mb-4 cursor-default" [innerHTML]="myIdConfig.description[lang()]"></div>
+
+    <form ngNoForm [action]="baseUrl + 'oauth/auth'" method="get" (submit)="submit()" id="myid">
+      <label hidden for="returnUrl-myid">returnUrl</label>
+      <input hidden name="returnUrl" id="returnUrl-myid" [value]="returnUrl()" />
+
+      <label hidden for="Accept-Language-myid">Accept-Language</label>
+      <input hidden name="Accept-Language" id="Accept-Language-myid" [value]="lang()" />
+      <button type="submit" class="btn btn-primary rounded-0" name="providerId" [value]="'saml'">
+        @if (showIcon()) {
+          <span class="myid-btn-icon pe-2" class="d-inline-block">
+            <img src="assets/images/logo-myid.png" alt="" aria-hidden="true" />
+          </span>
+        }
+
+        <span class="ps-2">{{ myIdConfig.button.text[lang()] }}</span>
+      </button>
+    </form>
+  </div>
+}

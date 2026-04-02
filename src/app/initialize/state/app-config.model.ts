@@ -1,5 +1,6 @@
 import { FooterConfig } from '../../layout/footer/footer.model';
 import { HeaderConfig } from '../../layout/header/header.model';
+import { LocalizedText } from '../../shared/models/shared_model';
 
 export interface AppConfig {
   name: string;
@@ -51,6 +52,7 @@ export interface AppConfig {
   footer: FooterConfig;
   pages: Array<{
     id: string;
+    name: LocalizedText;
     route: string;
     page: unknown;
   }>;

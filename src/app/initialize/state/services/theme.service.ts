@@ -20,13 +20,40 @@ export class ThemeService {
     this.upsertStyleElement(css);
     this.applyDocumentMetadata(config);
   }
+  //----------RGB Colors
+  private hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+    const clean = hex.replace('#', '');
 
+    if (clean.length !== 6) return null;
+
+    return {
+      r: parseInt(clean.substring(0, 2), 16),
+      g: parseInt(clean.substring(2, 4), 16),
+      b: parseInt(clean.substring(4, 6), 16),
+    };
+  }
+  private hexToRgbString(hex: string): string | null {
+    const rgb = this.hexToRgb(hex);
+    return rgb ? `${rgb.r}, ${rgb.g}, ${rgb.b}` : null;
+  }
+  //------------
   private buildColorProperties(colors?: ColorConfig): string[] {
     if (!colors) return [];
 
     return Object.entries(colors)
       .filter(([, value]) => value != null)
-      .map(([key, value]) => this.buildProperty(`--bs-${key}`, value));
+      .flatMap(([key, value]) => {
+        const props: string[] = [];
+        const rgb = this.hexToRgbString(value);
+
+        // HEX
+        props.push(this.buildProperty(`--bs-${key}`, value));
+
+        // RGB
+        if (rgb) props.push(this.buildProperty(`--bs-${key}-rgb`, rgb));
+
+        return props;
+      });
   }
 
   private buildTypographyProperties(typography?: TypographyConfig): string[] {

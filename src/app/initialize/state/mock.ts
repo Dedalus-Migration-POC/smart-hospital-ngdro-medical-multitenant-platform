@@ -6,7 +6,7 @@ export const APP_CONFIG: AppConfig = {
 
   theme: {
     colors: {
-      primary: '#fd510d',
+      primary: '#f57a23',
       secondary: '#6c757d',
       success: '#198754',
       warning: '#ffc107',
@@ -866,13 +866,15 @@ export const APP_CONFIG: AppConfig = {
 
   pages: [
     {
-      id: 'auth',
-      route: '/',
+      id: '/login', // === url!
+      name: { it: 'Accesso', en: 'Login' }, // Nome nel browser per accessibilità
+      route: '/', //non serve, non lo possono cambiare
       page: {
-        background: 'light',
+        // backgroundColor: 'aqua', //o color o img!
+        backgroundImage: '/assets/images/bg.svg',
         areas: {
           layout: {
-            direction: 'row',
+            direction: ['column', 'md-row'],
             gap: 'gap-5',
             align: 'start',
             // justify: 'between',
@@ -929,7 +931,7 @@ export const APP_CONFIG: AppConfig = {
             ],
           },
           end: {
-            size: { basis: '50%' },
+            size: { basis: '50%', width: '100%' },
             layout: {
               direction: 'row',
               gap: 'gap-2',
@@ -974,26 +976,23 @@ export const APP_CONFIG: AppConfig = {
                           prod: 'provaProd-',
                         },
                         returnUrl: null,
-                        additionalLinks: {
-                          info: {
-                            enable: true,
-                            title: {
-                              it: 'Maggiori informazioni su SPID',
-                              en: 'More information about SPID',
-                            },
-                          },
-                          getSpid: {
-                            enable: true,
-                            title: { it: 'Non hai SPID?', en: "Don't have SPID?e" },
-                          },
-                          help: {
-                            enable: true,
-                            title: {
-                              it: 'Serve aiuto?',
-                              en: 'Need help?',
-                            },
-                          },
-                        },
+                      },
+                    },
+                    {
+                      type: 'MYID',
+                      title: { it: 'MyId', en: 'MyId' }, // Titolo di Tab
+                      description: {
+                        //importante che contenuto  semantico corrisponde a WCAG
+                        it: "<p>SPID, il <strong>Sistema Pubblico di Identità Digitale</strong> è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati.</p><p> Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.</p><p>La <strong>Carta di Identità Elettronica (CIE)</strong> è il documento personale che attesta l'identità del cittadino.</p><p> Dotata di microprocessore, oltre a comprovare l'identità personale, permette l'accesso ai servizi digitali della Pubblica Amministrazione.</p>",
+                        en: "<p>SPID, the <strong>Public Digital Identity System</strong> is the access system that allows you to use, with a single digital identity, the online services of the Public Administration and accredited private entities.</p><p> If you already have a digital identity, log in with your provider's credentials. If you don't yet have a digital identity, request one from one of the providers.</p><p>The <strong>Electronic Identity Card (CIE)</strong> is the personal document that certifies the citizen's identity.</p><p> Equipped with a microprocessor, in addition to proving personal identity, it allows access to the digital services of the Public Administration.</p>",
+                      },
+                      button: {
+                        text: { it: 'Entra con myId', en: 'Log in with MyId' },
+                        showIcon: true,
+                        align: 'start',
+                      },
+                      config: {
+                        returnUrl: null,
                       },
                     },
                     {

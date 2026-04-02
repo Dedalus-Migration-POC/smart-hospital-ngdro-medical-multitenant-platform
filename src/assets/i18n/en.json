@@ -10,7 +10,8 @@
       "spid-main-info": "More information on SPID",
       "have-spid": "Don't have SPID?",
       "need-help": "Need help?"
-    }
+    },
+    "skip-to-main-content": "Go to the main content"
   },
   "admin": {
     "header": {

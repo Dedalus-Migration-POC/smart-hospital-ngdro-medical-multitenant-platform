@@ -18,7 +18,7 @@ export class Auth {
   readonly authConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
       take(1),
-      map((config) => config.pages.find((page: any) => page.id === 'auth')), //TODO page type
+      map((config) => config.pages.find((page: any) => page.id === '/login')), //TODO page type
     ),
     { initialValue: null },
   );

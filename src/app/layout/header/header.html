@@ -1,5 +1,8 @@
 @if (header(); as header) {
   <header class="it-header-wrapper">
+    <a href="javascript:void(0);" (click)="skipToMainContent()" class="skip">{{
+      'tenant.skip-to-main-content' | translate
+    }}</a>
     @if (header?.topbar) {
       <app-topbar [topbar]="header.topbar!"></app-topbar>
     }
@@ -9,4 +12,5 @@
       <app-bottombar [bottombar]="header.bottombar!"></app-bottombar>
     }
   </header>
+  <div #skipper tabindex="-1" class="skipper"></div>
 }

@@ -1,12 +1,21 @@
 import { AreaSize } from '../layout-system/models/layout.model';
-import { Align, FlexLayoutConfig, Grow, Justify, Shrink, Wrap } from '../models/shared_model';
+import {
+  Align,
+  Direction,
+  FlexLayoutConfig,
+  Grow,
+  Justify,
+  Shrink,
+  Wrap,
+} from '../models/shared_model';
 
 // All classes for flex layout.
 // Only flex-basis is in style bacause here set percentage
 export function getFlexLayoutClasses(layout?: FlexLayoutConfig): string[] {
   return [
     'd-flex',
-    layout?.direction ? `flex-${layout.direction}` : '',
+    getDirection(layout?.direction),
+    // layout?.direction ? `flex-${layout.direction}` : '',
     getWrapClass(layout?.wrap),
     getAlignClass(layout?.align),
     getJustifyClass(layout?.justify),
@@ -29,6 +38,22 @@ export function getSizeStyles(size?: AreaSize): Record<string, string | number |
     minHeight: size.minHeight ?? null,
     maxHeight: size.maxHeight ?? null,
   };
+}
+function getDirection(dir?: Direction | Direction[]) {
+  if (dir) {
+    if (Array.isArray(dir)) {
+      console.log(dir);
+      return dir
+        ?.map((direction: Direction) => {
+          return `flex-${direction}`;
+        })
+        ?.join(' ');
+    } else {
+      return `flex-${dir}`;
+    }
+  } else {
+    return '';
+  }
 }
 
 // Set vertical alignment

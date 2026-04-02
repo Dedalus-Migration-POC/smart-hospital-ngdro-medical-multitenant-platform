@@ -68,7 +68,7 @@ export interface LocalizedText {
 }
 
 export interface FlexLayoutConfig {
-  direction?: Direction;
+  direction?: Array<Direction> | Direction;
   align?: Align;
   justify?: Justify;
   wrap?: Wrap;
