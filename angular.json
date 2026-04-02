@@ -56,8 +56,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "budgets": [
@@ -80,8 +85,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "budgets": [
@@ -104,8 +114,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "budgets": [
@@ -128,8 +143,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "optimization": false,
@@ -144,8 +164,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "budgets": [
@@ -170,8 +195,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "budgets": [
@@ -196,8 +226,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "budgets": [
@@ -222,8 +257,13 @@
                 "src/assets",
                 {
                   "glob": "**/*",
-                  "input": "node_modules/bootstrap-italia/dist/fonts",
-                  "output": "/bootstrap-italia/dist/fonts"
+                  "input": "node_modules/bootstrap-italia/dist",
+                  "output": "/bootstrap-italia/dist"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "./node_modules/design-angular-kit/assets/i18n",
+                  "output": "/bootstrap-italia/i18n/"
                 }
               ],
               "optimization": false,

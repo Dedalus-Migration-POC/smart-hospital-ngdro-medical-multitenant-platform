@@ -6,6 +6,7 @@ import {
   ImageConfig,
 } from '../../shared/models/shared_model';
 
+// Section text: the title and subtitle are ALWAYS positioned one below the other
 export interface ImageBlockConfig {
   id: string;
   className?: string;

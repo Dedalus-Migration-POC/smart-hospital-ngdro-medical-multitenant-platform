@@ -4,6 +4,18 @@ import { ImageBlockConfig } from './model';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LanguageService } from '../../initialize/state/services/language.service';
+import {
+  getAlignClass,
+  getFlexLayoutClasses,
+  getJustifyClass,
+} from '../../shared/utility/layout.utils';
+import {
+  getImageAltText,
+  getImageAriaHidden,
+  getImageAriaLabel,
+} from '../../shared/utility/image-accessibility.utils';
+import { getTooltipClassName, getTooltipLabel } from '../../shared/utility/tooltip.utils';
+import { getLocalizedText, getTextClasses } from '../../shared/utility/text.utils';
 
 @Component({
   selector: 'app-image-block',
@@ -13,33 +25,27 @@ import { LanguageService } from '../../initialize/state/services/language.servic
 })
 export class ImageBlock {
   readonly config = input<ImageBlockConfig | null>(null);
-  constructor(
-    private router: Router,
-    private sanitizer: DomSanitizer,
-  ) {}
+
+  private readonly router = inject(Router);
+  private readonly sanitizer = inject(DomSanitizer);
   private langService = inject(LanguageService);
+
+  protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
+  protected readonly getTextClasses = getTextClasses;
+  protected readonly getAlignClass = getAlignClass;
+  protected readonly getJustifyClass = getJustifyClass;
 
   lang = this.langService.lang;
 
-  // ACCESSIBILITY
-  altText = computed(() => {
-    const cfg = this.config();
-    if (!cfg || cfg.image.decorative) return null;
+  altText = computed(() => getImageAltText(this.config()?.image, this.lang()));
+  ariaLabel = computed(() => getImageAriaLabel(this.config()?.image, this.lang()));
+  ariaHidden = computed(() => getImageAriaHidden(this.config()?.image));
 
-    return cfg.image.alt?.[this.lang()] ?? '';
-  });
+  titleText = computed(() => getLocalizedText(this.config()?.text?.title.text, this.lang()));
+  subTitleText = computed(() => getLocalizedText(this.config()?.text?.subTitle?.text, this.lang()));
 
-  ariaLabel = computed(() => {
-    const cfg = this.config();
-    if (!cfg || cfg.image.decorative) return null;
-
-    return cfg.image.ariaLabel?.[this.lang()] ?? this.altText();
-  });
-
-  ariaHidden = computed(() => {
-    const cfg = this.config();
-    return cfg?.image.decorative ? true : null;
-  });
+  tooltipLabel = computed(() => getTooltipLabel(this.config()?.image?.tooltip, this.lang()));
+  tooltipClassName = computed(() => getTooltipClassName(this.config()?.image?.tooltip));
 
   // ACTION HANDLER
   handleClick(): void {
@@ -64,29 +70,6 @@ export class ImageBlock {
       this.handleClick();
     }
   }
-  // LAYOUT
-  layoutClasses = computed(() => {
-    const cfg = this.config();
-    const layout = cfg?.layout;
-
-    if (!layout) return '';
-
-    return [
-      'd-flex',
-      `flex-${layout.direction}`,
-      `justify-content-${layout.align}`,
-      `align-items-${layout.align}`,
-      layout.gap,
-    ].join(' ');
-  });
-
-  // TOOLTIP
-  tooltipLabel = computed(() => {
-    const cfg = this.config();
-    if (!cfg?.image?.tooltip) return null;
-
-    return cfg.image?.tooltipLabel?.[this.lang()] ?? null;
-  });
 
   sanitizeSvg(svgString: string) {
     const cfg = this.config();

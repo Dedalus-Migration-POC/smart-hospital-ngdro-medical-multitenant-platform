@@ -2,8 +2,8 @@
   <div
     [ngClass]="[
       config.className || '',
-      layoutClasses(),
-      config.clickable ? 'cursor-pointer' : 'cursor-default',
+      ...getFlexLayoutClasses(config.layout),
+      config.clickable ? 'cursor-pointer' : '',
     ]"
     (click)="handleClick()"
     (keydown)="handleKeydown($event)"
@@ -31,26 +31,22 @@
 
     @if (config.text) {
       <div
+        class="d-flex flex-column"
         [ngClass]="[
-          config.text.title.fontSize ? 'fs-' + config.text.title.fontSize : '',
-          config.text.title.fontWeight ? 'fw-' + config.text.title.fontWeight : '',
-          config.text.title.color ? 'text-' + config.text.title.color : '',
+          getAlignClass(config.layout?.align ?? 'start'),
+          getJustifyClass(config.layout?.justify ?? 'start'),
         ]"
       >
-        {{ config.text.title.text && config.text.title.text![lang()] }}
-      </div>
-
-      @if (config.text.subTitle) {
-        <div
-          [ngClass]="[
-            config.text.subTitle.fontSize ? 'fs-' + config.text.subTitle.fontSize : '',
-            config.text.subTitle.fontWeight ? 'fw-' + config.text.subTitle.fontWeight : '',
-            config.text.subTitle.color ? 'text-' + config.text.subTitle.color : '',
-          ]"
-        >
-          {{ config.text.subTitle.text[lang()] }}
+        <div [ngClass]="getTextClasses(config.text.title)">
+          {{ titleText() }}
         </div>
-      }
+
+        @if (config.text.subTitle) {
+          <div [ngClass]="getTextClasses(config.text.subTitle)">
+            {{ subTitleText() }}
+          </div>
+        }
+      </div>
     }
   </div>
 }
