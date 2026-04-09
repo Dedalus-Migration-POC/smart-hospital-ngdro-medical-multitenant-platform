@@ -24,6 +24,7 @@ export type FontWeight = 'normal' | 'semibold' | 'bold';
 export type TextTransform = 'uppercase' | 'lowercase' | 'capitalize';
 export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 export type LineHeight = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+export type TextHeader = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 export type Margin = 'mt-0' | 'mt-1' | 'mt-2' | 'mt-3' | 'mt-4' | 'mt-5';
 

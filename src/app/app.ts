@@ -61,6 +61,7 @@ export class App {
     const lang = this.lang();
 
     if (!config) return null;
+    if (url === '/') return config.name;
 
     const page = config.pages.find((p: any) => p.id === url);
     return page?.name[lang] ?? config.name;

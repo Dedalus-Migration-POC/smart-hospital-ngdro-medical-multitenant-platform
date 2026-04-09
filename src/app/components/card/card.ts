@@ -14,8 +14,8 @@ import { MediaText } from './types/media-text/media-text';
 })
 export class Card {
   // TODO: quando colleghi le page decommenta
-  // readonly config = input<Card | null>(null);
-  readonly config = signal<CardContainer>(MediaTextCard_MOCK);
+  readonly config = input<CardContainer | null>(null);
+  // readonly config = signal<CardContainer>(MediaTextCard_MOCK);
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
 
   private langService = inject(LanguageService);

@@ -15,4 +15,20 @@ export class TextComponent {
   private langService = inject(LanguageService);
 
   lang = this.langService.lang;
+
+  classes(config: TextProps): string[] {
+    return [
+      'cursor-default',
+      'text-' + config.color,
+      'text-' + config.textTransform,
+      'text-decoration-' + config.textDecoration,
+      'fw-' + config.fontWeight,
+      'fs-' + config.fontSize,
+      config?.marginTop || '',
+      config?.marginBottom || '',
+      config?.marginLeft || '',
+      config?.marginRight || '',
+      'lh-' + (config?.lineHeight ?? ''),
+    ];
+  }
 }

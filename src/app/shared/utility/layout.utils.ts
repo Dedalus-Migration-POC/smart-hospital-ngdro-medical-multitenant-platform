@@ -42,7 +42,7 @@ export function getSizeStyles(size?: AreaSize): Record<string, string | number |
 function getDirection(dir?: Direction | Direction[]) {
   if (dir) {
     if (Array.isArray(dir)) {
-      console.log(dir);
+      // console.log(dir);
       return dir
         ?.map((direction: Direction) => {
           return `flex-${direction}`;

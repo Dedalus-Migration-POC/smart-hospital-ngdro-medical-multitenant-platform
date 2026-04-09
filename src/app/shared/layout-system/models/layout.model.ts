@@ -10,7 +10,8 @@ export type ItemType =
   | 'SPACER'
   | 'SELECT_LANG'
   | 'GOOGLE_TRASLATE'
-  | 'AUTH_METHODS';
+  | 'AUTH_METHODS'
+  | 'SERVICE_CARDS';
 
 export interface Item {
   id: string;

@@ -221,12 +221,14 @@ export const APP_CONFIG: AppConfig = {
                     it: 'Immagine esempio',
                     en: 'Example image',
                   },
-                  tooltip: true,
-                  tooltipLabel: {
-                    it: 'Tooltip Label',
-                    en: 'Tooltip Label',
+                  tooltip: {
+                    enabled: true,
+                    tooltipLabel: {
+                      it: 'Tooltip Label',
+                      en: 'Tooltip Label',
+                    },
+                    tooltipClassName: '',
                   },
-                  tooltipClassName: 'tooltip-test',
                 },
 
                 clickable: true,
@@ -408,7 +410,7 @@ export const APP_CONFIG: AppConfig = {
                 // description: {
                 //   it: 'Apri external link',
                 // },
-                url: '/home',
+                url: '/',
                 external: false,
                 disabled: false,
                 style: {
@@ -549,12 +551,14 @@ export const APP_CONFIG: AppConfig = {
                     it: 'Immagine esempio',
                     en: 'Example image',
                   },
-                  tooltip: true,
-                  tooltipLabel: {
-                    it: 'Tooltip Label',
-                    en: 'Tooltip Label',
+                  tooltip: {
+                    enabled: true,
+                    tooltipLabel: {
+                      it: 'Tooltip Label',
+                      en: 'Tooltip Label',
+                    },
+                    tooltipClassName: '',
                   },
-                  tooltipClassName: 'tooltip-test',
                 },
                 clickable: true,
                 action: {
@@ -594,11 +598,6 @@ export const APP_CONFIG: AppConfig = {
                     en: 'Example image',
                   },
                   tooltip: false,
-                  // tooltipLabel: {
-                  //   it: 'Tooltip Label',
-                  //   en: 'Tooltip Label',
-                  // },
-                  // tooltipClassName: 'tooltip-test',
                 },
                 clickable: true,
                 action: {
@@ -626,11 +625,6 @@ export const APP_CONFIG: AppConfig = {
                     en: 'Example image',
                   },
                   tooltip: false,
-                  // tooltipLabel: {
-                  //   it: 'Tooltip Label',
-                  //   en: 'Tooltip Label',
-                  // },
-                  // tooltipClassName: 'tooltip-test',
                 },
 
                 clickable: true,
@@ -659,11 +653,6 @@ export const APP_CONFIG: AppConfig = {
                     en: 'Example image',
                   },
                   tooltip: false,
-                  // tooltipLabel: {
-                  //   it: 'Tooltip Label',
-                  //   en: 'Tooltip Label',
-                  // },
-                  // tooltipClassName: 'tooltip-test',
                 },
                 clickable: true,
                 action: {
@@ -781,7 +770,7 @@ export const APP_CONFIG: AppConfig = {
       position: {
         type: 'sticky',
       },
-      background: 'light',
+      background: 'info',
       className: 'bottombar-custom',
       areas: {
         layout: {
@@ -899,6 +888,7 @@ export const APP_CONFIG: AppConfig = {
                     it: `I servizi online dell’ASL di Latina`,
                     en: `Online services from the Latina Local Health Authority`,
                   },
+                  isHeader: 'h1',
                   fontSize: 'xxl',
                   fontWeight: 'semibold',
                   textDecoration: 'none',
@@ -1007,6 +997,373 @@ export const APP_CONFIG: AppConfig = {
                         showIcon: true,
                       },
                       config: {},
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+        },
+      },
+    },
+    {
+      id: '/', // === url!
+      name: { it: 'Home', en: 'Home' }, // Nome nel browser per accessibilità
+      route: '/', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#c1e7e7', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        areas: {
+          layout: {
+            direction: ['column', 'md-row'],
+            gap: 'gap-5',
+            align: 'start',
+            // justify: 'between',
+            // wrap: 'wrap',
+          },
+          start: {
+            size: { basis: '50%' },
+            layout: {
+              direction: 'column',
+              gap: 'gap-3',
+              align: 'start',
+              wrap: 'nowrap',
+            },
+            items: [
+              {
+                id: 'auth-text',
+                type: 'TEXT',
+                enabled: true,
+                props: {
+                  id: 'auth-title',
+                  text: {
+                    it: `I servizi online dell’ASL di Latina`,
+                    en: `Online services from the Latina Local Health Authority`,
+                  },
+                  isHeader: 'h1',
+                  fontSize: 'xxl',
+                  fontWeight: 'semibold',
+                  textDecoration: 'none',
+                  color: 'primary',
+                  // layout?: {
+                  //   marginTop?: Margin;
+                  //   marginBottom?: Margin;
+                  //   marginRight?: Margin;
+                  //   marginLeft?: Margin;
+                  //   lineHeight?: LineHeight;
+                  // };
+                },
+              },
+              {
+                id: 'auth-text-info',
+                type: 'TEXT',
+                enabled: true,
+                props: {
+                  id: 'auth-into',
+                  text: {
+                    it: `Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Latina, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>`,
+                    en: `From this section you can access the main digital services of the Latina Local Health Authority, <strong>designed to simplify interaction with the healthcare system.</strong>`,
+                  },
+                  fontSize: 'md',
+                  fontWeight: 'normal',
+                  textDecoration: 'none',
+                  color: 'black',
+                },
+              },
+              {
+                id: 'footer-logo4',
+                type: 'IMAGE_BLOCK',
+                enabled: true,
+                props: {
+                  id: 'hero-image',
+                  image: {
+                    type: 'file',
+                    value:
+                      'https://img.freepik.com/free-photo/lavender-field-sunset-near-valensole_268835-3910.jpg?semt=ais_hybrid&w=740&q=80',
+                    decorative: false,
+                    // width: '290px',
+                    // height: '120px',
+                    className: 'img-logo',
+                    alt: {
+                      it: 'Immagine esempio',
+                      en: 'Example image',
+                    },
+                    tooltip: false,
+                  },
+                  clickable: true,
+                  action: {
+                    type: 'externalLink',
+                    url: 'https://commission.europa.eu/',
+                    target: '_blank',
+                  },
+                },
+              },
+            ],
+          },
+          end: {
+            size: { basis: '50%', width: '100%' },
+            layout: {
+              direction: 'row',
+              gap: 'gap-2',
+              align: 'center',
+              justify: 'center',
+              wrap: 'nowrap',
+            },
+            items: [
+              {
+                id: 'service-cards',
+                type: 'SERVICE_CARDS',
+                className: 'w-100',
+                enabled: true,
+                props: {
+                  id: 'services-section',
+                  className: 'services-section',
+                  ariaLabel: {
+                    it: 'Sezione servizi',
+                    en: 'Services section',
+                  },
+                  header: {
+                    title: {
+                      text: {
+                        it: 'Servizi',
+                        en: 'Services',
+                      },
+                      fontSize: 'md',
+                      fontWeight: 'bold',
+                      color: 'dark',
+                      lineHeight: 'md',
+                    },
+                    subTitle: {
+                      text: {
+                        it: 'Accedi rapidamente ai servizi disponibili',
+                        en: 'Quick access to available services',
+                      },
+                      fontSize: 'md',
+                      fontWeight: 'normal',
+                      color: 'secondary',
+                      lineHeight: 'md',
+                    },
+                  },
+                  itemsLayout: {
+                    direction: 'column',
+                    align: 'start',
+                    justify: 'end',
+                    wrap: 'wrap',
+                  },
+                  items: [
+                    {
+                      id: 'vaccination-history',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri storico vaccinale',
+                        en: 'Open vaccination history',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'route',
+                        url: '/storico-vaccinale',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Storico vaccinale',
+                            en: 'Vaccination history',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                          lineHeight: 'md',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'Sottotitolo',
+                            en: 'Subtitle',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                          lineHeight: 'lg',
+                        },
+                      },
+                      blocked: false,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+       <svg width="58" height="60" viewBox="0 0 58 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_49_24996" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="58" height="60">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H58V60H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_49_24996)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M33.5395 32.4078C33.5395 32.7982 33.1611 33.1885 32.7815 33.1885H24.335C23.9556 33.1885 23.5786 32.7982 23.5786 32.4078V32.1474C23.5786 31.7571 23.9556 31.3664 24.335 31.3664H32.7815C33.1611 31.3664 33.5395 31.7571 33.5395 32.1474V32.4078ZM31.2699 55.5746C31.2699 57.0064 30.135 58.1777 28.7482 58.1777C27.3611 58.1777 26.2263 57.0064 26.2263 55.5746V35.1409H31.2699V55.5746ZM25.7221 17.3102C25.7221 15.7482 26.4773 14.0563 28.6221 14.0563C30.7656 14.0563 31.6482 15.7482 31.6482 17.3102V29.5443H25.7221V17.3102ZM33.5395 29.6745V17.3102C33.5395 14.1865 31.6482 12.104 28.7482 12.104C25.9741 12.104 23.9556 14.1865 23.9556 17.3102V29.5443C22.6947 29.6745 21.6873 30.8459 21.6873 32.1474V32.4078C21.6873 33.8393 22.8221 35.1409 24.335 35.1409H24.4611V55.5746C24.4611 58.0475 26.3524 59.9998 28.7482 59.9998C31.1437 59.9998 33.035 58.0475 33.035 55.5746V35.1409C34.296 35.0107 35.3034 33.8393 35.3034 32.5378V32.2776C35.3034 30.9761 34.5482 30.0649 33.5395 29.6745Z" fill="#DC2B1C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M43.5 22.5163H52.5784V50.6291H43.5V22.5163ZM49.8045 58.0477H46.1493V52.4512H49.8045V58.0477ZM46.2741 16.9198C46.2741 15.8784 47.1567 14.9675 48.0393 14.9675C48.9219 14.9675 49.8045 15.8784 49.8045 16.9198V20.6942H46.148V16.9198H46.2741ZM57.1174 50.6291H54.3436V21.6051C54.3436 21.0845 53.9654 20.6942 53.461 20.6942H51.6958V16.9198C51.6958 15.0977 50.561 13.6659 48.9219 13.2756V0.910921C48.9219 0.390357 48.5436 0 48.0393 0C47.5348 0 47.1567 0.390357 47.1567 0.910921V13.2756C45.6435 13.6659 44.3829 15.2279 44.3829 16.9198V20.6942H42.6174C42.1132 20.6942 41.7348 21.0845 41.7348 21.6051V50.6291H38.961C38.4567 50.6291 38.0784 51.0195 38.0784 51.54C38.0784 52.0609 38.4567 52.4512 38.961 52.4512H44.3829V58.0477H42.6174C42.1132 58.0477 41.7348 58.4381 41.7348 58.9587C41.7348 59.4795 42.1132 59.8699 42.6174 59.8699H53.5871C54.0916 59.8699 54.4697 59.4795 54.4697 58.9587C54.4697 58.4381 54.0916 58.0477 53.5871 58.0477H51.6958V52.4512H57.1174C57.6219 52.4512 58.0003 52.0609 58.0003 51.54C58.0003 51.0195 57.6219 50.6291 57.1174 50.6291Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15.3824 39.6962C15.3824 42.0391 14.4999 42.6899 13.4912 43.6008C12.7347 44.2516 11.7272 45.0326 11.2217 46.464H5.92597C5.42301 45.0326 4.41304 44.2516 3.65632 43.6008C2.52174 42.6899 1.76502 42.0391 1.76502 39.8264V37.6139H3.15209C3.65632 37.6139 4.03468 37.2233 4.03468 36.7027C4.03468 36.1822 3.65632 35.7918 3.15209 35.7918H1.76502V29.2841H3.15209C3.65632 29.2841 4.03468 28.8938 4.03468 28.3729C4.03468 27.8524 3.65632 27.462 3.15209 27.462H1.76502V20.9543H3.15209C3.65632 20.9543 4.03468 20.564 4.03468 20.0434C4.03468 19.5228 3.65632 19.1322 3.15209 19.1322H1.76502V12.6248H3.15209C3.65632 12.6248 4.03468 12.2341 4.03468 11.7136C4.03468 11.193 3.65632 10.8027 3.15209 10.8027H1.76502V9.2407C1.76502 5.07593 4.41304 2.47284 8.575 2.47284C12.7347 2.47284 15.3824 5.20613 15.3824 9.2407V39.6962ZM10.8434 55.705C10.8434 57.0066 9.83595 58.0477 8.575 58.0477C7.31431 58.0477 6.30433 57.0066 6.30433 55.705V48.1562H10.8434V55.705ZM8.57516 0C3.40448 0 0 3.514 0 8.72017V39.6962C0 42.9501 1.51319 44.1214 2.64776 45.0326C3.65647 45.9435 4.53931 46.5943 4.53931 48.807V55.835C4.53931 58.3079 6.30449 60.0001 8.57516 60.0001C10.8435 60.0001 12.6087 58.1779 12.6087 55.835V48.807C12.6087 46.5943 13.4913 45.9435 14.5 45.0326C15.6348 44.1214 17.148 42.9501 17.148 39.6962V8.72017C17.148 3.514 13.7435 0 8.57516 0Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8.57438 7.93945C8.07015 7.93945 7.69179 8.32981 7.69179 8.85037V43.6011C7.69179 44.1217 8.07015 44.512 8.57438 44.512C9.07759 44.512 9.4557 44.1217 9.4557 43.6011V8.98058C9.4557 8.46002 9.07759 7.93945 8.57438 7.93945Z" fill="#024E9A"/>
+</g>
+</svg>
+
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
+                    {
+                      id: 'payments',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri pagamenti',
+                        en: 'Open payments',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'route',
+                        url: '/payments',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Pagamenti',
+                            en: 'Payments',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'PagoPA',
+                            en: 'PagoPA',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                        },
+                      },
+                      blocked: true,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+          <svg width="59" height="60" viewBox="0 0 59 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.4285 55.1616H13.6364C13.0984 55.1616 12.6624 55.5949 12.6624 56.1294C12.6624 56.6638 13.0984 57.0971 13.6364 57.0971H21.4285C21.9665 57.0971 22.4026 56.6638 22.4026 56.1294C22.4026 55.5949 21.9665 55.1616 21.4285 55.1616Z" fill="#0066CC"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M55.0321 18.3871H35.0647V3.3871C35.0626 1.51731 33.5376 0.00206669 31.6557 0H3.40907C1.52716 0.00206669 0.0020801 1.51731 0 3.3871V56.6129C0.0020801 58.4827 1.52716 59.9979 3.40907 60H31.6557C33.5376 59.9979 35.0626 58.4827 35.0647 56.6129V42.5806H55.0321C56.9141 42.5786 58.4391 41.0633 58.4412 39.1936V21.7742C58.4391 19.9044 56.9141 18.3892 55.0321 18.3871ZM22.1285 1.93596L21.6415 3.87144H13.4232L12.9362 1.93596H22.1285ZM31.6558 58.065C32.4624 58.0643 33.1161 57.4148 33.1168 56.6134V3.38757C33.1161 2.58615 32.4624 1.93663 31.6558 1.93596H24.1376L23.3474 5.07386C23.239 5.50463 22.8495 5.80686 22.4026 5.80693H12.6624C12.2155 5.80686 11.826 5.50463 11.7176 5.07386L10.9274 1.93596H3.40919C2.60257 1.93663 1.94883 2.58615 1.94816 3.38757V56.6134C1.94883 57.4148 2.60257 58.0643 3.40919 58.065H31.6558ZM35.0645 32.9035H37.9866V36.7745H35.0645V32.9035ZM55.0319 40.6447C55.8385 40.6441 56.4923 39.9945 56.4929 39.1931V28.0641H35.0645V30.9673H38.9606C39.4985 30.9673 39.9346 31.4006 39.9346 31.9351V37.7415C39.9346 38.276 39.4985 38.7093 38.9606 38.7093H35.0645V40.6447H55.0319ZM56.4929 26.1286H35.0645V24.1931H56.4929V26.1286ZM35.0645 22.2577H56.4929V21.7738C56.4923 20.9724 55.8385 20.3229 55.0319 20.3222H35.0645V22.2577Z" fill="#024E9A"/>
+<path d="M53.5713 30.9678H44.8051C44.2671 30.9678 43.8311 31.401 43.8311 31.9355C43.8311 32.47 44.2671 32.9033 44.8051 32.9033H53.5713C54.1092 32.9033 54.5453 32.47 54.5453 31.9355C54.5453 31.401 54.1092 30.9678 53.5713 30.9678Z" fill="#0066CC"/>
+<path d="M53.5713 33.8711H44.8051C44.2671 33.8711 43.8311 34.3044 43.8311 34.8388C43.8311 35.3733 44.2671 35.8066 44.8051 35.8066H53.5713C54.1092 35.8066 54.5453 35.3733 54.5453 34.8388C54.5453 34.3044 54.1092 33.8711 53.5713 33.8711Z" fill="#0066CC"/>
+<path d="M53.5713 36.7744H49.6752C49.1373 36.7744 48.7012 37.2077 48.7012 37.7422C48.7012 38.2766 49.1373 38.7099 49.6752 38.7099H53.5713C54.1092 38.7099 54.5453 38.2766 54.5453 37.7422C54.5453 37.2077 54.1092 36.7744 53.5713 36.7744Z" fill="#0066CC"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84399 30.0001C5.84399 23.5865 11.077 18.3872 17.5322 18.3872C23.9845 18.3944 29.2132 23.5895 29.2205 30.0001C29.2205 36.4137 23.9875 41.613 17.5322 41.613C11.077 41.613 5.84399 36.4137 5.84399 30.0001ZM7.79216 30.0006C7.79216 35.3453 12.153 39.678 17.5324 39.678C22.9092 39.672 27.2665 35.3428 27.2726 30.0006C27.2726 24.6559 22.9117 20.3232 17.5324 20.3232C12.153 20.3232 7.79216 24.6559 7.79216 30.0006Z" fill="#DC2B1C"/>
+<path d="M22.6875 26.4124L16.4667 32.5931L13.2465 30.1935C12.8161 29.8728 12.2056 29.9594 11.8828 30.387C11.5601 30.8146 11.6473 31.4212 12.0777 31.7419L15.9737 34.6451C16.3615 34.9341 16.9041 34.8957 17.2469 34.5552L24.065 27.781C24.3111 27.5365 24.4072 27.1802 24.3171 26.8462C24.2271 26.5122 23.9645 26.2514 23.6284 26.1619C23.2923 26.0724 22.9336 26.1679 22.6875 26.4124Z" fill="#DC2B1C"/>
+</svg>
+
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
+                    {
+                      id: 'clinical-records',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri link esterno',
+                        en: 'Open external link',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'externalLink',
+                        url: 'https://cds.asl.rieti.it/',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Cartella clinica',
+                            en: 'Clinical records',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'Apri link esterno per vedere la tua cartella clinica',
+                            en: 'Open external link',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                        },
+                      },
+                      blocked: false,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+         <svg width="54" height="61" viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_4019_5818" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="54" height="61">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H54V61H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_4019_5818)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.2541 18.9216H15.2444L23.2541 10.7178V18.9216ZM24.1583 7.40961C23.9 7.40961 23.6417 7.54062 23.5124 7.67436L12.4023 19.0541C12.2731 19.1864 12.1426 19.4496 12.1426 19.7156V21.568C12.1426 22.0973 12.5316 22.4943 13.0482 22.4943C13.565 22.4943 13.9526 22.0973 13.9526 21.568V20.6419H24.1583C24.6751 20.6419 25.0612 20.2449 25.0612 19.7156V9.26221H47.4119V30.1691C47.4119 30.6971 47.7995 31.0954 48.3149 31.0954C48.8329 31.0954 49.2205 30.6971 49.2205 30.1691V8.20217C49.2205 7.67436 48.8329 7.27734 48.3149 7.27734L24.1583 7.40961Z" fill="#DC2B1C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.55494 22.7582C6.07177 22.7582 6.45934 22.3612 6.45934 21.8331V1.85134H39.9186V4.7623C39.9186 5.29306 40.3062 5.68986 40.823 5.68986C41.3396 5.68986 41.7272 5.29306 41.7272 4.7623V0.925041C41.7272 0.397016 41.3396 0 40.823 0H5.42588C4.90905 0 4.52148 0.397016 4.52148 0.925041V21.8331C4.65074 22.2302 5.03831 22.7582 5.55494 22.7582Z" fill="#DC2B1C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M52.0622 57.9568C52.0622 58.4848 51.5456 58.8831 51.1581 58.8831H2.84225C2.32542 58.8831 1.93785 58.3538 1.93785 57.9568V28.4491C1.93785 27.5228 2.84225 26.5965 3.74644 26.5965H25.1915C25.579 26.5965 26.0959 26.8613 26.0959 27.2581L27.7752 32.5511C28.0335 33.742 29.3255 35.0651 30.7465 35.0651H51.1581C51.6747 35.0651 52.0622 35.5944 52.0622 35.9901V57.9568ZM51.1581 33.2127H30.7465C30.3589 33.2127 29.713 32.6822 29.5838 32.1541L27.9044 26.8613C27.6459 25.6702 26.3542 24.7441 25.1915 24.7441H3.74644C1.8088 24.7441 0 26.4643 0 28.5814V58.0893C0 59.6771 1.29197 61.0002 2.84225 61.0002H51.1581C52.7081 61.0002 54.0001 59.6771 54.0001 58.0893V35.9901C54.0001 34.5358 52.7081 33.2127 51.1581 33.2127Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M19.1198 46.9745C19.1198 46.4452 19.5074 46.0482 20.024 46.0482H24.158V42.2095H20.024C19.5074 42.2095 19.1198 41.8139 19.1198 41.2832V37.0501H15.3734V41.2832C15.3734 41.8139 14.9858 42.2095 14.469 42.2095H10.335V46.0482H14.469C14.9858 46.0482 15.3734 46.4452 15.3734 46.9745V51.2073H19.1198V46.9745ZM19.1198 53.1922H15.3734C14.3399 53.1922 13.5648 52.2673 13.5648 51.341V47.8993H10.335C9.30151 47.8993 8.52637 46.9745 8.52637 46.0482V42.2095C8.52637 41.1522 9.43077 40.3583 10.335 40.3583H13.5648V37.0501C13.5648 35.9903 14.469 35.1978 15.3734 35.1978H19.1198C20.1533 35.1978 20.9284 36.1241 20.9284 37.0501V40.3583H24.158C25.1915 40.3583 25.9666 41.2832 25.9666 42.2095V46.0482C25.9666 47.1068 25.0622 47.8993 24.158 47.8993H20.9284V51.2073C20.9284 52.2673 20.024 53.1922 19.1198 53.1922Z" fill="#DC2B1C"/>
+</g>
+</svg>
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
+                    {
+                      id: 'reports',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri referti',
+                        en: 'Open reports',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'route',
+                        url: '/clinical-reports',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Il tuo referto con un click',
+                            en: 'Your report with one click',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'Vedi i tuoi referti',
+                            en: 'View your medical reports',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                        },
+                      },
+                      blocked: true,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+       <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_4019_11176" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="60" height="60">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H60V60H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_4019_11176)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M41.9086 28.043C44.6431 28.9547 47.375 29.8678 52.5811 29.9997V44.0867C52.5811 49.8246 48.0257 54.3899 42.2992 54.3899C36.5724 54.3899 32.017 49.8246 32.017 44.0867V26.2169C36.7026 26.346 39.3056 27.2591 41.9086 28.043ZM30.9771 13.1733C30.4552 13.1733 30.0647 13.5632 30.0647 14.0864V44.0867C30.0647 50.8695 35.4009 56.3479 42.2991 56.3479C49.1984 56.3479 54.5333 50.9999 54.5333 44.0867V14.0864C54.5333 13.5632 54.1428 13.1733 53.6223 13.1733C53.1031 13.1733 52.7112 13.5632 52.7112 14.0864V28.1734C47.8968 28.043 45.2938 27.2591 42.6908 26.346C39.9563 25.4343 37.2231 24.5213 32.017 24.3896V14.0864C31.8868 13.5632 31.4965 13.1733 30.9771 13.1733Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M2.86322 13.1733C2.34378 13.1733 1.95215 13.5645 1.95215 14.0864V44.0867C1.95215 50.8695 7.28837 56.3492 14.1864 56.3492C21.0844 56.3492 26.4219 50.9999 26.4219 44.0867V14.0864C26.4219 13.5645 26.0302 13.1733 25.5095 13.1733C24.989 13.1733 24.5984 13.5645 24.5984 14.0864V44.0867C24.5984 49.8274 20.0433 54.3925 14.3165 54.3925C8.58977 54.3925 4.03443 49.8274 4.03443 44.0867V14.0864C3.77428 13.5645 3.38373 13.1733 2.86322 13.1733Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1.0416 1.82476H1.95137V6.5218C1.95137 7.04233 2.34322 7.43353 2.86244 7.43353C3.38447 7.43353 3.7748 7.04233 3.7748 6.5218V1.82476H24.3375V6.5218C24.3375 7.04233 24.7281 7.43353 25.2499 7.43353C25.7706 7.43353 26.1609 7.04233 26.1609 6.5218V1.82476H29.9341V6.5218C29.9341 7.04233 30.3259 7.43353 30.8452 7.43353C31.367 7.43353 31.7575 7.04233 31.7575 6.5218V1.82476H52.5819V6.5218C52.5819 7.04233 52.9709 7.43353 53.493 7.43353C54.0122 7.43353 54.404 7.04233 54.404 6.5218V1.82476H55.3138C55.8356 1.82476 56.2249 1.43355 56.2249 0.911731C56.2249 0.389909 55.8356 0 55.3138 0H0.910335C0.390897 0 -0.000732422 0.389909 -0.000732422 0.911731C-0.000732422 1.43355 0.521081 1.82476 1.0416 1.82476Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M59.0889 9.39014H1.04119C0.520677 9.39014 0.130127 9.78264 0.130127 10.3032C0.130127 10.8261 0.520677 11.2162 1.04119 11.2162H58.1779V58.1735H1.04119C0.520677 58.1735 0.130127 58.5647 0.130127 59.0878C0.130127 59.6094 0.520677 60.0008 1.04119 60.0008H59.0889C59.6095 60.0008 60 59.6094 60 59.0878V10.3032C60 9.78264 59.6095 9.39014 59.0889 9.39014Z" fill="#DC2B1C"/>
+</g>
+</svg>
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
                     },
                   ],
                 },

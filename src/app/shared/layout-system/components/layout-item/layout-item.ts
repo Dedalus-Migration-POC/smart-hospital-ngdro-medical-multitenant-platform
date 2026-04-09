@@ -8,6 +8,7 @@ import { SelectLanguage } from '../../../../components/select-language/select-la
 import { GoogleTranslate } from '../../../../components/google-translate/google-translate';
 import { TextComponent } from '../../../../components/text-component/text-component';
 import { AuthMethods } from '../../../../pages/auth/components/auth-methods/auth-methods';
+import { Card } from '../../../../components/card/card';
 
 @Component({
   selector: 'app-layout-item',
@@ -20,6 +21,7 @@ import { AuthMethods } from '../../../../pages/auth/components/auth-methods/auth
     GoogleTranslate,
     TextComponent,
     AuthMethods,
+    Card,
   ],
   templateUrl: './layout-item.html',
   styleUrl: './layout-item.scss',
