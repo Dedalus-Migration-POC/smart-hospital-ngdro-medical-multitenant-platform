@@ -9,6 +9,7 @@ import { GoogleTranslate } from '../../../../components/google-translate/google-
 import { TextComponent } from '../../../../components/text-component/text-component';
 import { AuthMethods } from '../../../../pages/auth/components/auth-methods/auth-methods';
 import { Card } from '../../../../components/card/card';
+import { UserDropdownMenu } from '../../../../components/user-dropdown-menu/user-dropdown-menu';
 
 @Component({
   selector: 'app-layout-item',
@@ -22,6 +23,7 @@ import { Card } from '../../../../components/card/card';
     TextComponent,
     AuthMethods,
     Card,
+    UserDropdownMenu,
   ],
   templateUrl: './layout-item.html',
   styleUrl: './layout-item.scss',

@@ -11,7 +11,8 @@ export type ItemType =
   | 'SELECT_LANG'
   | 'GOOGLE_TRASLATE'
   | 'AUTH_METHODS'
-  | 'SERVICE_CARDS';
+  | 'SERVICE_CARDS'
+  | 'USER_DROPDOWN_MENU';
 
 export interface Item {
   id: string;

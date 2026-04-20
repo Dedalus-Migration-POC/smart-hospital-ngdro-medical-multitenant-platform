@@ -67,7 +67,6 @@ export const APP_CONFIG: AppConfig = {
           layout: {
             direction: 'column',
             gap: 'gap-0',
-            align: 'start',
           },
           items: [
             {
@@ -109,7 +108,6 @@ export const APP_CONFIG: AppConfig = {
           layout: {
             direction: 'row',
             gap: 'gap-3',
-            align: 'center',
           },
           items: [
             {
@@ -122,12 +120,43 @@ export const APP_CONFIG: AppConfig = {
                 color: 'white',
               },
             },
-            // {
-            //   id: 'topbar-link-1',
-            //   type: 'GOOGLE_TRASLATE',
-            //   enabled: true,
-            //   props: {},
-            // },
+            {
+              id: 'user-menu',
+              type: 'USER_DROPDOWN_MENU',
+              enabled: true,
+              props: {
+                userButton: {
+                  background: 'primary',
+                  color: 'white',
+                  icon: 'fa-regular fa-user',
+                  textDecoration: 'underline',
+                  textTransform: 'uppercase',
+                },
+                dropdownMenu: {
+                  background: 'light',
+                  color: 'black',
+                  profile: {
+                    enabled: true,
+                    icon: 'fa-regular fa-user',
+                    text: { it: 'Profilo', en: 'Profile' },
+                  },
+                  logout: {
+                    enabled: true,
+                    icon: 'fa-solid fa-arrow-right-from-bracket',
+                    text: { it: 'Esci', en: 'Logout' },
+                  },
+                },
+                loginButton: {
+                  enabled: true,
+                  text: { it: 'Accedi', en: 'Login' },
+                  textDecoration: 'underline',
+                  textTransform: 'uppercase',
+                  background: 'primary',
+                  color: 'white',
+                  icon: 'fa-regular fa-user',
+                },
+              },
+            },
           ],
         },
       },
@@ -366,10 +395,47 @@ export const APP_CONFIG: AppConfig = {
           layout: {
             direction: 'row',
             gap: 'gap-3',
-            align: 'start',
+            align: 'center',
             wrap: 'nowrap',
           },
           items: [
+            // {
+            //   id: 'user-menu',
+            //   type: 'USER_DROPDOWN_MENU',
+            //   enabled: true,
+            //   props: {
+            //     userButton: {
+            //       background: 'light',
+            //       color: 'primary',
+            //       icon: 'fa-regular fa-user',
+            //       // textDecoration: 'underline',
+            //       // textTransform: 'uppercase',
+            //     },
+            //     dropdownMenu: {
+            //       background: 'light',
+            //       color: 'black',
+            //       profile: {
+            //         enabled: true,
+            //         icon: 'fa-regular fa-user',
+            //         text: { it: 'Profilo', en: 'Profile' },
+            //       },
+            //       logout: {
+            //         enabled: true,
+            //         icon: 'fa-solid fa-arrow-right-from-bracket',
+            //         text: { it: 'Esci', en: 'Logout' },
+            //       },
+            //     },
+            //     loginButton: {
+            //       enabled: true,
+            //       text: { it: 'Accedi', en: 'Login' },
+            //       textDecoration: 'underline',
+            //       textTransform: 'uppercase',
+            //       background: 'primary',
+            //       color: 'white',
+            //       icon: 'fa-regular fa-user',
+            //     },
+            //   },
+            // },
             // {
             //   id: 'nav-home',
             //   type: 'LINK',

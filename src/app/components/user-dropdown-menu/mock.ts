@@ -1,0 +1,118 @@
+import { UserDropdownMenuProps } from './model';
+import {
+  Colors,
+  FontSize,
+  FontWeight,
+  LineHeight,
+  LocalizedText,
+  Margin,
+  TextDecoration,
+  TextHeader,
+  TextTransform,
+} from '../../shared/models/shared_model';
+export const MOCK_PROFILE: any = {
+  fiscalCode: 'tinit-lvldaa85t50g702b',
+  firstName: 'Ada',
+  lastName: 'Lovelace',
+  email: 'aabyron@hotmail.com',
+  additionalAttributes: [
+    {
+      key: 'address',
+      value: 'Via delle vie, 4',
+      required: true,
+      validation: null,
+    },
+    {
+      key: 'province',
+      value: 'MI',
+      required: true,
+      validation: null,
+    },
+    {
+      key: 'city',
+      value: 'Milano',
+      required: true,
+      validation: null,
+    },
+    {
+      key: 'date_of_birth',
+      value: '1985-12-10',
+      required: true,
+      validation: null,
+    },
+    {
+      key: 'phone_number',
+      value: '3939393939',
+      required: true,
+      validation: null,
+    },
+    {
+      key: 'postal_code',
+      value: '12345',
+      required: true,
+      validation: null,
+    },
+  ],
+  code: null,
+  consents: [
+    {
+      id: 2,
+      accepted: true,
+      summary: "Ho preso visione dell' <Link Informativa sulla privacy />",
+      description: 'Lorem iptus',
+      url: 'https://www.ausl.latina.it/privacy',
+      required: false,
+      lang: 'it',
+      requireLogin: false,
+      type: 'VISION',
+      acceptedDate: '2025-06-17T14:48:20.000+00:00',
+      contractCode: 'IP',
+    },
+    {
+      id: 5,
+      accepted: null,
+      summary: "Accetto <Link Termini e Condizioni d'uso />",
+      description: 'Lorem iptus',
+      url: 'https://www.ausl.latina.it/attachments/article/183/CARTA%20ASL%2010°%20revisione%202024%20-%20Mod%202025.pdf',
+      required: true,
+      lang: 'it',
+      requireLogin: false,
+      type: 'VISION',
+      acceptedDate: '2025-06-17T14:48:20.000+00:00',
+      contractCode: 'CU',
+    },
+  ],
+};
+
+export const UserDropdownMenuProps_MOCK: any = {
+  userButton: {
+    background: 'light',
+    color: 'primary',
+    icon: 'fa-regular fa-user',
+    textDecoration: 'underline',
+    textTransform: 'uppercase',
+  },
+  dropdownMenu: {
+    background: 'light',
+    color: 'black',
+    profile: {
+      enabled: true,
+      icon: 'fa-regular fa-user',
+      text: { it: 'Profilo', en: 'Profile' },
+    },
+    logout: {
+      enabled: true,
+      icon: 'fa-solid fa-arrow-right-from-bracket',
+      text: { it: 'Esci', en: 'Logout' },
+    },
+  },
+  loginButton: {
+    enabled: true,
+    text: { it: 'Accedi', en: 'Login' },
+    textDecoration: 'underline',
+    textTransform: 'uppercase',
+    background: 'primary',
+    color: 'white',
+    icon: 'fa-regular fa-user',
+  },
+};

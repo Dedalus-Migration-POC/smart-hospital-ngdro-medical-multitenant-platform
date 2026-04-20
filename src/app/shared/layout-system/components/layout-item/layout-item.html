@@ -23,4 +23,7 @@
   @if (item.type === 'SERVICE_CARDS') {
     <app-card [config]="item.props"> </app-card>
   }
+  @if (item.type === 'USER_DROPDOWN_MENU') {
+    <app-user-dropdown-menu [config]="item.props"> </app-user-dropdown-menu>
+  }
 }
