@@ -1,15 +1,3 @@
-import { UserDropdownMenuProps } from './model';
-import {
-  Colors,
-  FontSize,
-  FontWeight,
-  LineHeight,
-  LocalizedText,
-  Margin,
-  TextDecoration,
-  TextHeader,
-  TextTransform,
-} from '../../shared/models/shared_model';
 export const MOCK_PROFILE: any = {
   fiscalCode: 'tinit-lvldaa85t50g702b',
   firstName: 'Ada',

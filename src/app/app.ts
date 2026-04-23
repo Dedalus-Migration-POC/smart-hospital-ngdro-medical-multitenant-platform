@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from './store/reducers';
 import { selectAppConfig } from './initialize/state/selector';
@@ -9,13 +9,14 @@ import { Footer } from './layout/footer/footer';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { LanguageService } from './initialize/state/services/language.service';
+import { fetchUserProfile } from './pages/user-profile/state/user-profile.actions';
 @Component({
   selector: 'app-root',
   imports: [CommonModule, Header, Footer, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class App implements OnInit {
   private store = inject(Store<SmartHospitalState>);
   readonly router = inject(Router);
   private langService = inject(LanguageService);
@@ -27,6 +28,9 @@ export class App {
 
       document.title = name;
     });
+  }
+  ngOnInit(): void {
+    this.store.dispatch(fetchUserProfile());
   }
 
   lang = this.langService.lang;

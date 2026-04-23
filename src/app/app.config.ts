@@ -10,13 +10,14 @@ import { provideDesignAngularKit } from 'design-angular-kit';
 import { provideInitializeApp } from './initialize/providers/initialize-app.provider';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { effects } from './store/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideStore(reducers, { metaReducers }),
-    provideEffects([]),
+    provideEffects(effects),
     provideStoreDevtools({
       maxAge: 25,
     }),

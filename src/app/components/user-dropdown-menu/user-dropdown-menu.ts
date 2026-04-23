@@ -1,9 +1,13 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, Signal, signal } from '@angular/core';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { CommonModule } from '@angular/common';
 import { UserDropdownMenuProps } from './model';
-import { MOCK_PROFILE, UserDropdownMenuProps_MOCK } from './mock';
 import { Router, RouterModule } from '@angular/router';
+import { UserProfile } from '../../pages/user-profile/user-profile.model';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { SmartHospitalState } from '../../store/reducers';
+import { Store } from '@ngrx/store';
+import { selectUserProfileData } from '../../pages/user-profile/state/user-profile.selectors';
 
 @Component({
   selector: 'app-user-dropdown-menu',
@@ -12,9 +16,11 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './user-dropdown-menu.scss',
 })
 export class UserDropdownMenu {
+  private store = inject(Store<SmartHospitalState>);
+
   readonly config = input<UserDropdownMenuProps | null>(null);
   // readonly configMock = signal<UserDropdownMenuProps>(UserDropdownMenuProps_MOCK);
-  userProfile: any = { data: MOCK_PROFILE };
+  userProfile: Signal<UserProfile | null> = this.store.selectSignal(selectUserProfileData);
 
   private langService = inject(LanguageService);
   private router = inject(Router);

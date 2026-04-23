@@ -5,7 +5,7 @@
       class="flex-grow-1 page-bg-container"
       [ngStyle]="{
         'background-image': bgImg() ? 'url(' + bgImg() + ')' : 'none',
-        'background-color': bgColor() && !bgImg() ? bgColor() : 'none',
+        'background-color': bgColor() && !bgImg() ? bgColor() : 'unset',
       }"
     >
       <div class="container h-100 pt-5">

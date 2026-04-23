@@ -1,0 +1,59 @@
+<section>
+  <h2>User Profile State</h2>
+
+  @if (userProfileState(); as state) {
+    <p><strong>Loading:</strong> {{ state.loading ?? false }}</p>
+    <p><strong>Error:</strong> {{ state.error ?? false }}</p>
+    <p><strong>Temporary:</strong> {{ state.temporary ?? false }}</p>
+  }
+
+  @if (userProfile(); as profile) {
+    <h3>Dati utente</h3>
+    <ul>
+      <li><strong>Codice fiscale:</strong> {{ profile.fiscalCode }}</li>
+      <li><strong>Nome:</strong> {{ profile.firstName }}</li>
+      <li><strong>Cognome:</strong> {{ profile.lastName }}</li>
+      <li><strong>Email:</strong> {{ profile.email }}</li>
+      <li><strong>Consensi firmati:</strong> {{ profile.consentsSigned }}</li>
+      <li><strong>Dati differenti:</strong> {{ profile.hasDifferentData }}</li>
+    </ul>
+
+    <h3>Attributi aggiuntivi</h3>
+    @if (profile.additionalAttributes.length) {
+      <ul>
+        @for (attribute of profile.additionalAttributes; track attribute.key) {
+          <li>
+            <strong>{{ attribute.key }}:</strong>
+            {{ attribute.value || '-' }}
+            @if (attribute.required) {
+              <span>(obbligatorio)</span>
+            }
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>Nessun attributo aggiuntivo presente.</p>
+    }
+
+    <h3>Consensi</h3>
+    @if (profile.consents.length) {
+      <ul>
+        @for (consent of profile.consents; track consent.id) {
+          <li>
+            <strong>ID {{ consent.id }} - {{ consent.type }}</strong>
+            <div>Accettato: {{ consent.accepted ?? false }}</div>
+            <div>Descrizione: {{ consent.description || '-' }}</div>
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>Nessun consenso disponibile.</p>
+    }
+  } @else {
+    <p>Profilo utente non disponibile.</p>
+  }
+
+  <h3>Debug JSON</h3>
+  <pre>{{ userProfileState() | json }}</pre>
+  <pre>{{ userConfigState() | json }}</pre>
+</section>

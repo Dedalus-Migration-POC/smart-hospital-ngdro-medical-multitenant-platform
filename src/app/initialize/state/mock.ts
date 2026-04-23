@@ -1215,6 +1215,7 @@ export const APP_CONFIG: AppConfig = {
                     align: 'start',
                     justify: 'end',
                     wrap: 'wrap',
+                    gap: 'gap-2',
                   },
                   items: [
                     {
@@ -1432,6 +1433,103 @@ export const APP_CONFIG: AppConfig = {
                       },
                     },
                   ],
+                },
+              },
+            ],
+          },
+        },
+      },
+    },
+    {
+      id: '/user-profile', // === url!
+      name: { it: 'Profilo utente', en: 'User Profile' }, // Nome nel browser per accessibilità
+      route: '/user-profile', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: 'unset', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        areas: {
+          layout: {
+            direction: ['column', 'md-row'],
+            gap: 'gap-5',
+            align: 'start',
+            // justify: 'between',
+            // wrap: 'wrap',
+          },
+          start: {
+            size: { basis: '50%' },
+            layout: {
+              direction: 'column',
+              gap: 'gap-3',
+              align: 'start',
+              wrap: 'nowrap',
+            },
+            items: [
+              {
+                id: 'auth-text',
+                type: 'TEXT',
+                enabled: true,
+                props: {
+                  id: 'auth-title',
+                  text: {
+                    it: `I servizi online dell’ASL di Latina`,
+                    en: `Online services from the Latina Local Health Authority`,
+                  },
+                  isHeader: 'h1',
+                  fontSize: 'xxl',
+                  fontWeight: 'semibold',
+                  textDecoration: 'none',
+                  color: 'primary',
+                  // layout?: {
+                  //   marginTop?: Margin;
+                  //   marginBottom?: Margin;
+                  //   marginRight?: Margin;
+                  //   marginLeft?: Margin;
+                  //   lineHeight?: LineHeight;
+                  // };
+                },
+              },
+              {
+                id: 'auth-text-info',
+                type: 'TEXT',
+                enabled: true,
+                props: {
+                  id: 'auth-into',
+                  text: {
+                    it: `Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Latina, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>`,
+                    en: `From this section you can access the main digital services of the Latina Local Health Authority, <strong>designed to simplify interaction with the healthcare system.</strong>`,
+                  },
+                  fontSize: 'md',
+                  fontWeight: 'normal',
+                  textDecoration: 'none',
+                  color: 'black',
+                },
+              },
+              {
+                id: 'footer-logo4',
+                type: 'IMAGE_BLOCK',
+                enabled: true,
+                props: {
+                  id: 'hero-image',
+                  image: {
+                    type: 'file',
+                    value:
+                      'https://img.freepik.com/free-photo/lavender-field-sunset-near-valensole_268835-3910.jpg?semt=ais_hybrid&w=740&q=80',
+                    decorative: false,
+                    // width: '290px',
+                    // height: '120px',
+                    className: 'img-logo',
+                    alt: {
+                      it: 'Immagine esempio',
+                      en: 'Example image',
+                    },
+                    tooltip: false,
+                  },
+                  clickable: true,
+                  action: {
+                    type: 'externalLink',
+                    url: 'https://commission.europa.eu/',
+                    target: '_blank',
+                  },
                 },
               },
             ],

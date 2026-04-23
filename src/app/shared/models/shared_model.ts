@@ -76,7 +76,7 @@ export interface FlexLayoutConfig {
   align?: Align;
   justify?: Justify;
   wrap?: Wrap;
-  gap?: string;
+  gap?: Gap;
   grow?: Grow;
   shrink?: Shrink;
 }
