@@ -1,0 +1,27 @@
+@use 'styles/breakpoints' as bp;
+
+.breadcrumb-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+.breadcrumb-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  .breadcrumb-title {
+    width: -webkit-fill-available;
+  }
+  .action-button {
+    white-space: nowrap;
+    height: min-content;
+    width: max-content;
+  }
+}
+
+.breadcrumb-title-wrapper {
+  @include bp.media-breakpoint-down(md) {
+    flex-direction: column !important;
+    gap: 0.5rem;
+  }
+}

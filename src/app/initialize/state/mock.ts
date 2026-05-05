@@ -6,7 +6,7 @@ export const APP_CONFIG: AppConfig = {
 
   theme: {
     colors: {
-      primary: '#f57a23',
+      primary: '#3823f5',
       secondary: '#6c757d',
       success: '#198754',
       warning: '#ffc107',
@@ -999,7 +999,7 @@ export const APP_CONFIG: AppConfig = {
               {
                 id: 'auth-card',
                 type: 'AUTH_METHODS',
-                className: 'w-100',
+                className: 'w-100 mt-3',
                 enabled: true,
                 props: {
                   id: 'auth-methods',
@@ -1447,92 +1447,155 @@ export const APP_CONFIG: AppConfig = {
       page: {
         backgroundColor: 'unset', //o color o img!
         // backgroundImage: '/assets/images/bg.svg',
-        areas: {
-          layout: {
-            direction: ['column', 'md-row'],
-            gap: 'gap-5',
-            align: 'start',
-            // justify: 'between',
-            // wrap: 'wrap',
-          },
-          start: {
-            size: { basis: '50%' },
-            layout: {
-              direction: 'column',
-              gap: 'gap-3',
-              align: 'start',
-              wrap: 'nowrap',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          title: { it: 'Il tuo profilo', en: 'Your profile' },
+          subtitle: { it: 'Sottotitolo', en: 'Subtitle' },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
             },
-            items: [
-              {
-                id: 'auth-text',
-                type: 'TEXT',
-                enabled: true,
-                props: {
-                  id: 'auth-title',
-                  text: {
-                    it: `I servizi online dell’ASL di Latina`,
-                    en: `Online services from the Latina Local Health Authority`,
-                  },
-                  isHeader: 'h1',
-                  fontSize: 'xxl',
-                  fontWeight: 'semibold',
-                  textDecoration: 'none',
-                  color: 'primary',
-                  // layout?: {
-                  //   marginTop?: Margin;
-                  //   marginBottom?: Margin;
-                  //   marginRight?: Margin;
-                  //   marginLeft?: Margin;
-                  //   lineHeight?: LineHeight;
-                  // };
+
+            {
+              name: { it: 'User Profile', en: 'User Profile' },
+              routerLink: '/user-profile',
+            },
+          ],
+        },
+        userConfig: {
+          sections: [
+            {
+              title: { it: 'Dati account', en: 'Account details' },
+              readOnly: true,
+              fields: [
+                {
+                  key: 'fiscalCode',
+                  type: 'text',
+                  readOnly: true,
+                  alignment: 'horizontal',
+                  label: { it: 'Codice Fiscale', en: 'Fiscal Code' },
+                  labelContainerClasses: 'col-auto',
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldContainerClasses: 'col-auto',
+                  fieldClasses: 'text-uppercase',
                 },
-              },
-              {
-                id: 'auth-text-info',
-                type: 'TEXT',
-                enabled: true,
-                props: {
-                  id: 'auth-into',
-                  text: {
-                    it: `Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Latina, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>`,
-                    en: `From this section you can access the main digital services of the Latina Local Health Authority, <strong>designed to simplify interaction with the healthcare system.</strong>`,
-                  },
-                  fontSize: 'md',
-                  fontWeight: 'normal',
-                  textDecoration: 'none',
-                  color: 'black',
+                {
+                  key: 'firstName',
+                  type: 'text',
+                  readOnly: true,
+                  alignment: 'horizontal',
+                  label: { it: 'Nome', en: 'First Name' },
+                  labelContainerClasses: 'col-auto',
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldContainerClasses: 'col-auto',
+                  fieldClasses: '',
                 },
-              },
-              {
-                id: 'footer-logo4',
-                type: 'IMAGE_BLOCK',
-                enabled: true,
-                props: {
-                  id: 'hero-image',
-                  image: {
-                    type: 'file',
-                    value:
-                      'https://img.freepik.com/free-photo/lavender-field-sunset-near-valensole_268835-3910.jpg?semt=ais_hybrid&w=740&q=80',
-                    decorative: false,
-                    // width: '290px',
-                    // height: '120px',
-                    className: 'img-logo',
-                    alt: {
-                      it: 'Immagine esempio',
-                      en: 'Example image',
-                    },
-                    tooltip: false,
-                  },
-                  clickable: true,
-                  action: {
-                    type: 'externalLink',
-                    url: 'https://commission.europa.eu/',
-                    target: '_blank',
-                  },
+                {
+                  key: 'lastName',
+                  type: 'text',
+                  readOnly: true,
+                  alignment: 'horizontal',
+                  label: { it: 'Cognome', en: 'Last Name' },
+                  labelContainerClasses: 'col-auto',
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldContainerClasses: 'col-auto',
+                  fieldClasses: '',
                 },
-              },
-            ],
+                {
+                  key: 'date_of_birth',
+                  type: 'date',
+                  readOnly: true,
+                  alignment: 'horizontal',
+                  label: { it: 'Data di nascita', en: 'Date of Birth' },
+                  labelContainerClasses: 'col-auto',
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldContainerClasses: 'col-auto',
+                  fieldClasses: '',
+                },
+              ],
+            },
+            {
+              title: { it: 'Domicilio', en: 'Domicile' },
+              subTitle: { it: 'Campi obbligatori', en: 'Fields required' },
+              fields: [
+                {
+                  key: 'address',
+                  type: 'text',
+                  alignment: 'vertical',
+                  fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
+                  label: { it: 'Indirizzo', en: 'Address' },
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldClasses: '',
+                  validators: [{ type: 'text' }],
+                },
+
+                {
+                  key: 'city',
+                  type: 'text',
+                  alignment: 'vertical',
+                  fieldContainerClasses: 'col-md-6 col-12 pe-5 mb-2',
+                  label: { it: 'Città', en: 'City' },
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldClasses: '',
+                  validators: [{ type: 'text' }],
+                },
+                {
+                  key: 'postal_code',
+                  type: 'text',
+                  alignment: 'vertical',
+                  fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
+                  label: { it: 'CAP', en: 'Postal Code' },
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldClasses: '',
+                  validators: [{ type: 'cap' }],
+                },
+                {
+                  key: 'province',
+                  type: 'text',
+                  alignment: 'vertical',
+                  fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
+                  label: { it: 'Provincia', en: 'Province' },
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldClasses: '',
+                  validators: [{ type: 'text' }],
+                },
+              ],
+            },
+            {
+              title: { it: 'Contatti', en: 'Contacts' },
+              subTitle: { it: 'Campi obbligatori', en: 'Fields required' },
+              alignment: 'vertical',
+              fields: [
+                {
+                  key: 'email',
+                  type: 'text',
+                  alignment: 'vertical',
+                  fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
+                  label: { it: 'Email', en: 'Email' },
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldClasses: '',
+                  validators: [{ type: 'required' }, { type: 'email' }],
+                },
+                {
+                  key: 'phone_number',
+                  type: 'text',
+                  alignment: 'vertical',
+                  fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
+                  label: { it: 'Numero di telefono', en: 'Phone Number' },
+                  labelClasses: 'fw-normal text-secondary pe-4',
+                  fieldClasses: '',
+                  validators: [{ type: 'phone_number' }],
+                },
+              ],
+            },
+          ],
+          consents: {
+            title: { it: 'Consensi', en: 'Consents' },
+            subtitle: { it: 'Gestisci i tuoi consensi', en: 'Manage your consents' },
+          },
+          button: {
+            text: { it: 'Salva', en: 'Save' },
           },
         },
       },

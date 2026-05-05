@@ -8,6 +8,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { SmartHospitalState } from '../../store/reducers';
 import { Store } from '@ngrx/store';
 import { selectUserProfileData } from '../../pages/user-profile/state/user-profile.selectors';
+import { UserProfileService } from '../../pages/user-profile/state/user-profile.service';
 
 @Component({
   selector: 'app-user-dropdown-menu',
@@ -22,6 +23,7 @@ export class UserDropdownMenu {
   // readonly configMock = signal<UserDropdownMenuProps>(UserDropdownMenuProps_MOCK);
   userProfile: Signal<UserProfile | null> = this.store.selectSignal(selectUserProfileData);
 
+  private userProfileService = inject(UserProfileService);
   private langService = inject(LanguageService);
   private router = inject(Router);
 
@@ -38,8 +40,8 @@ export class UserDropdownMenu {
 
   logout() {
     console.log('/logout');
-    // this.userProfileService.logout().subscribe(() => {
-    //   this.router.navigate(['/'])
-    // })
+    this.userProfileService.logout().subscribe(() => {
+      this.router.navigate(['/']);
+    });
   }
 }

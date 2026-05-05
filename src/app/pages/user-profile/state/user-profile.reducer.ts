@@ -12,9 +12,9 @@ export interface State {
   userProfileError: boolean;
   temporary: boolean;
 
-  userConfig: UserConfig | null;
-  userConfigLoading: boolean;
-  userConfigError: boolean;
+  // userConfig: UserConfig | null;
+  // userConfigLoading: boolean;
+  // userConfigError: boolean;
 
   userConsents: UserConsent[];
   userConsentsLoading: boolean;
@@ -38,9 +38,9 @@ export const initialState: State = {
   userProfileError: false,
   temporary: false,
 
-  userConfig: null,
-  userConfigLoading: false,
-  userConfigError: false,
+  // userConfig: null,
+  // userConfigLoading: false,
+  // userConfigError: false,
 
   userConsents: [],
   userConsentsLoading: false,
@@ -77,21 +77,21 @@ export const reducer = createReducer(
     userProfileError: true,
     initialized: true,
   })),
-  on(UserProfileActions.fetchUserConfig, (state) => ({
-    ...state,
-    userConfigLoading: true,
-    userConfigError: false,
-  })),
-  on(UserProfileActions.fetchUserConfigSuccess, (state, action) => ({
-    ...state,
-    userConfigLoading: false,
-    userConfig: action.data,
-  })),
-  on(UserProfileActions.fetchUserConfigFailure, (state) => ({
-    ...state,
-    userConfigLoading: false,
-    userConfigError: true,
-  })),
+  // on(UserProfileActions.fetchUserConfig, (state) => ({
+  //   ...state,
+  //   userConfigLoading: true,
+  //   userConfigError: false,
+  // })),
+  // on(UserProfileActions.fetchUserConfigSuccess, (state, action) => ({
+  //   ...state,
+  //   userConfigLoading: false,
+  //   userConfig: action.data,
+  // })),
+  // on(UserProfileActions.fetchUserConfigFailure, (state) => ({
+  //   ...state,
+  //   userConfigLoading: false,
+  //   userConfigError: true,
+  // })),
   on(UserProfileActions.fetchUserConsents, (state) => ({
     ...state,
     userConsents: [],

@@ -1,3 +1,5 @@
+import { LocalizedText } from '../../shared/models/shared_model';
+
 export enum Alignment {
   HORIZONTAL = 'horizontal',
   VERTICAL = 'vertical',
@@ -37,60 +39,69 @@ export enum ValidationTypeError {
  * dateFormat => date format when the type is date, if not entered the default format is 'dd-MM-yyyy'
  * */
 export interface Field {
-  key: string
-  type: FieldType
-  alignment: Alignment
-  validators?: { type: ValidationType }[]
-  readOnly?: boolean
-  labelContainerClasses?: string
-  labelClasses?: string
-  fieldContainerClasses?: string
-  fieldClasses?: string
-  dateFormat?: string
+  key: string;
+  type: FieldType;
+  alignment: Alignment;
+  validators?: { type: ValidationType }[];
+  readOnly?: boolean;
+  label?: LocalizedText;
+  labelContainerClasses?: string;
+  labelClasses?: string;
+  fieldContainerClasses?: string;
+  fieldClasses?: string;
+  description?: LocalizedText;
+  dateFormat?: string;
 }
 
 export interface Section {
-  readOnly?: boolean
-  title: string
-  subTitle?: string
-  fields: Field[]
+  readOnly?: boolean;
+  title: LocalizedText;
+  subTitle?: LocalizedText;
+  fields: Field[];
 }
 
 // Used to dynamically create the registration form layout from the registration.json
 // path file => assets/ tenants / messina / config / registration.json
 export interface UserConfig {
-  sections: Section[]
+  sections: Section[];
+  consents?: {
+    title: { [key: string]: string };
+    subtitle: { [key: string]: string };
+  } | null;
+  button?: {
+    text: { [key: string]: string };
+  };
 }
 
 export interface AdditionalAttribute {
-  key: string
-  displayName: string
-  value: string | null
-  required: boolean
+  key: string;
+  displayName: string;
+  value: string | null;
+  required: boolean;
 }
 
 export interface UserProfile {
-  fiscalCode: string
-  firstName: string
-  lastName: string
-  email: string
-  additionalAttributes: AdditionalAttribute[]
-  consents: UserConsent[]
-  hasDifferentData: boolean
-  consentsSigned: boolean
-  code: string | null
+  fiscalCode: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  additionalAttributes: AdditionalAttribute[];
+  consents: UserConsent[];
+  hasDifferentData: boolean;
+  consentsSigned: boolean;
+  code: string | null;
 }
 
 export interface UserConsent {
-  id: number
-  accepted?: boolean
-  summary?: string
-  description?: string
-  url?: string
-  required?: boolean
-  lang?: string
-  contractCode: string
-  acceptedDate?: string
-  type: string
-  requireLogin?: boolean
+  id: number;
+  accepted?: boolean;
+  summary?: string;
+  description?: string;
+  url?: string;
+  required?: boolean;
+  lang?: string;
+  contractCode: string;
+  acceptedDate?: string;
+  type: string;
+  requireLogin?: boolean;
 }

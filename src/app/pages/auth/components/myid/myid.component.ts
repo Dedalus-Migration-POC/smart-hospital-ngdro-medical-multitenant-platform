@@ -6,6 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { MyIdAuthMethod } from '../../model';
 import { IDP_REDIRECT_KEY } from '../../../../../constants';
+import { UserProfileService } from '../../../user-profile/state/user-profile.service';
 
 @Component({
   selector: 'app-myid',
@@ -18,6 +19,7 @@ export class MyidComponent {
 
   readonly router = inject(Router);
   private langService = inject(LanguageService);
+  private userProfileService = inject(UserProfileService);
 
   lang = this.langService.lang;
   baseUrl = window.location.origin + '/';
@@ -37,6 +39,6 @@ export class MyidComponent {
     const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl'];
     const redirectUrl = returnUrl || '/';
     localStorage.setItem(IDP_REDIRECT_KEY, redirectUrl);
-    // this.userProfileService.logout().subscribe();
+    this.userProfileService.logout().subscribe();
   }
 }

@@ -46,17 +46,17 @@ export class UserProfileEffects {
     );
   });
 
-  fetchUserConfig$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(UserProfileActions.fetchUserConfig),
-      concatMap(() =>
-        this.userProfileService.fetchUserConfig().pipe(
-          map((data) => UserProfileActions.fetchUserConfigSuccess({ data })),
-          catchError((error) => of(UserProfileActions.fetchUserConfigFailure({ error }))),
-        ),
-      ),
-    );
-  });
+  // fetchUserConfig$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(UserProfileActions.fetchUserConfig),
+  //     concatMap(() =>
+  //       this.userProfileService.fetchUserConfig().pipe(
+  //         map((data) => UserProfileActions.fetchUserConfigSuccess({ data })),
+  //         catchError((error) => of(UserProfileActions.fetchUserConfigFailure({ error }))),
+  //       ),
+  //     ),
+  //   );
+  // });
 
   fetchUserConsents$ = createEffect(() => {
     return this.actions$.pipe(

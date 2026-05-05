@@ -1,6 +1,13 @@
 import { Component, DestroyRef, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, convertToParamMap, Params } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
@@ -19,15 +26,19 @@ import {
   selectUpdateUserConsentsLoading,
   selectUpdateUserProfileError,
   selectUpdateUserProfileLoading,
-  selectUserConfig,
+  // selectUserConfig,
   selectUserProfile,
   selectUserProfileLoading,
 } from './state/user-profile.selectors';
-import { fetchUserConfig, sessionExpired, updateUserProfile } from './state/user-profile.actions';
+import { sessionExpired, updateUserProfile } from './state/user-profile.actions';
 import { NgxFormValidators } from '../../../validators';
 import { getLastPartKey } from '../../../utils/string-utils';
-import { Observable } from 'rxjs';
-import { JsonPipe } from '@angular/common';
+import { map, Observable, take } from 'rxjs';
+import { selectAppConfig } from '../../initialize/state/selector';
+import { Breadcrumb } from '../../components/breadcrumb/breadcrumb';
+import { UserProfileRegistrationComponent } from './user-profile-registration/user-profile-registration.component';
+import { Spinner } from '../../components/spinner/spinner';
+import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 
 type UserProfileState = {
   data: UserProfileModel | null;
@@ -49,7 +60,7 @@ type ConsentViewModel = UserConsent & {
 
 @Component({
   selector: 'app-user-profile',
-  imports: [JsonPipe],
+  imports: [Breadcrumb, ReactiveFormsModule, UserProfileRegistrationComponent, Spinner],
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.scss',
 })
@@ -59,6 +70,15 @@ export class UserProfile {
   private readonly fb = inject(FormBuilder);
   private readonly translate = inject(TranslateService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly notificationService = inject(ItNotificationService);
+
+  readonly pageConfig = toSignal(
+    this.store.select(selectAppConfig).pipe(
+      take(1),
+      map((config) => config.pages.find((page: any) => page.id === '/user-profile')), //TODO page type
+    ),
+    { initialValue: null },
+  );
 
   readonly Alignment = Alignment;
 
@@ -77,15 +97,15 @@ export class UserProfile {
     },
   );
 
-  readonly userConfigState = toSignal(
-    this.store.select(selectUserConfig) as Observable<UserConfigState>,
-    {
-      initialValue: { data: null, loading: false, error: false } as UserConfigState,
-    },
-  );
+  // readonly userConfigState = toSignal(
+  //   this.store.select(selectUserConfig) as Observable<UserConfigState>,
+  //   {
+  //     initialValue: { data: null, loading: false, error: false } as UserConfigState,
+  //   },
+  // );
 
   readonly userProfile = computed(() => this.userProfileState()?.data);
-  readonly userConfig = computed(() => this.userConfigState()?.data);
+  readonly userConfig = computed(() => this.pageConfig()?.page.userConfig);
   readonly rawUserConsents = computed(() => this.userProfile()?.consents ?? []);
 
   readonly consents = computed<ConsentViewModel[]>(() => {
@@ -172,7 +192,7 @@ export class UserProfile {
       this.userConsentsForm.controls.consents.setValue(this.consents());
     });
 
-    this.store.dispatch(fetchUserConfig());
+    // this.store.dispatch(fetchUserConfig());
 
     this.destroyRef.onDestroy(() => {
       if (this.userProfileState()?.temporary) {
@@ -256,10 +276,23 @@ export class UserProfile {
   }
 
   submit() {
+    const isRequiredConsentNonAccetted = this.userConsentsForm.value.consents?.filter(
+      (consent) => consent.required && consent.accepted !== true,
+    );
     const form = this.form();
 
-    if (!form?.valid) {
+    if (!form?.valid || isRequiredConsentNonAccetted?.length) {
       form?.markAllAsTouched();
+      this.userConsentsForm.controls.consents.markAsTouched();
+      this.notificationService.error(
+        'Attenzione',
+        isRequiredConsentNonAccetted?.length
+          ? 'Per procedere è necessario accettare tutti i consensi obbligatori'
+          : 'Per procedere è necessario compilare correttamente tutti i campi evidenziati',
+        true,
+        5000,
+        NotificationPosition.Top,
+      );
       return;
     }
 

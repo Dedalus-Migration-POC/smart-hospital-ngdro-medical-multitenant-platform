@@ -1,0 +1,8 @@
+.user-profile-card {
+  max-width: 750px;
+}
+
+:host ::ng-deep .card:after {
+  content: none;
+  display: none;
+}

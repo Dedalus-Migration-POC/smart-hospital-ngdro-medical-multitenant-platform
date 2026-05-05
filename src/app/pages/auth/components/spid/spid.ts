@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { IDP_REDIRECT_KEY } from '../../../../../constants';
+import { UserProfileService } from '../../../user-profile/state/user-profile.service';
 
 @Component({
   selector: 'app-spid',
@@ -18,7 +19,7 @@ export class Spid {
   readonly spidConfig = input<SpidAuthMethod | null>(null);
   readonly router = inject(Router);
   private langService = inject(LanguageService);
-
+  private userProfileService = inject(UserProfileService);
   lang = this.langService.lang;
 
   env: Env = 'dev'; //come definiamo environment?
@@ -82,6 +83,6 @@ export class Spid {
     const returnUrl = this.router.parseUrl(this.router.url).queryParams['returnUrl'];
     const redirectUrl = returnUrl || '/';
     localStorage.setItem(IDP_REDIRECT_KEY, redirectUrl);
-    // this.userProfileService.logout().subscribe();
+    this.userProfileService.logout().subscribe();
   }
 }

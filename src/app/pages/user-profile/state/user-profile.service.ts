@@ -55,10 +55,10 @@ export class UserProfileService {
     return this.http.get<UserProfile>('oauth/api/wrapper/profile');
   }
 
-  fetchUserConfig() {
-    // return this.http.get<UserConfig>(this.pathUserconfig);
-    return of(MOCK_PROFILE_CONFIG).pipe(delay(500));
-  }
+  // fetchUserConfig() {
+  //   // return this.http.get<UserConfig>(this.pathUserconfig);
+  //   return of(MOCK_PROFILE_CONFIG).pipe(delay(500));
+  // }
 
   logout() {
     let profilecode;

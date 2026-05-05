@@ -24,17 +24,17 @@ export const fetchUserProfileFailure = createAction(
   props<{ error: any }>(),
 );
 
-export const fetchUserConfig = createAction('[UserProfile] Fetch UserConfig');
+// export const fetchUserConfig = createAction('[UserProfile] Fetch UserConfig');
 
-export const fetchUserConfigSuccess = createAction(
-  '[UserConfig] Fetch UserConfig Success',
-  props<{ data: UserConfig }>(),
-);
+// export const fetchUserConfigSuccess = createAction(
+//   '[UserConfig] Fetch UserConfig Success',
+//   props<{ data: UserConfig }>(),
+// );
 
-export const fetchUserConfigFailure = createAction(
-  '[UserConfig] Fetch UserConfig Failure',
-  props<{ error: any }>(),
-);
+// export const fetchUserConfigFailure = createAction(
+//   '[UserConfig] Fetch UserConfig Failure',
+//   props<{ error: any }>(),
+// );
 
 export const fetchUserConsents = createAction('[UserProfile] Fetch UserConsents');
 

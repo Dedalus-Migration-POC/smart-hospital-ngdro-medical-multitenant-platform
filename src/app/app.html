@@ -8,14 +8,14 @@
         'background-color': bgColor() && !bgImg() ? bgColor() : 'unset',
       }"
     >
-      <div class="container h-100 pt-5">
+      <div class="container h-100">
         <router-outlet></router-outlet>
       </div>
     </main>
 
     <app-footer [config]="appConfig().footer"></app-footer>
   </div>
-  <!-- <it-notifications /> -->
+  <it-notifications />
 } @else {
   <div>Caricamento configurazione...</div>
 }

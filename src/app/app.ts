@@ -10,9 +10,10 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { LanguageService } from './initialize/state/services/language.service';
 import { fetchUserProfile } from './pages/user-profile/state/user-profile.actions';
+import { ItNotificationsComponent } from 'design-angular-kit';
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, Header, Footer, RouterOutlet],
+  imports: [CommonModule, Header, Footer, RouterOutlet, ItNotificationsComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

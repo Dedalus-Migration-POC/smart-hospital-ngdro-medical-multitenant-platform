@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-between align-items-start">
+  <h2 class="fs-2 cursor-default">
+    {{ consentsConfig?.title?.[lang()] }}
+  </h2>
+</div>
+
+<div class="outer-terms-and-conditions terms-and-conditions flex-column align-items-start mb-5">
+  @for (consent of userConsentsForm?.value.consents ?? []; track $index) {
+    @if (consent.text) {
+      <div
+        class="d-flex align-items-center justify-content-space-between user-consents-item mb-2"
+        [ngClass]="[consent.required && isProfile ? 'cursor-default' : 'cursor-pointer']"
+        (click)="isProfile && consent.required ? undefined : toggleConsent.emit(consent.id)"
+      >
+        <it-checkbox
+          class="terms-checkbox"
+          toggle="true"
+          [id]="consent.id.toString()"
+          #toggle
+          [checked]="consent.accepted"
+          [disabled]="isProfile && consent.required"
+        >
+          <ng-container label>
+            <span class="consent-label" [id]="consent.id + '-help'">
+              {{ consent.text }}
+              @if (consent.linkText) {
+                <a (click)="$event.stopPropagation()" target="_blank" [href]="consent.url">
+                  {{ consent.linkText }}
+                </a>
+              }
+              @if (consent.acceptedDate) {
+                <div style="color: #696d76; font-size: 13px">
+                  {{ consent.acceptedDate | date }}
+                </div>
+              }
+            </span>
+            @if (consent.required && !consent.accepted && userConsentsForm?.touched) {
+              <div class="form-feedback just-validate-error-label mt-0 lh-1" [id]="consent.id">
+                {{ 'it.errors.required-field' }}
+              </div>
+            }
+          </ng-container>
+        </it-checkbox>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,18 @@
+::ng-deep {
+  .lever {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+  }
+  .consent-label {
+    display: block;
+    width: 60%;
+    line-height: 1.5;
+  }
+  .cursor-default .toggles label {
+    cursor: default;
+  }
+}
+it-checkbox {
+  width: 100%;
+}

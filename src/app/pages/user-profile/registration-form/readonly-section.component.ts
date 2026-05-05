@@ -1,0 +1,47 @@
+import { Component, inject, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Field } from '../user-profile.model';
+import { format } from 'date-fns';
+import { LanguageService } from '../../../initialize/state/services/language.service';
+
+@Component({
+  selector: 'app-readonly-section',
+  template: `
+    <table>
+      @for (field of fields; track field.key) {
+        <tr class="cursor-default">
+          <th [class]="field.labelClasses">
+            {{ field.label ? field.label[lang()] : '' }}
+          </th>
+          <td [class]="field.fieldClasses">
+            {{ getValue(field) }}
+          </td>
+        </tr>
+      }
+    </table>
+  `,
+})
+export class ReadOnlySectionComponent {
+  @Input() fields: Field[] = [];
+  @Input() formGroup!: FormGroup;
+
+  private langService = inject(LanguageService);
+  lang = this.langService.lang;
+
+  getValue(field: Field): string {
+    const value = this.formGroup.controls[field.key]?.value || '';
+    if (field.type === 'date' && value) {
+      const formatString = field.dateFormat || 'dd-MM-yyyy';
+      if (formatString === 'reverse') {
+        let dateToReverse = value.split(/\D/);
+        dateToReverse.reverse().join('-');
+        return format(new Date(dateToReverse), 'dd-MM-yyyy');
+      }
+      return format(new Date(value), formatString);
+    }
+    if (field.key === 'fiscalCode') {
+      return value.replace(/.*-/, '');
+    }
+    return value;
+  }
+}

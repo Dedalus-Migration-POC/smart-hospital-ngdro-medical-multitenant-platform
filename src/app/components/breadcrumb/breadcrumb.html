@@ -1,0 +1,57 @@
+@if (config(); as config) {
+  <nav class="breadcrumb-container pb-2" #breadcrumbContainer>
+    <div
+      class="breadcrumb-bg breadcrumb m-0 p-0"
+      [style.backgroundColor]="config.backgroundColor"
+      #backgroundDiv
+    ></div>
+    <ol class="breadcrumb">
+      @for (item of config.items; track item.name; let last = $last) {
+        <li class="breadcrumb-item" [class.active]="last">
+          @if (!last) {
+            <a [routerLink]="item.routerLink" [queryParams]="item.queryParams">
+              {{ item.name?.[lang()] || '' }}
+            </a>
+            <span class="separator">/</span>
+          }
+          @if (last) {
+            <span class="cursor-default">{{ item.name?.[lang()] || '' }}</span>
+          }
+        </li>
+      }
+    </ol>
+    <div class="breadcrumb-title-wrapper">
+      <div class="breadcrumb-title w-100">
+        <h1 class="fw-bold fs-1 lh-sm cursor-default">{{ config.title[lang()] }}</h1>
+        @if (config.subtitle) {
+          <p class="col-xl-5 col-lg-6 mb-0 cursor-default">
+            {{ config.subtitle[lang()] }}
+          </p>
+        }
+      </div>
+      @if (config.button) {
+        <button
+          class="btn btn-primary action-button"
+          [ngClass]="{ 'd-flex align-items-center gap-2': config.buttonIcon }"
+          (click)="buttonAction.emit()"
+        >
+          @if (config.buttonIcon) {
+            <i [class]="config.buttonIcon"></i>
+          }
+          {{ config.button[lang()] }}
+        </button>
+      }
+    </div>
+  </nav>
+}
+
+<!-- USE on page
+
+  @if (pageConfig.page.breadcrumb) {
+      <app-breadcrumb
+        [config]="pageConfig.page.breadcrumb"
+        (buttonAction)="breadcrumbButtonAction()" 
+      ></app-breadcrumb>
+    }
+      
+-->
