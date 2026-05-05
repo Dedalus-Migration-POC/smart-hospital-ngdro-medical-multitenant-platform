@@ -1,38 +1,61 @@
+<!-- TODO verifica riga 17 se servono quelle classi -->
 @if (card(); as card) {
   @if (layout(); as layout) {
-    <button
-      [attr.id]="card.id"
-      [attr.aria-label]="card?.ariaLabel?.[lang()] ?? null"
-      type="button"
-      class="btn p-3 border border-light shadow-sm"
-      [ngClass]="card.className"
-      (click)="onCardClick($event, card.action)"
+    <article
+      class="it-card h-100 shadow-sm border border-light p-0"
+      [ngClass]="card.background ? 'bg-' + card.background : 'bg-white'"
     >
-      <div class="h-100" [ngClass]="getFlexLayoutClasses(layout)">
-        @if (card.blocked) {
-          <img
-            [ngClass]="[layout.direction === 'column' ? 'ms-auto' : 'order-last']"
-            src="assets/images/lock.png"
-            alt=""
-            aria-hidden="true"
-          />
-        }
+      <button
+        [attr.id]="card.id"
+        [attr.aria-label]="card.ariaLabel?.[lang()] ?? null"
+        type="button"
+        class="btn w-100 h-100 p-3 text-start"
+        [ngClass]="card.className"
+        (click)="onCardClick($event, card.action)"
+      >
+        <div class="h-100 w-100" [ngClass]="getFlexLayoutClasses(layout)">
+          <div class="d-flex align-items-start gap-2 w-100">
+            <div class="flex-grow-1">
+              @if (card.image) {
+                <app-image-block [config]="toImageBlockConfig(card)"></app-image-block>
+              }
+            </div>
 
-        @if (card.action.type === 'externalLink') {
-          <img
-            [ngClass]="[layout.direction === 'column' ? 'ms-auto' : 'order-last']"
-            src="assets/images/external_link.png"
-            alt=""
-            aria-hidden="true"
-          />
-        }
+            @if (layout.direction === 'column') {
+              <ng-container [ngTemplateOutlet]="iconTop"></ng-container>
+            }
+          </div>
 
-        @if (card.image) {
-          <app-image-block [config]="toImageBlockConfig(card)"></app-image-block>
-        }
-      </div>
-    </button>
+          <div class="card-text w-100">
+            @if (card.text.title.text[lang()]; as titleText) {
+              <div [ngClass]="getTextClasses(card.text.title)">
+                {{ titleText }}
+              </div>
+            }
 
+            @if (card.text.subTitle?.text?.[lang()]; as subTitleText) {
+              <div [ngClass]="getTextClasses(card.text.subTitle)">
+                {{ subTitleText }}
+              </div>
+            }
+          </div>
+
+          @if (layout.direction === 'row') {
+            <div><ng-container [ngTemplateOutlet]="iconTop"></ng-container></div>
+          }
+        </div>
+      </button>
+    </article>
+
+    <!-- coomingsoon -->
     <it-notifications />
+
+    <ng-template #iconTop>
+      @if (card.blocked) {
+        <img src="assets/images/lock.png" alt="" aria-hidden="true" />
+      } @else if (card.action.type === 'externalLink') {
+        <img src="assets/images/external_link.png" alt="" aria-hidden="true" />
+      }
+    </ng-template>
   }
 }
