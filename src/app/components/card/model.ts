@@ -1,16 +1,16 @@
 import {
   FlexLayoutConfig,
   ImageConfig,
-  TextConfig,
   LocalizedText,
   ActionConfig,
   TextSection,
+  Colors,
 } from '../../shared/models/shared_model';
 
 export type CardType = 'mediaText';
 export type Card = MediaTextCard;
 
-// container for cards (<ul></ul> or <div></div>)
+// container for cards
 export interface CardContainer {
   id?: string;
   className?: string;
@@ -24,6 +24,7 @@ export interface CardContainer {
 export interface BaseCard {
   id: string;
   type: CardType;
+  background?: Colors;
   className?: string;
   blocked?: boolean;
   disabled?: boolean;

@@ -12,6 +12,7 @@ import {
 import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
 import { ImageBlock } from '../../../image-block/image-block';
 import { ImageBlockConfig } from '../../../image-block/model';
+import { getTextClasses } from '../../../../shared/utility/text.utils';
 
 @Component({
   selector: 'app-media-text-card',
@@ -28,6 +29,7 @@ export class MediaText {
   private readonly langService = inject(LanguageService);
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
+  protected readonly getTextClasses = getTextClasses;
 
   lang = this.langService.lang;
 
@@ -37,10 +39,10 @@ export class MediaText {
       className: card.className,
       clickable: false,
       image: card.image,
-      text: {
-        title: card.text.title,
-        subTitle: card.text.subTitle,
-      },
+      // text: {
+      //   title: card.text.title,
+      //   subTitle: card.text.subTitle,
+      // },
       layout: this.layout(),
     };
   }

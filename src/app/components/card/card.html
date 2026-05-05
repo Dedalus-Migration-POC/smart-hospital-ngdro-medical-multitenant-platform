@@ -12,6 +12,7 @@
       >
         {{ config.header.title.text[lang()] }}
       </h2>
+
       @if (config.header.subTitle) {
         <p
           class="cursor-default mb-0"
@@ -29,24 +30,28 @@
   }
 
   @if (config?.items?.length) {
-    <ul
+    <div
       [attr.id]="config.id ?? null"
       [attr.aria-label]="config?.ariaLabel?.[lang()] ?? null"
-      [ngClass]="[config.className, ...getFlexLayoutClasses(config?.containerLayout)]"
-      class="list-unstyled flex-wrap gap-3"
+      [ngClass]="[config.className]"
+      class="row g-3"
     >
       @for (item of config.items; track item.id) {
         @switch (item.type) {
           @case ('mediaText') {
-            <li>
+            <div
+              class="col-12 col-md-6 d-flex"
+              [ngClass]="config.itemsLayout.direction === 'row' ? 'col-xl-5' : 'col-xl-4'"
+            >
               <app-media-text-card
+                class="d-block w-100 h-100"
                 [layout]="config.itemsLayout"
                 [card]="item"
               ></app-media-text-card>
-            </li>
+            </div>
           }
         }
       }
-    </ul>
+    </div>
   }
 }
