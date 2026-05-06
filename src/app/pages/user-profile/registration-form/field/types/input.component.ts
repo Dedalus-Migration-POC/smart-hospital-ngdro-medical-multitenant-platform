@@ -41,6 +41,7 @@ import { LanguageService } from '../../../../../initialize/state/services/langua
         [label]="field.label ? field.label[lang()] : ''"
         [description]="field.description ? field.description[lang()] : ''"
         [readonly]="field.readOnly"
+        autocomplete="off"
       >
         <ng-container error>
           @if (inputField.hasError(ValidationTypeError.Required)) {

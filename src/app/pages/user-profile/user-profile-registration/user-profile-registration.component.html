@@ -1,54 +1,50 @@
-<it-card class="d-block my-4 user-profile-card">
-  @if (form && userConfig) {
-    <form [formGroup]="form">
-      @for (section of userConfig.sections; track $index) {
-        <div class="mb-4">
-          <h2
-            [ngClass]="{
-              'pb-4': !section.readOnly && !section.subTitle,
-              'mb-0': section.subTitle,
-            }"
-            class="fs-2 cursor-default"
-          >
-            {{ section.title[lang()] }}
-          </h2>
-          @if (section.subTitle) {
-            <div class="pb-4 text-600 cursor-default">
-              {{ section.subTitle[lang()] }}
-            </div>
-          }
-          @if (!section.readOnly) {
-            @for (field of section.fields; track $index) {
-              <app-field-types
-                [field]="field"
-                [formGroup]="form"
-                class="d-inline-block"
-                [ngClass]="field.fieldContainerClasses"
-                [triggerSubmit]="triggerSubmit"
-                (onCompleted)="onFieldCompleted()"
-              />
+<div class="col-12 col-sm col-lg-8 my-3">
+  <article class="it-card rounded shadow-sm border p-4">
+    @if (form && userConfig) {
+      <form [formGroup]="form" (submit)="$event.stopPropagation()" (ngSubmit)="onSubmit()">
+        @for (section of userConfig.sections; track $index) {
+          <div class="mb-4">
+            <h2
+              [ngClass]="{
+                'pb-4': !section.readOnly && !section.subTitle,
+                'mb-0': section.subTitle,
+              }"
+              class="fs-2 cursor-default"
+            >
+              {{ section.title[lang()] }}
+            </h2>
+            @if (section.subTitle) {
+              <div class="pb-4 text-600 cursor-default">
+                {{ section.subTitle[lang()] }}
+              </div>
             }
-          } @else {
-            <app-readonly-section [fields]="section.fields" [formGroup]="form" />
-          }
-        </div>
-      }
+            @if (!section.readOnly) {
+              @for (field of section.fields; track $index) {
+                <app-field-types
+                  [field]="field"
+                  [formGroup]="form"
+                  class="d-inline-block"
+                  [ngClass]="field.fieldContainerClasses"
+                  [triggerSubmit]="triggerSubmit"
+                  (onCompleted)="onFieldCompleted()"
+                />
+              }
+            } @else {
+              <app-readonly-section [fields]="section.fields" [formGroup]="form" />
+            }
+          </div>
+        }
 
-      <app-consents-form
-        [userConsentsForm]="userConsentsForm"
-        (toggleConsent)="toggleConsent.emit($event)"
-        [consentsConfig]="userConfig.consents"
-      ></app-consents-form>
+        <app-consents-form
+          [userConsentsForm]="userConsentsForm"
+          (toggleConsent)="toggleConsent.emit($event)"
+          [consentsConfig]="userConfig.consents"
+        ></app-consents-form>
 
-      <button
-        itButton="primary"
-        size="sm"
-        type="button"
-        (click)="onSubmit()"
-        [attr.aria-label]="userConfig.button?.text?.[lang()]"
-      >
-        {{ userConfig.button?.text?.[lang()] }}
-      </button>
-    </form>
-  }
-</it-card>
+        <button itButton="primary" size="sm" type="submit">
+          {{ userConfig.button?.text?.[lang()] }}
+        </button>
+      </form>
+    }
+  </article>
+</div>

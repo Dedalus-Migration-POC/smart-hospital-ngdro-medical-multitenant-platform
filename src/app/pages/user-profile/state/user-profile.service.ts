@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { delay, map, of, take } from 'rxjs';
-import { MOCK_CONSENTS, MOCK_PROFILE, MOCK_PROFILE_CONFIG } from './user-profile.mock';
-import { UserConfig, UserConsent, UserProfile } from '../user-profile.model';
+import { MOCK_CONSENTS, MOCK_PROFILE } from './user-profile.mock';
+import { UserConsent, UserProfile } from '../user-profile.model';
 import { Store } from '@ngrx/store';
 
 import { selectUserProfile } from './user-profile.selectors';

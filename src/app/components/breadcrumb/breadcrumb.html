@@ -3,9 +3,10 @@
     <div
       class="breadcrumb-bg breadcrumb m-0 p-0"
       [style.backgroundColor]="config.backgroundColor"
+      [style.color]="config.color"
       #backgroundDiv
     ></div>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb" [style.color]="config.color">
       @for (item of config.items; track item.name; let last = $last) {
         <li class="breadcrumb-item" [class.active]="last">
           @if (!last) {
@@ -53,5 +54,5 @@
         (buttonAction)="breadcrumbButtonAction()" 
       ></app-breadcrumb>
     }
-      
+
 -->

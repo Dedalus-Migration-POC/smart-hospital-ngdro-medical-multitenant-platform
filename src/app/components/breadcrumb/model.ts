@@ -4,6 +4,7 @@ export interface BreadcrumbConfig {
   title: LocalizedText;
   subtitle?: LocalizedText;
   backgroundColor?: string;
+  color?: string;
   items: BreadcrumbItem[];
   button?: LocalizedText;
   buttonIcon?: string;

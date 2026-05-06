@@ -3,6 +3,7 @@ import { Auth } from './pages/auth/auth';
 import { HomePage } from './pages/home/home';
 import { IdpRedirectComponent } from './pages/auth/idp-redirect.component';
 import { UserProfile } from './pages/user-profile/user-profile';
+import { authenticatedGuard } from './guards/authenticated.guard';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
@@ -13,6 +14,7 @@ export const routes: Routes = [
   {
     path: 'user-profile',
     component: UserProfile,
+    canActivate: [authenticatedGuard({ allowTemporary: true })],
   },
   {
     path: 'idp-redirect',

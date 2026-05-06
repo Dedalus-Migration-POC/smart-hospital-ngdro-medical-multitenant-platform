@@ -40,9 +40,9 @@ export class App implements OnInit {
   readonly currentUrl = toSignal(
     this.router.events.pipe(
       filter((e) => e instanceof NavigationEnd),
-      map((e: NavigationEnd) => e.url),
+      map((e: NavigationEnd) => e.urlAfterRedirects.split('?')[0]),
     ),
-    { initialValue: this.router.url },
+    { initialValue: this.router.url.split('?')[0] },
   );
 
   readonly bgImg = computed(() => {
@@ -57,7 +57,9 @@ export class App implements OnInit {
     const url = this.currentUrl();
     if (!config) return '';
     const page = config.pages.find((p: any) => p.id === url);
-    return page?.page?.backgroundColor ?? '';
+    console.log(page?.page?.backgroundColor);
+
+    return page?.page?.backgroundColor;
   });
 
   readonly pageName = computed(() => {

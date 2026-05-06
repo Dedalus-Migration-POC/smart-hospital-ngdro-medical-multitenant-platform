@@ -3,10 +3,11 @@ import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular
 import { FormGroup } from '@angular/forms';
 import { ItCheckboxComponent } from 'design-angular-kit';
 import { LanguageService } from '../../../initialize/state/services/language.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-consents-form',
-  imports: [CommonModule, ItCheckboxComponent],
+  imports: [CommonModule, ItCheckboxComponent, TranslateModule],
   templateUrl: './consents-form.component.html',
   styleUrls: ['./consents-form.component.scss'],
 })

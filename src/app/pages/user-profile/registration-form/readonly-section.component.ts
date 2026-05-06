@@ -8,16 +8,18 @@ import { LanguageService } from '../../../initialize/state/services/language.ser
   selector: 'app-readonly-section',
   template: `
     <table>
-      @for (field of fields; track field.key) {
-        <tr class="cursor-default">
-          <th [class]="field.labelClasses">
-            {{ field.label ? field.label[lang()] : '' }}
-          </th>
-          <td [class]="field.fieldClasses">
-            {{ getValue(field) }}
-          </td>
-        </tr>
-      }
+      <tbody>
+        @for (field of fields; track field.key) {
+          <tr class="cursor-default">
+            <th scope="row" [attr.id]="'readonly-label-' + field.key" [class]="field.labelClasses">
+              {{ field.label ? field.label[lang()] : '' }}
+            </th>
+            <td [attr.headers]="'readonly-label-' + field.key" [class]="field.fieldClasses">
+              {{ getValue(field) }}
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
   `,
 })
