@@ -24,6 +24,18 @@
         />
       }
 
+      @if (config.image.type === 'base64') {
+        <img
+          class="img-fluid"
+          [src]="getSafeBase64Url(config.image.value)"
+          [style.width]="config.image.width"
+          [style.height]="config.image.height"
+          loading="lazy"
+          [attr.alt]="altText()"
+          [attr.aria-hidden]="ariaHidden()"
+        />
+      }
+
       @if (config.image.type === 'inlineSvg') {
         <div [innerHTML]="sanitizeSvg(config.image.value.replace(/\n/g, ''))"></div>
       }

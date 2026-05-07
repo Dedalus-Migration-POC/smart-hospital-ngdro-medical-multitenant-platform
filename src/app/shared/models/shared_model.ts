@@ -28,7 +28,7 @@ export type TextHeader = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
 export type Margin = 'mt-0' | 'mt-1' | 'mt-2' | 'mt-3' | 'mt-4' | 'mt-5';
 
-export type ImageType = 'url' | 'inlineSvg' | 'file';
+export type ImageType = 'url' | 'inlineSvg' | 'file' | 'base64';
 export interface ImageConfig {
   type: ImageType;
   value: string;

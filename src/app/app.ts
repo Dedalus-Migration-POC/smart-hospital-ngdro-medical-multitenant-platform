@@ -57,7 +57,6 @@ export class App implements OnInit {
     const url = this.currentUrl();
     if (!config) return '';
     const page = config.pages.find((p: any) => p.id === url);
-    console.log(page?.page?.backgroundColor);
 
     return page?.page?.backgroundColor;
   });

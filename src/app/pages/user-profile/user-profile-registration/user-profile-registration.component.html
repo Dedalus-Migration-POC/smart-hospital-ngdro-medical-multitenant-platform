@@ -3,7 +3,7 @@
     @if (form && userConfig) {
       <form [formGroup]="form" (submit)="$event.stopPropagation()" (ngSubmit)="onSubmit()">
         @for (section of userConfig.sections; track $index) {
-          <div class="mb-4">
+          <section class="mb-4">
             <h2
               [ngClass]="{
                 'pb-4': !section.readOnly && !section.subTitle,
@@ -32,7 +32,7 @@
             } @else {
               <app-readonly-section [fields]="section.fields" [formGroup]="form" />
             }
-          </div>
+          </section>
         }
 
         <app-consents-form
