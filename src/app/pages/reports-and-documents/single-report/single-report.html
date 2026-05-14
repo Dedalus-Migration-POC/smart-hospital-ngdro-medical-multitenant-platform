@@ -1,0 +1,147 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.page.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+  }
+  <div class="mt-4 mb-4">
+    <form class="form-floating" [formGroup]="searchReportForm" (submit)="onSubmit()">
+      <div class="row g-4 mb-4">
+        <div class="col-lg">
+          <div class="form-floating">
+            <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
+            <input
+              type="text"
+              class="form-control"
+              id="cf"
+              [placeholder]="pageConfig.page.singleReportConfig.fiscalCodeInput.placeholder[lang()]"
+              formControlName="cf"
+              oninput="this.value = this.value.toUpperCase()"
+              autocomplete="on"
+            />
+            <label for="cf">{{
+              pageConfig.page.singleReportConfig.fiscalCodeInput.label[lang()]
+            }}</label>
+            @if (
+              searchReportForm.controls.cf.errors?.['required'] &&
+              searchReportForm.get('cf')?.touched
+            ) {
+              <div class="disabled-error text-danger">
+                {{ pageConfig.page.singleReportConfig.fiscalCodeInput.errorRequired[lang()] }}
+              </div>
+            }
+            @if (
+              searchReportForm.controls.cf.errors?.['validateFiscalCode'] &&
+              searchReportForm.get('cf')?.touched
+            ) {
+              <div class="disabled-error text-danger">
+                {{ pageConfig.page.singleReportConfig.fiscalCodeInput.errorInvalid[lang()] }}
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="form-floating">
+            <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
+            <input
+              type="text"
+              class="form-control"
+              id="id"
+              [placeholder]="pageConfig.page.singleReportConfig.idInput.placeholder[lang()]"
+              formControlName="id"
+              [maxlength]="idlength.max"
+              [minlength]="idlength.min"
+              autocomplete="on"
+            />
+            <label for="id">{{ pageConfig.page.singleReportConfig.idInput.label[lang()] }}</label>
+            @if (
+              searchReportForm.controls.id.errors?.['required'] &&
+              searchReportForm.get('id')?.touched
+            ) {
+              <div class="disabled-error text-danger">
+                {{ pageConfig.page.singleReportConfig.idInput.errorRequired[lang()] }}
+              </div>
+            }
+            @if (
+              searchReportForm.controls.id.errors?.['minlength'] &&
+              searchReportForm.get('id')?.touched
+            ) {
+              <div class="disabled-error text-danger">
+                {{ pageConfig.page.singleReportConfig.idInput.errorInvalid[lang()] }}
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div
+        class="d-flex justify-content-{{ pageConfig.page.singleReportConfig.buttonSubmit.justify }}"
+      >
+        <button
+          type="submit"
+          class="btn btn-{{ pageConfig.page.singleReportConfig.buttonSubmit.buttonColor }} btn-cf"
+          [attr.aria-label]="pageConfig.page.singleReportConfig.buttonSubmit.ariaLabel[lang()]"
+        >
+          {{ pageConfig.page.singleReportConfig.buttonSubmit.label[lang()] }}
+        </button>
+      </div>
+    </form>
+
+    @if (documents().length > 0) {
+      <div class="d-grid gap-3 mt-4">
+        @for (document of documents(); track $index) {
+          <div class="border rounded p-3">
+            <pre class="mb-3">{{ document | json }}</pre>
+            @if (document.type === 'LINK') {
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="downloadSingleReport(document.attachmentId, document.type, true)"
+              >
+                Open LINK
+              </button>
+            } @else {
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="downloadSingleReport(document.attachmentId, document.type, true)"
+              >
+                Download PDF
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="downloadSingleReport(document.attachmentId, document.type, false)"
+              >
+                Open document
+              </button>
+            }
+          </div>
+        }
+      </div>
+    } @else if (!loading() && !error()) {
+      @if (isInitialSearch()) {
+        <div class="d-flex flex-column h-100 align-items-center justify-content-center gap-3 mt-4">
+          <app-image-block
+            [config]="pageConfig.page.initMessage.imageBlockConfig"
+          ></app-image-block>
+        </div>
+      } @else {
+        <div class="d-flex flex-column h-100 align-items-center justify-content-center gap-3 mt-4">
+          <app-image-block
+            [config]="pageConfig.page.reportNotFound.imageBlockConfig"
+          ></app-image-block>
+        </div>
+      }
+    }
+    @if (error()) {
+      <div class="d-flex flex-column h-100 align-items-center justify-content-center gap-3 mt-4">
+        <app-image-block [config]="pageConfig.page.errorMessage.imageBlockConfig"></app-image-block>
+      </div>
+    }
+  </div>
+  @if (loading()) {
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
+  }
+}
