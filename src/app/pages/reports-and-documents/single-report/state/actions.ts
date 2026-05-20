@@ -64,3 +64,5 @@ export const downloadSingleReportFailure = createAction(
   '[SingleReport]  Download SingleReport Failure',
   props<{ error: any }>(),
 );
+
+export const resetSingleReportState = createAction('[SingleReport] Reset State');

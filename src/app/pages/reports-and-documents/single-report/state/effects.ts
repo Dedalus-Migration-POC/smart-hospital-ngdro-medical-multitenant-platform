@@ -4,7 +4,6 @@ import { catchError, map, concatMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as SingleReportActions from './actions';
 import { SingleReportService } from './service';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { fetchSingleReport } from './actions';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
@@ -39,13 +38,6 @@ export class SingleReportEffects {
             });
           }),
           catchError((error) => {
-            this.notificationService.error(
-              this.translate.instant('commons.error'),
-              this.translate.instant('commons.generic-error'),
-              true,
-              8000,
-              NotificationPosition.Top,
-            );
             return of(SingleReportActions.fetchSingleReportSessionFailure({ error }));
           }),
         ),
@@ -65,13 +57,6 @@ export class SingleReportEffects {
             });
           }),
           catchError((error) => {
-            this.notificationService.error(
-              this.translate.instant('commons.error'),
-              this.translate.instant('commons.generic-error'),
-              true,
-              8000,
-              NotificationPosition.Top,
-            );
             return of(SingleReportActions.fetchSingleReportFailure({ error }));
           }),
         ),
@@ -121,6 +106,13 @@ export class SingleReportEffects {
             });
           }),
           catchError((error) => {
+            this.notificationService.error(
+              this.translate.instant('commons.error'),
+              this.translate.instant('commons.generic-error'),
+              true,
+              8000,
+              NotificationPosition.Top,
+            );
             return of(
               SingleReportActions.downloadSingleReportFailure({
                 error,

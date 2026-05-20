@@ -16,6 +16,13 @@
     <app-footer [config]="appConfig().footer"></app-footer>
   </div>
   <it-notifications />
+  @if (pageInfoPopUp()) {
+    <app-alert-fixed
+      [title]="pageInfoPopUp().title[lang()]"
+      [text]="pageInfoPopUp().text[lang()]"
+      [type]="pageInfoPopUp().type"
+    ></app-alert-fixed>
+  }
 } @else {
   <div>Caricamento configurazione...</div>
 }

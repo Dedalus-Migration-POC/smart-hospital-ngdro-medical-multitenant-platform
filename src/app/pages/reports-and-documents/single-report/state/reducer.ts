@@ -85,4 +85,5 @@ export const reducer = createReducer(
     downloadedReportLoading: false,
     downloadedReportError: true,
   })),
+  on(AuthActions.resetSingleReportState, () => initialState),
 );

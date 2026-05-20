@@ -12,18 +12,15 @@ import {
 } from './state/selectors';
 import {
   downloadSingleReport as downloadSingleReportAction,
-  downloadSingleReportSuccess,
   fetchSingleReportSession,
-  fetchSingleReportSessionSuccess,
-  fetchSingleReportSuccess,
+  resetSingleReportState,
 } from './state/actions';
-import { IReport, ReportEndpoint } from './state/model';
+import { IReport } from './state/model';
 import { TranslateModule } from '@ngx-translate/core';
 import { JsonPipe } from '@angular/common';
 import { Spinner } from '../../../components/spinner/spinner';
 import { LanguageService } from '../../../initialize/state/services/language.service';
 import { ImageBlock } from '../../../components/image-block/image-block';
-import { Align, Direction, Gap, Justify } from '../../../shared/models/shared_model';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAppConfig } from '../../../initialize/state/selector';
 import { map, take } from 'rxjs';
@@ -39,7 +36,7 @@ export class SingleReport {
   private store = inject(Store);
   private langService = inject(LanguageService);
   lang = this.langService.lang;
-  //-------------------mock
+
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
       take(1),
@@ -49,9 +46,7 @@ export class SingleReport {
   );
 
   ngOnDestroy(): void {
-    this.store.dispatch(fetchSingleReportSuccess({ data: null }));
-    this.store.dispatch(fetchSingleReportSessionSuccess({ data: null }));
-    this.store.dispatch(downloadSingleReportSuccess({ data: null }));
+    this.store.dispatch(resetSingleReportState());
   }
 
   searchReportForm = new FormGroup({

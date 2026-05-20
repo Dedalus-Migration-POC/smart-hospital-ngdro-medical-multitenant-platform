@@ -1,0 +1,19 @@
+.alert-custom {
+  position: fixed;
+  z-index: 10;
+  top: 35%;
+  right: 5%;
+  max-width: 500px;
+
+  ::ng-deep .btn-close {
+    top: 0%;
+    right: 0;
+    transform: none;
+    padding: 1rem;
+    color: inherit;
+
+    svg {
+      fill: transparent;
+    }
+  }
+}

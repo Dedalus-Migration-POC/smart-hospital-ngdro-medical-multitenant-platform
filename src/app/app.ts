@@ -11,9 +11,17 @@ import { filter, map } from 'rxjs/operators';
 import { LanguageService } from './initialize/state/services/language.service';
 import { fetchUserProfile } from './pages/user-profile/state/user-profile.actions';
 import { ItNotificationsComponent } from 'design-angular-kit';
+import { AlertFixedComponent } from './components/alert-fixed/alert-fixed.component';
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, Header, Footer, RouterOutlet, ItNotificationsComponent],
+  imports: [
+    CommonModule,
+    Header,
+    Footer,
+    RouterOutlet,
+    ItNotificationsComponent,
+    AlertFixedComponent,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -71,5 +79,13 @@ export class App implements OnInit {
 
     const page = config.pages.find((p: any) => p.id === url);
     return page?.name[lang] ?? config.name;
+  });
+
+  readonly pageInfoPopUp = computed(() => {
+    const config = this.appConfig();
+    const url = this.currentUrl();
+    if (!config) return '';
+    const page = config.pages.find((p: any) => p.id === url);
+    return page?.page?.infoPopup ?? '';
   });
 }
