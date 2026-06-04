@@ -86,7 +86,7 @@
   </div>
 
   @if (documents().length > 0) {
-    <div class="d-grid gap-3 mt-4">
+    <!-- <div class="d-grid gap-3 mt-4">
       @for (document of documents(); track $index) {
         <div class="border rounded p-3">
           <pre class="mb-3">{{ document | json }}</pre>
@@ -116,7 +116,8 @@
           }
         </div>
       }
-    </div>
+    </div> -->
+    QUI card dinamica
   } @else if (!loading() && !error()) {
     @if (isInitialSearch()) {
       <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">

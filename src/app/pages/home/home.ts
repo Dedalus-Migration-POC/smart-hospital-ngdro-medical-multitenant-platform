@@ -5,10 +5,12 @@ import { selectAppConfig } from '../../initialize/state/selector';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
 import { AreasLayout } from '../../shared/layout-system/components/areas-layout/areas-layout';
+import { PageConfig } from '../page.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
-  imports: [AreasLayout],
+  imports: [CommonModule, AreasLayout],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -18,7 +20,7 @@ export class HomePage {
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
       take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/')), //TODO page type
+      map((config) => config.pages.find((page: PageConfig) => page.id === '/')), //TODO page type
     ),
     { initialValue: null },
   );

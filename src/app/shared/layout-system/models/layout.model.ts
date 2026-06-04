@@ -35,6 +35,7 @@ export interface AreaSize {
 export interface LayoutArea {
   layout: FlexLayoutConfig;
   size?: AreaSize;
+  boostrapClasses?: string; // classi CSS/Bootstrap applicate all'area es. col-12, col-xs-*
   items: Item[];
 }
 

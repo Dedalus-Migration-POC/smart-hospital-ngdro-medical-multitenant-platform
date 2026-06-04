@@ -29,29 +29,37 @@
     </div>
   }
 
-  @if (config?.items?.length) {
+  @if (config.items.length) {
     <div
       [attr.id]="config.id ?? null"
-      [attr.aria-label]="config?.ariaLabel?.[lang()] ?? null"
-      [ngClass]="[config.className]"
-      class="row g-3"
+      [attr.aria-label]="config.ariaLabel?.[lang()] ?? null"
+      [ngClass]="containerClasses()"
     >
-      @for (item of config.items; track item.id) {
-        @switch (item.type) {
-          @case ('mediaText') {
-            <div
-              class="col-12 col-md-6 d-flex"
-              [ngClass]="config.itemsLayout.direction === 'row' ? 'col-xl-5' : 'col-xl-4'"
-            >
-              <app-media-text-card
-                class="d-block w-100 h-100"
-                [layout]="config.itemsLayout"
-                [card]="item"
-              ></app-media-text-card>
-            </div>
+      <div class="row g-3">
+        @for (item of config.items; track item.id) {
+          @switch (item.type) {
+            @case ('mediaText') {
+              <div class="col-12 col-md-6 d-flex" [ngClass]="itemsColClass()">
+                <app-media-text-card
+                  class="d-block w-100 h-100"
+                  [layout]="itemsContentLayout()"
+                  [card]="item"
+                ></app-media-text-card>
+              </div>
+            }
+
+            @case ('data') {
+              <div class="col-12 col-md-6 d-flex">
+                <app-data-card
+                  class="d-block w-100 h-100"
+                  [layout]="itemsContentLayout()"
+                  [card]="item"
+                ></app-data-card>
+              </div>
+            }
           }
         }
-      }
+      </div>
     </div>
   }
 }
