@@ -19,21 +19,25 @@ export class Card {
   private langService = inject(LanguageService);
   lang = this.langService.lang;
 
+  private readonly defaultContainerLayout: FlexLayoutConfig = {
+    direction: 'column',
+    gap: 'gap-3',
+  };
+
   private readonly defaultItemsContentLayout: FlexLayoutConfig = {
     direction: 'column',
   };
 
   readonly containerClasses = computed(() => [
     this.config()?.className ?? '',
-    ...getFlexLayoutClasses(this.config()?.containerLayout),
+    ...getFlexLayoutClasses(this.config()?.containerLayout ?? this.defaultContainerLayout),
   ]);
 
   readonly itemsContentLayout = computed(
     () => this.config()?.itemsContentLayout ?? this.defaultItemsContentLayout,
   );
 
-  // TODO: VEDI SE SERVE SOLO MEDIA TEXT E SE SI PUO' SEMPLIFICARE
-  readonly itemsColClass = computed(() =>
-    this.itemsContentLayout().direction === 'row' ? 'col-xl-5' : 'col-xl-4',
+  readonly itemColBootstrapClasses = computed(
+    () => this.config()?.itemColBootstrapClasses ?? 'col-12 col-md-6 col-xl-4',
   );
 }

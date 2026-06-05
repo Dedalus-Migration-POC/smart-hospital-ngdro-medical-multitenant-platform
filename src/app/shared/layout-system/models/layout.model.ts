@@ -33,9 +33,8 @@ export interface AreaSize {
 }
 
 export interface LayoutArea {
-  layout: FlexLayoutConfig;
-  size?: AreaSize;
-  boostrapClasses?: string; // classi CSS/Bootstrap applicate all'area es. col-12, col-xs-*
+  layout: FlexLayoutConfig; // tutte le proprietà flex (direction, align, justify, ...)
+  size?: AreaSize; // dimensioni fisse non responsive
   items: Item[];
 }
 

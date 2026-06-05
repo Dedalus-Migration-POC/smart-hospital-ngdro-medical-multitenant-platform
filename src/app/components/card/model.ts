@@ -24,13 +24,14 @@ export interface CardsContainer {
   header?: TextSection;
 
   // layout del container principale
+  // header + cards, es. se header è sopra le card o a fianco, gap tra header e card, ecc.
   containerLayout?: FlexLayoutConfig;
-
-  // layout della lista di card, cioè come sono disposte le card tra loro
-  itemsLayout?: FlexLayoutConfig;
 
   // layout interno comune applicato a ogni card, sia mediaText sia data
   itemsContentLayout?: FlexLayoutConfig;
+  // Responsive width della card con le classi di bootstrap
+  itemColBootstrapClasses?: string;
+
   // layout comune delle actions, usato dalle DataCard
   actionsLayout?: FlexLayoutConfig;
   items: Card[];
