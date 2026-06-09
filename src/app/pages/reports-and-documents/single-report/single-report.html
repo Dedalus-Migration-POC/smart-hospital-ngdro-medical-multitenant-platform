@@ -1,4 +1,4 @@
-@if (pageConfig(); as pageConfig) {
+<!--@if (pageConfig(); as pageConfig) {
   @if (pageConfig.page.breadcrumb) {
     <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
   }
@@ -7,8 +7,8 @@
       <div class="row g-4 mb-4">
         <div class="col-lg">
           <div class="form-floating">
-            <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
-            <input
+           <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) 
+           <input
               type="text"
               class="form-control"
               id="cf"
@@ -40,7 +40,7 @@
         </div>
         <div class="col-md">
           <div class="form-floating">
-            <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
+            <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) 
             <input
               type="text"
               class="form-control"
@@ -86,7 +86,7 @@
   </div>
 
   @if (documents().length > 0) {
-    <!-- <div class="d-grid gap-3 mt-4">
+    <div class="d-grid gap-3 mt-4">
       @for (document of documents(); track $index) {
         <div class="border rounded p-3">
           <pre class="mb-3">{{ document | json }}</pre>
@@ -116,8 +116,8 @@
           }
         </div>
       }
-    </div> -->
-    QUI card dinamica
+    </div>
+  
   } @else if (!loading() && !error()) {
     @if (isInitialSearch()) {
       <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
@@ -144,3 +144,7 @@
     ></app-spinner>
   }
 }
+  -->
+
+<!-- {{ documents() | json }} -->
+<app-card [config]="cardsConfig"></app-card>

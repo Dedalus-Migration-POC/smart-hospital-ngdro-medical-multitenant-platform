@@ -42,17 +42,18 @@
               <div class="d-flex" [ngClass]="itemColBootstrapClasses()">
                 <app-media-text-card
                   class="d-block w-100 h-100"
-                  [layout]="itemsContentLayout()"
+                  [itemsLayout]="itemsLayout()"
                   [card]="item"
                 ></app-media-text-card>
               </div>
             }
 
             @case ('data') {
-              <div class="d-flex">
+              <div class="d-flex" [ngClass]="itemColBootstrapClasses()">
                 <app-data-card
                   class="d-block w-100 h-100"
-                  [layout]="itemsContentLayout()"
+                  [itemsLayout]="itemsLayout()"
+                  [actionsLayout]="actionsLayout()"
                   [card]="item"
                 ></app-data-card>
               </div>

@@ -28,12 +28,12 @@ export interface CardsContainer {
   containerLayout?: FlexLayoutConfig;
 
   // layout interno comune applicato a ogni card, sia mediaText sia data
-  itemsContentLayout?: FlexLayoutConfig;
+  itemsLayout?: FlexLayoutConfig;
   // Responsive width della card con le classi di bootstrap
   itemColBootstrapClasses?: string;
-
   // layout comune delle actions, usato dalle DataCard
   actionsLayout?: FlexLayoutConfig;
+
   items: Card[];
 }
 
@@ -57,11 +57,11 @@ export interface MediaTextCard extends BaseCard {
   blocked?: boolean;
 }
 
-// DATACARD: card dinamica con elmenti come campi (label: value basati su dati del BE), azioni (bottoni o link) con link esterni o route interno
+// DATACARD: card dinamica con elmenti come campi (label: value => basati su dati del BE), azioni (bottoni o link) con link esterni o route interno
 export interface DataCard extends BaseCard {
   type: 'data';
+  text: TextSection;
   fields: CardField[];
-  fieldsLayout?: FlexLayoutConfig;
   actions?: DataCardAction[];
   actionsLayout?: FlexLayoutConfig;
 }

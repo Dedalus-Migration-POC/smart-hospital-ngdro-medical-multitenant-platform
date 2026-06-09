@@ -23,21 +23,26 @@ export class Card {
     direction: 'column',
     gap: 'gap-3',
   };
-
-  private readonly defaultItemsContentLayout: FlexLayoutConfig = {
+  private readonly defaultItemsLayout: FlexLayoutConfig = {
     direction: 'column',
+    gap: 'gap-2',
   };
+  private readonly defaultActionsLayout: FlexLayoutConfig = {
+    direction: 'row',
+    gap: 'gap-2',
+    justify: 'end',
+  };
+
+  readonly itemsLayout = computed(() => this.config()?.itemsLayout ?? this.defaultItemsLayout);
+  readonly itemColBootstrapClasses = computed(
+    () => this.config()?.itemColBootstrapClasses ?? 'col-12 col-md-6 col-xl-4',
+  );
+  readonly actionsLayout = computed(
+    () => this.config()?.actionsLayout ?? this.defaultActionsLayout,
+  );
 
   readonly containerClasses = computed(() => [
     this.config()?.className ?? '',
     ...getFlexLayoutClasses(this.config()?.containerLayout ?? this.defaultContainerLayout),
   ]);
-
-  readonly itemsContentLayout = computed(
-    () => this.config()?.itemsContentLayout ?? this.defaultItemsContentLayout,
-  );
-
-  readonly itemColBootstrapClasses = computed(
-    () => this.config()?.itemColBootstrapClasses ?? 'col-12 col-md-6 col-xl-4',
-  );
 }
