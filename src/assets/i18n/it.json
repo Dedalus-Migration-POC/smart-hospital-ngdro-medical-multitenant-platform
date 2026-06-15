@@ -9,7 +9,10 @@
     "access-page": {
       "spid-main-info": "Maggiori informazioni su SPID",
       "have-spid": "Non hai SPID?",
-      "need-help": "Serve aiuto?"
+      "need-help": "Serve aiuto?",
+      "cie-main-info": "Cos'è la CIE",
+      "cie-how-to-access": "Come accedere con la CIE",
+      "have-cie": "Non hai CIE?"
     },
     "skip-to-main-content": "Vai al contenuto principale"
   },

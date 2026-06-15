@@ -999,6 +999,27 @@ export const APP_CONFIG: AppConfig = {
                       },
                     },
                     {
+                      type: 'CIE',
+                      title: { it: 'CIE', en: 'CIE' }, // Titolo di Tab
+                      description: {
+                        it: `La <strong>Carta di Identità Elettronica (CIE)</strong> è il documento personale che attesta l'identità del cittadino. Dotata di microprocessore, oltre a comprovare l'identità personale, permette l'accesso ai servizi digitali della Pubblica Amministrazione.`,
+                        en: `The <strong>Electronic Identity Card (CIE)</strong> is the personal document that certifies the citizen's identity. Equipped with a microprocessor, in addition to proving personal identity, it allows access to the digital services of the Public Administration.`,
+                      },
+                      button: {
+                        text: { it: 'Entra con CIE', en: 'Log in with CIE' },
+                        showIcon: true,
+                        align: 'start',
+                      },
+                      config: {
+                        providerId: {
+                          dev: { enable: true, name: 'cie-test' }, //name es: 'cie-messina', 'cie-latina'
+                          test: { enable: true, name: 'cie-test' },
+                          prod: { enable: false, name: 'cie-tenant' },
+                        },
+                        returnUrl: null,
+                      },
+                    },
+                    {
                       type: 'MYID',
                       title: { it: 'MyId', en: 'MyId' }, // Titolo di Tab
                       description: {

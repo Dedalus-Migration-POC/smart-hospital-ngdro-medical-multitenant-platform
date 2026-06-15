@@ -5,10 +5,11 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { Spid } from '../spid/spid';
 import { MyidComponent } from '../myid/myid.component';
+import { CieComponent } from '../cie/cie.component';
 
 @Component({
   selector: 'app-auth-methods',
-  imports: [CommonModule, DesignAngularKitModule, Spid, MyidComponent],
+  imports: [CommonModule, DesignAngularKitModule, Spid, MyidComponent, CieComponent],
   templateUrl: './auth-methods.html',
   styleUrl: './auth-methods.scss',
 })

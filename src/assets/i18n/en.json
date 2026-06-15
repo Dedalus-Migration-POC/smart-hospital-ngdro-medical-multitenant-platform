@@ -1,27 +1,28 @@
 {
-  "it": {
+  "en": {
     "errors": {
-      "required-field": "Il campo è obbligatorio",
-      "invalid-field": "Il valore inserito non è valido"
+      "required-field": "The field is required",
+      "invalid-field": "The value entered is not valid"
     }
   },
   "tenant": {
     "access-page": {
       "spid-main-info": "More information on SPID",
       "have-spid": "Don't have SPID?",
-      "need-help": "Need help?"
+      "need-help": "Need help?",
+      "cie-main-info": "More information on CIE"
     },
     "skip-to-main-content": "Go to the main content"
   },
   "admin": {
     "header": {
-      "access": "Accedi all'area personale"
+      "access": "Access the personal area"
     },
     "access-page": {
       "login": "Login",
       "password": "Password",
-      "login-button": "Accedi",
-      "error-required": "Il campo è obbligatorio"
+      "login-button": "Login",
+      "error-required": "The field is required"
     }
   }
 }

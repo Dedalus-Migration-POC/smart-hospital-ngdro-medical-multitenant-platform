@@ -1,0 +1,48 @@
+@if (cieConfig(); as cieConfig) {
+  <div class="container">
+    <p class="p-0 mb-4 fs-6 lh-base cursor-default" [innerHTML]="cieConfig.description[lang()]"></p>
+    <form
+      ngNoForm
+      [ngClass]="'text-' + cieConfig.button.align"
+      [action]="baseUrl + 'oauth/auth'"
+      method="get"
+      id="cie"
+      (submit)="submit()"
+    >
+      <label hidden for="returnUrl">returnUrl</label>
+      <input hidden name="returnUrl" id="returnUrl" [value]="returnUrl" />
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-cie"
+        name="providerId"
+        [id]="'cie'"
+        [value]="providerId()"
+      >
+        <span class="cie-btn-icon d-inline-block" role="button">
+          <img src="assets/images/cielogo.png" alt="" />
+        </span>
+        <span class="cie-btn-text" role="button">{{ cieConfig.button.text[lang()] }}</span>
+      </button>
+    </form>
+    <div class="d-flex flex-column cie-info mt-4 mb-4">
+      <a href="https://www.cartaidentita.interno.gov.it/" target="_blank" class="fw-bold">
+        {{ 'tenant.access-page.cie-main-info' | translate }}
+      </a>
+      <a
+        href="https://www.cartaidentita.interno.gov.it/info-utili/entra-con-cie/"
+        target="_blank"
+        class="fw-bold"
+      >
+        {{ 'tenant.access-page.cie-how-to-access' | translate }}
+      </a>
+      <a
+        href="https://www.cartaidentita.interno.gov.it/pgic/attivazione-credenziali-puk"
+        target="_blank"
+        class="fw-bold"
+      >
+        {{ 'tenant.access-page.have-cie' | translate }}
+      </a>
+    </div>
+  </div>
+}

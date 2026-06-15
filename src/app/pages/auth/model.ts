@@ -21,16 +21,37 @@ interface BaseAuthMethod {
 }
 export interface SpidAuthMethod extends BaseAuthMethod {
   type: 'SPID';
+  title: LocalizedText; // Titolo di Tab
+  description: LocalizedText;
+  button: {
+    text: LocalizedText;
+    showIcon: boolean;
+    align: Align;
+  };
   config: SpidConfig;
 }
 
 export interface MyIdAuthMethod extends BaseAuthMethod {
   type: 'MYID';
+  title: LocalizedText; // Titolo di Tab
+  description: LocalizedText;
+  button: {
+    text: LocalizedText;
+    showIcon: boolean;
+    align: Align;
+  };
   config: MyIdConfig;
 }
 
 export interface CieAuthMethod extends BaseAuthMethod {
   type: 'CIE';
+  title: LocalizedText; // Titolo di Tab
+  description: LocalizedText;
+  button: {
+    text: LocalizedText;
+    showIcon: boolean;
+    align: Align;
+  };
   config: CieConfig;
 }
 
@@ -61,6 +82,7 @@ export interface MyIdConfig {
 }
 
 export interface CieConfig {
+  providerId: { dev: string; test: string; prod: string }; //'cie-rieti'
   returnUrl?: string; // se diverso da quello standatd (window.location.origin + '/ui/idp-redirect')
 }
 export interface LocalConfig {
