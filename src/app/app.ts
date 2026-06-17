@@ -12,6 +12,7 @@ import { LanguageService } from './initialize/state/services/language.service';
 import { fetchUserProfile } from './pages/user-profile/state/user-profile.actions';
 import { ItNotificationsComponent } from 'design-angular-kit';
 import { AlertFixedComponent } from './components/alert-fixed/alert-fixed.component';
+import { RemoteConfigService } from './store/remote-config/remote-config.service';
 @Component({
   selector: 'app-root',
   imports: [
@@ -29,6 +30,7 @@ export class App implements OnInit {
   private store = inject(Store<SmartHospitalState>);
   readonly router = inject(Router);
   private langService = inject(LanguageService);
+  private remoteConfigService = inject(RemoteConfigService);
 
   constructor() {
     effect(() => {
@@ -40,6 +42,9 @@ export class App implements OnInit {
   }
   ngOnInit(): void {
     this.store.dispatch(fetchUserProfile());
+    if (this.appConfig()?.firebaseConfig) {
+      this.remoteConfigService.initialize();
+    }
   }
 
   lang = this.langService.lang;

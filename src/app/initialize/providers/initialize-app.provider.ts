@@ -11,6 +11,7 @@ import { AppConfig } from '../state/app-config.model';
 import { ThemeService } from '../state/services/theme.service';
 import { AppConfigApiService } from '../state/services/app-config-api.service';
 import { LanguageService } from '../state/services/language.service';
+import { getApps, initializeApp } from 'firebase/app';
 
 export function provideInitializeApp(): EnvironmentProviders {
   return makeEnvironmentProviders([
@@ -22,6 +23,11 @@ export function provideInitializeApp(): EnvironmentProviders {
 
       try {
         const config: AppConfig = await firstValueFrom(api.loadAppConfig());
+
+        if (config.firebaseConfig && getApps().length === 0) {
+          initializeApp(config.firebaseConfig.firebaseOptions);
+        }
+
         themeService.apply(config);
         store.dispatch(InitializeAppActions.setAppConfig({ data: config }));
         languageService.init();

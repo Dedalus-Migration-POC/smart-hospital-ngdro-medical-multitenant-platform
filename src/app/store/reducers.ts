@@ -3,11 +3,13 @@ import * as fromInitializeApp from '../initialize/state/reducer';
 import * as fromUserProfile from '../pages/user-profile/state/user-profile.reducer';
 import * as fromSingleReport from '../pages/reports-and-documents/single-report/state/reducer';
 import * as fromReportsAndDocuments from '../pages/reports-and-documents/medical-reports/state/reducer';
+import * as fromRemoteConfig from './remote-config/remote-config.reducer';
 export interface SmartHospitalState {
   [fromInitializeApp.featureKey]: fromInitializeApp.State;
   [fromUserProfile.featureKey]: fromUserProfile.State;
   [fromSingleReport.featureKey]: fromSingleReport.State;
   [fromReportsAndDocuments.featureKey]: fromReportsAndDocuments.State;
+  [fromRemoteConfig.featureKey]: fromRemoteConfig.RemoteConfigState;
 }
 
 export const reducers: ActionReducerMap<SmartHospitalState> = {
@@ -15,6 +17,7 @@ export const reducers: ActionReducerMap<SmartHospitalState> = {
   [fromUserProfile.featureKey]: fromUserProfile.reducer,
   [fromSingleReport.featureKey]: fromSingleReport.reducer,
   [fromReportsAndDocuments.featureKey]: fromReportsAndDocuments.reducer,
+  [fromRemoteConfig.featureKey]: fromRemoteConfig.reducer,
 };
 
 export const metaReducers: MetaReducer<SmartHospitalState>[] = [];

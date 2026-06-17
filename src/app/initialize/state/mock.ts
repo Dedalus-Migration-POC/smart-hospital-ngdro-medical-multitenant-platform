@@ -5,7 +5,16 @@ import { AppConfig } from './app-config.model';
 export const APP_CONFIG: AppConfig = {
   name: 'Smart Hospital',
   favicon: '/assets/favicon.ico',
-
+  firebaseConfig: {
+    firebaseOptions: {
+      apiKey: 'AIzaSyAfnbFlDenM9BK-yn5eecOHQRgqjgaMdXU',
+      appId: '1:238556925963:android:799502900d72c8b407770e',
+      messagingSenderId: '238556925963',
+      projectId: 'asl-latina-app',
+      storageBucket: 'asl-latina-app.firebasestorage.app',
+    },
+    keys: ['link_service_config', 'service_config'],
+  },
   theme: {
     colors: {
       primary: '#3823f5',

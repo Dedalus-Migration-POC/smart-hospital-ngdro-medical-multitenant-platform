@@ -3,10 +3,12 @@ import { HeaderConfig } from '../../layout/header/header.model';
 import { LocalizedText } from '../../shared/models/shared_model';
 import { BreadcrumbConfig } from '../../components/breadcrumb/model';
 import { ImageBlockConfig } from '../../components/image-block/model';
+import { FirebaseOptions } from 'firebase/app';
 
 export interface AppConfig {
   name: string;
   favicon: string;
+  firebaseConfig?: FirebaseConfig;
   theme: {
     colors: {
       primary: string;
@@ -80,4 +82,9 @@ export interface PageConfig {
     errorMessage?: { imageBlockConfig: ImageBlockConfig };
     initMessage?: { imageBlockConfig: ImageBlockConfig };
   };
+}
+
+export interface FirebaseConfig extends FirebaseOptions {
+  firebaseOptions: FirebaseOptions;
+  keys: string[]; // keys in firebase, da cui si vuole leggere la configurazione.
 }
