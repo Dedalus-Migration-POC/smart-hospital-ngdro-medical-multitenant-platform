@@ -1,0 +1,14 @@
+<div class="card card-teaser d-flex flex-row mb-1 w-100 shadow">
+  <div class="card-body">
+    <h2 class="card-title fw-semibold mb-3">
+      {{ 'unit-details-page.services' | translate }}
+    </h2>
+    <div class="card-text">
+      <ul [attr.aria-label]="'unit-details-page.services' | translate">
+        @for (service of unitDetails?.services; track $index) {
+          <li>{{ service }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+@if (breadcrumbConfig()) {
+  <app-breadcrumb [config]="breadcrumbConfig()"></app-breadcrumb>
+}
+
+<h2 class="mt-3 fw-semibold">
+  {{ 'units-page.units' | translate }}
+</h2>
+<div class="department-search-wrapper">
+  <div class="form-group mb-3">
+    <div class="input-group">
+      <span class="input-group-text"
+        ><svg class="icon icon-sm" aria-hidden="true">
+          <use href="/bootstrap-italia/dist/svg/sprites.svg#it-search"></use>
+        </svg>
+      </span>
+      <label for="searchUnitText" class="visually-hidden">{{
+        'units-page.search-label' | translate
+      }}</label>
+      <input
+        type="text"
+        class="form-control"
+        id="searchUnitText"
+        [placeholder]="'units-page.search-label' | translate"
+        [formControl]="searchUnitText"
+      />
+    </div>
+  </div>
+</div>
+
+@if (units()) {
+  <div class="d-flex flex-wrap gap-3 mt-4">
+    @for (unit of units(); track $index) {
+      <div class="border rounded p-3">
+        <div class="mb-3">{{ unit.title }}</div>
+        <div class="mb-3">{{ unit.manager }}</div>
+        <button class="btn btn-primary" (click)="viewUnit(unit.title)">View Units detail</button>
+      </div>
+    }
+  </div>
+} @else {
+  <p>{{ 'departments-page.no-departments' | translate }}</p>
+}
+<!-- <div class="clinical-records-list-cards-container mb-5" *ngIf="units().length > 0">
+  <app-card [wrapInList]="true" [cards]="units()"> </app-card>
+</div> -->
+
+<!-- <app-no-info *ngIf="units().length === 0"> </app-no-info> -->

@@ -1,0 +1,39 @@
+// .no-data {
+//   color: #5c6f82;
+//   font-size: 20px;
+//   text-decoration: none;
+//   text-align: center;
+//   width: 100%;
+// }
+// .unit-details-wrapper {
+//   .card-wrapper.card-teaser-wrapper {
+//     justify-content: space-between;
+//     gap: 1%;
+//   }
+//   @include media-breakpoint-between(md, xl) {
+//     ::ng-deep .card.card-teaser {
+//       // all-card
+//       flex: 0 0 49% !important;
+//     }
+//   }
+//   @include media-breakpoint-up(xl) {
+//     ::ng-deep .card.card-teaser {
+//       // all-card
+//       flex: 0 0 32% !important;
+//     }
+//   }
+//   @include media-breakpoint-down(md) {
+//     ::ng-deep .card.card-teaser {
+//       margin: 3px 0 !important;
+//     }
+//   }
+
+//   @include media-breakpoint-down(md) {
+//     ::ng-deep .card.card-teaser {
+//       flex: 0 0 100% !important;
+//     }
+//   }
+//   .card-hidden {
+//     visibility: hidden;
+//   }
+// }

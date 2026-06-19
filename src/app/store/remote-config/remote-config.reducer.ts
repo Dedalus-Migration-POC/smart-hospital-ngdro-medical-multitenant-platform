@@ -3,7 +3,7 @@ import * as Actions from './remote-config.actions';
 
 export const featureKey = 'remoteConfig';
 
-export type RemoteConfigState = Record<string, unknown>;
+export type RemoteConfigState = Record<string, any>;
 
 export const remoteConfigInitialState: RemoteConfigState = {};
 

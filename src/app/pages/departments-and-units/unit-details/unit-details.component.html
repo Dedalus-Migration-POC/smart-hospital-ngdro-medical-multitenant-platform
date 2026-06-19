@@ -1,0 +1,21 @@
+@if (breadcrumbConfig()) {
+  <app-breadcrumb [config]="breadcrumbConfig()"></app-breadcrumb>
+}
+
+@if (unitDetails(); as unitDetails) {
+  <div class="mb-5 mt-3 unit-details-wrapper">
+    <div class="card-wrapper card-teaser-wrapper">
+      <app-unit-general-info
+        [unitDetails]="unitDetails"
+        [department]="department()"
+      ></app-unit-general-info>
+      <app-unit-services
+        [unitDetails]="unitDetails"
+        [department]="department()"
+      ></app-unit-services>
+      <div class="card card-teaser p-0 m-0 card-hidden"></div>
+    </div>
+  </div>
+}
+
+<!-- <app-no-info *ngIf="!unitDetails()"> </app-no-info> -->

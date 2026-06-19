@@ -7,13 +7,13 @@ export const APP_CONFIG: AppConfig = {
   favicon: '/assets/favicon.ico',
   firebaseConfig: {
     firebaseOptions: {
-      apiKey: 'AIzaSyAfnbFlDenM9BK-yn5eecOHQRgqjgaMdXU',
-      appId: '1:238556925963:android:799502900d72c8b407770e',
-      messagingSenderId: '238556925963',
-      projectId: 'asl-latina-app',
-      storageBucket: 'asl-latina-app.firebasestorage.app',
+      apiKey: 'AIzaSyAsJnzzD-oJt7qwk7PnxbZzo6FakcKGydU',
+      appId: '1:554681460612:web:e8a3fb16e3f2dbad125fd1',
+      messagingSenderId: '554681460612',
+      projectId: 'aou-gmartino-55c05',
+      storageBucket: 'aou-gmartino-55c05.firebasestorage.app',
     },
-    keys: ['link_service_config', 'service_config'],
+    keys: ['department'],
   },
   theme: {
     colors: {
@@ -1479,6 +1479,59 @@ export const APP_CONFIG: AppConfig = {
                         height: '72px',
                       },
                     },
+                    {
+                      id: 'departments',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri dipartimenti',
+                        en: 'Open departments',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'route',
+                        url: '/departments',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Dipartimenti e reparti',
+                            en: 'Departments and units',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        // subTitle: {
+                        //   text: {
+                        //     it: 'Cerca il tuo dipartimento',
+                        //     en: 'Search your department',
+                        //   },
+                        //   fontSize: 'sm',
+                        //   fontWeight: 'normal',
+                        //   color: 'secondary',
+                        // },
+                      },
+                      blocked: false,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+       <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_4019_11176" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="60" height="60">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H60V60H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_4019_11176)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M41.9086 28.043C44.6431 28.9547 47.375 29.8678 52.5811 29.9997V44.0867C52.5811 49.8246 48.0257 54.3899 42.2992 54.3899C36.5724 54.3899 32.017 49.8246 32.017 44.0867V26.2169C36.7026 26.346 39.3056 27.2591 41.9086 28.043ZM30.9771 13.1733C30.4552 13.1733 30.0647 13.5632 30.0647 14.0864V44.0867C30.0647 50.8695 35.4009 56.3479 42.2991 56.3479C49.1984 56.3479 54.5333 50.9999 54.5333 44.0867V14.0864C54.5333 13.5632 54.1428 13.1733 53.6223 13.1733C53.1031 13.1733 52.7112 13.5632 52.7112 14.0864V28.1734C47.8968 28.043 45.2938 27.2591 42.6908 26.346C39.9563 25.4343 37.2231 24.5213 32.017 24.3896V14.0864C31.8868 13.5632 31.4965 13.1733 30.9771 13.1733Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M2.86322 13.1733C2.34378 13.1733 1.95215 13.5645 1.95215 14.0864V44.0867C1.95215 50.8695 7.28837 56.3492 14.1864 56.3492C21.0844 56.3492 26.4219 50.9999 26.4219 44.0867V14.0864C26.4219 13.5645 26.0302 13.1733 25.5095 13.1733C24.989 13.1733 24.5984 13.5645 24.5984 14.0864V44.0867C24.5984 49.8274 20.0433 54.3925 14.3165 54.3925C8.58977 54.3925 4.03443 49.8274 4.03443 44.0867V14.0864C3.77428 13.5645 3.38373 13.1733 2.86322 13.1733Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1.0416 1.82476H1.95137V6.5218C1.95137 7.04233 2.34322 7.43353 2.86244 7.43353C3.38447 7.43353 3.7748 7.04233 3.7748 6.5218V1.82476H24.3375V6.5218C24.3375 7.04233 24.7281 7.43353 25.2499 7.43353C25.7706 7.43353 26.1609 7.04233 26.1609 6.5218V1.82476H29.9341V6.5218C29.9341 7.04233 30.3259 7.43353 30.8452 7.43353C31.367 7.43353 31.7575 7.04233 31.7575 6.5218V1.82476H52.5819V6.5218C52.5819 7.04233 52.9709 7.43353 53.493 7.43353C54.0122 7.43353 54.404 7.04233 54.404 6.5218V1.82476H55.3138C55.8356 1.82476 56.2249 1.43355 56.2249 0.911731C56.2249 0.389909 55.8356 0 55.3138 0H0.910335C0.390897 0 -0.000732422 0.389909 -0.000732422 0.911731C-0.000732422 1.43355 0.521081 1.82476 1.0416 1.82476Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M59.0889 9.39014H1.04119C0.520677 9.39014 0.130127 9.78264 0.130127 10.3032C0.130127 10.8261 0.520677 11.2162 1.04119 11.2162H58.1779V58.1735H1.04119C0.520677 58.1735 0.130127 58.5647 0.130127 59.0878C0.130127 59.6094 0.520677 60.0008 1.04119 60.0008H59.0889C59.6095 60.0008 60 59.6094 60 59.0878V10.3032C60 9.78264 59.6095 9.39014 59.0889 9.39014Z" fill="#DC2B1C"/>
+</g>
+</svg>
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
                   ],
                 },
               },
@@ -1941,6 +1994,103 @@ export const APP_CONFIG: AppConfig = {
               },
             },
           },
+        },
+      },
+    },
+    {
+      id: '/departments', // === url!
+      name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' }, // Nome nel browser per accessibilità
+      route: '/departments',
+      page: {
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
+          subTitle: {
+            it: 'Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale.',
+            en: 'View the contacts, departments, and healthcare services of the Hospital.',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+            {
+              name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
+              routerLink: '/departments',
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: '/departments/units', // === url!
+      name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' }, // Nome nel browser per accessibilità
+      route: '/departments/units', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: '{{department}}', en: '{{department}}' },
+          subTitle: {
+            it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
+            en: 'View the units of the department or search for a service.',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+
+            {
+              name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
+              routerLink: '/departments',
+            },
+            {
+              name: { it: '{{department}}', en: '{{department}}' },
+              routerLink: '',
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: '/departments/units/details', // === url!
+      name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' }, // Nome nel browser per accessibilità
+      route: '/departments/units/details', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: '{{unit}}', en: '{{unit}}' },
+          subTitle: {
+            it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
+            en: 'View the units of the department or search for a service.',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+
+            {
+              name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
+              routerLink: '/departments',
+            },
+            {
+              name: { it: '{{department}}', en: '{{department}}' },
+              routerLink: '/departments/units',
+              queryParams: { department: '{{department}}' },
+            },
+            {
+              name: { it: '{{unit}}', en: '{{unit}}' },
+              routerLink: '',
+            },
+          ],
         },
       },
     },
