@@ -5,19 +5,26 @@ import html2canvas from 'html2canvas';
 export const FileUtils = {
   download: (
     mimeType: string,
-    base64: string,
+    content: string | ArrayBuffer,
     fileName?: string,
     zoom?: number,
     negativeLeftMargin?: number,
   ): void => {
-    if (mimeType === 'text/html') {
-      convertHtmlToPdf(base64, fileName, 'save', zoom, negativeLeftMargin);
+    if (mimeType === 'text/html' && typeof content === 'string') {
+      convertHtmlToPdf(content, fileName, 'save', zoom, negativeLeftMargin);
       return;
     }
-    const linkSource = `data:${mimeType};base64,${base64}`;
+
+    if (content instanceof ArrayBuffer) {
+      const blob = new Blob([content], { type: mimeType });
+      triggerBlobDownload(blob, fileName, mimeType);
+      return;
+    }
+
+    const linkSource = `data:${mimeType};base64,${content}`;
     const downloadLink = document.createElement('a');
     downloadLink.href = linkSource;
-    downloadLink.download = (fileName ?? 'file') + '.' + mimeType.split('/')[1];
+    downloadLink.download = buildFileName(fileName, mimeType);
     downloadLink.click();
   },
 
@@ -38,6 +45,20 @@ function openBlob(blob: Blob): void {
   const fileUrl = window.URL.createObjectURL(blob);
   window.open(fileUrl, '_blank')?.focus();
   window.setTimeout(() => window.URL.revokeObjectURL(fileUrl), 1000);
+}
+
+function triggerBlobDownload(blob: Blob, fileName: string | undefined, mimeType: string): void {
+  const fileUrl = window.URL.createObjectURL(blob);
+  const downloadLink = document.createElement('a');
+  downloadLink.href = fileUrl;
+  downloadLink.download = buildFileName(fileName, mimeType);
+  downloadLink.click();
+  window.setTimeout(() => window.URL.revokeObjectURL(fileUrl), 1000);
+}
+
+function buildFileName(fileName: string | undefined, mimeType: string): string {
+  const extension = mimeType.split('/')[1]?.split(';')[0] ?? 'bin';
+  return `${fileName ?? 'file'}.${extension}`;
 }
 
 async function convertHtmlToPdf(

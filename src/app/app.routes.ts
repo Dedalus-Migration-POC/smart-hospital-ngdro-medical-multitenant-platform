@@ -11,6 +11,9 @@ import { DepartmentsAndUnitsRouting } from './pages/departments-and-units/depart
 import { UnitsComponent } from './pages/departments-and-units/units/units.component';
 import { UnitDetailsComponent } from './pages/departments-and-units/unit-details/unit-details.component';
 import { UnitsRouting } from './pages/departments-and-units/units/units.routing';
+import { PaymentsPaRouting } from './pages/payments-pa/payments-pa.routing';
+import { PaymentsPaList } from './pages/payments-pa/payments-list/payments-list.component';
+import { PaymentsPaDetails } from './pages/payments-pa/payment-details/payment-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
@@ -51,6 +54,21 @@ export const routes: Routes = [
           },
           { path: 'details', component: UnitDetailsComponent },
         ],
+      },
+    ],
+  },
+  {
+    path: 'payments-pa',
+    component: PaymentsPaRouting,
+    canActivate: [authenticatedGuard()],
+    children: [
+      {
+        path: '',
+        component: PaymentsPaList,
+      },
+      {
+        path: 'details',
+        component: PaymentsPaDetails,
       },
     ],
   },

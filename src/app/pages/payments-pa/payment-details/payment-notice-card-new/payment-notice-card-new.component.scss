@@ -1,0 +1,197 @@
+:host {
+  // margin: auto;
+  max-width: 560px;
+  display: block;
+  width: 100%;
+  margin-bottom: 40px;
+  box-shadow:
+    1px 0px 3px 0px rgba(0, 0, 0, 0.15),
+    1px 3px 10px 0px #cfcfcf;
+}
+
+.line {
+  box-sizing: border-box;
+  height: 1px;
+  width: 100%;
+  border: 1px solid #979797;
+  opacity: 0.21;
+}
+.card.card-teaser {
+  padding: 24px calc(10px + 1vw);
+}
+.card.card-bg {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.static-text {
+  height: 24px;
+  width: 151px;
+  color: #000000;
+  font-family: 'Titillium Web';
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.variable-text {
+  height: 24px;
+  width: 283px;
+  color: #000000;
+  font-family: 'Titillium Web';
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.bottom-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  button {
+    width: 90%;
+  }
+}
+
+.steppers-nav {
+  padding: 20px;
+  margin: 0px;
+}
+
+.card-body {
+  flex-direction: column;
+}
+
+it-icon {
+  // color: var(--#{$prefix}primary);
+}
+
+.title-confirm {
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.subtitle-confirm {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  // color: var(--#{$prefix}secondary);
+}
+
+.card-confirm {
+  border-left: 4px solid #008255;
+}
+
+.card-view {
+  // border-left: 4px solid var(--#{$prefix}primary);
+}
+
+.confirmation-content {
+  .confirmation-item {
+    display: flex;
+    justify-content: space-between;
+
+    > span:first-child {
+      min-width: 40%;
+      text-align: left;
+    }
+
+    > span:last-child {
+      flex: 1;
+      text-align: left;
+      word-break: break-word;
+    }
+
+    .confirmation-item-labels {
+      display: flex;
+      flex: 1;
+      > * {
+        flex: 2;
+        text-align: left;
+        font-weight: normal;
+        font-size: 16px;
+      }
+      > *:first-child {
+        // color: var(--#{$prefix}gray-600);
+        flex: 1;
+      }
+    }
+  }
+}
+
+// @include media-breakpoint-down(sm) {
+//   .confirmation-content {
+//     .confirmation-item {
+//       .confirmation-item-labels {
+//         flex-direction: column;
+//       }
+//     }
+//   }
+//   .steppers-nav {
+//     flex-direction: column;
+//     align-items: start;
+
+//     > *:first-child {
+//       margin-bottom: 20px;
+//     }
+//   }
+// }
+
+.card {
+  overflow: hidden;
+}
+
+::ng-deep {
+  .confirmation-card-container {
+    .title-confirm,
+    .title-view {
+      it-icon {
+        svg {
+          width: 30px !important;
+          height: 30px !important;
+        }
+      }
+    }
+  }
+}
+
+.text-item {
+  text-transform: capitalize;
+}
+.error {
+  // color: var(--#{$prefix}red);
+  font-weight: 600 !important;
+}
+.success {
+  // color: var(--#{$prefix}green);
+  font-weight: 600 !important;
+}
+.warning {
+  // color: var(--#{$prefix}orange);
+  font-weight: 600 !important;
+}
+
+.copy-button {
+  background-color: white;
+  border: none;
+  margin-left: 10px;
+  ::ng-deep it-icon {
+    svg {
+      // fill: var(--#{$prefix}primary);
+    }
+  }
+}
+
+.copy-success-message {
+  position: absolute;
+  // color: var(--#{$prefix}primary);
+}
+
+.copy-failure-message {
+  position: absolute;
+  // color: var(--#{$prefix}red);
+}

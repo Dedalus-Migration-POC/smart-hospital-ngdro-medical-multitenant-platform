@@ -1278,7 +1278,7 @@ export const APP_CONFIG: AppConfig = {
                       className: 'bg-white',
                       action: {
                         type: 'route',
-                        url: '/payments',
+                        url: '/payments-pa',
                       },
                       text: {
                         title: {
@@ -2092,6 +2092,147 @@ export const APP_CONFIG: AppConfig = {
             },
           ],
         },
+      },
+    },
+    {
+      id: '/payments-pa', // === url!
+      name: { it: 'Pagamenti', en: 'Payments' }, // Nome nel browser per accessibilità
+      route: '/payments-pa', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Pagamenti', en: 'Payments' },
+          subTitle: {
+            it: 'Visualizza i pagamenti.',
+            en: 'View the payments.',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+
+            {
+              name: { it: 'Pagamenti', en: 'Payments' },
+              routerLink: '',
+            },
+          ],
+        },
+        notFoundMessage: {
+          imageBlockConfig: {
+            id: 'paymentsNotFound',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value:
+                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+              decorative: true,
+              alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'La tua richiesta non ha prodotto risultati.',
+                  en: 'Your request did not produce any results.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+            },
+          },
+        },
+        errorMessage: {
+          imageBlockConfig: {
+            id: 'errorMessage',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+              decorative: true,
+              alt: { it: 'Errore', en: 'Error' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Errore', en: 'Error' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.',
+                  en: 'An error occurred while fetching the payment. Please try again later.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+            },
+          },
+        },
+      },
+    },
+    {
+      id: '/payments-pa/details', // === url!
+      name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' }, // Nome nel browser per accessibilità
+      route: '/payments-pa/details', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+          subTitle: {
+            it: 'Visualizza i dettagli del pagamento.',
+            en: 'View the payment details.',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+            {
+              name: { it: 'Pagamenti', en: 'Payments' },
+              routerLink: '/payments-pa',
+            },
+            {
+              name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+              routerLink: '',
+            },
+          ],
+        },
+        isSimplePagoPa: true, // true:getPagoPaLink (/simple-pagopa/api/v1/payment); false:window.open('https://checkout.pagopa.it/inserisci-dati-avviso', '_blank');
       },
     },
   ],

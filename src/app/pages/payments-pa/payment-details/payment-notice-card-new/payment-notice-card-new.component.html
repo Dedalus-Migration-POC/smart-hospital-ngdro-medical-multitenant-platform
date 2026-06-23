@@ -1,0 +1,173 @@
+<div
+  class="confirmation-card-container card card-bg card-teaser rounded pt-4 pb-3 focus--mouse shadow-lg"
+>
+  <div class="card-body d-flex">
+    @if (causal) {
+      <div class="title-confirm d-flex text-start">
+        <ul>
+          @for (x of causal; track $index) {
+            <li>{{ x | titlecase }}</li>
+          }
+        </ul>
+      </div>
+    }
+    @if (service) {
+      <div class="subtitle-confirm d-flex text-start">
+        {{ service }}
+      </div>
+    }
+
+    <div class="confirmation-content mb-2 pt-4 pb-4">
+      @if (amount) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3"> {{ 'payments-page.amount' | translate }} </span>
+            <span>{{ amount }}€</span>
+          </div>
+        </div>
+      }
+
+      @if (state) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3"> {{ 'payments-page.state' | translate }} </span>
+            <span class="text-item" [ngClass]="getStatus(state).styleClass">{{
+              getStatus(state).title
+            }}</span>
+          </div>
+        </div>
+      }
+      @if (paymentDate) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3"> {{ 'payments-page.paymentDate' | translate }}</span>
+            <span class="text-item">{{ paymentDate }}</span>
+          </div>
+        </div>
+      }
+      @if (noticeCode) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3"> {{ 'payments-page.iuv' | translate }}</span>
+            <span class="text-item" id="copy-content"
+              >{{ noticeCode }}
+              @if (state === 'NOT_PAYED') {
+                <button (click)="copyCodeText()" class="copy-button">
+                  <div class="d-none">
+                    {{ 'payments-page.copy-iuv' | translate }}
+                  </div>
+                  <it-icon name="copy" class="me-3"> </it-icon>
+                  @if (textCopied) {
+                    <div class="copy-success-message">Copiato!</div>
+                  }
+                  @if (errorToCopy) {
+                    <div class="copy-failure-message">Non è stato possbile copiare</div>
+                  }
+                </button>
+              }
+            </span>
+          </div>
+        </div>
+      }
+
+      @if (causal) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3"> {{ 'payments-page.causal' | translate }}</span>
+            <span class="text-item">{{ causal }}</span>
+          </div>
+        </div>
+      }
+
+      @if (expiration) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3"> {{ 'payments-page.expire' | translate }}</span>
+            <span class="text-item">{{ expiration }}</span>
+          </div>
+        </div>
+      }
+
+      <hr class="line" />
+
+      @if (creditors) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3">
+              {{ 'payments-page.creditors' | translate }}
+            </span>
+            <span class="text-item">{{ creditors }}</span>
+          </div>
+        </div>
+      }
+      @if (creditorsFiscalCode) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3">{{ 'payments-page.fiscalCode' | translate }} </span>
+            <div>
+              <span class="text-item" id="fiscal-code">{{ creditorsFiscalCode }}</span>
+              @if (state === 'NOT_PAYED') {
+                <button (click)="copyFiscalCodeText()" class="copy-button">
+                  <div class="d-none">
+                    {{ 'payments-page.copy-fiscalCode' | translate }}
+                  </div>
+                  <it-icon name="copy" class="me-3"> </it-icon>
+                  @if (textCopiedFiscalCode) {
+                    <div class="copy-success-message">Copiato!</div>
+                  }
+                  @if (errorToCopyFiscalCode) {
+                    <div class="copy-failure-message">Non è stato possbile copiare</div>
+                  }
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      }
+
+      <hr class="line" />
+
+      @if (debtorName && debtorLastName) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3"> {{ 'payments-page.debtor' | translate }} </span>
+            <span class="text-item">{{ debtorName }} {{ debtorLastName }}</span>
+          </div>
+        </div>
+      }
+      @if (fiscalCode) {
+        <div class="confirmation-item mb-4">
+          <div class="confirmation-item-labels">
+            <span class="me-3">{{ 'payments-page.fiscalCode' | translate }}</span>
+            <span class="text-item">{{ fiscalCode }}</span>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="bottom-container">
+      @if (state === 'NOT_PAYED') {
+        <button
+          [itButton]="'primary'"
+          (click)="pay()"
+          [disabled]="(loadingGetPagoPaLink$ | async)!"
+        >
+          {{ 'payments-page.pay' | translate }} €{{ amount }}
+        </button>
+      }
+      @if (state !== 'NOT_PAYED') {
+        <button
+          [disabled]="(loadingPdf$ | async)!"
+          [itButton]="'primary'"
+          (click)="downloadPdf(id!)"
+        >
+          {{ (loadingPdf$ | async) ? 'Loading...' : ('payments-page.download-docs' | translate) }}
+        </button>
+      }
+    </div>
+    @if (isSimplePagoPa && state === 'NOT_PAYED') {
+      <div class="text-center mt-3 mb-3">
+        {{ 'payments-page.redirect-pagopa-info' | translate }}
+      </div>
+    }
+  </div>
+</div>

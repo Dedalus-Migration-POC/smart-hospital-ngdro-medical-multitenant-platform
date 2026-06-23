@@ -1,0 +1,22 @@
+.no-data {
+  color: #5c6f82;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+}
+::ng-deep it-tab-container {
+  ul {
+    width: 100%;
+    .nav-item {
+      width: 50%;
+    }
+  }
+  .nav-tabs {
+    // background-color: var(--#{$prefix}body-bg);
+  }
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link {
+    // background-color: var(--#{$prefix}body-bg);
+  }
+}

@@ -1,0 +1,41 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.page.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+  }
+  @let payments = paymentSummary();
+  @let paymentData = payment();
+  @let userData = user().data;
+  @let error = paymentSummary().error;
+
+  @if (paymentSummary().loading) {
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
+  }
+  @if (error) {
+    <!-- <app-error
+    (retry)="retry()"
+    text="Errore nel caricamento dei dettagli del pagamento, riprovare più tardi."
+  ></app-error> -->
+  }
+
+  @if (payments && paymentData && userData && !error) {
+    <app-payment-notice-card-new
+      [noticeCode]="paymentData.iuv"
+      service="Ticket Prenotazione"
+      [amount]="paymentData.amount"
+      [state]="paymentData.paymentStatus"
+      [id]="paymentData.id"
+      [causal]="paymentData.causal"
+      [fiscalCode]="userData.fiscalCode!.toUpperCase()"
+      [creditors]="paymentData.creditors"
+      [creditorsFiscalCode]="paymentData.creditorsFiscalCode"
+      [debtorName]="userData.firstName"
+      [debtorLastName]="userData.lastName"
+      [debtorEmail]="userData.email"
+      [isSimplePagoPa]="pageConfig?.page?.isSimplePagoPa"
+    ></app-payment-notice-card-new>
+  }
+}
