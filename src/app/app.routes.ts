@@ -14,6 +14,7 @@ import { UnitsRouting } from './pages/departments-and-units/units/units.routing'
 import { PaymentsPaRouting } from './pages/payments-pa/payments-pa.routing';
 import { PaymentsPaList } from './pages/payments-pa/payments-list/payments-list.component';
 import { PaymentsPaDetails } from './pages/payments-pa/payment-details/payment-details.component';
+import { TripletReport } from './pages/reports-and-documents/reports-by-triplet/reports-by-triplet';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
@@ -31,6 +32,7 @@ export const routes: Routes = [
     component: IdpRedirectComponent,
   },
   { path: 'single-report', component: SingleReport },
+  { path: 'reports-by-triplet', component: TripletReport },
   {
     path: 'medical-reports',
     component: MedicalReportsList,

@@ -25,10 +25,19 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAppConfig } from '../../../initialize/state/selector';
 import { map, take } from 'rxjs';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
+import { InputComponent } from '../../../components/input/input.component';
 
 @Component({
   selector: 'app-single-report',
-  imports: [ReactiveFormsModule, TranslateModule, JsonPipe, Spinner, ImageBlock, Breadcrumb],
+  imports: [
+    ReactiveFormsModule,
+    TranslateModule,
+    JsonPipe,
+    Spinner,
+    ImageBlock,
+    Breadcrumb,
+    InputComponent,
+  ],
   templateUrl: './single-report.html',
   styleUrl: './single-report.scss',
 })

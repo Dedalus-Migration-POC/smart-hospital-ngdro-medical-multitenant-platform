@@ -1,0 +1,27 @@
+.select-wrapper {
+  select {
+    background-color: transparent;
+    font-weight: 500;
+  }
+  label {
+    position: relative;
+    color: #1f1f1f;
+    font-size: 1rem;
+    display: block;
+    font-weight: 400;
+    padding: 0 0.75rem;
+    line-height: 1rem;
+    top: 0;
+    transform: translateY(128%);
+    z-index: -1;
+    transition:
+      opacity 0.1s ease-in-out,
+      transform 0.1s ease-in-out;
+    &.active {
+      font-size: 0.875rem;
+      transform: none;
+      opacity: 0.65;
+      transform: translateY(59%);
+    }
+  }
+}

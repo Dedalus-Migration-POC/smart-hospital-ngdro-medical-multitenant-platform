@@ -6,8 +6,13 @@
     <form class="form-floating" [formGroup]="searchReportForm" (submit)="onSubmit()">
       <div class="row g-4 mb-4">
         <div class="col-lg">
-          <div class="form-floating">
-            <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
+          <app-input-component
+            class="col-12 col-sm"
+            [label]="pageConfig.page.singleReportConfig.fiscalCodeInput.label[lang()]"
+            fieldName="cf"
+            [formGroup]="searchReportForm"
+          ></app-input-component>
+          <!-- <div class="form-floating">
             <input
               type="text"
               class="form-control"
@@ -36,11 +41,18 @@
                 {{ pageConfig.page.singleReportConfig.fiscalCodeInput.errorInvalid[lang()] }}
               </div>
             }
-          </div>
+          </div> -->
         </div>
         <div class="col-md">
-          <div class="form-floating">
-            <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
+          <app-input-component
+            class="col-12 col-sm"
+            [label]="pageConfig.page.singleReportConfig.idInput.label[lang()]"
+            fieldName="id"
+            [formGroup]="searchReportForm"
+            [maxlength]="idlength.max"
+            [minlength]="idlength.min"
+          ></app-input-component>
+          <!-- <div class="form-floating">
             <input
               type="text"
               class="form-control"
@@ -68,7 +80,7 @@
                 {{ pageConfig.page.singleReportConfig.idInput.errorInvalid[lang()] }}
               </div>
             }
-          </div>
+          </div> -->
         </div>
       </div>
       <div
