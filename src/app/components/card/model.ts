@@ -9,6 +9,8 @@ import {
   TextConfig,
   FontSize,
   TextDecoration,
+  FontWeight,
+  LineHeight,
 } from '../../shared/models/shared_model';
 
 export type CardType = 'mediaText' | 'data';
@@ -60,10 +62,24 @@ export interface MediaTextCard extends BaseCard {
 // DATACARD: card dinamica con elmenti come campi (label: value => basati su dati del BE), azioni (bottoni o link) con link esterni o route interno
 export interface DataCard extends BaseCard {
   type: 'data';
-  text: TextSection;
+  // Path BE e stili per title/subTitle.
+  titleSubtitle: DataCardTitleSubtitle;
   fields: CardField[];
   actions?: DataCardAction[];
   actionsLayout?: FlexLayoutConfig;
+}
+
+export interface DataCardTitleSubtitle {
+  title: DataCardTitleSubtitleBinding;
+  subTitle?: DataCardTitleSubtitleBinding;
+}
+
+export interface DataCardTitleSubtitleBinding {
+  key: string;
+  fontSize?: FontSize;
+  fontWeight?: FontWeight;
+  color?: Colors;
+  lineHeight?: LineHeight;
 }
 
 export type CardField =

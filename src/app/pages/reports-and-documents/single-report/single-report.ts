@@ -71,32 +71,33 @@ export class SingleReport implements OnDestroy {
   );
   cardsConfig: any = {
     itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
-    itemsContentLayout: {
+    itemsLayout: {
       direction: 'column',
-      gap: 'gap-2',
+      gap: 'gap-1',
     },
     items: [
       {
         id: 'card-1',
         type: 'data',
         background: 'white',
-        text: {
+        titleSubtitle: {
           title: {
-            text: {
-              it: 'Titolo Laboratorio-1',
-              en: 'Title Report-1',
-            },
-            subTitle: {
-              text: {
-                it: 'Sottotitolo Laboratorio-1',
-                en: 'Subtitle Report-1',
-              },
-            },
+            key: 'subject',
+            fontSize: 'lg',
+            fontWeight: 'bold',
+            color: 'black',
+            lineHeight: 'md',
+          },
+          subTitle: {
+            key: 'metaInfo.object',
+            fontSize: 'md',
+            fontWeight: 'semibold',
+            color: 'secondary',
           },
         },
         fields: [
           {
-            key: 'subject',
+            key: 'metaInfo.object',
             type: 'text',
             label: {
               text: {
@@ -105,10 +106,35 @@ export class SingleReport implements OnDestroy {
               },
             },
           },
+          {
+            key: 'date',
+            type: 'date',
+            format: 'dd/MM/yyyy',
+            label: {
+              text: {
+                it: 'Data',
+                en: 'Date',
+              },
+            },
+          },
         ],
       },
     ],
   };
+
+  readonly renderedCardsConfig = computed<CardsContainer>(() => {
+    const templateCard = this.cardsConfig.items[0];
+
+    return {
+      ...this.cardsConfig,
+      items: this.mockReports.map((report: any, index: number) => ({
+        ...report,
+        ...templateCard,
+        id: `card-${index + 1}`,
+        type: 'data',
+      })),
+    };
+  });
 
   ngOnDestroy(): void {
     this.store.dispatch(resetSingleReportState());

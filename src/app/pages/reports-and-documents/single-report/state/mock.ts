@@ -11,6 +11,9 @@ export const SINGLE_REPORT = [
   {
     id: 'report1',
     status: REPORT_STATUS.READY,
+    metaInfo: {
+      object: 'Risposta mockata BE - oggetto referto 1',
+    },
     paymentInfo: {
       amount: null,
       status: REPORT_PAYMENT_STATUS.PAYED,
@@ -44,6 +47,9 @@ export const SINGLE_REPORT = [
   {
     id: 'report2',
     status: REPORT_STATUS.READY,
+    metaInfo: {
+      object: 'Risposta mockata BE - oggetto referto 2',
+    },
     paymentInfo: {
       amount: null,
       status: REPORT_PAYMENT_STATUS.PAYED,
