@@ -1,0 +1,44 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.page.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+  }
+
+  @if (loading()) {
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
+  }
+
+  @if (error()) {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig.page.errorMessage.imageBlockConfig"></app-image-block>
+    </div>
+  }
+
+  @if (!loading() && !error() && !payment()) {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block
+        [config]="pageConfig.page.notFoundMessage.imageBlockConfig"
+      ></app-image-block>
+    </div>
+  }
+
+  @if (payment(); as paymentData) {
+    @let userData = user().data;
+
+    @if (userData) {
+      <app-payment-invoice-card
+        [iuv]="paymentData.iuv"
+        [importo]="paymentData.importo"
+        [prestazioni]="paymentData.prestazioni"
+        [statoDistinta]="paymentData.statoDistinta"
+        [debtorName]="userData.firstName"
+        [debtorLastName]="userData.lastName"
+        [debtorEmail]="userData.email"
+        [debtorFiscalCode]="userData.fiscalCode!.toUpperCase()"
+      ></app-payment-invoice-card>
+    }
+  }
+}

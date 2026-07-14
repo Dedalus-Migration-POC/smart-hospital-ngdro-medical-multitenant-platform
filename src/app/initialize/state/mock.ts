@@ -1319,6 +1319,58 @@ export const APP_CONFIG: AppConfig = {
                       },
                     },
                     {
+                      id: 'payments-jcash',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri pagamenti',
+                        en: 'Open payments',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'route',
+                        url: '/payments-jcash',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Pagamenti',
+                            en: 'Payments',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'J-Cash',
+                            en: 'J-Cash',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                        },
+                      },
+                      blocked: true,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+          <svg width="59" height="60" viewBox="0 0 59 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.4285 55.1616H13.6364C13.0984 55.1616 12.6624 55.5949 12.6624 56.1294C12.6624 56.6638 13.0984 57.0971 13.6364 57.0971H21.4285C21.9665 57.0971 22.4026 56.6638 22.4026 56.1294C22.4026 55.5949 21.9665 55.1616 21.4285 55.1616Z" fill="#0066CC"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M55.0321 18.3871H35.0647V3.3871C35.0626 1.51731 33.5376 0.00206669 31.6557 0H3.40907C1.52716 0.00206669 0.0020801 1.51731 0 3.3871V56.6129C0.0020801 58.4827 1.52716 59.9979 3.40907 60H31.6557C33.5376 59.9979 35.0626 58.4827 35.0647 56.6129V42.5806H55.0321C56.9141 42.5786 58.4391 41.0633 58.4412 39.1936V21.7742C58.4391 19.9044 56.9141 18.3892 55.0321 18.3871ZM22.1285 1.93596L21.6415 3.87144H13.4232L12.9362 1.93596H22.1285ZM31.6558 58.065C32.4624 58.0643 33.1161 57.4148 33.1168 56.6134V3.38757C33.1161 2.58615 32.4624 1.93663 31.6558 1.93596H24.1376L23.3474 5.07386C23.239 5.50463 22.8495 5.80686 22.4026 5.80693H12.6624C12.2155 5.80686 11.826 5.50463 11.7176 5.07386L10.9274 1.93596H3.40919C2.60257 1.93663 1.94883 2.58615 1.94816 3.38757V56.6134C1.94883 57.4148 2.60257 58.0643 3.40919 58.065H31.6558ZM35.0645 32.9035H37.9866V36.7745H35.0645V32.9035ZM55.0319 40.6447C55.8385 40.6441 56.4923 39.9945 56.4929 39.1931V28.0641H35.0645V30.9673H38.9606C39.4985 30.9673 39.9346 31.4006 39.9346 31.9351V37.7415C39.9346 38.276 39.4985 38.7093 38.9606 38.7093H35.0645V40.6447H55.0319ZM56.4929 26.1286H35.0645V24.1931H56.4929V26.1286ZM35.0645 22.2577H56.4929V21.7738C56.4923 20.9724 55.8385 20.3229 55.0319 20.3222H35.0645V22.2577Z" fill="#024E9A"/>
+<path d="M53.5713 30.9678H44.8051C44.2671 30.9678 43.8311 31.401 43.8311 31.9355C43.8311 32.47 44.2671 32.9033 44.8051 32.9033H53.5713C54.1092 32.9033 54.5453 32.47 54.5453 31.9355C54.5453 31.401 54.1092 30.9678 53.5713 30.9678Z" fill="#0066CC"/>
+<path d="M53.5713 33.8711H44.8051C44.2671 33.8711 43.8311 34.3044 43.8311 34.8388C43.8311 35.3733 44.2671 35.8066 44.8051 35.8066H53.5713C54.1092 35.8066 54.5453 35.3733 54.5453 34.8388C54.5453 34.3044 54.1092 33.8711 53.5713 33.8711Z" fill="#0066CC"/>
+<path d="M53.5713 36.7744H49.6752C49.1373 36.7744 48.7012 37.2077 48.7012 37.7422C48.7012 38.2766 49.1373 38.7099 49.6752 38.7099H53.5713C54.1092 38.7099 54.5453 38.2766 54.5453 37.7422C54.5453 37.2077 54.1092 36.7744 53.5713 36.7744Z" fill="#0066CC"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.84399 30.0001C5.84399 23.5865 11.077 18.3872 17.5322 18.3872C23.9845 18.3944 29.2132 23.5895 29.2205 30.0001C29.2205 36.4137 23.9875 41.613 17.5322 41.613C11.077 41.613 5.84399 36.4137 5.84399 30.0001ZM7.79216 30.0006C7.79216 35.3453 12.153 39.678 17.5324 39.678C22.9092 39.672 27.2665 35.3428 27.2726 30.0006C27.2726 24.6559 22.9117 20.3232 17.5324 20.3232C12.153 20.3232 7.79216 24.6559 7.79216 30.0006Z" fill="#DC2B1C"/>
+<path d="M22.6875 26.4124L16.4667 32.5931L13.2465 30.1935C12.8161 29.8728 12.2056 29.9594 11.8828 30.387C11.5601 30.8146 11.6473 31.4212 12.0777 31.7419L15.9737 34.6451C16.3615 34.9341 16.9041 34.8957 17.2469 34.5552L24.065 27.781C24.3111 27.5365 24.4072 27.1802 24.3171 26.8462C24.2271 26.5122 23.9645 26.2514 23.6284 26.1619C23.2923 26.0724 22.9336 26.1679 22.6875 26.4124Z" fill="#DC2B1C"/>
+</svg>
+
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
+                    {
                       id: 'clinical-records',
                       type: 'mediaText',
                       ariaLabel: {
@@ -2477,6 +2529,146 @@ export const APP_CONFIG: AppConfig = {
           ],
         },
         isSimplePagoPa: true, // true:getPagoPaLink (/simple-pagopa/api/v1/payment); false:window.open('https://checkout.pagopa.it/inserisci-dati-avviso', '_blank');
+      },
+    },
+    {
+      id: '/payments-jcash', // === url!
+      name: { it: 'Pagamenti', en: 'Payments' }, // Nome nel browser per accessibilità
+      route: '/payments-jcash', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Pagamenti', en: 'Payments' },
+          subTitle: {
+            it: 'Visualizza i pagamenti.',
+            en: 'View the payments.',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+
+            {
+              name: { it: 'Pagamenti', en: 'Payments' },
+              routerLink: '',
+            },
+          ],
+        },
+        notFoundMessage: {
+          imageBlockConfig: {
+            id: 'paymentsNotFound',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value:
+                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+              decorative: true,
+              alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'La tua richiesta non ha prodotto risultati.',
+                  en: 'Your request did not produce any results.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+            },
+          },
+        },
+        errorMessage: {
+          imageBlockConfig: {
+            id: 'errorMessage',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+              decorative: true,
+              alt: { it: 'Errore', en: 'Error' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Errore', en: 'Error' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.',
+                  en: 'An error occurred while fetching the payment. Please try again later.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+            },
+          },
+        },
+      },
+    },
+    {
+      id: '/payments-jcash/details', // === url!
+      name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' }, // Nome nel browser per accessibilità
+      route: '/payments-jcash/details', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+          subTitle: {
+            it: 'Visualizza i dettagli del pagamento.',
+            en: 'View the payment details.',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+            {
+              name: { it: 'Pagamenti', en: 'Payments' },
+              routerLink: '/payments-jcash',
+            },
+            {
+              name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+              routerLink: '/payments-jcash/details',
+            },
+          ],
+        },
       },
     },
   ],

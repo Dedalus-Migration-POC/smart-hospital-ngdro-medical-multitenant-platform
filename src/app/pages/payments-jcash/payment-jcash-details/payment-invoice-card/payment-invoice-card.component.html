@@ -1,0 +1,151 @@
+<div class="card card-teaser no-after border shadow-sm border-light">
+  <div
+    class="card-body d-flex flex-column h-100 w-100 justify-content-between gap-4"
+  >
+    <div class="card-content d-flex flex-column w-100">
+      <div class="d-flex justify-content-between">
+        <h2 class="card-title mb-3 lh-sm text-capitalize cursor-default h4">
+          <ul class="m-0 px-4">
+            <li *ngFor="let x of arrPrestazioni" class="cursor-default">
+              {{ x | titlecase }}
+            </li>
+          </ul>
+        </h2>
+      </div>
+
+      <h3
+        class="card-subtitle mb-4 mt-0 lh-sm cursor-default h6 text-secondary fw-bold"
+      >
+        {{ 'payments-page.ticket' | translate }}
+      </h3>
+
+      <div class="card-row d-flex mb-2 w-100" *ngIf="importo">
+        <div class="w-50 m-0 me-2 cursor-default text-600 h6 fw-normal lh-base">
+          {{ 'payments-page.amount' | translate }}
+        </div>
+        <div class="w-50 m-0 me-2 cursor-default">{{ importo }}&euro;</div>
+      </div>
+
+      <div class="card-row d-flex mb-2 w-100" *ngIf="statoDistinta">
+        <div class="w-50 m-0 me-2 cursor-default text-600 h6 fw-normal lh-base">
+          {{ 'payments-page.state' | translate }}
+        </div>
+        <div class="w-50 m-0 me-2 cursor-default">
+          <ng-container *ngIf="statoDistinta === 'PAGATA'; else to_pay">
+            <span class="text-success cursor-default">
+              {{ 'payments-page.paid' | translate }}</span
+            >
+          </ng-container>
+          <ng-template #to_pay>
+            <span class="text-danger cursor-default">
+              {{ 'payments-page.to-pay' | translate }}</span
+            >
+          </ng-template>
+        </div>
+      </div>
+      <div class="card-row d-flex mb-2 w-100 align-items-center" *ngIf="iuv">
+        <div class="w-50 m-0 me-2 cursor-default text-600 h6 fw-normal lh-base">
+          {{ 'payments-page.iuv' | translate }}
+        </div>
+
+        <div class="w-50 m-0 me-2 d-flex align-items-center gap-2">
+          <div class="flex-grow-1 d-flex flex-column">
+            <div class="d-flex flex-row">
+              <span class="cursor-default iuv">{{ iuv }}</span>
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm p-0 btn-copy ms-auto"
+                (click)="copy(iuv, 'iuv')"
+                [attr.aria-label]="'payments-page.copy' | translate"
+              >
+                <i
+                  [class]="
+                    copiedField === 'iuv'
+                      ? 'fa-solid fa-copy text-success'
+                      : 'fa-regular fa-copy'
+                  "
+                ></i>
+                <span class="visually-hidden">{{
+                  'payments-page.copy' | translate
+                }}</span>
+              </button>
+            </div>
+
+            <div
+              *ngIf="copiedField === 'iuv'"
+              class="text-success small"
+              aria-live="polite"
+            >
+              {{ 'payments-page.copy' | translate }}
+            </div>
+            <div *ngIf="errorField === 'iuv'" class="text-danger small">
+              {{ 'payments-page.not-copy' | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-row d-flex mb-2 w-100" *ngIf="prestazioni">
+        <div class="w-50 m-0 me-2 cursor-default text-600 h6 fw-normal lh-base">
+          {{ 'payments-page.causal' | translate }}
+        </div>
+        <div class="w-50 m-0 me-2 cursor-default">
+          {{ prestazioni.split(';').join(', ') }}
+        </div>
+      </div>
+
+      <hr />
+
+      <div
+        class="card-row d-flex mb-2 w-100"
+        *ngIf="debtorName && debtorLastName"
+      >
+        <div class="w-50 m-0 me-2 cursor-default text-600 h6 fw-normal lh-base">
+          {{ 'payments-page.debtor' | translate }}
+        </div>
+        <div class="w-50 m-0 me-2 cursor-default">
+          {{ debtorName }} {{ debtorLastName }}
+        </div>
+      </div>
+
+      <div class="card-row d-flex mb-2 w-100" *ngIf="debtorFiscalCode">
+        <div class="w-50 m-0 me-2 cursor-default text-600 h6 fw-normal lh-base">
+          {{ 'payments-page.fiscalCode' | translate }}
+        </div>
+        <div class="w-50 m-0 me-2 cursor-default">
+          {{ debtorCodiceFiscale }}
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="statoDistinta === 'PAGATA'; else pendingPay">
+      <button
+        type="button"
+        class="btn btn-primary"
+        [attr.aria-label]="'payments-page.download-docs' | translate"
+        (click)="downloadInvoicePdf()"
+      >
+        {{
+          (loadingPdf$ | async)
+            ? ('commons.loading' | translate)
+            : ('payments-page.download-docs' | translate)
+        }}
+      </button>
+    </ng-container>
+    <ng-template #pendingPay>
+      <button
+        type="button"
+        class="btn btn-primary"
+        [attr.aria-label]="'payments-page.pay' | translate"
+        (click)="goPayment()"
+      >
+        {{ 'payments-page.pay' | translate }} &euro;{{ importo }}
+      </button>
+
+      <div class="cursor-default text-center">
+        {{ 'payments-page.pagoPA' | translate }}
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -14,6 +14,9 @@ import { UnitsRouting } from './pages/departments-and-units/units/units.routing'
 import { PaymentsPaRouting } from './pages/payments-pa/payments-pa.routing';
 import { PaymentsPaList } from './pages/payments-pa/payments-list/payments-list.component';
 import { PaymentsPaDetails } from './pages/payments-pa/payment-details/payment-details.component';
+import { PaymentsJcashRouting } from './pages/payments-jcash/payments-jcash.routing';
+import { PaymentsJcashListComponent } from './pages/payments-jcash/payments-jcash-list/payments-jcash-list.component';
+import { PaymentJcashDetailsComponent } from './pages/payments-jcash/payment-jcash-details/payment-jcash-details.component';
 import { TripletReport } from './pages/reports-and-documents/reports-by-triplet/reports-by-triplet';
 
 export const routes: Routes = [
@@ -71,6 +74,21 @@ export const routes: Routes = [
       {
         path: 'details',
         component: PaymentsPaDetails,
+      },
+    ],
+  },
+  {
+    path: 'payments-jcash',
+    component: PaymentsJcashRouting,
+    canActivate: [authenticatedGuard()],
+    children: [
+      {
+        path: '',
+        component: PaymentsJcashListComponent,
+      },
+      {
+        path: 'details',
+        component: PaymentJcashDetailsComponent,
       },
     ],
   },
