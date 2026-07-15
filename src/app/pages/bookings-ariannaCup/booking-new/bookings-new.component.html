@@ -1,0 +1,32 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.page.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+  }
+
+  <div class="mt-5 mb-5">
+    <it-steppers-container
+      [activeStep]="activeStepIndex"
+      showHeader="false"
+      showSaveButton="false"
+      showConfirmButton="false"
+      showBackButton="false"
+      showForwardButton="false"
+    >
+      @for (step of steps; track step.id; let i = $index) {
+        <it-steppers-item [label]="step.label | translate">
+          @if (i === activeStepIndex) {
+            <ng-container
+              *ngComponentOutlet="
+                step.component;
+                inputs: {
+                  setActiveStep: setActiveStep.bind(this),
+                  activeStepIndex: activeStepIndex,
+                }
+              "
+            ></ng-container>
+          }
+        </it-steppers-item>
+      }
+    </it-steppers-container>
+  </div>
+}

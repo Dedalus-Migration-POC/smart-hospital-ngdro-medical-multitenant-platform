@@ -1,0 +1,149 @@
+@if (selectReserve(); as state) {
+  @let isSubmitting = state.loading;
+
+  @if (state.loading) {
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
+  }
+
+  @if (!state.loading) {
+    @if (state.data && !state.error) {
+      <div class="card-wrapper container-confirm">
+        <div class="card no-after">
+          <div class="card-body pt-3 d-flex">
+            <div class="d-flex flex-column">
+              <h2 class="fw-semibold mb-3 cursor-default">
+                {{ 'bookings.booking-new.confirmation.confirmed-booking' | translate }}
+              </h2>
+              <p
+                class="p-0 m-0 cursor-default"
+                [innerHTML]="'bookings.booking-new.confirmation.confirmed-text' | translate"
+              ></p>
+              <p
+                class="p-0 m-0 cursor-default"
+                [innerHTML]="'bookings.booking-new.confirmation.confirmed-text-memo' | translate"
+              ></p>
+              <button
+                type="button"
+                class="btn btn-primary mt-auto align-self-baseline btn-payment"
+                (click)="goPayment()"
+                [attr.aria-label]="'bookings.booking-new.confirmation.go-payment' | translate"
+              >
+                {{ 'bookings.booking-new.confirmation.go-payment' | translate }}
+              </button>
+            </div>
+            <img
+              class="img-confirm"
+              src="assets/common/images/confirm-booking.svg"
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="row container-confirm">
+        <div class="col-12 col-lg-6">
+          <app-booking-summary [setActiveStep]="setActiveStep()"></app-booking-summary>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h2 class="h4 mb-4 cursor-default" id="confirmationTitle">
+                {{ 'bookings.booking-new.confirmation.title' | translate }}
+              </h2>
+
+              <form
+                [formGroup]="form"
+                (ngSubmit)="confirmBooking()"
+                aria-labelledby="confirmationTitle"
+                role="form"
+                novalidate
+              >
+                <div class="row g-3">
+                  <div class="col-12 col-md-6">
+                    <label for="name" class="form-label">
+                      {{ 'bookings.booking-new.confirmation.form.name' | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      formControlName="name"
+                      class="form-control"
+                      [readonly]="true"
+                      autocomplete="off"
+                    />
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="surname" class="form-label">
+                      {{ 'bookings.booking-new.confirmation.form.surname' | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      id="surname"
+                      formControlName="surname"
+                      class="form-control"
+                      [readonly]="true"
+                      autocomplete="off"
+                    />
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="email" class="form-label">
+                      {{ 'bookings.booking-new.confirmation.form.email' | translate }}
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      formControlName="email"
+                      class="form-control"
+                      [readonly]="true"
+                      autocomplete="off"
+                    />
+                  </div>
+
+                  <div class="col-12 col-md-6">
+                    <label for="phone" class="form-label">
+                      {{ 'bookings.booking-new.confirmation.form.phone' | translate }}
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      formControlName="phone"
+                      class="form-control"
+                      [readonly]="true"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+
+                <div class="d-grid mt-4">
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="form.invalid || isSubmitting"
+                    [attr.aria-label]="'bookings.booking-new.confirmation.form.confirm' | translate"
+                  >
+                    @if (isSubmitting) {
+                      <span
+                        class="spinner-border spinner-border-sm me-2"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    }
+                    {{ 'bookings.booking-new.confirmation.form.confirm' | translate }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  }
+}

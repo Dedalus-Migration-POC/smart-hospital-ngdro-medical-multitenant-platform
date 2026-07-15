@@ -1,0 +1,19 @@
+.container-confirm {
+  @media (max-width: 991.98px) {
+    flex-direction: column !important;
+  }
+
+  app-booking-summary {
+    max-width: 50%;
+  }
+
+  .btn-payment {
+    margin-top: 2rem !important;
+  }
+
+  .img-confirm {
+    @media (max-width: 991.98px) {
+      display: none;
+    }
+  }
+}

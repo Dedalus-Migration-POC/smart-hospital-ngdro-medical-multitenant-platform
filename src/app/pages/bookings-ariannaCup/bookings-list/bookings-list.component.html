@@ -1,0 +1,58 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.page.breadcrumb) {
+    <app-breadcrumb
+      [config]="pageConfig.page.breadcrumb"
+      (buttonAction)="newBooking()"
+    ></app-breadcrumb>
+  }
+  @if (bookingsList(); as state) {
+    @if (state.loading || isDeleteBooking()) {
+      <app-spinner
+        [fullScreen]="true"
+        text="Loading"
+        [className]="'flex-column gap-3 text-secondary'"
+      ></app-spinner>
+    }
+
+    @if (state.error) {
+      <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+        <app-image-block [config]="pageConfig.page.errorMessage.imageBlockConfig"></app-image-block>
+      </div>
+    }
+
+    @if (!state.loading && !state.error) {
+      @if (state.bookings.length > 0) {
+        <div class="mt-2">
+          <div class="d-flex flex-row flex-wrap gap-3">
+            @for (booking of state.bookings; track $index) {
+              <div class="card shadow-sm border-light w-25">
+                <div class="card-body">
+                  <h5 class="card-title" [innerHTML]="booking.title"></h5>
+                  <p class="text-secondary mb-2" [innerHTML]="booking.subtitle"></p>
+                  @if (booking.date) {
+                    <p class="mb-2">{{ booking.date }}</p>
+                  }
+                </div>
+                <button class="btn btn-danger" (click)="deleteBooking($index)">Delete</button>
+              </div>
+            }
+          </div>
+        </div>
+      } @else {
+        @if (state.isEmptyList) {
+          <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+            <app-image-block
+              [config]="pageConfig.page.notFoundMessage.imageBlockConfig"
+            ></app-image-block>
+          </div>
+        } @else {
+          <div class="flex-grow-1 d-flex align-items-center">
+            <div class="alert alert-danger" role="alert">
+              {{ state.msgError }}
+            </div>
+          </div>
+        }
+      }
+    }
+  }
+}

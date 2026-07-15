@@ -2,27 +2,26 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
-  inject,
-  Input,
-  OnChanges,
   OnDestroy,
-  Output,
-  SimpleChanges,
   ViewChild,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Field, ValidationTypeError } from '../../../user-profile.model';
-import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
+import { Subscription } from 'rxjs';
+import { Field, ValidationTypeError } from '../../../user-profile.model';
 import { LanguageService } from '../../../../../initialize/state/services/language.service';
 
 @Component({
   selector: 'app-field-text',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, TranslateModule, DesignAngularKitModule],
-
   styles: `
     :host ::ng-deep it-input small.form-text {
       display: none;
@@ -32,43 +31,45 @@ import { LanguageService } from '../../../../../initialize/state/services/langua
     }
   `,
   template: `
-    <ng-container [formGroup]="formGroup">
+    @let currentField = field();
+
+    <ng-container [formGroup]="formGroup()">
       <it-input
         #inputField
-        [type]="field.type"
-        [formControlName]="field.key"
-        [ngClass]="field.fieldClasses"
-        [label]="field.label ? field.label[lang()] : ''"
-        [description]="field.description ? field.description[lang()] : ''"
-        [readonly]="field.readOnly"
+        [type]="currentField.type"
+        [formControlName]="currentField.key"
+        [ngClass]="currentField.fieldClasses"
+        [label]="currentField.label?.[lang()] ?? ''"
+        [description]="currentField.description?.[lang()] ?? ''"
+        [readonly]="currentField.readOnly"
         autocomplete="off"
       >
         <ng-container error>
           @if (inputField.hasError(ValidationTypeError.Required)) {
-            <div [id]="setErrorId(field.key, ValidationTypeError.Required)">
+            <div [id]="setErrorId(currentField.key, ValidationTypeError.Required)">
               {{ 'it.errors.required-field' | translate }}
             </div>
           }
           @if (inputField.hasError(ValidationTypeError.Email)) {
-            <div [id]="setErrorId(field.key, ValidationTypeError.Email)">
+            <div [id]="setErrorId(currentField.key, ValidationTypeError.Email)">
               {{ 'it.errors.email-invalid' | translate }}
             </div>
           }
 
           @if (inputField.hasError(ValidationTypeError.ValidatePhoneNumber)) {
-            <div [id]="setErrorId(field.key, ValidationTypeError.ValidatePhoneNumber)">
+            <div [id]="setErrorId(currentField.key, ValidationTypeError.ValidatePhoneNumber)">
               {{ 'it.errors.tel-invalid' | translate }}
             </div>
           }
 
           @if (inputField.hasError(ValidationTypeError.ValidateCap)) {
-            <div [id]="setErrorId(field.key, ValidationTypeError.ValidateCap)">
+            <div [id]="setErrorId(currentField.key, ValidationTypeError.ValidateCap)">
               {{ 'it.errors.cap-invalid' | translate }}
             </div>
           }
 
           @if (inputField.hasError(ValidationTypeError.ValidateText)) {
-            <div [id]="setErrorId(field.key, ValidationTypeError.ValidateText)">
+            <div [id]="setErrorId(currentField.key, ValidationTypeError.ValidateText)">
               {{ 'it.errors.invalid-field' | translate }}
             </div>
           }
@@ -77,14 +78,15 @@ import { LanguageService } from '../../../../../initialize/state/services/langua
     </ng-container>
   `,
 })
-export class FieldTextComponent implements AfterViewInit, OnChanges, OnDestroy {
-  @Input() field!: Field;
-  @Input() formGroup!: FormGroup;
-  @Input() triggerSubmit!: boolean; // to ‘warn’ the child component for inserting/deleting text field attributes before form submit
-  @Output() onCompleted = new EventEmitter<void>(); // event to be sent to the parent when the checks for inserting/deleting attributes for the field are finished
+export class FieldTextComponent implements AfterViewInit, OnDestroy {
+  readonly field = input.required<Field>();
+  readonly formGroup = input.required<FormGroup>();
+  readonly triggerSubmit = input.required<boolean>();
+  readonly onCompleted = output<void>();
 
   private langService = inject(LanguageService);
   lang = this.langService.lang;
+  private readonly viewInitialized = signal(false);
 
   @ViewChild('inputField', { read: ElementRef }) itInputComponent!: ElementRef;
 
@@ -92,17 +94,21 @@ export class FieldTextComponent implements AfterViewInit, OnChanges, OnDestroy {
 
   private statusChangesSub!: Subscription;
 
+  constructor() {
+    effect(() => {
+      if (!this.viewInitialized() || !this.triggerSubmit()) {
+        return;
+      }
+
+      this.checkAttributeSubmit();
+    });
+  }
+
   ngAfterViewInit() {
     this.cleanAttributesNotNecessary();
     this.addRequiredAttribute();
     this.subscribeToStatusValidChanges();
-  }
-
-  // when I press the confirm button of the form
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['triggerSubmit'] && changes['triggerSubmit'].currentValue === true) {
-      this.checkAttributeSubmit();
-    }
+    this.viewInitialized.set(true);
   }
 
   ngOnDestroy() {
@@ -111,15 +117,13 @@ export class FieldTextComponent implements AfterViewInit, OnChanges, OnDestroy {
     }
   }
 
-  setErrorId(fieldKey: string, ValidationTypeError?: string): string | null {
-    return ValidationTypeError ? `${fieldKey}-${ValidationTypeError}-error` : null;
+  setErrorId(fieldKey: string, validationTypeError?: string): string | null {
+    return validationTypeError ? `${fieldKey}-${validationTypeError}-error` : null;
   }
 
-  // Control whether to insert or remove error air attributes
   private checkAttributeSubmit() {
-    // console.log(`Submit triggered for field: ${this.field.key}`)
-
-    const control = this.formGroup.get(this.field.key) as FormControl;
+    const field = this.field();
+    const control = this.formGroup().get(field.key) as FormControl;
 
     if (control) {
       this.setAriaAttributes(control, control.invalid);
@@ -128,9 +132,9 @@ export class FieldTextComponent implements AfterViewInit, OnChanges, OnDestroy {
     this.onCompleted.emit();
   }
 
-  // ‘triggers’ when field changes its status from invalid => valid or valid => invalid
   private subscribeToStatusValidChanges() {
-    const control = this.formGroup.get(this.field.key) as FormControl;
+    const field = this.field();
+    const control = this.formGroup().get(field.key) as FormControl;
 
     if (control) {
       this.statusChangesSub = control.statusChanges.subscribe(() => {
@@ -147,12 +151,12 @@ export class FieldTextComponent implements AfterViewInit, OnChanges, OnDestroy {
         inputElement.removeAttribute('aria-invalid');
         inputElement.removeAttribute('aria-describedby');
       } else {
-        const ValidationTypeError = this.getValidationTypeError(control);
-        if (ValidationTypeError) {
+        const validationTypeError = this.getValidationTypeError(control);
+        if (validationTypeError) {
           inputElement.setAttribute('aria-invalid', 'true');
           inputElement.setAttribute(
             'aria-describedby',
-            this.setErrorId(this.field.key, ValidationTypeError),
+            this.setErrorId(this.field().key, validationTypeError),
           );
         }
       }
@@ -162,19 +166,22 @@ export class FieldTextComponent implements AfterViewInit, OnChanges, OnDestroy {
   private getValidationTypeError(control: FormControl): ValidationTypeError | null {
     if (control.hasError(ValidationTypeError.Required)) {
       return ValidationTypeError.Required;
-    } else if (control.hasError(ValidationTypeError.Email)) {
+    }
+    if (control.hasError(ValidationTypeError.Email)) {
       return ValidationTypeError.Email;
-    } else if (control.hasError(ValidationTypeError.ValidatePhoneNumber)) {
+    }
+    if (control.hasError(ValidationTypeError.ValidatePhoneNumber)) {
       return ValidationTypeError.ValidatePhoneNumber;
-    } else if (control.hasError(ValidationTypeError.ValidateCap)) {
+    }
+    if (control.hasError(ValidationTypeError.ValidateCap)) {
       return ValidationTypeError.ValidateCap;
-    } else if (control.hasError(ValidationTypeError.ValidateText)) {
+    }
+    if (control.hasError(ValidationTypeError.ValidateText)) {
       return ValidationTypeError.ValidateText;
     }
     return null;
   }
 
-  // For accessibility
   private cleanAttributesNotNecessary() {
     const inputElement = this.itInputComponent.nativeElement?.querySelector('input');
 
@@ -193,12 +200,11 @@ export class FieldTextComponent implements AfterViewInit, OnChanges, OnDestroy {
     }
   }
 
-  // For accessibility
   private addRequiredAttribute() {
     const inputElement = this.itInputComponent.nativeElement?.querySelector('input');
 
     if (inputElement) {
-      const control = this.formGroup.get(this.field.key);
+      const control = this.formGroup().get(this.field().key);
       const isRequired = control && control.hasValidator(Validators.required);
 
       if (isRequired) {

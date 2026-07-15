@@ -1,0 +1,99 @@
+import { CommonModule } from '@angular/common';
+import { Component, computed, inject, input, signal } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { SummaryComponent } from '../../components/summary/summary.component';
+import { selectPrivateBooking } from 'src/app/pages/bookings-ariannaCup/state/selectors';
+import { SmartHospitalState } from 'src/app/store/reducers';
+import { Store } from '@ngrx/store';
+import { MedicoPrestazione } from 'src/app/pages/bookings-ariannaCup/state/model';
+import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
+
+@Component({
+  selector: 'app-doctor-selector',
+  standalone: true,
+  imports: [CommonModule, TranslateModule, SummaryComponent],
+  templateUrl: './private-doctor-selector.component.html',
+})
+export class PrivateDoctorSelectorComponent {
+  private readonly store = inject(Store<SmartHospitalState>);
+
+  readonly setActiveStep = input.required<(stepIndex: number) => void>();
+  readonly activeStepIndex = input.required<number>();
+
+  private readonly privateBookingState = this.store.selectSignal(selectPrivateBooking);
+
+  privateBooking = computed(
+    () => this.privateBookingState() ?? this.readSessionItem(SessionStorageKey.privateBooking),
+  );
+
+  medici = computed(() => {
+    const booking = this.privateBooking();
+    const medici = booking?.medici ?? [];
+    const locale = this.translateService.currentLang || 'it';
+
+    return [...medici].sort((a, b) =>
+      (a.descMedico ?? '').localeCompare(b.descMedico ?? '', locale, {
+        sensitivity: 'base',
+      }),
+    );
+  });
+
+  filterDoctor = signal('');
+  selectedDoctor = signal<MedicoPrestazione | null>(null);
+
+  filteredMedici = computed(() => {
+    const medici = this.medici();
+    const q = this.filterDoctor().trim().toLowerCase();
+
+    if (!q) return medici;
+
+    return medici.filter((m) => m.descMedico.toLowerCase().includes(q));
+  });
+
+  constructor(private translateService: TranslateService) {}
+
+  onFilterDoctorInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.selectedDoctor.set(null);
+    this.filterDoctor.set(value);
+  }
+
+  confirmSelectedDoctor() {
+    const selectedDoctor = this.selectedDoctor();
+    if (!selectedDoctor) return;
+
+    const body = this.translateService.instant(
+      'bookings.booking-new.private-doctor-selector.confirm-modal.body',
+      { descMedico: selectedDoctor.descMedico },
+    );
+
+    const title = this.translateService.instant(
+      'bookings.booking-new.private-doctor-selector.confirm-modal.title',
+    );
+    if (window.confirm(`${title}\n\n${body}`)) {
+      this.confirmDoctor(selectedDoctor);
+    }
+  }
+
+  trackByDoctor(_: number, doctor: MedicoPrestazione) {
+    return doctor.idAgenda;
+  }
+
+  goBookingList() {
+    SessionStorageUtils.removeItem(SessionStorageKey.privateBooking);
+
+    this.setActiveStep()(this.activeStepIndex() - 1);
+  }
+
+  private confirmDoctor(doctor: MedicoPrestazione) {
+    // stored session for refresh
+    SessionStorageUtils.setItem(SessionStorageKey.privateDoctor, JSON.stringify(doctor));
+
+    this.setActiveStep()(this.activeStepIndex() + 1);
+  }
+
+  private readSessionItem(key: SessionStorageKey): any {
+    const raw = SessionStorageUtils.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  }
+}

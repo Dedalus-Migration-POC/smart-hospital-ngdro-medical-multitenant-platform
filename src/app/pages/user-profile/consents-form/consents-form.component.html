@@ -1,16 +1,16 @@
 <div class="d-flex justify-content-between align-items-start">
   <h2 class="fs-2 cursor-default">
-    {{ consentsConfig?.title?.[lang()] }}
+    {{ consentsConfig()?.title?.[lang()] }}
   </h2>
 </div>
 
 <div class="outer-terms-and-conditions terms-and-conditions flex-column align-items-start mb-5">
-  @for (consent of userConsentsForm?.value.consents ?? []; track $index) {
+  @for (consent of userConsentsForm()?.value.consents ?? []; track $index) {
     @if (consent.text) {
       <div
         class="d-flex align-items-center justify-content-space-between user-consents-item mb-2"
-        [ngClass]="[consent.required && isProfile ? 'cursor-default' : 'cursor-pointer']"
-        (click)="isProfile && consent.required ? undefined : toggleConsent.emit(consent.id)"
+        [ngClass]="[consent.required && isProfile() ? 'cursor-default' : 'cursor-pointer']"
+        (click)="isProfile() && consent.required ? undefined : toggleConsent.emit(consent.id)"
       >
         <it-checkbox
           class="terms-checkbox"
@@ -18,7 +18,7 @@
           [id]="consent.id.toString()"
           #toggle
           [checked]="consent.accepted"
-          [disabled]="isProfile && consent.required"
+          [disabled]="isProfile() && consent.required"
         >
           <ng-container label>
             <span class="consent-label" [id]="consent.id + '-help'">
@@ -34,7 +34,7 @@
                 </div>
               }
             </span>
-            @if (consent.required && !consent.accepted && userConsentsForm?.touched) {
+            @if (consent.required && !consent.accepted && userConsentsForm()?.touched) {
               <div class="form-feedback just-validate-error-label mt-0 lh-1" [id]="consent.id">
                 {{ 'it.errors.required-field' | translate }}
               </div>

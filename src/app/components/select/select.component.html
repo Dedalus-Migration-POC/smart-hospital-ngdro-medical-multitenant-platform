@@ -1,26 +1,28 @@
-<div class="select-wrapper mb-3" [formGroup]="formGroup">
+<div class="select-wrapper mb-3" [formGroup]="formGroup()">
   <label
     id="label-focus"
-    [for]="fieldName"
-    [ngClass]="formGroup.get(fieldName)?.value ? 'active' : ''"
+    [for]="fieldName()"
+    [ngClass]="formGroup().get(fieldName())?.value ? 'active' : ''"
   >
-    {{ label }}</label
+    {{ label() }}</label
   >
   <select
-    [id]="fieldName"
-    [formControlName]="fieldName"
+    [id]="fieldName()"
+    [formControlName]="fieldName()"
     (keyup.enter)="focusNext()"
     (keyup.tab)="focusNext()"
   >
     <option selected="" value="">
       <!-- {{ 'commons.select-option' | translate }} -->
     </option>
-    <option [value]="option.value" *ngFor="let option of options">
-      {{ option.label }}
-    </option>
+    @for (option of options(); track option.value) {
+      <option [value]="option.value">
+        {{ option.label }}
+      </option>
+    }
   </select>
   <app-input-error-component
-    [formGroup]="formGroup"
-    [fieldName]="fieldName"
+    [formGroup]="formGroup()"
+    [fieldName]="fieldName()"
   ></app-input-error-component>
 </div>

@@ -14,7 +14,15 @@
       "cie-how-to-access": "Come accedere con la CIE",
       "have-cie": "Non hai CIE?"
     },
-    "skip-to-main-content": "Vai al contenuto principale"
+    "skip-to-main-content": "Vai al contenuto principale",
+    "confirmationPopup": {
+      "title": "Conferma",
+      "text": "Operazione è stata eseguita con successo!"
+    },
+    "errorPopup": {
+      "title": "Errore",
+      "text": "Si è verificato un errore durante l'operazione."
+    }
   },
   "admin": {
     "header": {

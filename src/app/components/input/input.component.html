@@ -1,18 +1,18 @@
-<div class="form-floating mb-3" [formGroup]="formGroup">
+<div class="form-floating mb-3" [formGroup]="formGroup()">
   <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
   <input
-    [type]="type"
+    [type]="type()"
     class="form-control"
-    [id]="fieldName"
-    [formControlName]="fieldName"
-    [placeholder]="label"
+    [id]="fieldName()"
+    [formControlName]="fieldName()"
+    [placeholder]="label()"
     autocomplete="on"
-    [maxlength]="maxlength ?? null"
-    [minlength]="minlength ?? null"
+    [maxlength]="maxlength() ?? null"
+    [minlength]="minlength() ?? null"
   />
-  <label [for]="fieldName">{{ label }}</label>
+  <label [for]="fieldName()">{{ label() }}</label>
   <app-input-error-component
-    [formGroup]="formGroup"
-    [fieldName]="fieldName"
+    [formGroup]="formGroup()"
+    [fieldName]="fieldName()"
   ></app-input-error-component>
 </div>

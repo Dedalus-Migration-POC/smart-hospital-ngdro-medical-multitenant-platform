@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Store } from '@ngrx/store';
@@ -13,11 +13,9 @@ import { SmartHospitalState } from '../../../../store/reducers';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss'],
 })
-export class UnitServicesCardComponent implements OnInit {
-  @Input() unitDetails: Unit | null = null;
-  @Input() department: string = '';
+export class UnitServicesCardComponent {
+  readonly unitDetails = input<Unit | null>(null);
+  readonly department = input('');
 
   constructor(private store: Store<SmartHospitalState>) {}
-
-  ngOnInit(): void {}
 }

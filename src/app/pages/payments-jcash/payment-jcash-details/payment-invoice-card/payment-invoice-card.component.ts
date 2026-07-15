@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmartHospitalState } from '../../../../store/reducers';
@@ -12,59 +12,52 @@ import { selectDownloadingInvoicePdf } from '../../state/selectors';
   templateUrl: './payment-invoice-card.component.html',
   styleUrls: ['./payment-invoice-card.component.scss'],
 })
-export class PaymentInvoiceCardComponent implements OnInit {
-  @Input() iuv!: string;
-  @Input() importo!: number;
-  @Input() prestazioni!: string;
-  @Input() statoDistinta!: 'PAGATA' | 'DA PAGARE';
-  @Input() debtorName!: string | null;
-  @Input() debtorLastName!: string | null;
-  @Input() debtorFiscalCode!: string;
-  @Input() debtorEmail!: string;
+export class PaymentInvoiceCardComponent {
+  readonly iuv = input.required<string>();
+  readonly importo = input.required<number>();
+  readonly prestazioni = input.required<string>();
+  readonly statoDistinta = input.required<'PAGATA' | 'DA PAGARE'>();
+  readonly debtorName = input<string | null>(null);
+  readonly debtorLastName = input<string | null>(null);
+  readonly debtorFiscalCode = input.required<string>();
+  readonly debtorEmail = input.required<string>();
 
   private store = inject(Store<SmartHospitalState>);
 
   loadingPdf$ = this.store.select(selectDownloadingInvoicePdf);
-
-  arrPrestazioni!: string[];
-  data!: string;
-  debtorCodiceFiscale?: string;
+  arrPrestazioni = computed(
+    () =>
+      this.prestazioni()
+        ?.split(';')
+        .map((s) => s.trim())
+        .filter(Boolean) ?? [],
+  );
+  debtorCodiceFiscale = computed(() => {
+    const debtorFiscalCode = this.debtorFiscalCode();
+    return debtorFiscalCode.startsWith('TINIT-') ? debtorFiscalCode.slice(6) : debtorFiscalCode;
+  });
 
   // feedback  for field copy (key: 'iuv', 'creditorsFiscalCode')
   copiedField: string | null = null;
   errorField: string | null = null;
 
-  ngOnInit(): void {
-    this.arrPrestazioni =
-      this.prestazioni
-        ?.split(';')
-        .map((s) => s.trim())
-        .filter(Boolean) ?? [];
-
-    if (this.debtorFiscalCode) {
-      this.debtorCodiceFiscale = this.debtorFiscalCode.startsWith('TINIT-')
-        ? this.debtorFiscalCode.slice(6)
-        : this.debtorFiscalCode;
-    }
-  }
-
   goPayment() {
     this.store.dispatch(
       getLinkPagoPa({
         payment: {
-          iuv: this.iuv.length === 17 ? '3' + this.iuv : this.iuv,
-          amount: Math.round(this.importo * 100),
-          reason: this.arrPrestazioni!.join(' /'),
-          notificationEmail: this.debtorEmail!,
+          iuv: this.iuv().length === 17 ? '3' + this.iuv() : this.iuv(),
+          amount: Math.round(this.importo() * 100),
+          reason: this.arrPrestazioni().join(' /'),
+          notificationEmail: this.debtorEmail(),
         },
       }),
     );
   }
 
   downloadInvoicePdf() {
-    if (!this.iuv) return;
+    if (!this.iuv()) return;
 
-    this.store.dispatch(downloadInvoicePdf({ iuv: this.iuv }));
+    this.store.dispatch(downloadInvoicePdf({ iuv: this.iuv() }));
   }
 
   async copy(text: string | null, field: string) {

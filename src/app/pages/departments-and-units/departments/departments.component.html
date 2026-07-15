@@ -1,4 +1,4 @@
-<!-- <app-loading-full-screen *ngIf="clinicalRecordsLoading$ | async">-->
+<!-- @if (clinicalRecordsLoading$ | async) { <app-loading-full-screen></app-loading-full-screen> } -->
 @if (pageConfig()?.page.breadcrumb) {
   <app-breadcrumb [config]="pageConfig()?.page.breadcrumb"></app-breadcrumb>
 }

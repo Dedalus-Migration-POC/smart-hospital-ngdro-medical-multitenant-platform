@@ -4,17 +4,17 @@
       {{ 'unit-details-page.general-info' | translate }}
     </h2>
     <div class="card-text">
-      @if (department) {
+      @if (department()) {
         <div class="row d-flex flex-row mb-1 w-100">
           <div class="col-5 row-label">
             {{ 'unit-details-page.department' | translate }}
           </div>
           <div class="col-7 row-value">
-            {{ department }}
+            {{ department() }}
           </div>
         </div>
       }
-      @if (unitDetails) {
+      @if (unitDetails(); as unitDetails) {
         @if (unitDetails.pavilion) {
           <div class="row d-flex flex-row mb-1 w-100">
             <div class="col-5 row-label">
@@ -77,54 +77,56 @@
         </div>
       }
 
-      @if (unitDetails && unitDetails.detail && unitDetails.detail.visitTime) {
-        <div class="hours-wrapper">
-          <div class="h4 fw-semibold">
-            {{ 'unit-details-page.visit-hours' | translate }}
+      @if (unitDetails(); as unitDetails) {
+        @if (unitDetails.detail && unitDetails.detail.visitTime) {
+          <div class="hours-wrapper">
+            <div class="h4 fw-semibold">
+              {{ 'unit-details-page.visit-hours' | translate }}
+            </div>
+            @if (unitDetails.detail.visitTime.mon) {
+              <div class="row">
+                <div class="col-5">{{ 'unit-details-page.mon' | translate }}</div>
+                <div class="col">{{ unitDetails.detail.visitTime.mon }}</div>
+              </div>
+            }
+            @if (unitDetails.detail.visitTime.tue) {
+              <div class="row">
+                <div class="col-5">{{ 'unit-details-page.tue' | translate }}</div>
+                <div class="col">{{ unitDetails.detail.visitTime.tue }}</div>
+              </div>
+            }
+            @if (unitDetails.detail.visitTime.wed) {
+              <div class="row">
+                <div class="col-5">{{ 'unit-details-page.wed' | translate }}</div>
+                <div class="col">{{ unitDetails.detail.visitTime.wed }}</div>
+              </div>
+            }
+            @if (unitDetails.detail.visitTime.thu) {
+              <div class="row">
+                <div class="col-5">{{ 'unit-details-page.thu' | translate }}</div>
+                <div class="col">{{ unitDetails.detail.visitTime.thu }}</div>
+              </div>
+            }
+            @if (unitDetails.detail.visitTime.fri) {
+              <div class="row">
+                <div class="col-5">{{ 'unit-details-page.fri' | translate }}</div>
+                <div class="col">{{ unitDetails.detail.visitTime.fri }}</div>
+              </div>
+            }
+            @if (unitDetails.detail.visitTime.sat) {
+              <div class="row">
+                <div class="col-5">{{ 'unit-details-page.sat' | translate }}</div>
+                <div class="col">{{ unitDetails.detail.visitTime.sat }}</div>
+              </div>
+            }
+            @if (unitDetails.detail.visitTime.sun) {
+              <div class="row">
+                <div class="col-5">{{ 'unit-details-page.sun' | translate }}</div>
+                <div class="col">{{ unitDetails.detail.visitTime.sun }}</div>
+              </div>
+            }
           </div>
-          @if (unitDetails.detail.visitTime.mon) {
-            <div class="row">
-              <div class="col-5">{{ 'unit-details-page.mon' | translate }}</div>
-              <div class="col">{{ unitDetails.detail.visitTime.mon }}</div>
-            </div>
-          }
-          @if (unitDetails.detail.visitTime.tue) {
-            <div class="row">
-              <div class="col-5">{{ 'unit-details-page.tue' | translate }}</div>
-              <div class="col">{{ unitDetails.detail.visitTime.tue }}</div>
-            </div>
-          }
-          @if (unitDetails.detail.visitTime.wed) {
-            <div class="row">
-              <div class="col-5">{{ 'unit-details-page.wed' | translate }}</div>
-              <div class="col">{{ unitDetails.detail.visitTime.wed }}</div>
-            </div>
-          }
-          @if (unitDetails.detail.visitTime.thu) {
-            <div class="row">
-              <div class="col-5">{{ 'unit-details-page.thu' | translate }}</div>
-              <div class="col">{{ unitDetails.detail.visitTime.thu }}</div>
-            </div>
-          }
-          @if (unitDetails.detail.visitTime.fri) {
-            <div class="row">
-              <div class="col-5">{{ 'unit-details-page.fri' | translate }}</div>
-              <div class="col">{{ unitDetails.detail.visitTime.fri }}</div>
-            </div>
-          }
-          @if (unitDetails.detail.visitTime.sat) {
-            <div class="row">
-              <div class="col-5">{{ 'unit-details-page.sat' | translate }}</div>
-              <div class="col">{{ unitDetails.detail.visitTime.sat }}</div>
-            </div>
-          }
-          @if (unitDetails.detail.visitTime.sun) {
-            <div class="row">
-              <div class="col-5">{{ 'unit-details-page.sun' | translate }}</div>
-              <div class="col">{{ unitDetails.detail.visitTime.sun }}</div>
-            </div>
-          }
-        </div>
+        }
       }
     </div>
   </div>

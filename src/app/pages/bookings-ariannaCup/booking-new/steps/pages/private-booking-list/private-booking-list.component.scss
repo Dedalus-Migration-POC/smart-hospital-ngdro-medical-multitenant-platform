@@ -1,0 +1,30 @@
+// @import 'bootstrap/scss/mixins/breakpoints';
+
+#prestazioniAccordion:not(:first-child) {
+  border: none;
+}
+
+.accordion-item {
+  &:first-child {
+    .accordion-header {
+      .accordion-button {
+        border-top: 0;
+      }
+    }
+  }
+
+  .accordion-header {
+    .accordion-button {
+      &.focus--mouse {
+        border-color: var(--bs-accordion-border-color) !important;
+      }
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .accordion-body {
+    padding: 0 24px 14px;
+  }
+}

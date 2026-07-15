@@ -1,0 +1,11 @@
+.container-booking-type {
+  @media (max-width: 767.98px) {
+    ::ng-deep .card.card-teaser {
+      flex-basis: 100% !important;
+    }
+  }
+
+  ::ng-deep .card-hidden {
+    display: none;
+  }
+}

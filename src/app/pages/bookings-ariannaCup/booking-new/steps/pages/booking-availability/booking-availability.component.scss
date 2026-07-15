@@ -1,0 +1,10 @@
+.container-booking-availability {
+  ::ng-deep ul.nav.nav-tabs {
+    background-color: transparent;
+  }
+
+  ::ng-deep .tab-pane {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

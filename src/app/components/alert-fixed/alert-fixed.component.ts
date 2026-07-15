@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 
 // component popup (app-alert-fixed) si trova nell'app.html. Non c è bisogno di aggiungerlo nel template di ogni pagina, basta configurare in pageConfig
@@ -8,12 +8,12 @@ import { DesignAngularKitModule } from 'design-angular-kit';
   selector: 'app-alert-fixed',
   standalone: true,
   template: `
-    <div class="alert alert-{{ type }} alert-dismissible fade show alert-custom" role="alert">
+    <div class="alert alert-{{ type() }} alert-dismissible fade show alert-custom" role="alert">
       <h4 class="alert-heading">
-        {{ title }}
+        {{ title() }}
       </h4>
       <p>
-        {{ text }}
+        {{ text() }}
         <button
           type="button"
           class="btn-close"
@@ -31,11 +31,9 @@ import { DesignAngularKitModule } from 'design-angular-kit';
   imports: [CommonModule, DesignAngularKitModule],
   styleUrls: ['./alert-fixed.component.scss'],
 })
-export class AlertFixedComponent implements OnInit {
-  @Input() type: 'primary' | 'info' | 'success' | 'warning' | 'danger' = 'warning';
-  @Input() title?: string;
-  @Input() text?: string;
+export class AlertFixedComponent {
+  readonly type = input<'primary' | 'info' | 'success' | 'warning' | 'danger'>('warning');
+  readonly title = input<string | undefined>(undefined);
+  readonly text = input<string | undefined>(undefined);
   constructor() {}
-
-  ngOnInit(): void {}
 }

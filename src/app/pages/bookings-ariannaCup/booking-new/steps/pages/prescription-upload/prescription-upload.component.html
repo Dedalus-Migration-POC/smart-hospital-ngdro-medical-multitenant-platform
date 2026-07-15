@@ -1,0 +1,91 @@
+<div class="row container-prescription-upload">
+  <div class="col-12 col-lg-4">
+    <app-booking-summary class="flex-grow-1"></app-booking-summary>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-row">
+      <div>
+        <h2 class="fw-semibold mb-3" id="prescriptionTitle">
+          {{ 'bookings.booking-new.prescription-upload.title' | translate }}
+        </h2>
+
+        <form
+          [formGroup]="form"
+          class="position-relative"
+          aria-labelledby="prescriptionTitle"
+          role="form"
+        >
+          <!-- <div class="mb-4">
+          <label for="fiscalCode" class="form-label">{{
+            'bookings.booking-new.prescription-upload.form.fiscalCode'
+              | translate
+          }}</label>
+          <input
+            type="text"
+            class="form-control text-uppercase"
+            id="fiscalCode"
+            formControlName="fiscalCode"
+          />
+        </div> -->
+
+          <div class="mb-4">
+            <label for="nrePart1" class="form-label">
+              {{
+                'bookings.booking-new.prescription-upload.form.number-prescription'
+                  | translate
+              }}
+            </label>
+
+            <div class="d-flex gap-2">
+              <input
+                type="text"
+                id="nrePart1"
+                class="form-control nrePart1"
+                formControlName="nrePart1"
+                maxlength="5"
+              />
+
+              <label id="nrePart2Label" class="visually-hidden">
+                {{
+                  'bookings.booking-new.prescription-upload.form.number-prescription'
+                    | translate
+                }}
+              </label>
+              <input
+                type="text"
+                id="nrePart2"
+                class="form-control"
+                formControlName="nrePart2"
+                maxlength="10"
+                aria-labelledby="nrePart2Label"
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            (click)="fetchPrescription()"
+            [attr.aria-label]="
+              'bookings.booking-new.prescription-upload.form.forward-aria-label'
+                | translate
+            "
+            [disabled]="form.invalid"
+          >
+            {{
+              'bookings.booking-new.prescription-upload.form.forward'
+                | translate
+            }}
+          </button>
+        </form>
+      </div>
+      <img
+        class="img-prescription d-none d-lg-block"
+        src="assets/common/images/prescription.svg"
+        aria-hidden=""
+        alt=""
+      />
+    </div>
+  </div>
+</div>

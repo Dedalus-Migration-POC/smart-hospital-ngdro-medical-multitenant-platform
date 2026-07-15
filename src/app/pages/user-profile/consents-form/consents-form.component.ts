@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ItCheckboxComponent } from 'design-angular-kit';
 import { LanguageService } from '../../../initialize/state/services/language.service';
@@ -12,13 +12,17 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrls: ['./consents-form.component.scss'],
 })
 export class ConsentsFormComponent {
-  @Input() userConsentsForm?: FormGroup;
-  @Input() isProfile?: boolean;
-  @Output() toggleConsent = new EventEmitter();
-  @Input() consentsConfig?: {
-    title: { [key: string]: string };
-    subtitle: { [key: string]: string };
-  } | null;
+  readonly userConsentsForm = input<FormGroup | undefined>(undefined);
+  readonly isProfile = input(false);
+  readonly toggleConsent = output<any>();
+  readonly consentsConfig = input<
+    | {
+        title: { [key: string]: string };
+        subtitle: { [key: string]: string };
+      }
+    | null
+    | undefined
+  >(undefined);
 
   private langService = inject(LanguageService);
   lang = this.langService.lang;

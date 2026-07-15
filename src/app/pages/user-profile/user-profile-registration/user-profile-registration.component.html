@@ -1,8 +1,11 @@
 <div class="col-12 col-sm col-lg-8 my-3">
   <article class="it-card rounded shadow-sm border p-4">
-    @if (form && userConfig) {
-      <form [formGroup]="form" (submit)="$event.stopPropagation()" (ngSubmit)="onSubmit()">
-        @for (section of userConfig.sections; track $index) {
+    @let formGroup = form();
+    @let config = userConfig();
+
+    @if (formGroup && config) {
+      <form [formGroup]="formGroup" (submit)="$event.stopPropagation()" (ngSubmit)="onSubmit()">
+        @for (section of config.sections; track $index) {
           <section class="mb-4">
             <h2
               [ngClass]="{
@@ -22,7 +25,7 @@
               @for (field of section.fields; track $index) {
                 <app-field-types
                   [field]="field"
-                  [formGroup]="form"
+                  [formGroup]="formGroup"
                   class="d-inline-block"
                   [ngClass]="field.fieldContainerClasses"
                   [triggerSubmit]="triggerSubmit"
@@ -30,19 +33,19 @@
                 />
               }
             } @else {
-              <app-readonly-section [fields]="section.fields" [formGroup]="form" />
+              <app-readonly-section [fields]="section.fields" [formGroup]="formGroup" />
             }
           </section>
         }
 
         <app-consents-form
-          [userConsentsForm]="userConsentsForm"
+          [userConsentsForm]="userConsentsForm()"
           (toggleConsent)="toggleConsent.emit($event)"
-          [consentsConfig]="userConfig.consents"
+          [consentsConfig]="config.consents"
         ></app-consents-form>
 
         <button itButton="primary" size="sm" type="submit">
-          {{ userConfig.button?.text?.[lang()] }}
+          {{ config.button?.text?.[lang()] }}
         </button>
       </form>
     }

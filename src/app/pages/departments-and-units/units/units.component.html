@@ -40,8 +40,10 @@
 } @else {
   <p>{{ 'departments-page.no-departments' | translate }}</p>
 }
-<!-- <div class="clinical-records-list-cards-container mb-5" *ngIf="units().length > 0">
+<!-- @if (units().length > 0) {
+<div class="clinical-records-list-cards-container mb-5">
   <app-card [wrapInList]="true" [cards]="units()"> </app-card>
-</div> -->
+</div>
+} -->
 
-<!-- <app-no-info *ngIf="units().length === 0"> </app-no-info> -->
+<!-- @if (units().length === 0) { <app-no-info></app-no-info> } -->

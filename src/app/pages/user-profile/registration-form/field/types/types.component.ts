@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Field } from '../../../user-profile.model';
 import { CommonModule } from '@angular/common';
@@ -6,15 +6,16 @@ import { FieldTextComponent } from './input.component';
 
 @Component({
   selector: 'app-field-types',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FieldTextComponent],
 
   template: `
-    @switch (field.type) {
+    @switch (field().type) {
       @case ('text') {
         <app-field-text
-          [field]="field"
-          [formGroup]="formGroup"
-          [triggerSubmit]="triggerSubmit"
+          [field]="field()"
+          [formGroup]="formGroup()"
+          [triggerSubmit]="triggerSubmit()"
           (onCompleted)="onCompleted.emit()"
         ></app-field-text>
       }
@@ -23,8 +24,8 @@ import { FieldTextComponent } from './input.component';
   `,
 })
 export class FieldTypesComponent {
-  @Input() field!: Field;
-  @Input() formGroup!: FormGroup;
-  @Input() triggerSubmit!: boolean; // to ‘warn’ the child component for inserting/deleting text field attributes before form submit
-  @Output() onCompleted = new EventEmitter<void>(); // event to be sent to the parent when the checks for inserting/deleting attributes for the field are finished
+  readonly field = input.required<Field>();
+  readonly formGroup = input.required<FormGroup>();
+  readonly triggerSubmit = input.required<boolean>();
+  readonly onCompleted = output<void>();
 }

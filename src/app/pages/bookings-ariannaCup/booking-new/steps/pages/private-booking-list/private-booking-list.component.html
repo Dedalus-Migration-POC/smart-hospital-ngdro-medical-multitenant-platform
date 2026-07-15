@@ -1,0 +1,131 @@
+<div class="row">
+  <div class="col-12 col-lg-4">
+    <app-booking-summary class="flex-grow-1"></app-booking-summary>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    @if (privateBookingList(); as state) {
+      @if (state.loading) {
+        <app-spinner
+          [fullScreen]="true"
+          text="Loading"
+          [className]="'flex-column gap-3 text-secondary'"
+        ></app-spinner>
+      }
+
+      @if (state.error) {
+        <div class="alert alert-danger d-flex justify-content-between align-items-center">
+          <span>{{ 'bookings.booking-new.private-booking-list.error-list' | translate }}</span>
+          <button class="btn btn-outline-primary btn-sm" type="button" (click)="retry()">
+            Retry
+          </button>
+        </div>
+      }
+
+      @if (!state.loading && !state.error) {
+        @let currentSelection = selectedBooking();
+
+        @if (state.data && state.data.documents && state.data.documents.length > 0) {
+          <div class="d-flex gap-3 flex-column">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm p-2 ms-auto"
+              [attr.aria-label]="'commons.confirm-button' | translate"
+              [disabled]="!currentSelection"
+              (click)="confirmSelectedBooking()"
+            >
+              {{ 'commons.confirm-button' | translate }}
+            </button>
+
+            <div class="form-floating flex-grow-1">
+              <input
+                type="text"
+                class="form-control"
+                id="search"
+                [placeholder]="'bookings.booking-new.private-booking-list.search' | translate"
+                [value]="filter()"
+                (input)="onFilterInput($event)"
+                autocomplete="off"
+              />
+              <label for="search">{{
+                'bookings.booking-new.private-booking-list.search' | translate
+              }}</label>
+            </div>
+
+            @if (groupsPrivateBookingList(); as groups) {
+              <div class="accordion d-flex flex-column" id="prestazioniAccordion">
+                @if (groups.length) {
+                  @for (g of groups; track g.letter) {
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" [id]="'heading-' + g.letter">
+                        <button
+                          class="accordion-button"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          [attr.data-bs-target]="'#collapse-' + g.letter"
+                          [attr.aria-controls]="'collapse-' + g.letter"
+                        >
+                          {{ g.letter }}
+                        </button>
+                      </h2>
+
+                      <div
+                        class="accordion-collapse collapse show"
+                        [id]="'collapse-' + g.letter"
+                        [attr.aria-labelledby]="'heading-' + g.letter"
+                      >
+                        <div
+                          class="accordion-body"
+                          role="radiogroup"
+                          [attr.aria-labelledby]="'heading-' + g.letter"
+                        >
+                          @for (p of g.items; track p.codRegPrest; let j = $index) {
+                            <div class="form-check my-0">
+                              <input
+                                class="form-check-input my-0"
+                                type="radio"
+                                name="selectedPrestazione"
+                                [id]="'radio-' + g.letter + '-' + j"
+                                [id]="'radio-' + g.letter + '-' + j"
+                                [checked]="currentSelection?.codRegPrest === p.codRegPrest"
+                                (change)="selectedBooking.set(p)"
+                              />
+
+                              <label
+                                class="form-check-label my-0"
+                                [for]="'radio-' + g.letter + '-' + j"
+                              >
+                                {{ p.descPrest }}
+                              </label>
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    </div>
+                  }
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm p-2 mt-3 ms-auto"
+                    [attr.aria-label]="'commons.confirm-button' | translate"
+                    [disabled]="!currentSelection"
+                    (click)="confirmSelectedBooking()"
+                  >
+                    {{ 'commons.confirm-button' | translate }}
+                  </button>
+                } @else {
+                  <div class="text-center text-secondary py-4">
+                    {{ 'bookings.booking-new.private-booking-list.empty-list' | translate }}
+                  </div>
+                }
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="text-center text-secondary py-4">
+            {{ 'bookings.booking-new.private-booking-list.empty-list' | translate }}
+          </div>
+        }
+      }
+    }
+  </div>
+</div>

@@ -894,7 +894,7 @@ export const APP_CONFIG: AppConfig = {
     {
       id: '/login', // === url!
       name: { it: 'Accesso', en: 'Login' }, // Nome nel browser per accessibilità
-      route: '/', //non serve, non lo possono cambiare
+      route: '/login', //non serve, non lo possono cambiare
       page: {
         // backgroundColor: 'aqua', //o color o img!
         backgroundImage: '/assets/images/bg.svg',
@@ -1161,7 +1161,7 @@ export const APP_CONFIG: AppConfig = {
           end: {
             size: { basis: '50%', width: '100%' },
             layout: {
-              direction: 'row',
+              direction: 'column',
               gap: 'gap-2',
               align: 'center',
               justify: 'center',
@@ -1370,59 +1370,7 @@ export const APP_CONFIG: AppConfig = {
                         height: '72px',
                       },
                     },
-                    {
-                      id: 'clinical-records',
-                      type: 'mediaText',
-                      ariaLabel: {
-                        it: 'Apri link esterno',
-                        en: 'Open external link',
-                      },
-                      className: 'bg-white',
-                      action: {
-                        type: 'externalLink',
-                        url: 'https://cds.asl.rieti.it/',
-                      },
-                      text: {
-                        title: {
-                          text: {
-                            it: 'Cartella clinica',
-                            en: 'Clinical records',
-                          },
-                          fontSize: 'md',
-                          fontWeight: 'bold',
-                          color: 'dark',
-                        },
-                        subTitle: {
-                          text: {
-                            it: 'Apri link esterno per vedere la tua cartella clinica',
-                            en: 'Open external link',
-                          },
-                          fontSize: 'sm',
-                          fontWeight: 'normal',
-                          color: 'secondary',
-                        },
-                      },
-                      blocked: false,
-                      image: {
-                        type: 'inlineSvg',
-                        decorative: false,
-                        value: `
-         <svg width="54" height="61" viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0_4019_5818" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="54" height="61">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H54V61H0V0Z" fill="white"/>
-</mask>
-<g mask="url(#mask0_4019_5818)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M23.2541 18.9216H15.2444L23.2541 10.7178V18.9216ZM24.1583 7.40961C23.9 7.40961 23.6417 7.54062 23.5124 7.67436L12.4023 19.0541C12.2731 19.1864 12.1426 19.4496 12.1426 19.7156V21.568C12.1426 22.0973 12.5316 22.4943 13.0482 22.4943C13.565 22.4943 13.9526 22.0973 13.9526 21.568V20.6419H24.1583C24.6751 20.6419 25.0612 20.2449 25.0612 19.7156V9.26221H47.4119V30.1691C47.4119 30.6971 47.7995 31.0954 48.3149 31.0954C48.8329 31.0954 49.2205 30.6971 49.2205 30.1691V8.20217C49.2205 7.67436 48.8329 7.27734 48.3149 7.27734L24.1583 7.40961Z" fill="#DC2B1C"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M5.55494 22.7582C6.07177 22.7582 6.45934 22.3612 6.45934 21.8331V1.85134H39.9186V4.7623C39.9186 5.29306 40.3062 5.68986 40.823 5.68986C41.3396 5.68986 41.7272 5.29306 41.7272 4.7623V0.925041C41.7272 0.397016 41.3396 0 40.823 0H5.42588C4.90905 0 4.52148 0.397016 4.52148 0.925041V21.8331C4.65074 22.2302 5.03831 22.7582 5.55494 22.7582Z" fill="#DC2B1C"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M52.0622 57.9568C52.0622 58.4848 51.5456 58.8831 51.1581 58.8831H2.84225C2.32542 58.8831 1.93785 58.3538 1.93785 57.9568V28.4491C1.93785 27.5228 2.84225 26.5965 3.74644 26.5965H25.1915C25.579 26.5965 26.0959 26.8613 26.0959 27.2581L27.7752 32.5511C28.0335 33.742 29.3255 35.0651 30.7465 35.0651H51.1581C51.6747 35.0651 52.0622 35.5944 52.0622 35.9901V57.9568ZM51.1581 33.2127H30.7465C30.3589 33.2127 29.713 32.6822 29.5838 32.1541L27.9044 26.8613C27.6459 25.6702 26.3542 24.7441 25.1915 24.7441H3.74644C1.8088 24.7441 0 26.4643 0 28.5814V58.0893C0 59.6771 1.29197 61.0002 2.84225 61.0002H51.1581C52.7081 61.0002 54.0001 59.6771 54.0001 58.0893V35.9901C54.0001 34.5358 52.7081 33.2127 51.1581 33.2127Z" fill="#024E9A"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M19.1198 46.9745C19.1198 46.4452 19.5074 46.0482 20.024 46.0482H24.158V42.2095H20.024C19.5074 42.2095 19.1198 41.8139 19.1198 41.2832V37.0501H15.3734V41.2832C15.3734 41.8139 14.9858 42.2095 14.469 42.2095H10.335V46.0482H14.469C14.9858 46.0482 15.3734 46.4452 15.3734 46.9745V51.2073H19.1198V46.9745ZM19.1198 53.1922H15.3734C14.3399 53.1922 13.5648 52.2673 13.5648 51.341V47.8993H10.335C9.30151 47.8993 8.52637 46.9745 8.52637 46.0482V42.2095C8.52637 41.1522 9.43077 40.3583 10.335 40.3583H13.5648V37.0501C13.5648 35.9903 14.469 35.1978 15.3734 35.1978H19.1198C20.1533 35.1978 20.9284 36.1241 20.9284 37.0501V40.3583H24.158C25.1915 40.3583 25.9666 41.2832 25.9666 42.2095V46.0482C25.9666 47.1068 25.0622 47.8993 24.158 47.8993H20.9284V51.2073C20.9284 52.2673 20.024 53.1922 19.1198 53.1922Z" fill="#DC2B1C"/>
-</g>
-</svg>
-        `,
-                        width: '72px',
-                        height: '72px',
-                      },
-                    },
+
                     {
                       id: 'reports',
                       type: 'mediaText',
@@ -1628,6 +1576,210 @@ export const APP_CONFIG: AppConfig = {
 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.86322 13.1733C2.34378 13.1733 1.95215 13.5645 1.95215 14.0864V44.0867C1.95215 50.8695 7.28837 56.3492 14.1864 56.3492C21.0844 56.3492 26.4219 50.9999 26.4219 44.0867V14.0864C26.4219 13.5645 26.0302 13.1733 25.5095 13.1733C24.989 13.1733 24.5984 13.5645 24.5984 14.0864V44.0867C24.5984 49.8274 20.0433 54.3925 14.3165 54.3925C8.58977 54.3925 4.03443 49.8274 4.03443 44.0867V14.0864C3.77428 13.5645 3.38373 13.1733 2.86322 13.1733Z" fill="#024E9A"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.0416 1.82476H1.95137V6.5218C1.95137 7.04233 2.34322 7.43353 2.86244 7.43353C3.38447 7.43353 3.7748 7.04233 3.7748 6.5218V1.82476H24.3375V6.5218C24.3375 7.04233 24.7281 7.43353 25.2499 7.43353C25.7706 7.43353 26.1609 7.04233 26.1609 6.5218V1.82476H29.9341V6.5218C29.9341 7.04233 30.3259 7.43353 30.8452 7.43353C31.367 7.43353 31.7575 7.04233 31.7575 6.5218V1.82476H52.5819V6.5218C52.5819 7.04233 52.9709 7.43353 53.493 7.43353C54.0122 7.43353 54.404 7.04233 54.404 6.5218V1.82476H55.3138C55.8356 1.82476 56.2249 1.43355 56.2249 0.911731C56.2249 0.389909 55.8356 0 55.3138 0H0.910335C0.390897 0 -0.000732422 0.389909 -0.000732422 0.911731C-0.000732422 1.43355 0.521081 1.82476 1.0416 1.82476Z" fill="#024E9A"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M59.0889 9.39014H1.04119C0.520677 9.39014 0.130127 9.78264 0.130127 10.3032C0.130127 10.8261 0.520677 11.2162 1.04119 11.2162H58.1779V58.1735H1.04119C0.520677 58.1735 0.130127 58.5647 0.130127 59.0878C0.130127 59.6094 0.520677 60.0008 1.04119 60.0008H59.0889C59.6095 60.0008 60 59.6094 60 59.0878V10.3032C60 9.78264 59.6095 9.39014 59.0889 9.39014Z" fill="#DC2B1C"/>
+</g>
+</svg>
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
+                    {
+                      id: 'booking-arianna',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri prenotazioni',
+                        en: 'Open bookings',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'route',
+                        url: '/bookings',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Prenotazioni',
+                            en: 'Bookings',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'Arianna-CUP',
+                            en: 'Arianna-CUP',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                        },
+                      },
+                      blocked: true,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+       <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_4019_11176" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="60" height="60">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H60V60H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_4019_11176)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M41.9086 28.043C44.6431 28.9547 47.375 29.8678 52.5811 29.9997V44.0867C52.5811 49.8246 48.0257 54.3899 42.2992 54.3899C36.5724 54.3899 32.017 49.8246 32.017 44.0867V26.2169C36.7026 26.346 39.3056 27.2591 41.9086 28.043ZM30.9771 13.1733C30.4552 13.1733 30.0647 13.5632 30.0647 14.0864V44.0867C30.0647 50.8695 35.4009 56.3479 42.2991 56.3479C49.1984 56.3479 54.5333 50.9999 54.5333 44.0867V14.0864C54.5333 13.5632 54.1428 13.1733 53.6223 13.1733C53.1031 13.1733 52.7112 13.5632 52.7112 14.0864V28.1734C47.8968 28.043 45.2938 27.2591 42.6908 26.346C39.9563 25.4343 37.2231 24.5213 32.017 24.3896V14.0864C31.8868 13.5632 31.4965 13.1733 30.9771 13.1733Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M2.86322 13.1733C2.34378 13.1733 1.95215 13.5645 1.95215 14.0864V44.0867C1.95215 50.8695 7.28837 56.3492 14.1864 56.3492C21.0844 56.3492 26.4219 50.9999 26.4219 44.0867V14.0864C26.4219 13.5645 26.0302 13.1733 25.5095 13.1733C24.989 13.1733 24.5984 13.5645 24.5984 14.0864V44.0867C24.5984 49.8274 20.0433 54.3925 14.3165 54.3925C8.58977 54.3925 4.03443 49.8274 4.03443 44.0867V14.0864C3.77428 13.5645 3.38373 13.1733 2.86322 13.1733Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1.0416 1.82476H1.95137V6.5218C1.95137 7.04233 2.34322 7.43353 2.86244 7.43353C3.38447 7.43353 3.7748 7.04233 3.7748 6.5218V1.82476H24.3375V6.5218C24.3375 7.04233 24.7281 7.43353 25.2499 7.43353C25.7706 7.43353 26.1609 7.04233 26.1609 6.5218V1.82476H29.9341V6.5218C29.9341 7.04233 30.3259 7.43353 30.8452 7.43353C31.367 7.43353 31.7575 7.04233 31.7575 6.5218V1.82476H52.5819V6.5218C52.5819 7.04233 52.9709 7.43353 53.493 7.43353C54.0122 7.43353 54.404 7.04233 54.404 6.5218V1.82476H55.3138C55.8356 1.82476 56.2249 1.43355 56.2249 0.911731C56.2249 0.389909 55.8356 0 55.3138 0H0.910335C0.390897 0 -0.000732422 0.389909 -0.000732422 0.911731C-0.000732422 1.43355 0.521081 1.82476 1.0416 1.82476Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M59.0889 9.39014H1.04119C0.520677 9.39014 0.130127 9.78264 0.130127 10.3032C0.130127 10.8261 0.520677 11.2162 1.04119 11.2162H58.1779V58.1735H1.04119C0.520677 58.1735 0.130127 58.5647 0.130127 59.0878C0.130127 59.6094 0.520677 60.0008 1.04119 60.0008H59.0889C59.6095 60.0008 60 59.6094 60 59.0878V10.3032C60 9.78264 59.6095 9.39014 59.0889 9.39014Z" fill="#DC2B1C"/>
+</g>
+</svg>
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                id: 'service-cards',
+                type: 'SERVICE_CARDS',
+                className: 'w-100 mt-5 mb-3',
+                enabled: true,
+                props: {
+                  id: 'services-section',
+                  className: 'services-section',
+                  ariaLabel: {
+                    it: 'Sezione servizi',
+                    en: 'Services section',
+                  },
+                  header: {
+                    title: {
+                      text: {
+                        it: 'Servizi esterni',
+                        en: 'Services',
+                      },
+                      fontSize: 'md',
+                      fontWeight: 'bold',
+                      color: 'dark',
+                      lineHeight: 'md',
+                    },
+                    subTitle: {
+                      text: {
+                        it: 'Servizio si aprirà sul sito esterno',
+                        en: 'Will open on external website',
+                      },
+                      fontSize: 'md',
+                      fontWeight: 'normal',
+                      color: 'secondary',
+                      lineHeight: 'md',
+                    },
+                  },
+                  itemsLayout: {
+                    direction: 'column',
+                    align: 'start',
+                    justify: 'start',
+                    wrap: 'wrap',
+                    gap: 'gap-2',
+                  },
+                  items: [
+                    {
+                      id: 'news',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri link esterno',
+                        en: 'Open external link',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'externalLink',
+                        url: 'https://www.salute.gov.it/new/it/sezione/notizie/',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'News',
+                            en: 'News',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'Apri link esterno per leggere le news',
+                            en: 'Open external link for news',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                        },
+                      },
+                      blocked: false,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+         <svg width="54" height="61" viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_4019_5818" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="54" height="61">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H54V61H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_4019_5818)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.2541 18.9216H15.2444L23.2541 10.7178V18.9216ZM24.1583 7.40961C23.9 7.40961 23.6417 7.54062 23.5124 7.67436L12.4023 19.0541C12.2731 19.1864 12.1426 19.4496 12.1426 19.7156V21.568C12.1426 22.0973 12.5316 22.4943 13.0482 22.4943C13.565 22.4943 13.9526 22.0973 13.9526 21.568V20.6419H24.1583C24.6751 20.6419 25.0612 20.2449 25.0612 19.7156V9.26221H47.4119V30.1691C47.4119 30.6971 47.7995 31.0954 48.3149 31.0954C48.8329 31.0954 49.2205 30.6971 49.2205 30.1691V8.20217C49.2205 7.67436 48.8329 7.27734 48.3149 7.27734L24.1583 7.40961Z" fill="#DC2B1C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.55494 22.7582C6.07177 22.7582 6.45934 22.3612 6.45934 21.8331V1.85134H39.9186V4.7623C39.9186 5.29306 40.3062 5.68986 40.823 5.68986C41.3396 5.68986 41.7272 5.29306 41.7272 4.7623V0.925041C41.7272 0.397016 41.3396 0 40.823 0H5.42588C4.90905 0 4.52148 0.397016 4.52148 0.925041V21.8331C4.65074 22.2302 5.03831 22.7582 5.55494 22.7582Z" fill="#DC2B1C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M52.0622 57.9568C52.0622 58.4848 51.5456 58.8831 51.1581 58.8831H2.84225C2.32542 58.8831 1.93785 58.3538 1.93785 57.9568V28.4491C1.93785 27.5228 2.84225 26.5965 3.74644 26.5965H25.1915C25.579 26.5965 26.0959 26.8613 26.0959 27.2581L27.7752 32.5511C28.0335 33.742 29.3255 35.0651 30.7465 35.0651H51.1581C51.6747 35.0651 52.0622 35.5944 52.0622 35.9901V57.9568ZM51.1581 33.2127H30.7465C30.3589 33.2127 29.713 32.6822 29.5838 32.1541L27.9044 26.8613C27.6459 25.6702 26.3542 24.7441 25.1915 24.7441H3.74644C1.8088 24.7441 0 26.4643 0 28.5814V58.0893C0 59.6771 1.29197 61.0002 2.84225 61.0002H51.1581C52.7081 61.0002 54.0001 59.6771 54.0001 58.0893V35.9901C54.0001 34.5358 52.7081 33.2127 51.1581 33.2127Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M19.1198 46.9745C19.1198 46.4452 19.5074 46.0482 20.024 46.0482H24.158V42.2095H20.024C19.5074 42.2095 19.1198 41.8139 19.1198 41.2832V37.0501H15.3734V41.2832C15.3734 41.8139 14.9858 42.2095 14.469 42.2095H10.335V46.0482H14.469C14.9858 46.0482 15.3734 46.4452 15.3734 46.9745V51.2073H19.1198V46.9745ZM19.1198 53.1922H15.3734C14.3399 53.1922 13.5648 52.2673 13.5648 51.341V47.8993H10.335C9.30151 47.8993 8.52637 46.9745 8.52637 46.0482V42.2095C8.52637 41.1522 9.43077 40.3583 10.335 40.3583H13.5648V37.0501C13.5648 35.9903 14.469 35.1978 15.3734 35.1978H19.1198C20.1533 35.1978 20.9284 36.1241 20.9284 37.0501V40.3583H24.158C25.1915 40.3583 25.9666 41.2832 25.9666 42.2095V46.0482C25.9666 47.1068 25.0622 47.8993 24.158 47.8993H20.9284V51.2073C20.9284 52.2673 20.024 53.1922 19.1198 53.1922Z" fill="#DC2B1C"/>
+</g>
+</svg>
+        `,
+                        width: '72px',
+                        height: '72px',
+                      },
+                    },
+                    {
+                      id: 'clinical-records',
+                      type: 'mediaText',
+                      ariaLabel: {
+                        it: 'Apri link esterno',
+                        en: 'Open external link',
+                      },
+                      className: 'bg-white',
+                      action: {
+                        type: 'externalLink',
+                        url: 'https://cds.asl.rieti.it/',
+                      },
+                      text: {
+                        title: {
+                          text: {
+                            it: 'Cartella clinica',
+                            en: 'Clinical records',
+                          },
+                          fontSize: 'md',
+                          fontWeight: 'bold',
+                          color: 'dark',
+                        },
+                        subTitle: {
+                          text: {
+                            it: 'Apri link esterno per vedere la tua cartella clinica',
+                            en: 'Open external link',
+                          },
+                          fontSize: 'sm',
+                          fontWeight: 'normal',
+                          color: 'secondary',
+                        },
+                      },
+                      blocked: false,
+                      image: {
+                        type: 'inlineSvg',
+                        decorative: false,
+                        value: `
+         <svg width="54" height="61" viewBox="0 0 54 61" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_4019_5818" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="54" height="61">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H54V61H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_4019_5818)">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.2541 18.9216H15.2444L23.2541 10.7178V18.9216ZM24.1583 7.40961C23.9 7.40961 23.6417 7.54062 23.5124 7.67436L12.4023 19.0541C12.2731 19.1864 12.1426 19.4496 12.1426 19.7156V21.568C12.1426 22.0973 12.5316 22.4943 13.0482 22.4943C13.565 22.4943 13.9526 22.0973 13.9526 21.568V20.6419H24.1583C24.6751 20.6419 25.0612 20.2449 25.0612 19.7156V9.26221H47.4119V30.1691C47.4119 30.6971 47.7995 31.0954 48.3149 31.0954C48.8329 31.0954 49.2205 30.6971 49.2205 30.1691V8.20217C49.2205 7.67436 48.8329 7.27734 48.3149 7.27734L24.1583 7.40961Z" fill="#DC2B1C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.55494 22.7582C6.07177 22.7582 6.45934 22.3612 6.45934 21.8331V1.85134H39.9186V4.7623C39.9186 5.29306 40.3062 5.68986 40.823 5.68986C41.3396 5.68986 41.7272 5.29306 41.7272 4.7623V0.925041C41.7272 0.397016 41.3396 0 40.823 0H5.42588C4.90905 0 4.52148 0.397016 4.52148 0.925041V21.8331C4.65074 22.2302 5.03831 22.7582 5.55494 22.7582Z" fill="#DC2B1C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M52.0622 57.9568C52.0622 58.4848 51.5456 58.8831 51.1581 58.8831H2.84225C2.32542 58.8831 1.93785 58.3538 1.93785 57.9568V28.4491C1.93785 27.5228 2.84225 26.5965 3.74644 26.5965H25.1915C25.579 26.5965 26.0959 26.8613 26.0959 27.2581L27.7752 32.5511C28.0335 33.742 29.3255 35.0651 30.7465 35.0651H51.1581C51.6747 35.0651 52.0622 35.5944 52.0622 35.9901V57.9568ZM51.1581 33.2127H30.7465C30.3589 33.2127 29.713 32.6822 29.5838 32.1541L27.9044 26.8613C27.6459 25.6702 26.3542 24.7441 25.1915 24.7441H3.74644C1.8088 24.7441 0 26.4643 0 28.5814V58.0893C0 59.6771 1.29197 61.0002 2.84225 61.0002H51.1581C52.7081 61.0002 54.0001 59.6771 54.0001 58.0893V35.9901C54.0001 34.5358 52.7081 33.2127 51.1581 33.2127Z" fill="#024E9A"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M19.1198 46.9745C19.1198 46.4452 19.5074 46.0482 20.024 46.0482H24.158V42.2095H20.024C19.5074 42.2095 19.1198 41.8139 19.1198 41.2832V37.0501H15.3734V41.2832C15.3734 41.8139 14.9858 42.2095 14.469 42.2095H10.335V46.0482H14.469C14.9858 46.0482 15.3734 46.4452 15.3734 46.9745V51.2073H19.1198V46.9745ZM19.1198 53.1922H15.3734C14.3399 53.1922 13.5648 52.2673 13.5648 51.341V47.8993H10.335C9.30151 47.8993 8.52637 46.9745 8.52637 46.0482V42.2095C8.52637 41.1522 9.43077 40.3583 10.335 40.3583H13.5648V37.0501C13.5648 35.9903 14.469 35.1978 15.3734 35.1978H19.1198C20.1533 35.1978 20.9284 36.1241 20.9284 37.0501V40.3583H24.158C25.1915 40.3583 25.9666 41.2832 25.9666 42.2095V46.0482C25.9666 47.1068 25.0622 47.8993 24.158 47.8993H20.9284V51.2073C20.9284 52.2673 20.024 53.1922 19.1198 53.1922Z" fill="#DC2B1C"/>
 </g>
 </svg>
         `,
@@ -2668,6 +2820,228 @@ export const APP_CONFIG: AppConfig = {
               routerLink: '/payments-jcash/details',
             },
           ],
+        },
+        errorMessage: {
+          imageBlockConfig: {
+            id: 'errorMessage',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+              decorative: true,
+              alt: { it: 'Errore', en: 'Error' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Errore', en: 'Error' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'Si è verificato un errore durante il recupero dei pagamenti. Riprova più tardi.',
+                  en: 'An error occurred while fetching the payments. Please try again later.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+            },
+          },
+        },
+        notFoundMessage: {
+          imageBlockConfig: {
+            id: 'paymentsNotFound',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value:
+                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+              decorative: true,
+              alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'La tua richiesta non ha prodotto risultati.',
+                  en: 'Your request did not produce any results.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+            },
+          },
+        },
+      },
+    },
+    {
+      id: '/bookings/new', // === url!
+      name: { it: 'Prenotazioni', en: 'Bookings' }, // Nome nel browser per accessibilità
+      route: '/bookings/new', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Nuova prenotazione', en: 'New booking' },
+          subTitle: {
+            it: 'Crea una nuova prenotazione Arianna-CUP',
+            en: 'Create a new Arianna-CUP booking',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+            {
+              name: { it: 'Prenotazioni', en: 'Bookings' },
+              routerLink: '/bookings',
+            },
+            {
+              name: { it: 'Nuova prenotazione', en: 'New booking' },
+              routerLink: '/bookings/new',
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: '/bookings', // === url!
+      name: { it: 'Prenotazioni', en: 'Bookings' }, // Nome nel browser per accessibilità
+      route: '/bookings', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Prenotazioni', en: 'Bookings' },
+          subTitle: {
+            it: 'Visualizza le prenotazioni Arianna-CUP.',
+            en: 'View the Arianna-CUP bookings.',
+          },
+          button: {
+            it: 'Nuova prenotazione',
+            en: 'New booking',
+          },
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+            {
+              name: { it: 'Prenotazioni', en: 'Bookings' },
+              routerLink: '/bookings',
+            },
+          ],
+        },
+        errorMessage: {
+          imageBlockConfig: {
+            id: 'errorMessage',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+              decorative: true,
+              alt: { it: 'Errore', en: 'Error' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Errore', en: 'Error' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'Si è verificato un errore durante il recupero dei referti. Riprova più tardi.',
+                  en: 'An error occurred while fetching the reports. Please try again later.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'danger',
+                lineHeight: 'normal',
+              },
+            },
+          },
+        },
+        notFoundMessage: {
+          imageBlockConfig: {
+            id: 'bookingsNotFound',
+            className: '',
+            layout: {
+              direction: 'column',
+              align: 'center',
+              justify: 'center',
+              gap: 'md',
+            },
+            clickable: false,
+            image: {
+              type: 'url',
+              value:
+                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+              decorative: true,
+              alt: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
+              height: '150px',
+            },
+            text: {
+              title: {
+                text: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
+                fontSize: 'xl',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+              subTitle: {
+                text: {
+                  it: 'La tua richiesta non ha prodotto risultati.',
+                  en: 'Your request did not produce any results.',
+                },
+                fontSize: 'md',
+                fontWeight: 'normal',
+                color: 'warning',
+                lineHeight: 'normal',
+              },
+            },
+          },
         },
       },
     },

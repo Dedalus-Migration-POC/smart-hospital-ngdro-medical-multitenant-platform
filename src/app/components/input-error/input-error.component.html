@@ -1,30 +1,30 @@
 @if (
-  formGroup.controls[fieldName!].invalid &&
-  (formGroup.controls[fieldName!].dirty || formGroup.controls[fieldName!].touched)
+  formGroup().controls[fieldName()!].invalid &&
+  (formGroup().controls[fieldName()!].dirty || formGroup().controls[fieldName()!].touched)
 ) {
   <div class="input-invalid-error text-danger">
-    @if (formGroup.controls[fieldName!].errors?.['required']) {
+    @if (formGroup().controls[fieldName()!].errors?.['required']) {
       {{ 'input.errors.required-field' | translate }}
     }
-    @if (formGroup.controls[fieldName!].errors?.['validateText']) {
+    @if (formGroup().controls[fieldName()!].errors?.['validateText']) {
       {{ 'input.errors.invalid-field' | translate }}
     }
-    @if (formGroup.controls[fieldName!].errors?.['validateCap']) {
+    @if (formGroup().controls[fieldName()!].errors?.['validateCap']) {
       {{ 'input.errors.cap-invalid' | translate }}
     }
-    @if (formGroup.controls[fieldName!].errors?.['validateFiscalCode']) {
+    @if (formGroup().controls[fieldName()!].errors?.['validateFiscalCode']) {
       {{ 'input.errors.fiscal-code-invalid' | translate }}
     }
-    @if (formGroup.controls[fieldName!].errors?.['email']) {
+    @if (formGroup().controls[fieldName()!].errors?.['email']) {
       {{ 'input.errors.email-invalid' | translate }}
     }
-    @if (formGroup.controls[fieldName!].errors?.['validatePhoneNumber']) {
+    @if (formGroup().controls[fieldName()!].errors?.['validatePhoneNumber']) {
       {{ 'input.errors.tel-invalid' | translate }}
     }
-    @if (formGroup.controls[fieldName!].errors?.['minlength']) {
+    @if (formGroup().controls[fieldName()!].errors?.['minlength']) {
       {{ 'input.errors.minlength-invalid' | translate }}
     }
-    @if (formGroup.controls[fieldName!].errors?.['maxlength']) {
+    @if (formGroup().controls[fieldName()!].errors?.['maxlength']) {
       {{ 'input.errors.maxlength-invalid' | translate }}
     }
   </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
@@ -19,15 +19,13 @@ import { InputErrorComponent } from '../input-error/input-error.component';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
 })
-export class InputComponent implements OnInit {
-  @Input() formGroup!: FormGroup;
-  @Input() fieldName!: string | number | null;
-  @Input() label!: string;
-  @Input() type?: string = 'text';
-  @Input() minlength?: number;
-  @Input() maxlength?: number;
+export class InputComponent {
+  readonly formGroup = input.required<FormGroup>();
+  readonly fieldName = input.required<string | number | null>();
+  readonly label = input.required<string>();
+  readonly type = input('text');
+  readonly minlength = input<number | undefined>(undefined);
+  readonly maxlength = input<number | undefined>(undefined);
 
   constructor() {}
-
-  ngOnInit(): void {}
 }

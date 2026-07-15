@@ -1,0 +1,59 @@
+<div class="row container-prescription-upload">
+  <div class="col-12 col-lg-4">
+    <app-booking-summary class="flex-grow-1"></app-booking-summary>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    @if (privateListAvailabilityBooking(); as state) {
+      @if (state.loading) {
+        <app-spinner
+          [fullScreen]="true"
+          text="Loading"
+          [className]="'flex-column gap-3 text-secondary'"
+        ></app-spinner>
+      }
+
+      @if (state.error) {
+        <div class="alert alert-danger d-flex justify-content-between align-items-center">
+          <span>
+            {{ 'bookings.booking-new.private-booking-availability.error-list' | translate }}
+          </span>
+          <button class="btn btn-outline-primary btn-sm" type="button" (click)="retry()">
+            Retry
+          </button>
+        </div>
+      }
+
+      @if (!state.loading && !state.error) {
+        @if (state.bookings.length > 0) {
+          <div class="d-flex flex-column gap-3">
+            @for (booking of state.bookings; track $index) {
+              <div class="card shadow-sm border-light">
+                <div class="card-body">
+                  <h5 class="card-title" [innerHTML]="booking.title"></h5>
+                  <p class="text-secondary mb-2" [innerHTML]="booking.subtitle"></p>
+                  @if (booking.date) {
+                    <p class="mb-2">{{ booking.date }}</p>
+                  }
+                </div>
+                <button
+                  class="btn btn-primary btn-sm"
+                  type="button"
+                  (click)="selectAvailability($index)"
+                >
+                  Select
+                </button>
+              </div>
+            }
+          </div>
+        } @else {
+          @if (state.isEmptyList) {
+            <div class="text-center text-secondary py-4">
+              {{ 'bookings.booking-new.private-booking-availability.empty-list' | translate }}
+            </div>
+          }
+        }
+      }
+    }
+  </div>
+</div>

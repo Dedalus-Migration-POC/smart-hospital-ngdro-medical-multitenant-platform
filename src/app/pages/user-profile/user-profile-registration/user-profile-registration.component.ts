@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -24,11 +24,11 @@ import { LanguageService } from '../../../initialize/state/services/language.ser
   styleUrls: ['./user-profile-registration.component.scss'],
 })
 export class UserProfileRegistrationComponent {
-  @Input() form?: FormGroup;
-  @Input() userConfig?: UserConfig | null;
-  @Input() userConsentsForm?: FormGroup;
-  @Output() submit = new EventEmitter();
-  @Output() toggleConsent = new EventEmitter();
+  readonly form = input<FormGroup | undefined>(undefined);
+  readonly userConfig = input<UserConfig | null>(null);
+  readonly userConsentsForm = input<FormGroup | undefined>(undefined);
+  readonly submit = output<void>();
+  readonly toggleConsent = output<any>();
 
   private langService = inject(LanguageService);
   lang = this.langService.lang;
@@ -43,7 +43,7 @@ export class UserProfileRegistrationComponent {
   // aria-invalid and aria-describedby
   onSubmit() {
     this.totalFields =
-      this.userConfig?.sections.reduce((count, section) => {
+      this.userConfig()?.sections.reduce((count, section) => {
         return count + section.fields.filter((field) => !field.readOnly).length;
       }, 0) || 0;
     // console.log('TotalFields', this.totalFields)

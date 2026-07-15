@@ -38,3 +38,29 @@ export interface MediaTextCard extends BaseCard {
   text: TextSection;
   image: ImageConfig;
 }
+
+// Legacy compatibility types still used by some migrated pages.
+export interface CardMultiUseConfigField {
+  key: string;
+  labelI18n?: string;
+  callback?: string;
+  [key: string]: unknown;
+}
+
+export interface CardMultiUseConfig {
+  fields: CardMultiUseConfigField[];
+  [key: string]: unknown;
+}
+
+export interface CardMultiUse {
+  id?: string | number;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  date?: string;
+  prescription?: string[];
+  fields?: Array<Record<string, unknown>>;
+  className?: string;
+  styleClass?: string;
+  [key: string]: unknown;
+}

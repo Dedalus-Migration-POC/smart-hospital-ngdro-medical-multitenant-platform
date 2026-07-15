@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { downloadInvoicePdf, getPagoPaLink } from '../../state/payments.actions';
 import {
@@ -16,23 +16,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './payment-notice-card-new.component.html',
   styleUrls: ['./payment-notice-card-new.component.scss'],
 })
-export class PaymentNoticeCardNewComponent implements OnInit {
-  @Input() noticeCode?: string | null;
-  @Input() id?: string;
-  @Input() amount?: number;
-  @Input() expiration?: string | null;
-  @Input() paymentDate?: string | null;
-  @Input() state?: string | null;
-  @Input() causal?: string[] | null;
-  @Input() service?: string | null;
-  @Input() creditors?: string | null;
-  @Input() creditorsFiscalCode?: string | null;
-  @Input() debtorName?: string | null;
-  @Input() debtorLastName?: string | null;
-  @Input() debtorEmail?: string | null;
-  @Input() fiscalCode?: string | null;
-  @Input() status!: string;
-  @Input() isSimplePagoPa: boolean = false;
+export class PaymentNoticeCardNewComponent {
+  readonly noticeCode = input<string | null | undefined>(undefined);
+  readonly id = input<string | undefined>(undefined);
+  readonly amount = input<number | undefined>(undefined);
+  readonly expiration = input<string | null | undefined>(undefined);
+  readonly paymentDate = input<string | null | undefined>(undefined);
+  readonly state = input<string | null | undefined>(undefined);
+  readonly causal = input<string[] | null | undefined>(undefined);
+  readonly service = input<string | null | undefined>(undefined);
+  readonly creditors = input<string | null | undefined>(undefined);
+  readonly creditorsFiscalCode = input<string | null | undefined>(undefined);
+  readonly debtorName = input<string | null | undefined>(undefined);
+  readonly debtorLastName = input<string | null | undefined>(undefined);
+  readonly debtorEmail = input<string | null | undefined>(undefined);
+  readonly fiscalCode = input<string | null | undefined>(undefined);
+  readonly status = input<string | undefined>(undefined);
+  readonly isSimplePagoPa = input(false);
 
   textCopied: boolean = false;
   errorToCopy: boolean = false;
@@ -41,7 +41,6 @@ export class PaymentNoticeCardNewComponent implements OnInit {
 
   constructor() {}
   private store = inject(Store<SmartHospitalState>);
-  ngOnInit(): void {}
   window = window;
 
   getStatus(status: string) {
@@ -75,14 +74,14 @@ export class PaymentNoticeCardNewComponent implements OnInit {
   }
 
   pay() {
-    this.isSimplePagoPa
+    this.isSimplePagoPa()
       ? this.store.dispatch(
           getPagoPaLink({
             payment: {
-              iuv: this.noticeCode!,
-              amount: this.amount! * 100,
-              reason: this.causal!.join(' /'),
-              notificationEmail: this.debtorEmail!,
+              iuv: this.noticeCode()!,
+              amount: this.amount()! * 100,
+              reason: this.causal()!.join(' /'),
+              notificationEmail: this.debtorEmail()!,
             },
           }),
         )

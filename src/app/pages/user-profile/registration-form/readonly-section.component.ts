@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Field } from '../user-profile.model';
 import { format } from 'date-fns';
@@ -9,7 +9,7 @@ import { LanguageService } from '../../../initialize/state/services/language.ser
   template: `
     <table>
       <tbody>
-        @for (field of fields; track field.key) {
+        @for (field of fields(); track field.key) {
           <tr class="cursor-default">
             <th scope="row" [attr.id]="'readonly-label-' + field.key" [class]="field.labelClasses">
               {{ field.label ? field.label[lang()] : '' }}
@@ -24,14 +24,14 @@ import { LanguageService } from '../../../initialize/state/services/language.ser
   `,
 })
 export class ReadOnlySectionComponent {
-  @Input() fields: Field[] = [];
-  @Input() formGroup!: FormGroup;
+  readonly fields = input<Field[]>([]);
+  readonly formGroup = input.required<FormGroup>();
 
   private langService = inject(LanguageService);
   lang = this.langService.lang;
 
   getValue(field: Field): string {
-    const value = this.formGroup.controls[field.key]?.value || '';
+    const value = this.formGroup().controls[field.key]?.value || '';
     if (field.type === 'date' && value) {
       const formatString = field.dateFormat || 'dd-MM-yyyy';
       if (formatString === 'reverse') {

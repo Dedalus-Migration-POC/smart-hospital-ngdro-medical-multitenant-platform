@@ -18,6 +18,8 @@ import { PaymentsJcashRouting } from './pages/payments-jcash/payments-jcash.rout
 import { PaymentsJcashListComponent } from './pages/payments-jcash/payments-jcash-list/payments-jcash-list.component';
 import { PaymentJcashDetailsComponent } from './pages/payments-jcash/payment-jcash-details/payment-jcash-details.component';
 import { TripletReport } from './pages/reports-and-documents/reports-by-triplet/reports-by-triplet';
+import { BookingsListComponent } from './pages/bookings-ariannaCup/bookings-list/bookings-list.component';
+import { BookingNewComponent } from './pages/bookings-ariannaCup/booking-new/bookings-new.component';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
@@ -74,6 +76,20 @@ export const routes: Routes = [
       {
         path: 'details',
         component: PaymentsPaDetails,
+      },
+    ],
+  },
+  {
+    path: 'bookings',
+    canActivate: [authenticatedGuard()],
+    children: [
+      {
+        path: '',
+        component: BookingsListComponent,
+      },
+      {
+        path: 'new',
+        component: BookingNewComponent,
       },
     ],
   },

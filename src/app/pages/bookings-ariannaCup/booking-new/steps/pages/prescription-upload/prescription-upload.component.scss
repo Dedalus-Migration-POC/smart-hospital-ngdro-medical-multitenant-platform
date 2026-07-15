@@ -1,0 +1,33 @@
+.container-prescription-upload {
+  // @include media-breakpoint-down(sm) {
+  //   flex-direction: column !important;
+
+  //   .container-form > div {
+  //     flex-grow: 1;
+  //   }
+  // }
+
+  form {
+    .nrePart1 {
+      width: 70px;
+    }
+
+    .btn-outline-primary {
+      &:active,
+      &:focus,
+      &:focus-visible {
+        box-shadow: inset 0 0 0 2px var(--bs-primary);
+      }
+    }
+  }
+
+  ::ng-deep .btn-outline-primary .icon-upload svg {
+    fill: var(--bs-primary);
+  }
+
+  // .img-prescription {
+  //   @include media-breakpoint-down(lg) {
+  //     display: none;
+  //   }
+  // }
+}

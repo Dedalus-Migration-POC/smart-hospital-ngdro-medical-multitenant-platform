@@ -7,6 +7,7 @@ import * as fromRemoteConfig from './remote-config/remote-config.reducer';
 import * as fromPayments from '../pages/payments-pa/state/payments.reducer';
 import * as fromPaymentsJcash from '../pages/payments-jcash/state/reducer';
 import * as fromTripletReport from '../pages/reports-and-documents/reports-by-triplet/state/reducer';
+import * as fromBookings from '../pages/bookings-ariannaCup/state/reducer';
 export interface SmartHospitalState {
   [fromInitializeApp.featureKey]: fromInitializeApp.State;
   [fromUserProfile.featureKey]: fromUserProfile.State;
@@ -16,6 +17,7 @@ export interface SmartHospitalState {
   [fromPayments.featureKey]: fromPayments.State;
   [fromPaymentsJcash.featureKey]: fromPaymentsJcash.State;
   [fromTripletReport.featureKey]: fromTripletReport.State;
+  [fromBookings.featureKey]: fromBookings.State;
 }
 
 export const reducers: ActionReducerMap<SmartHospitalState> = {
@@ -27,6 +29,7 @@ export const reducers: ActionReducerMap<SmartHospitalState> = {
   [fromPayments.featureKey]: fromPayments.reducer,
   [fromPaymentsJcash.featureKey]: fromPaymentsJcash.reducer,
   [fromTripletReport.featureKey]: fromTripletReport.reducer,
+  [fromBookings.featureKey]: fromBookings.reducer,
 };
 
 export const metaReducers: MetaReducer<SmartHospitalState>[] = [];

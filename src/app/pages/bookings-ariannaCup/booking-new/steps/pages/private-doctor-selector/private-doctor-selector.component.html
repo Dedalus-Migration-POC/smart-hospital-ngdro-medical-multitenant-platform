@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="col-12 col-lg-4">
+    <app-booking-summary class="flex-grow-1"></app-booking-summary>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    @if (privateBooking(); as booking) {
+      @if (booking) {
+        @if (booking.medici && booking.medici.length > 0) {
+          @let currentSelection = selectedDoctor();
+
+          <div class="d-flex gap-3 flex-column">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm p-2 ms-auto"
+              [attr.aria-label]="'commons.confirm-button' | translate"
+              [disabled]="!currentSelection"
+              (click)="confirmSelectedDoctor()"
+            >
+              {{ 'commons.confirm-button' | translate }}
+            </button>
+
+            <div class="form-floating flex-grow-1">
+              <input
+                type="text"
+                class="form-control"
+                id="search"
+                name="search"
+                [placeholder]="'bookings.booking-new.private-doctor-selector.search' | translate"
+                [value]="filterDoctor()"
+                (input)="onFilterDoctorInput($event)"
+                autocomplete="off"
+              />
+              <label for="search">{{
+                'bookings.booking-new.private-doctor-selector.search' | translate
+              }}</label>
+            </div>
+
+            @if (filteredMedici(); as medici) {
+              @if (medici.length) {
+                <div class="d-flex flex-column gap-3">
+                  <div
+                    class="list-group"
+                    role="radiogroup"
+                    [attr.aria-label]="
+                      'bookings.booking-new.private-doctor-selector.title' | translate
+                    "
+                  >
+                    @for (m of medici; track m.idAgenda) {
+                      <div class="list-group-item list-group-item-action cursor-pointer">
+                        <div class="d-flex gap-3 align-items-center form-check my-0">
+                          <input
+                            class="form-check-input mt-1"
+                            type="radio"
+                            name="selectedDoctor"
+                            [id]="'radio-' + m.idAgenda"
+                            [checked]="currentSelection?.idAgenda === m.idAgenda"
+                            (change)="selectedDoctor.set(m)"
+                          />
+
+                          <label
+                            class="d-flex flex-row w-100 h-100 lh-base form-check-label my-0"
+                            [for]="'radio-' + m.idAgenda"
+                          >
+                            <div class="flex-grow-1">
+                              <div class="fw-semibold">{{ m.descMedico }}</div>
+                              <div class="small text-muted">
+                                {{ m.descAgenda }}
+                              </div>
+                            </div>
+                            <div class="text-nowrap ms-auto">
+                              € {{ m.prezzo | number: '1.2-2' }}
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                    }
+                  </div>
+
+                  @if (medici.length > 15) {
+                    <button
+                      type="button"
+                      class="btn btn-primary btn-sm p-2 mt-3 ms-auto"
+                      [attr.aria-label]="'commons.confirm-button' | translate"
+                      [disabled]="!currentSelection"
+                      (click)="confirmSelectedDoctor()"
+                    >
+                      {{ 'commons.confirm-button' | translate }}
+                    </button>
+                  }
+                </div>
+              } @else {
+                <div class="text-center text-secondary py-4">
+                  {{ 'bookings.booking-new.private-doctor-selector.doctor-no-result' | translate }}
+                </div>
+              }
+            }
+          </div>
+        } @else {
+          <div class="d-flex flex-column gap-3 align-content-center">
+            <div class="text-center text-secondary py-4 mt-4">
+              {{ 'bookings.booking-new.private-doctor-selector.empty-list' | translate }}
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary btn-sm mx-auto"
+              [attr.aria-label]="
+                'bookings.booking-new.private-doctor-selector.return-booking' | translate
+              "
+              (click)="goBookingList()"
+            >
+              {{ 'bookings.booking-new.private-doctor-selector.return-booking' | translate }}
+            </button>
+          </div>
+        }
+      }
+    }
+  </div>
+</div>

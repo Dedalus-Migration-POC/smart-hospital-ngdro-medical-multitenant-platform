@@ -5,7 +5,7 @@
     </h2>
     <div class="card-text">
       <ul [attr.aria-label]="'unit-details-page.services' | translate">
-        @for (service of unitDetails?.services; track $index) {
+        @for (service of unitDetails()?.services; track $index) {
           <li>{{ service }}</li>
         }
       </ul>

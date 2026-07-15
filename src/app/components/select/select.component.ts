@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
@@ -19,16 +19,15 @@ import { InputErrorComponent } from '../input-error/input-error.component';
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
 })
-export class SelectComponent implements OnInit {
-  @Input() formGroup!: FormGroup;
-  @Input() fieldName: string = '';
-  @Input() label!: string;
-  @Input() options: { value: string; label: string }[] = [];
-  @Input() type?: string = 'text';
+export class SelectComponent {
+  readonly formGroup = input.required<FormGroup>();
+  readonly fieldName = input('');
+  readonly label = input.required<string>();
+  readonly options = input<{ value: string; label: string }[]>([]);
+  readonly type = input('text');
 
   constructor() {}
 
-  ngOnInit(): void {}
   focusNext() {
     // @ts-ignore
     document.querySelector('#label-focus')!.setAttribute('class', 'active');
