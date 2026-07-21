@@ -5,6 +5,7 @@ import { TripletReportEffects } from '../pages/reports-and-documents/reports-by-
 import { SingleReportEffects } from '../pages/reports-and-documents/single-report/state/effects';
 import { UserProfileEffects } from '../pages/user-profile/state/user-profile.effects';
 import { BookingsEffects } from '../pages/bookings-ariannaCup/state/effects';
+import { BookingsHeroEffects } from '../pages/bookings-hero/state/effects';
 
 export const effects = [
   UserProfileEffects,
@@ -14,4 +15,5 @@ export const effects = [
   PaymentsJcEffects,
   TripletReportEffects,
   BookingsEffects,
+  BookingsHeroEffects,
 ];

@@ -1,0 +1,47 @@
+.available-day-button {
+  box-shadow:
+    0 0 #0000,
+    0 0 #0000,
+    0 4px 6px -1px #0000001a,
+    0 2px 4px -2px #0000001a;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  // border-left: 5px solid var(--#{$prefix}primary);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: #fff;
+  .available-day {
+    &--datetime {
+      color: black;
+      margin: 0 10px;
+      display: flex;
+      font-weight: bold;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+
+      &--day {
+        font-size: 24px;
+      }
+
+      &--month {
+        text-transform: uppercase;
+      }
+    }
+    &--text {
+      text-align: left;
+      color: black;
+      font-weight: 400;
+    }
+    &--icon {
+      margin: 0 20px;
+    }
+  }
+}
+
+.fa-filter {
+  // color: var(--#{$prefix}primary);
+}

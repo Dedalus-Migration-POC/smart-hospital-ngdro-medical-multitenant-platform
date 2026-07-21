@@ -7,6 +7,7 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
+import { InputComponent } from 'src/app/components/input/input.component';
 
 @Component({
   selector: 'app-booking-upload',
@@ -17,6 +18,7 @@ import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-
     ReactiveFormsModule,
     DesignAngularKitModule,
     SummaryComponent,
+    InputComponent,
   ],
   templateUrl: './prescription-upload.component.html',
   styleUrls: ['./prescription-upload.component.scss'],

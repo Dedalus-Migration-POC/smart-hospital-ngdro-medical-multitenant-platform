@@ -1,0 +1,117 @@
+<div class="row container-missing-data">
+  <div class="col-12 col-lg-4">
+    <app-booking-hero-summary-card></app-booking-hero-summary-card>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-row justify-content-around">
+      <div>
+        <h2 class="fw-semibold mb-3" id="missingDataTitle">
+          {{ 'bookings-hero.booking-new.missing-data.title' | translate }}
+        </h2>
+
+        <form class="card-grid" [formGroup]="registrationForm">
+          <div class="row">
+            <div class="form-field col-sm-8 col-12">
+              <label for="registration-residential-address" class="form-control-label">
+                {{ 'bookings-hero.booking-new.missing-data.address' | translate }}
+              </label>
+              <app-input-component
+                [formGroup]="registrationForm"
+                [fieldName]="'residentialAddress'"
+                [inputClass]="'form-control'"
+                [showLabel]="false"
+                [autocomplete]="'off'"
+              ></app-input-component>
+            </div>
+
+            <div class="form-field col-sm-4 col-12">
+              <label for="registration-house-number" class="form-control-label">
+                {{ 'bookings-hero.booking-new.missing-data.house-num' | translate }}
+              </label>
+              <app-input-component
+                [formGroup]="registrationForm"
+                [fieldName]="'houseNumber'"
+                [inputClass]="'form-control'"
+                [showLabel]="false"
+                [autocomplete]="'off'"
+              ></app-input-component>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-field col-sm-8 col-12">
+              <label for="registration-province" class="form-control-label">
+                {{ 'bookings-hero.booking-new.missing-data.province' | translate }}
+              </label>
+              <app-select-component
+                [formGroup]="registrationForm"
+                [fieldName]="'province'"
+                [showLabel]="false"
+                [showErrors]="false"
+                [selectClass]="'form-control'"
+                [autocomplete]="'off'"
+                [placeholder]="'--- Seleziona una provincia ---'"
+                [options]="provinces().map((province) => ({ value: province, label: province }))"
+              ></app-select-component>
+            </div>
+
+            <div class="form-field col-sm-4 col-12">
+              <label for="registration-city-of-residence" class="form-control-label">
+                {{ 'bookings-hero.booking-new.missing-data.city' | translate }}
+              </label>
+
+              @if (comune) {
+                <app-input-component
+                  [formGroup]="registrationForm"
+                  [fieldName]="'cityOfResidence'"
+                  [inputClass]="'form-control'"
+                  [showLabel]="false"
+                  [autocomplete]="'off'"
+                ></app-input-component>
+              }
+
+              @if (!comune) {
+                <app-select-component
+                  [formGroup]="registrationForm"
+                  [fieldName]="'cityOfResidence'"
+                  [showLabel]="false"
+                  [showErrors]="false"
+                  [selectClass]="'form-control'"
+                  [autocomplete]="'off'"
+                  [placeholder]="'--- Seleziona una città ---'"
+                  [options]="cities().map((city) => ({ value: city, label: city }))"
+                ></app-select-component>
+              }
+            </div>
+          </div>
+
+          <div class="form-field false-statements-disclaimer">
+            <input
+              formControlName="falseStatementsDisclaimer"
+              type="checkbox"
+              id="registration-false-statements-disclaimer"
+              autocomplete="off"
+            />
+
+            <label
+              for="registration-false-statements-disclaimer"
+              class="form-control-label"
+              [innerHTML]="
+                'bookings-hero.booking-new.missing-data.falseStatementsDisclaimer' | translate
+              "
+            ></label>
+          </div>
+          <div class="d-flex justify-content-end mt-4">
+            <button
+              class="btn btn-primary"
+              (click)="onConfirm()"
+              [disabled]="!registrationForm.valid"
+            >
+              {{ 'bookings-hero.booking-new.missing-data.confirm-button' | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -34,5 +34,232 @@
       "login-button": "Accedi",
       "error-required": "Il campo è obbligatorio"
     }
+  },
+  "bookings-hero": {
+    "bookings-list": {
+      "breadcrumb": {
+        "title": "Prenotazioni",
+        "subtitle": "Visualizza e gestisci le tue prenotazioni future.",
+        "new-booking": "Nuova prenotazione"
+      },
+      "card": {
+        "structure": "Struttura",
+        "structure-address": "Indirizzo struttura",
+        "date-time": "Data e ora",
+        "prescription": "Prestazione",
+        "prescriptions": "Prestazioni",
+        "delete": "Cancella prenotazione",
+        "unitDescription": "Unità",
+        "thirdPart": "Prenotato per",
+        "goToDetails": "Vedi dettagli"
+      },
+      "empty-list": "Nessuna prenotazione presente",
+      "delete-modal": {
+        "title": "Attenzione",
+        "body": "Sei sicuro di voler cancellare la prenotazione?",
+        "cancel": "Annulla",
+        "confirm": "Cancella prenotazione"
+      },
+      "search-by-nre": {
+        "title": "Recupera la tua prenotazione",
+        "subtitle": "Inserisci il codice NRE della tua ricetta elettronica e il tuo codice fiscale nei rispettivi campi per accedere alla tua prenotazione.",
+        "fiscalCode": "Codice fiscale",
+        "number-prescription": "Numero ricetta elettronica (NRE)",
+        "forward": "Recupera",
+        "required-error": "il campo è obbligatorio"
+      },
+      "nre-tab-title": "Prenotazioni con impegnativa",
+      "free-prof-tab-title": "Prenotazioni in libera professione",
+      "future-appointments": "Appuntamenti futuri",
+      "empty-future-appointments": "Non ci sono appuntamenti futuri",
+      "past-appointments": "Appuntamenti passati",
+      "empty-past-appointments": "Non ci sono appuntamenti passati"
+    },
+    "booking-new": {
+      "breadcrumb": {
+        "title": "Nuova prenotazione",
+        "subtitle": "Effettua una nuova prenotazione presso una dei nostri clienti, tramite Sistema Sanitario Nazionale o libera professione."
+      },
+      "booking-type": {
+        "select-type": "Come vuoi prenotare?",
+        "type": "Seleziona la tipologia di prenotazioni",
+        "nre-title": "Servizio Sanitario Nazionale",
+        "nre-description": "Prenota tramite ricetta elettronica per te",
+        "nre_delegate-title": "Servizio Sanitario Nazionale per altre persone",
+        "nre_delegate-description": "Prenota tramite ricetta elettronica per altre persone",
+        "free_prof-title": "Libera professione",
+        "free_prof-description": "Prenota con Libera professione per te",
+        "free_prof_delegate-title": "Libera professione per altre persone",
+        "free_prof_delegate-description": "Prenota con Libera professione per altre persone"
+      },
+      "prescription-upload": {
+        "title": "Dati ricetta elettronica",
+        "form": {
+          "fiscalCode": "Codice Fiscale",
+          "number-prescription": "Numero ricetta elettronica (NRE)",
+          "forward": "Avanti"
+        }
+      },
+      "summary": {
+        "title": "Riepilogo",
+        "type": "Sistema",
+        "structure": "Struttura",
+        "address": "Indirizzo",
+        "date-time": "Data e ora",
+        "prescription": "Prestazione",
+        "prescriptions": "Prestazioni",
+        "change-date": "Cambia data e ora"
+      },
+      "availability": {
+        "title": "Prima data disponibile",
+        "title2": "Altre disponibilità",
+        "empty-list": "Nessuna disponibilità presente",
+        "card": {
+          "availability": "Prenota data"
+        },
+        "confirm-modal": {
+          "title": "Conferma prenotazione",
+          "body": "Sei sicuro di voler prenotare per la data {{date}}?",
+          "cancel": "Annulla",
+          "confirm": "Prenota"
+        }
+      },
+      "confirmation": {
+        "title": "Dati personali",
+        "form": {
+          "name": "Nome",
+          "surname": "Cognome",
+          "email": "Mail",
+          "phone": "Cellulare",
+          "confirm": "Conferma prenotazione"
+        },
+        "modal": {
+          "title": "Conferma",
+          "body": "Sei sicuro di voler confermare la prenotazione?",
+          "cancel": "Annulla",
+          "confirm": "Conferma"
+        },
+        "confirmed-booking": "Prenotazione confermata!",
+        "confirmed-text": "La prenotazione è andata a buon fine.",
+        "go-payment": "Torna alla lista prenotazioni"
+      },
+      "missing-data": {
+        "title": "Inserisci i dati mancanti per completare la tua Anagrafica",
+        "address": "Indirizzo di residenza",
+        "house-num": "Numero civico",
+        "province": "Provincia (sigla)",
+        "city": "Comune di residenza",
+        "confirm-button": "Conferma",
+        "falseStatementsDisclaimer": "Dichiaro di essere consapevole delle sanzioni penali previste per dichiarazioni mendaci richiamate dagli articoli 46, 75 e 76 del DPR 445/2000"
+      },
+      "available-days": {
+        "title": "Seleziona disponibilità",
+        "noAvailableDays": "Nessuna disponibilità per la prestazione richiesta."
+      },
+      "available-appointments": {
+        "title": "Seleziona orario",
+        "noAvailableAppointments": "Nessuna disponibilità per la prestazione richiesta."
+      },
+      "confirm-appointment": {
+        "title": "Conferma l'appuntamento",
+        "informative-disclaimer": "Dichiaro di essere consapevole che il mancato rispetto delle Condizioni e Prescrizioni indicate in agenda comporterà la mancata erogazione delle prestazioni e la perdita del diritto al rimborso economico.",
+        "confirm-button": "Conferma la prenotazione",
+        "cancel-button": "Annulla"
+      },
+      "confirmed-appointment": {
+        "title": "Il tuo appuntamento",
+        "calendar-button": "Aggiungi all calendario",
+        "print-button": "Stampa promemoria e codice di pagamento IUV",
+        "email-button": "Invia promemoria e codice di pagamento IUV per e-mail",
+        "pay-button": "Paga Online"
+      },
+      "summary-hero": {
+        "summary": "Riepilogo",
+        "edit": "Modifica",
+        "bookingType": "Tipo della prenotazione",
+        "nre": "NRE",
+        "services": "Servizi",
+        "day": "Data",
+        "hour": "Ora",
+        "book-for": "Pronoto per",
+        "booking-type": {
+          "nre": "SSN",
+          "nre_delegate": "SSN per altre persone",
+          "free_prof": "Libera professione",
+          "free_prof_delegate": "Libera professione per altre persone",
+          "nre_to_move": "SSN - modifica",
+          "free_prof_to_move": "Libera professione - modifica"
+        }
+      },
+      "select-medical-service": {
+        "title": "Seleziona la prestazione",
+        "search-service": "Seleziona la prestazione dall'elenco (obbligatorio)",
+        "search-physician": "Seleziona il medico dall'elenco (obbligatorio)"
+      },
+      "delega": {
+        "select-delega-type-title": "A quale titolo stai prenotando?",
+        "select-delega-type": "Seleziona tipo della delega",
+        "self-declaration-title": "Gestione consensi per altra persona",
+        "self-declaration-subtitle": "Prenoto in qualità di: ",
+        "self-declaration-auth": "AUTODICHIARAZIONE",
+        "self-declaration-text": "Ai sensi e per gli effetti degli artt. 46 e 47 del D.P.R. 445/2000 e consapevole della responsabilità penale e delle conseguenti sanzioni previste dall’art. 76 del D.P.R. 445/2000 in caso di dichiarazioni mendaci, falsità negli atti, uso di atti falsi, nonché della decadenza dai benefici eventualmente conseguiti in seguito a provvedimenti emessi sulla base di dichiarazioni non veritiere, così come previsto dall’art. 75 del D.P.R. 445/2000, confermo la veridicità di tutte le informazioni personali rilasciate sulla presente Piattaforma.",
+        "declarantForm-tab-title": "Dati dichiarante",
+        "bookingPersonForm-tab-title": "Dati paziente",
+        "bookingPersonForm": {
+          "title": "Gestione consensi per altra persona",
+          "subtitle": "Consapevole delle sanzioni penali richiamate dall’art. 76 del D.P.R. 28.12.2000 n. 445 in caso di dichiarazioni mendaci e di formazione o uso di atti falsi,",
+          "subtitle-2": "Dichiaro di essere: <strong>{{ delegateType }}</strong> <br /> al fine di poter prenotare la prestazione per conto di:",
+          "informative": "Acconsento al trattamento dei dati personali per le finalità indicate nelle informazioni privacy.",
+          "firstName": "Nome",
+          "lastName": "Cognome",
+          "birthDate": "Data di nascita",
+          "birthCountry": "Paese di nascita",
+          "birthProvince": "Provincia del Comune di nascita",
+          "birthCity": "Comune di nascita",
+          "taxCode": "Codice Fiscale",
+          "currentProvince": "Provincia del comune di residenza",
+          "currentCity": "Comune di residenza",
+          "currentCityCap": "CAP",
+          "address": "Indirizzo di residenza",
+          "houseNumber": "Numero civico",
+          "go-to-declarant-form": "Torna ai dati personali"
+        },
+        "declarantForm": {
+          "title": "Gestione consensi per altra persona",
+          "subtitle": "Il/La sottoscritto/a <strong>{{user}}</strong> con codice fiscale <strong>{{userFiscalCode}}</strong>",
+          "subtitle-2": "Indica i dati richiesti",
+          "birthDate": "Data di nascita",
+          "birthCountry": "Paese di nascita",
+          "birthProvince": "Provincia del Comune di nascita",
+          "birthCity": "Comune di nascita",
+          "currentProvince": "Provincia del Comune di residenza",
+          "currentCity": "Comune di residenza",
+          "currentCityCap": "CAP",
+          "address": "Indirizzo di residenza",
+          "go-to-person-form": "Compila dati del paziente"
+        },
+        "required-error": "il campo è obbligatorio",
+        "cf-format-error": "il formato di Codice Fiscale inserito è sbagliato",
+        "date-format-error": "inserire una data valida"
+      }
+    },
+    "booking-details": {
+      "breadcrumb": {
+        "title": "Dettaglio prenotazione",
+        "subtitle": "Visualizza e gestisci la tua prenotazione"
+      },
+      "print-button": "Stampa",
+      "email-button": "Invia info via email",
+      "cancel-button": "Cancella",
+      "reschedule-button": "Sposta",
+      "cancel-confirm-title": "Prenotazione cancellata",
+      "cancel-confirm-info": "La prenotazione è stata cancellata con successo"
+    },
+    "booking-reschedule": {
+      "breadcrumb": {
+        "title": "Gestione della prenotazione",
+        "subtitle": "Gestisci la tua prenotazione"
+      }
+    }
   }
 }

@@ -1,0 +1,30 @@
+hr {
+  border-top: 1px solid #707070;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+p,
+.title,
+.h4 {
+  color: #205072;
+}
+.h4 {
+  font-weight: 500;
+}
+
+h3,
+.title {
+  text-align: center;
+  font-weight: 700;
+}
+::ng-deep it-tab-container {
+  .nav-tabs {
+    flex-wrap: wrap;
+    .nav-item {
+      flex-grow: 1;
+      flex-basis: 0;
+      cursor: default;
+    }
+  }
+}

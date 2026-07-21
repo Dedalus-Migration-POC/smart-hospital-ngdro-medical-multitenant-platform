@@ -31,6 +31,7 @@ import { Actions, ofType } from '@ngrx/effects';
 import { PRIVATE_BOOKING_AVAILABILITY_REQUEST } from 'src/app/pages/bookings-ariannaCup/state/constants';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Spinner } from 'src/app/components/spinner/spinner';
+import { InputComponent } from 'src/app/components/input/input.component';
 
 @Component({
   selector: 'app-booking-confirmation',
@@ -42,6 +43,7 @@ import { Spinner } from 'src/app/components/spinner/spinner';
     SummaryComponent,
     DesignAngularKitModule,
     Spinner,
+    InputComponent,
   ],
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.scss'],

@@ -1,28 +1,51 @@
-<div class="select-wrapper mb-3" [formGroup]="formGroup()">
-  <label
-    id="label-focus"
-    [for]="fieldName()"
-    [ngClass]="formGroup().get(fieldName())?.value ? 'active' : ''"
-  >
-    {{ label() }}</label
-  >
-  <select
-    [id]="fieldName()"
-    [formControlName]="fieldName()"
-    (keyup.enter)="focusNext()"
-    (keyup.tab)="focusNext()"
-  >
-    <option selected="" value="">
-      <!-- {{ 'commons.select-option' | translate }} -->
-    </option>
-    @for (option of options(); track option.value) {
-      <option [value]="option.value">
-        {{ option.label }}
-      </option>
+@if (hasControl()) {
+  <div [class]="wrapperClass()">
+    @if (showLabel()) {
+      <label [for]="fieldName()">{{ label() }}</label>
     }
-  </select>
-  <app-input-error-component
-    [formGroup]="formGroup()"
-    [fieldName]="fieldName()"
-  ></app-input-error-component>
-</div>
+    <select
+      [id]="fieldName()"
+      [class]="selectClass()"
+      [formControl]="control()!"
+      [attr.aria-label]="ariaLabel() ?? null"
+      [attr.autocomplete]="autocomplete()"
+      (change)="onSelectChange($any($event.target).value)"
+      (keyup.enter)="focusNext()"
+      (keyup.tab)="focusNext()"
+    >
+      <option value="">{{ placeholder() }}</option>
+      @for (option of options(); track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+  </div>
+} @else {
+  <div [class]="wrapperClass()" [formGroup]="formGroup()!">
+    @if (showLabel()) {
+      <label [for]="fieldName()" [ngClass]="formGroup()?.get(fieldName())?.value ? 'active' : ''">
+        {{ label() }}
+      </label>
+    }
+    <select
+      [id]="fieldName()"
+      [class]="selectClass()"
+      [formControlName]="fieldName()"
+      [attr.aria-label]="ariaLabel() ?? null"
+      [attr.autocomplete]="autocomplete()"
+      (change)="onSelectChange($any($event.target).value)"
+      (keyup.enter)="focusNext()"
+      (keyup.tab)="focusNext()"
+    >
+      <option value="">{{ placeholder() }}</option>
+      @for (option of options(); track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+    @if (showErrors() && formGroup()) {
+      <app-input-error-component
+        [formGroup]="formGroup()!"
+        [fieldName]="fieldName()"
+      ></app-input-error-component>
+    }
+  </div>
+}

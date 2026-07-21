@@ -1,0 +1,42 @@
+<div class="row container-available-days-data">
+  <div class="col-12 col-lg-4">
+    <app-booking-hero-summary-card></app-booking-hero-summary-card>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-column">
+      <h2 class="fw-semibold mb-5" id="availableAppointmentsTitle">
+        {{ 'bookings-hero.booking-new.available-appointments.title' | translate }}
+      </h2>
+
+      @if (availableAppointments(); as availableAppointments) {
+        <div class="array-container w-100">
+          @if (availableAppointments?.length) {
+            @for (availableAppointment of availableAppointments; track availableAppointment) {
+              <button
+                type="button"
+                class="btn btn-outline-primary available-appointment-button"
+                (click)="onHourSelected(availableAppointment)"
+              >
+                {{ availableAppointment?.dateTime | date: 'HH:mm' }}
+              </button>
+            }
+          } @else {
+            <div>
+              {{
+                'bookings-hero.booking-new.available-appointments.noAvailableAppointments'
+                  | translate
+              }}
+            </div>
+          }
+        </div>
+      } @else {
+        <div>
+          {{
+            'bookings-hero.booking-new.available-appointments.noAvailableAppointments' | translate
+          }}
+        </div>
+      }
+    </div>
+  </div>
+</div>

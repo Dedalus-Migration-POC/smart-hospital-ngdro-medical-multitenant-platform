@@ -1,0 +1,104 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.page.breadcrumb) {
+    <app-breadcrumb
+      [config]="pageConfig.page.breadcrumb"
+      (buttonAction)="newBooking()"
+    ></app-breadcrumb>
+  }
+  @if (loading()) {
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
+  }
+  <it-tab-container>
+    <it-tab-item
+      [label]="'bookings-hero.bookings-list.free-prof-tab-title' | translate"
+      [active]="true"
+      id="free-prof-tab"
+    >
+      @if (bookingsListError()) {
+        <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+          <app-image-block
+            [config]="pageConfig.page.errorMessage.imageBlockConfig"
+          ></app-image-block>
+        </div>
+      }
+      @if (!bookingsListError() && !loading()) {
+        @if (bookingsList(); as bookingsList) {
+          @if (!bookingsList.appointments.length) {
+            <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+              <app-image-block
+                [config]="pageConfig.page.notFoundMessage.imageBlockConfig"
+              ></app-image-block>
+            </div>
+          } @else {
+            <div class="h4">
+              {{ 'bookings-hero.bookings-list.future-appointments' | translate }}
+            </div>
+            @if (futureReservations(); as futureReservations) {
+              <div class="d-flex flex-row gap-3 my-3">
+                @for (appointment of futureReservations; track appointment.id) {
+                  <div class="card shadow-sm border-light w-25">
+                    <div class="card-body">
+                      <div class="h5 mb-2">{{ appointment.descriptionList?.join(', ') }}</div>
+                      <div class="text-secondary">
+                        {{ toReadableDateTime(appointment.dateTime) }}
+                      </div>
+                      <div class="mt-2">{{ appointment.location.name }}</div>
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary btn-sm mt-3"
+                        (click)="goToDetails(appointment.id)"
+                      >
+                        {{ 'bookings-hero.bookings-list.card.goToDetails' | translate }}
+                      </button>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+            @if (!futureReservations().length) {
+              <span>{{ 'bookings-hero.bookings-list.empty-future-appointments' | translate }}</span>
+            }
+
+            <hr />
+            <div class="h4">
+              {{ 'bookings-hero.bookings-list.past-appointments' | translate }}
+            </div>
+            @if (pastReservations(); as pastReservations) {
+              <div class="d-flex flex-row gap-3 my-3">
+                @for (appointment of pastReservations; track appointment.id) {
+                  <div class="card shadow-sm border-light w-25">
+                    <div class="card-body">
+                      <div class="h5 mb-2">{{ appointment.descriptionList?.join(', ') }}</div>
+                      <div class="text-secondary">
+                        {{ toReadableDateTime(appointment.dateTime) }}
+                      </div>
+                      <div class="mt-2">{{ appointment.location.name }}</div>
+                      <button
+                        type="button"
+                        class="btn btn-outline-primary btn-sm mt-3"
+                        (click)="goToDetails(appointment.id)"
+                      >
+                        {{ 'bookings-hero.bookings-list.card.goToDetails' | translate }}
+                      </button>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
+            @if (!pastReservations().length) {
+              <span>{{ 'bookings-hero.bookings-list.empty-past-appointments' | translate }}</span>
+            }
+          }
+        }
+      }
+    </it-tab-item>
+
+    <it-tab-item [label]="'bookings-hero.bookings-list.nre-tab-title' | translate" id="nre-tab">
+      <app-hero-booking-search-by-nre></app-hero-booking-search-by-nre>
+    </it-tab-item>
+  </it-tab-container>
+}

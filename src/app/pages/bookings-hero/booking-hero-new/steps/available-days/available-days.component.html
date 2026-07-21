@@ -1,0 +1,58 @@
+<div class="row container-available-days-data">
+  <div class="col-12 col-lg-4">
+    <app-booking-hero-summary-card></app-booking-hero-summary-card>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-column">
+      <div class="d-flex mb-3">
+        <h2 class="fw-semibold mb-3" id="availableDaysTitle">
+          {{ 'bookings-hero.booking-new.available-days.title' | translate }}
+        </h2>
+        <button (click)="toggleFilters()" class="btn btn-outline-primary btn-sm ms-3">
+          <i class="fa fa-filter"></i>
+          <span class="d-none">{{ showFilters ? 'Nascondi filtri' : 'Apri filtri' }}</span>
+        </button>
+      </div>
+
+      <app-hero-availability-filters
+        [formGroup]="filtersForm"
+        [healthcareUnits]="healthcareUnits()"
+        [showFilters]="showFilters"
+        (applyFilters)="applyFilters()"
+        (toggleFilters)="toggleFilters()"
+        (resetFilters)="resetFilters()"
+      ></app-hero-availability-filters>
+      @if (availableDays(); as availableDays) {
+        <div class="array-container w-100">
+          @if (availableDays?.length) {
+            @for (availableDay of availableDays; track availableDay) {
+              <button
+                type="button"
+                class="btn btn-outline-primary w-100 available-day-button"
+                (click)="onDaySelected(availableDay)"
+              >
+                <div class="available-day--datetime">
+                  <span class="available-day--datetime--day">
+                    {{ availableDay.date | date: 'dd' }}
+                  </span>
+                  <span class="available-day--datetime--month">
+                    {{ availableDay.date | date: 'MMM' }}
+                  </span>
+                </div>
+                <i class="fas fa-hospital-alt available-day--icon"></i>
+                <div class="available-day--text">
+                  {{ availableDay.hospitalName }}
+                </div>
+              </button>
+            }
+          } @else {
+            {{ 'bookings-hero.booking-new.available-days.noAvailableDays' | translate }}
+          }
+        </div>
+      } @else {
+        {{ 'bookings-hero.booking-new.available-days.noAvailableDays' | translate }}
+      }
+    </div>
+  </div>
+</div>

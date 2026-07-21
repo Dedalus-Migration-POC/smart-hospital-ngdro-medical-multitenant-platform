@@ -1,0 +1,17 @@
+ul {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.selected-service-container,
+.selected-physician-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  font-size: 18px;
+  i {
+    // color: var(--#{$prefix}primary);
+  }
+}

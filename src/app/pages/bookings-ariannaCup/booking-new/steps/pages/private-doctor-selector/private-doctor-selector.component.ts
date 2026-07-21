@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, input, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { selectPrivateBooking } from 'src/app/pages/bookings-ariannaCup/state/selectors';
@@ -7,11 +8,12 @@ import { SmartHospitalState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { MedicoPrestazione } from 'src/app/pages/bookings-ariannaCup/state/model';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
+import { InputComponent } from 'src/app/components/input/input.component';
 
 @Component({
   selector: 'app-doctor-selector',
   standalone: true,
-  imports: [CommonModule, TranslateModule, SummaryComponent],
+  imports: [CommonModule, TranslateModule, SummaryComponent, ReactiveFormsModule, InputComponent],
   templateUrl: './private-doctor-selector.component.html',
 })
 export class PrivateDoctorSelectorComponent {
@@ -39,6 +41,7 @@ export class PrivateDoctorSelectorComponent {
   });
 
   filterDoctor = signal('');
+  searchDoctorControl = new FormControl('');
   selectedDoctor = signal<MedicoPrestazione | null>(null);
 
   filteredMedici = computed(() => {
@@ -52,10 +55,11 @@ export class PrivateDoctorSelectorComponent {
 
   constructor(private translateService: TranslateService) {}
 
-  onFilterDoctorInput(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.selectedDoctor.set(null);
-    this.filterDoctor.set(value);
+  ngOnInit(): void {
+    this.searchDoctorControl.valueChanges.subscribe((value) => {
+      this.selectedDoctor.set(null);
+      this.filterDoctor.set(value ?? '');
+    });
   }
 
   confirmSelectedDoctor() {

@@ -1,0 +1,69 @@
+<div class="row container-available-days-data justify-content-center">
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-column">
+      <h2 class="fw-semibold mb-2" id="availableAppointmentsTitle">
+        {{ 'bookings-hero.booking-new.confirm-appointment.title' | translate }}
+      </h2>
+      @if (expireOn(); as expireOn) {
+        <div class="alert alert-warning">
+          {{ 'bookings-hero.booking-new.confirm-appointment.expire-on' | translate }}:
+          {{ expireOn * 1000 | date: 'dd/MM/yyyy HH:mm' }}
+        </div>
+      }
+
+      @if (confirmInfo(); as confirmInfo) {
+        <div class="card card-teaser no-after shadow-sm border-light mt-3">
+          <div class="card-body--multi-use d-flex flex-column h-100 w-100">
+            <div class="card-title mb-3 lh-sm text-capitalize cursor-default h4">Riepilogo</div>
+            <div class="card-content d-flex flex-column w-100">
+              @for (el of confirmInfo; track el) {
+                <div>
+                  @if (el.value) {
+                    <div class="row pb-3">
+                      <div class="col-12 col-sm-4 confirm-info-label">
+                        {{ el.label }}
+                      </div>
+                      <div class="col confirm-info-value">{{ el.value }}</div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+      <div class="form-field false-statements-disclaimer m-3">
+        <input
+          [formControl]="disclaimerControl"
+          type="checkbox"
+          id="informative-disclaimer"
+          autocomplete="off"
+        />
+        <label
+          for="informative-disclaimer"
+          class="form-control-label"
+          [innerHTML]="
+            'bookings-hero.booking-new.confirm-appointment.informative-disclaimer' | translate
+          "
+        ></label>
+      </div>
+      <div class="d-flex w-100 justify-content-between mt-4">
+        <button
+          type="button"
+          class="btn btn-outline-primary available-appointment-button"
+          (click)="onCancel()"
+        >
+          {{ 'bookings-hero.booking-new.confirm-appointment.cancel-button' | translate }}
+        </button>
+        <button
+          type="button"
+          [attr.disabled]="!disclaimerControl.valid ? true : null"
+          class="btn btn-primary available-appointment-button"
+          (click)="onConfirm()"
+        >
+          {{ 'bookings-hero.booking-new.confirm-appointment.confirm-button' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

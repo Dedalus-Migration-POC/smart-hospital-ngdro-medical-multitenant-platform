@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  max-width: 500px;
+  width: 100%;
+}
+.card-wrapper {
+  width: 100%;
+  height: fit-content;
+}
+.summaryBookingHero-col {
+  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #aaa;
+  .label {
+    color: #747474;
+    .edit-button {
+      height: fit-content;
+      margin-left: 8px;
+    }
+  }
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+}

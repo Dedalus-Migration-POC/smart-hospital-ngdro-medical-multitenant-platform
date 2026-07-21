@@ -20,20 +20,19 @@
               {{ 'commons.confirm-button' | translate }}
             </button>
 
-            <div class="form-floating flex-grow-1">
-              <input
-                type="text"
-                class="form-control"
-                id="search"
-                name="search"
+            <div class="flex-grow-1">
+              <app-input-component
+                [control]="searchDoctorControl"
+                [fieldName]="'search'"
+                [type]="'text'"
+                [inputClass]="'form-control'"
+                [label]="'bookings.booking-new.private-doctor-selector.search' | translate"
+                [showLabel]="true"
+                [showErrors]="false"
                 [placeholder]="'bookings.booking-new.private-doctor-selector.search' | translate"
-                [value]="filterDoctor()"
-                (input)="onFilterDoctorInput($event)"
-                autocomplete="off"
-              />
-              <label for="search">{{
-                'bookings.booking-new.private-doctor-selector.search' | translate
-              }}</label>
+                [wrapperClass]="'form-floating mb-0'"
+                [autocomplete]="'off'"
+              ></app-input-component>
             </div>
 
             @if (filteredMedici(); as medici) {

@@ -1,0 +1,255 @@
+<div>
+  @if (user(); as user) {
+    <div
+      class="subtitle"
+      [innerHTML]="
+        'bookings-hero.booking-new.delega.declarantForm.subtitle'
+          | translate
+            : {
+                user: user.firstName + ' ' + user.lastName,
+                userFiscalCode: user.fiscalCode.toUpperCase().startsWith('TINIT-')
+                  ? user.fiscalCode.slice(6).toUpperCase()
+                  : user.fiscalCode.toUpperCase(),
+              }
+      "
+    ></div>
+  }
+  <hr />
+  <div
+    class="subtitle-2 fw-bold text-center"
+    [innerHTML]="'bookings-hero.booking-new.delega.declarantForm.subtitle-2' | translate"
+  ></div>
+
+  <form [formGroup]="declarantForm" (ngSubmit)="submit()">
+    <div class="booking-person-form-container pt-5 pb-5">
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="form-field">
+            <label for="declarantForm-birthDate" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.birthDate' | translate }}
+            </label>
+            <input
+              class="form-control"
+              type="date"
+              placeholder=""
+              id="declarantForm-birthDate"
+              formControlName="birthDate"
+              aria-label="Data di nascita"
+              [max]="dateFilter | date: 'yyyy-MM-dd'"
+              autocomplete="off"
+            />
+            @if (
+              declarantForm.controls['birthDate'].errors?.['required'] &&
+              declarantForm.get('birthDate')?.touched
+            ) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+                (DD/MM/YYYY)
+              </div>
+            }
+            @if (
+              (declarantForm.controls['birthDate'].errors?.['errorDateLessThanToday'] ||
+                declarantForm.controls['birthDate'].errors?.['errorMinYear']) &&
+              declarantForm.get('birthDate')?.touched
+            ) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-field">
+            <label for="declarantForm-birthCountry" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.birthCountry' | translate }}
+            </label>
+            <app-select-component
+              [formGroup]="declarantForm"
+              [fieldName]="'birthCountry'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [ariaLabel]="'Paese di nascita'"
+              [selectClass]="'form-control'"
+              [autocomplete]="'off'"
+              [options]="
+                (nations() ?? []).map((country) => ({
+                  value: country.key,
+                  label: country.label,
+                }))
+              "
+            ></app-select-component>
+            @if (
+              declarantForm.get('birthCountry')?.invalid &&
+              declarantForm.get('birthCountry')?.touched
+            ) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="form-field">
+            <label for="declarantForm-birthProvince" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.birthProvince' | translate }}
+            </label>
+            <app-select-component
+              [formGroup]="declarantForm"
+              [fieldName]="'birthProvince'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [selectClass]="'form-control'"
+              [autocomplete]="'off'"
+              [options]="provinces().map((province) => ({ value: province, label: province }))"
+              (valueChanged)="onChangeBirthProvince()"
+            ></app-select-component>
+            @if (
+              declarantForm.get('birthProvince')?.invalid &&
+              declarantForm.get('birthProvince')?.touched
+            ) {
+              <div class="input-error"></div>
+            }
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-field">
+            <label for="declarantForm-birthCity" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.birthCity' | translate }}
+            </label>
+            <app-select-component
+              [formGroup]="declarantForm"
+              [fieldName]="'birthCity'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [selectClass]="'form-control'"
+              [autocomplete]="'off'"
+              [options]="cities().map((city) => ({ value: city, label: city }))"
+            ></app-select-component>
+            @if (
+              declarantForm.get('birthCity')?.invalid && declarantForm.get('birthCity')?.touched
+            ) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="form-field">
+            <label for="declarantForm-currentProvince" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.currentProvince' | translate }}
+            </label>
+            <app-select-component
+              [formGroup]="declarantForm"
+              [fieldName]="'currentProvince'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [selectClass]="'form-control'"
+              [autocomplete]="'off'"
+              [options]="provinces().map((province) => ({ value: province, label: province }))"
+              (valueChanged)="onChangeResidenceProvince()"
+            ></app-select-component>
+            @if (
+              declarantForm.get('currentProvince')?.invalid &&
+              declarantForm.get('currentProvince')?.touched
+            ) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div class="form-field">
+            <label for="declarantForm-currentCity" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.currentCity' | translate }}</label
+            >
+            <app-select-component
+              [formGroup]="declarantForm"
+              [fieldName]="'currentCity'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [selectClass]="'form-control'"
+              [autocomplete]="'off'"
+              [options]="citiesResidence().map((city) => ({ value: city, label: city }))"
+            ></app-select-component>
+            @if (
+              declarantForm.get('currentCity')?.invalid && declarantForm.get('currentCity')?.touched
+            ) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <div class="form-field">
+            <label for="declarantForm-address" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.address' | translate }}
+            </label>
+            <input
+              id="declarantForm-address"
+              formControlName="address"
+              type="text"
+              placeholder=""
+              class="form-control"
+              aria-label="Indirizzo di residenza"
+              autocomplete="off"
+            />
+            @if (declarantForm.get('address')?.invalid && declarantForm.get('address')?.touched) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              </div>
+            }
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-field">
+            <label for="declarantForm-currentCityCap" class="input-label">
+              {{ 'bookings-hero.booking-new.delega.declarantForm.currentCityCap' | translate }}
+            </label>
+            <input
+              id="declarantForm-currentCityCap"
+              formControlName="currentCityCap"
+              type="text"
+              maxlength="5"
+              placeholder=""
+              class="form-control"
+              aria-label="CAP"
+              autocomplete="off"
+            />
+            @if (
+              declarantForm.get('currentCityCap')?.invalid &&
+              declarantForm.get('currentCityCap')?.touched
+            ) {
+              <div class="input-error">
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <button type="button" class="btn btn-outline-primary" (click)="setActiveTab.emit(2)">
+    {{ 'bookings-hero.booking-new.delega.declarantForm.go-to-person-form' | translate }}
+  </button>
+  <!-- <button
+        type="submit"
+        (click)="submit()"
+        [disabled]="declarantForm.invalid"
+        class="btn btn-primary"
+        >
+        Prosegui
+      </button> -->
+</div>

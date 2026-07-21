@@ -94,6 +94,12 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'bookings-hero',
+    canActivate: [authenticatedGuard()],
+    loadChildren: () =>
+      import('./pages/bookings-hero/bookings-hero.routes').then((m) => m.bookingsHeroRoutes),
+  },
+  {
     path: 'payments-jcash',
     component: PaymentsJcashRouting,
     canActivate: [authenticatedGuard()],

@@ -1,0 +1,23 @@
+<div class="card-wrapper">
+  <div class="card no-after shadow-sm">
+    <div class="card-body pt-3">
+      <h3 class="fw-semibold mb-5">
+        {{ 'bookings-hero.booking-new.delega.self-declaration-title' | translate }}
+      </h3>
+      <div class="h4">
+        {{ 'bookings-hero.booking-new.delega.self-declaration-subtitle' | translate }}
+        @if (delega(); as delega) {
+          <strong>{{ delega?.delegateType }}</strong>
+        }
+      </div>
+      <hr />
+      <div class="title h4 mb-3">
+        {{ 'bookings-hero.booking-new.delega.self-declaration-auth' | translate }}
+      </div>
+
+      <p>
+        {{ 'bookings-hero.booking-new.delega.self-declaration-text' | translate }}
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<div class="row container-search-by-nre justify-content-around">
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-row justify-content-around">
+      <div class="col-lg-6">
+        <h2 class="fw-semibold mb-3" id="prescriptionTitle">
+          {{ 'bookings-hero.bookings-list.search-by-nre.title' | translate }}
+        </h2>
+        <p class="fw-normal mb-3" id="prescriptionSubtitle">
+          {{ 'bookings-hero.bookings-list.search-by-nre.subtitle' | translate }}
+        </p>
+
+        <form
+          [formGroup]="form"
+          class="position-relative"
+          aria-labelledby="prescriptionTitle"
+          role="form"
+        >
+          <div class="mb-4">
+            <app-input-component
+              [formGroup]="form"
+              [fieldName]="'fiscalCode'"
+              [label]="'bookings-hero.bookings-list.search-by-nre.fiscalCode' | translate"
+            ></app-input-component>
+          </div>
+
+          <div class="mb-4">
+            <div class="d-flex gap-2">
+              <app-input-component
+                [formGroup]="form"
+                [fieldName]="'nrePart1'"
+                [label]="'NRE 1'"
+                [maxlength]="5"
+              ></app-input-component>
+
+              <app-input-component
+                [formGroup]="form"
+                [fieldName]="'nrePart2'"
+                [label]="'NRE 2'"
+                [maxlength]="10"
+              ></app-input-component>
+            </div>
+          </div>
+          <div class="uploader-container text-start pb-4">
+            <button
+              class="btn btn-outline-primary"
+              alt="uploader"
+              type="button"
+              (click)="uploader.click()"
+            >
+              <i class="fa fa-upload"></i> Carica da ricetta
+            </button>
+
+            <input type="file" class="d-none" #uploader (change)="onUpload()" autocomplete="off" />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            (click)="fetchPrescription()"
+            [attr.aria-label]="
+              'bookings-hero.bookings-list.search-by-nre.forward-aria-label' | translate
+            "
+            [disabled]="form.invalid"
+          >
+            {{ 'bookings-hero.bookings-list.search-by-nre.forward' | translate }}
+          </button>
+        </form>
+      </div>
+      <img
+        class="img-prescription d-none d-lg-block w-50"
+        src="assets/images/prescription.svg"
+        aria-hidden=""
+        alt=""
+      />
+    </div>
+  </div>
+</div>

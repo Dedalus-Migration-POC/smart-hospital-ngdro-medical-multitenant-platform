@@ -37,19 +37,19 @@
               {{ 'commons.confirm-button' | translate }}
             </button>
 
-            <div class="form-floating flex-grow-1">
-              <input
-                type="text"
-                class="form-control"
-                id="search"
+            <div class="flex-grow-1">
+              <app-input-component
+                [control]="searchControl"
+                [fieldName]="'search'"
+                [type]="'text'"
+                [inputClass]="'form-control'"
+                [label]="'bookings.booking-new.private-booking-list.search' | translate"
+                [showLabel]="true"
+                [showErrors]="false"
                 [placeholder]="'bookings.booking-new.private-booking-list.search' | translate"
-                [value]="filter()"
-                (input)="onFilterInput($event)"
-                autocomplete="off"
-              />
-              <label for="search">{{
-                'bookings.booking-new.private-booking-list.search' | translate
-              }}</label>
+                [wrapperClass]="'form-floating mb-0'"
+                [autocomplete]="'off'"
+              ></app-input-component>
             </div>
 
             @if (groupsPrivateBookingList(); as groups) {

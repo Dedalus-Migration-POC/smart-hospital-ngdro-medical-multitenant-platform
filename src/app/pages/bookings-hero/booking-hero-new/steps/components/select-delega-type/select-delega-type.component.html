@@ -1,0 +1,28 @@
+<div class="col-12 col-lg-8">
+  <div class="w-100 d-flex flex-column">
+    <div class="d-flex mb-3">
+      <h2 class="fw-semibold mb-3" id="selectDelegaTypeTitle">
+        {{ 'bookings-hero.booking-new.delega.select-delega-type-title' | translate }}
+      </h2>
+    </div>
+    <div class="mb-5">
+      <label for="delegaTypeSelect">
+        {{ 'bookings-hero.booking-new.delega.select-delega-type' | translate }}</label
+      >
+      <app-select-component
+        [control]="delegaTypeControl"
+        [fieldName]="'delegaTypeSelect'"
+        [showLabel]="false"
+        [showErrors]="false"
+        [selectClass]="'form-control shadow-sm'"
+        [autocomplete]="'off'"
+        [options]="
+          (delegaTypesList()?.items ?? []).map((type) => ({
+            value: type.label,
+            label: type.label,
+          }))
+        "
+      ></app-select-component>
+    </div>
+  </div>
+</div>

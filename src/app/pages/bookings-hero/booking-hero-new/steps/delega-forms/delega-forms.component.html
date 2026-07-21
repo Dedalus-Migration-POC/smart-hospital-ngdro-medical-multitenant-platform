@@ -1,0 +1,50 @@
+<div class="row container-available-days-data">
+  <div class="col-12 col-lg-4">
+    <app-booking-hero-summary-card></app-booking-hero-summary-card>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-column">
+      <div class="h3 text-center mb-4">
+        {{ 'bookings-hero.booking-new.delega.declarantForm.title' | translate }}
+      </div>
+      <it-tab-container>
+        <it-tab-item
+          [label]="
+            'bookings-hero.booking-new.delega.declarantForm-tab-title'
+              | translate
+          "
+          [active]="activeTab === 1"
+          id="delega-forms-tab-1"
+        >
+          <app-booking-hero-declarant-form
+            (setActiveTab)="setActiveTab($event)"
+          ></app-booking-hero-declarant-form>
+        </it-tab-item>
+
+        <it-tab-item
+          [label]="
+            'bookings-hero.booking-new.delega.bookingPersonForm-tab-title'
+              | translate
+          "
+          [active]="activeTab === 2"
+          id="delega-forms-tab-2"
+        >
+          <app-booking-hero-person-form
+            (setActiveTab)="setActiveTab($event)"
+          ></app-booking-hero-person-form>
+        </it-tab-item>
+      </it-tab-container>
+
+      <div class="w-100 d-flex justify-content-end mt-4">
+        <button
+          class="btn btn-primary"
+          (click)="onConfirm()"
+          [disabled]="isBlocked"
+        >
+          Avanti
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

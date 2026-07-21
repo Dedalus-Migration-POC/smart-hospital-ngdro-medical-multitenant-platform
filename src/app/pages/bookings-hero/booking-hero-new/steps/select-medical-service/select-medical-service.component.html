@@ -1,0 +1,123 @@
+<div class="row container-select-medical-service-data">
+  <div class="col-12 col-lg-4">
+    <app-booking-hero-summary-card></app-booking-hero-summary-card>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-column">
+      <div class="d-flex mb-3">
+        <h2 class="fw-semibold mb-3" id="selectMedicalServiceTitle">
+          {{ 'bookings-hero.booking-new.select-medical-service.title' | translate }}
+        </h2>
+      </div>
+      <div class="mb-5">
+        <label for="searchServiceControl">
+          {{ 'bookings-hero.booking-new.select-medical-service.search-service' | translate }}</label
+        >
+        @if (!selectedService) {
+          <div class="position-relative">
+            <app-input-component
+              [control]="searchServiceControl"
+              [fieldName]="'searchServiceControl'"
+              [inputClass]="'form-control shadow-sm'"
+              [placeholder]="'Digita per cercare…'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [wrapperClass]="'mb-0'"
+              [autocomplete]="'off'"
+            ></app-input-component>
+            <!-- Dropdown dei risultati -->
+            @if (filteredSrvices(); as filteredSrvices) {
+              @if (filteredSrvices.length > 0) {
+                <ul class="list-group position-absolute w-100" style="z-index: 1000">
+                  @for (item of filteredSrvices; track item) {
+                    <li
+                      class="list-group-item list-group-item-action"
+                      (click)="selectService(item)"
+                    >
+                      {{ item.name }}
+                      {{ item.type }}
+                    </li>
+                  }
+                </ul>
+              }
+            }
+          </div>
+        }
+        @if (selectedService) {
+          <div class="selected-service-container shadow-sm">
+            <div>
+              <i class="fa-solid fa-star-of-life me-2"></i>
+              {{ selectedService.name }}
+            </div>
+            <button class="btn p-0 border-none" (click)="deleteSelectedService()">
+              <i class="fa-solid fa-eraser"></i>
+              Rimuovi
+            </button>
+          </div>
+        }
+      </div>
+
+      <!--------Physician-------------------->
+      @if (selectedService?.name) {
+        <div class="mb-5">
+          <label for="searchPhysicianControl">{{
+            'bookings-hero.booking-new.select-medical-service.search-physician' | translate
+          }}</label>
+          @if (!selectedPhysician) {
+            <div class="position-relative">
+              <app-input-component
+                [control]="searchPhysicianControl"
+                [fieldName]="'searchPhysicianControl'"
+                [inputClass]="'form-control shadow-sm'"
+                [placeholder]="'Digita per cercare…'"
+                [showLabel]="false"
+                [showErrors]="false"
+                [wrapperClass]="'mb-0'"
+                [autocomplete]="'off'"
+              ></app-input-component>
+              <!-- Dropdown dei risultati -->
+              @if (filteredPhysicians(); as filteredPhysicians) {
+                @if (filteredPhysicians.length > 0) {
+                  <ul class="list-group position-absolute w-100" style="z-index: 1000">
+                    @for (item of filteredPhysicians; track item) {
+                      <li
+                        class="list-group-item list-group-item-action"
+                        (click)="selectPhysician(item)"
+                      >
+                        {{ item.firstName }}
+                        {{ item.lastName }}
+                      </li>
+                    }
+                  </ul>
+                }
+              }
+            </div>
+          }
+          @if (selectedPhysician) {
+            <div class="selected-physician-container shadow-sm">
+              <div>
+                <i class="fa-solid fa-stethoscope me-2"></i>
+                {{ selectedPhysician.firstName }}
+                {{ selectedPhysician.lastName }}
+              </div>
+              <button class="btn p-0 border-none" (click)="deleteSelectedPhysician()">
+                <i class="fa-solid fa-eraser"></i>
+                Rimuovi
+              </button>
+            </div>
+          }
+        </div>
+      }
+      <div class="d-flex w-100 justify-content-end">
+        <button
+          class="btn btn-primary"
+          (click)="onConfirm()"
+          [disabled]="!selectedPhysician || !selectedService"
+        >
+          Avanti
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

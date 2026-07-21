@@ -1,18 +1,47 @@
-<div class="form-floating mb-3" [formGroup]="formGroup()">
-  <!-- TODO settare  autocomplete="off" per accessibilità (ho messo 'on' per comodità di sviluppo) -->
-  <input
-    [type]="type()"
-    class="form-control"
-    [id]="fieldName()"
-    [formControlName]="fieldName()"
-    [placeholder]="label()"
-    autocomplete="on"
-    [maxlength]="maxlength() ?? null"
-    [minlength]="minlength() ?? null"
-  />
-  <label [for]="fieldName()">{{ label() }}</label>
-  <app-input-error-component
-    [formGroup]="formGroup()"
-    [fieldName]="fieldName()"
-  ></app-input-error-component>
-</div>
+@if (hasControl()) {
+  <div [class]="wrapperClass()">
+    <input
+      [type]="type()"
+      [class]="inputClass()"
+      [id]="fieldName()"
+      [formControl]="control()!"
+      [placeholder]="placeholder() ?? label()"
+      [autocomplete]="autocomplete()"
+      [maxlength]="maxlength() ?? null"
+      [minlength]="minlength() ?? null"
+      [min]="min() ?? null"
+      [max]="max() ?? null"
+      [attr.aria-label]="ariaLabel() ?? null"
+      [attr.aria-labelledby]="ariaLabelledby() ?? null"
+    />
+    @if (showLabel()) {
+      <label [for]="fieldName()">{{ label() }}</label>
+    }
+  </div>
+} @else {
+  <div [class]="wrapperClass()" [formGroup]="formGroup()!">
+    <input
+      [type]="type()"
+      [class]="inputClass()"
+      [id]="fieldName()"
+      [formControlName]="fieldName()"
+      [placeholder]="placeholder() ?? label()"
+      [autocomplete]="autocomplete()"
+      [maxlength]="maxlength() ?? null"
+      [minlength]="minlength() ?? null"
+      [min]="min() ?? null"
+      [max]="max() ?? null"
+      [attr.aria-label]="ariaLabel() ?? null"
+      [attr.aria-labelledby]="ariaLabelledby() ?? null"
+    />
+    @if (showLabel()) {
+      <label [for]="fieldName()">{{ label() }}</label>
+    }
+    @if (showErrors() && formGroup()) {
+      <app-input-error-component
+        [formGroup]="formGroup()!"
+        [fieldName]="fieldName()"
+      ></app-input-error-component>
+    }
+  </div>
+}

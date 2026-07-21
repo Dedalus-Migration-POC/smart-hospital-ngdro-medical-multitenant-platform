@@ -1,0 +1,115 @@
+<div class="row container-prescription-upload justify-content-around">
+  <div class="col-12 col-lg-4">
+    <app-booking-hero-summary-card></app-booking-hero-summary-card>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-row justify-content-around">
+      <div class="col-lg-6">
+        <h2 class="fw-semibold mb-3" id="prescriptionTitle">
+          {{ 'bookings-hero.booking-new.prescription-upload.title' | translate }}
+        </h2>
+
+        <form
+          [formGroup]="form"
+          class="position-relative"
+          aria-labelledby="prescriptionTitle"
+          role="form"
+        >
+          <div class="mb-4">
+            <label for="fiscalCode" class="form-label">{{
+              'bookings-hero.booking-new.prescription-upload.form.fiscalCode' | translate
+            }}</label>
+            <app-input-component
+              [formGroup]="form"
+              [fieldName]="'fiscalCode'"
+              [inputClass]="'form-control text-uppercase'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [autocomplete]="'off'"
+            ></app-input-component>
+            <div class="input-error">
+              @if (
+                form.controls['fiscalCode'].errors?.['required'] && form.get('fiscalCode')?.touched
+              ) {
+                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
+              }
+              @if (
+                form.controls['fiscalCode'].errors?.['validateFiscalCode'] &&
+                form.get('fiscalCode')?.touched
+              ) {
+                {{ 'bookings-hero.booking-new.delega.cf-format-error' | translate }}
+              }
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="nrePart1" class="form-label">
+              {{
+                'bookings-hero.booking-new.prescription-upload.form.number-prescription' | translate
+              }}
+            </label>
+
+            <div class="d-flex gap-2">
+              <app-input-component
+                [formGroup]="form"
+                [fieldName]="'nrePart1'"
+                [inputClass]="'form-control nrePart1'"
+                [maxlength]="5"
+                [showLabel]="false"
+                [showErrors]="false"
+                [autocomplete]="'off'"
+              ></app-input-component>
+
+              <label id="nrePart2Label" class="visually-hidden">
+                {{
+                  'bookings-hero.booking-new.prescription-upload.form.number-prescription'
+                    | translate
+                }}
+              </label>
+              <app-input-component
+                [formGroup]="form"
+                [fieldName]="'nrePart2'"
+                [inputClass]="'form-control'"
+                [maxlength]="10"
+                [showLabel]="false"
+                [showErrors]="false"
+                [ariaLabelledby]="'nrePart2Label'"
+                [autocomplete]="'off'"
+              ></app-input-component>
+            </div>
+          </div>
+          <div class="uploader-container text-start pb-4">
+            <button
+              class="btn btn-outline-primary"
+              alt="uploader"
+              type="button"
+              (click)="uploader.click()"
+            >
+              <i class="fa fa-upload"></i> Carica da ricetta
+            </button>
+
+            <input type="file" class="d-none" #uploader (change)="onUpload()" autocomplete="off" />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            (click)="fetchPrescription()"
+            [attr.aria-label]="
+              'bookings-hero.booking-new.prescription-upload.form.forward-aria-label' | translate
+            "
+            [disabled]="form.invalid"
+          >
+            {{ 'bookings-hero.booking-new.prescription-upload.form.forward' | translate }}
+          </button>
+        </form>
+      </div>
+      <img
+        class="img-prescription d-none d-lg-block w-50"
+        src="assets/images/prescription.svg"
+        aria-hidden=""
+        alt=""
+      />
+    </div>
+  </div>
+</div>

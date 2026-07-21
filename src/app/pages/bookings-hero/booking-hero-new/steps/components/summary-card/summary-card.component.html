@@ -1,0 +1,167 @@
+<div class="card-wrapper">
+  <div class="card no-after">
+    <div class="card-body pt-3">
+      <h2 class="fw-semibold mb-3">
+        {{ 'bookings-hero.booking-new.summary-hero.summary' | translate }}
+      </h2>
+      @if (summaryBookingHero(); as summaryBookingHero) {
+        <div>
+          @if (summaryBookingHero.bookingType) {
+            <div class="col summaryBookingHero-col">
+              <div class="label">
+                {{ 'bookings-hero.booking-new.summary-hero.bookingType' | translate }}
+                @if (newBookingTypes.includes(summaryBookingHero.bookingType)) {
+                  <button
+                    class="btn p-0 float-end edit-button"
+                    type="button"
+                    (click)="
+                      newBookingTypes.includes(summaryBookingHero.bookingType)
+                        ? setActiveStep('selectBookingType')
+                        : backToBookingsList()
+                    "
+                    [attr.aria-label]="
+                      ('bookings-hero.booking-new.summary-hero.edit' | translate) +
+                      ('bookings-hero.booking-new.summary-hero.bookingType' | translate)
+                    "
+                  >
+                    {{ 'bookings-hero.booking-new.summary-hero.edit' | translate }}
+                  </button>
+                }
+              </div>
+              <div class="info-container fw-semibold">
+                {{
+                  'bookings-hero.booking-new.summary-hero.booking-type.' +
+                    summaryBookingHero.bookingType | translate
+                }}
+              </div>
+            </div>
+          }
+          @if (summaryBookingHero.nre) {
+            <div class="col summaryBookingHero-col">
+              <div class="label">
+                {{ 'bookings-hero.booking-new.summary-hero.nre' | translate }}
+                <button
+                  class="btn p-0 float-end edit-button"
+                  type="button"
+                  (click)="setActiveStep('prescriptionUpload')"
+                  [attr.aria-label]="
+                    ('bookings-hero.booking-new.summary-hero.edit' | translate) +
+                    ('bookings-hero.booking-new.summary-hero.nre' | translate)
+                  "
+                >
+                  {{ 'bookings-hero.booking-new.summary-hero.edit' | translate }}
+                </button>
+              </div>
+              <div class="info-container fw-semibold row">
+                <span class="clo-12">{{ summaryBookingHero.nre }}</span>
+                @if (summaryBookingHero.services && summaryBookingHero.services.length) {
+                  <span class="clo-12">
+                    @for (service of summaryBookingHero.services; track service; let last = $last) {
+                      {{ service.name + (last ? '' : ', ') }}
+                    }
+                  </span>
+                }
+              </div>
+            </div>
+          }
+          @if (summaryBookingHero.delega?.bookingPersonForm?.taxCode; as bookingPersonTaxCode) {
+            <div class="col summaryBookingHero-col">
+              <div class="label">
+                {{ 'bookings-hero.booking-new.summary-hero.book-for' | translate }}
+                <button
+                  class="btn p-0 float-end edit-button"
+                  type="button"
+                  (click)="setActiveStep('delegaForms')"
+                  [attr.aria-label]="
+                    ('bookings-hero.booking-new.summary-hero.edit' | translate) +
+                    ('bookings-hero.booking-new.summary-hero.services' | translate)
+                  "
+                >
+                  {{ 'bookings-hero.booking-new.summary-hero.edit' | translate }}
+                </button>
+              </div>
+              <div class="info-container fw-semibold">
+                {{ bookingPersonTaxCode }}
+              </div>
+            </div>
+          }
+          @if (
+            !summaryBookingHero.nre &&
+            summaryBookingHero.services &&
+            summaryBookingHero.services.length
+          ) {
+            <div class="col summaryBookingHero-col">
+              <div class="label">
+                {{ 'bookings-hero.booking-new.summary-hero.services' | translate }}
+                <button
+                  class="btn p-0 float-end edit-button"
+                  type="button"
+                  (click)="
+                    newBookingTypes.includes(summaryBookingHero.bookingType!)
+                      ? setActiveStep('selectMedicalService')
+                      : backToBookingsList()
+                  "
+                  [attr.aria-label]="
+                    ('bookings-hero.booking-new.summary-hero.edit' | translate) +
+                    ('bookings-hero.booking-new.summary-hero.services' | translate)
+                  "
+                >
+                  {{ 'bookings-hero.booking-new.summary-hero.edit' | translate }}
+                </button>
+              </div>
+              <div class="info-container fw-semibold">
+                @for (service of summaryBookingHero.services; track service) {
+                  <span>
+                    {{ service.name }}
+                  </span>
+                }
+              </div>
+            </div>
+          }
+          @if (summaryBookingHero.day) {
+            <div class="col summaryBookingHero-col">
+              <div class="label">
+                {{ 'bookings-hero.booking-new.summary-hero.day' | translate }}
+                <button
+                  class="btn p-0 float-end edit-button"
+                  type="button"
+                  (click)="setActiveStep('availableDays')"
+                  [attr.aria-label]="
+                    ('bookings-hero.booking-new.summary-hero.edit' | translate) +
+                    ('bookings-hero.booking-new.summary-hero.day' | translate)
+                  "
+                >
+                  {{ 'bookings-hero.booking-new.summary-hero.edit' | translate }}
+                </button>
+              </div>
+              <div class="info-container fw-semibold">
+                {{ summaryBookingHero.day | date: 'dd/MM/yyyy' }}
+              </div>
+            </div>
+          }
+          @if (summaryBookingHero.hour) {
+            <div class="col summaryBookingHero-col">
+              <div class="label">
+                {{ 'bookings-hero.booking-new.summary-hero.hour' | translate }}
+                <button
+                  class="btn p-0 float-end"
+                  type="button"
+                  [attr.aria-label]="
+                    ('bookings-hero.booking-new.summary-hero.edit' | translate) +
+                    ('bookings-hero.booking-new.summary-hero.hour' | translate)
+                  "
+                  (click)="setActiveStep('availableAppointments')"
+                >
+                  {{ 'bookings-hero.booking-new.summary-hero.edit' | translate }}
+                </button>
+              </div>
+              <div class="info-container fw-semibold">
+                {{ summaryBookingHero.hour }}
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.container-booking-type {
+  // @include media-breakpoint-down(md) {
+  //   ::ng-deep .card.card-teaser {
+  //     flex-basis: 100% !important;
+  //   }
+  // }
+
+  ::ng-deep .card-hidden {
+    display: none;
+  }
+}

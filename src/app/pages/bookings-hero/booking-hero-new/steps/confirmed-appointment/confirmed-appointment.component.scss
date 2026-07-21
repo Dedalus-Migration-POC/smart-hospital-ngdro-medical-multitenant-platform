@@ -1,0 +1,17 @@
+.array-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.confirm-info-label {
+  color: #747474;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}

@@ -1,0 +1,57 @@
+@if (showFilters) {
+  <form class="filters" [formGroup]="formGroup" (ngSubmit)="onApplyFilters()">
+    <div class="controls row">
+      <div class="filter-form-field--date col-12 col-sm-6" formGroupName="date">
+        <div class="row">
+          <div class="form-field col-6">
+            <label for="filter-date-from" class="form-control-label">Da</label>
+            <app-input-component
+              [formGroup]="$any(formGroup.get('date'))"
+              [fieldName]="'from'"
+              [type]="'date'"
+              [inputClass]="'form-control'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [autocomplete]="'off'"
+            ></app-input-component>
+          </div>
+          <div class="form-field col-6">
+            <label for="filter-date-to" class="form-control-label">A</label>
+            <app-input-component
+              [formGroup]="$any(formGroup.get('date'))"
+              [fieldName]="'to'"
+              [type]="'date'"
+              [inputClass]="'form-control'"
+              [showLabel]="false"
+              [showErrors]="false"
+              [autocomplete]="'off'"
+            ></app-input-component>
+          </div>
+        </div>
+      </div>
+      <div class="form-field filter-form-field--date col-12 col-sm-6">
+        <label for="filter-healthcareUnits">Presidi</label>
+        <app-select-component
+          [formGroup]="formGroup"
+          [fieldName]="'healthcareUnits'"
+          [showLabel]="false"
+          [showErrors]="false"
+          [selectClass]="'form-control'"
+          [autocomplete]="'off'"
+          [options]="
+            (healthcareUnits ?? []).map((healthcareUnit) => ({
+              value: healthcareUnit.id,
+              label: healthcareUnit.name,
+            }))
+          "
+        ></app-select-component>
+      </div>
+    </div>
+    <div class="filters-buttons">
+      <button class="btn btn-outline-primary" type="button" (click)="onResetFilters()">
+        Pulisci filtri
+      </button>
+      <button type="submit" class="btn btn-primary">Applica filtri</button>
+    </div>
+  </form>
+}

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, inject, input, signal } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
@@ -13,6 +14,7 @@ import { SmartHospitalState } from 'src/app/store/reducers';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
 import { Spinner } from 'src/app/components/spinner/spinner';
+import { InputComponent } from 'src/app/components/input/input.component';
 
 type PrestazioneItem = RetrievePrestazioni['documents'][number];
 
@@ -24,7 +26,15 @@ interface PrestazioniGroup {
 @Component({
   selector: 'app-private-booking-list',
   standalone: true,
-  imports: [CommonModule, TranslateModule, DesignAngularKitModule, SummaryComponent, Spinner],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    DesignAngularKitModule,
+    SummaryComponent,
+    Spinner,
+    ReactiveFormsModule,
+    InputComponent,
+  ],
   templateUrl: './private-booking-list.component.html',
   styleUrls: ['./private-booking-list.component.scss'],
 })
@@ -42,6 +52,7 @@ export class PrivateBookingListComponent implements OnInit {
   });
 
   filter = signal('');
+  searchControl = new FormControl('');
   selectedBooking = signal<PrestazioneItem | null>(null);
 
   groupsPrivateBookingList = computed(() => {
@@ -57,6 +68,11 @@ export class PrivateBookingListComponent implements OnInit {
   constructor(private translateService: TranslateService) {}
 
   ngOnInit(): void {
+    this.searchControl.valueChanges.subscribe((value) => {
+      this.selectedBooking.set(null);
+      this.filter.set(value ?? '');
+    });
+
     this.store.dispatch(
       fetchPrivateBookingList({
         request: { filter: this.filter() },
@@ -66,6 +82,7 @@ export class PrivateBookingListComponent implements OnInit {
 
   retry(): void {
     this.filter.set('');
+    this.searchControl.setValue('', { emitEvent: false });
     this.selectedBooking.set(null);
 
     this.store.dispatch(
@@ -73,12 +90,6 @@ export class PrivateBookingListComponent implements OnInit {
         request: { filter: this.filter() },
       }),
     );
-  }
-
-  onFilterInput(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.selectedBooking.set(null);
-    this.filter.set(value);
   }
 
   confirmSelectedBooking() {

@@ -1,0 +1,18 @@
+<div class="row container-available-days-data">
+  <div class="col-12 col-lg-4">
+    <app-booking-hero-summary-card></app-booking-hero-summary-card>
+  </div>
+
+  <div class="col-12 col-lg-8">
+    <div class="w-100 d-flex flex-column">
+      <app-hero-select-delega-type></app-hero-select-delega-type>
+      <app-hero-delega-self-declaration></app-hero-delega-self-declaration>
+
+      <div class="w-100 d-flex justify-content-end mt-4">
+        <button class="btn btn-primary" (click)="onConfirm()" [disabled]="!delega()?.delegateType">
+          Avanti
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
