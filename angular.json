@@ -44,10 +44,11 @@
                 "output": "/bootstrap-italia/dist/fonts"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.scss", "src/assets/chatbot/chatbot-widget.css"],
             "stylePreprocessorOptions": {
               "includePaths": ["src"]
-            }
+            },
+            "scripts": ["src/assets/chatbot/chatbot-widget.js"]
           },
           "configurations": {
             "production": {

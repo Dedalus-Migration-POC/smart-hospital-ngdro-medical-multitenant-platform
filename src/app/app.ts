@@ -93,4 +93,49 @@ export class App implements OnInit {
     const page = config.pages.find((p: any) => p.id === url);
     return page?.page?.infoPopup ?? '';
   });
+
+  private widgetInstance: { destroy?: () => void } | null = null;
+
+  ngAfterViewInit(): void {
+    // Piccolo defer per sicurezza dopo il render della view
+    setTimeout(() => {
+      if (!window.initChatbotWidget) {
+        console.error('initChatbotWidget non disponibile: controlla scripts in angular.json');
+        return;
+      }
+      const chatbotConfig = this.appConfig()?.chatbot;
+      if (!chatbotConfig) {
+        console.error('Configurazione chatbot non disponibile');
+        return;
+      }
+      this.widgetInstance = window.initChatbotWidget('chatbot-widget', {
+        apiUrl: chatbotConfig.apiUrl,
+        language: chatbotConfig.language,
+        themeColor: chatbotConfig.themeColor,
+        position: chatbotConfig.position,
+        botName: chatbotConfig.botName,
+        avatarUrl: chatbotConfig.avatarUrl,
+      });
+    }, 0);
+  }
+  ngOnDestroy(): void {
+    // Evita listener duplicati se il componente viene distrutto/ricreato
+    this.widgetInstance?.destroy?.();
+    this.widgetInstance = null;
+  }
+}
+declare global {
+  interface Window {
+    initChatbotWidget?: (
+      elementId: string,
+      options?: {
+        apiUrl?: string;
+        language?: 'it' | 'en' | 'es' | 'fr' | string;
+        themeColor?: string;
+        position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+        botName?: string;
+        avatarUrl?: string;
+      },
+    ) => { destroy?: () => void } | null;
+  }
 }

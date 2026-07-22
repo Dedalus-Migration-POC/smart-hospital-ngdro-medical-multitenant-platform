@@ -9,7 +9,7 @@ export type ItemType =
   | 'DIVIDER'
   | 'SPACER'
   | 'SELECT_LANG'
-  | 'GOOGLE_TRASLATE'
+  | 'GOOGLE_TRANSLATE'
   | 'AUTH_METHODS'
   | 'SERVICE_CARDS'
   | 'USER_DROPDOWN_MENU';

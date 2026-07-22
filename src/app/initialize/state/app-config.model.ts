@@ -52,6 +52,14 @@ export interface AppConfig {
       supportedLanguages: string[];
     };
   };
+  chatbot: {
+    apiUrl: string;
+    language: 'it' | 'en' | 'es' | 'fr' | string;
+    themeColor: string;
+    position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+    botName: string;
+    avatarUrl?: string;
+  };
   header: HeaderConfig;
   footer: FooterConfig;
   pages: Array<{

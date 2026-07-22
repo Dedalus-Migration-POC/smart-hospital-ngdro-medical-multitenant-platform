@@ -11,7 +11,7 @@ export const APP_CONFIG: AppConfig = {
       projectId: 'aou-gmartino-55c05',
       storageBucket: 'aou-gmartino-55c05.firebasestorage.app',
     },
-    keys: ['department'],
+    keys: ['department'], // keys to fetch from remote config
   },
   theme: {
     colors: {
@@ -54,6 +54,13 @@ export const APP_CONFIG: AppConfig = {
       defaultLanguage: 'it',
       supportedLanguages: ['it', 'en'],
     },
+  },
+  chatbot: {
+    apiUrl: 'https://echatbot-iet-demo.apps.cluokdtst01.pe-ita.aws/rag/ask',
+    language: 'it',
+    themeColor: '#332ebe',
+    position: 'bottom-right',
+    botName: 'Pippo',
   },
 
   header: {
@@ -120,7 +127,7 @@ export const APP_CONFIG: AppConfig = {
           },
           items: [
             {
-              id: 'topbar-link-1',
+              id: 'topbar-translate-1',
               type: 'SELECT_LANG',
               enabled: true,
               props: {
@@ -129,6 +136,12 @@ export const APP_CONFIG: AppConfig = {
                 color: 'white',
               },
             },
+            // {
+            //   id: 'topbar-translate-2',
+            //   type: 'GOOGLE_TRANSLATE',
+            //   enabled: true,
+            //   props: {},
+            // },
             {
               id: 'user-menu',
               type: 'USER_DROPDOWN_MENU',
@@ -1235,8 +1248,8 @@ export const APP_CONFIG: AppConfig = {
                         },
                         subTitle: {
                           text: {
-                            it: 'Sottotitolo',
-                            en: 'Subtitle',
+                            it: 'Non sviluppato',
+                            en: 'Not developed',
                           },
                           fontSize: 'sm',
                           fontWeight: 'normal',
