@@ -9,7 +9,7 @@ import { fetchSingleReport } from './actions';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 import { TranslateService } from '@ngx-translate/core';
 import { SmartHospitalState } from '../../../../store/reducers';
-import { FileUtils } from '../../../../../utils/download-utils';
+import { DownloadUtils } from '../../../../../utils/download-utils';
 
 @Injectable()
 export class SingleReportEffects {
@@ -77,7 +77,7 @@ export class SingleReportEffects {
                 });
               }
               if (action.payload.data.responseType === 'pdf' && data.body) {
-                FileUtils.download(
+                DownloadUtils.download(
                   data!.body?.mimeType || 'application/pdf',
                   data!.body?.content,
                   data!.body?.fileName || 'report',
@@ -94,11 +94,11 @@ export class SingleReportEffects {
             }
             if (action.payload.data.isDownload === false && data) {
               if (action.payload.data.responseType === 'pdf' && data.body?.content) {
-                FileUtils.openPdf(data.body.content, data.body?.mimeType || 'application/pdf');
+                DownloadUtils.openPdf(data.body.content, data.body?.mimeType || 'application/pdf');
               }
 
               if (action.payload.data.responseType === 'pdf' && !data.body) {
-                FileUtils.openPdf(data);
+                DownloadUtils.openPdf(data);
               }
             }
             return SingleReportActions.downloadSingleReportSuccess({

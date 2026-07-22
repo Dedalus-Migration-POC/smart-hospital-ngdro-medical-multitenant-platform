@@ -109,10 +109,10 @@ export interface DataCardDateField extends BaseCardField {
   format?: string;
 }
 
-// separator di default '-'
 export interface DataCardArrayField extends BaseCardField {
   type: 'array';
-  separator?: string;
+  itemKey?: string; // se il BE ritorna un array di oggetti, questo campo specifica la key dell'oggetto da usare come valore da mostrare nella card
+  listStyle?: 'comma' | 'dash' | 'bullet'; // stile di separazione tra gli elementi dell'array. Default: 'dash'
 }
 
 export interface DataCardImageField extends BaseCardField {
@@ -128,21 +128,32 @@ export interface DataCardImageField extends BaseCardField {
 
 export interface DataCardCondition {
   key: string; // path nel dato BE, es. 'metaInfo.state'
-  operator: 'eq' | 'neq' | 'in' | 'notIn' | 'exists' | 'notExists' | 'empty' | 'notEmpty';
+  operator:
+    | 'eq' // value === condition.value
+    | 'neq' // value !== condition.value
+    | 'in' // value è incluso in condition.value (array)
+    | 'notIn' // value NON è incluso in condition.value (array)
+    | 'exists' // value !== undefined && value !== null
+    | 'notExists' // value === undefined || value === null
+    | 'empty' // value è null, undefined, '', oppure array vuoto
+    | 'notEmpty'; // value NON è null, undefined, '', oppure array vuoto
   value?: unknown;
 }
 
 export interface DataCardButtonRender {
   renderAs: 'button';
-  buttonSize?: FontSize;
+  fullWidth?: boolean; // se true, aggiunge w-100 al bottone
+  className?: string;
 }
 
 export interface DataCardLinkRender {
   renderAs: 'link';
   decoration?: TextDecoration;
+  fullWidth?: boolean; // se true, aggiunge w-100 al link
+  className?: string;
 }
 
-export type DataCardRender = DataCardButtonRender | DataCardLinkRender;
+export type DataCardActionRender = DataCardButtonRender | DataCardLinkRender;
 
 export interface BaseDataCardAction {
   key: string;
@@ -168,13 +179,14 @@ export type DataCardAction =
   | DataCardExternalLinkAction;
 
 export type DataCardCallbackAction = BaseDataCardAction &
-  DataCardRender & {
+  DataCardActionRender & {
     type: 'callback';
     callback: DataCardActionCallback;
+    compiledCallback?: () => void;
   };
 
 export type DataCardRouteAction = BaseDataCardAction &
-  DataCardRender & {
+  DataCardActionRender & {
     type: 'route';
 
     // path statico Angular, es. '/documents/detail'
@@ -191,11 +203,14 @@ export type DataCardRouteAction = BaseDataCardAction &
     // query params dinamici letti dal dato BE
     // es. { id: 'documentId', state: 'metaInfo.state' }
     queryParamsFromData?: Record<string, string>;
+    // callback compilata dal parent component, pronta all'esecuzione
+    compiledCallback?: () => void;
   };
 
 export type DataCardExternalLinkAction = BaseDataCardAction &
-  DataCardRender & {
+  DataCardActionRender & {
     type: 'externalLink';
     url: string;
     target?: LinkTarget;
+    compiledCallback?: () => void;
   };
