@@ -11,15 +11,15 @@ import { DepartmentsAndUnitsRouting } from './pages/departments-and-units/depart
 import { UnitsComponent } from './pages/departments-and-units/units/units.component';
 import { UnitDetailsComponent } from './pages/departments-and-units/unit-details/unit-details.component';
 import { UnitsRouting } from './pages/departments-and-units/units/units.routing';
-import { PaymentsPaRouting } from './pages/payments-pa/payments-pa.routing';
-import { PaymentsPaList } from './pages/payments-pa/payments-list/payments-list.component';
-import { PaymentsPaDetails } from './pages/payments-pa/payment-details/payment-details.component';
-import { PaymentsJcashRouting } from './pages/payments-jcash/payments-jcash.routing';
-import { PaymentsJcashListComponent } from './pages/payments-jcash/payments-jcash-list/payments-jcash-list.component';
-import { PaymentJcashDetailsComponent } from './pages/payments-jcash/payment-jcash-details/payment-jcash-details.component';
+import { PaymentsPaRouting } from './pages/payments/payments-pa/payments-pa.routing';
+import { PaymentsPaList } from './pages/payments/payments-pa/payments-list/payments-list.component';
+import { PaymentsPaDetails } from './pages/payments/payments-pa/payment-details/payment-details.component';
+import { PaymentsJcashRouting } from './pages/payments/payments-jcash/payments-jcash.routing';
+import { PaymentsJcashListComponent } from './pages/payments/payments-jcash/payments-jcash-list/payments-jcash-list.component';
+import { PaymentJcashDetailsComponent } from './pages/payments/payments-jcash/payment-jcash-details/payment-jcash-details.component';
 import { TripletReport } from './pages/reports-and-documents/reports-by-triplet/reports-by-triplet';
-import { BookingsListComponent } from './pages/bookings-ariannaCup/bookings-list/bookings-list.component';
-import { BookingNewComponent } from './pages/bookings-ariannaCup/booking-new/bookings-new.component';
+import { BookingsListComponent } from './pages/bookings/bookings-ariannaCup/bookings-list/bookings-list.component';
+import { BookingNewComponent } from './pages/bookings/bookings-ariannaCup/booking-new/bookings-new.component';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
@@ -97,7 +97,7 @@ export const routes: Routes = [
     path: 'bookings-hero',
     canActivate: [authenticatedGuard()],
     loadChildren: () =>
-      import('./pages/bookings-hero/bookings-hero.routes').then((m) => m.bookingsHeroRoutes),
+      import('./pages/bookings/bookings-hero/bookings-hero.routes').then((m) => m.bookingsHeroRoutes),
   },
   {
     path: 'payments-jcash',
@@ -118,3 +118,4 @@ export const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' }, // default redirect
   { path: '**', redirectTo: '' }, // fallback
 ];
+

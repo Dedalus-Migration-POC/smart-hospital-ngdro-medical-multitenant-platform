@@ -4,11 +4,11 @@ import * as fromUserProfile from '../pages/user-profile/state/user-profile.reduc
 import * as fromSingleReport from '../pages/reports-and-documents/single-report/state/reducer';
 import * as fromReportsAndDocuments from '../pages/reports-and-documents/medical-reports/state/reducer';
 import * as fromRemoteConfig from './remote-config/remote-config.reducer';
-import * as fromPayments from '../pages/payments-pa/state/payments.reducer';
-import * as fromPaymentsJcash from '../pages/payments-jcash/state/reducer';
+import * as fromPayments from '../pages/payments/payments-pa/state/payments.reducer';
+import * as fromPaymentsJcash from '../pages/payments/payments-jcash/state/reducer';
 import * as fromTripletReport from '../pages/reports-and-documents/reports-by-triplet/state/reducer';
-import * as fromBookings from '../pages/bookings-ariannaCup/state/reducer';
-import * as fromBookingsHero from '../pages/bookings-hero/state/reducer';
+import * as fromBookings from '../pages/bookings/bookings-ariannaCup/state/reducer';
+import * as fromBookingsHero from '../pages/bookings/bookings-hero/state/reducer';
 export interface SmartHospitalState {
   [fromInitializeApp.featureKey]: fromInitializeApp.State;
   [fromUserProfile.featureKey]: fromUserProfile.State;
@@ -36,3 +36,4 @@ export const reducers: ActionReducerMap<SmartHospitalState> = {
 };
 
 export const metaReducers: MetaReducer<SmartHospitalState>[] = [];
+
