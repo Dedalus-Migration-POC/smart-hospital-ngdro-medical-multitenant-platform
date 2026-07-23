@@ -21,23 +21,16 @@
             <label for="firstName" class="input-label">
               {{ 'bookings-hero.booking-new.delega.bookingPersonForm.firstName' | translate }}
             </label>
-            <input
-              id="firstName"
-              formControlName="firstName"
-              type="text"
-              placeholder=""
-              class="form-control"
-              aria-label="Nome"
-              autocomplete="off"
-            />
-            @if (
-              bookingPersonForm.get('firstName')?.invalid &&
-              bookingPersonForm.get('firstName')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
+            <app-input-component
+              [formGroup]="bookingPersonForm"
+              [fieldName]="'firstName'"
+              [inputClass]="'form-control'"
+              [wrapperClass]="'form-field'"
+              [showLabel]="false"
+              [showErrors]="true"
+              [ariaLabel]="'Nome'"
+              [autocomplete]="'off'"
+            ></app-input-component>
           </div>
         </div>
         <div class="col-12 col-sm-6">
@@ -45,23 +38,16 @@
             <label for="lastName" class="input-label">
               {{ 'bookings-hero.booking-new.delega.bookingPersonForm.lastName' | translate }}
             </label>
-            <input
-              id="lastName"
-              formControlName="lastName"
-              type="text"
-              placeholder=""
-              class="form-control"
-              aria-label="Cognome"
-              autocomplete="off"
-            />
-            @if (
-              bookingPersonForm.get('lastName')?.invalid &&
-              bookingPersonForm.get('lastName')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
+            <app-input-component
+              [formGroup]="bookingPersonForm"
+              [fieldName]="'lastName'"
+              [inputClass]="'form-control'"
+              [wrapperClass]="'form-field'"
+              [showLabel]="false"
+              [showErrors]="true"
+              [ariaLabel]="'Cognome'"
+              [autocomplete]="'off'"
+            ></app-input-component>
           </div>
         </div>
       </div>
@@ -72,34 +58,18 @@
             <label for="birthDate" class="input-label">
               {{ 'bookings-hero.booking-new.delega.bookingPersonForm.birthDate' | translate }}
             </label>
-            <input
-              class="form-control"
-              type="date"
-              placeholder=""
-              id="birthDate"
-              formControlName="birthDate"
-              aria-label="Data di nascita"
+            <app-input-component
+              [formGroup]="bookingPersonForm"
+              [fieldName]="'birthDate'"
+              [type]="'date'"
+              [inputClass]="'form-control'"
+              [wrapperClass]="'form-field'"
+              [showLabel]="false"
+              [showErrors]="true"
+              [ariaLabel]="'Data di nascita'"
               [max]="dateFilter | date: 'yyyy-MM-dd'"
-              autocomplete="off"
-            />
-            @if (
-              bookingPersonForm.controls['birthDate'].errors?.['required'] &&
-              bookingPersonForm.get('birthDate')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-                (DD/MM/YYYY)
-              </div>
-            }
-            @if (
-              (bookingPersonForm.controls['birthDate'].errors?.['errorDateLessThanToday'] ||
-                bookingPersonForm.controls['birthDate'].errors?.['errorMinYear']) &&
-              bookingPersonForm.get('birthDate')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
+              [autocomplete]="'off'"
+            ></app-input-component>
           </div>
         </div>
         <div class="col-12 col-sm-6">
@@ -111,7 +81,7 @@
               [formGroup]="bookingPersonForm"
               [fieldName]="'birthCountry'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [ariaLabel]="'Paese di nascita'"
               [selectClass]="'form-control'"
               [autocomplete]="'off'"
@@ -122,14 +92,6 @@
                 }))
               "
             ></app-select-component>
-            @if (
-              bookingPersonForm.get('birthCountry')?.invalid &&
-              bookingPersonForm.get('birthCountry')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
           </div>
         </div>
       </div>
@@ -144,18 +106,12 @@
               [formGroup]="bookingPersonForm"
               [fieldName]="'birthProvince'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [selectClass]="'form-control'"
               [autocomplete]="'off'"
               [options]="provinces().map((province) => ({ value: province, label: province }))"
               (valueChanged)="onChangeBirthProvince()"
             ></app-select-component>
-            @if (
-              bookingPersonForm.get('birthProvince')?.invalid &&
-              bookingPersonForm.get('birthProvince')?.touched
-            ) {
-              <div class="input-error"></div>
-            }
           </div>
         </div>
         <div class="col-12 col-sm-6">
@@ -167,19 +123,11 @@
               [formGroup]="bookingPersonForm"
               [fieldName]="'birthCity'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [selectClass]="'form-control'"
               [autocomplete]="'off'"
               [options]="cities().map((city) => ({ value: city, label: city }))"
             ></app-select-component>
-            @if (
-              bookingPersonForm.get('birthCity')?.invalid &&
-              bookingPersonForm.get('birthCity')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
           </div>
         </div>
       </div>
@@ -190,30 +138,16 @@
             <label for="taxCode" class="input-label">
               {{ 'bookings-hero.booking-new.delega.bookingPersonForm.taxCode' | translate }}
             </label>
-            <input
-              formControlName="taxCode"
-              id="taxCode"
-              type="text"
-              oninput="this.value = this.value.toUpperCase()"
-              placeholder=""
-              class="form-control"
-              aria-label="Codice Fiscale"
-              autocomplete="off"
-            />
-            <div class="input-error">
-              @if (
-                bookingPersonForm.controls['taxCode'].errors?.['required'] &&
-                bookingPersonForm.get('taxCode')?.touched
-              ) {
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              }
-              @if (
-                bookingPersonForm.controls['taxCode'].errors?.['validateFiscalCode'] &&
-                bookingPersonForm.get('taxCode')?.touched
-              ) {
-                {{ 'bookings-hero.booking-new.delega.cf-format-error' | translate }}
-              }
-            </div>
+            <app-input-component
+              [formGroup]="bookingPersonForm"
+              [fieldName]="'taxCode'"
+              [inputClass]="'form-control text-uppercase'"
+              [showLabel]="false"
+              [wrapperClass]="'form-field'"
+              [showErrors]="true"
+              [ariaLabel]="'Codice Fiscale'"
+              [autocomplete]="'off'"
+            ></app-input-component>
           </div>
         </div>
       </div>
@@ -228,20 +162,12 @@
               [formGroup]="bookingPersonForm"
               [fieldName]="'currentProvince'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [selectClass]="'form-control'"
               [autocomplete]="'off'"
               [options]="provinces().map((province) => ({ value: province, label: province }))"
               (valueChanged)="onChangeResidenceProvince()"
             ></app-select-component>
-            @if (
-              bookingPersonForm.get('currentProvince')?.invalid &&
-              bookingPersonForm.get('currentProvince')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
           </div>
         </div>
         <div class="col-12 col-sm-6">
@@ -255,19 +181,11 @@
               [formGroup]="bookingPersonForm"
               [fieldName]="'currentCity'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [selectClass]="'form-control'"
               [autocomplete]="'off'"
               [options]="citiesResidence().map((city) => ({ value: city, label: city }))"
             ></app-select-component>
-            @if (
-              bookingPersonForm.get('currentCity')?.invalid &&
-              bookingPersonForm.get('currentCity')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
           </div>
         </div>
       </div>
@@ -278,22 +196,16 @@
             <label for="address" class="input-label">
               {{ 'bookings-hero.booking-new.delega.bookingPersonForm.address' | translate }}
             </label>
-            <input
-              id="address"
-              formControlName="address"
-              type="text"
-              placeholder=""
-              class="form-control"
-              aria-label="Indirizzo di residenza"
-              autocomplete="off"
-            />
-            @if (
-              bookingPersonForm.get('address')?.invalid && bookingPersonForm.get('address')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
+            <app-input-component
+              [formGroup]="bookingPersonForm"
+              [fieldName]="'address'"
+              [inputClass]="'form-control'"
+              [wrapperClass]="'form-field'"
+              [showLabel]="false"
+              [showErrors]="true"
+              [ariaLabel]="'Indirizzo di residenza'"
+              [autocomplete]="'off'"
+            ></app-input-component>
           </div>
         </div>
 
@@ -302,24 +214,17 @@
             <label for="houseNumber" class="input-label">
               {{ 'bookings-hero.booking-new.delega.bookingPersonForm.houseNumber' | translate }}
             </label>
-            <input
-              formControlName="houseNumber"
-              id="houseNumber"
-              maxlength="10"
-              type="text"
-              placeholder=""
-              class="form-control"
-              aria-label="Numero civico"
-              autocomplete="off"
-            />
-            @if (
-              bookingPersonForm.get('houseNumber')?.invalid &&
-              bookingPersonForm.get('houseNumber')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
+            <app-input-component
+              [formGroup]="bookingPersonForm"
+              [fieldName]="'houseNumber'"
+              [inputClass]="'form-control'"
+              [wrapperClass]="'form-field'"
+              [maxlength]="10"
+              [showLabel]="false"
+              [showErrors]="true"
+              [ariaLabel]="'Numero civico'"
+              [autocomplete]="'off'"
+            ></app-input-component>
           </div>
         </div>
       </div>
@@ -330,24 +235,17 @@
             <label for="currentCityCap" class="input-label">
               {{ 'bookings-hero.booking-new.delega.bookingPersonForm.currentCityCap' | translate }}
             </label>
-            <input
-              id="currentCityCap"
-              formControlName="currentCityCap"
-              type="text"
-              maxlength="5"
-              placeholder=""
-              class="form-control"
-              aria-label="CAP"
-              autocomplete="off"
-            />
-            @if (
-              bookingPersonForm.get('currentCityCap')?.invalid &&
-              bookingPersonForm.get('currentCityCap')?.touched
-            ) {
-              <div class="input-error">
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              </div>
-            }
+            <app-input-component
+              [formGroup]="bookingPersonForm"
+              [fieldName]="'currentCityCap'"
+              [inputClass]="'form-control'"
+              [maxlength]="5"
+              [showLabel]="false"
+              [wrapperClass]="'form-field'"
+              [showErrors]="true"
+              [ariaLabel]="'CAP'"
+              [autocomplete]="'off'"
+            ></app-input-component>
           </div>
         </div>
       </div>

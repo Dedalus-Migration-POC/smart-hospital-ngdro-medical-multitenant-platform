@@ -91,6 +91,7 @@ export class BookingsHeroService {
         email: 'LORxxxxxxxxxxxxxxx@GMAIL.COM',
         phoneNumber: 'xxxxxxxx9703',
       } as FindByFiscalCodeResponse).pipe(delay(500));
+      // per vedere missing-data form
       // return of(null).pipe(delay(500))
     }
 

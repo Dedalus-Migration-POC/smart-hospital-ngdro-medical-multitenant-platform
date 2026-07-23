@@ -31,6 +31,7 @@ import { BookingsHeroService } from 'src/app/pages/bookings-hero/state/service';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { NgxFormValidators } from 'src/validators';
 import { SelectComponent } from 'src/app/components/select/select.component';
+import { InputComponent } from 'src/app/components/input/input.component';
 
 @Component({
   selector: 'app-booking-hero-person-form',
@@ -41,6 +42,7 @@ import { SelectComponent } from 'src/app/components/select/select.component';
     ReactiveFormsModule,
     DesignAngularKitModule,
     SelectComponent,
+    InputComponent,
   ],
   templateUrl: './booking-person-form.component.html',
   styleUrls: ['./booking-person-form.component.scss'],
@@ -108,6 +110,16 @@ export class BookingPersonFormComponent implements OnInit {
         }),
       )
       .subscribe();
+
+    this.bookingPersonForm
+      .get('taxCode')!
+      .valueChanges.pipe(distinctUntilChanged())
+      .subscribe((value: string) => {
+        const upperValue = value?.toUpperCase?.() ?? value;
+        if (value !== upperValue) {
+          this.bookingPersonForm.get('taxCode')!.setValue(upperValue, { emitEvent: false });
+        }
+      });
   }
 
   dateFilter = Date.now();

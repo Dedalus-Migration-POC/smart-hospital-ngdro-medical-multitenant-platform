@@ -12,36 +12,6 @@
             fieldName="cf"
             [formGroup]="searchReportForm"
           ></app-input-component>
-          <!-- <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              id="cf"
-              [placeholder]="pageConfig.page.singleReportConfig.fiscalCodeInput.placeholder[lang()]"
-              formControlName="cf"
-              oninput="this.value = this.value.toUpperCase()"
-              autocomplete="on"
-            />
-            <label for="cf">{{
-              pageConfig.page.singleReportConfig.fiscalCodeInput.label[lang()]
-            }}</label>
-            @if (
-              searchReportForm.controls.cf.errors?.['required'] &&
-              searchReportForm.get('cf')?.touched
-            ) {
-              <div class="disabled-error text-danger">
-                {{ pageConfig.page.singleReportConfig.fiscalCodeInput.errorRequired[lang()] }}
-              </div>
-            }
-            @if (
-              searchReportForm.controls.cf.errors?.['validateFiscalCode'] &&
-              searchReportForm.get('cf')?.touched
-            ) {
-              <div class="disabled-error text-danger">
-                {{ pageConfig.page.singleReportConfig.fiscalCodeInput.errorInvalid[lang()] }}
-              </div>
-            }
-          </div> -->
         </div>
         <div class="col-md">
           <app-input-component
@@ -52,35 +22,6 @@
             [maxlength]="idlength.max"
             [minlength]="idlength.min"
           ></app-input-component>
-          <!-- <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              id="id"
-              [placeholder]="pageConfig.page.singleReportConfig.idInput.placeholder[lang()]"
-              formControlName="id"
-              [maxlength]="idlength.max"
-              [minlength]="idlength.min"
-              autocomplete="on"
-            />
-            <label for="id">{{ pageConfig.page.singleReportConfig.idInput.label[lang()] }}</label>
-            @if (
-              searchReportForm.controls.id.errors?.['required'] &&
-              searchReportForm.get('id')?.touched
-            ) {
-              <div class="disabled-error text-danger">
-                {{ pageConfig.page.singleReportConfig.idInput.errorRequired[lang()] }}
-              </div>
-            }
-            @if (
-              searchReportForm.controls.id.errors?.['minlength'] &&
-              searchReportForm.get('id')?.touched
-            ) {
-              <div class="disabled-error text-danger">
-                {{ pageConfig.page.singleReportConfig.idInput.errorInvalid[lang()] }}
-              </div>
-            }
-          </div> -->
         </div>
       </div>
       <div

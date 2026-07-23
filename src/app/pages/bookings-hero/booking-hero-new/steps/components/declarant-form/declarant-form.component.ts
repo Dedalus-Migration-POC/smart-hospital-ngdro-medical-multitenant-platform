@@ -24,6 +24,7 @@ import { BookingsHeroService } from 'src/app/pages/bookings-hero/state/service';
 import { selectUserProfileData } from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { SelectComponent } from 'src/app/components/select/select.component';
+import { InputComponent } from 'src/app/components/input/input.component';
 
 @Component({
   selector: 'app-booking-hero-declarant-form',
@@ -34,6 +35,7 @@ import { SelectComponent } from 'src/app/components/select/select.component';
     ReactiveFormsModule,
     DesignAngularKitModule,
     SelectComponent,
+    InputComponent,
   ],
   templateUrl: './declarant-form.component.html',
   styleUrls: ['./declarant-form.component.scss'],

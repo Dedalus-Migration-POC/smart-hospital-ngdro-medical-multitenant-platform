@@ -25,22 +25,9 @@
               [fieldName]="'fiscalCode'"
               [inputClass]="'form-control text-uppercase'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [autocomplete]="'off'"
             ></app-input-component>
-            <div class="input-error">
-              @if (
-                form.controls['fiscalCode'].errors?.['required'] && form.get('fiscalCode')?.touched
-              ) {
-                {{ 'bookings-hero.booking-new.delega.required-error' | translate }}
-              }
-              @if (
-                form.controls['fiscalCode'].errors?.['validateFiscalCode'] &&
-                form.get('fiscalCode')?.touched
-              ) {
-                {{ 'bookings-hero.booking-new.delega.cf-format-error' | translate }}
-              }
-            </div>
           </div>
 
           <div class="mb-4">
@@ -57,7 +44,7 @@
                 [inputClass]="'form-control nrePart1'"
                 [maxlength]="5"
                 [showLabel]="false"
-                [showErrors]="false"
+                [showErrors]="true"
                 [autocomplete]="'off'"
               ></app-input-component>
 
@@ -73,7 +60,7 @@
                 [inputClass]="'form-control'"
                 [maxlength]="10"
                 [showLabel]="false"
-                [showErrors]="false"
+                [showErrors]="true"
                 [ariaLabelledby]="'nrePart2Label'"
                 [autocomplete]="'off'"
               ></app-input-component>

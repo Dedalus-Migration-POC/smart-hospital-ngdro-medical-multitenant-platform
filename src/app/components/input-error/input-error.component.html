@@ -9,6 +9,12 @@
     @if (formGroup().controls[fieldName()!].errors?.['validateText']) {
       {{ 'input.errors.invalid-field' | translate }}
     }
+    @if (
+      formGroup().controls[fieldName()!].errors?.['errorDateLessThanToday'] ||
+      formGroup().controls[fieldName()!].errors?.['errorMinYear']
+    ) {
+      {{ 'input.errors.invalid-field' | translate }}
+    }
     @if (formGroup().controls[fieldName()!].errors?.['validateCap']) {
       {{ 'input.errors.cap-invalid' | translate }}
     }

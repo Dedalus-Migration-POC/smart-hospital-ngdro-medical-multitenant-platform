@@ -10,8 +10,9 @@
               [fieldName]="'from'"
               [type]="'date'"
               [inputClass]="'form-control'"
+              [wrapperClass]="'form-field'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [autocomplete]="'off'"
             ></app-input-component>
           </div>
@@ -22,8 +23,9 @@
               [fieldName]="'to'"
               [type]="'date'"
               [inputClass]="'form-control'"
+              [wrapperClass]="'form-field'"
               [showLabel]="false"
-              [showErrors]="false"
+              [showErrors]="true"
               [autocomplete]="'off'"
             ></app-input-component>
           </div>
@@ -35,7 +37,7 @@
           [formGroup]="formGroup"
           [fieldName]="'healthcareUnits'"
           [showLabel]="false"
-          [showErrors]="false"
+          [showErrors]="true"
           [selectClass]="'form-control'"
           [autocomplete]="'off'"
           [options]="

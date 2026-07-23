@@ -1,7 +1,7 @@
 @if (hasControl()) {
   <div [class]="wrapperClass()">
     @if (showLabel()) {
-      <label [for]="fieldName()">{{ label() }}</label>
+      <label class="app-select-label" [for]="fieldName()">{{ label() }}</label>
     }
     <select
       [id]="fieldName()"
@@ -22,7 +22,11 @@
 } @else {
   <div [class]="wrapperClass()" [formGroup]="formGroup()!">
     @if (showLabel()) {
-      <label [for]="fieldName()" [ngClass]="formGroup()?.get(fieldName())?.value ? 'active' : ''">
+      <label
+        class="app-select-label"
+        [for]="fieldName()"
+        [ngClass]="formGroup()?.get(fieldName())?.value ? 'active' : ''"
+      >
         {{ label() }}
       </label>
     }

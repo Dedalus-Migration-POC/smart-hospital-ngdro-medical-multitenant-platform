@@ -2,8 +2,12 @@
   select {
     background-color: transparent;
     font-weight: 500;
+
+    &:disabled {
+      background-color: #e9ecef;
+    }
   }
-  label {
+  .app-select-label {
     position: relative;
     color: #1f1f1f;
     font-size: 1rem;
