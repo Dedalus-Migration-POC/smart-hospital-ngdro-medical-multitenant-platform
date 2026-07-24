@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
-import { CardsContainer } from './model';
+import { CardsContainer, CompiledCardsContainer } from './model';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
 import { MediaText } from './types/media-text/media-text';
@@ -14,7 +14,7 @@ import { Data } from './types/data/data';
   styleUrl: './card.scss',
 })
 export class Card {
-  readonly config = input<CardsContainer | null>(null);
+  readonly config = input<CompiledCardsContainer | null>(null);
 
   private langService = inject(LanguageService);
   lang = this.langService.lang;

@@ -14,9 +14,12 @@ import {
 } from '../../shared/models/shared_model';
 
 export type CardType = 'mediaText' | 'data';
+// Tipi di configurazione (usati per definire la struttura statica delle card)
 export type Card = MediaTextCard | DataCard;
+// Tipi runtime (usati dopo compileActions(), passati ai componenti)
+export type CompiledCard = MediaTextCard | CompiledDataCard;
 
-// Contenitore delle card
+// Contenitore delle card — tipo di CONFIGURAZIONE
 // e configurazione layout generale delle card stesse (es. se sono disposte in colonna o in riga, gap tra le card, ecc.)
 // se viene settato un layout è valido per tutte le card, NON si possono settare layout diversi per card
 export interface CardsContainer {
@@ -60,13 +63,18 @@ export interface MediaTextCard extends BaseCard {
 }
 
 // DATACARD: card dinamica con elmenti come campi (label: value => basati su dati del BE), azioni (bottoni o link) con link esterni o route interno
+// Tipo di CONFIGURAZIONE: actions accetta solo DataCardAction[]
 export interface DataCard extends BaseCard {
   type: 'data';
-  // Path BE e stili per title/subTitle.
   titleSubtitle: DataCardTitleSubtitle;
   fields: CardField[];
   actions?: DataCardAction[];
   actionsLayout?: FlexLayoutConfig;
+}
+
+// Tipo RUNTIME: estende DataCard con actions che include anche i messaggi compilati da compileActions()
+export interface CompiledDataCard extends Omit<DataCard, 'actions'> {
+  actions?: DataCardCompiledAction[];
 }
 
 export interface DataCardTitleSubtitle {
@@ -161,7 +169,8 @@ export interface BaseDataCardAction {
   disabled?: boolean;
   disabledIf?: DataCardCondition[]; // l’action si vede, ma è disabilitata
   hideIf?: DataCardCondition[]; // l’action non si vede
-  hideMessage?: TextConfig; // messaggio se non si vede l'action
+  hideMessage?: TextConfig; // messaggio mostrato al posto dell'action quando è nascosta
+
   className?: string;
 }
 
@@ -177,6 +186,21 @@ export type DataCardAction =
   | DataCardCallbackAction
   | DataCardRouteAction
   | DataCardExternalLinkAction;
+
+// Tipo runtime generato da compileActions() quando un'action è nascosta e ha un hideMessage.
+// Non va usato nella configurazione statica delle card.
+export interface DataCardCompiledMessageAction {
+  key: string;
+  renderAs: 'message';
+  message: TextConfig;
+}
+
+export type DataCardCompiledAction = DataCardAction | DataCardCompiledMessageAction;
+
+// Tipo RUNTIME per il contenitore: items contiene CompiledCard invece di Card
+export interface CompiledCardsContainer extends Omit<CardsContainer, 'items'> {
+  items: CompiledCard[];
+}
 
 export type DataCardCallbackAction = BaseDataCardAction &
   DataCardActionRender & {
