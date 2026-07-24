@@ -1,0 +1,49 @@
+@if (formGroup()) {
+  <form
+    [ngClass]="getFlexLayoutClasses(formConfig()?.layoutForm)"
+    [formGroup]="formGroup()!"
+    (ngSubmit)="onFormSubmit()"
+  >
+    @for (field of formConfig()?.fields; track field.id) {
+      <div [ngClass]="getFlexLayoutClasses(field.layoutField)">
+        @if (field.label) {
+          <label [for]="field.id">
+            {{ getFieldLabel(field.id) }}
+            @if (field.required) {
+              <span class="text-danger">*</span>
+            }
+          </label>
+        }
+        <input
+          [id]="field.id"
+          [type]="getFieldType(field.id)"
+          [formControlName]="field.id"
+          class="form-control"
+          [placeholder]="getFieldPlaceholder(field.id)"
+        />
+        @if (formGroup()?.get(field.id)?.invalid && formGroup()?.get(field.id)?.touched) {
+          <div class="invalid-feedback d-block">
+            @if (formGroup()?.get(field.id)?.errors?.['required']) {
+              {{ getErrorMessage(field, 'required') }}
+            }
+            @if (formGroup()?.get(field.id)?.errors?.['email']) {
+              {{ getErrorMessage(field, 'email') }}
+            }
+            @if (formGroup()?.get(field.id)?.errors?.['pattern']) {
+              {{ getErrorMessage(field, 'pattern') }}
+            }
+            @if (formGroup()?.get(field.id)?.errors?.['minlength']) {
+              {{ getErrorMessage(field, 'minlength') }}
+            }
+            @if (formGroup()?.get(field.id)?.errors?.['maxlength']) {
+              {{ getErrorMessage(field, 'maxlength') }}
+            }
+          </div>
+        }
+      </div>
+    }
+    <button type="submit" class="btn btn-primary" [disabled]="formGroup()?.invalid">
+      {{ getButtonLabel() }}
+    </button>
+  </form>
+}

@@ -26,13 +26,23 @@ import { selectAppConfig } from '../../../initialize/state/selector';
 import { map, take } from 'rxjs';
 import { Router } from '@angular/router';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
-import { SESSION_REPORT_RESPONSE, SINGLE_REPORT } from './state/mock';
 import { Card } from '../../../components/card/card';
-import { CardsContainer } from '../../../components/card/model';
+import { CardsContainer, CompiledCardsContainer } from '../../../components/card/model';
+import { DynamicFormComponent } from '../../../components/dynamic-form/dynamic-form.component';
+import { DynamicFormConfig } from '../../../components/dynamic-form/dynamic-form.model';
 
 @Component({
   selector: 'app-single-report',
-  imports: [TranslateModule, CommonModule, Card],
+  imports: [
+    TranslateModule,
+    CommonModule,
+    Card,
+    ReactiveFormsModule,
+    Breadcrumb,
+    ImageBlock,
+    Spinner,
+    DynamicFormComponent,
+  ],
   templateUrl: './single-report.html',
   styleUrl: './single-report.scss',
 })
@@ -43,19 +53,42 @@ export class SingleReport implements OnDestroy {
   lang = this.langService.lang;
 
   private singleReportSession = this.store.selectSignal(selectSingleReportSession);
+  readonly reports = this.store.selectSignal(selectSingleReport);
+
+  readonly singleReportLoading = this.store.selectSignal(selectSingleReportLoading);
+  readonly singleReportSessionLoading = this.store.selectSignal(selectSingleReportSessionLoading);
+  readonly singleReportError = this.store.selectSignal(selectSingleReportError);
+  readonly singleReportSessionError = this.store.selectSignal(selectSingleReportSessionError);
+  readonly loading = computed(
+    () => this.singleReportLoading() || this.singleReportSessionLoading(),
+  );
+  readonly error = computed(() => this.singleReportSessionError() || this.singleReportError());
+  readonly isInitialSearch = computed(() => !this.singleReportSession() && !this.reports());
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === 'single-report')), //TODO page type
+      map((config) => {
+        const page = config.pages.find((page: any) => page.id === 'single-report');
+        return page;
+      }),
     ),
     { initialValue: null },
   );
 
-  // TODO: serve per impl. card dinamiche
-  readonly mockReports = SINGLE_REPORT;
+  readonly formConfig = computed<DynamicFormConfig | undefined>(() => {
+    const config = this.pageConfig();
+    console.log('pageConfig:', config);
+    const sections = config?.sections;
+    console.log('sections:', sections);
+    const formItem = sections?.[0]?.areas?.center?.items?.find(
+      (item: any) => item.type === 'DYNAMIC_FORM',
+    );
+    console.log('formItem:', formItem);
+    return formItem?.props as DynamicFormConfig | undefined;
+  });
+
   readonly documents = computed(() =>
-    this.mockReports.flatMap((report) =>
+    (this.reports() ?? []).flatMap((report) =>
       report.attachments.map((attachment) => ({
         reportId: report.id,
         attachmentId: attachment.id,
@@ -171,7 +204,8 @@ export class SingleReport implements OnDestroy {
               params: [],
             },
             // TEST hideIf: nasconde "Scarica" se lo stato pagamento è PENDING
-            // hideIf: [{ key: 'paymentInfo.status', operator: 'eq', value: 'PAYED' }],
+            //    hideIf: [{ key: 'paymentInfo.status', operator: 'eq', value: 'PAYED' }],
+            //  hideMessage: { text: { it: 'Pagamento in sospeso', en: 'Payment pending' } },
           },
           {
             key: 'details',
@@ -197,12 +231,12 @@ export class SingleReport implements OnDestroy {
     ],
   };
 
-  readonly renderedCardsConfig = computed<CardsContainer>(() => {
+  readonly renderedCardsConfig = computed<CompiledCardsContainer>(() => {
     const templateCard = this.cardsConfig.items[0];
 
     return {
       ...this.cardsConfig,
-      items: this.mockReports.map((report: any, index: number) => {
+      items: (this.reports() ?? []).map((report: any, index: number) => {
         const compiledActions = this.compileActions(report, templateCard.actions);
         return {
           ...report,
@@ -222,69 +256,75 @@ export class SingleReport implements OnDestroy {
   private compileActions(report: any, actions?: any[]): any[] {
     if (!actions || actions.length === 0) return [];
 
-    return (
-      actions
-        // Filtra le action da nascondere: se le condizioni hideIf sono tutte vere, l'action non viene inclusa
-        .filter((action) => !this.evaluateConditions(report, action.hideIf))
-        .map((action) => {
-          // Determina se l'action è disabilitata: per config statica oppure per condizioni disabledIf
-          const isDisabled = action.disabled || this.evaluateConditions(report, action.disabledIf);
-          let compiledCallback: () => void = () => {};
+    return actions.flatMap((action) => {
+      // Se le condizioni hideIf sono tutte vere:
+      // - se c'è hideMessage, lo aggiunge come voce messaggio al posto dell'action
+      // - altrimenti rimuove l'action completamente
+      if (this.evaluateConditions(report, action.hideIf)) {
+        return action.hideMessage
+          ? [{ key: action.key, renderAs: 'message', message: action.hideMessage }]
+          : [];
+      }
 
-          switch (action.type) {
-            case 'route':
-              compiledCallback = () => {
-                // Sostituisce i parametri dinamici nell'url, es. /documents/:id → /documents/123
-                let url = action.url as string;
-                if (action.routeParams) {
-                  Object.entries(action.routeParams).forEach(([paramName, dataPath]) => {
-                    const value = this.getValueByPath(report, dataPath as string);
-                    url = url.replace(`:${paramName}`, value ?? paramName);
-                  });
-                }
+      // Determina se l'action è disabilitata: per config statica oppure per condizioni disabledIf
+      const isDisabled = action.disabled || this.evaluateConditions(report, action.disabledIf);
+      let compiledCallback: () => void = () => {};
 
-                // Combina queryParams statici con quelli dinamici dal dato BE
-                const queryParams: Record<string, any> = { ...(action.queryParams ?? {}) };
-                if (action.queryParamsFromData) {
-                  Object.entries(action.queryParamsFromData).forEach(([paramName, dataPath]) => {
-                    queryParams[paramName] = this.getValueByPath(report, dataPath as string);
-                  });
-                }
+      switch (action.type) {
+        case 'route':
+          compiledCallback = () => {
+            // Sostituisce i parametri dinamici nell'url, es. /documents/:id → /documents/123
+            let url = action.url as string;
+            if (action.routeParams) {
+              Object.entries(action.routeParams).forEach(([paramName, dataPath]) => {
+                const value = this.getValueByPath(report, dataPath as string);
+                url = url.replace(`:${paramName}`, value ?? paramName);
+              });
+            }
 
-                this.router.navigate([url], { queryParams });
-              };
-              break;
+            // Combina queryParams statici con quelli dinamici dal dato BE
+            const queryParams: Record<string, any> = { ...(action.queryParams ?? {}) };
+            if (action.queryParamsFromData) {
+              Object.entries(action.queryParamsFromData).forEach(([paramName, dataPath]) => {
+                queryParams[paramName] = this.getValueByPath(report, dataPath as string);
+              });
+            }
 
-            case 'externalLink':
-              compiledCallback = () => {
-                // Apre il link esterno nel target specificato (default: _blank)
-                const target = action.target ?? '_blank';
-                window.open(action.url, target);
-              };
-              break;
-
-            case 'callback':
-              compiledCallback = () => {
-                const methodName = action.callback.nameFunction;
-                // Cerca il metodo nel componente stesso
-                if (typeof (this as any)[methodName] === 'function') {
-                  const params = (action.callback.params || []).map((paramKey: string) =>
-                    this.getValueByPath(report, paramKey),
-                  );
-                  // Passa sempre il report come primo argomento, poi i parametri aggiuntivi
-                  (this as any)[methodName](report, ...params);
-                }
-              };
-              break;
-          }
-
-          return {
-            ...action,
-            disabled: isDisabled,
-            compiledCallback,
+            this.router.navigate([url], { queryParams });
           };
-        })
-    );
+          break;
+
+        case 'externalLink':
+          compiledCallback = () => {
+            // Apre il link esterno nel target specificato (default: _blank)
+            const target = action.target ?? '_blank';
+            window.open(action.url, target);
+          };
+          break;
+
+        case 'callback':
+          compiledCallback = () => {
+            const methodName = action.callback.nameFunction;
+            // Cerca il metodo nel componente stesso
+            if (typeof (this as any)[methodName] === 'function') {
+              const params = (action.callback.params || []).map((paramKey: string) =>
+                this.getValueByPath(report, paramKey),
+              );
+              // Passa sempre il report come primo argomento, poi i parametri aggiuntivi
+              (this as any)[methodName](report, ...params);
+            }
+          };
+          break;
+      }
+
+      return [
+        {
+          ...action,
+          disabled: isDisabled,
+          compiledCallback,
+        },
+      ];
+    });
   }
 
   // Valuta un array di condizioni sul dato report (AND tra tutte le condizioni)
@@ -330,8 +370,7 @@ export class SingleReport implements OnDestroy {
   }
 
   private downloadPDF(report: any): void {
-    // TODO: rimuovere il fallback mock quando il flusso reale è attivo
-    const session = this.singleReportSession() ?? SESSION_REPORT_RESPONSE;
+    const session = this.singleReportSession();
     const attachment = report.attachments?.[0];
 
     if (!session || !attachment) {
@@ -350,7 +389,7 @@ export class SingleReport implements OnDestroy {
             responseType: attachment.type === 'LINK' ? 'link' : 'pdf',
             isDownload: true,
           },
-          reportEndpoint: this.pageConfig()?.page.singleReportConfig?.reportEndpoint,
+          reportEndpoint: this.pageConfig()?.singleReportConfig?.reportEndpoint,
         },
       }),
     );
@@ -362,6 +401,18 @@ export class SingleReport implements OnDestroy {
 
   ngOnDestroy(): void {
     this.store.dispatch(resetSingleReportState());
+  }
+
+  onFormSubmit(formData: any): void {
+    const reportEndpoint: 'medical-report/api/single-report' = 'medical-report/api/single-report';
+
+    const payload: any = { reportEndpoint };
+    this.formConfig()?.fields.forEach((field) => {
+      if (field.id === 'cf') payload.cf = formData[field.id];
+      if (field.id === 'id') payload.id = formData[field.id];
+    });
+
+    this.store.dispatch(fetchSingleReportSession({ payload }));
   }
 
   // searchReportForm = new FormGroup({
@@ -377,7 +428,7 @@ export class SingleReport implements OnDestroy {
   // singleReportSessionError = this.store.selectSignal(selectSingleReportSessionError);
   // loading = computed(() => this.singleReportLoading() || this.singleReportSessionLoading());
   // error = computed(() => this.singleReportSessionError() || this.singleReportError());
-  // idlength = this.pageConfig()?.page.singleReportConfig?.idInput?.idlength;
+  // idlength = this.pageConfig()?.singleReportConfig?.idInput?.idlength;
 
   // onSubmit() {
   //   if (this.searchReportForm.invalid) {
@@ -388,7 +439,7 @@ export class SingleReport implements OnDestroy {
   //       payload: {
   //         cf: this.searchReportForm.value.cf!,
   //         id: this.searchReportForm.value.id!,
-  //         reportEndpoint: this.pageConfig()?.page.singleReportConfig?.reportEndpoint,
+  //         reportEndpoint: this.pageConfig()?singleReportConfig?.reportEndpoint,
   //       },
   //     }),
   //   );
@@ -431,7 +482,7 @@ export class SingleReport implements OnDestroy {
   //           responseType: type === 'LINK' ? 'link' : 'pdf',
   //           isDownload: isDownload,
   //         },
-  //         reportEndpoint: this.pageConfig()?.page.singleReportConfig?.reportEndpoint,
+  //         reportEndpoint: this.pageConfig()?.singleReportConfig?.reportEndpoint,
   //       },
   //     }),
   //   );

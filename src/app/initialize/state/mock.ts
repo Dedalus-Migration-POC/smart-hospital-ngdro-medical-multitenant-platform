@@ -1616,12 +1616,11 @@ export const APP_CONFIG: AppConfig = {
     //   },
     // },
     {
-      id: '/single-report',
+      id: 'single-report',
       name: { it: 'Referto', en: 'Medical Report' },
       route: '/single-report',
 
       backgroundColor: '#ffffff',
-
       breadcrumb: {
         backgroundColor: '#e6e8ea',
         color: '#333333',
@@ -1638,44 +1637,97 @@ export const APP_CONFIG: AppConfig = {
           },
         ],
       },
-      sections: [],
-      // singleReportConfig: {
-      //   fiscalCodeInput: {
-      //     label: { it: 'Codice Fiscale', en: 'Fiscal Code' },
-      //     placeholder: { it: 'Inserisci il codice fiscale', en: 'Enter the fiscal code' },
-      //     errorRequired: {
-      //       it: 'Il codice fiscale è obbligatorio',
-      //       en: 'Fiscal code is required',
-      //     },
-      //     errorInvalid: {
-      //       it: 'Il codice fiscale non è valido',
-      //       en: 'Fiscal code is not valid',
-      //     },
-      //   },
-      //   idInput: {
-      //     label: { it: 'ID Referto', en: 'Report ID' },
-      //     placeholder: { it: "Inserisci l'ID del referto", en: 'Enter the report ID' },
-      //     idlength: { min: 8, max: 12 },
-      //     errorRequired: {
-      //       it: "L'ID del referto è obbligatorio",
-      //       en: 'Report ID is required',
-      //     },
-      //     errorInvalid: {
-      //       it: "L'ID del referto deve essere tra 8 e 12 caratteri",
-      //       en: 'Report ID must be between 8 and 12 characters',
-      //     },
-      //   },
-      //   reportEndpoint: 'medical-report/api/single-report',
-      //   buttonSubmit: {
-      //     label: { it: 'Cerca Referto', en: 'Search Report' },
-      //     ariaLabel: {
-      //       it: 'Clicca per cominciare la ricerca',
-      //       en: 'Click to start the search',
-      //     },
-      //     buttonColor: 'primary',
-      //     justify: 'end',
-      //   },
-      // },
+      sections: [
+        {
+          id: 'search-form-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4', justify: 'end' },
+              items: [
+                {
+                  id: 'search-form',
+                  type: 'DYNAMIC_FORM',
+                  enabled: true,
+                  props: {
+                    layoutForm: { direction: 'column', gap: 'gap-3' },
+                    submitButtonLabel: { it: 'Cerca', en: 'Search' },
+                    fields: [
+                      {
+                        id: 'cf',
+                        type: 'text',
+                        layoutField: { direction: 'column', gap: 'gap-2' },
+                        label: { it: 'Codice Fiscale', en: 'Fiscal Code' },
+                        required: true,
+                        validators: [{ type: 'required' }, { type: 'taxCode' }],
+                        errorMessages: {
+                          required: {
+                            it: 'Il codice fiscale è obbligatorio',
+                            en: 'Fiscal code is required',
+                          },
+                          taxCode: {
+                            it: 'Il codice fiscale non è valido',
+                            en: 'Fiscal code is not valid',
+                          },
+                        },
+                      },
+                      {
+                        id: 'id',
+                        type: 'text',
+                        layoutField: { direction: 'column', gap: 'gap-2' },
+                        label: { it: 'ID Referto', en: 'Report ID' },
+                        required: true,
+                        validators: [
+                          { type: 'required' },
+                          { type: 'minLength', value: 8 },
+                          { type: 'maxLength', value: 12 },
+                        ],
+                        errorMessages: {
+                          required: {
+                            it: "L'ID del referto è obbligatorio",
+                            en: 'Report ID is required',
+                          },
+                          minlength: {
+                            it: "L'ID del referto deve essere tra 8 e 12 caratteri",
+                            en: 'Report ID must be between 8 and 12 characters',
+                          },
+                          maxlength: {
+                            it: "L'ID del referto deve essere tra 8 e 12 caratteri",
+                            en: 'Report ID must be between 8 and 12 characters',
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4' },
+              items: [
+                {
+                  id: 'reports-cards',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
+                    itemsLayout: {
+                      direction: 'column',
+                      gap: 'gap-1',
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
       notFoundMessage: {
         imageBlockConfig: {
           id: 'reportNotFound',
@@ -1716,7 +1768,6 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       },
-
       initMessage: {
         imageBlockConfig: {
           id: 'initMessage',

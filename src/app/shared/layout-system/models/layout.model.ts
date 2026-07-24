@@ -12,7 +12,8 @@ export type ItemType =
   | 'GOOGLE_TRASLATE'
   | 'AUTH_METHODS'
   | 'SERVICE_CARDS'
-  | 'USER_DROPDOWN_MENU';
+  | 'USER_DROPDOWN_MENU'
+  | 'DYNAMIC_FORM';
 
 export interface Item {
   id: string;
