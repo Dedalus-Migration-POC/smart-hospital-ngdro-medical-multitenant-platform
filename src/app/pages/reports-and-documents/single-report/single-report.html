@@ -1,98 +1,51 @@
-@if (pageConfig(); as pageConfig) {
-  @if (pageConfig.page.breadcrumb) {
-    <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+@if (pageConfig()) {
+  @if (pageConfig().breadcrumb) {
+    <app-breadcrumb [config]="pageConfig().breadcrumb"></app-breadcrumb>
   }
+
+  <!-- Form sempre visibile -->
   <div class="mt-4 mb-4">
-    <form class="form-floating" [formGroup]="searchReportForm" (submit)="onSubmit()">
-      <div class="row g-4 mb-4">
-        <div class="col-lg">
-          <app-input-component
-            class="col-12 col-sm"
-            [label]="pageConfig.page.singleReportConfig.fiscalCodeInput.label[lang()]"
-            fieldName="cf"
-            [formGroup]="searchReportForm"
-          ></app-input-component>
-        </div>
-        <div class="col-md">
-          <app-input-component
-            class="col-12 col-sm"
-            [label]="pageConfig.page.singleReportConfig.idInput.label[lang()]"
-            fieldName="id"
-            [formGroup]="searchReportForm"
-            [maxlength]="idlength.max"
-            [minlength]="idlength.min"
-          ></app-input-component>
-        </div>
-      </div>
-      <div
-        class="d-flex justify-content-{{ pageConfig.page.singleReportConfig.buttonSubmit.justify }}"
-      >
-        <button
-          type="submit"
-          class="btn btn-{{ pageConfig.page.singleReportConfig.buttonSubmit.buttonColor }} btn-cf"
-          [attr.aria-label]="pageConfig.page.singleReportConfig.buttonSubmit.ariaLabel[lang()]"
-        >
-          {{ pageConfig.page.singleReportConfig.buttonSubmit.label[lang()] }}
-        </button>
-      </div>
-    </form>
+    @if (formConfig()) {
+      <app-dynamic-form
+        [formConfig]="formConfig()"
+        [lang]="lang()"
+        (formSubmit)="onFormSubmit($event)"
+      ></app-dynamic-form>
+    }
   </div>
 
-  @if (documents().length > 0) {
-    <div class="d-grid gap-3 mt-4">
-      @for (document of documents(); track $index) {
-        <div class="border rounded p-3">
-          <pre class="mb-3">{{ document | json }}</pre>
-          @if (document.type === 'LINK') {
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="downloadSingleReport(document.attachmentId, document.type, true)"
-            >
-              Open LINK
-            </button>
-          } @else {
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="downloadSingleReport(document.attachmentId, document.type, true)"
-            >
-              Download PDF
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="downloadSingleReport(document.attachmentId, document.type, false)"
-            >
-              Open document
-            </button>
-          }
-        </div>
-      }
-    </div>
-  } @else if (!loading() && !error()) {
-    @if (isInitialSearch()) {
-      <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-        <app-image-block [config]="pageConfig.page.initMessage.imageBlockConfig"></app-image-block>
-      </div>
-    } @else {
-      <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-        <app-image-block
-          [config]="pageConfig.page.notFoundMessage.imageBlockConfig"
-        ></app-image-block>
-      </div>
-    }
-  }
-  @if (error()) {
+  <!-- Init message (prima ricerca) -->
+  @if (isInitialSearch()) {
     <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-      <app-image-block [config]="pageConfig.page.errorMessage.imageBlockConfig"></app-image-block>
+      <app-image-block [config]="pageConfig().initMessage?.imageBlockConfig"></app-image-block>
     </div>
   }
+
+  <!-- Loading spinner -->
   @if (loading()) {
     <app-spinner
       [fullScreen]="true"
       text="Loading"
       [className]="'flex-column gap-3 text-secondary'"
     ></app-spinner>
+  }
+
+  <!-- Error message -->
+  @if (error() && !loading()) {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig().errorMessage?.imageBlockConfig"></app-image-block>
+    </div>
+  }
+
+  <!-- Not found message -->
+  @if (!loading() && !error() && !isInitialSearch() && (!reports() || reports()?.length === 0)) {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig().notFoundMessage?.imageBlockConfig"></app-image-block>
+    </div>
+  }
+
+  <!-- Cards with results -->
+  @if (!loading() && !error() && (reports()?.length ?? 0) > 0) {
+    <app-card [config]="renderedCardsConfig()"></app-card>
   }
 }

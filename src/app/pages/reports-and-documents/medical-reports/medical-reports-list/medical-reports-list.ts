@@ -57,7 +57,7 @@ export class MedicalReportsList implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(fetchReportsAndDocuments({ filter: undefined }));
-    if (this.pageConfig().page.medicalReportsConfig?.filterDocumentType?.show) {
+    if (this.pageConfig().medicalReportsConfig?.filterDocumentType?.show) {
       this.store.dispatch(fetchDocumentsTypes());
     }
   }

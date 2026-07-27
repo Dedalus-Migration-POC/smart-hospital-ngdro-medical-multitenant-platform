@@ -11,6 +11,9 @@ export const SINGLE_REPORT = [
   {
     id: 'report1',
     status: REPORT_STATUS.READY,
+    metaInfo: {
+      object: 'Risposta mockata BE - oggetto referto 1',
+    },
     paymentInfo: {
       amount: null,
       status: REPORT_PAYMENT_STATUS.PAYED,
@@ -22,7 +25,18 @@ export const SINGLE_REPORT = [
     attachments: [
       {
         id: 'report1-attachment1',
-        title: 'Referto di Laboratorio',
+        title: 'Descr. di Laboratorio',
+        relatedId: 'null_3A47DC2DA7AE946C',
+        date: '2026-01-11T07:23:37Z',
+        length: 85067,
+        status: ATTACHMENT_STATUS.READY,
+        type: 'PDF',
+        extension: '.pdf',
+        internalBinaryFormat: 'PDF',
+      },
+      {
+        id: 'report1-attachment1',
+        title: 'Descr. di Laboratorio 2',
         relatedId: 'null_3A47DC2DA7AE946C',
         date: '2026-01-11T07:23:37Z',
         length: 85067,
@@ -44,6 +58,9 @@ export const SINGLE_REPORT = [
   {
     id: 'report2',
     status: REPORT_STATUS.READY,
+    metaInfo: {
+      object: 'Risposta mockata BE - oggetto referto 2',
+    },
     paymentInfo: {
       amount: null,
       status: REPORT_PAYMENT_STATUS.PAYED,
@@ -53,28 +70,28 @@ export const SINGLE_REPORT = [
     date: '2026-01-28T07:23:37Z',
     conclusion: '',
     attachments: [
-      {
-        id: 'report2-attachment1',
-        title: 'Referto di Laboratorio',
-        relatedId: 'null_3A47DC2DA7AE946C',
-        date: '2026-01-12T07:23:37Z',
-        length: 85067,
-        status: ATTACHMENT_STATUS.READY,
-        type: 'PDF',
-        extension: '.pdf',
-        internalBinaryFormat: 'PDF',
-      },
-      {
-        id: 'report2-attachment2',
-        title: 'Referto di Laboratorio',
-        relatedId: 'null_3A47DC2DA7AE946C',
-        date: '2026-01-13T07:23:37Z',
-        length: 85067,
-        status: ATTACHMENT_STATUS.READY,
-        type: 'LINK',
-        extension: '.pdf',
-        internalBinaryFormat: 'PDF',
-      },
+      // {
+      //   id: 'report2-attachment1',
+      //   title: 'Referto di Laboratorio',
+      //   relatedId: 'null_3A47DC2DA7AE946C',
+      //   date: '2026-01-12T07:23:37Z',
+      //   length: 85067,
+      //   status: ATTACHMENT_STATUS.READY,
+      //   type: 'PDF',
+      //   extension: '.pdf',
+      //   internalBinaryFormat: 'PDF',
+      // },
+      // {
+      //   id: 'report2-attachment2',
+      //   title: 'Referto di Laboratorio',
+      //   relatedId: 'null_3A47DC2DA7AE946C',
+      //   date: '2026-01-13T07:23:37Z',
+      //   length: 85067,
+      //   status: ATTACHMENT_STATUS.READY,
+      //   type: 'LINK',
+      //   extension: '.pdf',
+      //   internalBinaryFormat: 'PDF',
+      // },
     ],
     patient: {
       id: '4241349',

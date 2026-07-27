@@ -8,7 +8,7 @@ import { Store } from '@ngrx/store';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 import { TranslateService } from '@ngx-translate/core';
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { FileUtils } from 'src/utils/download-utils';
+import { DownloadUtils } from 'src/utils/download-utils';
 
 @Injectable()
 export class PaymentsEffects {
@@ -99,7 +99,7 @@ export class PaymentsEffects {
             const content = body?.content ?? data;
 
             if (typeof content === 'string' || content instanceof ArrayBuffer) {
-              FileUtils.download(mimeType, content, fileName);
+              DownloadUtils.download(mimeType, content, fileName);
             }
             return PaymentActions.downloadInvoicePdfSuccess();
           }),

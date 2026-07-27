@@ -8,8 +8,11 @@ import {
   selectPrivateDoctor,
   selectPrivateListAvailability,
 } from 'src/app/pages/bookings/bookings-ariannaCup/state/selectors';
-import { CardMultiUse } from 'src/app/components/card/model';
-import { Availability, BookingsVm, Schedule } from 'src/app/pages/bookings/bookings-ariannaCup/state/model';
+import {
+  Availability,
+  BookingsVm,
+  Schedule,
+} from 'src/app/pages/bookings/bookings-ariannaCup/state/model';
 import {
   findPrivateListAvailability,
   setAvailability,
@@ -86,7 +89,7 @@ export class PrivateBookingAvailabilityComponent implements OnInit {
   }
 
   private buildBookingsVm(bookingState: any): BookingsVm {
-    let bookings: CardMultiUse[] = [];
+    let bookings: any[] = []; //CardMultiUse[] = [];
     let isEmpty: boolean = false;
 
     if (bookingState.data?.scheduleList?.schedules) {
@@ -157,4 +160,3 @@ export class PrivateBookingAvailabilityComponent implements OnInit {
     return raw ? JSON.parse(raw) : null;
   }
 }
-

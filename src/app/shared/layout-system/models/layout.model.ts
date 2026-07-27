@@ -12,7 +12,8 @@ export type ItemType =
   | 'GOOGLE_TRANSLATE'
   | 'AUTH_METHODS'
   | 'SERVICE_CARDS'
-  | 'USER_DROPDOWN_MENU';
+  | 'USER_DROPDOWN_MENU'
+  | 'DYNAMIC_FORM';
 
 export interface Item {
   id: string;
@@ -33,8 +34,8 @@ export interface AreaSize {
 }
 
 export interface LayoutArea {
-  layout: FlexLayoutConfig;
-  size?: AreaSize;
+  layout: FlexLayoutConfig; // tutte le proprietà flex (direction, align, justify, ...)
+  size?: AreaSize; // dimensioni fisse non responsive
   items: Item[];
 }
 

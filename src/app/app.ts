@@ -63,7 +63,7 @@ export class App implements OnInit {
     const url = this.currentUrl();
     if (!config) return '';
     const page = config.pages.find((p: any) => p.id === url);
-    return page?.page?.backgroundImage ?? '';
+    return page?.backgroundImage ?? '';
   });
   readonly bgColor = computed(() => {
     const config = this.appConfig();
@@ -71,7 +71,7 @@ export class App implements OnInit {
     if (!config) return '';
     const page = config.pages.find((p: any) => p.id === url);
 
-    return page?.page?.backgroundColor;
+    return page?.backgroundColor;
   });
 
   readonly pageName = computed(() => {
@@ -91,7 +91,7 @@ export class App implements OnInit {
     const url = this.currentUrl();
     if (!config) return '';
     const page = config.pages.find((p: any) => p.id === url);
-    return page?.page?.infoPopup ?? '';
+    return page?.infoPopup ?? '';
   });
 
   private widgetInstance: { destroy?: () => void } | null = null;

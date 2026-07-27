@@ -2,7 +2,7 @@ import printJS from 'print-js';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 
-export const FileUtils = {
+export const DownloadUtils = {
   download: (
     mimeType: string,
     content: string | ArrayBuffer,

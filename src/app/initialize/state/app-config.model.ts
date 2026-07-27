@@ -1,9 +1,7 @@
 import { FooterConfig } from '../../layout/footer/footer.model';
 import { HeaderConfig } from '../../layout/header/header.model';
-import { LocalizedText } from '../../shared/models/shared_model';
-import { BreadcrumbConfig } from '../../components/breadcrumb/model';
-import { ImageBlockConfig } from '../../components/image-block/model';
 import { FirebaseOptions } from 'firebase/app';
+import { PageConfig } from '../../pages/page.model';
 
 export interface AppConfig {
   name: string;
@@ -62,34 +60,7 @@ export interface AppConfig {
   };
   header: HeaderConfig;
   footer: FooterConfig;
-  pages: Array<{
-    id: string;
-    name: LocalizedText;
-    route: string;
-    page: unknown;
-  }>;
-}
-
-export type PageConfigId = '/medical-reports' | '/single-report' | '/login' | '/user-profile';
-
-export interface InfoPopupConfig {
-  title: LocalizedText;
-  text: LocalizedText;
-  type: 'warning' | 'success' | 'danger' | 'info';
-}
-
-export interface PageConfig {
-  id: PageConfigId;
-  name: LocalizedText; // Nome nel browser per accessibilità
-  page: {
-    backgroundColor?: string; //  '#ffffff' o color o img!
-    backgroundImage?: string;
-    breadcrumb?: BreadcrumbConfig;
-    infoPopup?: InfoPopupConfig;
-    notFoundMessage?: { imageBlockConfig: ImageBlockConfig };
-    errorMessage?: { imageBlockConfig: ImageBlockConfig };
-    initMessage?: { imageBlockConfig: ImageBlockConfig };
-  };
+  pages: PageConfig[] | any;
 }
 
 export interface FirebaseConfig extends FirebaseOptions {

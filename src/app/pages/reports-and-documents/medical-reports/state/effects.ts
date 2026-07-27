@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import * as ReportsAndDocumentsActions from './actions';
 import { ReportsAndDocumentsService } from './service';
 // import { CardMultiUseConfig } from 'src/app/components/card/card.model'
-import { FileUtils } from '../../../../../utils/download-utils';
+import { DownloadUtils } from '../../../../../utils/download-utils';
 
 @Injectable()
 export class ReportsAndDocumentsEffects {
@@ -85,7 +85,7 @@ export class ReportsAndDocumentsEffects {
         this.service.getReportsAndDocumentsDetails(action.payload).pipe(
           map((data: any) => {
             if (action.payload.isDownload && data) {
-              FileUtils.download(
+              DownloadUtils.download(
                 data!.body.mimeType || 'application/pdf',
                 data!.body.content,
                 data!.body.fileName || 'report',
@@ -96,11 +96,11 @@ export class ReportsAndDocumentsEffects {
             }
             if (action.payload.isDownload === false && data) {
               if (data.body?.content) {
-                FileUtils.openPdf(data.body.content, data.body?.mimeType || 'application/pdf');
+                DownloadUtils.openPdf(data.body.content, data.body?.mimeType || 'application/pdf');
               }
 
               if (!data.body) {
-                FileUtils.openPdf(data);
+                DownloadUtils.openPdf(data);
               }
             }
             return ReportsAndDocumentsActions.fetchReportsAndDocumentDetailsSuccess({ data: data });

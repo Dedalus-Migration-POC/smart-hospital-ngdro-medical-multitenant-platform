@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 import { TranslateService } from '@ngx-translate/core';
 import { SmartHospitalState } from '../../../../store/reducers';
-import { FileUtils } from '../../../../../utils/download-utils';
+import { DownloadUtils } from '../../../../../utils/download-utils';
 import { TripletReportService } from './service';
 
 @Injectable()
@@ -42,7 +42,7 @@ export class TripletReportEffects {
         this.tripletReportService.downloadSingleReport(action.payload.data).pipe(
           map((data: any) => {
             if (action.payload.isDownload && data) {
-              FileUtils.download(
+              DownloadUtils.download(
                 data!.body.mimeType || 'application/pdf',
                 data!.body.content,
                 data!.body.fileName || 'report',
@@ -53,11 +53,11 @@ export class TripletReportEffects {
             }
             if (action.payload.isDownload === false && data) {
               if (data.body?.content) {
-                FileUtils.openPdf(data.body.content, data.body?.mimeType || 'application/pdf');
+                DownloadUtils.openPdf(data.body.content, data.body?.mimeType || 'application/pdf');
               }
 
               if (!data.body) {
-                FileUtils.openPdf(data);
+                DownloadUtils.openPdf(data);
               }
             }
             return TripletReportActions.downloadTripletReportSuccess({ data: data });

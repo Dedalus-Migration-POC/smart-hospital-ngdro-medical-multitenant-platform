@@ -1,5 +1,3 @@
-import { CardMultiUse } from 'src/app/components/card/model';
-
 export interface FirstAvailabilityRequest {
   telefonoIntestatario: string;
   numImpegnativa: String;
@@ -62,7 +60,8 @@ export interface BookingType {
 export interface BookingsVm {
   loading: boolean;
   error: any;
-  bookings: CardMultiUse[];
+  bookings: any[];
+  // bookings: CardMultiUse[];
   isEmptyList: boolean;
   msgError?: string;
 }

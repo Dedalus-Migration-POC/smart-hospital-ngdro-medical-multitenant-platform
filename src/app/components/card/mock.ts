@@ -1,6 +1,7 @@
-import { CardContainer } from './model';
+import { SINGLE_REPORT } from '../../pages/reports-and-documents/single-report/state/mock';
+import { CardsContainer } from './model';
 
-export const MediaTextCard_MOCK: CardContainer = {
+export const MediaTextCard_MOCK: CardsContainer = {
   id: 'services-section',
   className: 'services-section',
   ariaLabel: {
@@ -29,12 +30,12 @@ export const MediaTextCard_MOCK: CardContainer = {
       lineHeight: 'md',
     },
   },
-  itemsLayout: {
-    direction: 'column',
-    align: 'start',
-    justify: 'end',
-    wrap: 'wrap',
-  },
+  // itemsContentLayout: {
+  //   direction: 'column',
+  //   align: 'start',
+  //   justify: 'end',
+  //   wrap: 'wrap',
+  // },
   items: [
     {
       id: 'vaccination-history',

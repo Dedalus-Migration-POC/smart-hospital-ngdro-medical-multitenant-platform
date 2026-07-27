@@ -22,7 +22,7 @@ import { getTextClasses } from '../../../../shared/utility/text.utils';
 })
 export class MediaText {
   readonly card = input.required<MediaTextCard>();
-  readonly layout = input.required<FlexLayoutConfig>();
+  readonly itemsLayout = input.required<FlexLayoutConfig>();
 
   private readonly router = inject(Router);
   private readonly notificationService = inject(ItNotificationService);
@@ -43,7 +43,7 @@ export class MediaText {
       //   title: card.text.title,
       //   subTitle: card.text.subTitle,
       // },
-      layout: this.layout(),
+      layout: this.itemsLayout(),
     };
   }
 

@@ -1,3 +1,11 @@
 @if (pageConfig(); as pageConfig) {
-  <app-areas-layout [areas]="pageConfig.page.areas"></app-areas-layout>
+  @for (section of pageConfig.sections ?? []; track section.id) {
+    <section
+      [attr.id]="section.id"
+      [ngClass]="[section.className ?? '', section.background ? 'bg-' + section.background : '']"
+      [style.height]="section.height ?? null"
+    >
+      <app-areas-layout [areas]="section.areas"></app-areas-layout>
+    </section>
+  }
 }

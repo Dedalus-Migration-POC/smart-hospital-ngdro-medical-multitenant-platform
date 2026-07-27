@@ -1,6 +1,5 @@
-<!-- TODO verifica riga 17 se servono quelle classi -->
 @if (card(); as card) {
-  @if (layout(); as layout) {
+  @if (itemsLayout(); as layout) {
     <article
       class="it-card h-100 shadow-sm border border-light p-0"
       [ngClass]="card.background ? 'bg-' + card.background : 'bg-white'"

@@ -77,9 +77,11 @@ export class ImageBlock {
     if (!cfg) return svgString;
 
     if (cfg.image?.decorative) {
-      return svgString.replace(
-        '<svg',
-        '<svg  class="img-fluid" aria-hidden="true" focusable="false"',
+      return this.sanitizer.bypassSecurityTrustHtml(
+        svgString.replace(
+          '<svg',
+          '<svg class="img-fluid" aria-hidden="true" focusable="false"',
+        ),
       );
     }
 

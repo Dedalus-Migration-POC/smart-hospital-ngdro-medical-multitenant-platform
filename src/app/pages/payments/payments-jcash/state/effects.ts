@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as PaymentActions from './actions';
 import { catchError, concatMap, map, of } from 'rxjs';
 import { PaymentJcashService } from './service';
-import { FileUtils } from 'src/utils/download-utils';
+import { DownloadUtils } from 'src/utils/download-utils';
 import { TranslateService } from '@ngx-translate/core';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 
@@ -57,7 +57,7 @@ export class PaymentsJcEffects {
       concatMap((action) =>
         this.paymentJcashService.downloadInvoicePdf(action.iuv).pipe(
           map((data) => {
-            FileUtils.download('application/pdf', data, action.iuv);
+            DownloadUtils.download('application/pdf', data, action.iuv);
             return PaymentActions.downloadInvoicePdfSuccess();
           }),
           catchError((error) => {

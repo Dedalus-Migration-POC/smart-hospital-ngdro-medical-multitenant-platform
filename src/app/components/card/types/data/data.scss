@@ -1,0 +1,23 @@
+.text-decoration-overline {
+  text-decoration: overline;
+}
+
+[class*='list-item--'] {
+  padding-left: 1.2em;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.list-item--dash::before {
+  content: '\2013'; // –
+}
+
+.list-item--bullet::before {
+  content: '\25CF'; // ●
+  font-size: 0.6em;
+  top: 0.35em;
+}
