@@ -1,27 +1,33 @@
-<div class="h3 mb-4">{{ 'bookings-hero.booking-reschedule.breadcrumb.title' | translate }}</div>
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.page.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+  }
+  @if (loading()) {
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
+  }
 
-<div class="mt-5 mb-5">
-  <it-steppers-container
-    [activeStep]="activeStepIndex"
-    showHeader="false"
-    showSaveButton="false"
-    showConfirmButton="false"
-    showBackButton="false"
-    showForwardButton="false"
-  >
-    @for (step of steps; track step; let i = $index) {
-      <it-steppers-item [label]="step.label | translate">
-        @if (step.id === activeStepId()) {
-          <ng-container *ngComponentOutlet="step.component"></ng-container>
-        }
-      </it-steppers-item>
-    }
-  </it-steppers-container>
-</div>
+  <div class="h3 mb-4">{{ 'bookings-hero.booking-reschedule.breadcrumb.title' | translate }}</div>
 
-@if (loading()) {
-  <div class="d-flex flex-column gap-3 text-secondary align-items-center py-5">
-    <it-spinner></it-spinner>
-    <div>Loading</div>
+  <div class="mt-5 mb-5">
+    <it-steppers-container
+      [activeStep]="activeStepIndex"
+      showHeader="false"
+      showSaveButton="false"
+      showConfirmButton="false"
+      showBackButton="false"
+      showForwardButton="false"
+    >
+      @for (step of steps; track step; let i = $index) {
+        <it-steppers-item [label]="step.label | translate">
+          @if (step.id === activeStepId()) {
+            <ng-container *ngComponentOutlet="step.component"></ng-container>
+          }
+        </it-steppers-item>
+      }
+    </it-steppers-container>
   </div>
 }

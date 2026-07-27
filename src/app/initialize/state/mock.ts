@@ -3367,5 +3367,38 @@ export const APP_CONFIG: AppConfig = {
         },
       },
     },
+    {
+      id: '/bookings-hero/reschedule', // === url!
+      name: { it: 'Sposta Prenotazione', en: 'Reschedule Booking' }, // Nome nel browser per accessibilità
+      route: '/bookings-hero/reschedule', //non serve, non lo possono cambiare
+      page: {
+        backgroundColor: '#ffffff', //o color o img!
+        // backgroundImage: '/assets/images/bg.svg',
+        breadcrumb: {
+          backgroundColor: '#e6e8ea',
+          color: '#333333',
+          title: { it: 'Sposta prenotazione', en: 'Reschedule Booking' },
+          subTitle: {
+            it: 'Modifica una prenotazione esistente Hero.',
+            en: 'Modify an existing Hero booking.',
+          },
+
+          items: [
+            {
+              name: { it: 'Home', en: 'Home' },
+              routerLink: '/',
+            },
+            {
+              name: { it: 'Prenotazioni', en: 'Bookings' },
+              routerLink: '/bookings-hero',
+            },
+            {
+              name: { it: 'Sposta Prenotazione', en: 'Reschedule Booking' },
+              routerLink: '/bookings-hero/reschedule',
+            },
+          ],
+        },
+      },
+    },
   ],
 };

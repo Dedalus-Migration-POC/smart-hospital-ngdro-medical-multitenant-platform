@@ -12,6 +12,11 @@ import { ConfirmedAppointmentComponent } from '../booking-hero-new/steps/confirm
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
+import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
+import { Spinner } from 'src/app/components/spinner/spinner';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map, take } from 'rxjs';
+import { selectAppConfig } from 'src/app/initialize/state/selector';
 
 interface StepConfig {
   id: string;
@@ -22,7 +27,7 @@ interface StepConfig {
 @Component({
   selector: 'app-booking-hero-reschedule',
   standalone: true,
-  imports: [CommonModule, TranslateModule, DesignAngularKitModule],
+  imports: [CommonModule, TranslateModule, DesignAngularKitModule, Breadcrumb, Spinner],
   templateUrl: './bookings-hero-reschedule.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -30,6 +35,14 @@ export class BookingHeroRescheduleComponent implements OnInit, OnDestroy {
   private store = inject(Store<SmartHospitalState>);
   private router = inject(Router);
   readonly activeStepId = this.store.selectSignal(selectActiveStep);
+
+  readonly pageConfig = toSignal(
+    this.store.select(selectAppConfig).pipe(
+      take(1),
+      map((config) => config.pages.find((page: any) => page.id === '/bookings-hero/reschedule')),
+    ),
+    { initialValue: null },
+  );
 
   steps: StepConfig[] = [];
 
