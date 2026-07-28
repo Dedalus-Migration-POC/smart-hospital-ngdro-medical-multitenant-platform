@@ -68,7 +68,7 @@ export class SingleReport implements OnDestroy {
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
       map((config) => {
-        const page = config.pages.find((page: any) => page.id === 'single-report');
+        const page = config.pages.find((page: any) => page.id === '/single-report');
         return page;
       }),
     ),

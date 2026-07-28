@@ -2139,7 +2139,7 @@ export const APP_CONFIG: AppConfig = {
       },
     },
     {
-      id: 'single-report',
+      id: '/single-report',
       name: { it: 'Referto', en: 'Medical Report' },
       route: '/single-report',
 
