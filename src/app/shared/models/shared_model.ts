@@ -11,7 +11,7 @@ export type Colors =
   | 'black';
 
 export type Direction = 'row' | 'column' | 'row-reverse' | 'column-reverse';
-export type Align = 'start' | 'center' | 'end' | 'baseline' | 'stretch';
+export type Align = 'start' | 'center' | 'end' | 'baseline' | 'stretch' | 'self-start' | 'self-end';
 export type Justify = 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
 export type Wrap = 'wrap' | 'nowrap' | 'reverse';
 export type Gap = 'gap-0' | 'gap-1' | 'gap-2' | 'gap-3' | 'gap-4' | 'gap-5';

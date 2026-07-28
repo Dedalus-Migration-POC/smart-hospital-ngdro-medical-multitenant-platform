@@ -69,6 +69,10 @@ export function getAlignClass(align?: Align): string {
       return 'align-items-baseline';
     case 'stretch':
       return 'align-items-stretch';
+    case 'self-start':
+      return 'align-self-start';
+    case 'self-end':
+      return 'align-self-end';
     default:
       return '';
   }
