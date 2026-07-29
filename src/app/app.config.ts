@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { HttpHeadersInterceptor } from './interceptors/http-headers-interceptor';
 import { HttpRefreshTokenInterceptor } from './interceptors/http-refresh-token-interceptor';
 import { HttpSmartHealthcareInterceptor } from './interceptors/http-smart-healthcare-interceptor';
+import { provideNgcCookieConsent } from 'ngx-cookieconsent';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -43,5 +44,6 @@ export const appConfig: ApplicationConfig = {
         suffix: '.json',
       }),
     }),
+    provideNgcCookieConsent({ autoOpen: false }),
   ],
 };

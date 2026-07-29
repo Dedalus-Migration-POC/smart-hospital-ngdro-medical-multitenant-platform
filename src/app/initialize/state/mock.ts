@@ -62,6 +62,82 @@ export const APP_CONFIG: AppConfig = {
     position: 'bottom-right',
     botName: 'Pippo',
   },
+  cookieConsentConfig: {
+    //https://tinesoft.github.io/ngx-cookieconsent/home
+    cookie: {
+      domain: window.location.hostname,
+    },
+    palette: {
+      popup: {
+        background: '#000',
+        border: '#000',
+        link: '#ed0e12',
+        text: '#f1d600',
+      },
+      button: {
+        background: '#f1d600',
+        border: '#f1d600',
+        text: '#ed0e12',
+      },
+    },
+    position: 'bottom-left',
+    theme: 'classic',
+    type: 'info',
+    layout: 'my-custom-layout',
+    layouts: {
+      'my-custom-layout': '{{header}}{{messagelink}}{{compliance}}',
+    },
+    elements: {
+      header: `<span class="cc-header mb-3">{{header}}</span>`,
+      messagelink: `
+      <span id="cookieconsent:desc" class="cc-message">{{message}} 
+        <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{cookiePolicyHref}}" target="_blank" rel="noopener">{{cookiePolicyLink}}</a>, 
+        <a aria-label="learn more about our privacy policy" tabindex="1" class="cc-link" href="{{privacyPolicyHref}}" target="_blank" rel="noopener">{{privacyPolicyLink}}</a> and our 
+        <a aria-label="learn more about our terms of service" tabindex="2" class="cc-link" href="{{tosHref}}" target="_blank" rel="noopener">{{tosLink}}</a>
+      </span>
+       <span id="cookieconsent:desc" class="cc-message">{{message}} 
+      <a aria-label="learn more about cookies" tabindex="0" class="cookie_policy_link" id='show_cookie_policy_info' type="button" itButton="outline-primary" data-bs-toggle="modal" data-bs-target="#show_cookie_policy_modal">{{policy}} - MODALE</a>
+    </span>
+
+    <span id="cookieconsent:desc" class="cc-message">{{message}} 
+      <a aria-label="learn more about cookies" tabindex="0" class="cookie_policy_link_pdf" id='show_cookie_policy_pdf' type="button" itButton="outline-primary" >{{policy}} - PDF</a>
+    </span>
+      `,
+    },
+    content: {
+      cookiePolicyLink: 'Cookie Policy',
+      cookiePolicyHref: 'https://cookie.com',
+
+      privacyPolicyLink: 'Privacy Policy',
+      privacyPolicyHref: 'https://privacy.com',
+
+      tosLink: 'Terms of Service',
+      tosHref: 'https://tos.com',
+    },
+    customContent: {
+      header: { it: 'Cookie header prova ', en: 'Cookie header test' },
+      message: {
+        it: 'Utilizzando il nostro sito, riconosci di aver letto e compreso la nostra ',
+        en: 'By using our site, you acknowledge that you have read and understand our ',
+      },
+      dismiss: { it: 'Chiudi', en: 'Dismiss' },
+      cookiePolicyLink: { it: 'Cookie Policy IT', en: 'Cookie Policy EN' },
+      privacyPolicyLink: { it: 'Privacy Policy IT', en: 'Privacy Policy EN' },
+      tosLink: { it: 'Terms of Service IT', en: 'Terms of Service EN' },
+    },
+    cookieConsentModal: {
+      title: { it: 'Titolo IT', en: 'Title EN' },
+      text: {
+        it: "Il nostro sito utilizza esclusivamente cookie tecnici obbligatori, necessari per garantire il corretto funzionamento del sito e fornire i servizi richiesti dagli utenti. <br /><br /> Questi cookie non richiedono il consenso dell'utente, in quanto essenziali per: <br /> La navigazione e la fruizione del sito web<br /> La gestione della sessione e l’autenticazione (se prevista)<br /> La memorizzazione delle preferenze dell'utente (ad esempio, lingua o impostazioni di accessibilità)<br />La sicurezza del sito e la prevenzione di frodi<br /><br />Questi cookie non raccolgono informazioni personali né vengono utilizzati per finalità di marketing. Se disabilitati, il sito potrebbe non funzionare correttamente.",
+        en: 'Our site uses only strictly necessary technical cookies, required to ensure the proper functioning of the site and to provide the services requested by users. <br /><br /> These cookies do not require user consent, as they are essential for: <br /> Browsing and using the website<br /> Session management and authentication (if applicable)<br /> Storing user preferences (e.g., language or accessibility settings)<br /> Website security and fraud prevention<br /><br /> These cookies do not collect personal information nor are they used for marketing purposes. If disabled, the site may not function correctly.',
+      },
+      closeButtonText: { it: 'Chiudi', en: 'Close' },
+    },
+    cookieConsentOpenPdf: {
+      url: 'https://pdfobject.com/pdf/sample.pdf',
+      method: 'GET',
+    },
+  },
 
   header: {
     topbar: {

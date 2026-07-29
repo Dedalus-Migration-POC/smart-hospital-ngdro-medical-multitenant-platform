@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, Signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from './store/reducers';
 import { selectAppConfig } from './initialize/state/selector';
@@ -10,9 +10,13 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { LanguageService } from './initialize/state/services/language.service';
 import { fetchUserProfile } from './pages/user-profile/state/user-profile.actions';
-import { ItNotificationsComponent } from 'design-angular-kit';
+import { ItNotificationsComponent, DesignAngularKitModule } from 'design-angular-kit';
 import { AlertFixedComponent } from './components/alert-fixed/alert-fixed.component';
 import { RemoteConfigService } from './store/remote-config/remote-config.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { CookieConsentModal } from './components/cookie-consent-modal/cookie-consent-modal';
+import { CookieConsentService } from './initialize/state/services/cookie-consent.service';
+import { AppConfig } from './initialize/state/app-config.model';
 @Component({
   selector: 'app-root',
   imports: [
@@ -22,6 +26,9 @@ import { RemoteConfigService } from './store/remote-config/remote-config.service
     RouterOutlet,
     ItNotificationsComponent,
     AlertFixedComponent,
+    DesignAngularKitModule,
+    TranslateModule,
+    CookieConsentModal,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -31,6 +38,7 @@ export class App implements OnInit {
   readonly router = inject(Router);
   private langService = inject(LanguageService);
   private remoteConfigService = inject(RemoteConfigService);
+  private cookieConsentService = inject(CookieConsentService);
 
   constructor() {
     effect(() => {
@@ -45,11 +53,16 @@ export class App implements OnInit {
     if (this.appConfig()?.firebaseConfig) {
       this.remoteConfigService.initialize();
     }
+    if (this.appConfig()?.cookieConsentConfig?.cookieConsentOpenPdf) {
+      document.addEventListener('click', this.cookieConsentService.onDocumentClick);
+    }
   }
 
   lang = this.langService.lang;
 
-  readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
+  readonly appConfig: Signal<AppConfig> = toSignal(this.store.select(selectAppConfig), {
+    initialValue: null,
+  });
   readonly currentUrl = toSignal(
     this.router.events.pipe(
       filter((e) => e instanceof NavigationEnd),
@@ -119,6 +132,7 @@ export class App implements OnInit {
     }, 0);
   }
   ngOnDestroy(): void {
+    document.removeEventListener('click', this.cookieConsentService.onDocumentClick);
     // Evita listener duplicati se il componente viene distrutto/ricreato
     this.widgetInstance?.destroy?.();
     this.widgetInstance = null;

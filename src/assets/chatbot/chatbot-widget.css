@@ -471,6 +471,7 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
   .chatbot-container {
     width: calc(100vw - 40px);
     max-width: none;
+    bottom: 20px;
   }
 
   .chatbot-widget.position-bottom-right,

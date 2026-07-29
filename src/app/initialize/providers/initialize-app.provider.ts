@@ -12,6 +12,7 @@ import { ThemeService } from '../state/services/theme.service';
 import { AppConfigApiService } from '../state/services/app-config-api.service';
 import { LanguageService } from '../state/services/language.service';
 import { getApps, initializeApp } from 'firebase/app';
+import { CookieConsentService } from '../state/services/cookie-consent.service';
 
 export function provideInitializeApp(): EnvironmentProviders {
   return makeEnvironmentProviders([
@@ -20,12 +21,17 @@ export function provideInitializeApp(): EnvironmentProviders {
       const themeService = inject(ThemeService);
       const store = inject(Store);
       const languageService = inject(LanguageService);
+      const cookieConsentService = inject(CookieConsentService);
 
       try {
         const config: AppConfig = await firstValueFrom(api.loadAppConfig());
 
         if (config.firebaseConfig && getApps().length === 0) {
           initializeApp(config.firebaseConfig.firebaseOptions);
+        }
+
+        if (config.cookieConsentConfig) {
+          cookieConsentService.initCookieConsent(config.cookieConsentConfig);
         }
 
         themeService.apply(config);

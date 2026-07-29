@@ -44,11 +44,18 @@
                 "output": "/bootstrap-italia/dist/fonts"
               }
             ],
-            "styles": ["src/styles.scss", "src/assets/chatbot/chatbot-widget.css"],
+            "styles": [
+              "src/styles.scss",
+              "src/assets/chatbot/chatbot-widget.css",
+              "node_modules/cookieconsent/build/cookieconsent.min.css"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": ["src"]
             },
-            "scripts": ["src/assets/chatbot/chatbot-widget.js"]
+            "scripts": [
+              "src/assets/chatbot/chatbot-widget.js",
+              "node_modules/cookieconsent/build/cookieconsent.min.js"
+            ]
           },
           "configurations": {
             "production": {
