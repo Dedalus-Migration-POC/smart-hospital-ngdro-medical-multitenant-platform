@@ -103,11 +103,22 @@ export class DynamicFormComponent {
   }
 
   getButtonLabel(): string {
-    const label = this.formConfig()?.submitButtonLabel;
-    if (label) {
-      return getLocalizedText(label, this.lang());
+    const buttonConfig = this.formConfig()?.submitButton;
+    if (buttonConfig?.label) {
+      return getLocalizedText(buttonConfig.label, this.lang());
     }
     return 'Submit';
+  }
+
+  getButtonClasses(): string[] {
+    const buttonConfig = this.formConfig()?.submitButton;
+    const classes = ['btn', 'btn-primary'];
+
+    if (buttonConfig?.className) {
+      classes.push(buttonConfig.className);
+    }
+
+    return classes;
   }
 
   onFormSubmit(): void {

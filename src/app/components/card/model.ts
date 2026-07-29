@@ -94,7 +94,8 @@ export type CardField =
   | DataCardTextField
   | DataCardDateField
   | DataCardArrayField
-  | DataCardImageField;
+  | DataCardImageField
+  | DataCardBadgeField;
 
 export interface BaseCardField {
   key: string; // es. 'metaInfo.insertionDate' o il size campo BE
@@ -132,6 +133,16 @@ export interface DataCardImageField extends BaseCardField {
 
   // Immagine di fallback se il valore BE non è presente in imageMap.
   fallbackImage?: ImageConfig;
+}
+
+export interface DataCardBadgeField extends BaseCardField {
+  type: 'badge';
+
+  // Associa ogni possibile valore del BE a una configurazione badge.
+  badgeMap?: Record<string, TextConfig>;
+
+  // Badge di fallback se il valore BE non è presente in badgeMap.
+  fallbackBadge?: TextConfig;
 }
 
 export interface DataCardCondition {

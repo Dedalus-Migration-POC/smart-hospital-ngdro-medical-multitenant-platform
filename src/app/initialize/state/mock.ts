@@ -2215,7 +2215,7 @@ export const APP_CONFIG: AppConfig = {
       },
     },
     {
-      id: 'single-report',
+      id: '/single-report',
       name: { it: 'Referto', en: 'Medical Report' },
       route: '/single-report',
 
@@ -2249,8 +2249,11 @@ export const APP_CONFIG: AppConfig = {
                   type: 'DYNAMIC_FORM',
                   enabled: true,
                   props: {
-                    layoutForm: { direction: 'column', gap: 'gap-3' },
-                    submitButtonLabel: { it: 'Cerca', en: 'Search' },
+                    layoutForm: { direction: 'row', gap: 'gap-3' },
+                    submitButton: {
+                      label: { it: 'Cerca', en: 'Search' },
+                      layout: { align: 'self-end' },
+                    },
                     fields: [
                       {
                         id: 'cf',
@@ -2320,6 +2323,145 @@ export const APP_CONFIG: AppConfig = {
                       direction: 'column',
                       gap: 'gap-1',
                     },
+                    actionsLayout: {
+                      direction: 'row',
+                      wrap: 'wrap',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        id: 'card-1',
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'subject',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          subTitle: {
+                            key: 'metaInfo.object',
+                            fontSize: 'md',
+                            fontWeight: 'semibold',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'metaInfo.object',
+                            type: 'text',
+                            label: {
+                              text: {
+                                it: 'Oggetto',
+                                en: 'Subject',
+                              },
+                            },
+                          },
+                          {
+                            key: 'date',
+                            type: 'date',
+                            format: 'dd/MM/yyyy',
+                            label: {
+                              text: {
+                                it: 'Data',
+                                en: 'Date',
+                              },
+                            },
+                          },
+                          {
+                            key: 'attachments',
+                            type: 'array',
+                            itemKey: 'title',
+                            listStyle: 'bullet',
+                            label: { text: { it: 'Servizi', en: 'Services' } },
+                          },
+                          // {
+                          //   key: 'paymentInfo.status',
+                          //   type: 'image',
+                          //   label: { text: { it: 'Stato pagamento', en: 'Payment' } },
+                          //   imageMap: {
+                          //     PAYED: {
+                          //       type: 'inlineSvg',
+                          //       value:
+                          //         '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+                          //       decorative: true,
+                          //     },
+                          //     PENDING: {
+                          //       type: 'inlineSvg',
+                          //       value:
+                          //         '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dc3545" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+                          //       decorative: true,
+                          //     },
+                          //   },
+                          //   fallbackImage: {
+                          //     type: 'inlineSvg',
+                          //     value:
+                          //       '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6c757d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+                          //     decorative: true,
+                          //   },
+                          // },
+                          {
+                            key: 'paymentInfo.status',
+                            type: 'badge',
+                            label: { text: { it: 'Stato', en: 'Status' } },
+                            badgeMap: {
+                              PAYED: {
+                                text: { it: 'Pagato', en: 'Paid' },
+                                lineHeight: 'md',
+                                color: 'success',
+                              },
+                              PENDING: {
+                                text: { it: 'In attesa', en: 'Pending' },
+                                fontSize: 'sm',
+                                color: 'warning',
+                              },
+                            },
+                            fallbackBadge: {
+                              text: { it: 'Sconosciuto', en: 'Unknown' },
+                              fontSize: 'sm',
+                              color: 'secondary',
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'download',
+                            label: { text: { it: 'Scarica', en: 'Download' } },
+                            type: 'callback',
+                            renderAs: 'button',
+                            fullWidth: true,
+                            callback: {
+                              nameFunction: 'downloadPDF',
+                              params: [],
+                            },
+                            // TEST hideIf: nasconde "Scarica" se lo stato pagamento è PENDING
+                            //    hideIf: [{ key: 'paymentInfo.status', operator: 'eq', value: 'PAYED' }],
+                            //  hideMessage: { text: { it: 'Pagamento in sospeso', en: 'Payment pending' } },
+                          },
+                          {
+                            key: 'details',
+                            label: { text: { it: 'Dettagli', en: 'Details' } },
+                            type: 'route',
+                            renderAs: 'button',
+                            className: 'btn btn-primary flex-grow-1',
+                            url: '/medical-reports',
+                            queryParamsFromData: { id: 'id' },
+                            // TEST disabledIf: disabilita "Dettagli" se non ci sono allegati
+                            disabledIf: [{ key: 'attachments', operator: 'empty' }],
+                          },
+                          {
+                            key: 'external',
+                            label: { text: { it: 'Apri sito', en: 'Open site' } },
+                            type: 'externalLink',
+                            renderAs: 'button',
+                            url: 'https://google.com',
+                            target: '_blank',
+                          },
+                        ],
+                      },
+                    ],
                   },
                 },
               ],

@@ -42,7 +42,15 @@
         }
       </div>
     }
-    <button type="submit" class="btn btn-primary" [disabled]="formGroup()?.invalid">
+
+    <button
+      type="submit"
+      [ngClass]="[
+        ...getFlexLayoutClasses(formConfig()?.submitButton?.layout),
+        ...getButtonClasses(),
+      ]"
+      [disabled]="formGroup()?.invalid"
+    >
       {{ getButtonLabel() }}
     </button>
   </form>

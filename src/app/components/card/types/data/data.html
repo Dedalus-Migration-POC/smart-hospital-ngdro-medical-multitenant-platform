@@ -52,6 +52,18 @@
                         {{ value }}
                       </div>
                     }
+                  } @else if (field.type === 'badge') {
+                    @if (getBadgeConfig(field); as badge) {
+                      <span
+                        class="badge"
+                        [ngClass]="[
+                          badge.bgColor ? 'text-bg-' + badge.bgColor : '',
+                          ...getTextClasses(badge.config),
+                        ]"
+                      >
+                        {{ badge.displayText }}
+                      </span>
+                    }
                   } @else {
                     <div [ngClass]="getTextClasses(field.label)">
                       {{ getFieldDisplayValue(field) }}

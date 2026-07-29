@@ -21,8 +21,14 @@ export interface FormFieldConfig {
   };
 }
 
+export interface SubmitButtonConfig {
+  label: LocalizedText;
+  layout?: FlexLayoutConfig;
+  className?: string;
+}
+
 export interface DynamicFormConfig {
   layoutForm?: FlexLayoutConfig;
-  submitButtonLabel?: LocalizedText;
+  submitButton?: SubmitButtonConfig;
   fields: FormFieldConfig[];
 }

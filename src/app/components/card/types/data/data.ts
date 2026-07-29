@@ -1,6 +1,11 @@
 import { Component, inject, input } from '@angular/core';
 import { CardField, CompiledDataCard, DataCardCompiledMessageAction } from '../../model';
-import { FlexLayoutConfig, ImageConfig } from '../../../../shared/models/shared_model';
+import {
+  Colors,
+  FlexLayoutConfig,
+  ImageConfig,
+  TextConfig,
+} from '../../../../shared/models/shared_model';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
@@ -80,6 +85,33 @@ export class Data {
     return listStyle ? `list-item--${listStyle}` : '';
   }
 
+  getBadgeConfig(
+    field: CardField,
+  ): { config: TextConfig; displayText: string; bgColor: Colors } | null {
+    if (field.type !== 'badge') return null;
+
+    const rawValue = this.getValueByPath(
+      this.card() as unknown as Record<string, unknown>,
+      field.key,
+    );
+
+    const mapped = rawValue != null ? field.badgeMap?.[String(rawValue)] : undefined;
+    const config = mapped ?? field.fallbackBadge;
+
+    if (!config) return null;
+
+    const text = config.text?.[this.lang()] ?? this.toPlainValue(rawValue);
+
+    // Crea un config senza la proprietà color per getTextClasses
+    const configWithoutColor = { ...config, color: undefined };
+
+    return {
+      config: configWithoutColor,
+      displayText: this.withAffixes(text, field.prefix, field.suffix),
+      bgColor: config.color || 'info', // fallback a info se non specificato
+    };
+  }
+
   getArrayValues(field: CardField): string[] {
     if (field.type !== 'array') return [];
 
@@ -156,8 +188,15 @@ export class Data {
         return this.withAffixes(values.join(separator), field.prefix, field.suffix);
       }
 
-      // // Step 1: image fields are not rendered yet.
-      // case 'image':
+      case 'badge': {
+        const mapped = rawValue != null ? field.badgeMap?.[String(rawValue)] : undefined;
+        const badgeValue =
+          mapped?.text?.[this.lang()] ??
+          field.fallbackBadge?.text?.[this.lang()] ??
+          this.toPlainValue(rawValue);
+        return this.withAffixes(badgeValue, field.prefix, field.suffix);
+      }
+
       default:
         return this.emptyValue;
     }
