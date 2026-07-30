@@ -50,8 +50,11 @@ export interface TextSection {
   subTitle?: TextConfig;
 }
 
-export interface TextConfig {
+export interface TextConfig extends TextStyle {
   text: LocalizedText;
+}
+
+export interface TextStyle {
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   color?: Colors;

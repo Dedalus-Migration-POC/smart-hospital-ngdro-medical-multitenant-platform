@@ -17,6 +17,7 @@ export class SingleReportService {
     reportEndpoint: ReportEndpoint;
   }): Observable<IGetReportSessionResponse> {
     if (this.IS_DEV) {
+      console.log('fetchSingleReportSession payload:', payload);
       return of(SESSION_REPORT_RESPONSE).pipe(delay(500));
     }
 
@@ -31,6 +32,8 @@ export class SingleReportService {
     reportEndpoint?: ReportEndpoint;
   }): Observable<IReport | any> {
     if (this.IS_DEV) {
+      console.log('fetchSingleReport payload:', payload);
+
       return of(SINGLE_REPORT).pipe(delay(500));
     }
     return this.http.post<IReport[] | IReport>(`${payload.reportEndpoint}/get`, payload.data).pipe(
@@ -56,6 +59,7 @@ export class SingleReportService {
     reportEndpoint?: ReportEndpoint;
   }) {
     if (this.IS_DEV) {
+      console.log('Downloading single report:', payload);
       if (payload.data.responseType === 'link') {
         return of(SINGL_REPORT_LINK).pipe(delay(500));
       } else {

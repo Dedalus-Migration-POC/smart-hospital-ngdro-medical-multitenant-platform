@@ -1,4 +1,4 @@
-import { LocalizedText, TextConfig, TextDecoration } from '../models/shared_model';
+import { LocalizedText, TextDecoration, TextStyle } from '../models/shared_model';
 
 // Get localized text
 export function getLocalizedText(text?: LocalizedText, lang?: keyof LocalizedText): string {
@@ -7,7 +7,7 @@ export function getLocalizedText(text?: LocalizedText, lang?: keyof LocalizedTex
 }
 
 // Get all text classes
-export function getTextClasses(text?: TextConfig): string[] {
+export function getTextClasses(text?: TextStyle): string[] {
   return [
     text?.fontSize ? `fs-${text.fontSize}` : '',
     text?.fontWeight ? `fw-${text.fontWeight}` : '',

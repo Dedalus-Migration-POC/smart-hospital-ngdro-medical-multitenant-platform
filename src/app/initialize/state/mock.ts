@@ -2236,6 +2236,7 @@ export const APP_CONFIG: AppConfig = {
           },
         ],
       },
+      singleReportConfig: { reportEndpoint: 'medical-report/api/single-report' },
       sections: [
         {
           id: 'search-form-section',
@@ -2320,12 +2321,14 @@ export const APP_CONFIG: AppConfig = {
                   props: {
                     itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
                     itemsLayout: {
-                      direction: 'column',
+                      direction: 'row',
                       gap: 'gap-1',
+                      align: 'start',
                     },
                     actionsLayout: {
                       direction: 'row',
                       wrap: 'wrap',
+                      justify: 'around',
                       gap: 'gap-2',
                     },
                     items: [
@@ -2352,7 +2355,14 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'metaInfo.object',
                             type: 'text',
+                            valueStyle: {
+                              fontSize: 'md',
+                              fontWeight: 'bold',
+                              color: 'danger',
+                              lineHeight: 'md',
+                            },
                             label: {
+                              fontWeight: 'bold',
                               text: {
                                 it: 'Oggetto',
                                 en: 'Subject',
@@ -2364,6 +2374,8 @@ export const APP_CONFIG: AppConfig = {
                             type: 'date',
                             format: 'dd/MM/yyyy',
                             label: {
+                              fontWeight: 'bold',
+
                               text: {
                                 it: 'Data',
                                 en: 'Date',
@@ -2374,8 +2386,29 @@ export const APP_CONFIG: AppConfig = {
                             key: 'attachments',
                             type: 'array',
                             itemKey: 'title',
+                            valueStyle: {
+                              fontSize: 'md',
+                              fontWeight: 'bold',
+                              color: 'danger',
+                              lineHeight: 'md',
+                            },
+                            listStyle: 'comma',
+                            label: { fontWeight: 'bold', text: { it: 'Servizi', en: 'Services' } },
+                          },
+                          {
+                            key: 'attachment.title',
+                            type: 'text',
                             listStyle: 'bullet',
-                            label: { text: { it: 'Servizi', en: 'Services' } },
+                            label: { fontWeight: 'bold', text: { it: 'Referto', en: 'Report' } },
+                          },
+                          {
+                            key: 'attachment.type',
+                            type: 'text',
+                            listStyle: 'bullet',
+                            label: {
+                              fontWeight: 'bold',
+                              text: { it: 'Tipo di referto', en: 'Report type' },
+                            },
                           },
                           // {
                           //   key: 'paymentInfo.status',
@@ -2405,7 +2438,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'paymentInfo.status',
                             type: 'badge',
-                            label: { text: { it: 'Stato', en: 'Status' } },
+                            label: { fontWeight: 'bold', text: { it: 'Stato', en: 'Status' } },
                             badgeMap: {
                               PAYED: {
                                 text: { it: 'Pagato', en: 'Paid' },
@@ -2428,37 +2461,62 @@ export const APP_CONFIG: AppConfig = {
                         actions: [
                           {
                             key: 'download',
-                            label: { text: { it: 'Scarica', en: 'Download' } },
+                            label: { text: { it: 'Scarica PDF', en: 'Download PDF' } },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: true,
+                            fullWidth: false,
                             callback: {
-                              nameFunction: 'downloadPDF',
-                              params: [],
+                              nameFunction: 'downloadSingleReport',
+                              params: [true],
                             },
+                            hideIf: [{ key: 'attachment.type', operator: 'eq', value: 'LINK' }],
                             // TEST hideIf: nasconde "Scarica" se lo stato pagamento è PENDING
                             //    hideIf: [{ key: 'paymentInfo.status', operator: 'eq', value: 'PAYED' }],
                             //  hideMessage: { text: { it: 'Pagamento in sospeso', en: 'Payment pending' } },
                           },
                           {
-                            key: 'details',
-                            label: { text: { it: 'Dettagli', en: 'Details' } },
-                            type: 'route',
+                            key: 'open',
+                            label: { text: { it: 'Apri PDF', en: 'Open PDF' } },
+                            type: 'callback',
                             renderAs: 'button',
-                            className: 'btn btn-primary flex-grow-1',
-                            url: '/medical-reports',
-                            queryParamsFromData: { id: 'id' },
-                            // TEST disabledIf: disabilita "Dettagli" se non ci sono allegati
-                            disabledIf: [{ key: 'attachments', operator: 'empty' }],
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'downloadSingleReport',
+                              params: [false],
+                            },
+                            hideIf: [{ key: 'attachment.type', operator: 'eq', value: 'LINK' }],
                           },
                           {
-                            key: 'external',
-                            label: { text: { it: 'Apri sito', en: 'Open site' } },
-                            type: 'externalLink',
+                            key: 'openLink',
+                            label: { text: { it: 'Apri Link', en: 'Open Link' } },
+                            type: 'callback',
                             renderAs: 'button',
-                            url: 'https://google.com',
-                            target: '_blank',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'downloadSingleReport',
+                              params: [true],
+                            },
+                            hideIf: [{ key: 'attachment.type', operator: 'eq', value: 'PDF' }],
                           },
+                          // {
+                          //   key: 'open',
+                          //   label: { text: { it: 'Dettagli', en: 'Details' } },
+                          //   type: 'route',
+                          //   renderAs: 'button',
+                          //   className: 'btn btn-primary flex-grow-1',
+                          //   url: '/medical-reports',
+                          //   queryParamsFromData: { id: 'id' },
+                          //   // TEST disabledIf: disabilita "Dettagli" se non ci sono allegati
+                          //   disabledIf: [{ key: 'attachments', operator: 'empty' }],
+                          // },
+                          // {
+                          //   key: 'external',
+                          //   label: { text: { it: 'Apri sito', en: 'Open site' } },
+                          //   type: 'externalLink',
+                          //   renderAs: 'button',
+                          //   url: 'https://google.com',
+                          //   target: '_blank',
+                          // },
                         ],
                       },
                     ],

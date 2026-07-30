@@ -11,6 +11,7 @@ import {
   TextDecoration,
   FontWeight,
   LineHeight,
+  TextStyle,
 } from '../../shared/models/shared_model';
 
 export type CardType = 'mediaText' | 'data';
@@ -100,6 +101,7 @@ export type CardField =
 export interface BaseCardField {
   key: string; // es. 'metaInfo.insertionDate' o il size campo BE
   label: TextConfig;
+  valueStyle?: TextStyle;
   prefix?: string;
   suffix?: string;
   className?: string;

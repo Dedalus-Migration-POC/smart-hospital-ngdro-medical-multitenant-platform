@@ -1,28 +1,12 @@
 @if (config(); as config) {
   @if (config.header) {
     <div class="my-2">
-      <h2
-        class="cursor-default mb-0"
-        [ngClass]="[
-          config.header.title.fontSize ? 'fs-' + config.header.title.fontSize : '',
-          config.header.title.fontWeight ? 'fw-' + config.header.title.fontWeight : '',
-          config.header.title.color ? 'text-' + config.header.title.color : '',
-          config.header.title.lineHeight ? 'lh-' + config.header.title.lineHeight : '',
-        ]"
-      >
+      <h2 class="cursor-default mb-0" [ngClass]="getTextClasses(config.header.title)">
         {{ config.header.title.text[lang()] }}
       </h2>
 
       @if (config.header.subTitle) {
-        <p
-          class="cursor-default mb-0"
-          [ngClass]="[
-            config.header.subTitle.fontSize ? 'fs-' + config.header.subTitle.fontSize : '',
-            config.header.subTitle.fontWeight ? 'fw-' + config.header.subTitle.fontWeight : '',
-            config.header.subTitle.color ? 'text-' + config.header.subTitle.color : '',
-            config.header.subTitle.lineHeight ? 'lh-' + config.header.subTitle.lineHeight : '',
-          ]"
-        >
+        <p class="cursor-default mb-0" [ngClass]="getTextClasses(config.header.subTitle)">
           {{ config.header.subTitle.text[lang()] }}
         </p>
       }

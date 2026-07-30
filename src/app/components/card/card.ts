@@ -6,6 +6,7 @@ import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
 import { MediaText } from './types/media-text/media-text';
 import { FlexLayoutConfig } from '../../shared/models/shared_model';
 import { Data } from './types/data/data';
+import { getTextClasses } from 'src/app/shared/utility/text.utils';
 
 @Component({
   selector: 'app-card',
@@ -15,6 +16,7 @@ import { Data } from './types/data/data';
 })
 export class Card {
   readonly config = input<CompiledCardsContainer | null>(null);
+  protected readonly getTextClasses = getTextClasses;
 
   private langService = inject(LanguageService);
   lang = this.langService.lang;

@@ -53,7 +53,7 @@ export class SingleReport implements OnDestroy {
   lang = this.langService.lang;
 
   private singleReportSession = this.store.selectSignal(selectSingleReportSession);
-  readonly reports = this.store.selectSignal(selectSingleReport);
+  readonly reports: Signal<IReport[] | null> = this.store.selectSignal(selectSingleReport);
 
   readonly singleReportLoading = this.store.selectSignal(selectSingleReportLoading);
   readonly singleReportSessionLoading = this.store.selectSignal(selectSingleReportSessionLoading);
@@ -100,19 +100,8 @@ export class SingleReport implements OnDestroy {
   readonly documents = computed(() =>
     (this.reports() ?? []).flatMap((report) =>
       report.attachments.map((attachment) => ({
-        reportId: report.id,
-        attachmentId: attachment.id,
-        reportStatus: report.status,
-        paymentStatus: report.paymentInfo?.status,
-        subject: report.subject,
-        reportDate: report.date,
-        date: attachment.date,
-        title: attachment.title,
-        type: attachment.type,
-        status: attachment.status,
-        extension: attachment.extension,
-        patientName: `${report.patient.firstName} ${report.patient.lastName}`.trim(),
-        fiscalCode: report.patient.fiscalCode,
+        ...report,
+        attachment: attachment,
       })),
     ),
   );
@@ -122,10 +111,9 @@ export class SingleReport implements OnDestroy {
     if (!cardsConfig) return { items: [] };
 
     const templateCard = cardsConfig.items?.[0];
-
     return {
       ...cardsConfig,
-      items: (this.reports() ?? []).map((report: any, index: number) => {
+      items: (this.documents() ?? []).map((report: any, index: number) => {
         const compiledActions = this.compileActions(report, templateCard?.actions);
         return {
           ...report,
@@ -258,33 +246,11 @@ export class SingleReport implements OnDestroy {
     }
   }
 
-  private downloadPDF(report: any): void {
-    const session = this.singleReportSession();
-    const attachment = report.attachments?.[0];
-
-    if (!session || !attachment) {
-      return;
+  private getValueByPath(source: any, path: unknown): any {
+    if (typeof path !== 'string') {
+      return path;
     }
 
-    this.store.dispatch(
-      downloadSingleReportAction({
-        payload: {
-          data: {
-            requestId: session.code,
-            sessionId: session.sessionId,
-            attachmentId: attachment.id,
-            reportId: report.id,
-            decodeSignedBinary: false,
-            responseType: attachment.type === 'LINK' ? 'link' : 'pdf',
-            isDownload: true,
-          },
-          reportEndpoint: this.pageConfig()?.singleReportConfig?.reportEndpoint,
-        },
-      }),
-    );
-  }
-
-  private getValueByPath(source: any, path: string): any {
     return path.split('.').reduce((acc, part) => acc?.[part], source);
   }
 
@@ -293,7 +259,7 @@ export class SingleReport implements OnDestroy {
   }
 
   onFormSubmit(formData: any): void {
-    const reportEndpoint: 'medical-report/api/single-report' = 'medical-report/api/single-report';
+    const reportEndpoint = this.pageConfig()?.singleReportConfig?.reportEndpoint;
 
     const payload: any = { reportEndpoint };
     this.formConfig()?.fields.forEach((field) => {
@@ -304,76 +270,27 @@ export class SingleReport implements OnDestroy {
     this.store.dispatch(fetchSingleReportSession({ payload }));
   }
 
-  // searchReportForm = new FormGroup({
-  //   cf: new FormControl('', [Validators.required, NgxFormValidators.taxCodeValidator]),
-  //   id: new FormControl('', [Validators.required]),
-  // });
+  downloadSingleReport = (document: any, isDownload: boolean) => {
+    const session = this.singleReportSession();
+    if (!session || !document) {
+      return;
+    }
 
-  // singleReportLoading = this.store.selectSignal(selectSingleReportLoading);
-  // singleReportSessionLoading = this.store.selectSignal(selectSingleReportSessionLoading);
-  // singleReportSession = this.store.selectSignal(selectSingleReportSession);
-  // reports: Signal<IReport[] | null> = this.store.selectSignal(selectSingleReport);
-  // singleReportError = this.store.selectSignal(selectSingleReportError);
-  // singleReportSessionError = this.store.selectSignal(selectSingleReportSessionError);
-  // loading = computed(() => this.singleReportLoading() || this.singleReportSessionLoading());
-  // error = computed(() => this.singleReportSessionError() || this.singleReportError());
-  // idlength = this.pageConfig()?.singleReportConfig?.idInput?.idlength;
-
-  // onSubmit() {
-  //   if (this.searchReportForm.invalid) {
-  //     return;
-  //   }
-  //   this.store.dispatch(
-  //     fetchSingleReportSession({
-  //       payload: {
-  //         cf: this.searchReportForm.value.cf!,
-  //         id: this.searchReportForm.value.id!,
-  //         reportEndpoint: this.pageConfig()?singleReportConfig?.reportEndpoint,
-  //       },
-  //     }),
-  //   );
-  // }
-
-  // isInitialSearch = computed(() => !this.singleReportSession() && !this.reports());
-
-  // documents = computed(() =>
-  //   (this.reports() ?? []).flatMap((report) =>
-  //     report.attachments.map((attachment) => ({
-  //       reportId: report.id,
-  //       attachmentId: attachment.id,
-  //       reportStatus: report.status,
-  //       paymentStatus: report.paymentInfo?.status,
-  //       subject: report.subject,
-  //       date: attachment.date,
-  //       title: attachment.title,
-  //       type: attachment.type,
-  //     })),
-  //   ),
-  // );
-
-  // downloadSingleReport = (id: string, type: string, isDownload: boolean) => {
-  //   const session = this.singleReportSession();
-  //   const document = this.documents().find((item) => item.attachmentId === id);
-
-  //   if (!session || !document) {
-  //     return;
-  //   }
-
-  //   this.store.dispatch(
-  //     downloadSingleReportAction({
-  //       payload: {
-  //         data: {
-  //           requestId: session.code,
-  //           sessionId: session.sessionId,
-  //           attachmentId: id,
-  //           reportId: document.reportId,
-  //           decodeSignedBinary: false,
-  //           responseType: type === 'LINK' ? 'link' : 'pdf',
-  //           isDownload: isDownload,
-  //         },
-  //         reportEndpoint: this.pageConfig()?.singleReportConfig?.reportEndpoint,
-  //       },
-  //     }),
-  //   );
-  // };
+    this.store.dispatch(
+      downloadSingleReportAction({
+        payload: {
+          data: {
+            requestId: session.code,
+            sessionId: session.sessionId,
+            attachmentId: document.attachment.id,
+            reportId: document.id,
+            decodeSignedBinary: false,
+            responseType: document.attachment.type === 'LINK' ? 'link' : 'pdf',
+            isDownload: isDownload,
+          },
+          reportEndpoint: this.pageConfig()?.singleReportConfig?.reportEndpoint,
+        },
+      }),
+    );
+  };
 }
