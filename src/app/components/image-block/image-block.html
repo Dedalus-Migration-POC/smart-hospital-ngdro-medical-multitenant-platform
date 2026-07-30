@@ -19,7 +19,7 @@
           [style.width]="config.image.width"
           [style.height]="config.image.height"
           loading="lazy"
-          [attr.alt]="altText()"
+          [attr.alt]="altText() ?? ''"
           [attr.aria-hidden]="ariaHidden()"
         />
       }
@@ -31,7 +31,7 @@
           [style.width]="config.image.width"
           [style.height]="config.image.height"
           loading="lazy"
-          [attr.alt]="altText()"
+          [attr.alt]="altText() ?? ''"
           [attr.aria-hidden]="ariaHidden()"
         />
       }

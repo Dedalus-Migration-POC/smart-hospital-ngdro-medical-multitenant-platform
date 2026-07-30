@@ -15,6 +15,7 @@
 class ChatbotWidget {
     constructor(element, options = {}) {
         this.element = element;
+        this.instanceId = Math.random().toString(36).slice(2, 10);
         this.isOpen = false;
         this.isLoading = false;
         this.isDetailedMode = false;
@@ -193,16 +194,23 @@ class ChatbotWidget {
      * Create the widget HTML structure
      */
     createWidget() {
+        const toggleId = `response-mode-toggle-${this.instanceId}`;
+        const toggleLabelId = `response-mode-label-${this.instanceId}`;
+        const toggleControlLabelId = `response-mode-control-label-${this.instanceId}`;
+        const toggleDescId = `response-mode-desc-${this.instanceId}`;
+        const messageInputId = `chatbot-message-input-${this.instanceId}`;
+        const messageInputLabelId = `chatbot-message-input-label-${this.instanceId}`;
+
         this.element.className = `chatbot-widget position-${this.config.position}`;
         this.element.innerHTML = `
       <button class="chatbot-fab" 
               aria-label="${this.t('openChat')}" 
               aria-expanded="false"
               type="button">
-        <svg class="chatbot-fab-icon chat-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="chatbot-fab-icon chat-icon" viewBox="0 0 24 24" aria-hidden="true" role="presentation" focusable="false">
           <path d="M20 2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h4l4 4 4-4h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
         </svg>
-        <svg class="chatbot-fab-icon close-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <svg class="chatbot-fab-icon close-icon" viewBox="0 0 24 24" aria-hidden="true" role="presentation" focusable="false">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
         </svg>
       </button>
@@ -227,7 +235,7 @@ class ChatbotWidget {
                   aria-label="Toggle widget size"
                   type="button"
                   title="Resize widget">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;" aria-hidden="true" role="presentation" focusable="false">
               <path d="M19 12h-2v3h-3v2h5v-5zM7 9h3V7H5v5h2V9zm14-6H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14z"/>
             </svg>
           </button>
@@ -235,13 +243,17 @@ class ChatbotWidget {
         
         <div class="chatbot-toggle-container">
           <div>
-            <p class="chatbot-toggle-label">${this.t('responseMode')}</p>
-            <p class="chatbot-toggle-mode">${this.t('simple')}</p>
+                        <p class="chatbot-toggle-label" id="${toggleLabelId}">${this.t('responseMode')}</p>
+                        <p class="chatbot-toggle-mode" id="${toggleDescId}">${this.t('simple')}</p>
           </div>
-          <label class="chatbot-toggle-switch" aria-label="${this.t('responseMode')}">
-            <input type="checkbox" id="response-mode-toggle" aria-describedby="response-mode-desc">
-            <span class="chatbot-toggle-slider"></span>
-          </label>
+                    <input
+                        type="checkbox"
+                        class="chatbot-toggle-switch"
+                        id="${toggleId}"
+                        aria-labelledby="${toggleControlLabelId}"
+                        aria-describedby="${toggleDescId}"
+                    >
+                    <label class="chatbot-sr-only" id="${toggleControlLabelId}" for="${toggleId}">${this.t('responseMode')}</label>
         </div>
         
         <div class="chatbot-welcome">
@@ -257,9 +269,13 @@ class ChatbotWidget {
         
         <form class="chatbot-input-container" role="form">
           <div class="chatbot-input-form">
+                        <label class="chatbot-sr-only" id="${messageInputLabelId}" for="${messageInputId}">${this.t('placeholder')}</label>
             <textarea class="chatbot-input" 
+                                         id="${messageInputId}"
+                                         name="chatbotMessage"
                      placeholder="${this.t('placeholder')}"
-                     aria-label="${this.t('placeholder')}"
+                                         aria-labelledby="${messageInputLabelId}"
+                                         autocomplete="off"
                      rows="1"
                      maxlength="500"
                      required></textarea>
@@ -267,7 +283,7 @@ class ChatbotWidget {
                     class="chatbot-send-button" 
                     aria-label="${this.t('send')}"
                     disabled>
-              <svg class="chatbot-send-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg class="chatbot-send-icon" viewBox="0 0 24 24" aria-hidden="true" role="presentation" focusable="false">
                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
               </svg>
             </button>
@@ -284,7 +300,7 @@ class ChatbotWidget {
         this.input = this.element.querySelector('.chatbot-input');
         this.sendButton = this.element.querySelector('.chatbot-send-button');
         this.progressBar = this.element.querySelector('.chatbot-progress-bar');
-        this.toggleSwitch = this.element.querySelector('#response-mode-toggle');
+        this.toggleSwitch = this.element.querySelector(`#${toggleId}`);
         this.toggleModeText = this.element.querySelector('.chatbot-toggle-mode');
         this.welcomeMessage = this.element.querySelector('.chatbot-welcome');
         this.resizeButton = this.element.querySelector('.chatbot-resize-button');

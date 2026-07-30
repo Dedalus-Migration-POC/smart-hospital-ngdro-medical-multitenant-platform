@@ -1783,7 +1783,7 @@ export const APP_CONFIG: AppConfig = {
                   className: 'w-100 mt-5 mb-3',
                   enabled: true,
                   props: {
-                    id: 'services-section',
+                    id: 'services-section1',
                     className: 'services-section',
                     ariaLabel: {
                       it: 'Sezione servizi',
