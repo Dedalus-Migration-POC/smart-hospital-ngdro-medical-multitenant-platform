@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, computed, input } from '@angular/core';
+import { AbstractControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 
@@ -21,5 +21,12 @@ export class InputErrorComponent {
   readonly formGroup = input.required<FormGroup>();
   readonly fieldName = input.required<string | number | null>();
 
-  constructor() {}
+  protected readonly fieldControl = computed<AbstractControl | null>(() => {
+    const fieldName = this.fieldName();
+    if (fieldName === null || fieldName === undefined) {
+      return null;
+    }
+
+    return this.formGroup().get(String(fieldName));
+  });
 }

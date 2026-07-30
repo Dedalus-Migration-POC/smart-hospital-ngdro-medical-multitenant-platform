@@ -2,16 +2,23 @@ import { Component, input, output, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { DynamicFormConfig, ValidatorConfig } from './dynamic-form.model';
+import {
+  DynamicFormConfig,
+  FormFieldConfig,
+  SelectOptionConfig,
+  ValidatorConfig,
+} from './dynamic-form.model';
 import { NgxFormValidators } from '../../../validators';
 import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
 import { getLocalizedText } from '../../shared/utility/text.utils';
 import { LocalizedText } from '../../shared/models/shared_model';
+import { InputComponent } from '../input/input.component';
+import { SelectComponent } from '../select/select.component';
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, InputComponent, SelectComponent],
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent {
@@ -76,18 +83,13 @@ export class DynamicFormComponent {
 
   getFieldLabel(fieldId: string): string {
     const field = this.formConfig()?.fields.find((f) => f.id === fieldId);
-    if (field?.label) {
-      return getLocalizedText(field.label, this.lang());
-    }
-    return fieldId;
+    const localizedLabel = this.getLocalizedLabel(field?.label);
+    return localizedLabel || fieldId;
   }
 
   getFieldPlaceholder(fieldId: string): string {
     const field = this.formConfig()?.fields.find((f) => f.id === fieldId);
-    if (field?.placeholder) {
-      return getLocalizedText(field.placeholder, this.lang());
-    }
-    return '';
+    return this.getLocalizedLabel(field?.placeholder);
   }
 
   getFieldType(fieldId: string): string {
@@ -95,11 +97,34 @@ export class DynamicFormComponent {
     return field?.type ?? 'text';
   }
 
+  isSelectField(field: FormFieldConfig): boolean {
+    return field.type === 'select';
+  }
+
+  getSelectOptions(field: FormFieldConfig): { value: string; label: string }[] {
+    return (field.options ?? []).map((option: SelectOptionConfig) => ({
+      value: option.value,
+      label: this.getLocalizedLabel(option.label),
+    }));
+  }
+
   getErrorMessage(field: any, errorKey: string): string {
     if (field.errorMessages?.[errorKey]) {
       return getLocalizedText(field.errorMessages[errorKey], this.lang());
     }
     return `Error: ${errorKey}`;
+  }
+
+  private getLocalizedLabel(value?: LocalizedText | string): string {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    return getLocalizedText(value, this.lang());
   }
 
   getButtonLabel(): string {

@@ -5,6 +5,24 @@
       "invalid-field": "Il valore inserito non è valido"
     }
   },
+  "input": {
+    "errors": {
+      "required-field": "Il campo è obbligatorio",
+      "invalid-field": "Il valore inserito non è valido",
+      "cap-invalid": "Il CAP inserito non è valido",
+      "fiscal-code-invalid": "Il codice fiscale inserito non è valido",
+      "email-invalid": "L'indirizzo email inserito non è valido",
+      "tel-invalid": "Il numero di telefono inserito non è valido",
+      "minlength-invalid": "Il valore inserito è troppo corto",
+      "maxlength-invalid": "Il valore inserito è troppo lungo"
+    }
+  },
+  "select": {
+    "errors": {
+      "required-field": "Seleziona un valore",
+      "invalid-field": "Il valore selezionato non è valido"
+    }
+  },
   "tenant": {
     "access-page": {
       "spid-main-info": "Maggiori informazioni su SPID",

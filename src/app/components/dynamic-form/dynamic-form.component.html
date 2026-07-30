@@ -6,39 +6,28 @@
   >
     @for (field of formConfig()?.fields; track field.id) {
       <div [ngClass]="getFlexLayoutClasses(field.layoutField)">
-        @if (field.label) {
-          <label [for]="field.id">
-            {{ getFieldLabel(field.id) }}
-            @if (field.required) {
-              <span class="text-danger">*</span>
-            }
-          </label>
-        }
-        <input
-          [id]="field.id"
-          [type]="getFieldType(field.id)"
-          [formControlName]="field.id"
-          class="form-control"
-          [placeholder]="getFieldPlaceholder(field.id)"
-        />
-        @if (formGroup()?.get(field.id)?.invalid && formGroup()?.get(field.id)?.touched) {
-          <div class="invalid-feedback d-block">
-            @if (formGroup()?.get(field.id)?.errors?.['required']) {
-              {{ getErrorMessage(field, 'required') }}
-            }
-            @if (formGroup()?.get(field.id)?.errors?.['email']) {
-              {{ getErrorMessage(field, 'email') }}
-            }
-            @if (formGroup()?.get(field.id)?.errors?.['pattern']) {
-              {{ getErrorMessage(field, 'pattern') }}
-            }
-            @if (formGroup()?.get(field.id)?.errors?.['minlength']) {
-              {{ getErrorMessage(field, 'minlength') }}
-            }
-            @if (formGroup()?.get(field.id)?.errors?.['maxlength']) {
-              {{ getErrorMessage(field, 'maxlength') }}
-            }
-          </div>
+        @if (isSelectField(field)) {
+          <app-select-component
+            [fieldName]="field.id"
+            [formGroup]="formGroup()!"
+            [label]="getFieldLabel(field.id)"
+            [showLabel]="!!field.label"
+            [showErrors]="true"
+            [placeholder]="getFieldPlaceholder(field.id)"
+            [options]="getSelectOptions(field)"
+            [autocomplete]="'off'"
+          ></app-select-component>
+        } @else {
+          <app-input-component
+            [fieldName]="field.id"
+            [formGroup]="formGroup()!"
+            [type]="getFieldType(field.id)"
+            [label]="getFieldLabel(field.id)"
+            [showLabel]="!!field.label"
+            [showErrors]="true"
+            [placeholder]="getFieldPlaceholder(field.id)"
+            [autocomplete]="'off'"
+          ></app-input-component>
         }
       </div>
     }

@@ -5,14 +5,42 @@
       "invalid-field": "The value entered is not valid"
     }
   },
+  "input": {
+    "errors": {
+      "required-field": "The field is required",
+      "invalid-field": "The value entered is not valid",
+      "cap-invalid": "The ZIP code entered is not valid",
+      "fiscal-code-invalid": "The tax code entered is not valid",
+      "email-invalid": "The email address entered is not valid",
+      "tel-invalid": "The phone number entered is not valid",
+      "minlength-invalid": "The value entered is too short",
+      "maxlength-invalid": "The value entered is too long"
+    }
+  },
+  "select": {
+    "errors": {
+      "required-field": "Please select a value",
+      "invalid-field": "The selected value is not valid"
+    }
+  },
   "tenant": {
     "access-page": {
       "spid-main-info": "More information on SPID",
       "have-spid": "Don't have SPID?",
       "need-help": "Need help?",
-      "cie-main-info": "More information on CIE"
+      "cie-main-info": "What is CIE",
+      "cie-how-to-access": "How to access with CIE",
+      "have-cie": "Don't have CIE?"
     },
-    "skip-to-main-content": "Go to the main content"
+    "skip-to-main-content": "Go to the main content",
+    "confirmationPopup": {
+      "title": "Confirmation",
+      "text": "Operation completed successfully!"
+    },
+    "errorPopup": {
+      "title": "Error",
+      "text": "An error occurred during the operation."
+    }
   },
   "admin": {
     "header": {

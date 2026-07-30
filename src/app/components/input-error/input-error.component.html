@@ -1,37 +1,39 @@
-@if (
-  formGroup().controls[fieldName()!].invalid &&
-  (formGroup().controls[fieldName()!].dirty || formGroup().controls[fieldName()!].touched)
-) {
-  <div class="input-invalid-error text-danger">
-    @if (formGroup().controls[fieldName()!].errors?.['required']) {
-      {{ 'input.errors.required-field' | translate }}
-    }
-    @if (formGroup().controls[fieldName()!].errors?.['validateText']) {
-      {{ 'input.errors.invalid-field' | translate }}
-    }
-    @if (
-      formGroup().controls[fieldName()!].errors?.['errorDateLessThanToday'] ||
-      formGroup().controls[fieldName()!].errors?.['errorMinYear']
-    ) {
-      {{ 'input.errors.invalid-field' | translate }}
-    }
-    @if (formGroup().controls[fieldName()!].errors?.['validateCap']) {
-      {{ 'input.errors.cap-invalid' | translate }}
-    }
-    @if (formGroup().controls[fieldName()!].errors?.['validateFiscalCode']) {
-      {{ 'input.errors.fiscal-code-invalid' | translate }}
-    }
-    @if (formGroup().controls[fieldName()!].errors?.['email']) {
-      {{ 'input.errors.email-invalid' | translate }}
-    }
-    @if (formGroup().controls[fieldName()!].errors?.['validatePhoneNumber']) {
-      {{ 'input.errors.tel-invalid' | translate }}
-    }
-    @if (formGroup().controls[fieldName()!].errors?.['minlength']) {
-      {{ 'input.errors.minlength-invalid' | translate }}
-    }
-    @if (formGroup().controls[fieldName()!].errors?.['maxlength']) {
-      {{ 'input.errors.maxlength-invalid' | translate }}
-    }
-  </div>
+@if (fieldControl(); as control) {
+  @if (control.invalid && (control.dirty || control.touched)) {
+    <div class="input-invalid-error text-danger">
+      @if (control.errors?.['required']) {
+        {{ 'input.errors.required-field' | translate }}
+      }
+      @if (control.errors?.['validateText']) {
+        {{ 'input.errors.invalid-field' | translate }}
+      }
+      @if (control.errors?.['pattern']) {
+        {{ 'input.errors.invalid-field' | translate }}
+      }
+      @if (control.errors?.['min'] || control.errors?.['max']) {
+        {{ 'input.errors.invalid-field' | translate }}
+      }
+      @if (control.errors?.['errorDateLessThanToday'] || control.errors?.['errorMinYear']) {
+        {{ 'input.errors.invalid-field' | translate }}
+      }
+      @if (control.errors?.['validateCap']) {
+        {{ 'input.errors.cap-invalid' | translate }}
+      }
+      @if (control.errors?.['validateFiscalCode']) {
+        {{ 'input.errors.fiscal-code-invalid' | translate }}
+      }
+      @if (control.errors?.['email']) {
+        {{ 'input.errors.email-invalid' | translate }}
+      }
+      @if (control.errors?.['validatePhoneNumber']) {
+        {{ 'input.errors.tel-invalid' | translate }}
+      }
+      @if (control.errors?.['minlength']) {
+        {{ 'input.errors.minlength-invalid' | translate }}
+      }
+      @if (control.errors?.['maxlength']) {
+        {{ 'input.errors.maxlength-invalid' | translate }}
+      }
+    </div>
+  }
 }
