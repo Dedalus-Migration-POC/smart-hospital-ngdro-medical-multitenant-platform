@@ -1,6 +1,6 @@
 @if (pageConfig(); as pageConfig) {
-  @if (pageConfig.page.breadcrumb) {
-    <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+  @if (pageConfig.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.breadcrumb"></app-breadcrumb>
   }
   @let payments = paymentSummary();
   @let paymentData = payment();
@@ -35,7 +35,7 @@
       [debtorName]="userData.firstName"
       [debtorLastName]="userData.lastName"
       [debtorEmail]="userData.email"
-      [isSimplePagoPa]="pageConfig?.page?.isSimplePagoPa"
+      [isSimplePagoPa]="pageConfig?.isSimplePagoPa"
     ></app-payment-notice-card-new>
   }
 }

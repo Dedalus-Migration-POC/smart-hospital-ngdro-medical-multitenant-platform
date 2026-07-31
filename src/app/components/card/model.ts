@@ -12,6 +12,7 @@ import {
   FontWeight,
   LineHeight,
   TextStyle,
+  FlexRowSize,
 } from '../../shared/models/shared_model';
 
 export type CardType = 'mediaText' | 'data';
@@ -79,16 +80,24 @@ export interface CompiledDataCard extends Omit<DataCard, 'actions'> {
 }
 
 export interface DataCardTitleSubtitle {
-  title: DataCardTitleSubtitleBinding;
-  subTitle?: DataCardTitleSubtitleBinding;
+  title: DataCardTitleBinding;
+  subTitle?: DataCardSubTitleBinding;
 }
 
-export interface DataCardTitleSubtitleBinding {
+export interface DataCardTitleBinding {
+  // path nel dato BE se è array scriviamo solo appoints
   key: string;
+  itemKey?: string; // se il valore BE è un array di oggetti, specifica la key dell'oggetto da usare
+  joinWith?: string; // separatore da usare quando il valore BE è un array. Default: ' / '
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   color?: Colors;
   lineHeight?: LineHeight;
+  className?: string;
+}
+
+export interface DataCardSubTitleBinding extends DataCardTitleBinding {
+  valueMap?: Record<string, string>; // mappa valore BE -> chiave i18n da mostrare
 }
 
 export type CardField =
@@ -105,6 +114,14 @@ export interface BaseCardField {
   prefix?: string;
   suffix?: string;
   className?: string;
+  rowSize?: DataCardFieldRowSize;
+}
+
+// Size opzionale per layout row: permette di impostare separatamente
+// lo spazio della label (key) e del valore (value).
+export interface DataCardFieldRowSize {
+  key?: FlexRowSize;
+  value?: FlexRowSize;
 }
 
 // valueMap: serve quando il BE manda un codice tecnico,

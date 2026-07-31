@@ -30,45 +30,48 @@
                     <div
                       [ngClass]="getTextClasses(field.label)"
                       [class.field-label-row]="layout.direction === 'row'"
+                      [ngStyle]="getFieldRowPartStyles(field, 'key', layout.direction)"
                     >
                       {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
                     </div>
                   }
 
-                  @if (field.type === 'image') {
-                    @if (getImageBlockConfig(field); as imgConfig) {
-                      <app-image-block [config]="imgConfig"></app-image-block>
-                    }
-                  } @else if (
-                    field.type === 'array' && field.listStyle && field.listStyle !== 'comma'
-                  ) {
-                    @for (value of getArrayValues(field); track $index) {
-                      <div
-                        [ngClass]="[
-                          ...getTextClasses(field.valueStyle),
-                          getListItemClass(field.listStyle),
-                        ]"
-                      >
-                        {{ value }}
+                  <div [ngStyle]="getFieldRowPartStyles(field, 'value', layout.direction)">
+                    @if (field.type === 'image') {
+                      @if (getImageBlockConfig(field); as imgConfig) {
+                        <app-image-block [config]="imgConfig"></app-image-block>
+                      }
+                    } @else if (
+                      field.type === 'array' && field.listStyle && field.listStyle !== 'comma'
+                    ) {
+                      @for (value of getArrayValues(field); track $index) {
+                        <div
+                          [ngClass]="[
+                            ...getTextClasses(field.valueStyle),
+                            getListItemClass(field.listStyle),
+                          ]"
+                        >
+                          {{ value }}
+                        </div>
+                      }
+                    } @else if (field.type === 'badge') {
+                      @if (getBadgeConfig(field); as badge) {
+                        <span
+                          class="badge"
+                          [ngClass]="[
+                            badge.bgColor ? 'text-bg-' + badge.bgColor : '',
+                            ...getTextClasses(badge.config),
+                          ]"
+                        >
+                          {{ badge.displayText }}
+                        </span>
+                      }
+                    } @else {
+                      <div [ngClass]="getTextClasses(field.valueStyle)">
+                        {{ getFieldDisplayValue(field) }}
                       </div>
                     }
-                  } @else if (field.type === 'badge') {
-                    @if (getBadgeConfig(field); as badge) {
-                      <span
-                        class="badge"
-                        [ngClass]="[
-                          badge.bgColor ? 'text-bg-' + badge.bgColor : '',
-                          ...getTextClasses(badge.config),
-                        ]"
-                      >
-                        {{ badge.displayText }}
-                      </span>
-                    }
-                  } @else {
-                    <div [ngClass]="getTextClasses(field.valueStyle)">
-                      {{ getFieldDisplayValue(field) }}
-                    </div>
-                  }
+                  </div>
                 </div>
               }
             </div>

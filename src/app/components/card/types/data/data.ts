@@ -1,5 +1,11 @@
 import { Component, inject, input } from '@angular/core';
-import { CardField, CompiledDataCard, DataCardCompiledMessageAction } from '../../model';
+import {
+  CardField,
+  CompiledDataCard,
+  DataCardCompiledMessageAction,
+  DataCardSubTitleBinding,
+  DataCardTitleBinding,
+} from '../../model';
 import {
   Colors,
   FlexLayoutConfig,
@@ -8,6 +14,7 @@ import {
 } from '../../../../shared/models/shared_model';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
+import { TranslateService } from '@ngx-translate/core';
 import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
 import { getTextClasses, getTextDecorationClass } from '../../../../shared/utility/text.utils';
 import { ImageBlock } from '../../../image-block/image-block';
@@ -30,6 +37,7 @@ export class Data {
   readonly actionsLayout = input.required<FlexLayoutConfig>();
 
   private readonly langService = inject(LanguageService);
+  private readonly translate = inject(TranslateService);
   lang = this.langService.lang;
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
@@ -40,23 +48,57 @@ export class Data {
   private readonly emptyValue = '-';
 
   getTitleText(): string | undefined {
-    const value = this.getValueByPath(
-      this.card() as unknown as Record<string, unknown>,
-      this.card().titleSubtitle.title.key,
-    );
-    return value == null || value === '' ? undefined : String(value);
+    return this.getTitleTextFromBinding(this.card().titleSubtitle.title);
   }
 
   getSubTitleText(): string | undefined {
-    const subTitleKey = this.card().titleSubtitle.subTitle?.key;
-    if (!subTitleKey) {
+    const subTitleBinding = this.card().titleSubtitle.subTitle;
+    if (!subTitleBinding) {
       return undefined;
     }
 
+    return this.getSubTitleTextFromBinding(subTitleBinding);
+  }
+
+  private getTitleTextFromBinding(binding: DataCardTitleBinding): string | undefined {
+    return this.getBindingValue(binding);
+  }
+
+  private getSubTitleTextFromBinding(binding: DataCardSubTitleBinding): string | undefined {
+    const value = this.getBindingValue(binding);
+
+    if (value != null && binding.valueMap) {
+      const translationKey = binding.valueMap[String(value)];
+      if (translationKey) {
+        const translatedValue = this.translate.instant(translationKey);
+        return translatedValue !== translationKey ? translatedValue : String(value);
+      }
+    }
+
+    return value;
+  }
+
+  private getBindingValue(binding: DataCardTitleBinding): string | undefined {
     const value = this.getValueByPath(
       this.card() as unknown as Record<string, unknown>,
-      subTitleKey,
+      binding.key,
     );
+
+    if (Array.isArray(value)) {
+      const joinedValue = value
+        .map((item) => {
+          if (binding.itemKey && item != null && typeof item === 'object') {
+            return this.toPlainValue((item as Record<string, unknown>)[binding.itemKey]);
+          }
+
+          return this.toPlainValue(item);
+        })
+        .filter((item) => item !== this.emptyValue)
+        .join(binding.joinWith ?? ' / ');
+
+      return joinedValue || undefined;
+    }
+
     return value == null || value === '' ? undefined : String(value);
   }
 
@@ -131,6 +173,34 @@ export class Data {
         return this.toPlainValue(item);
       })
       .filter((v) => v !== this.emptyValue);
+  }
+
+  getFieldRowPartStyles(
+    field: CardField,
+    part: 'key' | 'value',
+    layoutDirection: FlexLayoutConfig['direction'],
+  ): Record<string, string> | null {
+    if (layoutDirection !== 'row') {
+      return null;
+    }
+
+    const partSize = field.rowSize?.[part];
+    if (!partSize) {
+      return null;
+    }
+
+    const styles: Record<string, string> = {};
+
+    if (partSize.basis) {
+      styles['flex'] = `0 0 ${partSize.basis}`;
+      styles['maxWidth'] = partSize.basis;
+    }
+
+    if (partSize.width) {
+      styles['width'] = partSize.width;
+    }
+
+    return Object.keys(styles).length ? styles : null;
   }
 
   getFieldDisplayValue(field: CardField): string {
