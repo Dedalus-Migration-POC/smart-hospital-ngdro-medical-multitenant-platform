@@ -3076,8 +3076,7 @@ export const APP_CONFIG: AppConfig = {
                   props: {
                     itemColBootstrapClasses: 'col-12 col-md-6',
                     itemsLayout: {
-                      direction: 'column',
-                      gap: 'gap-2',
+                      direction: 'row',
                     },
                     actionsLayout: {
                       direction: 'row',
@@ -3092,7 +3091,9 @@ export const APP_CONFIG: AppConfig = {
                             key: 'appointments',
                             itemKey: 'description',
                             joinWith: ' / ',
-                            fontSize: 'md',
+                            fontSize: 'lg',
+                            lineHeight: 'sm',
+                            margin: 'mb-3',
                           },
                           subTitle: {
                             key: 'state',
@@ -3101,9 +3102,11 @@ export const APP_CONFIG: AppConfig = {
                               PAYED: 'payments.state.PAYED',
                               VERIFICATION: 'payments.state.VERIFICATION',
                             },
-                            fontSize: 'sm',
-                            fontWeight: 'normal',
-                            color: 'secondary',
+                            fontSize: 'md',
+                            fontWeight: 'bold',
+                            colorHex: '#2F475E', // secondary color in hex
+                            lineHeight: 'sm',
+                            margin: 'mb-4',
                           },
                         },
                         fields: [
@@ -3111,88 +3114,65 @@ export const APP_CONFIG: AppConfig = {
                             key: 'appointmentDate',
                             type: 'date',
                             format: 'dd/MM/yyyy',
+                            margin: 'mb-2',
+                            rowSize: {
+                              key: { basis: '50%' },
+                              value: { basis: '50%' },
+                            },
                             label: {
                               text: {
                                 it: 'Data appuntamento',
                                 en: 'Appointment date',
                               },
-                              fontSize: 'sm',
+                              fontSize: 'md',
                               fontWeight: 'normal',
-                              color: 'secondary',
+                              lineHeight: 'md',
+                              colorHex: '#747474',
                             },
                           },
                           {
                             key: 'amount',
                             type: 'text',
                             suffix: ' €',
+                            margin: 'mb-2',
+                            rowSize: {
+                              key: { basis: '50%' },
+                              value: { basis: '50%' },
+                            },
                             label: {
                               text: {
                                 it: 'Importo',
                                 en: 'Amount',
                               },
-                              fontSize: 'sm',
+                              fontSize: 'md',
                               fontWeight: 'normal',
-                              color: 'secondary',
+                              lineHeight: 'md',
+                              colorHex: '#747474',
                             },
                           },
                           {
                             key: 'paymentSystem',
                             type: 'image',
+                            margin: 'mb-2',
+                            rowSize: {
+                              key: { basis: '50%' },
+                              value: { basis: '50%' },
+                            },
                             label: {
                               text: {
                                 it: 'Sistema di pagamento',
                                 en: 'Payment system',
                               },
-                              fontSize: 'sm',
+                              fontSize: 'md',
                               fontWeight: 'normal',
-                              color: 'secondary',
+                              lineHeight: 'md',
+                              colorHex: '#747474',
                             },
                             imageMap: {
                               PagoPa: {
                                 type: 'url',
                                 value: '/assets/images/logo_pagoPa.png',
                                 decorative: true,
-                                width: '90px',
-                                height: '30px',
-                              },
-                            },
-                          },
-                          {
-                            key: 'state',
-                            type: 'badge',
-                            label: {
-                              text: {
-                                it: 'Stato',
-                                en: 'Status',
-                              },
-                              fontSize: 'sm',
-                              fontWeight: 'normal',
-                              color: 'secondary',
-                            },
-                            badgeMap: {
-                              NOT_PAYED: {
-                                text: {
-                                  it: 'Da pagare',
-                                  en: 'To pay',
-                                },
-                                color: 'warning',
-                                fontWeight: 'semibold',
-                              },
-                              PAYED: {
-                                text: {
-                                  it: 'Pagato',
-                                  en: 'Paid',
-                                },
-                                color: 'success',
-                                fontWeight: 'semibold',
-                              },
-                              VERIFICATION: {
-                                text: {
-                                  it: 'In verifica',
-                                  en: 'Under verification',
-                                },
-                                color: 'info',
-                                fontWeight: 'semibold',
                               },
                             },
                           },
@@ -3201,13 +3181,22 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'view',
                             type: 'callback',
-                            renderAs: 'button',
-                            className: 'btn btn-primary',
+                            renderAs: 'link',
+                            // className: 'btn btn-primary',
+                            decoration: 'none',
+                            icon: {
+                              value: 'fa-solid fa-arrow-right',
+                              type: 'fa',
+                              position: 'after',
+                            },
                             label: {
                               text: {
-                                it: 'Dettagli',
-                                en: 'Details',
+                                it: 'Vedi dettaglio',
+                                en: 'Show Details',
                               },
+                              isUppercase: true,
+                              colorHex: '#123c73',
+                              fontWeight: 'semibold',
                             },
                             callback: {
                               nameFunction: 'goDetail',

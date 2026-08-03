@@ -13,6 +13,7 @@ import {
   LineHeight,
   TextStyle,
   FlexRowSize,
+  Margin,
 } from '../../shared/models/shared_model';
 
 export type CardType = 'mediaText' | 'data';
@@ -84,16 +85,29 @@ export interface DataCardTitleSubtitle {
   subTitle?: DataCardSubTitleBinding;
 }
 
+/*
+esempio se ho una chiave di tipo array di oggetti 
+e poi devo ciclare per una determinata chiave
+
+ title: {
+          key: 'appointments',
+          itemKey: 'description',
+          joinWith: ' / ',
+          fontSize: 'md',
+        },
+*/
 export interface DataCardTitleBinding {
-  // path nel dato BE se è array scriviamo solo appoints
+  // path nel dato BE
   key: string;
   itemKey?: string; // se il valore BE è un array di oggetti, specifica la key dell'oggetto da usare
   joinWith?: string; // separatore da usare quando il valore BE è un array. Default: ' / '
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   color?: Colors;
+  colorHex?: string; // colore custom in formato hex, ha precedenza su color
   lineHeight?: LineHeight;
   className?: string;
+  margin?: Margin;
 }
 
 export interface DataCardSubTitleBinding extends DataCardTitleBinding {
@@ -114,6 +128,8 @@ export interface BaseCardField {
   prefix?: string;
   suffix?: string;
   className?: string;
+  colorHex?: string; // colore custom in formato hex applicato al valore del campo
+  margin?: Margin;
   rowSize?: DataCardFieldRowSize;
 }
 
@@ -184,11 +200,18 @@ export interface DataCardButtonRender {
   className?: string;
 }
 
+export interface DataCardLinkIcon {
+  value: string; // unicode/testo oppure classi FA es. 'fa-solid fa-arrow-right'
+  type?: 'fa' | 'text'; // default: 'text'
+  position?: 'before' | 'after'; // default: 'after'
+}
+
 export interface DataCardLinkRender {
   renderAs: 'link';
   decoration?: TextDecoration;
   fullWidth?: boolean; // se true, aggiunge w-100 al link
   className?: string;
+  icon?: DataCardLinkIcon;
 }
 
 export type DataCardActionRender = DataCardButtonRender | DataCardLinkRender;
@@ -200,7 +223,6 @@ export interface BaseDataCardAction {
   disabledIf?: DataCardCondition[]; // l’action si vede, ma è disabilitata
   hideIf?: DataCardCondition[]; // l’action non si vede
   hideMessage?: TextConfig; // messaggio mostrato al posto dell'action quando è nascosta
-
   className?: string;
 }
 

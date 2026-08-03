@@ -1,12 +1,12 @@
 @if (config(); as config) {
   @if (config.header) {
     <div class="my-2">
-      <h2 class="cursor-default mb-0" [ngClass]="getTextClasses(config.header.title)">
+      <h2 class="cursor-default mb-0" [ngClass]="getTextClasses(config.header.title)" [style.color]="config.header.title.colorHex ?? null">
         {{ config.header.title.text[lang()] }}
       </h2>
 
       @if (config.header.subTitle) {
-        <p class="cursor-default mb-0" [ngClass]="getTextClasses(config.header.subTitle)">
+        <p class="cursor-default mb-0" [ngClass]="getTextClasses(config.header.subTitle)" [style.color]="config.header.subTitle.colorHex ?? null">
           {{ config.header.subTitle.text[lang()] }}
         </p>
       }

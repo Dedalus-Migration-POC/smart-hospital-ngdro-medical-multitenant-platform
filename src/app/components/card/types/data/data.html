@@ -8,53 +8,82 @@
       <div class="h-100 w-100 p-3 cursor-default" [ngClass]="getFlexLayoutClasses(layout)">
         <div class="card-text w-100">
           @if (getTitleText(); as titleText) {
-            <div [ngClass]="getTextClasses($any(card.titleSubtitle.title))">
+            <h2
+              [ngClass]="[
+                'text-capitalize',
+                ...getTextClasses(card.titleSubtitle.title),
+                card.titleSubtitle.title.className ?? '',
+                card.titleSubtitle.title.margin ?? '',
+              ]"
+              [style.color]="card.titleSubtitle.title.colorHex ?? null"
+            >
               {{ titleText }}
-            </div>
+            </h2>
           }
 
           @if (getSubTitleText(); as subTitleText) {
-            <div [ngClass]="getTextClasses($any(card.titleSubtitle.subTitle))">
+            <h3
+              [ngClass]="[
+                'text-capitalize',
+                ...getTextClasses(card.titleSubtitle.subTitle),
+                card.titleSubtitle.subTitle?.className ?? '',
+                card.titleSubtitle.subTitle?.margin ?? '',
+              ]"
+              [style.color]="card.titleSubtitle.subTitle?.colorHex ?? null"
+            >
               {{ subTitleText }}
-            </div>
+            </h3>
           }
 
           @if (card.fields.length) {
-            <div [ngClass]="layout.direction === 'column' ? 'd-flex flex-column gap-2' : ''">
-              @for (field of card.fields; track field.key; let i = $index) {
-                <div
-                  [ngClass]="[...getFlexLayoutClasses(layout), field.className ?? '']"
-                  [class.mt-3]="i === 0"
-                >
-                  @if (field.label.text[lang()]; as fieldLabel) {
-                    <div
-                      [ngClass]="getTextClasses(field.label)"
-                      [class.field-label-row]="layout.direction === 'row'"
-                      [ngStyle]="getFieldRowPartStyles(field, 'key', layout.direction)"
-                    >
-                      {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
-                    </div>
-                  }
+            @for (field of card.fields; track field.key; let i = $index) {
+              <div
+                [ngClass]="[
+                  ...getFlexLayoutClasses(layout),
+                  field.className ?? '',
+                  field.margin ?? '',
+                ]"
+              >
+                @if (field.label.text[lang()]; as fieldLabel) {
+                  <div
+                    [ngClass]="getTextClasses(field.label)"
+                    [class.field-label-row]="layout.direction === 'row'"
+                    [ngStyle]="getFieldRowPartStyles(field, 'key', layout.direction)"
+                  >
+                    {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
+                  </div>
+                }
 
-                  <div [ngStyle]="getFieldRowPartStyles(field, 'value', layout.direction)">
-                    @if (field.type === 'image') {
+                <div [ngStyle]="getFieldRowPartStyles(field, 'value', layout.direction)">
+                  @switch (field.type) {
+                    @case ('image') {
                       @if (getImageBlockConfig(field); as imgConfig) {
                         <app-image-block [config]="imgConfig"></app-image-block>
                       }
-                    } @else if (
-                      field.type === 'array' && field.listStyle && field.listStyle !== 'comma'
-                    ) {
-                      @for (value of getArrayValues(field); track $index) {
+                    }
+                    @case ('array') {
+                      @if (field.listStyle && field.listStyle !== 'comma') {
+                        @for (value of getArrayValues(field); track $index) {
+                          <div
+                            [ngClass]="[
+                              ...getTextClasses(field.valueStyle),
+                              getListItemClass(field.listStyle),
+                            ]"
+                            [style.color]="field.colorHex ?? null"
+                          >
+                            {{ value }}
+                          </div>
+                        }
+                      } @else {
                         <div
-                          [ngClass]="[
-                            ...getTextClasses(field.valueStyle),
-                            getListItemClass(field.listStyle),
-                          ]"
+                          [ngClass]="getTextClasses(field.valueStyle)"
+                          [style.color]="field.colorHex ?? null"
                         >
-                          {{ value }}
+                          {{ getFieldDisplayValue(field) }}
                         </div>
                       }
-                    } @else if (field.type === 'badge') {
+                    }
+                    @case ('badge') {
                       @if (getBadgeConfig(field); as badge) {
                         <span
                           class="badge"
@@ -66,15 +95,19 @@
                           {{ badge.displayText }}
                         </span>
                       }
-                    } @else {
-                      <div [ngClass]="getTextClasses(field.valueStyle)">
+                    }
+                    @default {
+                      <div
+                        [ngClass]="getTextClasses(field.valueStyle)"
+                        [style.color]="field.colorHex ?? null"
+                      >
                         {{ getFieldDisplayValue(field) }}
                       </div>
                     }
-                  </div>
+                  }
                 </div>
-              }
-            </div>
+              </div>
+            }
           }
         </div>
       </div>
@@ -91,26 +124,43 @@
         }
         <div class="card-actions p-3" [ngClass]="getFlexLayoutClasses(actionsLayout())">
           @for (action of card.actions; track action.key) {
-            @if (action.renderAs === 'link') {
+            @if (action.renderAs !== 'message') {
               <button
                 type="button"
-                class="btn btn-link p-0"
+                class="btn"
                 [class.w-100]="action.fullWidth"
-                [ngClass]="[action.className ?? '', getTextDecorationClass(action.decoration)]"
+                [class.btn-link]="action.renderAs === 'link'"
+                [class.p-0]="action.renderAs === 'link'"
+                [ngClass]="[
+                  action.className ?? (action.renderAs === 'link' ? '' : 'btn-primary'),
+                  action.renderAs === 'link' ? getTextDecorationClass(action.decoration) : '',
+                  ...getTextClasses(action.label),
+                ]"
+                [style.color]="action.renderAs === 'link' ? (action.label.colorHex ?? null) : null"
                 [disabled]="action.disabled"
                 (click)="action.compiledCallback?.()"
               >
+                @if (
+                  action.renderAs === 'link' && action.icon && action.icon.position === 'before'
+                ) {
+                  @if (action.icon.type === 'fa') {
+                    <i [ngClass]="action.icon.value" class="me-1"></i>
+                  } @else {
+                    <span class="me-1">{{ action.icon.value }}</span>
+                  }
+                }
+
                 {{ action.label.text[lang()] }}
-              </button>
-            } @else if (action.renderAs !== 'message') {
-              <button
-                type="button"
-                [class.w-100]="action.fullWidth"
-                [ngClass]="action.className ?? 'btn btn-primary'"
-                [disabled]="action.disabled"
-                (click)="action.compiledCallback?.()"
-              >
-                {{ action.label.text[lang()] }}
+
+                @if (
+                  action.renderAs === 'link' && action.icon && action.icon.position !== 'before'
+                ) {
+                  @if (action.icon.type === 'fa') {
+                    <i [ngClass]="action.icon.value" class="ms-1"></i>
+                  } @else {
+                    <span class="ms-1">{{ action.icon.value }}</span>
+                  }
+                }
               </button>
             }
           }

@@ -27,13 +27,13 @@
 
           <div class="card-text w-100">
             @if (card.text.title.text[lang()]; as titleText) {
-              <div [ngClass]="getTextClasses(card.text.title)">
+              <div [ngClass]="getTextClasses(card.text.title)" [style.color]="card.text.title.colorHex ?? null">
                 {{ titleText }}
               </div>
             }
 
             @if (card.text.subTitle?.text?.[lang()]; as subTitleText) {
-              <div [ngClass]="getTextClasses(card.text.subTitle)">
+              <div [ngClass]="getTextClasses(card.text.subTitle)" [style.color]="card.text.subTitle?.colorHex ?? null">
                 {{ subTitleText }}
               </div>
             }

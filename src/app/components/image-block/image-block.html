@@ -49,12 +49,18 @@
           getJustifyClass(config.layout?.justify ?? 'start'),
         ]"
       >
-        <div [ngClass]="getTextClasses(config.text.title)">
+        <div
+          [ngClass]="getTextClasses(config.text.title)"
+          [style.color]="config.text.title.colorHex ?? null"
+        >
           {{ titleText() }}
         </div>
 
         @if (config.text.subTitle) {
-          <div [ngClass]="getTextClasses(config.text.subTitle)">
+          <div
+            [ngClass]="getTextClasses(config.text.subTitle)"
+            [style.color]="config.text.subTitle.colorHex ?? null"
+          >
             {{ subTitleText() }}
           </div>
         }

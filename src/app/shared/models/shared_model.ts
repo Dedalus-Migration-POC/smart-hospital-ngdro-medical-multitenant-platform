@@ -26,7 +26,31 @@ export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 export type LineHeight = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 export type TextHeader = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
-export type Margin = 'mt-0' | 'mt-1' | 'mt-2' | 'mt-3' | 'mt-4' | 'mt-5';
+export type Margin =
+  | 'mt-0'
+  | 'mt-1'
+  | 'mt-2'
+  | 'mt-3'
+  | 'mt-4'
+  | 'mt-5'
+  | 'mb-0'
+  | 'mb-1'
+  | 'mb-2'
+  | 'mb-3'
+  | 'mb-4'
+  | 'mb-5'
+  | 'my-0'
+  | 'my-1'
+  | 'my-2'
+  | 'my-3'
+  | 'my-4'
+  | 'my-5'
+  | 'mx-0'
+  | 'mx-1'
+  | 'mx-2'
+  | 'mx-3'
+  | 'mx-4'
+  | 'mx-5';
 
 export type ImageType = 'url' | 'inlineSvg' | 'file' | 'base64';
 export interface ImageConfig {
@@ -58,7 +82,9 @@ export interface TextStyle {
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   color?: Colors;
+  colorHex?: string; // colore custom in formato hex, ha precedenza su color
   lineHeight?: LineHeight;
+  isUppercase?: boolean; // se true, aggiunge text-uppercase
 }
 
 export type ActionType = 'route' | 'externalLink' | 'comingSoon';

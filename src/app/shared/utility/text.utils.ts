@@ -13,6 +13,7 @@ export function getTextClasses(text?: TextStyle): string[] {
     text?.fontWeight ? `fw-${text.fontWeight}` : '',
     text?.color ? `text-${text.color}` : '',
     text?.lineHeight ? `lh-${text.lineHeight}` : '',
+    text?.isUppercase ? 'text-uppercase' : '',
   ].filter(Boolean);
 }
 
