@@ -26,4 +26,7 @@
   @if (item.type === 'USER_DROPDOWN_MENU') {
     <app-user-dropdown-menu [config]="item.props"> </app-user-dropdown-menu>
   }
+  @if (item.type === 'FEED_RSS') {
+    <app-feedrss [config]="item.props"> </app-feedrss>
+  }
 }

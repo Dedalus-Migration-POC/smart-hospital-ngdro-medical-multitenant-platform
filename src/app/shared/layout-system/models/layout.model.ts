@@ -13,7 +13,8 @@ export type ItemType =
   | 'AUTH_METHODS'
   | 'SERVICE_CARDS'
   | 'USER_DROPDOWN_MENU'
-  | 'DYNAMIC_FORM';
+  | 'DYNAMIC_FORM'
+  | 'FEED_RSS';
 
 export interface Item {
   id: string;

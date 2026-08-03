@@ -10,6 +10,7 @@ import { TextComponent } from '../../../../components/text-component/text-compon
 import { AuthMethods } from '../../../../pages/auth/components/auth-methods/auth-methods';
 import { Card } from '../../../../components/card/card';
 import { UserDropdownMenu } from '../../../../components/user-dropdown-menu/user-dropdown-menu';
+import { FeedrssComponent } from 'src/app/components/feedrss/feedrss.component';
 
 @Component({
   selector: 'app-layout-item',
@@ -24,6 +25,7 @@ import { UserDropdownMenu } from '../../../../components/user-dropdown-menu/user
     AuthMethods,
     Card,
     UserDropdownMenu,
+    FeedrssComponent,
   ],
   templateUrl: './layout-item.html',
   styleUrl: './layout-item.scss',

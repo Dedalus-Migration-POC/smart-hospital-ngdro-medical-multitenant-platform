@@ -5,13 +5,13 @@ export const APP_CONFIG: AppConfig = {
   favicon: '/assets/favicon.ico',
   firebaseConfig: {
     firebaseOptions: {
-      apiKey: 'AIzaSyAsJnzzD-oJt7qwk7PnxbZzo6FakcKGydU',
-      appId: '1:554681460612:web:e8a3fb16e3f2dbad125fd1',
-      messagingSenderId: '554681460612',
-      projectId: 'aou-gmartino-55c05',
-      storageBucket: 'aou-gmartino-55c05.firebasestorage.app',
+      apiKey: 'AIzaSyAfnbFlDenM9BK-yn5eecOHQRgqjgaMdXU',
+      appId: '1:238556925963:android:799502900d72c8b407770e',
+      messagingSenderId: '238556925963',
+      projectId: 'asl-latina-app',
+      storageBucket: 'asl-latina-app.firebasestorage.app',
     },
-    keys: ['department'], // keys to fetch from remote config
+    keys: ['department', 'feedrss'], // keys to fetch from remote config
   },
   theme: {
     colors: {
@@ -56,7 +56,7 @@ export const APP_CONFIG: AppConfig = {
     },
   },
   chatbot: {
-    apiUrl: 'https://echatbot-iet-demo.apps.cluokdtst01.pe-ita.aws/rag/ask',
+    apiUrl: 'https://echatbot-iet-demo.apps.cluokdtst01.pe-ita.aws/api/v1/queries',
     language: 'it',
     themeColor: '#332ebe',
     position: 'bottom-right',
@@ -1241,6 +1241,74 @@ export const APP_CONFIG: AppConfig = {
                     },
                   },
                 },
+                {
+                  id: 'feed-rss',
+                  type: 'FEED_RSS',
+                  enabled: true,
+                  props: {
+                    id: 'feed_rss',
+                    title: {
+                      text: {
+                        it: 'Notizie FeedRss',
+                        en: 'FeedRss News',
+                      },
+                      fontSize: 'md',
+                      fontWeight: 'bold',
+                      color: 'dark',
+                      lineHeight: 'md',
+                    },
+                    // feedRssConnectionData: 'getFromFirebase',
+                    feedRssConnectionData: {
+                      baseUrl: 'https://ast-latina-dev-a1c95ad48249.herokuapp.com/',
+                      apiKey:
+                        'c007033fa3c728e06bd2a6229f4c855ac4d2c4188ff8b0f28a0ca2cf285db6b43ab16c4e81208cd6b8bbaeca31ba1ff2c805054945f6e7bace3dc71839602bd7',
+                      domainName: 'ast-latina-webapp.r-s.dev',
+                    },
+                    layout: 'vertical',
+                    height: '300px',
+                    // width: '300px',
+                    notFoundMessage: {
+                      imageBlockConfig: {
+                        id: 'reportNotFound',
+                        className: '',
+                        layout: {
+                          direction: 'column',
+                          align: 'center',
+                          justify: 'center',
+                          gap: 'gap-2',
+                        },
+                        clickable: false,
+                        image: {
+                          type: 'url',
+                          value:
+                            'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+                          decorative: true,
+                          alt: { it: 'FeedRss non trovati', en: 'FeedRss not found' },
+                          height: '150px',
+                        },
+                        text: {
+                          title: {
+                            text: { it: 'FeedRss non trovati', en: 'FeedRss not found' },
+                            fontSize: 'xl',
+                            fontWeight: 'normal',
+                            color: 'warning',
+                            lineHeight: 'normal',
+                          },
+                          subTitle: {
+                            text: {
+                              it: 'Riprova più tardi',
+                              en: 'Please try again later.',
+                            },
+                            fontSize: 'md',
+                            fontWeight: 'normal',
+                            color: 'warning',
+                            lineHeight: 'normal',
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
               ],
             },
             end: {
@@ -2142,7 +2210,7 @@ export const APP_CONFIG: AppConfig = {
             direction: 'column',
             align: 'center',
             justify: 'center',
-            gap: 'md',
+            gap: 'gap-2',
           },
           clickable: false,
           image: {
@@ -2182,7 +2250,7 @@ export const APP_CONFIG: AppConfig = {
             direction: 'column',
             align: 'center',
             justify: 'center',
-            gap: 'md',
+            gap: 'gap-2',
           },
           clickable: false,
           image: {
@@ -2737,7 +2805,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -2777,7 +2845,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -2818,7 +2886,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -2983,7 +3051,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3023,7 +3091,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3124,7 +3192,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3164,7 +3232,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3235,7 +3303,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3274,7 +3342,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3378,7 +3446,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3417,7 +3485,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3489,7 +3557,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3528,7 +3596,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3601,7 +3669,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {
@@ -3640,7 +3708,7 @@ export const APP_CONFIG: AppConfig = {
               direction: 'column',
               align: 'center',
               justify: 'center',
-              gap: 'md',
+              gap: 'gap-2',
             },
             clickable: false,
             image: {

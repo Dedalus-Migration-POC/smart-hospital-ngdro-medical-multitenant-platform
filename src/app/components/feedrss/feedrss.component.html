@@ -1,0 +1,58 @@
+@if (config(); as config) {
+  <div class="feed-rss-container">
+    <h3>{{ config.title.text[lang()] }}</h3>
+    @if (hasFeeds()) {
+      @if (config.layout === 'vertical') {
+        <div class="feed-rss-cards-container overflow-auto" [style.height]="config.height">
+          @for (item of feedsRss(); track item.link || item.title) {
+            <div class="it-card border mb-2">
+              <div class="it-card-title h5">
+                {{ item.title }}
+              </div>
+              <div class="it-card-body">
+                <div class="category-top">
+                  <span class="badge bg-secondary me-2">{{ item.category }}</span>
+                  <span class="data">{{ item.pubDate | date: 'dd/MM/yyyy' }}</span>
+                </div>
+                <p class="card-text" [innerHTML]="item.description"></p>
+                @if (item.link) {
+                  <a
+                    [href]="item.link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fw-semibold news-more"
+                    >{{ 'home-page.news-more' | translate | uppercase }}
+                    <i class="icon-news-more fa-solid fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+      <!-- @if (config.layout === 'horizontal') {
+        <div
+          class="feed-rss-cards-container overflow-auto d-flex flex-row gap-3"
+          [style.width]="config.width"
+        >
+          <div>
+            @for (item of feedsRss(); track item.link || item.title) {
+              <div [style.min-width]="config.width" class="d-flex flex-column it-card">
+                <div class="title h5">
+                  {{ item.title }}
+                </div>
+                <p class="" [innerHTML]="item.description"></p>
+              </div>
+            }
+          </div>
+        </div>
+      } -->
+    } @else {
+      @if (config.notFoundMessage; as notFoundMessage) {
+        <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+          <app-image-block [config]="notFoundMessage.imageBlockConfig"></app-image-block>
+        </div>
+      }
+    }
+  </div>
+}
