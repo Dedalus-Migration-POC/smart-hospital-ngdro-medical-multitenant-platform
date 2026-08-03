@@ -2390,7 +2390,6 @@ export const APP_CONFIG: AppConfig = {
                     itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
                     itemsLayout: {
                       direction: 'row',
-                      gap: 'gap-1',
                       align: 'start',
                     },
                     actionsLayout: {
@@ -2401,7 +2400,6 @@ export const APP_CONFIG: AppConfig = {
                     },
                     items: [
                       {
-                        id: 'card-1',
                         type: 'data',
                         background: 'white',
                         titleSubtitle: {
@@ -2423,6 +2421,10 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'metaInfo.object',
                             type: 'text',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'bold',
@@ -2440,6 +2442,10 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'date',
                             type: 'date',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
                             format: 'dd/MM/yyyy',
                             label: {
                               fontWeight: 'bold',
@@ -2453,6 +2459,10 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'attachments',
                             type: 'array',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
                             itemKey: 'title',
                             valueStyle: {
                               fontSize: 'md',
@@ -2466,12 +2476,20 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'attachment.title',
                             type: 'text',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
                             listStyle: 'bullet',
                             label: { fontWeight: 'bold', text: { it: 'Referto', en: 'Report' } },
                           },
                           {
                             key: 'attachment.type',
                             type: 'text',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
                             listStyle: 'bullet',
                             label: {
                               fontWeight: 'bold',
@@ -2506,6 +2524,10 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'paymentInfo.status',
                             type: 'badge',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
                             label: { fontWeight: 'bold', text: { it: 'Stato', en: 'Status' } },
                             badgeMap: {
                               PAYED: {
@@ -3020,105 +3042,413 @@ export const APP_CONFIG: AppConfig = {
       id: '/payments-pa', // === url!
       name: { it: 'Pagamenti', en: 'Payments' }, // Nome nel browser per accessibilità
       route: '/payments-pa', //non serve, non lo possono cambiare
-      page: {
-        backgroundColor: '#ffffff', //o color o img!
-        // backgroundImage: '/assets/images/bg.svg',
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: 'Pagamenti', en: 'Payments' },
-          subTitle: {
-            it: 'Visualizza i pagamenti.',
-            en: 'View the payments.',
+      backgroundColor: '#ffffff', //o color o img!
+      // backgroundImage: '/assets/images/bg.svg',
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: 'Pagamenti', en: 'Payments' },
+        subTitle: {
+          it: 'Visualizza i pagamenti.',
+          en: 'View the payments.',
+        },
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
           },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
 
-            {
-              name: { it: 'Pagamenti', en: 'Payments' },
-              routerLink: '',
-            },
-          ],
-        },
-        notFoundMessage: {
-          imageBlockConfig: {
-            id: 'paymentsNotFound',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
-            },
-            clickable: false,
-            image: {
-              type: 'url',
-              value:
-                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
-              decorative: true,
-              alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
-              height: '150px',
-            },
-            text: {
-              title: {
-                text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
-              },
-              subTitle: {
-                text: {
-                  it: 'La tua richiesta non ha prodotto risultati.',
-                  en: 'Your request did not produce any results.',
+          {
+            name: { it: 'Pagamenti', en: 'Payments' },
+            routerLink: '',
+          },
+        ],
+      },
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            center: {
+              items: [
+                {
+                  id: 'payments-pa-cards',
+                  type: 'SERVICE_CARDS',
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-6',
+                    itemsLayout: {
+                      direction: 'column',
+                      gap: 'gap-2',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      justify: 'end',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        titleSubtitle: {
+                          title: {
+                            key: 'appointments',
+                            itemKey: 'description',
+                            joinWith: ' / ',
+                            fontSize: 'md',
+                          },
+                          subTitle: {
+                            key: 'state',
+                            valueMap: {
+                              NOT_PAYED: 'payments.state.NOT_PAYED',
+                              PAYED: 'payments.state.PAYED',
+                              VERIFICATION: 'payments.state.VERIFICATION',
+                            },
+                            fontSize: 'sm',
+                            fontWeight: 'normal',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'appointmentDate',
+                            type: 'date',
+                            format: 'dd/MM/yyyy',
+                            label: {
+                              text: {
+                                it: 'Data appuntamento',
+                                en: 'Appointment date',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                          },
+                          {
+                            key: 'amount',
+                            type: 'text',
+                            suffix: ' €',
+                            label: {
+                              text: {
+                                it: 'Importo',
+                                en: 'Amount',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                          },
+                          {
+                            key: 'paymentSystem',
+                            type: 'image',
+                            label: {
+                              text: {
+                                it: 'Sistema di pagamento',
+                                en: 'Payment system',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                            imageMap: {
+                              PagoPa: {
+                                type: 'url',
+                                value: '/assets/images/logo_pagoPa.png',
+                                decorative: true,
+                                width: '90px',
+                                height: '30px',
+                              },
+                            },
+                          },
+                          {
+                            key: 'state',
+                            type: 'badge',
+                            label: {
+                              text: {
+                                it: 'Stato',
+                                en: 'Status',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                            badgeMap: {
+                              NOT_PAYED: {
+                                text: {
+                                  it: 'Da pagare',
+                                  en: 'To pay',
+                                },
+                                color: 'warning',
+                                fontWeight: 'semibold',
+                              },
+                              PAYED: {
+                                text: {
+                                  it: 'Pagato',
+                                  en: 'Paid',
+                                },
+                                color: 'success',
+                                fontWeight: 'semibold',
+                              },
+                              VERIFICATION: {
+                                text: {
+                                  it: 'In verifica',
+                                  en: 'Under verification',
+                                },
+                                color: 'info',
+                                fontWeight: 'semibold',
+                              },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'view',
+                            type: 'callback',
+                            renderAs: 'button',
+                            className: 'btn btn-primary',
+                            label: {
+                              text: {
+                                it: 'Dettagli',
+                                en: 'Details',
+                              },
+                            },
+                            callback: {
+                              nameFunction: 'goDetail',
+                              params: ['id'],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
-              },
+                {
+                  id: 'payments-pa-paid-cards',
+                  type: 'SERVICE_CARDS',
+                  props: {
+                    id: 'payments-pa-paid-cards',
+                    itemColBootstrapClasses: 'col-12 col-md-6',
+                    itemsLayout: {
+                      direction: 'column',
+                      gap: 'gap-2',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      justify: 'end',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        id: 'payments-pa-paid-template',
+                        type: 'data',
+                        titleSubtitle: {
+                          title: {
+                            key: 'appointments',
+                            itemKey: 'description',
+                            joinWith: ' / ',
+                          },
+                          subTitle: {
+                            key: 'state',
+                            valueMap: {
+                              NOT_PAYED: 'payments.state.NOT_PAYED',
+                              PAYED: 'payments.state.PAYED',
+                              VERIFICATION: 'payments.state.VERIFICATION',
+                            },
+                            fontSize: 'sm',
+                            fontWeight: 'normal',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'appointmentDate',
+                            type: 'date',
+                            format: 'dd/MM/yyyy',
+                            label: {
+                              text: {
+                                it: 'Data appuntamento',
+                                en: 'Appointment date',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                          },
+                          {
+                            key: 'amount',
+                            type: 'text',
+                            suffix: ' €',
+                            label: {
+                              text: {
+                                it: 'Importo',
+                                en: 'Amount',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                          },
+                          {
+                            key: 'paymentSystem',
+                            type: 'image',
+                            label: {
+                              text: {
+                                it: 'Sistema di pagamento',
+                                en: 'Payment system',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                            imageMap: {
+                              PagoPa: {
+                                type: 'url',
+                                value: '/assets/common/images/logo_pagoPa.png',
+                                decorative: true,
+                                width: '90px',
+                                height: '30px',
+                              },
+                            },
+                          },
+                          {
+                            key: 'state',
+                            type: 'badge',
+                            label: {
+                              text: {
+                                it: 'Stato',
+                                en: 'Status',
+                              },
+                              fontSize: 'sm',
+                              fontWeight: 'normal',
+                              color: 'secondary',
+                            },
+                            badgeMap: {
+                              NOT_PAYED: {
+                                text: {
+                                  it: 'Da pagare',
+                                  en: 'To pay',
+                                },
+                                color: 'warning',
+                                fontWeight: 'semibold',
+                              },
+                              PAYED: {
+                                text: {
+                                  it: 'Pagato',
+                                  en: 'Paid',
+                                },
+                                color: 'success',
+                                fontWeight: 'semibold',
+                              },
+                              VERIFICATION: {
+                                text: {
+                                  it: 'In verifica',
+                                  en: 'Under verification',
+                                },
+                                color: 'info',
+                                fontWeight: 'semibold',
+                              },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'view',
+                            type: 'callback',
+                            renderAs: 'button',
+                            className: 'btn btn-primary',
+                            label: {
+                              text: {
+                                it: 'Dettagli',
+                                en: 'Details',
+                              },
+                            },
+                            callback: {
+                              nameFunction: 'goDetail',
+                              params: ['id'],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
             },
           },
         },
-        errorMessage: {
-          imageBlockConfig: {
-            id: 'errorMessage',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
+      ],
+      notFoundMessage: {
+        imageBlockConfig: {
+          id: 'paymentsNotFound',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'md',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value:
+              'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+            decorative: true,
+            alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
             },
-            clickable: false,
-            image: {
-              type: 'url',
-              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
-              decorative: true,
-              alt: { it: 'Errore', en: 'Error' },
-              height: '150px',
+            subTitle: {
+              text: {
+                it: 'La tua richiesta non ha prodotto risultati.',
+                en: 'Your request did not produce any results.',
+              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
             },
-            text: {
-              title: {
-                text: { it: 'Errore', en: 'Error' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
+          },
+        },
+      },
+      errorMessage: {
+        imageBlockConfig: {
+          id: 'errorMessage',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'md',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+            decorative: true,
+            alt: { it: 'Errore', en: 'Error' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Errore', en: 'Error' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
+            },
+            subTitle: {
+              text: {
+                it: 'Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.',
+                en: 'An error occurred while fetching the payment. Please try again later.',
               },
-              subTitle: {
-                text: {
-                  it: 'Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.',
-                  en: 'An error occurred while fetching the payment. Please try again later.',
-                },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
-              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
             },
           },
         },
@@ -3128,34 +3458,32 @@ export const APP_CONFIG: AppConfig = {
       id: '/payments-pa/details', // === url!
       name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' }, // Nome nel browser per accessibilità
       route: '/payments-pa/details', //non serve, non lo possono cambiare
-      page: {
-        backgroundColor: '#ffffff', //o color o img!
-        // backgroundImage: '/assets/images/bg.svg',
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
-          subTitle: {
-            it: 'Visualizza i dettagli del pagamento.',
-            en: 'View the payment details.',
-          },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
-            {
-              name: { it: 'Pagamenti', en: 'Payments' },
-              routerLink: '/payments-pa',
-            },
-            {
-              name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
-              routerLink: '',
-            },
-          ],
+      backgroundColor: '#ffffff', //o color o img!
+      // backgroundImage: '/assets/images/bg.svg',
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+        subTitle: {
+          it: 'Visualizza i dettagli del pagamento.',
+          en: 'View the payment details.',
         },
-        isSimplePagoPa: true, // true:getPagoPaLink (/simple-pagopa/api/v1/payment); false:window.open('https://checkout.pagopa.it/inserisci-dati-avviso', '_blank');
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
+          },
+          {
+            name: { it: 'Pagamenti', en: 'Payments' },
+            routerLink: '/payments-pa',
+          },
+          {
+            name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+            routerLink: '',
+          },
+        ],
       },
+      isSimplePagoPa: true, // true:getPagoPaLink (/simple-pagopa/api/v1/payment); false:window.open('https://checkout.pagopa.it/inserisci-dati-avviso', '_blank');
     },
     {
       id: '/payments-jcash', // === url!

@@ -52,5 +52,12 @@
       "login-button": "Login",
       "error-required": "The field is required"
     }
+  },
+  "payments": {
+    "state": {
+      "NOT_PAYED": "To pay",
+      "PAYED": "Paid",
+      "VERIFICATION": "Under verification"
+    }
   }
 }

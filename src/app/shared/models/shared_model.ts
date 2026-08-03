@@ -83,3 +83,8 @@ export interface FlexLayoutConfig {
   grow?: Grow;
   shrink?: Shrink;
 }
+
+export interface FlexRowSize {
+  basis?: string;
+  width?: string;
+}

@@ -15,7 +15,7 @@ export interface InfoPopupConfig {
 export interface PageConfig {
   id: string;
   name: LocalizedText;
-  route: RoutePage | string; // TODO VERIFICA
+  route: RoutePage | string;
   meta?: PageMetaConfig;
   backgroundColor?: string;
   backgroundImage?: string;

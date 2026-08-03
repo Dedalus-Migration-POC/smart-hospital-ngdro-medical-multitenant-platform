@@ -279,5 +279,12 @@
         "subtitle": "Gestisci la tua prenotazione"
       }
     }
+  },
+  "payments": {
+    "state": {
+      "NOT_PAYED": "Da pagare",
+      "PAYED": "Pagato",
+      "VERIFICATION": "In attesa di verifica"
+    }
   }
 }

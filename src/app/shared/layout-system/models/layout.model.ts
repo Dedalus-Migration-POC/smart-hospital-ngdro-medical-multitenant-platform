@@ -17,6 +17,8 @@ export type ItemType =
   | 'FEED_RSS';
 
 export interface Item {
+  // IMPORTANTE CHE SIA UNIVOCO PER OGNI ITEM
+  // PER LE PAGINE CON LAYOUT STATICO LA CONFIG DELLE CARD VIENE RECUPERATA CON ID E IL TIPO DEL COMPONENTE CARD  type: 'SERVICE_CARDS',
   id: string;
   type: ItemType;
   enabled: boolean;
