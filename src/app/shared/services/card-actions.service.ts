@@ -171,9 +171,9 @@ export class CardActionsService {
   }
 
   // Risolve un valore da un oggetto usando una chiave semplice (es. "a")
-  // o un path annidato (es. "a.b.c").
-  private getValueByPath(source: Record<string, unknown>, path: string): unknown {
-    // Supporta path annidati del tipo "a.b.c".
+  // o un path annidato (es. "a.b.c"). Valori non-stringa vengono restituiti direttamente.
+  private getValueByPath(source: Record<string, unknown>, path: unknown): unknown {
+    if (typeof path !== 'string') return path;
     return path.split('.').reduce<unknown>((acc, key) => {
       if (acc == null || typeof acc !== 'object') {
         return undefined;
