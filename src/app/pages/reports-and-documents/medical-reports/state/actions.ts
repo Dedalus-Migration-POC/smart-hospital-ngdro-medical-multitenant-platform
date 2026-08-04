@@ -1,20 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 import { IDocuments, IDocumentsType } from './model';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
-
-// export const fetchCardMultiUseConfigReport = createAction(
-//   '[ReportsAndDocuments] Fetch CardMultiUseConfigReport',
-// )
-
-// export const fetchCardMultiUseConfigReportSuccess = createAction(
-//   '[ReportsAndDocuments] Fetch CardMultiUseConfigReport Success',
-//   props<{ data: CardMultiUseConfig }>(),
-// )
-
-// export const CardMultiUseConfigReportFailure = createAction(
-//   '[ReportsAndDocuments] Fetch CardMultiUseConfigReport Failure',
-//   props<{ error: any }>(),
-// )
 
 export const fetchDocumentsTypes = createAction('[ReportsAndDocuments] Fetch DocumentsTypes');
 

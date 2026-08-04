@@ -5,11 +5,11 @@ export const APP_CONFIG: AppConfig = {
   favicon: '/assets/favicon.ico',
   firebaseConfig: {
     firebaseOptions: {
-      apiKey: 'AIzaSyAfnbFlDenM9BK-yn5eecOHQRgqjgaMdXU',
-      appId: '1:238556925963:android:799502900d72c8b407770e',
-      messagingSenderId: '238556925963',
-      projectId: 'asl-latina-app',
-      storageBucket: 'asl-latina-app.firebasestorage.app',
+      apiKey: 'AIzaSyDuqUIu7O3ngRphC3MUPENUcaVjm2NR8N8',
+      appId: '1:679999290374:android:ee8d7de08e4f8c82961787',
+      messagingSenderId: '679999290374',
+      projectId: 'asl-rieti-f9d38',
+      storageBucket: 'asl-rieti-f9d38.firebasestorage.app',
     },
     keys: ['department', 'feedrss'], // keys to fetch from remote config
   },
@@ -2192,16 +2192,222 @@ export const APP_CONFIG: AppConfig = {
         },
         type: 'warning',
       },
-      medicalReportsConfig: {
-        filterDocumentType: {
-          show: true,
-          filterSelectLabel: { it: 'Filtra per tipo', en: 'Filter by type' },
-          size: {
-            width: '300px',
+      sections: [
+        {
+          id: 'search-form-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4', justify: 'end' },
+              items: [
+                {
+                  id: 'search-form',
+                  type: 'DYNAMIC_FORM',
+                  enabled: true,
+                  props: {
+                    layoutForm: { direction: 'row', gap: 'gap-3' },
+                    submitButton: {
+                      label: { it: 'Cerca', en: 'Search' },
+                      layout: { align: 'self-end' },
+                    },
+                    fields: [
+                      {
+                        id: 'typeCode',
+                        type: 'select',
+                        layoutField: { direction: 'column', gap: 'gap-2' },
+                        label: { it: 'Tipo Documento', en: 'Document Type' },
+                        required: false,
+                        // validators: [{ type: 'required' }],
+                        // errorMessages: {
+                        //   required: {
+                        //     it: 'Il tipo documento è obbligatorio',
+                        //     en: 'Document type is required',
+                        //   },
+                        // },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
           },
-          layout: { justify: 'start' },
         },
-      },
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4' },
+              items: [
+                {
+                  id: 'reports-cards',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      wrap: 'wrap',
+                      justify: 'around',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'classification.practice.label',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          subTitle: {
+                            key: 'classification.classes.label',
+                            fontSize: 'md',
+                            fontWeight: 'semibold',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'releaseDate',
+                            type: 'date',
+                            format: 'dd/MM/yyyy',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            valueStyle: {
+                              fontSize: 'md',
+                              fontWeight: 'bold',
+                              color: 'danger',
+                              lineHeight: 'md',
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Data',
+                                en: 'Date',
+                              },
+                            },
+                          },
+                          {
+                            key: 'classification.healthcareFacilityType.label',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Unità operativa',
+                                en: 'Operating unit',
+                              },
+                            },
+                          },
+
+                          {
+                            key: 'additionalInfo.expiredDate',
+                            type: 'date',
+                            format: 'dd/MM/yyyy',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: { it: 'Data scadenza', en: 'Expiration date' },
+                            },
+                          },
+                          {
+                            key: 'paymentStatus',
+                            type: 'badge',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: { fontWeight: 'bold', text: { it: 'Stato', en: 'Status' } },
+                            badgeMap: {
+                              1: {
+                                text: { it: 'Pagato', en: 'Paid' },
+                                lineHeight: 'md',
+                                color: 'success',
+                              },
+                              0: {
+                                text: { it: 'Non pagato', en: 'Pending' },
+                                lineHeight: 'md',
+                                color: 'danger',
+                              },
+                            },
+                            fallbackBadge: {
+                              text: { it: 'Sconosciuto', en: 'Unknown' },
+                              fontSize: 'sm',
+                              color: 'secondary',
+                            },
+                          },
+                          // {
+                          //   key: 'paymentStatus',
+                          //   type: 'text',
+                          //   rowSize: {
+                          //     key: { basis: '40%' },
+                          //     value: { basis: '60%' },
+                          //   },
+                          //   label: {
+                          //     fontWeight: 'bold',
+                          //     text: { it: 'Stato pagamento', en: 'Payment status' },
+                          //   },
+                          // },
+                        ],
+                        actions: [
+                          {
+                            key: 'downloadPdf',
+                            label: {
+                              text: {
+                                it: `Scarica PDF ({{additionalInfo.size}})`,
+                                en: 'Download PDF',
+                              },
+                            },
+                            type: 'callback',
+                            renderAs: 'button',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'downloadPdf',
+                              params: [true],
+                            },
+                            // hideIf: [{ key: 'attachment.type', operator: 'eq', value: 'LINK' }],
+                            // TEST hideIf: nasconde "Scarica" se lo stato pagamento è PENDING
+                            //    hideIf: [{ key: 'paymentInfo.status', operator: 'eq', value: 'PAYED' }],
+                            //  hideMessage: { text: { it: 'Pagamento in sospeso', en: 'Payment pending' } },
+                          },
+                          {
+                            key: 'openPdf',
+                            label: { text: { it: 'Apri PDF', en: 'Open PDF' } },
+                            type: 'callback',
+                            renderAs: 'button',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'downloadPdf',
+                              params: [false],
+                            },
+                            // hideIf: [{ key: 'attachment.type', operator: 'eq', value: 'LINK' }],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
       notFoundMessage: {
         imageBlockConfig: {
           id: 'reportNotFound',

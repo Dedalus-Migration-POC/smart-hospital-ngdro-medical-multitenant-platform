@@ -20,6 +20,7 @@ export interface IReport {
   deliveryUnit?: string; // nome ospedale
   date?: string; // "2021-03-25T10:46:29Z"
   conclusion?: string;
+  attachment?: IAttachment; //non arriva da BE ma faccio mapping in FE per cards
 }
 
 export interface IAttachment {

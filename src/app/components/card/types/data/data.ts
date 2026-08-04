@@ -309,6 +309,16 @@ export class Data {
     }, source);
   }
 
+  // Sostituisce i placeholder {{path}} nel testo con i valori corrispondenti della card.
+  resolveLabel(text: string | undefined, source: unknown): string {
+    if (!text) return '';
+    const record = source as Record<string, unknown>;
+    return text.replace(/\{\{([^}]+)\}\}/g, (_, path: string) => {
+      const value = this.getValueByPath(record, path.trim());
+      return value != null ? String(value) : '';
+    });
+  }
+
   // Formatta la data con date-fns usando la locale configurata in app.
   private formatDate(date: Date, format: string): string {
     const locale =

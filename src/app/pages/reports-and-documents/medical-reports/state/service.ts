@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, delay, of } from 'rxjs';
 import { DOCS_TYPE, LAB_DOCUMENT, LAB_DOCUMENT_TWO, MOCK_DOCS } from './mock';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
 import { IDocumentsResponse, IDocumentsType } from './model';
 
 @Injectable({
@@ -12,17 +11,6 @@ export class ReportsAndDocumentsService {
   private readonly IS_DEV = true;
 
   constructor(private httpClient: HttpClient) {}
-
-  // fetchCardMultiUseConfigReport() {
-  //   if (environment?.pathCardMultiUseConfigReport) {
-  //     const pathMultiUseConfigReport =
-  //       window.document.baseURI + environment.pathCardMultiUseConfigReport // fetch from assets/tenant/ xxx /config
-  //     return this.httpClient.get<CardMultiUseConfig>(pathMultiUseConfigReport)
-  //   }
-  //   return throwError(
-  //     () => new Error('REPORT: pathCardMultiUseConfigReport is not defined'),
-  //   )
-  // }
 
   getReportsAndDocumentsList(filter?: string): Observable<IDocumentsResponse> {
     if (this.IS_DEV) {

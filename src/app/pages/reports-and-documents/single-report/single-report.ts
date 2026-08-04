@@ -151,7 +151,7 @@ export class SingleReport implements OnDestroy {
     this.store.dispatch(fetchSingleReportSession({ payload }));
   }
 
-  downloadSingleReport = (document: any, isDownload: boolean) => {
+  downloadSingleReport = (document: IReport, isDownload: boolean) => {
     const session = this.singleReportSession();
     if (!session || !document) {
       return;
@@ -163,10 +163,10 @@ export class SingleReport implements OnDestroy {
           data: {
             requestId: session.code,
             sessionId: session.sessionId,
-            attachmentId: document.attachment.id,
+            attachmentId: document.attachment?.id || '',
             reportId: document.id,
             decodeSignedBinary: false,
-            responseType: document.attachment.type === 'LINK' ? 'link' : 'pdf',
+            responseType: document.attachment?.type === 'LINK' ? 'link' : 'pdf',
             isDownload: isDownload,
           },
           reportEndpoint: this.pageConfig()?.singleReportConfig?.reportEndpoint,

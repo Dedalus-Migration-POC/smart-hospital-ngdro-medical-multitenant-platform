@@ -3,51 +3,19 @@
     <app-breadcrumb [config]="pageConfig.breadcrumb"></app-breadcrumb>
   }
 
-  @if (pageConfig.medicalReportsConfig?.filterDocumentType?.show) {
-    <div
-      class="mt-5 d-flex flex-row"
-      [ngClass]="getFlexLayoutClasses(pageConfig.medicalReportsConfig?.filterDocumentType?.layout)"
-    >
-      <div
-        class="form-field"
-        id="it-select-description"
-        [ngStyle]="getSizeStyles(pageConfig.medicalReportsConfig?.filterDocumentType?.size)"
-      >
-        <it-select
-          id="it-select"
-          [label]="pageConfig.medicalReportsConfig.filterDocumentType.filterSelectLabel[lang()]"
-          [options]="selectOptions()"
-          [(ngModel)]="selectedOption"
-          [ngModelOptions]="{ standalone: true }"
-          (change)="onSelectChange()"
-        >
-        </it-select>
-      </div>
+  <!-- Form sempre visibile -->
+  @if (formConfig()) {
+    <div class="mt-4 mb-4">
+      <app-dynamic-form
+        [formConfig]="formConfig()"
+        [lang]="lang()"
+        (formSubmit)="onFormSubmit($event)"
+      ></app-dynamic-form>
     </div>
   }
 
   @if (reports()!.length > 0) {
-    <div class="d-flex flex-wrap gap-3 mt-4 mb-4">
-      @for (report of reports(); track $index) {
-        <div class="border rounded p-3 col-3">
-          <pre>{{ report | json }}</pre>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            (click)="downloadPdf(report.documentId, report.repositoryId!, true)"
-          >
-            Download PDF
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            (click)="downloadPdf(report.documentId, report.repositoryId!, false)"
-          >
-            Open document
-          </button>
-        </div>
-      }
-    </div>
+    <app-card [config]="renderedCardsConfig()"></app-card>
   }
   @if (!loading() && !error() && reports()!.length === 0) {
     <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">

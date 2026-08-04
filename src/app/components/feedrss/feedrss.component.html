@@ -4,7 +4,7 @@
     @if (hasFeeds()) {
       @if (config.layout === 'vertical') {
         <div class="feed-rss-cards-container overflow-auto" [style.height]="config.height">
-          @for (item of feedsRss(); track item.link || item.title) {
+          @for (item of feedsRss(); track $index) {
             <div class="it-card border mb-2">
               <div class="it-card-title h5">
                 {{ item.title }}
@@ -31,20 +31,21 @@
         </div>
       }
       <!-- @if (config.layout === 'horizontal') {
-        <div
-          class="feed-rss-cards-container overflow-auto d-flex flex-row gap-3"
-          [style.width]="config.width"
-        >
-          <div>
-            @for (item of feedsRss(); track item.link || item.title) {
-              <div [style.min-width]="config.width" class="d-flex flex-column it-card">
-                <div class="title h5">
-                  {{ item.title }}
+        <div class="bd-example">
+          <it-carousel type="three-cols">
+            @for (item of feedsRss(); track $index) {
+              <it-carousel-item>
+                <div class="it-single-slide-wrapper h-100 p-2">
+                  <div class="d-flex flex-column it-card">
+                    <div class="title h5">
+                      {{ item.title }}
+                    </div>
+                    <p class="" [innerHTML]="item.description"></p>
+                  </div>
                 </div>
-                <p class="" [innerHTML]="item.description"></p>
-              </div>
+              </it-carousel-item>
             }
-          </div>
+          </it-carousel>
         </div>
       } -->
     } @else {

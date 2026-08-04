@@ -12,28 +12,6 @@ export class ReportsAndDocumentsEffects {
   private actions$ = inject(Actions);
   private service = inject(ReportsAndDocumentsService);
 
-  // fetchCardMultiUseConfigReport$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(ReportsAndDocumentsActions.fetchCardMultiUseConfigReport),
-  //     concatMap(() =>
-  //       this.service.fetchCardMultiUseConfigReport().pipe(
-  //         map((data: CardMultiUseConfig) =>
-  //           ReportsAndDocumentsActions.fetchCardMultiUseConfigReportSuccess({
-  //             data,
-  //           }),
-  //         ),
-  //         catchError((error) =>
-  //           of(
-  //             ReportsAndDocumentsActions.CardMultiUseConfigReportFailure({
-  //               error,
-  //             }),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   )
-  // })
-
   fetchReportsAndDocuments$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(ReportsAndDocumentsActions.fetchReportsAndDocuments),

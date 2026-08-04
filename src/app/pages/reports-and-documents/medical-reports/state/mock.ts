@@ -112,23 +112,23 @@ export const MOCK_DOCS = {
       },
       additionalInfo: {
         size: '456 kb',
-        expiredDate: '2024-07-21',
+        expiredDate: '2026-07-20',
       },
     },
     {
-      documentId: '2.16.840.1.113883.2.9.2.0.0.0^70520240606130036',
+      documentId: '2.16.840.1.113883.2.9.2.0.0.0^70520240606130037',
       repositoryId: '2.16.840.1.113883.2.9.2.190.925.3.1',
       name: 'Consulenza1',
       mimeType: 'application/pdf',
-      releaseDate: '2024-06-06T12:51:16.000+00:00',
+      releaseDate: '2024-06-28T12:51:16.000+00:00',
       opaque: false,
       paymentStatus: '0' as PaymentStatus,
       classification: {
         classes: {
-          label: 'Referto (report)',
+          label: 'Referto-11 (report)',
         },
         practice: {
-          label: 'CONSULENZA (U.O.C. OTORINOLARINGOIATRIA)',
+          label: 'CONSULENZA-1 (U.O.C. OTORINOLARINGOIATRIA)',
         },
         type: {
           label: 'Consulenza',
@@ -137,28 +137,28 @@ export const MOCK_DOCS = {
           label: 'PDF',
         },
         healthcareFacilityType: {
-          label: 'Ospedale',
+          label: 'Ospedale-1',
         },
       },
       additionalInfo: {
         size: '456 kb',
-        expiredDate: '2024-07-21',
+        expiredDate: '2026-07-21',
       },
     },
     {
-      documentId: '2.16.840.1.113883.2.9.2.0.0.0^70520240606130036',
+      documentId: '2.16.840.1.113883.2.9.2.0.0.0^70520240606130038',
       repositoryId: '2.16.840.1.113883.2.9.2.190.925.3.1',
       name: 'Consulenza2',
       mimeType: 'application/pdf',
-      releaseDate: '2024-06-06T12:51:16.000+00:00',
+      releaseDate: '2024-06-14T12:51:16.000+00:00',
       opaque: false,
       paymentStatus: '1' as PaymentStatus,
       classification: {
         classes: {
-          label: 'Referto (report)',
+          label: 'Referto-22 (report)',
         },
         practice: {
-          label: 'CONSULENZA (U.O.C. OTORINOLARINGOIATRIA)',
+          label: 'CONSULENZA-2 (U.O.C. OTORINOLARINGOIATRIA)',
         },
         type: {
           label: 'Consulenza',
@@ -167,12 +167,12 @@ export const MOCK_DOCS = {
           label: 'PDF',
         },
         healthcareFacilityType: {
-          label: 'Ospedale',
+          label: 'Ospedale-2',
         },
       },
       additionalInfo: {
         size: '456 kb',
-        expiredDate: '2024-07-21',
+        expiredDate: '2026-07-22',
       },
     },
   ],

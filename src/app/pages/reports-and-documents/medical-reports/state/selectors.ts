@@ -43,8 +43,3 @@ export const selectReportsAndDocumentsDetailsError = createSelector(
   selectReportsAndDocumentsState,
   (state) => state.documentDetailsError,
 );
-
-// export const selectCardMultiUseConfigReport = createSelector(
-//   selectReportsAndDocumentsState,
-//   (state) => state.cardMultiUseConfigReport,
-// )

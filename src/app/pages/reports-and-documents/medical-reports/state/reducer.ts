@@ -6,7 +6,6 @@ import { IDocuments, IDocumentsType } from './model';
 export const featureKey = 'reportsAndDocuments';
 
 export interface State {
-  // cardMultiUseConfigReport: CardMultiUseConfig | null
   reportsAndDocumentsList: IDocuments[];
   loading: boolean;
   error: boolean;
@@ -19,7 +18,6 @@ export interface State {
 }
 
 export const initialState: State = {
-  // cardMultiUseConfigReport: null,
   reportsAndDocumentsList: [],
   loading: false,
   error: false,
@@ -33,21 +31,6 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-
-  // on(ReportsAndDocumentsActions.fetchCardMultiUseConfigReport, (state) => ({
-  //   ...state,
-  // })),
-  // on(
-  //   ReportsAndDocumentsActions.fetchCardMultiUseConfigReportSuccess,
-  //   (state, action) => ({
-  //     ...state,
-  //     cardMultiUseConfigReport: action.data,
-  //   }),
-  // ),
-  // on(ReportsAndDocumentsActions.CardMultiUseConfigReportFailure, (state) => ({
-  //   ...state,
-  //   cardMultiUseConfigReport: null,
-  // })),
 
   on(ReportsAndDocumentsActions.fetchReportsAndDocuments, (state) => ({
     ...state,
