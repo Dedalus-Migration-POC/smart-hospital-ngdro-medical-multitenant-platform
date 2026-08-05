@@ -19,6 +19,7 @@ export class TripletReportService {
     payload: TripletReportRequest,
   ): Observable<LaboratoryReportTripletResponse | any> {
     if (this.IS_DEV) {
+      console.log('fetchTripletReport', payload);
       if (payload.patientId === '0000') {
         // mock per referto non pagato
         return of(TRIPLET_REPORT_NOT_PAID).pipe(delay(500));
@@ -36,6 +37,7 @@ export class TripletReportService {
 
   downloadSingleReport(payload: DownloadTripletReportRequest) {
     if (this.IS_DEV) {
+      console.log('downloadSingleReport', payload);
       return of(LAB_DOCUMENT).pipe(delay(500));
     }
 

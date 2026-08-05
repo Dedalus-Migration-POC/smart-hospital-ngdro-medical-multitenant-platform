@@ -37,6 +37,7 @@ export class InputComponent {
   readonly showErrors = input(true);
   readonly placeholder = input<string | undefined>(undefined);
   readonly showLabel = input(true);
+  readonly errorMessages = input<Record<string, string> | undefined>(undefined);
 
   protected readonly hasControl = () => !!this.control();
 }

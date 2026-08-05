@@ -44,7 +44,7 @@ export class DynamicFormComponent {
 
     config.fields.forEach((field) => {
       const validators = this.buildValidators(field.validators);
-      group[field.id] = ['', validators];
+      group[field.id] = [field.value ?? '', validators];
     });
 
     return this.fb.group(group);
@@ -113,6 +113,17 @@ export class DynamicFormComponent {
       return getLocalizedText(field.errorMessages[errorKey], this.lang());
     }
     return `Error: ${errorKey}`;
+  }
+
+  getFieldErrorMessages(field: FormFieldConfig): Record<string, string> | undefined {
+    if (!field.errorMessages) {
+      return undefined;
+    }
+    const resolved: Record<string, string> = {};
+    for (const key of Object.keys(field.errorMessages)) {
+      resolved[key] = getLocalizedText(field.errorMessages[key], this.lang());
+    }
+    return resolved;
   }
 
   private getLocalizedLabel(value?: LocalizedText | string): string {

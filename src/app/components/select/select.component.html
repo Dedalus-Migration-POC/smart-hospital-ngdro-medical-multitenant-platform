@@ -15,7 +15,7 @@
     >
       <option value="">{{ placeholder() }}</option>
       @for (option of options(); track option.value) {
-        <option [value]="option.value">{{ option.label }}</option>
+        <option [value]="option.value">{{ truncateLabel(option.label) }}</option>
       }
     </select>
   </div>
@@ -42,13 +42,14 @@
     >
       <option value="">{{ placeholder() }}</option>
       @for (option of options(); track option.value) {
-        <option [value]="option.value">{{ option.label }}</option>
+        <option [value]="option.value">{{ truncateLabel(option.label) }}</option>
       }
     </select>
     @if (showErrors() && formGroup()) {
       <app-input-error-component
         [formGroup]="formGroup()!"
         [fieldName]="fieldName()"
+        [errorMessages]="errorMessages()"
       ></app-input-error-component>
     }
   </div>

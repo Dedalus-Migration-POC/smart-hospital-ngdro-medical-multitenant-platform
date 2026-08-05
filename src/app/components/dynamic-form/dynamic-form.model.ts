@@ -1,7 +1,7 @@
 import { LocalizedText } from '../../shared/models/shared_model';
 import { FlexLayoutConfig } from '../../shared/models/shared_model';
 
-export type FieldType = 'text' | 'email' | 'number' | 'password' | 'select';
+export type FieldType = 'text' | 'email' | 'number' | 'password' | 'select' | 'hidden';
 
 export interface SelectOptionConfig {
   value: string;
@@ -20,6 +20,7 @@ export interface FormFieldConfig {
   placeholder?: LocalizedText;
   options?: SelectOptionConfig[];
   required?: boolean;
+  value?: string | number | boolean;
   layoutField?: FlexLayoutConfig;
   validators?: ValidatorConfig[];
   errorMessages?: {
@@ -35,6 +36,7 @@ export interface SubmitButtonConfig {
 
 export interface DynamicFormConfig {
   layoutForm?: FlexLayoutConfig;
+  layoutFields?: FlexLayoutConfig;
   submitButton?: SubmitButtonConfig;
   fields: FormFieldConfig[];
 }

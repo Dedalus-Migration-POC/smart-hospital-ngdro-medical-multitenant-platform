@@ -20,6 +20,7 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 export class InputErrorComponent {
   readonly formGroup = input.required<FormGroup>();
   readonly fieldName = input.required<string | number | null>();
+  readonly errorMessages = input<Record<string, string> | undefined>(undefined);
 
   protected readonly fieldControl = computed<AbstractControl | null>(() => {
     const fieldName = this.fieldName();

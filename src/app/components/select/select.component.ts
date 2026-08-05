@@ -32,6 +32,7 @@ export class SelectComponent {
   readonly showLabel = input(true);
   readonly showErrors = input(true);
   readonly ariaLabel = input<string | undefined>(undefined);
+  readonly errorMessages = input<Record<string, string> | undefined>(undefined);
 
   @Output() valueChanged = new EventEmitter<string>();
 
@@ -44,5 +45,9 @@ export class SelectComponent {
   focusNext() {
     const label = document.querySelector(`label[for="${this.fieldName()}"]`);
     label?.setAttribute('class', 'active');
+  }
+
+  protected truncateLabel(text: string, maxLength: number = 30): string {
+    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
   }
 }

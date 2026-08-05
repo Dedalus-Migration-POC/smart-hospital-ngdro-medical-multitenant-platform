@@ -2,37 +2,48 @@
   @if (control.invalid && (control.dirty || control.touched)) {
     <div class="input-invalid-error text-danger">
       @if (control.errors?.['required']) {
-        {{ 'input.errors.required-field' | translate }}
+        {{ errorMessages()?.['required'] || ('input.errors.required-field' | translate) }}
       }
       @if (control.errors?.['validateText']) {
-        {{ 'input.errors.invalid-field' | translate }}
+        {{ errorMessages()?.['validateText'] || ('input.errors.invalid-field' | translate) }}
       }
       @if (control.errors?.['pattern']) {
-        {{ 'input.errors.invalid-field' | translate }}
+        {{ errorMessages()?.['pattern'] || ('input.errors.invalid-field' | translate) }}
       }
       @if (control.errors?.['min'] || control.errors?.['max']) {
-        {{ 'input.errors.invalid-field' | translate }}
+        {{
+          errorMessages()?.['min'] ||
+            errorMessages()?.['max'] ||
+            ('input.errors.invalid-field' | translate)
+        }}
       }
       @if (control.errors?.['errorDateLessThanToday'] || control.errors?.['errorMinYear']) {
-        {{ 'input.errors.invalid-field' | translate }}
+        {{
+          errorMessages()?.['errorDateLessThanToday'] ||
+            errorMessages()?.['errorMinYear'] ||
+            ('input.errors.invalid-field' | translate)
+        }}
       }
       @if (control.errors?.['validateCap']) {
-        {{ 'input.errors.cap-invalid' | translate }}
+        {{ errorMessages()?.['validateCap'] || ('input.errors.cap-invalid' | translate) }}
       }
       @if (control.errors?.['validateFiscalCode']) {
-        {{ 'input.errors.fiscal-code-invalid' | translate }}
+        {{
+          errorMessages()?.['validateFiscalCode'] ||
+            ('input.errors.fiscal-code-invalid' | translate)
+        }}
       }
       @if (control.errors?.['email']) {
-        {{ 'input.errors.email-invalid' | translate }}
+        {{ errorMessages()?.['email'] || ('input.errors.email-invalid' | translate) }}
       }
       @if (control.errors?.['validatePhoneNumber']) {
-        {{ 'input.errors.tel-invalid' | translate }}
+        {{ errorMessages()?.['validatePhoneNumber'] || ('input.errors.tel-invalid' | translate) }}
       }
       @if (control.errors?.['minlength']) {
-        {{ 'input.errors.minlength-invalid' | translate }}
+        {{ errorMessages()?.['minlength'] || ('input.errors.minlength-invalid' | translate) }}
       }
       @if (control.errors?.['maxlength']) {
-        {{ 'input.errors.maxlength-invalid' | translate }}
+        {{ errorMessages()?.['maxlength'] || ('input.errors.maxlength-invalid' | translate) }}
       }
     </div>
   }

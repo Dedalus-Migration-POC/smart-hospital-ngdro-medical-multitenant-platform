@@ -9,7 +9,6 @@ import {
 } from './state/selectors';
 import { downloadTripletReport, fetchReport, resetTripletReportState } from './state/actions';
 import { TranslateModule } from '@ngx-translate/core';
-import { JsonPipe } from '@angular/common';
 import { Spinner } from '../../../components/spinner/spinner';
 import { LanguageService } from '../../../initialize/state/services/language.service';
 import { ImageBlock } from '../../../components/image-block/image-block';
@@ -18,35 +17,41 @@ import { selectAppConfig } from '../../../initialize/state/selector';
 import { map, take } from 'rxjs';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
 import { ReportTriplet, Structure } from './state/model';
-import {
-  DesignAngularKitModule,
-  ItNotificationService,
-  NotificationPosition,
-} from 'design-angular-kit';
-import { SelectComponent } from '../../../components/select/select.component';
-import { InputComponent } from '../../../components/input/input.component';
+import { DesignAngularKitModule } from 'design-angular-kit';
+import { DynamicFormConfig } from 'src/app/components/dynamic-form/dynamic-form.model';
+import { DynamicFormComponent } from 'src/app/components/dynamic-form/dynamic-form.component';
+import { Card } from 'src/app/components/card/card';
+import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
+import { CardActionsService } from 'src/app/shared/services/card-actions.service';
 
 @Component({
   selector: 'app-reports-by-triplet',
   imports: [
     ReactiveFormsModule,
     TranslateModule,
-    JsonPipe,
     Spinner,
     ImageBlock,
     Breadcrumb,
     DesignAngularKitModule,
-    SelectComponent,
-    InputComponent,
+    DynamicFormComponent,
+    Card,
   ],
   templateUrl: './reports-by-triplet.html',
   styleUrl: './reports-by-triplet.scss',
 })
 export class TripletReport {
-  private readonly notificationService = inject(ItNotificationService);
   private store = inject(Store);
   private langService = inject(LanguageService);
+  private cardActionsService = inject(CardActionsService);
+
   lang = this.langService.lang;
+  reportsLoading = this.store.selectSignal(selectTripletReportLoading);
+  downloadReportLoading = this.store.selectSignal(selectDownloadedReportLoading);
+  loading = computed(() => this.reportsLoading() || this.downloadReportLoading());
+  error = this.store.selectSignal(selectTripletReportError);
+  reports: Signal<ReportTriplet[] | null> = this.store.selectSignal(selectTripletReport);
+  isInitialSearch = false;
+  selectedStructure: string | null = null;
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -56,70 +61,95 @@ export class TripletReport {
     { initialValue: null },
   );
 
-  ngOnDestroy(): void {
-    this.store.dispatch(resetTripletReportState());
-  }
-
-  searchReportForm = new FormGroup({
-    asl: new FormControl('', [Validators.required]),
-    userCode: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    reportCode: new FormControl('', [Validators.required]),
+  readonly formConfig = computed<DynamicFormConfig | undefined>(() => {
+    const config = this.pageConfig();
+    console.log('pageConfig:', config);
+    const sections = config?.sections;
+    console.log('sections:', sections);
+    const formItem = sections?.[0]?.areas?.center?.items?.find(
+      (item: any) => item.type === 'DYNAMIC_FORM',
+    );
+    console.log('formItem:', formItem);
+    return formItem?.props as DynamicFormConfig | undefined;
   });
 
-  reportsLoading = this.store.selectSignal(selectTripletReportLoading);
-  downloadReportLoading = this.store.selectSignal(selectDownloadedReportLoading);
-  loading = computed(() => this.reportsLoading() || this.downloadReportLoading());
-  error = this.store.selectSignal(selectTripletReportError);
-  reports: Signal<ReportTriplet[] | null> = this.store.selectSignal(selectTripletReport);
-  isInitialSearch = false;
+  readonly cardsConfig = computed<any>(() => {
+    const config = this.pageConfig();
+    const sections = config?.sections;
+    const cardsSection = sections?.find((section: any) => section.id === 'cards-section');
+    const cardsItem = cardsSection?.areas?.center?.items?.find(
+      (item: any) => item.type === 'SERVICE_CARDS',
+    );
+    return cardsItem?.props;
+  });
 
-  structures = computed(() =>
-    (this.pageConfig()?.page.tripletReportConfig.structures || []).map((structure: Structure) => ({
-      value: structure.code,
-      label: structure.label,
-    })),
-  );
+  readonly renderedCardsConfig = computed<CompiledCardsContainer>(() => {
+    const cardsConfig = this.cardsConfig();
+    if (!cardsConfig) return { items: [] };
 
-  onSubmit() {
-    if (this.searchReportForm.invalid) {
-      return;
-    }
+    const templateCard = cardsConfig.items?.[0];
+    return {
+      ...cardsConfig,
+      items: (this.reports() ?? []).map((report: any, index: number) => {
+        const compiledActions = this.cardActionsService.compileActions(
+          report,
+          templateCard?.actions as DataCardAction[] | undefined,
+          {
+            callbackContext: this,
+            callbackArgsMode: 'sourceAndParams',
+          },
+        );
+        return {
+          ...report,
+          ...templateCard,
+          id: `card-${index + 1}`,
+          type: 'data',
+          actions: compiledActions,
+        } as any;
+      }),
+    };
+  });
+
+  ngOnDestroy(): void {
+    this.store.dispatch(resetTripletReportState());
+    this.selectedStructure = null;
+  }
+
+  onFormSubmit(formData: any) {
     this.isInitialSearch = true;
+
+    const getFormData: any = {};
+    this.formConfig()?.fields.forEach((field) => {
+      if (field.id === 'asl') getFormData.asl = formData[field.id];
+      if (field.id === 'userCode') getFormData.userCode = formData[field.id];
+      if (field.id === 'password') getFormData.password = formData[field.id];
+      if (field.id === 'reportCode') getFormData.reportCode = formData[field.id];
+    });
+    this.selectedStructure = getFormData.asl;
     this.store.dispatch(
       fetchReport({
         payload: {
-          organizationCode: this.searchReportForm.value.asl!,
-          patientId: this.searchReportForm.value.userCode!,
-          securityCode:
-            this.searchReportForm.value.password! + '|' + this.searchReportForm.value.reportCode!,
+          organizationCode: getFormData.asl!,
+          patientId: getFormData.userCode!,
+          securityCode: getFormData.password! + '|' + getFormData.reportCode!,
         },
       }),
     );
   }
 
-  downloadReport = (id: string, paymentStatus: string, isDownload: boolean) => {
-    if (paymentStatus === '0') {
-      this.notificationService.info(
-        this.pageConfig()?.page.tripletReportConfig.notPaiedReportInformation.title[this.lang()] ||
-          '',
-        this.pageConfig()?.page.tripletReportConfig.notPaiedReportInformation.info[this.lang()] ||
-          '',
-        true,
-        30000,
-        NotificationPosition.Top,
-      );
-
+  downloadReport = (document: ReportTriplet, isDownload: boolean) => {
+    const organizationCode = this.selectedStructure;
+    console.log(organizationCode);
+    if (!organizationCode) {
+      console.error('Organization code is not set. Cannot download report.');
       return;
     }
-    const organizationCode = this.searchReportForm.value.asl!;
-
     this.store.dispatch(
       downloadTripletReport({
         payload: {
           data: {
             organizationCode: organizationCode,
-            documentId: id,
+            documentId: document.documentId,
           },
           isDownload: isDownload,
         },
