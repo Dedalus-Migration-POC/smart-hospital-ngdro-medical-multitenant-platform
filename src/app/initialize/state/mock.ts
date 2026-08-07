@@ -4826,108 +4826,226 @@ export const APP_CONFIG: AppConfig = {
       id: '/bookings', // === url!
       name: { it: 'Prenotazioni', en: 'Bookings' }, // Nome nel browser per accessibilità
       route: '/bookings', //non serve, non lo possono cambiare
-      page: {
-        backgroundColor: '#ffffff', //o color o img!
-        // backgroundImage: '/assets/images/bg.svg',
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: 'Prenotazioni', en: 'Bookings' },
-          subTitle: {
-            it: 'Visualizza le prenotazioni Arianna-CUP.',
-            en: 'View the Arianna-CUP bookings.',
-          },
-          button: {
-            it: 'Nuova prenotazione',
-            en: 'New booking',
-          },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
-            {
-              name: { it: 'Prenotazioni', en: 'Bookings' },
-              routerLink: '/bookings',
-            },
-          ],
+      backgroundColor: '#ffffff', //o color o img!
+      // backgroundImage: '/assets/images/bg.svg',
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: 'Prenotazioni', en: 'Bookings' },
+        subTitle: {
+          it: 'Visualizza le prenotazioni Arianna-CUP.',
+          en: 'View the Arianna-CUP bookings.',
         },
-        errorMessage: {
-          imageBlockConfig: {
-            id: 'errorMessage',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
-            },
-            clickable: false,
-            image: {
-              type: 'url',
-              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
-              decorative: true,
-              alt: { it: 'Errore', en: 'Error' },
-              height: '150px',
-            },
-            text: {
-              title: {
-                text: { it: 'Errore', en: 'Error' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
-              },
-              subTitle: {
-                text: {
-                  it: 'Si è verificato un errore durante il recupero dei referti. Riprova più tardi.',
-                  en: 'An error occurred while fetching the reports. Please try again later.',
+        button: {
+          it: 'Nuova prenotazione',
+          en: 'New booking',
+        },
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
+          },
+          {
+            name: { it: 'Prenotazioni', en: 'Bookings' },
+            routerLink: '/bookings',
+          },
+        ],
+      },
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4' },
+              items: [
+                {
+                  id: 'bookings-cards',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
+                    itemsLayout: {
+                      direction: 'column',
+                      align: 'start',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      wrap: 'wrap',
+                      justify: 'around',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'title',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          subTitle: {
+                            key: 'subtitle',
+                            fontSize: 'md',
+                            fontWeight: 'semibold',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'date',
+                            type: 'date',
+                            format: 'dd/MM/yyyy HH:mm',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            valueStyle: {
+                              fontSize: 'md',
+                              fontWeight: 'normal',
+                              color: 'dark',
+                              lineHeight: 'xxl',
+                            },
+                            label: {
+                              fontWeight: 'semibold',
+                              text: {
+                                it: 'Data e ora',
+                                en: 'Date and time',
+                              },
+                            },
+                          },
+                          {
+                            key: 'prescription',
+                            type: 'array',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
+                            // itemKey: 'title',
+                            valueStyle: {
+                              fontSize: 'md',
+                              fontWeight: 'normal',
+                              color: 'dark',
+                              lineHeight: 'md',
+                            },
+                            listStyle: 'comma',
+                            label: {
+                              fontWeight: 'semibold',
+                              text: { it: 'Prestazioni', en: 'Services' },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'delete',
+                            label: {
+                              text: {
+                                it: `Cancella prenotazione`,
+                                en: 'Delete booking',
+                              },
+                            },
+                            type: 'callback',
+                            renderAs: 'button',
+                            className: 'btn btn-danger',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'deleteBooking',
+                              params: ['id'],
+                            },
+                            disabledIf: [{ key: 'isPreviousDate', operator: 'eq', value: true }],
+                            // hideIf: [{ key: 'attachment.type', operator: 'eq', value: 'LINK' }],
+                            // TEST hideIf: nasconde "Scarica" se lo stato pagamento è PENDING
+                            //    hideIf: [{ key: 'paymentInfo.status', operator: 'eq', value: 'PAYED' }],
+                            //  hideMessage: { text: { it: 'Pagamento in sospeso', en: 'Payment pending' } },
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
-              },
+              ],
             },
           },
         },
-        notFoundMessage: {
-          imageBlockConfig: {
-            id: 'bookingsNotFound',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
+      ],
+      errorMessage: {
+        imageBlockConfig: {
+          id: 'errorMessage',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'gap-2',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+            decorative: true,
+            alt: { it: 'Errore', en: 'Error' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Errore', en: 'Error' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
             },
-            clickable: false,
-            image: {
-              type: 'url',
-              value:
-                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
-              decorative: true,
-              alt: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
-              height: '150px',
+            subTitle: {
+              text: {
+                it: 'Si è verificato un errore durante il recupero delle prenotazioni. Riprova più tardi.',
+                en: 'An error occurred while fetching the bookings. Please try again later.',
+              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
             },
-            text: {
-              title: {
-                text: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
+          },
+        },
+      },
+      notFoundMessage: {
+        imageBlockConfig: {
+          id: 'bookingsNotFound',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'gap-2',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value:
+              'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+            decorative: true,
+            alt: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
+            },
+            subTitle: {
+              text: {
+                it: 'La tua richiesta non ha prodotto risultati.',
+                en: 'Your request did not produce any results.',
               },
-              subTitle: {
-                text: {
-                  it: 'La tua richiesta non ha prodotto risultati.',
-                  en: 'Your request did not produce any results.',
-                },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
-              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
             },
           },
         },

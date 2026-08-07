@@ -65,5 +65,364 @@
   },
   "units-page": {
     "search-label": "Search for service"
+  },
+  "bookings-hero": {
+    "bookings-list": {
+      "breadcrumb": {
+        "title": "Bookings",
+        "subtitle": "View and manage your upcoming bookings.",
+        "new-booking": "New booking"
+      },
+      "card": {
+        "structure": "Facility",
+        "structure-address": "Facility address",
+        "date-time": "Date and time",
+        "prescription": "Service",
+        "prescriptions": "Services",
+        "delete": "Delete booking",
+        "unitDescription": "Unit",
+        "thirdPart": "Booked for",
+        "goToDetails": "View details"
+      },
+      "empty-list": "No bookings available",
+      "delete-modal": {
+        "title": "Warning",
+        "body": "Are you sure you want to delete the booking?",
+        "cancel": "Cancel",
+        "confirm": "Delete booking"
+      },
+      "search-by-nre": {
+        "title": "Retrieve your booking",
+        "subtitle": "Enter the NRE code of your electronic prescription and your tax code in the respective fields to access your booking.",
+        "fiscalCode": "Tax code",
+        "number-prescription": "Electronic prescription number (NRE)",
+        "forward": "Retrieve",
+        "required-error": "the field is required"
+      },
+      "nre-tab-title": "Bookings with prescription",
+      "free-prof-tab-title": "Private practice bookings",
+      "future-appointments": "Upcoming appointments",
+      "empty-future-appointments": "There are no upcoming appointments",
+      "past-appointments": "Past appointments",
+      "empty-past-appointments": "There are no past appointments"
+    },
+    "booking-new": {
+      "breadcrumb": {
+        "title": "New booking",
+        "subtitle": "Make a new booking at one of our facilities, through the National Health Service or private practice."
+      },
+      "booking-type": {
+        "select-type": "How would you like to book?",
+        "type": "Select the booking type",
+        "nre-title": "National Health Service",
+        "nre-description": "Book using an electronic prescription for yourself",
+        "nre_delegate-title": "National Health Service for other people",
+        "nre_delegate-description": "Book using an electronic prescription for other people",
+        "free_prof-title": "Private practice",
+        "free_prof-description": "Book through private practice for yourself",
+        "free_prof_delegate-title": "Private practice for other people",
+        "free_prof_delegate-description": "Book through private practice for other people"
+      },
+      "prescription-upload": {
+        "title": "Electronic prescription data",
+        "form": {
+          "fiscalCode": "Tax code",
+          "number-prescription": "Electronic prescription number (NRE)",
+          "forward": "Next"
+        }
+      },
+      "summary": {
+        "title": "Summary",
+        "type": "System",
+        "structure": "Facility",
+        "address": "Address",
+        "date-time": "Date and time",
+        "prescription": "Service",
+        "prescriptions": "Services",
+        "change-date": "Change date and time"
+      },
+      "availability": {
+        "title": "First available date",
+        "title2": "Other availabilities",
+        "empty-list": "No availability available",
+        "card": {
+          "availability": "Book date"
+        },
+        "confirm-modal": {
+          "title": "Confirm booking",
+          "body": "Are you sure you want to book the date {{date}}?",
+          "cancel": "Cancel",
+          "confirm": "Book"
+        }
+      },
+      "confirmation": {
+        "title": "Personal data",
+        "form": {
+          "name": "First name",
+          "surname": "Last name",
+          "email": "Email",
+          "phone": "Mobile phone",
+          "confirm": "Confirm booking"
+        },
+        "modal": {
+          "title": "Confirmation",
+          "body": "Are you sure you want to confirm the booking?",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "confirmed-booking": "Booking confirmed!",
+        "confirmed-text": "The booking was completed successfully.",
+        "go-payment": "Back to the bookings list"
+      },
+      "missing-data": {
+        "title": "Enter the missing data to complete your profile",
+        "address": "Residence address",
+        "house-num": "House number",
+        "province": "Province (abbreviation)",
+        "city": "City of residence",
+        "confirm-button": "Confirm",
+        "falseStatementsDisclaimer": "I declare that I am aware of the criminal penalties provided for false statements referred to in articles 46, 75 and 76 of Presidential Decree 445/2000"
+      },
+      "available-days": {
+        "title": "Select availability",
+        "noAvailableDays": "No availability for the requested service."
+      },
+      "available-appointments": {
+        "title": "Select time",
+        "noAvailableAppointments": "No availability for the requested service."
+      },
+      "confirm-appointment": {
+        "title": "Confirm the appointment",
+        "informative-disclaimer": "I declare that I am aware that failure to comply with the Conditions and Prescriptions indicated in the schedule will result in the non-delivery of the services and the loss of the right to a refund.",
+        "confirm-button": "Confirm booking",
+        "cancel-button": "Cancel"
+      },
+      "confirmed-appointment": {
+        "title": "Your appointment",
+        "calendar-button": "Add to calendar",
+        "print-button": "Print reminder and IUV payment code",
+        "email-button": "Send reminder and IUV payment code by email",
+        "pay-button": "Pay online"
+      },
+      "summary-hero": {
+        "summary": "Summary",
+        "edit": "Edit",
+        "bookingType": "Booking type",
+        "nre": "NRE",
+        "services": "Services",
+        "day": "Date",
+        "hour": "Time",
+        "book-for": "Booking for",
+        "booking-type": {
+          "nre": "NHS",
+          "nre_delegate": "NHS for other people",
+          "free_prof": "Private practice",
+          "free_prof_delegate": "Private practice for other people",
+          "nre_to_move": "NHS - reschedule",
+          "free_prof_to_move": "Private practice - reschedule"
+        }
+      },
+      "select-medical-service": {
+        "title": "Select the service",
+        "search-service": "Select the service from the list (required)",
+        "search-physician": "Select the physician from the list (required)"
+      },
+      "delega": {
+        "select-delega-type-title": "In what capacity are you booking?",
+        "select-delega-type": "Select delegation type",
+        "self-declaration-title": "Consent management for another person",
+        "self-declaration-subtitle": "I am booking as: ",
+        "self-declaration-auth": "SELF-DECLARATION",
+        "self-declaration-text": "Pursuant to and for the purposes of articles 46 and 47 of Presidential Decree 445/2000, and aware of the criminal liability and the resulting penalties provided for by article 76 of Presidential Decree 445/2000 in the event of false statements, falsification of documents, use of false documents, as well as the loss of any benefits obtained following measures issued on the basis of untruthful statements, as provided for by article 75 of Presidential Decree 445/2000, I confirm the truthfulness of all personal information provided on this Platform.",
+        "declarantForm-tab-title": "Declarant data",
+        "bookingPersonForm-tab-title": "Patient data",
+        "bookingPersonForm": {
+          "title": "Consent management for another person",
+          "subtitle": "Aware of the criminal penalties referred to in article 76 of Presidential Decree 445 of 28.12.2000 in the event of false statements and the creation or use of false documents,",
+          "subtitle-2": "I declare that I am the: <strong>{{ delegateType }}</strong> <br /> in order to be able to book the service on behalf of:",
+          "informative": "I consent to the processing of personal data for the purposes indicated in the privacy notice.",
+          "firstName": "First name",
+          "lastName": "Last name",
+          "birthDate": "Date of birth",
+          "birthCountry": "Country of birth",
+          "birthProvince": "Province of the city of birth",
+          "birthCity": "City of birth",
+          "taxCode": "Tax code",
+          "currentProvince": "Province of residence",
+          "currentCity": "City of residence",
+          "currentCityCap": "ZIP code",
+          "address": "Residence address",
+          "houseNumber": "House number",
+          "go-to-declarant-form": "Back to personal data"
+        },
+        "declarantForm": {
+          "title": "Consent management for another person",
+          "subtitle": "The undersigned <strong>{{user}}</strong> with tax code <strong>{{userFiscalCode}}</strong>",
+          "subtitle-2": "Enter the required data",
+          "birthDate": "Date of birth",
+          "birthCountry": "Country of birth",
+          "birthProvince": "Province of the city of birth",
+          "birthCity": "City of birth",
+          "currentProvince": "Province of residence",
+          "currentCity": "City of residence",
+          "currentCityCap": "ZIP code",
+          "address": "Residence address",
+          "go-to-person-form": "Fill in patient data"
+        },
+        "required-error": "the field is required",
+        "cf-format-error": "the entered tax code format is incorrect",
+        "date-format-error": "enter a valid date"
+      }
+    },
+    "booking-details": {
+      "breadcrumb": {
+        "title": "Booking details",
+        "subtitle": "View and manage your booking"
+      },
+      "print-button": "Print",
+      "email-button": "Send info by email",
+      "cancel-button": "Delete",
+      "reschedule-button": "Reschedule",
+      "cancel-confirm-title": "Booking deleted",
+      "cancel-confirm-info": "The booking was deleted successfully"
+    },
+    "booking-reschedule": {
+      "breadcrumb": {
+        "title": "Booking management",
+        "subtitle": "Manage your booking"
+      }
+    }
+  },
+  "bookings": {
+    "bookings-list": {
+      "breadcrumb": {
+        "title": "Bookings",
+        "subtitle": "View and manage your upcoming bookings.",
+        "new-booking": "New booking"
+      },
+      "card": {
+        "date-time": "Date and time",
+        "prescription": "Service",
+        "prescriptions": "Services",
+        "delete": "Delete booking"
+      },
+      "empty-list": "No bookings available",
+      "delete-modal": {
+        "title": "Warning",
+        "body": "Are you sure you want to delete the booking?",
+        "cancel": "Cancel",
+        "confirm": "Delete booking"
+      },
+      "error-list": "No services were found, please contact the facility or try again later."
+    },
+    "booking-new": {
+      "breadcrumb": {
+        "title": "New booking",
+        "subtitle": "Make a new booking at one of our facilities, through the National Health Service or private practice."
+      },
+      "booking-type": {
+        "select-type": "How would you like to book?",
+        "type": "Select the booking type",
+        "ssn": {
+          "title": "National Health Service",
+          "description": "Book using an electronic prescription and access conventional services."
+        },
+        "private": {
+          "title": "Private practice",
+          "description": "Book privately and access all services with the shortest possible waiting times."
+        }
+      },
+      "prescription-upload": {
+        "title": "Electronic prescription data",
+        "form": {
+          "fiscalCode": "Tax code",
+          "number-prescription": "Electronic prescription number (NRE)",
+          "forward": "Next"
+        }
+      },
+      "summary": {
+        "title": "Summary",
+        "type": "System",
+        "structure": "Facility",
+        "address": "Address",
+        "date-time": "Date and time",
+        "prescription": "Service",
+        "prescriptions": "Services",
+        "change-date": "Change date and time",
+        "amount": "Amount",
+        "doctor": "Doctor",
+        "edit": "Change"
+      },
+      "availability": {
+        "title": "First available date",
+        "title2": "Other availabilities",
+        "empty-list": "No availability was found or a booking already exists for the entered prescription.",
+        "card": {
+          "availability": "Book date"
+        },
+        "confirm-modal": {
+          "title": "Confirm booking",
+          "body": "Are you sure you want to book the date {{date}}?",
+          "cancel": "Cancel",
+          "confirm": "Book"
+        },
+        "error-list": "No availability was found or a booking already exists for the entered prescription."
+      },
+      "private-booking-list": {
+        "title": "Booking",
+        "search": "Service to search",
+        "empty-list": "No bookable services available",
+        "confirm-modal": {
+          "title": "Confirm service",
+          "body": "Are you sure you want to book: <br><b>{{descPrest}}</b>?",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "error-list": "No services were found, please contact the facility or try again later."
+      },
+      "private-doctor-selector": {
+        "title": "Select a doctor",
+        "search": "Doctor to search",
+        "doctor-no-result": "No doctor found for the search performed",
+        "empty-list": "No doctors are available for this service.",
+        "confirm-modal": {
+          "title": "Confirm doctor",
+          "body": "Do you confirm the selection of doctor <b>{{descMedico}}</b>?",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "return-booking": "Back to services"
+      },
+      "private-booking-availability": {
+        "title": "Available dates",
+        "error-list": "No availability was found, please contact the facility or try again later.",
+        "empty-list": "No availability was found, please try again later."
+      },
+      "confirmation": {
+        "title": "Personal data",
+        "form": {
+          "name": "First name",
+          "surname": "Last name",
+          "email": "Email",
+          "phone": "Mobile phone",
+          "confirm": "Confirm booking"
+        },
+        "modal": {
+          "title": "Confirmation",
+          "body": "Are you sure you want to confirm the booking?",
+          "cancel": "Cancel",
+          "confirm": "Confirm"
+        },
+        "confirmed-booking": "Booking confirmed!",
+        "confirmed-text": "The booking was completed successfully.",
+        "confirmed-text-memo": "Remember to bring the payment receipt to the facility.",
+        "go-payment": "Go to the payments list",
+        "error-500": {
+          "title": "Error",
+          "body": "A problem occurred during the booking. Before trying again, check in your bookings whether it was completed successfully."
+        },
+        "go-bookings": "Go to your bookings"
+      }
+    }
   }
 }

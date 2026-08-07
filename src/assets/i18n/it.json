@@ -292,5 +292,137 @@
   },
   "units-page": {
     "search-label": "Cerca prestazione"
+  },
+  "bookings": {
+    "bookings-list": {
+      "breadcrumb": {
+        "title": "Prenotazioni",
+        "subtitle": "Visualizza e gestisci le tue prenotazioni future.",
+        "new-booking": "Nuova prenotazione"
+      },
+      "card": {
+        "date-time": "Data e ora",
+        "prescription": "Prestazione",
+        "prescriptions": "Prestazioni",
+        "delete": "Cancella prenotazione"
+      },
+      "empty-list": "Nessuna prenotazione presente",
+      "delete-modal": {
+        "title": "Attenzione",
+        "body": "Sei sicuro di voler cancellare la prenotazione?",
+        "cancel": "Annulla",
+        "confirm": "Cancella prenotazione"
+      },
+      "error-list": "Non sono state trovate prestazioni, contattare la struttura oppure riprovare più tardi."
+    },
+    "booking-new": {
+      "breadcrumb": {
+        "title": "Nuova prenotazione",
+        "subtitle": "Effettua una nuova prenotazione presso una dei nostri clienti, tramite Sistema Sanitario Nazionale o libera professione."
+      },
+      "booking-type": {
+        "select-type": "Come vuoi prenotare?",
+        "type": "Seleziona la tipologia di prenotazioni",
+        "ssn": {
+          "title": "Servizio Sanitario Nazionale",
+          "description": "Prenota tramite ricetta elettronica e accedi ai servizi convenzionali."
+        },
+        "private": {
+          "title": "Libera professione",
+          "description": "Prenota in regime di privato e accedi a tutte le prestazioni con i minori tempi di attesa possibili."
+        }
+      },
+      "prescription-upload": {
+        "title": "Dati ricetta elettronica",
+        "form": {
+          "fiscalCode": "Codice Fiscale",
+          "number-prescription": "Numero ricetta elettronica (NRE)",
+          "forward": "Avanti"
+        }
+      },
+      "summary": {
+        "title": "Riepilogo",
+        "type": "Sistema",
+        "structure": "Struttura",
+        "address": "Indirizzo",
+        "date-time": "Data e ora",
+        "prescription": "Prestazione",
+        "prescriptions": "Prestazioni",
+        "change-date": "Cambia data e ora",
+        "amount": "Importo",
+        "doctor": "Medico",
+        "edit": "Cambia"
+      },
+      "availability": {
+        "title": "Prima data disponibile",
+        "title2": "Altre disponibilità",
+        "empty-list": "Non sono state trovate disponibilità oppure esiste già una prenotazione per la ricetta inserita.",
+        "card": {
+          "availability": "Prenota data"
+        },
+        "confirm-modal": {
+          "title": "Conferma prenotazione",
+          "body": "Sei sicuro di voler prenotare per la data {{date}}?",
+          "cancel": "Annulla",
+          "confirm": "Prenota"
+        },
+        "error-list": "Non sono state trovate disponibilità oppure esiste già una prenotazione per la ricetta inserita."
+      },
+      "private-booking-list": {
+        "title": "Prenotazione",
+        "search": "Prenotazione da cercare",
+        "empty-list": "Nessuna prestazione prenotabile",
+        "confirm-modal": {
+          "title": "Conferma prestazione",
+          "body": "Sei sicuro di voler prenotare: <br><b>{{descPrest}}</b>?",
+          "cancel": "Annulla",
+          "confirm": "Conferma"
+        },
+        "error-list": "Non sono state trovate prestazioni, contattare la struttura oppure riprovare più tardi."
+      },
+      "private-doctor-selector": {
+        "title": "Seleziona un medico",
+        "search": "Medico da cercare",
+        "doctor-no-result": "Nessun medico trovato per la ricerca effettuata",
+        "empty-list": "Non sono disponibili medici per questa prestazione.",
+        "confirm-modal": {
+          "title": "Conferma medico",
+          "body": "Confermi la selezione del medico <b>{{descMedico}}</b>?",
+          "cancel": "Annulla",
+          "confirm": "Conferma"
+        },
+        "return-booking": "Torna alle prestazioni"
+      },
+      "private-booking-availability": {
+        "title": "Disponibilità date",
+        "error-list": "Non sono state trovate disponibilità, contattare la struttura oppure riprovare più tardi.",
+        "empty-list": "Non sono state trovate disponibilità, riprovare più tardi."
+      },
+      "confirmation": {
+        "title": "Dati personali",
+        "form": {
+          "name": "Nome",
+          "surname": "Cognome",
+          "email": "Mail",
+          "phone": "Cellulare",
+          "confirm": "Conferma prenotazione"
+        },
+        "modal": {
+          "title": "Conferma",
+          "body": "Sei sicuro di voler confermare la prenotazione?",
+          "cancel": "Annulla",
+          "confirm": "Conferma"
+        },
+        "confirmed-booking": "Prenotazione confermata!",
+        "confirmed-text": "La prenotazione è andata a buon fine.",
+        "confirmed-text-memo": "Ricordarsi di portare la ricevuta di pagamento in struttura.",
+        "go-payment": "Vai alla lista pagamenti",
+        "error-500": {
+          "title": "Errore",
+          "body": "Si è verificato un problema durante la prenotazione. Prima di riprovare, verificare nelle prenotazioni se è andata a buon fine."
+        },
+        "go-bookings": "Vai alle tue prenotazioni"
+      }
+    }
   }
 }

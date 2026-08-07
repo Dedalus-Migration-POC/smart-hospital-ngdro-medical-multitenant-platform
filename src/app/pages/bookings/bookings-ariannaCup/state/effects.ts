@@ -10,9 +10,6 @@ import {
   fetchBookingList,
   fetchBookingListFailure,
   fetchBookingListSuccess,
-  // fetchCardMultiUseConfigBookingList,
-  // fetchCardMultiUseConfigBookingListFailure,
-  // fetchCardMultiUseConfigBookingListSuccess,
   fetchPrivateBookingList,
   fetchPrivateBookingListFailure,
   fetchPrivateBookingListSuccess,
@@ -30,7 +27,6 @@ import {
   findPrivateListAvailability,
   reserveHttp500,
 } from './actions';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
 import { selectUserPhoneNumber } from 'src/app/pages/user-profile/state/user-profile.selectors';
@@ -45,28 +41,6 @@ export class BookingsEffects {
   private store = inject(Store<SmartHospitalState>);
   private readonly notificationService = inject(ItNotificationService);
   private translate = inject(TranslateService);
-
-  // fetchCardMultiUseConfigBookingList$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(fetchCardMultiUseConfigBookingList),
-  //     concatMap(() =>
-  //       this.bookingsService.fetchCardMultiUseConfigBookingList().pipe(
-  //         map((data: CardMultiUseConfig) =>
-  //           fetchCardMultiUseConfigBookingListSuccess({
-  //             data,
-  //           }),
-  //         ),
-  //         catchError((error) =>
-  //           of(
-  //             fetchCardMultiUseConfigBookingListFailure({
-  //               error,
-  //             }),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   )
-  // })
 
   fetchBookingList$ = createEffect(() =>
     this.actions$.pipe(

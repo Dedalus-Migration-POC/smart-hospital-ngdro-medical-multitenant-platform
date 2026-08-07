@@ -9,8 +9,7 @@ import {
   RESERVE,
   RETRIEVE_PRESTAZIONI,
 } from './mock';
-import { delay, map, Observable, of, throwError } from 'rxjs';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
+import { delay, Observable, of } from 'rxjs';
 import {
   Booking,
   BookingRequest,
@@ -33,22 +32,6 @@ export class BookingsService {
   private readonly IS_DEV = true;
 
   constructor(private http: HttpClient) {}
-
-  // fetchCardMultiUseConfigBookingList(): Observable<CardMultiUseConfig> {
-  //   if (environment?.pathCardMultiUseConfigBookingList) {
-  //     const pathCardMultiUseConfigBookingList =
-  //       window.document.baseURI + environment.pathCardMultiUseConfigBookingList // fetch from assets/tenant/ xxx /config
-  //     return this.http.get<CardMultiUseConfig>(
-  //       pathCardMultiUseConfigBookingList,
-  //     )
-  //   }
-  //   return throwError(
-  //     () =>
-  //       new Error(
-  //         'BookingList: pathCardMultiUseConfigBookingList is not defined',
-  //       ),
-  //   )
-  // }
 
   fetchBookingList(request: TelefonoRequest): Observable<Booking> {
     if (this.IS_DEV) {

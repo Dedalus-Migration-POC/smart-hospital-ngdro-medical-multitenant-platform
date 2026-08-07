@@ -1,5 +1,4 @@
 import { createReducer, on } from '@ngrx/store';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
 import {
   setAvailability,
   setBookingType,
@@ -9,9 +8,6 @@ import {
   fetchBookingList,
   fetchBookingListFailure,
   fetchBookingListSuccess,
-  // fetchCardMultiUseConfigBookingList,
-  // fetchCardMultiUseConfigBookingListFailure,
-  // fetchCardMultiUseConfigBookingListSuccess,
   fetchPrivateBookingList,
   fetchPrivateBookingListFailure,
   fetchPrivateBookingListSuccess,
@@ -46,7 +42,6 @@ import {
 export const featureKey = 'bookingState';
 
 export interface State {
-  // cardMultiUseConfigBookingList: CardMultiUseConfig | null
   bookings: Booking | null;
   bookingLoading: boolean;
   bookingError: boolean;
@@ -74,7 +69,6 @@ export interface State {
 }
 
 export const initialState: State = {
-  // cardMultiUseConfigBookingList: null,
   bookings: null,
   bookingLoading: false,
   bookingError: false,
@@ -103,18 +97,6 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-
-  // on(fetchCardMultiUseConfigBookingList, (state) => ({
-  //   ...state,
-  // })),
-  // on(fetchCardMultiUseConfigBookingListSuccess, (state, action) => ({
-  //   ...state,
-  //   cardMultiUseConfigBookingList: action.data,
-  // })),
-  // on(fetchCardMultiUseConfigBookingListFailure, (state) => ({
-  //   ...state,
-  //   cardMultiUseConfigBookingList: null,
-  // })),
 
   on(fetchBookingList, (state) => ({
     ...state,

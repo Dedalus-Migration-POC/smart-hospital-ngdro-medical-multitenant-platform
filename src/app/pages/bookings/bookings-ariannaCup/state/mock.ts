@@ -17,12 +17,12 @@ export const GET_RESERVATION_LIST: Booking = {
       prescrittoreImpegnativaNome: null,
       services: [
         {
-          date: '09/12/2025 15:00',
+          date: '09/12/2026 15:00',
           code: 'AZIENDA',
           description: 'RAD RAD/T87432L Altra Radiografia Di Coste, Sterno E Clavicola - Sinistra',
         },
         {
-          date: '09/12/2025 15:00',
+          date: '09/12/2026 15:00',
           code: 'AZIENDA2',
           description: 'ORL ORL/T897ORL VISITA GENERALE OTORINOLARINGOIATRICA',
         },
@@ -61,7 +61,7 @@ export const GET_RESERVATION_LIST: Booking = {
       prescrittoreImpegnativaNome: null,
       services: [
         {
-          date: '13/12/2024 10:00',
+          date: '13/12/2026 10:00',
           code: 'AZIENDA',
           description:
             'RAD RAD/T8827AR Radiografia Del Femore, Ginocchio E Gamba - Rx Femore - Destro',

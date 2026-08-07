@@ -14,19 +14,6 @@ import {
   PrivateAvailability,
   MedicoPrestazione,
 } from './model';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
-
-// export const fetchCardMultiUseConfigBookingList = createAction(
-//   '[Bookings] Fetch fetchCardMultiUseConfigBookingList',
-// )
-// export const fetchCardMultiUseConfigBookingListSuccess = createAction(
-//   '[Bookings] Fetch fetchCardMultiUseConfigBookingListSuccess ',
-//   props<{ data: CardMultiUseConfig }>(),
-// )
-// export const fetchCardMultiUseConfigBookingListFailure = createAction(
-//   '[Bookings] Fetch fetchCardMultiUseConfigBookingListFailure',
-//   props<{ error: any }>(),
-// )
 
 export const fetchBookingList = createAction(
   '[Bookings] fetchBookingListRequest',

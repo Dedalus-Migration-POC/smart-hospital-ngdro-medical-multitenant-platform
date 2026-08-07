@@ -5,11 +5,6 @@ export const selectBookingState = createFeatureSelector<fromBookingList.State>(
   fromBookingList.featureKey,
 );
 
-// export const selectCardMultiUseConfigBookingList = createSelector(
-//   selectBookingState,
-//   (state) => state.cardMultiUseConfigBookingList,
-// )
-
 export const selectBookingData = createSelector(selectBookingState, (state) => state.bookings);
 export const selectBookingLoading = createSelector(
   selectBookingState,

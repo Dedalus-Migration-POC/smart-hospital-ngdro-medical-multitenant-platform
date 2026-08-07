@@ -17,16 +17,19 @@ import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { map, take } from 'rxjs';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
+import { Card } from 'src/app/components/card/card';
+import { CardActionsService } from 'src/app/shared/services/card-actions.service';
+import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
 
 @Component({
   selector: 'app-bookings-list',
-  standalone: true,
-  imports: [CommonModule, TranslateModule, Spinner, ImageBlock, Breadcrumb],
+  imports: [CommonModule, TranslateModule, Spinner, ImageBlock, Breadcrumb, Card],
   templateUrl: './bookings-list.component.html',
   styleUrls: ['./bookings-list.component.scss'],
 })
 export class BookingsListComponent implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
+  private cardActionsService = inject(CardActionsService);
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -35,6 +38,41 @@ export class BookingsListComponent implements OnInit {
     ),
     { initialValue: null },
   );
+  readonly cardsConfig = computed<any>(() => {
+    const config = this.pageConfig();
+    const sections = config?.sections;
+    const cardsSection = sections?.find((section: any) => section.id === 'cards-section');
+    const cardsItem = cardsSection?.areas?.center?.items?.find(
+      (item: any) => item.type === 'SERVICE_CARDS',
+    );
+    return cardsItem?.props;
+  });
+  readonly renderedCardsConfig = computed<CompiledCardsContainer>(() => {
+    const cardsConfig = this.cardsConfig();
+    if (!cardsConfig) return { items: [] };
+
+    const templateCard = cardsConfig.items?.[0];
+    return {
+      ...cardsConfig,
+      items: (this.bookingsList()?.bookings ?? []).map((report: any, index: number) => {
+        const compiledActions = this.cardActionsService.compileActions(
+          report,
+          templateCard?.actions as DataCardAction[] | undefined,
+          {
+            callbackContext: this,
+            callbackArgsMode: 'sourceAndParams',
+          },
+        );
+        return {
+          ...report,
+          ...templateCard,
+          id: `card-${index + 1}`,
+          type: 'data',
+          actions: compiledActions,
+        } as any;
+      }),
+    };
+  });
 
   phoneNumber = this.store.selectSignal(selectUserPhoneNumber);
   bookingList = this.store.selectSignal(selectBooking);
@@ -57,7 +95,7 @@ export class BookingsListComponent implements OnInit {
     );
   }
 
-  deleteBooking(indexSchedule: number): void {
+  deleteBooking(booking: any, indexSchedule: number): void {
     const title = this.translateService.instant('bookings.bookings-list.delete-modal.title');
     const body = this.translateService.instant('bookings.bookings-list.delete-modal.body');
     if (window.confirm(`${title}\n\n${body}`)) {
@@ -99,6 +137,7 @@ export class BookingsListComponent implements OnInit {
         bookings = bookingState.data.schedules.map((schedule: Schedule, i: number) => {
           // id =>  schedule index (for easy schedule delete)
           let elem: any = {
+            ...schedule,
             id: i,
             title: schedule.structure,
             ...(schedule.structureAddress &&
@@ -123,7 +162,8 @@ export class BookingsListComponent implements OnInit {
             const isPreviousDate = isValid(firstDate) && isBefore(firstDate, startOfToday());
 
             if (isPreviousDate) {
-              elem.actionDisabled = ['delete'];
+              console.log('++++elem', elem);
+              elem.isPreviousDate = true;
             }
           }
 
@@ -160,8 +200,8 @@ export class BookingsListComponent implements OnInit {
     const phone = this.phoneNumber();
     const schedules = bookingState?.data?.schedules ?? [];
     const schedule = schedules[indexSchedule];
+    console.log('Deleting schedule:', indexSchedule);
     if (!schedule) return;
-
     this.store.dispatch(
       deleteBooking({
         request: {
@@ -172,73 +212,4 @@ export class BookingsListComponent implements OnInit {
       }),
     );
   }
-
-  // private isSameDatesTimesEqual(services: Service[]): boolean {
-  //   if (!Array.isArray(services) || services.length <= 1) return true
-
-  //   const formatDate = 'dd/MM/yyyy HH:mm'
-  //   const firstDate = parse(
-  //     services[0].date?.trim() ?? '',
-  //     formatDate,
-  //     new Date(),
-  //   )
-  //   if (!isValid(firstDate)) return false
-
-  //   for (let i = 1; i < services.length; i++) {
-  //     const date = parse(services[i].date?.trim() ?? '', formatDate, new Date())
-  //     if (!isValid(date) || !isEqual(date, firstDate)) return false
-  //   }
-  //   return true
-  // }
-
-  /*
-   Se le date sono diverse usiamo questo metodo 
-   raggruppa le prescrizioni in base al giorno e data
-   e li ordina in maniera cronologia.
-
-   Mettiamo al config come key prescription-list di tipo gruppo e togliamo date
-   Devi sistemare la parte del setMultiCardUseFromConfig per prevedere la struttura
-  
-   Es.
-      prescription-list = [{
-        date: 'xxxx',
-        prescription: ['xxxxx','xxxxx']
-      }]
-
-  private buildPrescriptionList(
-    services: Service[],
-  ): { date: string; prescription: string[] }[] {
-    const byDate = new Map<string, string[]>()
-
-    for (const s of services ?? []) {
-      const dateKey = (s.date ?? '').trim()
-      if (!dateKey) continue
-
-      const desc = (s.description ?? s.code ?? '').trim()
-      if (!desc) continue
-
-      const list = byDate.get(dateKey) ?? []
-      list.push(desc) // <-- mantieni possibili duplicati
-      byDate.set(dateKey, list)
-    }
-
-    const formatDate = 'dd/MM/yyyy HH:mm'
-    const groups = Array.from(byDate.entries()).map(([date, list]) => ({
-      date,
-      prescription: list,
-    }))
-
-    // sort chronologically; fallback to textual comparison if parsing fails
-    groups.sort((a, b) => {
-      const da = parse((a.date ?? '').trim(), formatDate, new Date())
-      const db = parse((b.date ?? '').trim(), formatDate, new Date())
-      if (isValid(da) && isValid(db)) return da.getTime() - db.getTime()
-      if (isValid(da)) return -1
-      if (isValid(db)) return 1
-      return (a.date ?? '').localeCompare(b.date ?? '')
-    })
-
-    return groups
-  }
-    */
 }
