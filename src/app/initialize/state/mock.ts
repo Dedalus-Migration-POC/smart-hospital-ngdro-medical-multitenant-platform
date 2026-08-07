@@ -3440,100 +3440,700 @@ export const APP_CONFIG: AppConfig = {
     },
     {
       id: '/departments', // === url!
-      name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' }, // Nome nel browser per accessibilità
+      name: { it: 'Dipartimenti', en: 'Departments' }, // Nome nel browser per accessibilità
       route: '/departments',
-      page: {
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
-          subTitle: {
-            it: 'Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale.',
-            en: 'View the contacts, departments, and healthcare services of the Hospital.',
-          },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
-            {
-              name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
-              routerLink: '/departments',
-            },
-          ],
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: 'Dipartimenti', en: 'Departments' },
+        subTitle: {
+          it: 'Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale.',
+          en: 'View the contacts, departments, and healthcare services of the Hospital.',
         },
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
+          },
+          {
+            name: { it: 'Dipartimenti', en: 'Departments' },
+            routerLink: '/departments',
+          },
+        ],
       },
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4' },
+              items: [
+                {
+                  id: 'department-cards',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      wrap: 'wrap',
+                      justify: 'start',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'title',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          // subTitle: {
+                          //   key: 'metaInfo.object',
+                          //   fontSize: 'md',
+                          //   fontWeight: 'semibold',
+                          //   color: 'secondary',
+                          // },
+                        },
+                        fields: [
+                          {
+                            key: 'pavilion',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Padiglione',
+                                en: 'Pavilion',
+                              },
+                            },
+                          },
+                          {
+                            key: 'manager',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Responsabile',
+                                en: 'Manager',
+                              },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'viewUnits',
+                            label: {
+                              text: {
+                                it: 'VEDI REPARTI',
+                                en: 'VIEW UNITS',
+                              },
+                              fontWeight: 'bold',
+                            },
+                            type: 'callback',
+                            renderAs: 'link',
+                            decoration: 'none',
+                            icon: {
+                              value: 'fa-solid fa-arrow-right',
+                              type: 'fa',
+                              position: 'after',
+                            },
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'viewUnits',
+                              params: ['title'],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
     },
     {
       id: '/departments/units', // === url!
-      name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' }, // Nome nel browser per accessibilità
+      name: { it: 'Reparti', en: 'Units' }, // Nome nel browser per accessibilità
       route: '/departments/units', //non serve, non lo possono cambiare
-      page: {
-        backgroundColor: '#ffffff', //o color o img!
-        // backgroundImage: '/assets/images/bg.svg',
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: '{{department}}', en: '{{department}}' },
-          subTitle: {
-            it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
-            en: 'View the units of the department or search for a service.',
-          },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
 
-            {
-              name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
-              routerLink: '/departments',
-            },
-            {
-              name: { it: '{{department}}', en: '{{department}}' },
-              routerLink: '',
-            },
-          ],
+      backgroundColor: '#ffffff', //o color o img!
+      // backgroundImage: '/assets/images/bg.svg',
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: '{{department}}', en: '{{department}}' },
+        subTitle: {
+          it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
+          en: 'View the units of the department or search for a service.',
         },
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
+          },
+
+          {
+            name: { it: 'Dipartimenti', en: 'Departments' },
+            routerLink: '/departments',
+          },
+          {
+            name: { it: '{{department}}', en: '{{department}}' },
+            routerLink: '',
+          },
+        ],
       },
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4' },
+              items: [
+                {
+                  id: 'unit-cards',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      wrap: 'wrap',
+                      justify: 'start',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'title',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          // subTitle: {
+                          //   key: 'metaInfo.object',
+                          //   fontSize: 'md',
+                          //   fontWeight: 'semibold',
+                          //   color: 'secondary',
+                          // },
+                        },
+                        fields: [
+                          {
+                            key: 'pavilion',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Padiglione',
+                                en: 'Pavilion',
+                              },
+                            },
+                          },
+                          {
+                            key: 'manager',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Responsabile',
+                                en: 'Manager',
+                              },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'viewUnit',
+                            label: {
+                              text: {
+                                it: 'VEDI REPARTI',
+                                en: 'VIEW UNITS',
+                              },
+                              fontWeight: 'bold',
+                            },
+                            type: 'callback',
+                            renderAs: 'link',
+                            decoration: 'none',
+                            icon: {
+                              value: 'fa-solid fa-arrow-right',
+                              type: 'fa',
+                              position: 'after',
+                            },
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'viewUnit',
+                              params: ['title'],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
     },
     {
       id: '/departments/units/details', // === url!
-      name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' }, // Nome nel browser per accessibilità
+      name: { it: 'Reparto', en: 'Unit' }, // Nome nel browser per accessibilità
       route: '/departments/units/details', //non serve, non lo possono cambiare
-      page: {
-        backgroundColor: '#ffffff', //o color o img!
-        // backgroundImage: '/assets/images/bg.svg',
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: '{{unit}}', en: '{{unit}}' },
-          subTitle: {
-            it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
-            en: 'View the units of the department or search for a service.',
-          },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
-
-            {
-              name: { it: 'Dipartimenti e reparti', en: 'Departments and Units' },
-              routerLink: '/departments',
-            },
-            {
-              name: { it: '{{department}}', en: '{{department}}' },
-              routerLink: '/departments/units',
-              queryParams: { department: '{{department}}' },
-            },
-            {
-              name: { it: '{{unit}}', en: '{{unit}}' },
-              routerLink: '',
-            },
-          ],
+      backgroundColor: '#ffffff', //o color o img!
+      // backgroundImage: '/assets/images/bg.svg',
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: '{{unit}}', en: '{{unit}}' },
+        subTitle: {
+          it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
+          en: 'View the units of the department or search for a service.',
         },
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
+          },
+
+          {
+            name: { it: 'Dipartimenti', en: 'Departments' },
+            routerLink: '/departments',
+          },
+          {
+            name: { it: '{{department}}', en: '{{department}}' },
+            routerLink: '/departments/units',
+            queryParams: { department: '{{department}}' },
+          },
+          {
+            name: { it: '{{unit}}', en: '{{unit}}' },
+            routerLink: '',
+          },
+        ],
       },
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: ['column', 'md-row'], gap: 'gap-4' },
+            start: {
+              size: { basis: '100%' },
+              layout: {
+                direction: 'column',
+                gap: 'gap-3',
+                align: 'start',
+                wrap: 'nowrap',
+              },
+              items: [
+                {
+                  id: 'unit-general-info-cards',
+                  type: 'SERVICE_CARDS',
+                  className: 'w-100',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'departmentName',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          subTitle: {
+                            key: 'title',
+                            fontSize: 'md',
+                            fontWeight: 'semibold',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'pavilion',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Padiglione',
+                                en: 'Pavilion',
+                              },
+                            },
+                          },
+                          {
+                            key: 'detail.floor',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Piano',
+                                en: 'Floor',
+                              },
+                            },
+                          },
+                          {
+                            key: 'manager',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Responsabile',
+                                en: 'Manager',
+                              },
+                            },
+                          },
+                          {
+                            key: '', // per saltare una riga
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            valueStyle: {
+                              fontSize: 'md',
+                              fontWeight: 'bold',
+                              color: 'white', // per saltare una riga (color di background)
+                              lineHeight: 'md',
+                            },
+                            label: {
+                              fontWeight: 'normal',
+                              text: {
+                                it: '',
+                                en: '',
+                              },
+                            },
+                          },
+                          {
+                            key: 'phoneNumber',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Telefono',
+                                en: 'Phone Number',
+                              },
+                            },
+                          },
+
+                          {
+                            key: 'email',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Email',
+                                en: 'Email',
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+                {
+                  id: 'unit-additional-info-cards',
+                  type: 'SERVICE_CARDS',
+                  className: 'w-100',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'Orario di apertura',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          // subTitle: {
+                          //   key: 'metaInfo.object',
+                          //   fontSize: 'md',
+                          //   fontWeight: 'semibold',
+                          //   color: 'secondary',
+                          // },
+                        },
+                        fields: [
+                          {
+                            key: 'detail.visitTime.mon',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Lunedì',
+                                en: 'Monday',
+                              },
+                            },
+                          },
+                          {
+                            key: 'detail.visitTime.tue',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Martedì',
+                                en: 'Tuesday',
+                              },
+                            },
+                          },
+                          {
+                            key: 'detail.visitTime.wed',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Mercoledì',
+                                en: 'Wednesday',
+                              },
+                            },
+                          },
+                          {
+                            key: 'detail.visitTime.thu',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Giovedì',
+                                en: 'Thursday',
+                              },
+                            },
+                          },
+                          {
+                            key: 'detail.visitTime.fri',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Venerdì',
+                                en: 'Friday',
+                              },
+                            },
+                          },
+                          {
+                            key: 'detail.visitTime.sat',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Sabato',
+                                en: 'Saturday',
+                              },
+                            },
+                          },
+                          {
+                            key: 'detail.visitTime.sun',
+                            type: 'text',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'normal',
+
+                              text: {
+                                it: 'Domenica',
+                                en: 'Sunday',
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+            end: {
+              size: { basis: '100%', width: '100%' },
+              layout: {
+                direction: 'column',
+                gap: 'gap-2',
+                align: 'center',
+                justify: 'start',
+                wrap: 'nowrap',
+              },
+              items: [
+                {
+                  id: 'unit-services-info-cards',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  className: 'w-100',
+                  props: {
+                    itemColBootstrapClasses: 'col-12',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+                    // actionsLayout: {
+                    //   direction: 'row',
+                    //   wrap: 'wrap',
+                    //   justify: 'start',
+                    //   gap: 'gap-2',
+                    // },
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: '',
+                            fontSize: 'lg',
+                            fontWeight: 'bold',
+                            color: 'black',
+                            lineHeight: 'md',
+                          },
+                          // subTitle: {
+                          //   key: 'metaInfo.object',
+                          //   fontSize: 'md',
+                          //   fontWeight: 'semibold',
+                          //   color: 'secondary',
+                          // },
+                        },
+                        fields: [
+                          {
+                            key: 'services',
+                            type: 'array',
+                            rowSize: {
+                              key: { basis: '30%' },
+                              value: { basis: '70%' },
+                            },
+                            // itemKey: 'service',
+                            valueStyle: {
+                              fontSize: 'md',
+                              fontWeight: 'normal',
+                              // color: 'dark',
+                              lineHeight: 'md',
+                            },
+                            listStyle: 'bullet',
+                            label: {
+                              fontWeight: 'bold',
+                              color: 'black',
+                              text: { it: 'Servizi', en: 'Services' },
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
     },
     {
       id: '/payments-pa', // === url!

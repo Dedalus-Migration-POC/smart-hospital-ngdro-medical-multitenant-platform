@@ -59,5 +59,11 @@
       "PAYED": "Paid",
       "VERIFICATION": "Under verification"
     }
+  },
+  "departments-page": {
+    "search-label": "Search for service or department"
+  },
+  "units-page": {
+    "search-label": "Search for service"
   }
 }

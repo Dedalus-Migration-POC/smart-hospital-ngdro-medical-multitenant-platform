@@ -2,20 +2,17 @@
   <app-breadcrumb [config]="breadcrumbConfig()"></app-breadcrumb>
 }
 
-@if (unitDetails(); as unitDetails) {
-  <div class="mb-5 mt-3 unit-details-wrapper">
-    <div class="card-wrapper card-teaser-wrapper">
-      <app-unit-general-info
-        [unitDetails]="unitDetails"
-        [department]="department()"
-      ></app-unit-general-info>
-      <app-unit-services
-        [unitDetails]="unitDetails"
-        [department]="department()"
-      ></app-unit-services>
-      <div class="card card-teaser p-0 m-0 card-hidden"></div>
-    </div>
-  </div>
+@if (pageConfig(); as pageConfig) {
+  @for (section of renderedSections(); track section.id) {
+    <section
+      class="mt-4 mb-4"
+      [attr.id]="section.id"
+      [ngClass]="[section.className ?? '', section.background ? 'bg-' + section.background : '']"
+      [style.height]="section.height ?? null"
+    >
+      <app-areas-layout [areas]="section.areas"></app-areas-layout>
+    </section>
+  }
 }
 
 <!-- @if (!unitDetails()) { <app-no-info></app-no-info> } -->

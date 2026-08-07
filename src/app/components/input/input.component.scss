@@ -1,3 +1,11 @@
 input:disabled {
-	background-color: #e9ecef;
+  background-color: #e9ecef;
+}
+.input-with-icon {
+  padding-left: 2.5rem;
+}
+.input-icon {
+  position: absolute;
+  margin-top: -34px;
+  margin-right: 0.5rem;
 }

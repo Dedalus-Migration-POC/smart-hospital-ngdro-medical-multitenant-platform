@@ -1,43 +1,20 @@
 <!-- @if (clinicalRecordsLoading$ | async) { <app-loading-full-screen></app-loading-full-screen> } -->
-@if (pageConfig()?.page.breadcrumb) {
-  <app-breadcrumb [config]="pageConfig()?.page.breadcrumb"></app-breadcrumb>
+@if (pageConfig()?.breadcrumb) {
+  <app-breadcrumb [config]="pageConfig()?.breadcrumb"></app-breadcrumb>
 }
-
-<h2 class="mt-3 fw-semibold">
-  {{ 'departments-page.departments' | translate }}
-</h2>
 <div class="department-search-wrapper">
-  <div class="form-group mb-3">
-    <div class="input-group">
-      <span class="input-group-text">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </span>
-      <label for="searchText" class="visually-hidden">{{
-        'departments-page.search-label' | translate
-      }}</label>
-      <input
-        type="text"
-        class="form-control"
-        id="searchText"
-        [placeholder]="'departments-page.search-label' | translate"
-        [formControl]="searchText"
-      />
-    </div>
-  </div>
+  <app-input-component
+    [control]="searchText"
+    [fieldName]="'searchText'"
+    [label]="'departments-page.search-label' | translate"
+    [placeholder]="'departments-page.search-label' | translate"
+    [showErrors]="false"
+    [iconClass]="'fa-solid fa-magnifying-glass'"
+  ></app-input-component>
 </div>
+
 @if (departmentsList()) {
-  <div class="d-flex flex-wrap gap-3 mt-4">
-    @for (department of departmentsFiltered(); track $index) {
-      <div class="border rounded p-3">
-        <div class="mb-3">{{ department.title }}</div>
-        <div class="mb-3">{{ department.manager }}</div>
-        <button class="btn btn-primary" (click)="viewUnits(department.title)">View Units</button>
-      </div>
-    }
-  </div>
+  <app-card [config]="renderedCardsConfig()"></app-card>
 } @else {
   <p>{{ 'departments-page.no-departments' | translate }}</p>
 }
-<!-- <div class="mb-5" >
-  <app-card [wrapInList]="true" [cards]="(departments$ | async) ?? []"> </app-card>
-</div> -->

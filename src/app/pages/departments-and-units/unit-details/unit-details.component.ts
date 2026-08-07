@@ -8,21 +8,21 @@ import { CommonModule } from '@angular/common';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
 import { Departments, Unit } from '../state/model';
 import { selectFirebaseObject } from '../../../store/remote-config/remote-config.selectors';
-import { UnitServicesCardComponent } from './services/services.component';
-import { UnitGeneralInfoCardComponent } from './general-info/general-info.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAppConfig } from '../../../initialize/state/selector';
 import { BreadcrumbService } from '../../../components/breadcrumb/breadcrumb.service';
+import { CardActionsService } from 'src/app/shared/services/card-actions.service';
+import {
+  CardsContainer,
+  CompiledCardsContainer,
+  DataCardAction,
+} from 'src/app/components/card/model';
+import { AreasLayout } from 'src/app/shared/layout-system/components/areas-layout/areas-layout';
+import { AreasConfig, Item, LayoutArea } from 'src/app/shared/layout-system/models/layout.model';
 
 @Component({
   selector: 'app-unit-details',
-  imports: [
-    CommonModule,
-    TranslateModule,
-    Breadcrumb,
-    UnitGeneralInfoCardComponent,
-    UnitServicesCardComponent,
-  ],
+  imports: [CommonModule, TranslateModule, Breadcrumb, AreasLayout],
   templateUrl: './unit-details.component.html',
   styleUrls: ['./unit-details.component.scss'],
 })
@@ -30,6 +30,7 @@ export class UnitDetailsComponent {
   private activatedRoute = inject(ActivatedRoute);
   private store = inject(Store<SmartHospitalState>);
   private breadcrumbService = inject(BreadcrumbService);
+  private cardActionsService = inject(CardActionsService);
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -55,9 +56,9 @@ export class UnitDetailsComponent {
     const unit = this.unit();
     const department = this.department();
 
-    if (!config?.page?.breadcrumb) return null;
+    if (!config?.breadcrumb) return null;
 
-    return this.breadcrumbService.interpolateConfig(config.page.breadcrumb, {
+    return this.breadcrumbService.interpolateConfig(config.breadcrumb, {
       department,
       unit,
     });
@@ -71,9 +72,94 @@ export class UnitDetailsComponent {
     const department = this.department();
     const unit = this.unit();
     const departmentsList = this.departmentsList();
-
-    return departmentsList?.departments
+    const selectedUnit = departmentsList?.departments
       ?.find((dep) => dep.title === department)
       ?.units.find((el) => el.title === unit);
+    const unitWithDepartmentName = selectedUnit
+      ? { ...selectedUnit, departmentName: department }
+      : undefined;
+    return unitWithDepartmentName;
   });
+
+  readonly renderedSections = computed(() => {
+    const pageConfig = this.pageConfig();
+
+    if (!pageConfig) {
+      return [];
+    }
+
+    return pageConfig.sections.map((section: any) => ({
+      ...section,
+      areas: this.renderSectionAreas(section.id, section.areas),
+    }));
+  });
+
+  private renderSectionAreas(sectionId: string, areas: AreasConfig): AreasConfig {
+    return {
+      ...areas,
+      start: this.renderArea(sectionId, 'start', areas.start),
+      center: this.renderArea(sectionId, 'center', areas.center),
+      end: this.renderArea(sectionId, 'end', areas.end),
+    };
+  }
+
+  private renderArea(
+    sectionId: string,
+    areaName: 'start' | 'center' | 'end',
+    area: LayoutArea | undefined,
+  ): LayoutArea | undefined {
+    if (!area) {
+      return area;
+    }
+
+    return {
+      ...area,
+      items: area.items.map((item) => this.renderItem(sectionId, areaName, item)),
+    };
+  }
+
+  private renderItem(sectionId: string, areaName: 'start' | 'center' | 'end', item: Item): Item {
+    return {
+      ...item,
+      props: this.renderCardsConfig(item.props as CardsContainer | undefined),
+    };
+  }
+
+  private renderCardsConfig(cardsConfig: CardsContainer | undefined): CompiledCardsContainer {
+    if (!cardsConfig) {
+      return { items: [] };
+    }
+
+    const templateCard = cardsConfig.items?.[0];
+    if (!templateCard || templateCard.type !== 'data') {
+      return {
+        ...cardsConfig,
+        items: [],
+      };
+    }
+
+    return {
+      ...cardsConfig,
+      items: (this.unitDetails() ? [this.unitDetails()] : []).map(
+        (department: any, index: number) => {
+          const compiledActions = this.cardActionsService.compileActions(
+            department,
+            templateCard?.actions as DataCardAction[] | undefined,
+            {
+              callbackContext: this,
+              callbackArgsMode: 'sourceAndParams',
+            },
+          );
+
+          return {
+            ...department,
+            ...templateCard,
+            id: `card-${index + 1}`,
+            type: 'data',
+            actions: compiledActions,
+          } as any;
+        },
+      ),
+    };
+  }
 }

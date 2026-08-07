@@ -286,5 +286,11 @@
       "PAYED": "Pagato",
       "VERIFICATION": "In attesa di verifica"
     }
+  },
+  "departments-page": {
+    "search-label": "Cerca prestazione o dipartimento"
+  },
+  "units-page": {
+    "search-label": "Cerca prestazione"
   }
 }

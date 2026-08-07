@@ -11,10 +11,14 @@ import { selectFirebaseObject } from '../../../store/remote-config/remote-config
 import { Department, Departments } from '../state/model';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAppConfig } from '../../../initialize/state/selector';
+import { Card } from 'src/app/components/card/card';
+import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
+import { CardActionsService } from 'src/app/shared/services/card-actions.service';
+import { InputComponent } from 'src/app/components/input/input.component';
 
 @Component({
   selector: 'app-departments',
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule, Breadcrumb],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule, Breadcrumb, Card, InputComponent],
   templateUrl: './departments.component.html',
   styleUrls: ['./departments.component.scss'],
 })
@@ -25,6 +29,7 @@ export class DepartmentsComponent implements OnInit {
     private translate: TranslateService,
   ) {}
   private store = inject(Store<SmartHospitalState>);
+  private cardActionsService = inject(CardActionsService);
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -62,12 +67,49 @@ export class DepartmentsComponent implements OnInit {
     );
   });
 
+  readonly cardsConfig = computed<any>(() => {
+    const config = this.pageConfig();
+    const sections = config?.sections;
+    const cardsSection = sections?.find((section: any) => section.id === 'cards-section');
+    const cardsItem = cardsSection?.areas?.center?.items?.find(
+      (item: any) => item.type === 'SERVICE_CARDS',
+    );
+    return cardsItem?.props;
+  });
+
+  readonly renderedCardsConfig = computed<CompiledCardsContainer>(() => {
+    const cardsConfig = this.cardsConfig();
+    if (!cardsConfig) return { items: [] };
+
+    const templateCard = cardsConfig.items?.[0];
+    return {
+      ...cardsConfig,
+      items: (this.departmentsFiltered() ?? []).map((department: any, index: number) => {
+        const compiledActions = this.cardActionsService.compileActions(
+          department,
+          templateCard?.actions as DataCardAction[] | undefined,
+          {
+            callbackContext: this,
+            callbackArgsMode: 'sourceAndParams',
+          },
+        );
+        return {
+          ...department,
+          ...templateCard,
+          id: `card-${index + 1}`,
+          type: 'data',
+          actions: compiledActions,
+        } as any;
+      }),
+    };
+  });
+
   ngOnInit(): void {}
 
-  viewUnits(title: string) {
+  viewUnits(department: Department) {
     this.router.navigate([`units`], {
       relativeTo: this.activatedRoute,
-      queryParams: { department: title },
+      queryParams: { department: department.title },
     });
   }
 }

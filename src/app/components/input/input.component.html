@@ -3,6 +3,7 @@
     <input
       [type]="type()"
       [class]="inputClass()"
+      [ngClass]="iconClass() ? 'input-with-icon' : ''"
       [id]="fieldName()"
       [formControl]="control()!"
       [placeholder]="placeholder() ?? label()"
@@ -15,7 +16,12 @@
       [attr.aria-labelledby]="ariaLabelledby() ?? null"
     />
     @if (showLabel()) {
-      <label [for]="fieldName()">{{ label() }}</label>
+      @if (iconClass()) {
+        <i [class]="iconClass() + ' input-icon'"></i>
+      }
+      <label [for]="fieldName()" [ngClass]="iconClass() ? 'input-with-icon' : ''">
+        {{ label() }}</label
+      >
     }
   </div>
 } @else {
@@ -23,6 +29,7 @@
     <input
       [type]="type()"
       [class]="inputClass()"
+      [ngClass]="iconClass() ? 'input-with-icon' : ''"
       [id]="fieldName()"
       [formControlName]="fieldName()"
       [placeholder]="placeholder() ?? label()"
@@ -35,7 +42,12 @@
       [attr.aria-labelledby]="ariaLabelledby() ?? null"
     />
     @if (showLabel()) {
-      <label [for]="fieldName()">{{ label() }}</label>
+      <label [for]="fieldName()" [ngClass]="iconClass() ? 'input-with-icon' : ''">
+        @if (iconClass()) {
+          <i [class]="iconClass() + ' input-icon'"></i>
+        }
+        {{ label() }}</label
+      >
     }
     @if (showErrors() && formGroup()) {
       <app-input-error-component

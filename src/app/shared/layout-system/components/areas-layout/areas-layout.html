@@ -1,5 +1,5 @@
 @if (areas(); as areas) {
-  <div class="w-100 layout-responsive" [ngClass]="getFlexLayoutClasses(areas.layout)">
+  <div class="w-100" [ngClass]="getFlexLayoutClasses(areas.layout)">
     @if (areas.start; as start) {
       @if (start.items.length) {
         <div [ngClass]="getFlexLayoutClasses(start.layout)" [ngStyle]="getSizeStyles(start?.size)">

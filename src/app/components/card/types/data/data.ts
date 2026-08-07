@@ -282,9 +282,9 @@ export class Data {
       return value;
     }
 
-    // if (typeof value === 'number' || typeof value === 'boolean') {
-    //   return String(value);
-    // }
+    if (typeof value === 'number') {
+      return String(value);
+    }
 
     return this.emptyValue;
   }
