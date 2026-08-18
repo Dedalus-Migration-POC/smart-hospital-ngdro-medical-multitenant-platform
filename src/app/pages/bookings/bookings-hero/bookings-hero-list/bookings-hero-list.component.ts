@@ -14,7 +14,7 @@ import {
   selectBookingsListLoading,
 } from '../state/selectors';
 import { compareAsc, compareDesc, format, isFuture, isPast } from 'date-fns';
-import { BookingStepId } from '../state/model';
+import { Availability, BookingStepId } from '../state/model';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { SearchByNreComponent } from './search-by-nre/search-by-nre.component';
 import { Spinner } from 'src/app/components/spinner/spinner';
@@ -23,6 +23,13 @@ import { map, take } from 'rxjs';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
+import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
+import { CardActionsService } from 'src/app/shared/services/card-actions.service';
+import { Card } from 'src/app/components/card/card';
+import {
+  getServiceCardsConfigById,
+  getServiceCardsItems,
+} from 'src/app/shared/utility/cards.utils';
 
 @Component({
   selector: 'app-bookings-hero-list',
@@ -35,6 +42,7 @@ import { ImageBlock } from 'src/app/components/image-block/image-block';
     SearchByNreComponent,
     Breadcrumb,
     ImageBlock,
+    Card,
   ],
   templateUrl: './bookings-hero-list.component.html',
   styleUrls: ['./bookings-hero-list.component.scss'],
@@ -45,6 +53,7 @@ export class BookingsHeroListComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private translateService = inject(TranslateService);
   private store = inject(Store<SmartHospitalState>);
+  private cardActionsService = inject(CardActionsService);
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -68,6 +77,10 @@ export class BookingsHeroListComponent implements OnInit {
   readonly futureReservations = computed(() => {
     const appointments = this.bookingsList()?.appointments ?? [];
     return appointments
+      .map((appointment) => ({
+        ...appointment,
+        dateTime: new Date(appointment.dateTime),
+      }))
       .filter((appointment) => isFuture(new Date(appointment.dateTime)))
       .sort((a, b) => compareAsc(new Date(a.dateTime), new Date(b.dateTime)));
   });
@@ -75,19 +88,63 @@ export class BookingsHeroListComponent implements OnInit {
   readonly pastReservations = computed(() => {
     const appointments = this.bookingsList()?.appointments ?? [];
     return appointments
+      .map((appointment) => ({
+        ...appointment,
+        dateTime: new Date(appointment.dateTime),
+      }))
       .filter((appointment) => isPast(new Date(appointment.dateTime)))
       .sort((a, b) => compareDesc(new Date(a.dateTime), new Date(b.dateTime)));
   });
 
-  // Nota migrazione: il vecchio CardMultiuseService non e' disponibile in questa codebase;
-  // la lista usa quindi rendering diretto delle card mantenendo ordinamento e comportamento.
-  readonly toReadableDateTime = (dateTime: string | number) =>
-    format(new Date(dateTime), 'dd/MM/yyyy HH:mm');
+  readonly cardsSectionItems = computed<any[]>(() => {
+    return getServiceCardsItems(this.pageConfig()?.sections, '/bookings-hero');
+  });
 
-  goToDetails(id: string) {
+  readonly cardsConfig = computed<any>(() =>
+    getServiceCardsConfigById(this.cardsSectionItems(), 'appointment-cards', '/bookings-hero'),
+  );
+
+  private buildCardsContainer(
+    appointments: (Omit<Availability, 'dateTime'> & { dateTime: Date | number | string })[],
+  ): CompiledCardsContainer {
+    const cardsConfig = this.cardsConfig();
+    if (!cardsConfig) return { items: [] };
+
+    const templateCard = cardsConfig.items?.[0];
+    return {
+      ...cardsConfig,
+      items: (appointments ?? []).map((appointment: any, index: number) => {
+        const compiledActions = this.cardActionsService.compileActions(
+          appointment,
+          templateCard?.actions as DataCardAction[] | undefined,
+          {
+            callbackContext: this,
+            callbackArgsMode: 'sourceAndParams',
+          },
+        );
+        return {
+          ...appointment,
+          ...templateCard,
+          id: `card-${index + 1}`,
+          type: 'data',
+          actions: compiledActions,
+        } as any;
+      }),
+    };
+  }
+
+  readonly renderedCardsConfigFutureReservations = computed<CompiledCardsContainer>(() => {
+    return this.buildCardsContainer(this.futureReservations());
+  });
+
+  readonly renderedCardsConfigPastReservations = computed<CompiledCardsContainer>(() => {
+    return this.buildCardsContainer(this.pastReservations());
+  });
+
+  goToDetails(appointment: Availability) {
     this.router.navigate([`details`], {
       relativeTo: this.activatedRoute,
-      queryParams: { id: id },
+      queryParams: { id: appointment.id },
     });
   }
 

@@ -162,7 +162,6 @@ export class BookingsListComponent implements OnInit {
             const isPreviousDate = isValid(firstDate) && isBefore(firstDate, startOfToday());
 
             if (isPreviousDate) {
-              console.log('++++elem', elem);
               elem.isPreviousDate = true;
             }
           }

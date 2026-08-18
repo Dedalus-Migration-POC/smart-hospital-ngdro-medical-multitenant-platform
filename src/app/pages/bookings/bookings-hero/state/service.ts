@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { delay, EMPTY, map, Observable, of, switchMap, tap, throwError, timer } from 'rxjs';
 import {
   AVAILABLE_DAYS_RESPONSE,
+  AVAILABLE_DAYS_RESPONSE_BY_NRE,
   CITIES,
   CONSENTS,
   HEALTHCARE_UNIT_LIST,
@@ -44,8 +45,6 @@ import {
   Service,
 } from './model';
 import { addMinutes, getUnixTime } from 'date-fns';
-// import { environment } from 'src/environments/environment'
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
 
 @Injectable({
   providedIn: 'root',
@@ -494,7 +493,7 @@ export class BookingsHeroService {
 
       return of({
         sessionId: 'sessionId-/reservations/find',
-        appointments: AVAILABLE_DAYS_RESPONSE.appointments!,
+        appointments: AVAILABLE_DAYS_RESPONSE_BY_NRE.appointments!,
         expireOn: addMinutes(new Date(), 15).getTime() / 1000,
       }).pipe(delay(500));
     }
@@ -533,23 +532,6 @@ export class BookingsHeroService {
     }
     return this.http.post<FindBookingsResp>(path, {});
   }
-
-  // fetchCardMultiUseConfigBookingList(): Observable<CardMultiUseConfig> {
-  //   if (environment?.pathCardMultiUseConfigBookingList) {
-  //     const pathCardMultiUseConfigBookingList =
-  //       window.document.baseURI +
-  //       environment.pathCardMultiUseConfigBookingHeroList // fetch from assets/tenant/ xxx /config
-  //     return this.http.get<CardMultiUseConfig>(
-  //       pathCardMultiUseConfigBookingList,
-  //     )
-  //   }
-  //   return throwError(
-  //     () =>
-  //       new Error(
-  //         'BookingList: pathCardMultiUseConfigBookingHeroList is not defined',
-  //       ),
-  //   )
-  // }
 
   fetchAvailableDaysForRescheduleAppointment(
     payload: RescheduleAppointmentPayload,

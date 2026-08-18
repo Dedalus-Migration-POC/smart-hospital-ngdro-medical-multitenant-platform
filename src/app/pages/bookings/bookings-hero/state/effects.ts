@@ -36,9 +36,6 @@ import {
   fetchBookingsList,
   fetchBookingsListFailure,
   fetchBookingsListSuccess,
-  // fetchCardMultiUseConfigBookingList,
-  // fetchCardMultiUseConfigBookingListFailure,
-  // fetchCardMultiUseConfigBookingListSuccess,
   fetchCitiesList,
   fetchCitiesListFailure,
   fetchCitiesListSuccess,
@@ -110,7 +107,6 @@ import { BookingsHeroService } from './service';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectBookingHeroSummary } from './selectors';
 import { BookingStepId } from './model';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 import { TranslateService } from '@ngx-translate/core';
@@ -1145,35 +1141,6 @@ export class BookingsHeroEffects {
       ),
     ),
   );
-
-  // fetchCardMultiUseConfigBookingList$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(fetchCardMultiUseConfigBookingList),
-  //     concatMap(() =>
-  //       this.bookingsHeroService.fetchCardMultiUseConfigBookingList().pipe(
-  //         map((data: CardMultiUseConfig) =>
-  //           fetchCardMultiUseConfigBookingListSuccess({
-  //             data,
-  //           }),
-  //         ),
-  //         catchError((error) => {
-  //           this.notificationService.error(
-  //             this.translate.instant('commons.error'),
-  //             this.translate.instant('commons.generic-error'),
-  //             true,
-  //             4000,
-  //             NotificationPosition.Top,
-  //           )
-  //           return of(
-  //             fetchCardMultiUseConfigBookingListFailure({
-  //               error,
-  //             }),
-  //           )
-  //         }),
-  //       ),
-  //     ),
-  //   )
-  // })
 
   fetchAvailableDaysForRescheduleAppointment$ = createEffect(() =>
     this.actions$.pipe(

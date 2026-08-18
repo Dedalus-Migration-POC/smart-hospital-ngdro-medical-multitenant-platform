@@ -18,7 +18,6 @@ import {
   Service,
   SummaryBookingHero,
 } from './model';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
 
 export const featureKey = 'bookingHeroState';
 
@@ -106,7 +105,6 @@ export interface State {
   bookingsList: FindBookingsResp | null;
   bookingsListLoading: boolean;
   bookingsListError: boolean;
-  // cardMultiUseConfigBookingList: CardMultiUseConfig | null
   cancelAppointmentResp: any;
   cancelAppointmentLoading: boolean;
   cancelAppointmentError: boolean;
@@ -193,7 +191,6 @@ export const initialState: State = {
   bookingsList: null,
   bookingsListLoading: false,
   bookingsListError: false,
-  // cardMultiUseConfigBookingList: null,
   cancelAppointmentResp: null,
   cancelAppointmentLoading: false,
   cancelAppointmentError: false,
@@ -600,17 +597,6 @@ export const reducer = createReducer(
     bookingsListLoading: false,
     bookingsListError: true,
   })),
-  // on(BookingHeroActions.fetchCardMultiUseConfigBookingList, (state) => ({
-  //   ...state,
-  // })),
-  // on(BookingHeroActions.fetchCardMultiUseConfigBookingListSuccess, (state, action) => ({
-  //   ...state,
-  //   cardMultiUseConfigBookingList: action.data,
-  // })),
-  // on(BookingHeroActions.fetchCardMultiUseConfigBookingListFailure, (state) => ({
-  //   ...state,
-  //   cardMultiUseConfigBookingList: null,
-  // })),
 
   on(BookingHeroActions.cancelAppointment, (state) => ({
     ...state,

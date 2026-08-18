@@ -1,5 +1,5 @@
 @if (pageConfig(); as pageConfig) {
-  @if (pageConfig.page.breadcrumb) {
+  @if (pageConfig.breadcrumb) {
     <app-breadcrumb [config]="breadcrumbConfig()"></app-breadcrumb>
   }
   @if (loading()) {
@@ -9,61 +9,13 @@
       [className]="'flex-column gap-3 text-secondary'"
     ></app-spinner>
   }
-  <div class="row justify-content-center mt-5 mb-5">
-    <div class="col-12 col-lg-8">
-      <div class="w-100 d-flex flex-column">
-        @if (bookingDetails(); as bookingDetails) {
-          <div class="card card-teaser no-after shadow-sm border-light">
-            <div class="card-body--multi-use d-flex flex-column h-100 w-100">
-              <div class="card-title mb-3 lh-sm text-capitalize cursor-default h4">
-                Prenotazione
-              </div>
-              <div class="card-content d-flex flex-column w-100">
-                @for (el of appointmentInfo; track el) {
-                  <div>
-                    @if (el.value) {
-                      <div class="row pb-3">
-                        <div class="col-12 col-sm-4 confirm-info-label">
-                          {{ el.label }}
-                        </div>
-                        <div class="col confirm-info-value">{{ el.value }}</div>
-                      </div>
-                    }
-                  </div>
-                }
-              </div>
-              <div class="buttons-container">
-                <button type="button" class="btn btn-outline-primary" (click)="onPrintMemo()">
-                  {{ 'bookings-hero.booking-details.print-button' | translate }}
-                </button>
-                @if (isAtMostTomorrow(bookingDetails.appointment?.dateTime!)) {
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary"
-                    (click)="onSendEmailNotification()"
-                  >
-                    {{ 'bookings-hero.booking-details.email-button' | translate }}
-                  </button>
-                }
-                @if (isAtMostTomorrow(bookingDetails.appointment?.dateTime!)) {
-                  <button type="button" class="btn btn-primary" (click)="onReschedule()">
-                    {{ 'bookings-hero.booking-details.reschedule-button' | translate }}
-                  </button>
-                }
-                @if (isAtMostTomorrow(bookingDetails.appointment?.dateTime!)) {
-                  <button type="button" class="btn btn-danger" (click)="onCancel()">
-                    {{ 'bookings-hero.booking-details.cancel-button' | translate }}
-                  </button>
-                }
-              </div>
-            </div>
-          </div>
-        } @else {
-          <div class="alert alert-secondary text-center">
-            {{ 'bookings-hero.bookings-list.empty-list' | translate }}
-          </div>
-        }
-      </div>
+  @if (bookingDetails(); as bookingDetails) {
+    <div class="mt-4 mb-4">
+      <app-card [config]="renderedCardsConfig()"></app-card>
     </div>
-  </div>
+  } @else {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig.notFoundMessage.imageBlockConfig"></app-image-block>
+    </div>
+  }
 }

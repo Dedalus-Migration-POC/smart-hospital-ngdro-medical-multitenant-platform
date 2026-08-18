@@ -1,9 +1,5 @@
-import {
-  AvailableDaysResponse,
-  HealthcareUnitList,
-  ServiceRequest,
-} from './model'
-import { addDays, set } from 'date-fns'
+import { AvailableDaysResponse, HealthcareUnitList, ServiceRequest } from './model';
+import { addDays, set } from 'date-fns';
 
 export const PROVINCES: string[] = [
   'AG',
@@ -31,7 +27,7 @@ export const PROVINCES: string[] = [
   'CH',
   'CI',
   'MI',
-]
+];
 
 export const CITIES: string[] = [
   'ACQUAFREDDA',
@@ -49,7 +45,7 @@ export const CITIES: string[] = [
   'AVENONE',
   'MILANO',
   'RAFFADALI',
-]
+];
 
 export const HEALTHCARE_UNIT_LIST: HealthcareUnitList = {
   healthcareUnits: [
@@ -64,11 +60,11 @@ export const HEALTHCARE_UNIT_LIST: HealthcareUnitList = {
       description: 'OSPEDALE DEI BAMBINI G. DI CRISTINA',
     },
   ],
-}
+};
 export const AVAILABLE_DAYS_RESPONSE: AvailableDaysResponse = {
   appointments: [
     {
-      id: 'mbzjn8VUF9BQabyvmD2hjEePuUcglcz49c4nwRgTcGSyV9Ad0g1',
+      id: 'appointment-111',
       dateTime: set(addDays(new Date(), 2), {
         hours: 9,
         minutes: 0,
@@ -79,6 +75,7 @@ export const AVAILABLE_DAYS_RESPONSE: AvailableDaysResponse = {
         state: 'SICILIA',
         address: 'Via P.Za Leotta Nicola, 4',
       },
+      physician: { firstName: 'Mario', lastName: 'Rossi', id: 'physician-111' },
       status: 'AVAILABLE',
       unitDescription: '0801*AMB - CARDIOLOGIA RAGG 2 ALEDEMA',
       billingInfo: [
@@ -108,7 +105,7 @@ export const AVAILABLE_DAYS_RESPONSE: AvailableDaysResponse = {
       delegateFiscalCode: 'SGKFNS81E10F579K',
     },
     {
-      id: '3IFw1UpvLUoo104xgaQWj3grNrkYxA5Mse0jA6bWdv3ihtIxHJ2',
+      id: 'appointment-222',
       dateTime: set(addDays(new Date(), 1), {
         hours: 10,
         minutes: 30,
@@ -128,7 +125,7 @@ export const AVAILABLE_DAYS_RESPONSE: AvailableDaysResponse = {
           finalPrice: 20.66,
         },
       ],
-      descriptionList: ['VISITA GENERALE CARDIOLOGICA'],
+      descriptionList: ['VISITA GENERALE CARDIOLOGICA', 'ELETTROCARDIOGRAMMA'],
       serviceDescriptionList: [
         {
           id: 'CUR-897CA',
@@ -146,7 +143,7 @@ export const AVAILABLE_DAYS_RESPONSE: AvailableDaysResponse = {
       },
     },
     {
-      id: 'mbzjn8VUF9BQabyvmD2hjEePuUcglcz49c4nwRgTcGSyV9Ad0g3',
+      id: 'appointment-333',
       dateTime: set(addDays(new Date(), -2), {
         hours: 11,
         minutes: 0,
@@ -172,7 +169,7 @@ export const AVAILABLE_DAYS_RESPONSE: AvailableDaysResponse = {
       },
     },
     {
-      id: '3IFw1UpvLUoo104xgaQWj3grNrkYxA5Mse0jA6bWdv3ihtIxHJ4',
+      id: 'appointment-444',
       dateTime: set(addDays(new Date(), 2), {
         hours: 17,
         minutes: 30,
@@ -225,7 +222,79 @@ export const AVAILABLE_DAYS_RESPONSE: AvailableDaysResponse = {
     },
   ],
   status: 'OK',
-}
+};
+
+export const AVAILABLE_DAYS_RESPONSE_BY_NRE: AvailableDaysResponse = {
+  appointments: [
+    {
+      id: 'appointment-by-nre-111',
+      dateTime: set(addDays(new Date(), 2), {
+        hours: 9,
+        minutes: 0,
+      }).getTime(),
+      location: {
+        id: '0801*AMB',
+        name: 'AMB 0801: CARDIOLOGIA CARDIOLOGIA CARDIOLOGIAaaaa',
+        state: 'SICILIA',
+        address: 'Via P.Za Leotta Nicola, 4',
+      },
+      status: 'AVAILABLE',
+      unitDescription: '0801*AMB - CARDIOLOGIA RAGG 2 ALEDEMA',
+      billingInfo: [
+        {
+          status: 'REQUIRED',
+          contractName: 'CUR-897CA - VISITA GENERALE CARDIOLOGICA',
+          finalPrice: 20.66,
+        },
+      ],
+      descriptionList: ['VISITA GENERALE CARDIOLOGICA'],
+      serviceDescriptionList: [
+        {
+          id: 'CUR-897CA',
+          description: 'VISITA GENERALE CARDIOLOGICA',
+          notes:
+            "INDICAZIONE PER PAZIENTE ADULTO:\\nPresentarsi a digiuno da almeno 6 ore; portare i precedenti esami. \\n\\nINDICAZIONE PER PAZIENTE PEDIATRICO:\\nADDOME INFERIORE:\\nNON NECESSITA DI DIGIUNO. Portare una bottiglietta d'acqua non gasata almeno 33 cc a temperatura ambiente.",
+        },
+        {
+          id: 'CUR-8952',
+          description: 'ELETTROCARDIOGRAMMA',
+        },
+      ],
+      additionalProperties: {
+        agenda_patient_text: 'NOTE GENERALI AGENDA',
+      },
+      isThirdPart: true,
+      delegateFiscalCode: 'SGKFNS81E10F579K',
+    },
+  ],
+  availableDays: [
+    {
+      id: '1234',
+      date: '2024-04-03',
+      hospitalId: '19092701',
+      hospitalName: 'OSPEDALE CIVICO',
+    },
+    {
+      id: '1234',
+      date: '2024-04-03',
+      hospitalId: '19092701',
+      hospitalName: 'OSPEDALE DEI BAMBINI G. DI CRISTINA',
+    },
+    {
+      id: '12',
+      date: '2024-04-10',
+      hospitalId: '19092701',
+      hospitalName: 'OSPEDALE CIVICO',
+    },
+    {
+      id: '12',
+      date: '2024-04-10',
+      hospitalId: '19092701',
+      hospitalName: 'OSPEDALE DEI BAMBINI G. DI CRISTINA',
+    },
+  ],
+  status: 'OK',
+};
 
 export const SERVICE_REQUEST_LIST: ServiceRequest[] = [
   {
@@ -244,7 +313,7 @@ export const SERVICE_REQUEST_LIST: ServiceRequest[] = [
       authorityCode: '86.30.1',
     },
   },
-]
+];
 
 export const SERVICE_LIST = [
   {
@@ -320,7 +389,7 @@ export const SERVICE_LIST = [
     enabled: true,
     authorityCode: '89.01.3',
   },
-]
+];
 
 export const PHISICIAN_LIST = [
   {
@@ -353,12 +422,11 @@ export const PHISICIAN_LIST = [
     lastName: 'FIRETTO',
     fiscalCode: 'FRTGRG88H26G273U',
   },
-]
+];
 
 export const TYPO_DELEGA_LIST = {
   name: 'tipodelega',
-  description:
-    'Elenco tipo di rapporto con persona delegante per prenotazione vaccini',
+  description: 'Elenco tipo di rapporto con persona delegante per prenotazione vaccini',
   items: [
     {
       key: '1',
@@ -396,7 +464,7 @@ export const TYPO_DELEGA_LIST = {
       leaf: true,
     },
   ],
-}
+};
 
 export const NATIONS = {
   name: 'nations',
@@ -438,7 +506,7 @@ export const NATIONS = {
       childName: 'Italy-cities',
     },
   ],
-}
+};
 
 export const CONSENTS = [
   {
@@ -506,4 +574,4 @@ export const CONSENTS = [
     acceptedDate: null,
     contractCode: 'PCT',
   },
-]
+];

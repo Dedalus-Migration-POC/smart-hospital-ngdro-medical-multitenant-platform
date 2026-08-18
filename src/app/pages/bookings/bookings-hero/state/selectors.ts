@@ -313,11 +313,6 @@ export const selectBookingsListError = createSelector(
   (state) => state.bookingsListError,
 );
 
-// export const selectCardMultiUseConfigBookingList = createSelector(
-//   selectBookingHeroState,
-//   (state) => state.cardMultiUseConfigBookingList,
-// )
-
 export const selectCancelAppointmentLoading = createSelector(
   selectBookingHeroState,
   (state) => state.cancelAppointmentLoading,

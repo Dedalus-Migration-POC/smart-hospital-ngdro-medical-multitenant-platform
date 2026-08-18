@@ -28,7 +28,6 @@ import {
   Service,
   SummaryBookingHero,
 } from './model';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
 
 export const setActiveStep = createAction(
   '[BookingsHero] Set Active Step',
@@ -389,18 +388,6 @@ export const fetchBookingsListSuccess = createAction(
 );
 export const fetchBookingsListFailure = createAction(
   '[BookingsHero] Fetch BookingsList Failure',
-  props<{ error: any }>(),
-);
-
-export const fetchCardMultiUseConfigBookingList = createAction(
-  '[BookingsHero] Fetch fetchCardMultiUseConfigBookingList',
-);
-// export const fetchCardMultiUseConfigBookingListSuccess = createAction(
-//   '[BookingsHero] Fetch fetchCardMultiUseConfigBookingListSuccess ',
-//   props<{ data: CardMultiUseConfig }>(),
-// )
-export const fetchCardMultiUseConfigBookingListFailure = createAction(
-  '[BookingsHero] Fetch fetchCardMultiUseConfigBookingListFailure',
   props<{ error: any }>(),
 );
 

@@ -38,11 +38,27 @@ import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { BreadcrumbService } from 'src/app/components/breadcrumb/breadcrumb.service';
+import {
+  getServiceCardsConfigById,
+  getServiceCardsItems,
+} from 'src/app/shared/utility/cards.utils';
+import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
+import { CardActionsService } from 'src/app/shared/services/card-actions.service';
+import { Card } from 'src/app/components/card/card';
+import { ImageBlock } from 'src/app/components/image-block/image-block';
 
 @Component({
   selector: 'app-booking-hero-details',
   standalone: true,
-  imports: [CommonModule, TranslateModule, DesignAngularKitModule, Spinner, Breadcrumb],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    DesignAngularKitModule,
+    Spinner,
+    Breadcrumb,
+    Card,
+    ImageBlock,
+  ],
   templateUrl: './bookings-hero-details.component.html',
   styleUrls: ['./bookings-hero-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -54,6 +70,7 @@ export class BookingHeroDetailsComponent implements OnInit {
   private translateService = inject(TranslateService);
   private viewContainerRef = inject(ViewContainerRef);
   private breadcrumbService = inject(BreadcrumbService);
+  private cardActionsService = inject(CardActionsService);
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -67,9 +84,9 @@ export class BookingHeroDetailsComponent implements OnInit {
     const bookingId = this.bookingId;
     const nre = this.nre;
 
-    if (!config?.page?.breadcrumb) return null;
+    if (!config?.breadcrumb) return null;
 
-    return this.breadcrumbService.interpolateConfig(config.page.breadcrumb, {
+    return this.breadcrumbService.interpolateConfig(config.breadcrumb, {
       bookingId: bookingId ? bookingId : nre ? nre : '',
     });
   });
@@ -129,23 +146,65 @@ export class BookingHeroDetailsComponent implements OnInit {
     return !isBefore(targetDate, tomorrowStart);
   }
 
+  readonly cardsSectionItems = computed<any[]>(() => {
+    return getServiceCardsItems(this.pageConfig()?.sections, '/bookings-hero/details');
+  });
+
+  readonly cardsConfig = computed<any>(() =>
+    getServiceCardsConfigById(
+      this.cardsSectionItems(),
+      'appointment-card',
+      '/bookings-hero/details',
+    ),
+  );
+
+  readonly renderedCardsConfig = computed<CompiledCardsContainer>(() => {
+    const cardsConfig = this.cardsConfig();
+    if (!cardsConfig) return { items: [] };
+
+    const templateCard = cardsConfig.items?.[0];
+    return {
+      ...cardsConfig,
+      items: (this.bookingDetails() ? [this.bookingDetails()] : []).map(
+        (booking: any, index: number) => {
+          console.log('booking:', booking);
+          const compiledActions = this.cardActionsService.compileActions(
+            booking,
+            templateCard?.actions as DataCardAction[] | undefined,
+            {
+              callbackContext: this,
+              callbackArgsMode: 'sourceAndParams',
+            },
+          );
+          return {
+            ...booking,
+            ...templateCard,
+            id: `card-${index + 1}`,
+            type: 'data',
+            actions: compiledActions,
+          } as any;
+        },
+      ),
+    };
+  });
+
   readonly bookingDetails = computed(() => {
     const bookingsListResp = this.bookingsList();
     const bookingByNreResp = this.bookingByNre();
 
     if (bookingsListResp && this.bookingId) {
       const app = (bookingsListResp?.appointments ?? []).find((el) => el.id === this.bookingId);
-      if (app) {
-        this.getAppointmentInfo(app);
-      }
-      return { ...bookingsListResp, appointment: app };
+      return {
+        ...bookingsListResp,
+        appointment: app && this.getAppointmentInfo(app),
+      };
     }
 
     if (bookingByNreResp) {
-      this.getAppointmentInfo(bookingByNreResp?.appointments[0]);
+      let app = bookingByNreResp?.appointments[0];
       return {
         ...bookingByNreResp,
-        appointment: bookingByNreResp?.appointments[0],
+        appointment: this.getAppointmentInfo(app),
       };
     }
 
@@ -153,47 +212,26 @@ export class BookingHeroDetailsComponent implements OnInit {
   });
 
   getAppointmentInfo(app: Availability) {
-    this.appointmentInfo = [
-      {
-        label: 'Prestazione',
-        value: app.serviceDescriptionList
-          ? app.serviceDescriptionList.map((service) => service.description).join(', ')
-          : app.descriptionList
-            ? app.descriptionList.join(', ')
-            : '',
-      },
-      {
-        label: 'Medico',
-        value: app.physician ? app.physician.firstName + app.physician.lastName : '',
-      },
-      { label: 'Nome agenda', value: app.unitDescription },
-      { label: 'Indirizzo', value: app.location.address || '' },
-      {
-        label: 'Data',
-        value:
-          format(new Date(app.dateTime), 'dd/MM/yyyy') +
-          ' alle ore ' +
-          format(new Date(app.dateTime), 'HH:mm'),
-      },
-      { label: 'Presidio', value: app.location.name || '' },
-      { label: 'Prenotato per', value: app.delegateFiscalCode || '' },
-
-      {
-        label: 'Tariffa',
-        value:
-          '€' +
-          app.billingInfo.reduce((sum, item) => {
-            if (item.finalPrice) {
-              return sum + item.finalPrice;
-            }
-            return sum + 0;
-          }, 0),
-      },
-      {
-        label: 'Condizioni e Prescrizioni',
-        value: app.additionalProperties?.agenda_patient_text || '',
-      },
-    ];
+    const info = {
+      ...app,
+      isAtMostTomorrow: this.isAtMostTomorrow(app?.dateTime!),
+      dateTime: new Date(app?.dateTime!),
+      physician: app?.physician
+        ? {
+            ...app?.physician,
+            name: app.physician.firstName + ' ' + app.physician.lastName,
+          }
+        : undefined,
+      finalPrice:
+        '€' +
+        app?.billingInfo.reduce((sum, item) => {
+          if (item.finalPrice) {
+            return sum + item.finalPrice;
+          }
+          return sum + 0;
+        }, 0),
+    };
+    return info;
   }
 
   onPrintMemo() {

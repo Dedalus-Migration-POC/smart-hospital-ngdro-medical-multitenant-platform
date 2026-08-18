@@ -320,6 +320,7 @@
         "title": "Nuova prenotazione",
         "subtitle": "Effettua una nuova prenotazione presso una dei nostri clienti, tramite Sistema Sanitario Nazionale o libera professione."
       },
+      "confirm-button": "Conferma",
       "booking-type": {
         "select-type": "Come vuoi prenotare?",
         "type": "Seleziona la tipologia di prenotazioni",

@@ -1,9 +1,6 @@
 @if (pageConfig(); as pageConfig) {
-  @if (pageConfig.page.breadcrumb) {
-    <app-breadcrumb
-      [config]="pageConfig.page.breadcrumb"
-      (buttonAction)="newBooking()"
-    ></app-breadcrumb>
+  @if (pageConfig.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.breadcrumb" (buttonAction)="newBooking()"></app-breadcrumb>
   }
   @if (loading()) {
     <app-spinner
@@ -20,9 +17,7 @@
     >
       @if (bookingsListError()) {
         <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-          <app-image-block
-            [config]="pageConfig.page.errorMessage.imageBlockConfig"
-          ></app-image-block>
+          <app-image-block [config]="pageConfig.errorMessage.imageBlockConfig"></app-image-block>
         </div>
       }
       @if (!bookingsListError() && !loading()) {
@@ -30,7 +25,7 @@
           @if (!bookingsList.appointments.length) {
             <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
               <app-image-block
-                [config]="pageConfig.page.notFoundMessage.imageBlockConfig"
+                [config]="pageConfig.notFoundMessage.imageBlockConfig"
               ></app-image-block>
             </div>
           } @else {
@@ -38,56 +33,18 @@
               {{ 'bookings-hero.bookings-list.future-appointments' | translate }}
             </div>
             @if (futureReservations(); as futureReservations) {
-              <div class="d-flex flex-row gap-3 my-3">
-                @for (appointment of futureReservations; track appointment.id) {
-                  <div class="card shadow-sm border-light w-25">
-                    <div class="card-body">
-                      <div class="h5 mb-2">{{ appointment.descriptionList?.join(', ') }}</div>
-                      <div class="text-secondary">
-                        {{ toReadableDateTime(appointment.dateTime) }}
-                      </div>
-                      <div class="mt-2">{{ appointment.location.name }}</div>
-                      <button
-                        type="button"
-                        class="btn btn-outline-primary btn-sm mt-3"
-                        (click)="goToDetails(appointment.id)"
-                      >
-                        {{ 'bookings-hero.bookings-list.card.goToDetails' | translate }}
-                      </button>
-                    </div>
-                  </div>
-                }
-              </div>
+              <app-card [config]="renderedCardsConfigFutureReservations()"></app-card>
             }
             @if (!futureReservations().length) {
               <span>{{ 'bookings-hero.bookings-list.empty-future-appointments' | translate }}</span>
             }
 
-            <hr />
+            <hr class="mt-4 mb-4" />
             <div class="h4">
               {{ 'bookings-hero.bookings-list.past-appointments' | translate }}
             </div>
             @if (pastReservations(); as pastReservations) {
-              <div class="d-flex flex-row gap-3 my-3">
-                @for (appointment of pastReservations; track appointment.id) {
-                  <div class="card shadow-sm border-light w-25">
-                    <div class="card-body">
-                      <div class="h5 mb-2">{{ appointment.descriptionList?.join(', ') }}</div>
-                      <div class="text-secondary">
-                        {{ toReadableDateTime(appointment.dateTime) }}
-                      </div>
-                      <div class="mt-2">{{ appointment.location.name }}</div>
-                      <button
-                        type="button"
-                        class="btn btn-outline-primary btn-sm mt-3"
-                        (click)="goToDetails(appointment.id)"
-                      >
-                        {{ 'bookings-hero.bookings-list.card.goToDetails' | translate }}
-                      </button>
-                    </div>
-                  </div>
-                }
-              </div>
+              <app-card [config]="renderedCardsConfigPastReservations()"></app-card>
             }
             @if (!pastReservations().length) {
               <span>{{ 'bookings-hero.bookings-list.empty-past-appointments' | translate }}</span>
