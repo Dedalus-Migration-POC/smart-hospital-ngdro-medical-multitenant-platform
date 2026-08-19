@@ -50,11 +50,6 @@ export const selectDownloadingInvoicePdfError = createSelector(
   (state) => state.downloadInvoicePdfError,
 );
 
-// export const selectCardMultiUseConfigPayment = createSelector(
-//   selectPaymentState,
-//   (state) => state.cardMultiUseConfigPayment,
-// )
-
 export const selectPagoPaLinkLoading = createSelector(
   selectPaymentState,
   (state) => state.pagoPaLinkLoading,

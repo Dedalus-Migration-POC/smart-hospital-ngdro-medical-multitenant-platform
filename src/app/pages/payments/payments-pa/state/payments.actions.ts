@@ -1,19 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { PagoPaLinkRequest, PaymentSummary } from './payments.service';
-
-// export const fetchCardMultiUseConfigPayment = createAction(
-//   '[Payment] Fetch CardMultiUseConfigPayment',
-// )
-
-// export const fetchCardMultiUseConfigPaymentSuccess = createAction(
-//   '[Payment] Fetch fetchCardMultiUseConfigPayment Success',
-//   props<{ data: CardMultiUseConfig }>(),
-// )
-
-// export const fetchCardMultiUseConfigPaymentFailure = createAction(
-//   '[Payment] Fetch fetchCardMultiUseConfigPayment Failure',
-//   props<{ error: any }>(),
-// )
+import { PagoPaLinkRequest, PaymentSummary } from './payments.model';
 
 export const fetchPayments = createAction('[Payment] Fetch Payments');
 

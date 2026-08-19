@@ -2,29 +2,44 @@ import { Component, computed, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
-import { selectPaymentSummary } from '../state/payments.selectors';
-import { fetchPaymentSummary } from '../state/payments.actions';
+import {
+  selectDownloadingInvoicePdf,
+  selectPagoPaLinkLoading,
+  selectPaymentSummaryData,
+  selectPaymentSummaryError,
+  selectPaymentSummaryLoading,
+} from '../state/payments.selectors';
+import { downloadInvoicePdf, fetchPaymentSummary, getPagoPaLink } from '../state/payments.actions';
 import { TranslateService } from '@ngx-translate/core';
 import { selectUserProfile } from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { PaymentNoticeCardNewComponent } from './payment-notice-card-new/payment-notice-card-new.component';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
+import { ImageBlock } from 'src/app/components/image-block/image-block';
+import {
+  getServiceCardsConfigById,
+  getServiceCardsItems,
+} from 'src/app/shared/utility/cards.utils';
+import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
+import { CardActionsService } from 'src/app/shared/services/card-actions.service';
+import { Card } from 'src/app/components/card/card';
+import { PaymentSummary } from '../state/payments.model';
 
 @Component({
   selector: 'app-payment-pa-details',
   templateUrl: './payment-details.component.html',
   styleUrls: ['./payment-details.component.scss'],
-  imports: [CommonModule, PaymentNoticeCardNewComponent, Spinner, Breadcrumb],
+  imports: [CommonModule, Spinner, Breadcrumb, ImageBlock, Card],
 })
 export class PaymentsPaDetails implements OnInit {
   constructor() {}
   private store = inject(Store<SmartHospitalState>);
   private activatedRoute = inject(ActivatedRoute);
   private translate = inject(TranslateService);
+  private cardActionsService = inject(CardActionsService);
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -34,6 +49,15 @@ export class PaymentsPaDetails implements OnInit {
     { initialValue: null },
   );
 
+  ngOnInit(): void {
+    const paymentId = this.paymentId();
+    if (paymentId) this.store.dispatch(fetchPaymentSummary({ bookingId: paymentId }));
+  }
+  retry() {
+    const paymentId = this.paymentId();
+    if (paymentId) this.store.dispatch(fetchPaymentSummary({ bookingId: paymentId }));
+  }
+
   user = this.store.selectSignal(selectUserProfile);
   paymentId = toSignal(
     this.activatedRoute.queryParamMap.pipe(
@@ -42,32 +66,75 @@ export class PaymentsPaDetails implements OnInit {
     { initialValue: null },
   );
 
-  paymentSummary = this.store.selectSignal(selectPaymentSummary);
-  payment = computed(() => {
-    const payment = this.paymentSummary();
-    if (!payment?.data) return null;
+  paymentSummary = this.store.selectSignal(selectPaymentSummaryData);
+  paymentSummaryLoading = this.store.selectSignal(selectPaymentSummaryLoading);
+  paymentSummaryError = this.store.selectSignal(selectPaymentSummaryError);
+  loadingPdf = this.store.selectSignal(selectDownloadingInvoicePdf);
+  loadingGetPagoPaLink = this.store.selectSignal(selectPagoPaLinkLoading);
 
+  readonly commonLoading = computed(
+    () => this.paymentSummaryLoading() || this.loadingPdf() || this.loadingGetPagoPaLink(),
+  );
+
+  getAppointmentDescriptions(): string[] {
+    return this.paymentSummary()?.appointments?.map((appointment) => appointment.description) ?? [];
+  }
+  readonly cardsSectionItems = computed<any[]>(() => {
+    return getServiceCardsItems(this.pageConfig()?.sections, '/payments-pa/details');
+  });
+
+  readonly cardsConfig = computed<any>(() =>
+    getServiceCardsConfigById(this.cardsSectionItems(), 'payment-card', '/payments-pa/details'),
+  );
+
+  readonly renderedCardsConfig = computed<CompiledCardsContainer>(() => {
+    const cardsConfig = this.cardsConfig();
+    if (!cardsConfig) return { items: [] };
+
+    const templateCard = cardsConfig.items?.[0];
     return {
-      causal: payment.data.appointments.map((appointment) => appointment.description) || [],
-      // causal : appointment.description,
-      id: payment.data.id,
-      iuv: payment.data.iuv,
-      amount: payment.data.amount,
-      creditors: payment.data.authorityName,
-      creditorsFiscalCode: payment.data.taxCode,
-      noticeCode: payment.data.iuv,
-      paymentStatus: payment.data.state,
+      ...cardsConfig,
+      items: (this.paymentSummary() ? [this.paymentSummary()] : []).map(
+        (report: any, index: number) => {
+          const compiledActions = this.cardActionsService.compileActions(
+            report,
+            templateCard?.actions as DataCardAction[] | undefined,
+            {
+              callbackContext: this,
+              callbackArgsMode: 'sourceAndParams',
+            },
+          );
+          return {
+            ...report,
+            ...templateCard,
+            id: `card-${index + 1}`,
+            type: 'data',
+            actions: compiledActions,
+          } as any;
+        },
+      ),
     };
   });
 
-  retry() {
-    const paymentId = this.paymentId();
-    if (paymentId) this.store.dispatch(fetchPaymentSummary({ bookingId: paymentId }));
+  downloadPdf(payment: PaymentSummary) {
+    this.store.dispatch(downloadInvoicePdf({ admissionsId: payment.id }));
   }
 
-  ngOnInit(): void {
-    const paymentId = this.paymentId();
-
-    if (paymentId) this.store.dispatch(fetchPaymentSummary({ bookingId: paymentId }));
+  pay() {
+    this.pageConfig()?.isSimplePagoPa
+      ? this.store.dispatch(
+          getPagoPaLink({
+            payment: {
+              iuv: this.paymentSummary()!.iuv!,
+              amount: this.paymentSummary()!.amount! * 100,
+              reason:
+                this.paymentSummary()
+                  ?.appointments?.map((appointment) => appointment.description)
+                  .join('/') ?? '',
+              notificationEmail: this.user()?.data?.email!,
+            },
+          }),
+        )
+      : window.open('https://checkout.pagopa.it/inserisci-dati-avviso', '_blank');
   }
 }

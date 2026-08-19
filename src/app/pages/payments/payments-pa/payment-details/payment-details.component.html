@@ -2,12 +2,12 @@
   @if (pageConfig.breadcrumb) {
     <app-breadcrumb [config]="pageConfig.breadcrumb"></app-breadcrumb>
   }
-  @let payments = paymentSummary();
-  @let paymentData = payment();
+  @let paymentData = paymentSummary();
   @let userData = user().data;
-  @let error = paymentSummary().error;
+  @let error = paymentSummaryError();
+  @let loading = commonLoading();
 
-  @if (paymentSummary().loading) {
+  @if (loading) {
     <app-spinner
       [fullScreen]="true"
       text="Loading"
@@ -15,27 +15,20 @@
     ></app-spinner>
   }
   @if (error) {
-    <!-- <app-error
-    (retry)="retry()"
-    text="Errore nel caricamento dei dettagli del pagamento, riprovare più tardi."
-  ></app-error> -->
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig.errorMessage.imageBlockConfig"></app-image-block>
+    </div>
   }
 
-  @if (payments && paymentData && userData && !error) {
-    <app-payment-notice-card-new
-      [noticeCode]="paymentData.iuv"
-      service="Ticket Prenotazione"
-      [amount]="paymentData.amount"
-      [state]="paymentData.paymentStatus"
-      [id]="paymentData.id"
-      [causal]="paymentData.causal"
-      [fiscalCode]="userData.fiscalCode!.toUpperCase()"
-      [creditors]="paymentData.creditors"
-      [creditorsFiscalCode]="paymentData.creditorsFiscalCode"
-      [debtorName]="userData.firstName"
-      [debtorLastName]="userData.lastName"
-      [debtorEmail]="userData.email"
-      [isSimplePagoPa]="pageConfig?.isSimplePagoPa"
-    ></app-payment-notice-card-new>
+  @if (!paymentData && !error) {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig.notFoundMessage.imageBlockConfig"></app-image-block>
+    </div>
+  }
+
+  @if (paymentData && userData && !error) {
+    <div class="mt-4 mb-4">
+      <app-card [config]="renderedCardsConfig()"></app-card>
+    </div>
   }
 }

@@ -597,14 +597,14 @@ class ChatbotWidget {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ question: message }),
+            body: JSON.stringify({ question: message, response_type: this.isDetailedMode ? "detailed" : "simple" }),
             timeout: 120000 // 120 seconds timeout
         };
 
         if (typeof axios !== 'undefined') {
             // Use axios if available
             try {
-                const response = await axios.post(apiUrl, { question: message }, {
+                const response = await axios.post(apiUrl, { question: message, response_type: this.isDetailedMode ? "detailed" : "simple" }, {
                     timeout: 120000,
                     headers: { 'Content-Type': 'application/json' },
                     validateStatus: () => true  // Accept all status codes

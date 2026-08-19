@@ -1,12 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 import * as PaymentActions from './payments.actions';
-import { Appointment, PaymentSummary } from './payments.service';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
+import { PaymentSummary } from './payments.model';
 
 export const featureKey = 'paymentsState';
 
 export interface State {
-  // cardMultiUseConfigPayment: CardMultiUseConfig | null
   paymentsLoading: boolean;
   payments: PaymentSummary[];
   paymentsError: boolean;
@@ -21,7 +19,6 @@ export interface State {
 }
 
 export const initialState: State = {
-  // cardMultiUseConfigPayment: null,
   paymentsLoading: false,
   payments: [],
   paymentsError: false,
@@ -37,18 +34,6 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
-
-  // on(PaymentActions.fetchCardMultiUseConfigPayment, (state) => ({
-  //   ...state,
-  // })),
-  // on(PaymentActions.fetchCardMultiUseConfigPaymentSuccess, (state, action) => ({
-  //   ...state,
-  //   cardMultiUseConfigPayment: action.data,
-  // })),
-  // on(PaymentActions.fetchCardMultiUseConfigPaymentFailure, (state) => ({
-  //   ...state,
-  //   cardMultiUseConfigPayment: null,
-  // })),
 
   on(PaymentActions.fetchPayments, (state) => ({
     ...state,

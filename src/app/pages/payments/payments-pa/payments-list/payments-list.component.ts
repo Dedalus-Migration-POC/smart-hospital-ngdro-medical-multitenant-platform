@@ -20,12 +20,12 @@ import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { Card } from 'src/app/components/card/card';
 import { CompiledCardsContainer } from 'src/app/components/card/model';
-import { PaymentSummary } from '../state/payments.service';
 import {
   getServiceCardsConfigById,
   getServiceCardsItems,
 } from 'src/app/shared/utility/cards.utils';
 import { CardActionsService } from 'src/app/shared/services/card-actions.service';
+import { PaymentSummary } from '../state/payments.model';
 
 @Component({
   selector: 'app-payments-list',
@@ -60,29 +60,7 @@ export class PaymentsPaList implements OnInit {
   }
 
   downloadingPdf$ = this.store.selectSignal(selectDownloadingInvoicePdf);
-  // getStatus(status: string) {
-  //   let title;
-  //   let styleClass;
-  //   switch (status) {
-  //     case 'NOT_PAYED':
-  //       title = 'Da pagare';
-  //       styleClass = 'error';
-  //       break;
-  //     case 'PAYED':
-  //       title = 'Pagato';
-  //       styleClass = 'success';
-  //       break;
-  //     case 'VERIFICATION':
-  //       title = 'In attesa di verifica';
-  //       styleClass = 'warning';
-  //       break;
-  //     default:
-  //       title = undefined;
-  //       styleClass = undefined;
-  //   }
 
-  //   return { title, styleClass };
-  // }
   payments = this.store.selectSignal(selectPaymentsData);
   loading = this.store.selectSignal(selectPaymentsLoading);
   error = this.store.selectSignal(selectPaymentsError);
@@ -176,5 +154,4 @@ export class PaymentsPaList implements OnInit {
 
     return firstAppointmentDate ?? null;
   }
-
 }

@@ -18,35 +18,12 @@ export class PaymentsEffects {
   private readonly notificationService: ItNotificationService = inject(ItNotificationService);
   private translate: TranslateService = inject(TranslateService);
 
-  // fetchCardMultiUseConfigReport$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(PaymentActions.fetchCardMultiUseConfigPayment),
-  //     concatMap(() =>
-  //       this.paymentService.fetchCardMultiUseConfigPayment().pipe(
-  //         map((data: CardMultiUseConfig) =>
-  //           PaymentActions.fetchCardMultiUseConfigPaymentSuccess({
-  //             data,
-  //           }),
-  //         ),
-  //         catchError((error) =>
-  //           of(
-  //             PaymentActions.fetchCardMultiUseConfigPaymentFailure({
-  //               error,
-  //             }),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   )
-  // })
-
   fetchPayments$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(PaymentActions.fetchPayments),
       concatMap(() =>
         this.paymentService.fetchPayments().pipe(
           map((data) => {
-            // this.store.dispatch(PaymentActions.fetchCardMultiUseConfigPayment())
             return PaymentActions.fetchPaymentsSuccess({ data });
           }),
           catchError((error) => of(PaymentActions.fetchPaymentsFailure({ error }))),

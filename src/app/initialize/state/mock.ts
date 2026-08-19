@@ -4570,6 +4570,290 @@ export const APP_CONFIG: AppConfig = {
         ],
       },
       isSimplePagoPa: true, // true:getPagoPaLink (/simple-pagopa/api/v1/payment); false:window.open('https://checkout.pagopa.it/inserisci-dati-avviso', '_blank');
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4' },
+              items: [
+                {
+                  id: 'payment-card',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-10 col-lg-6',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      wrap: 'wrap',
+                      justify: 'center',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'appointments',
+                            itemKey: 'description',
+                            joinWith: ' / ',
+                            fontSize: 'lg',
+                            lineHeight: 'md',
+                            margin: 'mb-3',
+                          },
+                          subTitle: {
+                            key: 'causale',
+                            fontSize: 'md',
+                            fontWeight: 'semibold',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'amount',
+                            type: 'text',
+                            prefix: '€ ',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+
+                              text: {
+                                it: 'Importo',
+                                en: 'Amount',
+                              },
+                            },
+                          },
+                          {
+                            key: 'state',
+                            type: 'badge',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Stato',
+                                en: 'State',
+                              },
+                            },
+                            badgeMap: {
+                              PAYED: {
+                                text: { it: 'Pagato', en: 'Paid' },
+                                lineHeight: 'md',
+                                color: 'success',
+                              },
+                              NOT_PAYED: {
+                                text: { it: 'Da pagare', en: 'To pay' },
+                                lineHeight: 'md',
+                                color: 'warning',
+                              },
+                              VERIFICATION: {
+                                text: {
+                                  it: 'In attesa di verifica',
+                                  en: 'Pending verification',
+                                },
+                                lineHeight: 'md',
+                                color: 'danger',
+                              },
+                            },
+                            fallbackBadge: {
+                              text: { it: 'Sconosciuto', en: 'Unknown' },
+                              fontSize: 'sm',
+                              color: 'secondary',
+                            },
+                          },
+                          {
+                            key: 'iuv',
+                            type: 'text',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'IUV',
+                                en: 'IUV',
+                              },
+                            },
+                          },
+                          {
+                            key: 'authorityName',
+                            type: 'text',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Creditore',
+                                en: 'Creditor',
+                              },
+                            },
+                          },
+
+                          {
+                            key: 'taxCode',
+                            type: 'text',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Codice fiscale',
+                                en: 'Tax code',
+                              },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'pay',
+                            label: {
+                              text: {
+                                it: `Paga  € {{amount}}`,
+                                en: 'Pay € {{amount}}',
+                              },
+                            },
+                            type: 'callback',
+                            renderAs: 'button',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'pay',
+                              params: [],
+                            },
+                            hideIf: [{ key: 'state', operator: 'eq', value: 'PAYED' }],
+                          },
+                          {
+                            key: 'download',
+                            label: {
+                              text: {
+                                it: `Scarica PDF`,
+                                en: 'Download PDF',
+                              },
+                            },
+                            type: 'callback',
+                            renderAs: 'button',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'downloadPdf',
+                              params: [],
+                            },
+                            hideIf: [{ key: 'state', operator: 'eq', value: 'NOT_PAYED' }],
+                            hideMessage: {
+                              text: {
+                                it: 'Per il pagamento verrai reindirizzato sul sito pagoPA. Dopo il pagamento eseguito lo stato si aggiornerà entro circa 24 ore',
+                                en: 'For the payment, you will be redirected to the pagoPA website. After the payment is completed, the status will be updated within approximately 24 hours',
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
+      notFoundMessage: {
+        imageBlockConfig: {
+          id: 'paymentsNotFound',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'md',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value:
+              'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+            decorative: true,
+            alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
+            },
+            subTitle: {
+              text: {
+                it: 'La tua richiesta non ha prodotto risultati.',
+                en: 'Your request did not produce any results.',
+              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
+            },
+          },
+        },
+      },
+      errorMessage: {
+        imageBlockConfig: {
+          id: 'errorMessage',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'md',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+            decorative: true,
+            alt: { it: 'Errore', en: 'Error' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Errore', en: 'Error' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
+            },
+            subTitle: {
+              text: {
+                it: 'Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.',
+                en: 'An error occurred while fetching the payment. Please try again later.',
+              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
+            },
+          },
+        },
+      },
     },
     {
       id: '/payments-jcash', // === url!
@@ -5370,6 +5654,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'appointment.physician.name',
                             type: 'text',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -5385,6 +5670,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'appointment.unitDescription',
                             type: 'text',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -5400,6 +5686,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'appointment.location.address',
                             type: 'text',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -5416,6 +5703,7 @@ export const APP_CONFIG: AppConfig = {
                             key: 'appointment.dateTime',
                             type: 'date',
                             format: 'dd/MM/yyyy HH:mm',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -5437,6 +5725,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'appointment.location.name',
                             type: 'text',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -5453,6 +5742,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'appointment.delegateFiscalCode',
                             type: 'text',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -5468,6 +5758,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'appointment.finalPrice',
                             type: 'text',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -5483,6 +5774,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'appointment.additionalProperties.agenda_patient_text',
                             type: 'text',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },

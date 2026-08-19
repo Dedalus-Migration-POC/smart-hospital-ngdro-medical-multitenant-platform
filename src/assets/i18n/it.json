@@ -287,6 +287,10 @@
       "VERIFICATION": "In attesa di verifica"
     }
   },
+  "payments-page": {
+    "payed": "Pagati",
+    "to-pay": "Da pagare"
+  },
   "departments-page": {
     "search-label": "Cerca prestazione o dipartimento"
   },
