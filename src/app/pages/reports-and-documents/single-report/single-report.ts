@@ -1,6 +1,5 @@
 import { Component, computed, inject, OnDestroy, Signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgxFormValidators } from '../../../../validators';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import {
   selectSingleReport,
@@ -17,13 +16,13 @@ import {
 } from './state/actions';
 import { IReport } from './state/model';
 import { TranslateModule } from '@ngx-translate/core';
-import { CommonModule, JsonPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Spinner } from '../../../components/spinner/spinner';
 import { LanguageService } from '../../../initialize/state/services/language.service';
 import { ImageBlock } from '../../../components/image-block/image-block';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAppConfig } from '../../../initialize/state/selector';
-import { map, take } from 'rxjs';
+import { map } from 'rxjs';
 import { Router } from '@angular/router';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
 import { Card } from '../../../components/card/card';
@@ -79,13 +78,10 @@ export class SingleReport implements OnDestroy {
 
   readonly formConfig = computed<DynamicFormConfig | undefined>(() => {
     const config = this.pageConfig();
-    console.log('pageConfig:', config);
     const sections = config?.sections;
-    console.log('sections:', sections);
     const formItem = sections?.[0]?.areas?.center?.items?.find(
       (item: any) => item.type === 'DYNAMIC_FORM',
     );
-    console.log('formItem:', formItem);
     return formItem?.props as DynamicFormConfig | undefined;
   });
 

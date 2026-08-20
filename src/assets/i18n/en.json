@@ -1,4 +1,15 @@
 {
+  "commons": {
+    "loading": "Loading...",
+    "error": "Error",
+    "generic-error": "An error occurred, please try again later",
+    "back": "Back",
+    "close": "Close",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No"
+  },
   "en": {
     "errors": {
       "required-field": "The field is required",
@@ -59,6 +70,10 @@
       "PAYED": "Paid",
       "VERIFICATION": "Under verification"
     }
+  },
+  "payments-page": {
+    "payed": "Paid",
+    "to-pay": "To pay"
   },
   "departments-page": {
     "search-label": "Search for service or department"
@@ -320,6 +335,7 @@
         "title": "New booking",
         "subtitle": "Make a new booking at one of our facilities, through the National Health Service or private practice."
       },
+      "confirm-button": "Confirm",
       "booking-type": {
         "select-type": "How would you like to book?",
         "type": "Select the booking type",

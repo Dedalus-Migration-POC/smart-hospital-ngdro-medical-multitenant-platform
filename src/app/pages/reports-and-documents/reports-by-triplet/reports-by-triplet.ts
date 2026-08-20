@@ -63,13 +63,10 @@ export class TripletReport {
 
   readonly formConfig = computed<DynamicFormConfig | undefined>(() => {
     const config = this.pageConfig();
-    console.log('pageConfig:', config);
     const sections = config?.sections;
-    console.log('sections:', sections);
     const formItem = sections?.[0]?.areas?.center?.items?.find(
       (item: any) => item.type === 'DYNAMIC_FORM',
     );
-    console.log('formItem:', formItem);
     return formItem?.props as DynamicFormConfig | undefined;
   });
 
@@ -139,7 +136,6 @@ export class TripletReport {
 
   downloadReport = (document: ReportTriplet, isDownload: boolean) => {
     const organizationCode = this.selectedStructure;
-    console.log(organizationCode);
     if (!organizationCode) {
       console.error('Organization code is not set. Cannot download report.');
       return;

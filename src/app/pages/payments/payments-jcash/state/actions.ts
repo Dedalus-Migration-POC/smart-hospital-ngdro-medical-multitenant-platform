@@ -1,20 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { LinkPagoPaRequest } from './model';
 
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
-
-// export const fetchCardMultiUseConfigPayment = createAction(
-//   '[Payment jc] Fetch CardMultiUseConfigPayment',
-// )
-// export const fetchCardMultiUseConfigPaymentSuccess = createAction(
-//   '[Payment jc] Fetch fetchCardMultiUseConfigPayment Success',
-//   props<{ data: CardMultiUseConfig }>(),
-// )
-// export const fetchCardMultiUseConfigPaymentFailure = createAction(
-//   '[Payment jc] Fetch fetchCardMultiUseConfigPayment Failure',
-//   props<{ error: any }>(),
-// )
-
 export const fetchPayments = createAction('[Payment jc] Fetch Payments');
 export const fetchPaymentsSuccess = createAction(
   '[Payment jc] Fetch Payments Success',

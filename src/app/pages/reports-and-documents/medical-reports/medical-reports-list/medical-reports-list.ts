@@ -79,9 +79,7 @@ export class MedicalReportsList implements OnInit {
 
   readonly formConfig = computed<DynamicFormConfig | undefined>(() => {
     const config = this.pageConfig();
-    console.log('pageConfig:', config);
     const sections = config?.sections;
-    console.log('sections:', sections);
     const formItem = sections?.[0]?.areas?.center?.items?.find(
       (item: any) => item.type === 'DYNAMIC_FORM',
     );

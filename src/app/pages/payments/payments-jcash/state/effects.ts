@@ -7,35 +7,12 @@ import { DownloadUtils } from 'src/utils/download-utils';
 import { TranslateService } from '@ngx-translate/core';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
-
 @Injectable()
 export class PaymentsJcEffects {
   private actions$ = inject(Actions);
   private paymentJcashService = inject(PaymentJcashService);
   private translate = inject(TranslateService);
   private readonly notificationService = inject(ItNotificationService);
-  // fetchCardMultiUseConfigReport$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(PaymentActions.fetchCardMultiUseConfigPayment),
-  //     concatMap(() =>
-  //       this.paymentJcashService.fetchCardMultiUseConfigPayment().pipe(
-  //         map((data: CardMultiUseConfig) =>
-  //           PaymentActions.fetchCardMultiUseConfigPaymentSuccess({
-  //             data,
-  //           }),
-  //         ),
-  //         catchError((error) =>
-  //           of(
-  //             PaymentActions.fetchCardMultiUseConfigPaymentFailure({
-  //               error,
-  //             }),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   )
-  // })
 
   fetchPayments$ = createEffect(() => {
     return this.actions$.pipe(

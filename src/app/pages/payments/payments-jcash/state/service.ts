@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { PAYMENTS_JCASH_LIST } from './mock';
 import { delay, map, of } from 'rxjs';
 import { LinkPagoPaRequest, Payment } from './model';
-// import { environment } from 'src/environments/environment';
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +12,6 @@ export class PaymentJcashService {
   private readonly IS_DEV = true;
 
   private baseUrl = 'sh-jcash-integration/api/jcash';
-
-  // fetchCardMultiUseConfigPayment() {
-  //   if (environment?.pathCardMultiUseConfigPayment) {
-  //     const pathMultiUseConfigPayment =
-  //       window.document.baseURI + environment.pathCardMultiUseConfigPayment;
-  //     return this.http.get<CardMultiUseConfig>(pathMultiUseConfigPayment);
-  //   }
-  //   return throwError(
-  //     () => new Error('PAYMENT JS: pathMultiUseConfigPayment is not defined'),
-  //   );
-  // }
 
   fetchPayments() {
     if (this.IS_DEV) {
@@ -39,6 +26,7 @@ export class PaymentJcashService {
 
   downloadInvoicePdf(iuv: string) {
     if (this.IS_DEV) {
+      console.log('Downloading invoice PDF for IUV:', iuv);
       return this.http.get(`https://pdfobject.com/pdf/sample.pdf`, {
         responseType: 'arraybuffer',
       });

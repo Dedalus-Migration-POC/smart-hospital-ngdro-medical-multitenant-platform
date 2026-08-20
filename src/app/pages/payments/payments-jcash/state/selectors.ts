@@ -5,11 +5,6 @@ export const selectPaymentState = createFeatureSelector<fromPayments.State>(
   fromPayments.featureKey,
 );
 
-// export const selectCardMultiUseConfigPayment = createSelector(
-//   selectPaymentState,
-//   (state) => state.cardMultiUseConfigPayment,
-// )
-
 export const selectPaymentsData = createSelector(selectPaymentState, (state) => state.payments);
 export const selectPaymentsLoading = createSelector(
   selectPaymentState,
@@ -29,4 +24,9 @@ export const selectPayments = createSelector(
 export const selectDownloadingInvoicePdf = createSelector(
   selectPaymentState,
   (state) => state.downloadingInvoicePdf,
+);
+
+export const selectGetPayLoading = createSelector(
+  selectPaymentState,
+  (state) => state.pagoPaLinkLoading,
 );

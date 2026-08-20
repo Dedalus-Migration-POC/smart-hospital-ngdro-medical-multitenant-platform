@@ -1,4 +1,15 @@
 {
+  "commons": {
+    "loading": "Caricamento in corso...",
+    "error": "Errore",
+    "generic-error": "Si è verificato un errore, riprova più tardi",
+    "back": "Indietro",
+    "close": "Chiudi",
+    "confirm": "Conferma",
+    "cancel": "Annulla",
+    "yes": "Sì",
+    "no": "No"
+  },
   "it": {
     "errors": {
       "required-field": "Il campo è obbligatorio",

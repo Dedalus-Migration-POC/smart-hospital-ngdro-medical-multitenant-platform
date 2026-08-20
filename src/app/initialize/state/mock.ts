@@ -4859,105 +4859,236 @@ export const APP_CONFIG: AppConfig = {
       id: '/payments-jcash', // === url!
       name: { it: 'Pagamenti', en: 'Payments' }, // Nome nel browser per accessibilità
       route: '/payments-jcash', //non serve, non lo possono cambiare
-      page: {
-        backgroundColor: '#ffffff', //o color o img!
-        // backgroundImage: '/assets/images/bg.svg',
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: 'Pagamenti', en: 'Payments' },
-          subTitle: {
-            it: 'Visualizza i pagamenti.',
-            en: 'View the payments.',
+      backgroundColor: '#ffffff', //o color o img!
+      // backgroundImage: '/assets/images/bg.svg',
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: 'Pagamenti', en: 'Payments' },
+        subTitle: {
+          it: 'Visualizza i pagamenti.',
+          en: 'View the payments.',
+        },
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
           },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
 
-            {
-              name: { it: 'Pagamenti', en: 'Payments' },
-              routerLink: '',
-            },
-          ],
-        },
-        notFoundMessage: {
-          imageBlockConfig: {
-            id: 'paymentsNotFound',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
-            },
-            clickable: false,
-            image: {
-              type: 'url',
-              value:
-                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
-              decorative: true,
-              alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
-              height: '150px',
-            },
-            text: {
-              title: {
-                text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
-              },
-              subTitle: {
-                text: {
-                  it: 'La tua richiesta non ha prodotto risultati.',
-                  en: 'Your request did not produce any results.',
+          {
+            name: { it: 'Pagamenti', en: 'Payments' },
+            routerLink: '',
+          },
+        ],
+      },
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            center: {
+              items: [
+                {
+                  id: 'payments-jcash-cards',
+                  type: 'SERVICE_CARDS',
+                  props: {
+                    // itemColBootstrapClasses: 'col-12 col-md-6',
+                    itemsLayout: {
+                      direction: 'row',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      justify: 'end',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        titleSubtitle: {
+                          title: {
+                            key: 'prestazioni',
+                            fontSize: 'lg',
+                            lineHeight: 'sm',
+                            margin: 'mb-3',
+                          },
+                          subTitle: {
+                            key: 'statoDistinta',
+                            valueMap: {
+                              'DA PAGARE': 'payments.state.NOT_PAYED',
+                              PAGATA: 'payments.state.PAYED',
+                            },
+                            fontSize: 'md',
+                            fontWeight: 'semibold',
+                            colorHex: '#2F475E', // secondary color in hex
+                            lineHeight: 'sm',
+                            margin: 'mb-4',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'importo',
+                            type: 'text',
+                            suffix: ' €',
+                            margin: 'mb-2',
+                            rowSize: {
+                              key: { basis: '50%' },
+                              value: { basis: '50%' },
+                            },
+                            label: {
+                              text: {
+                                it: 'Importo',
+                                en: 'Amount',
+                              },
+                              fontSize: 'md',
+                              fontWeight: 'normal',
+                              lineHeight: 'md',
+                              colorHex: '#747474',
+                            },
+                          },
+                          //da backend non arriva il sistema di pagamento.
+                          // Quindi uso un campo random per fare imageMap del valore che conosco.
+                          {
+                            key: 'statoDistinta',
+                            type: 'image',
+                            margin: 'mb-2',
+                            rowSize: {
+                              key: { basis: '50%' },
+                              value: { basis: '50%' },
+                            },
+                            label: {
+                              text: {
+                                it: 'Sistema',
+                                en: 'Payment system',
+                              },
+                              fontSize: 'md',
+                              fontWeight: 'normal',
+                              lineHeight: 'md',
+                              colorHex: '#747474',
+                            },
+                            imageMap: {
+                              PAGATA: {
+                                type: 'url',
+                                value: '/assets/images/logo_pagoPa.png',
+                                decorative: true,
+                              },
+                              'DA PAGARE': {
+                                type: 'url',
+                                value: '/assets/images/logo_pagoPa.png',
+                                decorative: true,
+                              },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'view',
+                            type: 'callback',
+                            renderAs: 'link',
+                            // className: 'btn btn-primary',
+                            decoration: 'none',
+                            icon: {
+                              value: 'fa-solid fa-arrow-right',
+                              type: 'fa',
+                              position: 'after',
+                            },
+                            label: {
+                              text: {
+                                it: 'Vedi dettaglio',
+                                en: 'Show Details',
+                              },
+                              isUppercase: true,
+                              colorHex: '#123c73',
+                              fontWeight: 'semibold',
+                            },
+                            callback: {
+                              nameFunction: 'goDetail',
+                              params: ['codiceDistinta'],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
-              },
+              ],
             },
           },
         },
-        errorMessage: {
-          imageBlockConfig: {
-            id: 'errorMessage',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
+      ],
+      notFoundMessage: {
+        imageBlockConfig: {
+          id: 'paymentsNotFound',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'gap-2',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value:
+              'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+            decorative: true,
+            alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
             },
-            clickable: false,
-            image: {
-              type: 'url',
-              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
-              decorative: true,
-              alt: { it: 'Errore', en: 'Error' },
-              height: '150px',
+            subTitle: {
+              text: {
+                it: 'La tua richiesta non ha prodotto risultati.',
+                en: 'Your request did not produce any results.',
+              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
             },
-            text: {
-              title: {
-                text: { it: 'Errore', en: 'Error' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
+          },
+        },
+      },
+      errorMessage: {
+        imageBlockConfig: {
+          id: 'errorMessage',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'gap-2',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+            decorative: true,
+            alt: { it: 'Errore', en: 'Error' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Errore', en: 'Error' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
+            },
+            subTitle: {
+              text: {
+                it: 'Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.',
+                en: 'An error occurred while fetching the payment. Please try again later.',
               },
-              subTitle: {
-                text: {
-                  it: 'Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.',
-                  en: 'An error occurred while fetching the payment. Please try again later.',
-                },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
-              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
             },
           },
         },
@@ -4967,108 +5098,316 @@ export const APP_CONFIG: AppConfig = {
       id: '/payments-jcash/details', // === url!
       name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' }, // Nome nel browser per accessibilità
       route: '/payments-jcash/details', //non serve, non lo possono cambiare
-      page: {
-        backgroundColor: '#ffffff', //o color o img!
-        // backgroundImage: '/assets/images/bg.svg',
-        breadcrumb: {
-          backgroundColor: '#e6e8ea',
-          color: '#333333',
-          title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
-          subTitle: {
-            it: 'Visualizza i dettagli del pagamento.',
-            en: 'View the payment details.',
-          },
-          items: [
-            {
-              name: { it: 'Home', en: 'Home' },
-              routerLink: '/',
-            },
-            {
-              name: { it: 'Pagamenti', en: 'Payments' },
-              routerLink: '/payments-jcash',
-            },
-            {
-              name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
-              routerLink: '/payments-jcash/details',
-            },
-          ],
+      backgroundColor: '#ffffff', //o color o img!
+      // backgroundImage: '/assets/images/bg.svg',
+      breadcrumb: {
+        backgroundColor: '#e6e8ea',
+        color: '#333333',
+        title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+        subTitle: {
+          it: 'Visualizza i dettagli del pagamento.',
+          en: 'View the payment details.',
         },
-        errorMessage: {
-          imageBlockConfig: {
-            id: 'errorMessage',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
-            },
-            clickable: false,
-            image: {
-              type: 'url',
-              value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
-              decorative: true,
-              alt: { it: 'Errore', en: 'Error' },
-              height: '150px',
-            },
-            text: {
-              title: {
-                text: { it: 'Errore', en: 'Error' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
-              },
-              subTitle: {
-                text: {
-                  it: 'Si è verificato un errore durante il recupero dei pagamenti. Riprova più tardi.',
-                  en: 'An error occurred while fetching the payments. Please try again later.',
+        items: [
+          {
+            name: { it: 'Home', en: 'Home' },
+            routerLink: '/',
+          },
+          {
+            name: { it: 'Pagamenti', en: 'Payments' },
+            routerLink: '/payments-jcash',
+          },
+          {
+            name: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+            routerLink: '/payments-jcash/details',
+          },
+        ],
+      },
+      sections: [
+        {
+          id: 'cards-section',
+          areas: {
+            layout: { direction: 'column', gap: 'gap-4' },
+            center: {
+              layout: { direction: 'row', wrap: 'wrap', gap: 'gap-4' },
+              items: [
+                {
+                  id: 'payment-card',
+                  type: 'SERVICE_CARDS',
+                  enabled: true,
+                  props: {
+                    itemColBootstrapClasses: 'col-12 col-md-10 col-lg-6',
+                    itemsLayout: {
+                      direction: 'row',
+                      align: 'start',
+                    },
+                    actionsLayout: {
+                      direction: 'row',
+                      wrap: 'wrap',
+                      justify: 'center',
+                      gap: 'gap-2',
+                    },
+                    items: [
+                      {
+                        type: 'data',
+                        background: 'white',
+                        titleSubtitle: {
+                          title: {
+                            key: 'prestazioni',
+                            fontSize: 'lg',
+                            lineHeight: 'md',
+                            margin: 'mb-3',
+                          },
+                          subTitle: {
+                            key: 'custom Ticket prenotazione',
+                            fontSize: 'md',
+                            fontWeight: 'semibold',
+                            color: 'secondary',
+                          },
+                        },
+                        fields: [
+                          {
+                            key: 'importo',
+                            type: 'text',
+                            prefix: '€ ',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+
+                              text: {
+                                it: 'Importo',
+                                en: 'Amount',
+                              },
+                            },
+                          },
+                          {
+                            key: 'statoDistinta',
+                            type: 'badge',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Stato',
+                                en: 'State',
+                              },
+                            },
+                            badgeMap: {
+                              PAGATA: {
+                                text: { it: 'Pagato', en: 'Paid' },
+                                lineHeight: 'md',
+                                color: 'success',
+                              },
+                              'DA PAGARE': {
+                                text: { it: 'Da pagare', en: 'To pay' },
+                                lineHeight: 'md',
+                                color: 'warning',
+                              },
+                            },
+                            fallbackBadge: {
+                              text: { it: 'Sconosciuto', en: 'Unknown' },
+                              fontSize: 'sm',
+                              color: 'secondary',
+                            },
+                          },
+                          {
+                            key: 'iuv',
+                            type: 'text',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'IUV',
+                                en: 'IUV',
+                              },
+                            },
+                          },
+                          {
+                            key: 'prestazioni',
+                            type: 'text',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Causale',
+                                en: 'Services',
+                              },
+                            },
+                          },
+                          {
+                            key: 'user.fullName',
+                            type: 'text',
+                            margin: 'mt-4 mb-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Debitore',
+                                en: 'Debtor',
+                              },
+                            },
+                          },
+                          {
+                            key: 'user.fiscalCode',
+                            type: 'text',
+                            margin: 'my-2',
+                            rowSize: {
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
+                            },
+                            label: {
+                              fontWeight: 'bold',
+                              text: {
+                                it: 'Codice fiscale',
+                                en: 'Tax code',
+                              },
+                            },
+                          },
+                        ],
+                        actions: [
+                          {
+                            key: 'pay',
+                            label: {
+                              text: {
+                                it: `Paga  € {{importo}}`,
+                                en: 'Pay € {{importo}}',
+                              },
+                            },
+                            type: 'callback',
+                            renderAs: 'button',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'pay',
+                              params: [],
+                            },
+                            hideIf: [{ key: 'statoDistinta', operator: 'eq', value: 'PAGATA' }],
+                          },
+                          {
+                            key: 'download',
+                            label: {
+                              text: {
+                                it: `Scarica ricevuta`,
+                                en: 'Download receipt',
+                              },
+                            },
+                            type: 'callback',
+                            renderAs: 'button',
+                            fullWidth: false,
+                            callback: {
+                              nameFunction: 'downloadPdf',
+                              params: ['iuv'],
+                            },
+                            hideIf: [{ key: 'statoDistinta', operator: 'eq', value: 'DA PAGARE' }],
+                            hideMessage: {
+                              text: {
+                                it: 'Per il pagamento verrai reindirizzato sul sito pagoPA. Dopo il pagamento eseguito lo stato si aggiornerà entro circa 24 ore',
+                                en: 'For the payment, you will be redirected to the pagoPA website. After the payment is completed, the status will be updated within approximately 24 hours',
+                              },
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'danger',
-                lineHeight: 'normal',
-              },
+              ],
             },
           },
         },
-        notFoundMessage: {
-          imageBlockConfig: {
-            id: 'paymentsNotFound',
-            className: '',
-            layout: {
-              direction: 'column',
-              align: 'center',
-              justify: 'center',
-              gap: 'gap-2',
+      ],
+      errorMessage: {
+        imageBlockConfig: {
+          id: 'errorMessage',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'gap-2',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value: 'https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg',
+            decorative: true,
+            alt: { it: 'Errore', en: 'Error' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Errore', en: 'Error' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
             },
-            clickable: false,
-            image: {
-              type: 'url',
-              value:
-                'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
-              decorative: true,
-              alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
-              height: '150px',
+            subTitle: {
+              text: {
+                it: 'Si è verificato un errore durante il recupero dei pagamenti. Riprova più tardi.',
+                en: 'An error occurred while fetching the payments. Please try again later.',
+              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'danger',
+              lineHeight: 'normal',
             },
-            text: {
-              title: {
-                text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
-                fontSize: 'xl',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
+          },
+        },
+      },
+      notFoundMessage: {
+        imageBlockConfig: {
+          id: 'paymentsNotFound',
+          className: '',
+          layout: {
+            direction: 'column',
+            align: 'center',
+            justify: 'center',
+            gap: 'gap-2',
+          },
+          clickable: false,
+          image: {
+            type: 'url',
+            value:
+              'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+            decorative: true,
+            alt: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+            height: '150px',
+          },
+          text: {
+            title: {
+              text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
+              fontSize: 'xl',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
+            },
+            subTitle: {
+              text: {
+                it: 'La tua richiesta non ha prodotto risultati.',
+                en: 'Your request did not produce any results.',
               },
-              subTitle: {
-                text: {
-                  it: 'La tua richiesta non ha prodotto risultati.',
-                  en: 'Your request did not produce any results.',
-                },
-                fontSize: 'md',
-                fontWeight: 'normal',
-                color: 'warning',
-                lineHeight: 'normal',
-              },
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: 'warning',
+              lineHeight: 'normal',
             },
           },
         },

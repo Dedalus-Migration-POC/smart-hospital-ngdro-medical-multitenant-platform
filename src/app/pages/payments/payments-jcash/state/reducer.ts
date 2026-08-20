@@ -2,46 +2,30 @@ import { Payment } from './model';
 import * as PaymentActions from './actions';
 import { createReducer, on } from '@ngrx/store';
 
-// import { CardMultiUseConfig } from 'src/app/components/card/card.model'
-
 export const featureKey = 'paymentsJcState';
 
 export interface State {
-  // cardMultiUseConfigPayment: CardMultiUseConfig | null
   paymentsLoading: boolean;
   payments: Payment[];
   paymentsError: boolean;
   downloadingInvoicePdf: boolean;
   downloadInvoicePdfError: boolean;
-  // pagoPaLinkLoading: boolean
+  pagoPaLinkLoading: boolean;
   pagoPaLinkError: boolean;
 }
 
 export const initialState: State = {
-  // cardMultiUseConfigPayment: null,
   paymentsLoading: false,
   payments: [],
   paymentsError: false,
   downloadingInvoicePdf: false,
   downloadInvoicePdfError: false,
-  // pagoPaLinkLoading: false,
+  pagoPaLinkLoading: false,
   pagoPaLinkError: false,
 };
 
 export const reducer = createReducer(
   initialState,
-
-  // on(PaymentActions.fetchCardMultiUseConfigPayment, (state) => ({
-  //   ...state,
-  // })),
-  // on(PaymentActions.fetchCardMultiUseConfigPaymentSuccess, (state, action) => ({
-  //   ...state,
-  //   cardMultiUseConfigPayment: action.data,
-  // })),
-  // on(PaymentActions.fetchCardMultiUseConfigPaymentFailure, (state) => ({
-  //   ...state,
-  //   cardMultiUseConfigPayment: null,
-  // })),
 
   on(PaymentActions.fetchPayments, (state) => ({
     ...state,
@@ -61,12 +45,17 @@ export const reducer = createReducer(
 
   on(PaymentActions.getLinkPagoPa, (state) => ({
     ...state,
-    //pagoPaLinkLoading: true,
+    pagoPaLinkLoading: true,
+    pagoPaLinkError: false,
+  })),
+  on(PaymentActions.getLinkPagoPaSuccess, (state) => ({
+    ...state,
+    pagoPaLinkLoading: false,
     pagoPaLinkError: false,
   })),
   on(PaymentActions.getLinkPagoPaFailure, (state) => ({
     ...state,
-    // pagoPaLinkLoading: false,
+    pagoPaLinkLoading: false,
     pagoPaLinkError: true,
   })),
 
