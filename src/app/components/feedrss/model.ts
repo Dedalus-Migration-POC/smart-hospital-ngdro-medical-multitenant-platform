@@ -3,6 +3,7 @@ import { ImageBlockConfig } from '../image-block/model';
 
 export interface FeedRssProps {
   title: TextConfig;
+  button: TextConfig;
   feedRssConnectionData: FeedRssConnectionData | 'getFromFirebase';
   notFoundMessage?: { imageBlockConfig: ImageBlockConfig };
   layout: 'horizontal' | 'vertical';

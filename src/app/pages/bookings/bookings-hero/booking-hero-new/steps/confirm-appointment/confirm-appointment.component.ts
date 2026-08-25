@@ -16,22 +16,28 @@ import { format } from 'date-fns';
 import { Availability, BookingStepId } from '../../../state/model';
 import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-
-interface IConfirmInfo {
-  label: string;
-  value: string | number;
-}
+import { CountdownTimerComponent } from 'src/app/components/countdown-timer/countdown-timer.component';
+import { LanguageService } from 'src/app/initialize/state/services/language.service';
 
 @Component({
   selector: 'app-hero-confirm-appointment',
   standalone: true,
-  imports: [CommonModule, TranslateModule, DesignAngularKitModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    DesignAngularKitModule,
+    ReactiveFormsModule,
+    CountdownTimerComponent,
+  ],
   templateUrl: './confirm-appointment.component.html',
   styleUrls: ['./confirm-appointment.component.scss'],
 })
 export class ConfirmAppointmentComponent implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly router = inject(Router);
+  private langService = inject(LanguageService);
+
+  lang = this.langService.lang;
 
   disclaimerControl = new FormControl(false, Validators.requiredTrue);
   readonly lockAppointment = this.store.selectSignal(selectLockAppointment);
@@ -54,7 +60,7 @@ export class ConfirmAppointmentComponent implements OnInit {
   buildConfirmInfo(app: Availability) {
     return [
       {
-        label: 'Prestazione',
+        label: { it: 'Prestazione', en: 'Service' },
         value: app.serviceDescriptionList
           ? app.serviceDescriptionList.map((service) => service.description).join(', ')
           : app.descriptionList
@@ -62,22 +68,22 @@ export class ConfirmAppointmentComponent implements OnInit {
             : '',
       },
       {
-        label: 'Medico',
+        label: { it: 'Medico', en: 'Physician' },
         value: app.physician ? app.physician.firstName + app.physician.lastName : '',
       },
-      { label: 'Nome agenda', value: app.unitDescription },
-      { label: 'Indirizzo', value: app.location.address || '' },
+      { label: { it: 'Nome agenda', en: 'Agenda Name' }, value: app.unitDescription },
+      { label: { it: 'Indirizzo', en: 'Address' }, value: app.location.address || '' },
       {
-        label: 'Data',
+        label: { it: 'Data', en: 'Date' },
         value:
           format(new Date(app.dateTime), 'dd/MM/yyyy') +
           ' alle ore ' +
           format(new Date(app.dateTime), 'HH:mm'),
       },
-      { label: 'Presidio', value: app.location.name || '' },
-      { label: 'Prenoto per', value: app.delegateFiscalCode || '' },
+      { label: { it: 'Presidio', en: 'Location' }, value: app.location.name || '' },
+      { label: { it: 'Prenotato per', en: 'Booked for' }, value: app.delegateFiscalCode || '' },
       {
-        label: 'Tariffa',
+        label: { it: 'Tariffa', en: 'Fee' },
         value:
           '€' +
           app.billingInfo.reduce((sum, item) => {
@@ -88,7 +94,7 @@ export class ConfirmAppointmentComponent implements OnInit {
           }, 0),
       },
       {
-        label: 'Condizioni e Prescrizioni',
+        label: { it: 'Condizioni e Prescrizioni', en: 'Conditions and Prescriptions' },
         value: app.additionalProperties?.agenda_patient_text || '',
       },
     ];

@@ -1,0 +1,7 @@
+@if (timer(); as timerData) {
+  <div class="text-end mb-2">
+    {{ timerData.timeRemaining | date: 'mm:ss' }}
+
+    <it-progress-bar [value]="(100 * timerData.timeRemaining) / timerData.time"></it-progress-bar>
+  </div>
+}

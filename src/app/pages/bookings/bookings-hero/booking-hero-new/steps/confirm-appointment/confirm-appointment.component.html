@@ -5,23 +5,25 @@
         {{ 'bookings-hero.booking-new.confirm-appointment.title' | translate }}
       </h2>
       @if (expireOn(); as expireOn) {
-        <div class="alert alert-warning">
-          {{ 'bookings-hero.booking-new.confirm-appointment.expire-on' | translate }}:
-          {{ expireOn * 1000 | date: 'dd/MM/yyyy HH:mm' }}
-        </div>
+        <app-countdown-timer
+          (onExpiration)="onExpiration()"
+          [expireOn]="expireOn"
+        ></app-countdown-timer>
       }
 
       @if (confirmInfo(); as confirmInfo) {
         <div class="card card-teaser no-after shadow-sm border-light mt-3">
           <div class="card-body--multi-use d-flex flex-column h-100 w-100">
-            <div class="card-title mb-3 lh-sm text-capitalize cursor-default h4">Riepilogo</div>
+            <div class="card-title mb-3 lh-sm text-capitalize cursor-default h4">
+              {{ 'bookings-hero.booking-new.confirm-appointment.summary' | translate }}
+            </div>
             <div class="card-content d-flex flex-column w-100">
               @for (el of confirmInfo; track el) {
                 <div>
                   @if (el.value) {
                     <div class="row pb-3">
                       <div class="col-12 col-sm-4 confirm-info-label">
-                        {{ el.label }}
+                        {{ el.label[lang()] }}
                       </div>
                       <div class="col confirm-info-value">{{ el.value }}</div>
                     </div>

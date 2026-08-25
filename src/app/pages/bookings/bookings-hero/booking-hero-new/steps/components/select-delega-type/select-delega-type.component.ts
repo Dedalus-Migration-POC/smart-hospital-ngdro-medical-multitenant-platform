@@ -5,7 +5,10 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { distinctUntilChanged } from 'rxjs';
-import { fetchDelegaTypesList, setSummaryBooking } from 'src/app/pages/bookings/bookings-hero/state/actions';
+import {
+  fetchDelegaTypesList,
+  setSummaryBooking,
+} from 'src/app/pages/bookings/bookings-hero/state/actions';
 import {
   selectBookingHeroSummary,
   selectDelegaTypes,
@@ -35,19 +38,16 @@ export class SelectDelegaTypeComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fetchDelegaTypesList());
     this.delegaTypeControl.valueChanges.pipe(distinctUntilChanged()).subscribe((value) => {
-      if (value) {
-        this.store.dispatch(
-          setSummaryBooking({
-            payload: {
-              ...this.bookingSummary(),
-              delega: {
-                delegateType: value,
-              },
+      this.store.dispatch(
+        setSummaryBooking({
+          payload: {
+            ...this.bookingSummary(),
+            delega: {
+              delegateType: value || '',
             },
-          }),
-        );
-      }
+          },
+        }),
+      );
     });
   }
 }
-

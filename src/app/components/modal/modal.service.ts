@@ -1,45 +1,53 @@
-import { Injectable, ViewContainerRef } from '@angular/core';
+import { Injectable, ComponentRef, ViewContainerRef } from '@angular/core'
+import { ModalComponent } from './modal.component'
+import { IconName } from 'design-angular-kit'
 
 export enum ModalType {
+  SUCCESS = 'SUCCESS',
+  ERROR = 'DANGER',
   INFO = 'INFO',
-  ERROR = 'ERROR',
+  WARNING = 'WARNING',
 }
 
-export type ModalButton = {
-  label: string;
-  styleClass?: string;
-  callback?: () => void;
-};
+export interface ModalButton {
+  label: string
+  styleClass?: string
+  callback: () => void
+}
 
-export type ModalOptions = {
-  type?: ModalType;
-  title?: string;
-  body?: string;
-  styleClass?: string;
-  centered?: boolean;
-  buttons?: ModalButton[];
-};
+export interface Modal {
+  title: string
+  body: string
+  styleClass?: string
+  icon?: IconName
+  iconClass?: string
+  type: ModalType
+  centered: boolean
+  buttons?: ModalButton[]
+}
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class ModalService {
-  open(_viewContainerRef: ViewContainerRef, options: ModalOptions): void {
-    const title = options.title ?? '';
-    const body = options.body ?? '';
-    const message = title ? `${title}\n\n${body}` : body;
+  private modalRef: ComponentRef<ModalComponent> | null = null
+  private viewContainerRef: ViewContainerRef | null = null
 
-    if (!options.buttons || options.buttons.length === 0) {
-      window.alert(message);
-      return;
+  open(viewContainerRef: ViewContainerRef, modalData: Modal) {
+    this.viewContainerRef = viewContainerRef
+    if (this.modalRef) {
+      this.close()
     }
 
-    if (options.buttons.length === 1) {
-      window.alert(message);
-      options.buttons[0].callback?.();
-      return;
-    }
+    const componentRef = this.viewContainerRef.createComponent(ModalComponent)
+    componentRef.instance.modal = modalData
+    this.modalRef = componentRef
+  }
 
-    const confirmed = window.confirm(message);
-    const button = confirmed ? options.buttons[1] : options.buttons[0];
-    button?.callback?.();
+  close() {
+    if (this.modalRef && this.viewContainerRef) {
+      this.viewContainerRef.clear()
+      this.modalRef = null
+    }
   }
 }

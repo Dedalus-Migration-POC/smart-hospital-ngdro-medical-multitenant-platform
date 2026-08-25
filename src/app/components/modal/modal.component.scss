@@ -1,0 +1,40 @@
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: hidden;
+
+  .modal-warning {
+    .modal-header {
+      .modal-header-container {
+        .modal-title {
+          // color: var(--#{$prefix}warning);
+        }
+
+        ::ng-deep .icon {
+          // fill: var(--#{$prefix}warning);
+        }
+      }
+
+      .btn {
+        ::ng-deep .icon {
+          // fill: var(--#{$prefix}gray);
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  .modal-danger {
+    .modal-header {
+      .modal-header-container {
+        .modal-title {
+          // color: var(--#{$prefix}danger);
+        }
+
+        ::ng-deep .icon {
+          // fill: var(--#{$prefix}danger);
+        }
+      }
+    }
+  }
+}

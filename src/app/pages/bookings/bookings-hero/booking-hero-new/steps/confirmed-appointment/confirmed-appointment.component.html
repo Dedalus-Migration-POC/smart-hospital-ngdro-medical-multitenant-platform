@@ -8,14 +8,16 @@
       @if (appointment(); as appointment) {
         <div class="card card-teaser no-after shadow-sm border-light">
           <div class="card-body--multi-use d-flex flex-column h-100 w-100">
-            <div class="card-title mb-3 lh-sm text-capitalize cursor-default h4">Riepilogo</div>
+            <div class="card-title mb-3 lh-sm text-capitalize cursor-default h4">
+              {{ 'bookings-hero.booking-new.confirmed-appointment.summary' | translate }}
+            </div>
             <div class="card-content d-flex flex-column w-100">
               @for (el of confirmInfo(); track el) {
                 <div>
                   @if (el.value) {
                     <div class="row pb-3">
                       <div class="col-12 col-sm-4 confirm-info-label">
-                        {{ el.label }}
+                        {{ el.label[lang()] }}
                       </div>
                       <div class="col confirm-info-value">{{ el.value }}</div>
                     </div>

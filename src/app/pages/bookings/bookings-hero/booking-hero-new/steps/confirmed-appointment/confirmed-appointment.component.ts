@@ -8,9 +8,11 @@ import { selectBookAppointment, selectBookingHeroSummary } from '../../../state/
 import { addToCalendar, printMemo, sendEmailNotification } from '../../../state/actions';
 import { format } from 'date-fns';
 import { Router } from '@angular/router';
+import { LocalizedText } from 'src/app/shared/models/shared_model';
+import { LanguageService } from 'src/app/initialize/state/services/language.service';
 
 interface IConfirmInfo {
-  label: string;
+  label: LocalizedText;
   value: string | number;
 }
 
@@ -24,6 +26,10 @@ interface IConfirmInfo {
 export class ConfirmedAppointmentComponent implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly router = inject(Router);
+  private langService = inject(LanguageService);
+
+  lang = this.langService.lang;
+
   readonly bookingSummary = this.store.selectSignal(selectBookingHeroSummary);
   readonly bookedAppointment = this.store.selectSignal(selectBookAppointment);
   readonly appointment = computed(() => this.bookedAppointment()?.appointment ?? null);
@@ -35,7 +41,7 @@ export class ConfirmedAppointmentComponent implements OnInit {
     }
     return [
       {
-        label: 'Prestazione',
+        label: { it: 'Prestazione', en: 'Service' },
         value: app.serviceDescriptionList
           ? app.serviceDescriptionList.map((service) => service.description).join(', ')
           : app.descriptionList
@@ -43,22 +49,22 @@ export class ConfirmedAppointmentComponent implements OnInit {
             : '',
       },
       {
-        label: 'Medico',
+        label: { it: 'Medico', en: 'Physician' },
         value: app.physician ? app.physician.firstName + app.physician.lastName : '',
       },
-      { label: 'Nome agenda', value: app.unitDescription },
-      { label: 'Indirizzo', value: app.location.address || '' },
+      { label: { it: 'Nome agenda', en: 'Agenda Name' }, value: app.unitDescription },
+      { label: { it: 'Indirizzo', en: 'Address' }, value: app.location.address || '' },
       {
-        label: 'Data',
+        label: { it: 'Data', en: 'Date' },
         value:
           format(new Date(app.dateTime), 'dd/MM/yyyy') +
           ' alle ore ' +
           format(new Date(app.dateTime), 'HH:mm'),
       },
-      { label: 'Presidio', value: app.location.name || '' },
-      { label: 'Prenotato per', value: app.delegateFiscalCode || '' },
+      { label: { it: 'Presidio', en: 'Location' }, value: app.location.name || '' },
+      { label: { it: 'Prenotato per', en: 'Booked for' }, value: app.delegateFiscalCode || '' },
       {
-        label: 'Tariffa',
+        label: { it: 'Tariffa', en: 'Fee' },
         value:
           '€' +
           app.billingInfo.reduce((sum, item) => {
@@ -69,7 +75,7 @@ export class ConfirmedAppointmentComponent implements OnInit {
           }, 0),
       },
       {
-        label: 'Condizioni e Prescrizioni',
+        label: { it: 'Condizioni e Prescrizioni', en: 'Conditions and Prescriptions' },
         value: app.additionalProperties?.agenda_patient_text || '',
       },
     ];
@@ -133,6 +139,6 @@ export class ConfirmedAppointmentComponent implements OnInit {
   }
 
   onPay() {
-    this.router.navigate(['payments']);
+    this.router.navigate(['payments-pa']);
   }
 }

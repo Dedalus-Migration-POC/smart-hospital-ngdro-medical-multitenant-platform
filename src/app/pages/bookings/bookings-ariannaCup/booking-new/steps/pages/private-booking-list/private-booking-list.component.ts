@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed, inject, input, signal } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewContainerRef,
+  computed,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -15,6 +23,7 @@ import { SummaryComponent } from '../../components/summary/summary.component';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { InputComponent } from 'src/app/components/input/input.component';
+import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
 
 type PrestazioneItem = RetrievePrestazioni['documents'][number];
 
@@ -40,6 +49,8 @@ interface PrestazioniGroup {
 })
 export class PrivateBookingListComponent implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
+  private modalService = inject(ModalService);
+  private viewContainerRef = inject(ViewContainerRef);
 
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
@@ -104,9 +115,29 @@ export class PrivateBookingListComponent implements OnInit {
     const title = this.translateService.instant(
       'bookings.booking-new.availability.confirm-modal.title',
     );
-    if (window.confirm(`${title}\n\n${body}`)) {
-      this.confirmBooking(selectedBooking);
-    }
+    this.modalService.open(this.viewContainerRef, {
+      type: ModalType.INFO,
+      title: title,
+      body: body,
+      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
+      centered: true,
+      buttons: [
+        {
+          label: this.translateService.instant(
+            'bookings.booking-new.private-booking-list.confirm-modal.cancel',
+          ),
+          styleClass: 'btn-outline-primary',
+          callback: () => {},
+        },
+        {
+          label: this.translateService.instant(
+            'bookings.booking-new.private-booking-list.confirm-modal.confirm',
+          ),
+          styleClass: 'btn-primary',
+          callback: () => this.confirmBooking(this.selectedBooking()!),
+        },
+      ],
+    });
   }
 
   private takeFirstLetter(value: string): string {
@@ -159,4 +190,3 @@ export class PrivateBookingListComponent implements OnInit {
     this.setActiveStep()(this.activeStepIndex() + 1);
   }
 }
-

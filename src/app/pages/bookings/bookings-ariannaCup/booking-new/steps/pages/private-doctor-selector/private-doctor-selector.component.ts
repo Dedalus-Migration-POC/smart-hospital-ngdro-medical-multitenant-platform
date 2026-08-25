@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal, ViewContainerRef } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SummaryComponent } from '../../components/summary/summary.component';
@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import { MedicoPrestazione } from 'src/app/pages/bookings/bookings-ariannaCup/state/model';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
 import { InputComponent } from 'src/app/components/input/input.component';
+import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
 
 @Component({
   selector: 'app-doctor-selector',
@@ -18,6 +19,8 @@ import { InputComponent } from 'src/app/components/input/input.component';
 })
 export class PrivateDoctorSelectorComponent {
   private readonly store = inject(Store<SmartHospitalState>);
+  private modalService = inject(ModalService);
+  private viewContainerRef = inject(ViewContainerRef);
 
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
@@ -74,9 +77,29 @@ export class PrivateDoctorSelectorComponent {
     const title = this.translateService.instant(
       'bookings.booking-new.private-doctor-selector.confirm-modal.title',
     );
-    if (window.confirm(`${title}\n\n${body}`)) {
-      this.confirmDoctor(selectedDoctor);
-    }
+    this.modalService.open(this.viewContainerRef, {
+      type: ModalType.INFO,
+      title: title,
+      body: body,
+      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
+      centered: true,
+      buttons: [
+        {
+          label: this.translateService.instant(
+            'bookings.booking-new.private-doctor-selector.confirm-modal.cancel',
+          ),
+          styleClass: 'btn-outline-primary',
+          callback: () => {},
+        },
+        {
+          label: this.translateService.instant(
+            'bookings.booking-new.private-doctor-selector.confirm-modal.confirm',
+          ),
+          styleClass: 'btn-primary',
+          callback: () => this.confirmDoctor(selectedDoctor!),
+        },
+      ],
+    });
   }
 
   trackByDoctor(_: number, doctor: MedicoPrestazione) {
@@ -101,4 +124,3 @@ export class PrivateDoctorSelectorComponent {
     return raw ? JSON.parse(raw) : null;
   }
 }
-

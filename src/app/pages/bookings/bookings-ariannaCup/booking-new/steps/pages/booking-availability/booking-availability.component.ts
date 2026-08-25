@@ -7,6 +7,7 @@ import {
   OnInit,
   Renderer2,
   ViewChild,
+  ViewContainerRef,
   computed,
   effect,
   inject,
@@ -39,6 +40,7 @@ import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-
 import { selectUserPhoneNumber } from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { isEqual, isValid, parse } from 'date-fns';
 import { Spinner } from 'src/app/components/spinner/spinner';
+import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
 
 @Component({
   selector: 'app-booking-availability',
@@ -49,6 +51,8 @@ import { Spinner } from 'src/app/components/spinner/spinner';
 })
 export class BookingAvailabilityComponent implements OnInit, AfterViewInit {
   private readonly store = inject(Store<SmartHospitalState>);
+  private modalService = inject(ModalService);
+  private viewContainerRef = inject(ViewContainerRef);
 
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
@@ -241,9 +245,29 @@ export class BookingAvailabilityComponent implements OnInit, AfterViewInit {
       const title = this.translateService.instant(
         'bookings.booking-new.availability.confirm-modal.title',
       );
-      if (window.confirm(`${title}\n\n${body}`)) {
-        this.confirmBooking(choiceAvailability);
-      }
+      this.modalService.open(this.viewContainerRef, {
+        type: ModalType.INFO,
+        title: title,
+        body: body,
+        styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
+        centered: true,
+        buttons: [
+          {
+            label: this.translateService.instant(
+              'bookings.booking-new.availability.confirm-modal.cancel',
+            ),
+            styleClass: 'btn-outline-primary',
+            callback: () => {},
+          },
+          {
+            label: this.translateService.instant(
+              'bookings.booking-new.availability.confirm-modal.confirm',
+            ),
+            styleClass: 'btn-primary',
+            callback: () => this.confirmBooking(choiceAvailability),
+          },
+        ],
+      });
     }
   }
 
@@ -277,4 +301,3 @@ export class BookingAvailabilityComponent implements OnInit, AfterViewInit {
     return true;
   }
 }
-

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed, inject, input } from '@angular/core';
+import { Component, OnInit, computed, inject, input, ViewContainerRef } from '@angular/core';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
@@ -21,6 +21,7 @@ import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Spinner } from 'src/app/components/spinner/spinner';
+import { ModalType, ModalService } from 'src/app/components/modal/modal.service';
 
 @Component({
   selector: 'app-booking-availability',
@@ -31,6 +32,8 @@ import { Spinner } from 'src/app/components/spinner/spinner';
 })
 export class PrivateBookingAvailabilityComponent implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
+  private modalService = inject(ModalService);
+  private viewContainerRef = inject(ViewContainerRef);
 
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
@@ -82,9 +85,29 @@ export class PrivateBookingAvailabilityComponent implements OnInit {
       const title = this.translateService.instant(
         'bookings.booking-new.availability.confirm-modal.title',
       );
-      if (window.confirm(`${title}\n\n${body}`)) {
-        this.confirmBooking(choiceAvailability);
-      }
+      this.modalService.open(this.viewContainerRef, {
+        type: ModalType.INFO,
+        title: title,
+        body: body,
+        styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
+        centered: true,
+        buttons: [
+          {
+            label: this.translateService.instant(
+              'bookings.booking-new.availability.confirm-modal.cancel',
+            ),
+            styleClass: 'btn-outline-primary',
+            callback: () => {},
+          },
+          {
+            label: this.translateService.instant(
+              'bookings.booking-new.availability.confirm-modal.confirm',
+            ),
+            styleClass: 'btn-primary',
+            callback: () => this.confirmBooking(choiceAvailability),
+          },
+        ],
+      });
     }
   }
 

@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit, computed, effect, inject, input } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewContainerRef,
+  computed,
+  effect,
+  inject,
+  input,
+} from '@angular/core';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SmartHospitalState } from 'src/app/store/reducers';
@@ -32,6 +41,8 @@ import { PRIVATE_BOOKING_AVAILABILITY_REQUEST } from 'src/app/pages/bookings/boo
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { InputComponent } from 'src/app/components/input/input.component';
+import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
+import { ImageBlock } from 'src/app/components/image-block/image-block';
 
 @Component({
   selector: 'app-booking-confirmation',
@@ -44,12 +55,15 @@ import { InputComponent } from 'src/app/components/input/input.component';
     DesignAngularKitModule,
     Spinner,
     InputComponent,
+    ImageBlock,
   ],
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.scss'],
 })
 export class ConfirmationComponent implements OnInit, OnDestroy {
   private readonly store = inject(Store<SmartHospitalState>);
+  private modalService = inject(ModalService);
+  private viewContainerRef = inject(ViewContainerRef);
 
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
@@ -61,6 +75,27 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   bookingType = computed(
     () => this.bookingTypeState() ?? this.readSessionItem(SessionStorageKey.bookingType),
   );
+
+  pageConfig: any = {
+    imageBlockConfig: {
+      id: 'bookingConfirmImg',
+      className: '',
+      layout: {
+        direction: 'column',
+        align: 'center',
+        justify: 'center',
+        gap: 'gap-2',
+      },
+      clickable: false,
+      image: {
+        type: 'url',
+        value: 'assets/images/confirm-booking.svg',
+        decorative: true,
+        alt: { it: 'Prenotazione confermata', en: 'Booking confirmed' },
+        // height: '150px',
+      },
+    },
+  };
 
   private readonly destroy$ = new Subject<void>();
   private readonly userProfile = this.store.selectSignal(selectUserProfile);
@@ -114,11 +149,25 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
   }
 
   confirmBooking() {
-    const title = this.translateService.instant('bookings.booking-new.confirmation.modal.title');
-    const body = this.translateService.instant('bookings.booking-new.confirmation.modal.body');
-    if (window.confirm(`${title}\n\n${body}`)) {
-      this.confirmBookingModal();
-    }
+    this.modalService.open(this.viewContainerRef, {
+      type: ModalType.INFO,
+      title: this.translateService.instant('bookings.booking-new.confirmation.modal.title'),
+      body: this.translateService.instant('bookings.booking-new.confirmation.modal.body'),
+      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
+      centered: true,
+      buttons: [
+        {
+          label: this.translateService.instant('bookings.booking-new.confirmation.modal.cancel'),
+          styleClass: 'btn-outline-primary',
+          callback: () => {},
+        },
+        {
+          label: this.translateService.instant('bookings.booking-new.confirmation.modal.confirm'),
+          styleClass: 'btn-primary',
+          callback: () => this.confirmBookingModal(),
+        },
+      ],
+    });
   }
 
   // setStep(step: number) {
@@ -205,4 +254,3 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
     return raw ? JSON.parse(raw) : null;
   }
 }
-

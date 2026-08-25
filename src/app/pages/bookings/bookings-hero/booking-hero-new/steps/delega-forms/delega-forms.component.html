@@ -10,10 +10,7 @@
       </div>
       <it-tab-container>
         <it-tab-item
-          [label]="
-            'bookings-hero.booking-new.delega.declarantForm-tab-title'
-              | translate
-          "
+          [label]="'bookings-hero.booking-new.delega.declarantForm-tab-title' | translate"
           [active]="activeTab === 1"
           id="delega-forms-tab-1"
         >
@@ -23,10 +20,7 @@
         </it-tab-item>
 
         <it-tab-item
-          [label]="
-            'bookings-hero.booking-new.delega.bookingPersonForm-tab-title'
-              | translate
-          "
+          [label]="'bookings-hero.booking-new.delega.bookingPersonForm-tab-title' | translate"
           [active]="activeTab === 2"
           id="delega-forms-tab-2"
         >
@@ -37,12 +31,8 @@
       </it-tab-container>
 
       <div class="w-100 d-flex justify-content-end mt-4">
-        <button
-          class="btn btn-primary"
-          (click)="onConfirm()"
-          [disabled]="isBlocked"
-        >
-          Avanti
+        <button class="btn btn-primary" (click)="onConfirm()" [disabled]="isBlocked">
+          {{ 'commons.forward' | translate }}
         </button>
       </div>
     </div>

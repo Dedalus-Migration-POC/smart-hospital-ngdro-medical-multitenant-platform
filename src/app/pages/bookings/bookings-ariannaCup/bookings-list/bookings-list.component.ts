@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
@@ -20,6 +20,7 @@ import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { Card } from 'src/app/components/card/card';
 import { CardActionsService } from 'src/app/shared/services/card-actions.service';
 import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
+import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
 
 @Component({
   selector: 'app-bookings-list',
@@ -30,6 +31,8 @@ import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/
 export class BookingsListComponent implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
   private cardActionsService = inject(CardActionsService);
+  private modalService = inject(ModalService);
+  private viewContainerRef = inject(ViewContainerRef);
 
   readonly pageConfig = toSignal(
     this.store.select(selectAppConfig).pipe(
@@ -60,7 +63,7 @@ export class BookingsListComponent implements OnInit {
           templateCard?.actions as DataCardAction[] | undefined,
           {
             callbackContext: this,
-            callbackArgsMode: 'sourceAndParams',
+            callbackArgsMode: 'paramsOnly',
           },
         );
         return {
@@ -95,12 +98,28 @@ export class BookingsListComponent implements OnInit {
     );
   }
 
-  deleteBooking(booking: any, indexSchedule: number): void {
-    const title = this.translateService.instant('bookings.bookings-list.delete-modal.title');
-    const body = this.translateService.instant('bookings.bookings-list.delete-modal.body');
-    if (window.confirm(`${title}\n\n${body}`)) {
-      this.deleteSchedule(indexSchedule);
-    }
+  deleteBooking(indexSchedule: number): void {
+    this.modalService.open(this.viewContainerRef, {
+      type: ModalType.INFO,
+      title: this.translateService.instant('bookings.bookings-list.delete-modal.title'),
+      body: this.translateService.instant('bookings.bookings-list.delete-modal.body'),
+      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
+      centered: true,
+      buttons: [
+        {
+          label: this.translateService.instant('bookings.bookings-list.delete-modal.cancel'),
+          styleClass: 'btn-outline-primary',
+          callback: () => console.log('Annullata modale'),
+        },
+        {
+          label: this.translateService.instant('bookings.bookings-list.delete-modal.confirm'),
+          styleClass: 'btn-primary',
+          callback: () => {
+            this.deleteSchedule(indexSchedule);
+          },
+        },
+      ],
+    });
   }
 
   resetStateNewBooking() {
@@ -199,8 +218,8 @@ export class BookingsListComponent implements OnInit {
     const phone = this.phoneNumber();
     const schedules = bookingState?.data?.schedules ?? [];
     const schedule = schedules[indexSchedule];
-    console.log('Deleting schedule:', indexSchedule);
     if (!schedule) return;
+    console.log('Deleting schedule:', indexSchedule);
     this.store.dispatch(
       deleteBooking({
         request: {

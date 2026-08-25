@@ -4,6 +4,7 @@
     "error": "Error",
     "generic-error": "An error occurred, please try again later",
     "back": "Back",
+    "forward": "Forward",
     "close": "Close",
     "confirm": "Confirm",
     "cancel": "Cancel",
@@ -207,12 +208,14 @@
         "noAvailableAppointments": "No availability for the requested service."
       },
       "confirm-appointment": {
+        "summary": "Summary",
         "title": "Confirm the appointment",
         "informative-disclaimer": "I declare that I am aware that failure to comply with the Conditions and Prescriptions indicated in the schedule will result in the non-delivery of the services and the loss of the right to a refund.",
         "confirm-button": "Confirm booking",
         "cancel-button": "Cancel"
       },
       "confirmed-appointment": {
+        "summary": "Summary",
         "title": "Your appointment",
         "calendar-button": "Add to calendar",
         "print-button": "Print reminder and IUV payment code",

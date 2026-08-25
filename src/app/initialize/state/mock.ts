@@ -1257,6 +1257,12 @@ export const APP_CONFIG: AppConfig = {
                       color: 'dark',
                       lineHeight: 'md',
                     },
+                    button: {
+                      text: {
+                        it: 'LEGGI TUTTO',
+                        en: 'READ ALL',
+                      },
+                    },
                     // feedRssConnectionData: 'getFromFirebase',
                     feedRssConnectionData: {
                       baseUrl: 'https://ast-latina-dev-a1c95ad48249.herokuapp.com/',
@@ -3498,11 +3504,29 @@ export const APP_CONFIG: AppConfig = {
                             lineHeight: 'md',
                           },
                           // subTitle: {
-                          //   key: 'metaInfo.object',
+                          //   key: 'title',
                           //   fontSize: 'md',
                           //   fontWeight: 'semibold',
                           //   color: 'secondary',
                           // },
+                          imageBlockConfig: {
+                            id: 'departmentImg',
+                            className: '',
+                            layout: {
+                              direction: 'column',
+                              align: 'center',
+                              justify: 'center',
+                              gap: 'gap-2',
+                            },
+                            clickable: false,
+                            image: {
+                              type: 'url',
+                              value: 'assets/images/doctor.png',
+                              decorative: true,
+                              alt: { it: 'Dipartimento', en: 'Department' },
+                              height: '60px',
+                            },
+                          },
                         },
                         fields: [
                           {

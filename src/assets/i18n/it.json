@@ -4,6 +4,7 @@
     "error": "Errore",
     "generic-error": "Si è verificato un errore, riprova più tardi",
     "back": "Indietro",
+    "forward": "Avanti",
     "close": "Chiudi",
     "confirm": "Conferma",
     "cancel": "Annulla",
@@ -190,12 +191,14 @@
         "noAvailableAppointments": "Nessuna disponibilità per la prestazione richiesta."
       },
       "confirm-appointment": {
+        "summary": "Riepilogo",
         "title": "Conferma l'appuntamento",
         "informative-disclaimer": "Dichiaro di essere consapevole che il mancato rispetto delle Condizioni e Prescrizioni indicate in agenda comporterà la mancata erogazione delle prestazioni e la perdita del diritto al rimborso economico.",
         "confirm-button": "Conferma la prenotazione",
         "cancel-button": "Annulla"
       },
       "confirmed-appointment": {
+        "summary": "Riepilogo",
         "title": "Il tuo appuntamento",
         "calendar-button": "Aggiungi all calendario",
         "print-button": "Stampa promemoria e codice di pagamento IUV",

@@ -1,0 +1,41 @@
+<div
+  class="modal d-block"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modalTitle"
+  aria-describedby="modalBody"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" [ngClass]="modal.styleClass">
+      <div class="modal-header pt-3">
+        <div class="d-flex gap-2 modal-header-container">
+          <it-icon *ngIf="modal.icon" [name]="modal.icon" [ngClass]="modal.iconClass"></it-icon>
+          <h4 class="modal-title" id="modalTitle">{{ modal.title }}</h4>
+        </div>
+        <button
+          type="button"
+          class="btn btn-sm p-0"
+          [attr.aria-label]="'commons.close' | translate"
+          (click)="onClose()"
+        >
+          <it-icon name="close" aria-hidden="true"></it-icon>
+        </button>
+      </div>
+      <div *ngIf="modal.body" class="modal-body pt-2" id="modalBody">
+        <p class="cursor-default mb-0" [innerHTML]="modal.body"></p>
+      </div>
+      <div *ngIf="modal.buttons?.length" class="modal-footer pt-2 pb-3">
+        <button
+          *ngFor="let btn of modal.buttons"
+          type="button"
+          class="btn"
+          [ngClass]="btn.styleClass || 'btn-outline-primary'"
+          (click)="onButtonClick(btn)"
+        >
+          {{ btn.label }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

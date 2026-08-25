@@ -15,6 +15,7 @@ import {
   FlexRowSize,
   Margin,
 } from '../../shared/models/shared_model';
+import { ImageBlockConfig } from '../image-block/model';
 
 export type CardType = 'mediaText' | 'data';
 // Tipi di configurazione (usati per definire la struttura statica delle card)
@@ -83,6 +84,7 @@ export interface CompiledDataCard extends Omit<DataCard, 'actions'> {
 export interface DataCardTitleSubtitle {
   title: DataCardTitleBinding;
   subTitle?: DataCardSubTitleBinding;
+  imageBlockConfig?: ImageBlockConfig; // immagine opzionale da mostrare accanto al titolo, es. icona di stato
 }
 
 /*
