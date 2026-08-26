@@ -568,11 +568,11 @@ class ChatbotWidget {
                 this.lastBotMessage = response.data.message || 'Blocked';
             }
             // Add normal bot response (200)
-            else if (response && response.answer) {
+            else if (response && response.data.answer) {
                 console.log('Handling normal response');
                 const sources = response.sources || null;
-                this.addMessage(response.answer, 'bot', sources, reasoningTime);
-                this.lastBotMessage = response.answer;
+                this.addMessage(response.data.answer, 'bot', sources, reasoningTime);
+                this.lastBotMessage = response.data.answer;
             }
             else {
                 console.error('Invalid response format:', response);
@@ -925,10 +925,10 @@ class ChatbotWidget {
             return; // Do not treat as error
         }
         // Add normal bot response
-        if (response && response.answer) {
+        if (response && response.data.answer) {
             const sources = response.sources || null;
-            this.addMessage(response.answer, 'bot', sources);
-            this.lastBotMessage = response.answer;
+            this.addMessage(response.data.answer, 'bot', sources);
+            this.lastBotMessage = response.data.answer;
             return;
         }
         // If neither, show error
