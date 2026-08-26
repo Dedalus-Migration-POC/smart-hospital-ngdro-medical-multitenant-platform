@@ -11,7 +11,7 @@ export function getTextClasses(text?: TextStyle): string[] {
   return [
     text?.fontSize ? `fs-${text.fontSize}` : '',
     text?.fontWeight ? `fw-${text.fontWeight}` : '',
-    text?.color ? `text-${text.color}` : '',
+    text?.color?.palette ? `text-${text.color.palette}` : '',
     text?.lineHeight ? `lh-${text.lineHeight}` : '',
     text?.isUppercase ? 'text-uppercase' : '',
   ].filter(Boolean);

@@ -1,21 +1,28 @@
-@if (card(); as card) {
+@if (effectiveCard(); as card) {
   @if (itemsLayout(); as layout) {
     <article
-      class="it-card h-100 shadow-sm border border-light p-0"
-      [ngClass]="card.background ? 'bg-' + card.background : 'bg-white'"
+      class="it-card h-100"
+      [ngClass]="getCardBackgroundClass(card)"
+      [ngStyle]="getCardStyles(card)"
       [attr.aria-label]="card.ariaLabel?.[lang()] ?? null"
     >
-      <div class="h-100 w-100 p-3 cursor-default" [ngClass]="getFlexLayoutClasses(layout)">
+      <div class="h-100 w-100 cursor-default" [ngClass]="getFlexLayoutClasses(layout)">
         <div class="card-text w-100">
           @if (getTitleText(); as titleText) {
             <h2
               [ngClass]="[
                 'text-capitalize',
-                ...getTextClasses(card.titleSubtitle.title),
+                ...getTextClasses(
+                  mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title)
+                ),
                 card.titleSubtitle.title.className ?? '',
                 card.titleSubtitle.title.margin ?? '',
               ]"
-              [style.color]="card.titleSubtitle.title.colorHex ?? null"
+              [style.color]="
+                mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title).color?.hex ??
+                card.titleSubtitle.title.colorHex ??
+                null
+              "
             >
               {{ titleText }}
             </h2>
@@ -25,11 +32,18 @@
             <h3
               [ngClass]="[
                 'text-capitalize',
-                ...getTextClasses(card.titleSubtitle.subTitle),
+                ...getTextClasses(
+                  mergeTextStyles(dataTheme()?.subTitleStyle, card.titleSubtitle.subTitle)
+                ),
                 card.titleSubtitle.subTitle?.className ?? '',
                 card.titleSubtitle.subTitle?.margin ?? '',
               ]"
-              [style.color]="card.titleSubtitle.subTitle?.colorHex ?? null"
+              [style.color]="
+                mergeTextStyles(dataTheme()?.subTitleStyle, card.titleSubtitle.subTitle).color
+                  ?.hex ??
+                card.titleSubtitle.subTitle?.colorHex ??
+                null
+              "
             >
               {{ subTitleText }}
             </h3>
@@ -46,9 +60,10 @@
               >
                 @if (field.label.text[lang()]; as fieldLabel) {
                   <div
-                    [ngClass]="getTextClasses(field.label)"
+                    [ngClass]="getTextClasses(getMergedLabelStyle(field))"
                     [class.field-label-row]="layout.direction === 'row'"
                     [ngStyle]="getFieldRowPartStyles(field, 'key', layout.direction)"
+                    [style.color]="getTextColorHex(getMergedLabelStyle(field))"
                   >
                     {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
                   </div>
@@ -66,18 +81,18 @@
                         @for (value of getArrayValues(field); track $index) {
                           <div
                             [ngClass]="[
-                              ...getTextClasses(field.valueStyle),
+                              ...getTextClasses(getMergedValueStyle(field)),
                               getListItemClass(field.listStyle),
                             ]"
-                            [style.color]="field.colorHex ?? null"
+                            [style.color]="getTextColorHex(getMergedValueStyle(field))"
                           >
                             {{ value }}
                           </div>
                         }
                       } @else {
                         <div
-                          [ngClass]="getTextClasses(field.valueStyle)"
-                          [style.color]="field.colorHex ?? null"
+                          [ngClass]="getTextClasses(getMergedValueStyle(field))"
+                          [style.color]="getTextColorHex(getMergedValueStyle(field))"
                         >
                           {{ getFieldDisplayValue(field) }}
                         </div>
@@ -88,9 +103,10 @@
                         <span
                           class="badge"
                           [ngClass]="[
-                            badge.bgColor ? 'text-bg-' + badge.bgColor : '',
+                            badge.bgColorHex ? '' : 'text-bg-' + badge.bgColor,
                             ...getTextClasses(badge.config),
                           ]"
+                          [style.background-color]="badge.bgColorHex ?? null"
                         >
                           {{ badge.displayText }}
                         </span>
@@ -98,8 +114,8 @@
                     }
                     @default {
                       <div
-                        [ngClass]="getTextClasses(field.valueStyle)"
-                        [style.color]="field.colorHex ?? null"
+                        [ngClass]="getTextClasses(getMergedValueStyle(field))"
+                        [style.color]="getTextColorHex(getMergedValueStyle(field))"
                       >
                         {{ getFieldDisplayValue(field) }}
                       </div>
@@ -117,7 +133,11 @@
           @if (action.renderAs === 'message') {
             @if (action.message.text[lang()]; as msg) {
               <div class="px-3 pb-1">
-                <span [ngClass]="getTextClasses(action.message)">{{ msg }}</span>
+                <span
+                  [ngClass]="getTextClasses(getMergedButtonTextStyle(action.message))"
+                  [style.color]="getTextColorHex(getMergedButtonTextStyle(action.message))"
+                  >{{ msg }}</span
+                >
               </div>
             }
           }
@@ -128,15 +148,15 @@
               <button
                 type="button"
                 class="btn"
-                [class.w-100]="action.fullWidth"
                 [class.btn-link]="action.renderAs === 'link'"
                 [class.p-0]="action.renderAs === 'link'"
                 [ngClass]="[
                   action.className ?? (action.renderAs === 'link' ? '' : 'btn-primary'),
-                  action.renderAs === 'link' ? getTextDecorationClass(action.decoration) : '',
-                  ...getTextClasses(action.label),
+                  ...(action.renderAs === 'link'
+                    ? getTextClasses(getMergedLinkTextStyle(action.label))
+                    : getTextClasses(getMergedButtonTextStyle(action.label))),
                 ]"
-                [style.color]="action.renderAs === 'link' ? (action.label.colorHex ?? null) : null"
+                [ngStyle]="getActionStyles(action)"
                 [disabled]="action.disabled"
                 (click)="action.compiledCallback?.()"
               >

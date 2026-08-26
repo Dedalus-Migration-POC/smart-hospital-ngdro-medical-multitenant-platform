@@ -1,22 +1,38 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import {
   CardField,
   CompiledDataCard,
+  DataCardAction,
   DataCardCompiledMessageAction,
   DataCardSubTitleBinding,
   DataCardTitleBinding,
 } from '../../model';
 import {
+  BackgroundConfig,
+  BorderConfig,
+  ButtonConfig,
   Colors,
+  ColorConfig,
   FlexLayoutConfig,
   ImageConfig,
+  LinkConfig,
+  SpacingConfig,
+  SizeConfig,
   TextConfig,
+  TextStyle,
 } from '../../../../shared/models/shared_model';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
-import { getTextClasses, getTextDecorationClass } from '../../../../shared/utility/text.utils';
+import { getTextClasses } from '../../../../shared/utility/text.utils';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Store } from '@ngrx/store';
+import { SmartHospitalState } from 'src/app/store/reducers';
+import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { mergeCardBase, mergeTextStyles } from '../../../../shared/utility/cards.utils';
+import { getBackgroundPaletteClass, getTextColorHex } from '../../../../shared/utility/style.utils';
+import { getCardStyles } from '../../../../shared/utility/cards.utils';
 import { ImageBlock } from '../../../image-block/image-block';
 import { ImageBlockConfig } from '../../../image-block/model';
 import { format as formatDateFns } from 'date-fns';
@@ -35,6 +51,13 @@ export class Data {
   readonly card = input.required<CompiledDataCard>();
   readonly itemsLayout = input.required<FlexLayoutConfig>();
   readonly actionsLayout = input.required<FlexLayoutConfig>();
+  private readonly store = inject(Store<SmartHospitalState>);
+  private readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
+  private readonly cardBaseTheme = computed(() => this.appConfig()?.theme.card?.base);
+  protected readonly dataTheme = computed(() => this.appConfig()?.theme.card?.data);
+  protected readonly effectiveCard = computed(() =>
+    mergeCardBase(this.cardBaseTheme(), this.card()),
+  );
 
   private readonly langService = inject(LanguageService);
   private readonly translate = inject(TranslateService);
@@ -42,10 +65,63 @@ export class Data {
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextClasses = getTextClasses;
-  protected readonly getTextDecorationClass = getTextDecorationClass;
+  protected readonly getCardBackgroundClass = getBackgroundPaletteClass;
+  protected readonly getCardStyles = getCardStyles;
+  protected readonly mergeTextStyles = mergeTextStyles;
+  protected readonly getTextColorHex = getTextColorHex;
 
   // Fallback unico quando un valore non e disponibile o non e valido.
   private readonly emptyValue = '-';
+
+  getMergedLabelStyle(field: CardField) {
+    return this.mergeTextStyles(this.dataTheme()?.fields?.labelStyle, field.label);
+  }
+
+  getMergedValueStyle(field: CardField) {
+    return this.mergeTextStyles(this.dataTheme()?.fields?.valueStyle, field.valueStyle);
+  }
+
+  getMergedButtonTextStyle(actionLabel: TextConfig) {
+    return this.mergeTextStyles(this.dataTheme()?.action?.buttonStyle?.textStyle, actionLabel);
+  }
+
+  getMergedLinkTextStyle(actionLabel: TextConfig) {
+    return this.mergeTextStyles(this.dataTheme()?.action?.linkStyle?.textStyle, actionLabel);
+  }
+
+  getActionStyles(action: DataCardAction): Record<string, string> {
+    const styles: Record<string, string> = {};
+
+    if (action.renderAs === 'button') {
+      const config = this.mergeButtonConfig(this.dataTheme()?.action?.buttonStyle, action);
+      const textColor = this.getColorValue(config.textStyle?.color);
+      const background = this.getBackgroundValue(config.backgroundColor);
+      const borderColor = this.getColorValue(config.border?.color);
+
+      if (textColor) styles['--bs-btn-color'] = textColor;
+      if (background) {
+        if (config.backgroundColor?.gradient) {
+          styles['background'] = background;
+        } else {
+          styles['--bs-btn-bg'] = background;
+        }
+      }
+      if (borderColor) styles['--bs-btn-border-color'] = borderColor;
+      if (config.border?.width) styles['border-width'] = config.border.width;
+      if (config.border?.style) styles['border-style'] = config.border.style;
+      if (config.border?.radius) styles['border-radius'] = config.border.radius;
+      this.addSpacingStyles(styles, config.padding);
+      this.addSizeStyles(styles, config.size);
+    } else {
+      const config = this.mergeLinkConfig(this.dataTheme()?.action?.linkStyle, action);
+      const textColor = this.getColorValue(config.textStyle?.color);
+
+      if (textColor) styles['--bs-btn-color'] = textColor;
+      if (config.textDecoration) styles['text-decoration'] = config.textDecoration;
+    }
+
+    return styles;
+  }
 
   getTitleText(): string | undefined {
     return this.getTitleTextFromBinding(this.card().titleSubtitle.title);
@@ -129,7 +205,7 @@ export class Data {
 
   getBadgeConfig(
     field: CardField,
-  ): { config: TextConfig; displayText: string; bgColor: Colors } | null {
+  ): { config: TextConfig; displayText: string; bgColor: Colors; bgColorHex?: string } | null {
     if (field.type !== 'badge') return null;
 
     const rawValue = this.getValueByPath(
@@ -150,7 +226,8 @@ export class Data {
     return {
       config: configWithoutColor,
       displayText: this.withAffixes(text, field.prefix, field.suffix),
-      bgColor: config.color || 'info', // fallback a info se non specificato
+      bgColor: config.color?.palette ?? 'info',
+      bgColorHex: config.color?.hex,
     };
   }
 
@@ -201,6 +278,85 @@ export class Data {
     }
 
     return Object.keys(styles).length ? styles : null;
+  }
+
+  private mergeButtonConfig(theme?: ButtonConfig, action?: ButtonConfig): ButtonConfig {
+    return {
+      ...theme,
+      ...action,
+      textStyle: this.mergeTextStyles(theme?.textStyle, action?.textStyle),
+      backgroundColor: this.mergeBackgroundConfig(theme?.backgroundColor, action?.backgroundColor),
+      border: this.mergeBorderConfig(theme?.border, action?.border),
+      padding: this.mergeSpacingConfig(theme?.padding, action?.padding),
+      size: { ...theme?.size, ...action?.size },
+    };
+  }
+
+  private mergeLinkConfig(theme?: LinkConfig, action?: LinkConfig): LinkConfig {
+    return {
+      ...theme,
+      ...action,
+      textStyle: this.mergeTextStyles(theme?.textStyle, action?.textStyle),
+    };
+  }
+
+  private mergeBackgroundConfig(
+    theme?: BackgroundConfig,
+    action?: BackgroundConfig,
+  ): BackgroundConfig | undefined {
+    if (!theme && !action) return undefined;
+    return {
+      ...theme,
+      ...action,
+      fill: { ...theme?.fill, ...action?.fill },
+    };
+  }
+
+  private mergeBorderConfig(theme?: BorderConfig, action?: BorderConfig): BorderConfig | undefined {
+    if (!theme && !action) return undefined;
+    return {
+      ...theme,
+      ...action,
+      color: { ...theme?.color, ...action?.color },
+    };
+  }
+
+  private mergeSpacingConfig(
+    theme?: SpacingConfig,
+    action?: SpacingConfig,
+  ): SpacingConfig | undefined {
+    if (!theme && !action) return undefined;
+    return { ...theme, ...action };
+  }
+
+  private addSpacingStyles(styles: Record<string, string>, padding?: SpacingConfig): void {
+    const all = padding?.all;
+    const horizontal = padding?.x ?? all;
+    const vertical = padding?.y ?? all;
+
+    if (horizontal) styles['padding-left'] = styles['padding-right'] = horizontal;
+    if (vertical) styles['padding-top'] = styles['padding-bottom'] = vertical;
+    if (padding?.top) styles['padding-top'] = padding.top;
+    if (padding?.right) styles['padding-right'] = padding.right;
+    if (padding?.bottom) styles['padding-bottom'] = padding.bottom;
+    if (padding?.left) styles['padding-left'] = padding.left;
+  }
+
+  private addSizeStyles(styles: Record<string, string>, size?: SizeConfig): void {
+    if (size?.basis) styles['flex-basis'] = size.basis;
+    if (size?.width) styles['width'] = size.width;
+    if (size?.height) styles['height'] = size.height;
+    if (size?.minWidth) styles['min-width'] = size.minWidth;
+    if (size?.minHeight) styles['min-height'] = size.minHeight;
+  }
+
+  private getBackgroundValue(background?: BackgroundConfig): string | null {
+    return background?.gradient ?? this.getColorValue(background?.fill);
+  }
+
+  private getColorValue(color?: ColorConfig): string | null {
+    if (color?.hex) return color.hex;
+    return color?.palette ? `var(--bs-${color.palette})` : null;
   }
 
   getFieldDisplayValue(field: CardField): string {

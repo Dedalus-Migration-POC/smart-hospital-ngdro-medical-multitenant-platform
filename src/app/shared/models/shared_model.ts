@@ -26,6 +26,8 @@ export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 export type LineHeight = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 export type TextHeader = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
+// TODO: da togliere c e SpacingConfig
+// appena finisco di fare il default delle card
 export type Margin =
   | 'mt-0'
   | 'mt-1'
@@ -39,6 +41,18 @@ export type Margin =
   | 'mb-3'
   | 'mb-4'
   | 'mb-5'
+  | 'ms-0'
+  | 'ms-1'
+  | 'ms-2'
+  | 'ms-3'
+  | 'ms-4'
+  | 'ms-5'
+  | 'me-0'
+  | 'me-1'
+  | 'me-2'
+  | 'me-3'
+  | 'me-4'
+  | 'me-5'
   | 'my-0'
   | 'my-1'
   | 'my-2'
@@ -53,20 +67,62 @@ export type Margin =
   | 'mx-5';
 
 export type ImageType = 'url' | 'inlineSvg' | 'file' | 'base64';
-export interface ImageConfig {
+
+export interface ImageStyle {
+  width?: string;
+  height?: string;
+}
+
+export interface ImageConfig extends ImageStyle {
   type: ImageType;
   value: string;
   decorative: boolean;
+  className?: string;
   alt?: LocalizedText;
   ariaLabel?: LocalizedText;
-  width?: string;
-  height?: string;
-  className?: string;
   tooltip?: {
     enabled: boolean;
     tooltipLabel?: LocalizedText;
     tooltipClassName?: string;
   };
+}
+
+export interface ColorConfig {
+  palette?: Colors;
+  hex?: string;
+}
+
+export interface BackgroundConfig {
+  fill?: ColorConfig;
+  gradient?: string;
+}
+
+export interface BorderConfig {
+  width?: string;
+  style?: BorderStyle;
+  color?: ColorConfig;
+  radius?: string;
+}
+
+export type BorderStyle =
+  | 'solid'
+  | 'dashed'
+  | 'dotted'
+  | 'double'
+  | 'groove'
+  | 'ridge'
+  | 'inset'
+  | 'outset'
+  | 'none';
+
+export interface SpacingConfig {
+  all?: string; // shorthand per tutti i lati
+  x?: string; // left + right (asse orizzontale)
+  y?: string; // top + bottom (asse verticale)
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
 }
 
 export interface TextSection {
@@ -78,13 +134,13 @@ export interface TextConfig extends TextStyle {
   text: LocalizedText;
 }
 
+// TODO: valutare se aggiungere margin e padding qui
 export interface TextStyle {
   fontSize?: FontSize;
   fontWeight?: FontWeight;
-  color?: Colors;
-  colorHex?: string; // colore custom in formato hex, ha precedenza su color
+  color?: ColorConfig;
   lineHeight?: LineHeight;
-  isUppercase?: boolean; // se true, aggiunge text-uppercase
+  isUppercase?: boolean; // se true, aggiunge la classe text-uppercase
 }
 
 export type ActionType = 'route' | 'externalLink' | 'comingSoon';
@@ -110,7 +166,31 @@ export interface FlexLayoutConfig {
   shrink?: Shrink;
 }
 
-export interface FlexRowSize {
+export interface SizeConfig {
   basis?: string;
   width?: string;
+  height?: string;
+  minHeight?: string;
+  minWidth?: string;
+}
+
+// TODO: va potenziato in futuro con gli stati dei bottoni
+// (hover, focus, active, disabled)
+// SOLO SE usi le palette di colori del tema,
+// non serve specificare i colori in ogni stato
+// se usiamo hex non vengono generati gli stati,
+// quindi bisogna specificare i colori in ogni stato (implementare)
+export interface ButtonConfig {
+  textStyle?: TextStyle;
+  backgroundColor?: BackgroundConfig;
+  border?: BorderConfig;
+  padding?: SpacingConfig;
+  size?: SizeConfig;
+}
+
+// TODO: va potenziato in futuro con gli stati dei bottoni
+// stesso discorso dei bottoni
+export interface LinkConfig {
+  textStyle?: TextStyle;
+  textDecoration?: TextDecoration;
 }

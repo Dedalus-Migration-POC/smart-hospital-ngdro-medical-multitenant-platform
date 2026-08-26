@@ -37,7 +37,11 @@
       }
 
       @if (config.image.type === 'inlineSvg') {
-        <div [innerHTML]="sanitizeSvg(config.image.value.replace(/\n/g, ''))"></div>
+        <div
+          [style.width]="config.image.width"
+          [style.height]="config.image.height"
+          [innerHTML]="sanitizeSvg(config.image.value.replace(/\n/g, ''))"
+        ></div>
       }
     }
 
@@ -51,7 +55,7 @@
       >
         <div
           [ngClass]="getTextClasses(config.text.title)"
-          [style.color]="config.text.title.colorHex ?? null"
+          [style.color]="getTextColorHex(config.text.title)"
         >
           {{ titleText() }}
         </div>
@@ -59,7 +63,7 @@
         @if (config.text.subTitle) {
           <div
             [ngClass]="getTextClasses(config.text.subTitle)"
-            [style.color]="config.text.subTitle.colorHex ?? null"
+            [style.color]="getTextColorHex(config.text.subTitle)"
           >
             {{ subTitleText() }}
           </div>

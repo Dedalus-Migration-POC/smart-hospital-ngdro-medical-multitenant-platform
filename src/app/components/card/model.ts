@@ -8,12 +8,17 @@ import {
   LinkTarget,
   TextConfig,
   FontSize,
-  TextDecoration,
   FontWeight,
   LineHeight,
   TextStyle,
-  FlexRowSize,
+  ColorConfig,
+  SizeConfig,
   Margin,
+  BackgroundConfig,
+  BorderConfig,
+  SpacingConfig,
+  ButtonConfig,
+  LinkConfig,
 } from '../../shared/models/shared_model';
 import { ImageBlockConfig } from '../image-block/model';
 
@@ -49,7 +54,11 @@ export interface CardsContainer {
 export interface BaseCard {
   id: string;
   type: CardType;
-  background?: Colors;
+  background?: BackgroundConfig;
+  border?: BorderConfig;
+  shadow?: string;
+  padding?: SpacingConfig;
+  size?: SizeConfig;
   className?: string;
   disabled?: boolean;
   ariaLabel?: LocalizedText;
@@ -105,7 +114,7 @@ export interface DataCardTitleBinding {
   joinWith?: string; // separatore da usare quando il valore BE è un array. Default: ' / '
   fontSize?: FontSize;
   fontWeight?: FontWeight;
-  color?: Colors;
+  color?: ColorConfig;
   colorHex?: string; // colore custom in formato hex, ha precedenza su color
   lineHeight?: LineHeight;
   className?: string;
@@ -123,6 +132,7 @@ export type CardField =
   | DataCardImageField
   | DataCardBadgeField;
 
+// TODO: coloxHex deve andare nel textStyle, ma per ora lo lascio qui per retrocompatibilità con le card già configurate
 export interface BaseCardField {
   key: string; // es. 'metaInfo.insertionDate' o il size campo BE
   label: TextConfig;
@@ -138,8 +148,8 @@ export interface BaseCardField {
 // Size opzionale per layout row: permette di impostare separatamente
 // lo spazio della label (key) e del valore (value).
 export interface DataCardFieldRowSize {
-  key?: FlexRowSize;
-  value?: FlexRowSize;
+  key?: SizeConfig;
+  value?: SizeConfig;
 }
 
 // valueMap: serve quando il BE manda un codice tecnico,
@@ -196,9 +206,8 @@ export interface DataCardCondition {
   value?: unknown;
 }
 
-export interface DataCardButtonRender {
+export interface DataCardButtonRender extends ButtonConfig {
   renderAs: 'button';
-  fullWidth?: boolean; // se true, aggiunge w-100 al bottone
   className?: string;
 }
 
@@ -208,10 +217,8 @@ export interface DataCardLinkIcon {
   position?: 'before' | 'after'; // default: 'after'
 }
 
-export interface DataCardLinkRender {
+export interface DataCardLinkRender extends LinkConfig {
   renderAs: 'link';
-  decoration?: TextDecoration;
-  fullWidth?: boolean; // se true, aggiunge w-100 al link
   className?: string;
   icon?: DataCardLinkIcon;
 }

@@ -91,21 +91,23 @@ export class ThemeService {
   }
 
   private buildMappedProperties(
-    source: Record<string, string | number>,
+    source: Record<string, string | number | undefined>,
     map: Record<string, string>,
   ): string[] {
     if (!source) return [];
 
-    return Object.entries(source)
-      .filter(([key, value]) => map[key] && value != null)
-      .map(([key, value]) => this.buildProperty(map[key], value));
+    return Object.entries(source).flatMap(([key, value]) => {
+      const propertyName = map[key];
+      if (!propertyName || value == null) return [];
+      return [this.buildProperty(propertyName, value)];
+    });
   }
 
   private buildProperty(name: string, value: string | number): string {
     return `${name}: ${value};`;
   }
 
-  private buildPropertyIfValue(name: string, value: string | number): string[] {
+  private buildPropertyIfValue(name: string, value: string | number | undefined): string[] {
     return value == null ? [] : [this.buildProperty(name, value)];
   }
 

@@ -4,6 +4,22 @@ import { FirebaseOptions } from 'firebase/app';
 import { PageConfig } from '../../pages/page.model';
 import { NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { LocalizedText } from 'src/app/shared/layout-system/models/localized.model';
+import {
+  BackgroundConfig,
+  BorderConfig,
+  ButtonConfig,
+  ColorConfig,
+  Colors,
+  FlexLayoutConfig,
+  FontSize,
+  FontWeight,
+  ImageStyle,
+  LineHeight,
+  LinkConfig,
+  SizeConfig,
+  SpacingConfig,
+  TextStyle,
+} from 'src/app/shared/models/shared_model';
 
 export interface AppConfig {
   name: string;
@@ -40,6 +56,49 @@ export interface AppConfig {
         semibold: number;
         normal: number;
         bold: number;
+      };
+    };
+    card?: {
+      // Base theme applicate a TUTTE le card
+      // mediaText e data estendono/sovrascrivono il base
+      base: {
+        // Stile della card
+        background?: BackgroundConfig;
+        border?: BorderConfig;
+        shadow?: string;
+        padding?: SpacingConfig;
+        size?: SizeConfig;
+      };
+      // Configurazione layout generica del container delle card e layout interno comune a tutte le card
+      container?: {
+        header?: {
+          titleStyle?: TextStyle;
+          subTitleStyle?: TextStyle;
+        };
+        containerLayout?: FlexLayoutConfig;
+        itemsLayout?: FlexLayoutConfig;
+        itemColBootstrapClasses?: string;
+        actionsLayout?: FlexLayoutConfig;
+      };
+      // Configurazione theme specifica per card di tipo mediaText
+      // Estende le proprietà definite in base
+      mediaText?: {
+        textStyle?: TextStyle;
+        imageStyle?: ImageStyle;
+      };
+      // Configurazione theme specifica per card di tipo data
+      // Estende le proprietà definite in base
+      data?: {
+        titleStyle?: TextStyle;
+        subTitleStyle?: TextStyle;
+        fields?: {
+          labelStyle?: TextStyle;
+          valueStyle?: TextStyle;
+        };
+        action?: {
+          buttonStyle?: ButtonConfig;
+          linkStyle?: LinkConfig;
+        };
       };
     };
   };
