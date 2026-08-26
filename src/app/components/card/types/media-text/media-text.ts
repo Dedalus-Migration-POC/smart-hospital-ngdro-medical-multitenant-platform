@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { MediaTextCard } from '../../model';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
@@ -13,6 +13,13 @@ import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
 import { ImageBlock } from '../../../image-block/image-block';
 import { ImageBlockConfig } from '../../../image-block/model';
 import { getTextClasses } from '../../../../shared/utility/text.utils';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Store } from '@ngrx/store';
+import { SmartHospitalState } from 'src/app/store/reducers';
+import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { mergeCardBase, mergeTextStyles } from '../../../../shared/utility/cards.utils';
+import { getBackgroundPaletteClass, getTextColorHex } from '../../../../shared/utility/style.utils';
+import { getCardStyles } from '../../../../shared/utility/cards.utils';
 
 @Component({
   selector: 'app-media-text-card',
@@ -23,6 +30,13 @@ import { getTextClasses } from '../../../../shared/utility/text.utils';
 export class MediaText {
   readonly card = input.required<MediaTextCard>();
   readonly itemsLayout = input.required<FlexLayoutConfig>();
+  private readonly store = inject(Store<SmartHospitalState>);
+  private readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
+  private readonly cardBaseTheme = computed(() => this.appConfig()?.theme.card?.base);
+  protected readonly mediaTextTheme = computed(() => this.appConfig()?.theme.card?.mediaText);
+  protected readonly effectiveCard = computed(() =>
+    mergeCardBase(this.cardBaseTheme(), this.card()),
+  );
 
   private readonly router = inject(Router);
   private readonly notificationService = inject(ItNotificationService);
@@ -30,6 +44,10 @@ export class MediaText {
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextClasses = getTextClasses;
+  protected readonly getTextColorHex = getTextColorHex;
+  protected readonly mergeTextStyles = mergeTextStyles;
+  protected readonly getCardBackgroundClass = getBackgroundPaletteClass;
+  protected readonly getCardStyles = getCardStyles;
 
   lang = this.langService.lang;
 
@@ -38,7 +56,10 @@ export class MediaText {
       id: card.id,
       className: card.className,
       clickable: false,
-      image: card.image,
+      image: {
+        ...this.mediaTextTheme()?.imageStyle,
+        ...card.image,
+      },
       // text: {
       //   title: card.text.title,
       //   subTitle: card.text.subTitle,

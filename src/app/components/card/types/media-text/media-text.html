@@ -1,14 +1,15 @@
-@if (card(); as card) {
+@if (effectiveCard(); as card) {
   @if (itemsLayout(); as layout) {
     <article
-      class="it-card h-100 shadow-sm border border-light p-0"
-      [ngClass]="card.background ? 'bg-' + card.background : 'bg-white'"
+      class="it-card h-100"
+      [ngClass]="getCardBackgroundClass(card)"
+      [ngStyle]="getCardStyles(card)"
     >
       <button
         [attr.id]="card.id"
         [attr.aria-label]="card.ariaLabel?.[lang()] ?? null"
         type="button"
-        class="btn w-100 h-100 p-3 text-start"
+        class="btn p-0 w-100 h-100 text-start"
         [ngClass]="card.className"
         (click)="onCardClick($event, card.action)"
       >
@@ -27,13 +28,27 @@
 
           <div class="card-text w-100">
             @if (card.text.title.text[lang()]; as titleText) {
-              <div [ngClass]="getTextClasses(card.text.title)" [style.color]="card.text.title.colorHex ?? null">
+              <div
+                [ngClass]="
+                  getTextClasses(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.title))
+                "
+                [style.color]="
+                  getTextColorHex(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.title))
+                "
+              >
                 {{ titleText }}
               </div>
             }
 
             @if (card.text.subTitle?.text?.[lang()]; as subTitleText) {
-              <div [ngClass]="getTextClasses(card.text.subTitle)" [style.color]="card.text.subTitle?.colorHex ?? null">
+              <div
+                [ngClass]="
+                  getTextClasses(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.subTitle))
+                "
+                [style.color]="
+                  getTextColorHex(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.subTitle))
+                "
+              >
                 {{ subTitleText }}
               </div>
             }

@@ -45,6 +45,115 @@ export const APP_CONFIG: AppConfig = {
         bold: 700,
       },
     },
+    card: {
+      container: {
+        header: {
+          titleStyle: {
+            fontSize: 'lg',
+            fontWeight: 'semibold',
+            color: { palette: 'danger' },
+            lineHeight: 'lg',
+          },
+          subTitleStyle: {
+            fontSize: 'md',
+            fontWeight: 'normal',
+            color: { palette: 'dark' },
+            lineHeight: 'md',
+          },
+        },
+        containerLayout: {
+          direction: 'column',
+          gap: 'gap-3',
+        },
+        itemsLayout: {
+          direction: 'column',
+          gap: 'gap-2',
+        },
+        itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
+        actionsLayout: {
+          direction: 'column',
+          gap: 'gap-2',
+          align: 'center',
+        },
+      },
+      base: {
+        background: {
+          fill: { palette: 'white' },
+        },
+        border: {
+          // width: '1px',
+          // style: 'solid',
+          // color: { hex: '#972222' },
+          radius: '4px',
+        },
+        shadow: '0px 4px 4px 0px #00000026',
+        padding: {
+          x: '24px',
+          y: '16px',
+        },
+        size: {
+          width: '100%',
+        },
+      },
+      mediaText: {
+        textStyle: {
+          fontSize: 'md',
+          fontWeight: 'normal',
+          color: { palette: 'success' },
+          lineHeight: 'md',
+        },
+        imageStyle: {
+          width: '65px',
+          height: '65px',
+        },
+      },
+      data: {
+        titleStyle: {
+          fontSize: 'lg',
+          fontWeight: 'bold',
+          color: { palette: 'dark' },
+          lineHeight: 'lg',
+        },
+        subTitleStyle: {
+          fontSize: 'md',
+          fontWeight: 'normal',
+          color: { palette: 'secondary' },
+          lineHeight: 'md',
+        },
+        fields: {
+          labelStyle: {
+            fontSize: 'sm',
+            fontWeight: 'semibold',
+            color: { palette: 'danger' },
+          },
+          valueStyle: {
+            fontSize: 'md',
+            fontWeight: 'normal',
+            color: { palette: 'success' },
+          },
+        },
+        action: {
+          buttonStyle: {
+            textStyle: {
+              fontSize: 'md',
+              fontWeight: 'semibold',
+              color: { palette: 'white' },
+            },
+            backgroundColor: { fill: { palette: 'primary' } },
+            padding: { x: '12px', y: '8px' },
+            //  size: { width: '50%' },
+          },
+          linkStyle: {
+            textStyle: {
+              fontSize: 'md',
+              fontWeight: 'normal',
+              color: { palette: 'primary' },
+            },
+            textDecoration: 'underline',
+          },
+        },
+      },
+    },
   },
   translate: {
     // googleTranslate: {
@@ -1345,20 +1454,20 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Servizi',
                           en: 'Services',
                         },
-                        fontSize: 'md',
-                        fontWeight: 'bold',
-                        color: 'dark',
-                        lineHeight: 'md',
+                        // fontSize: 'md',
+                        // fontWeight: 'bold',
+                        // color: { palette: 'dark' },
+                        // lineHeight: 'md',
                       },
                       subTitle: {
                         text: {
                           it: 'Accedi rapidamente ai servizi disponibili',
                           en: 'Quick access to available services',
                         },
-                        fontSize: 'md',
-                        fontWeight: 'normal',
-                        color: 'secondary',
-                        lineHeight: 'md',
+                        // fontSize: 'md',
+                        // fontWeight: 'normal',
+                        // color: { palette: 'secondary' },
+                        // lineHeight: 'md',
                       },
                     },
                     itemsLayout: {
@@ -1376,7 +1485,6 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri storico vaccinale',
                           en: 'Open vaccination history',
                         },
-                        className: 'bg-white',
                         action: {
                           type: 'route',
                           url: '/storico-vaccinale',
@@ -1389,7 +1497,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                             lineHeight: 'md',
                           },
                           subTitle: {
@@ -1399,7 +1507,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                             lineHeight: 'lg',
                           },
                         },
@@ -1421,8 +1529,8 @@ export const APP_CONFIG: AppConfig = {
 </svg>
 
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1432,7 +1540,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri pagamenti',
                           en: 'Open payments',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/payments-pa',
@@ -1445,7 +1553,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1454,7 +1562,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: true,
@@ -1473,8 +1581,8 @@ export const APP_CONFIG: AppConfig = {
 </svg>
 
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1484,7 +1592,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri pagamenti',
                           en: 'Open payments',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/payments-jcash',
@@ -1497,7 +1605,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1506,7 +1614,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: true,
@@ -1525,8 +1633,8 @@ export const APP_CONFIG: AppConfig = {
 </svg>
 
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
 
@@ -1537,7 +1645,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri referti',
                           en: 'Open reports',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/medical-reports',
@@ -1550,7 +1658,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1559,7 +1667,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: true,
@@ -1579,8 +1687,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1590,7 +1698,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri referti',
                           en: 'Open reports',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/single-report',
@@ -1603,7 +1711,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1612,7 +1720,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: false,
@@ -1632,8 +1740,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1643,7 +1751,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri referti',
                           en: 'Open reports',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/reports-by-triplet',
@@ -1656,7 +1764,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1665,7 +1773,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: false,
@@ -1685,8 +1793,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1696,7 +1804,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri dipartimenti',
                           en: 'Open departments',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/departments',
@@ -1709,7 +1817,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           // subTitle: {
                           //   text: {
@@ -1718,7 +1826,7 @@ export const APP_CONFIG: AppConfig = {
                           //   },
                           //   fontSize: 'sm',
                           //   fontWeight: 'normal',
-                          //   color: 'secondary',
+                          //   color: { palette: 'secondary' },
                           // },
                         },
                         blocked: false,
@@ -1738,8 +1846,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1749,7 +1857,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri prenotazioni',
                           en: 'Open bookings',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/bookings',
@@ -1762,7 +1870,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1771,7 +1879,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: true,
@@ -1791,8 +1899,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1802,7 +1910,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri prenotazioni',
                           en: 'Open bookings',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'route',
                           url: '/bookings-hero',
@@ -1815,7 +1923,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1824,7 +1932,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: true,
@@ -1844,8 +1952,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                     ],
@@ -1871,7 +1979,7 @@ export const APP_CONFIG: AppConfig = {
                         },
                         fontSize: 'md',
                         fontWeight: 'bold',
-                        color: 'dark',
+                        color: { palette: 'dark' },
                         lineHeight: 'md',
                       },
                       subTitle: {
@@ -1881,7 +1989,7 @@ export const APP_CONFIG: AppConfig = {
                         },
                         fontSize: 'md',
                         fontWeight: 'normal',
-                        color: 'secondary',
+                        color: { palette: 'secondary' },
                         lineHeight: 'md',
                       },
                     },
@@ -1900,7 +2008,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri link esterno',
                           en: 'Open external link',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'externalLink',
                           url: 'https://www.salute.gov.it/new/it/sezione/notizie/',
@@ -1913,7 +2021,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1922,7 +2030,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: false,
@@ -1942,8 +2050,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                       {
@@ -1953,7 +2061,7 @@ export const APP_CONFIG: AppConfig = {
                           it: 'Apri link esterno',
                           en: 'Open external link',
                         },
-                        className: 'bg-white',
+
                         action: {
                           type: 'externalLink',
                           url: 'https://cds.asl.rieti.it/',
@@ -1966,7 +2074,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            color: 'dark',
+                            color: { palette: 'dark' },
                           },
                           subTitle: {
                             text: {
@@ -1975,7 +2083,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         blocked: false,
@@ -1995,8 +2103,8 @@ export const APP_CONFIG: AppConfig = {
 </g>
 </svg>
         `,
-                          width: '72px',
-                          height: '72px',
+                          // width: '72px',
+                          // height: '72px',
                         },
                       },
                     ],
@@ -2270,14 +2378,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'classification.practice.label',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           subTitle: {
                             key: 'classification.classes.label',
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -2292,7 +2400,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'bold',
-                              color: 'danger',
+                              color: { palette: 'danger' },
                               lineHeight: 'md',
                             },
                             label: {
@@ -2344,18 +2452,18 @@ export const APP_CONFIG: AppConfig = {
                               1: {
                                 text: { it: 'Pagato', en: 'Paid' },
                                 lineHeight: 'md',
-                                color: 'success',
+                                color: { palette: 'success' },
                               },
                               0: {
                                 text: { it: 'Non pagato', en: 'Pending' },
                                 lineHeight: 'md',
-                                color: 'danger',
+                                color: { palette: 'danger' },
                               },
                             },
                             fallbackBadge: {
                               text: { it: 'Sconosciuto', en: 'Unknown' },
                               fontSize: 'sm',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                           },
                           // {
@@ -2382,7 +2490,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'downloadPdf',
                               params: [true],
@@ -2397,7 +2504,6 @@ export const APP_CONFIG: AppConfig = {
                             label: { text: { it: 'Apri PDF', en: 'Open PDF' } },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'downloadPdf',
                               params: [false],
@@ -2438,7 +2544,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Referti non trovati', en: 'Reports not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -2448,7 +2554,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -2477,7 +2583,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -2487,7 +2593,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -2624,14 +2730,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'subject',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           subTitle: {
                             key: 'metaInfo.object',
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -2645,7 +2751,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'bold',
-                              color: 'danger',
+                              color: { palette: 'danger' },
                               lineHeight: 'md',
                             },
                             label: {
@@ -2684,7 +2790,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'bold',
-                              color: 'danger',
+                              color: { palette: 'danger' },
                               lineHeight: 'md',
                             },
                             listStyle: 'comma',
@@ -2750,18 +2856,18 @@ export const APP_CONFIG: AppConfig = {
                               PAYED: {
                                 text: { it: 'Pagato', en: 'Paid' },
                                 lineHeight: 'md',
-                                color: 'success',
+                                color: { palette: 'success' },
                               },
                               PENDING: {
                                 text: { it: 'In attesa', en: 'Pending' },
                                 fontSize: 'sm',
-                                color: 'warning',
+                                color: { palette: 'warning' },
                               },
                             },
                             fallbackBadge: {
                               text: { it: 'Sconosciuto', en: 'Unknown' },
                               fontSize: 'sm',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                           },
                         ],
@@ -2771,7 +2877,7 @@ export const APP_CONFIG: AppConfig = {
                             label: { text: { it: 'Scarica PDF', en: 'Download PDF' } },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
+
                             callback: {
                               nameFunction: 'downloadSingleReport',
                               params: [true],
@@ -2786,7 +2892,7 @@ export const APP_CONFIG: AppConfig = {
                             label: { text: { it: 'Apri PDF', en: 'Open PDF' } },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
+
                             callback: {
                               nameFunction: 'downloadSingleReport',
                               params: [false],
@@ -2798,7 +2904,6 @@ export const APP_CONFIG: AppConfig = {
                             label: { text: { it: 'Apri Link', en: 'Open Link' } },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'downloadSingleReport',
                               params: [true],
@@ -2858,7 +2963,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Referto non trovato', en: 'Report not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'md',
             },
             subTitle: {
@@ -2868,7 +2973,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'md',
             },
           },
@@ -2898,7 +3003,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Benvenuto', en: 'Welcome' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'black',
+              color: { palette: 'black' },
               lineHeight: 'md',
             },
             subTitle: {
@@ -2908,7 +3013,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'black',
+              color: { palette: 'black' },
               lineHeight: 'md',
             },
           },
@@ -2938,7 +3043,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'md',
             },
             subTitle: {
@@ -2948,7 +3053,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'md',
             },
           },
@@ -3209,14 +3314,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'Referto di laboratorio',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           // subTitle: {
                           //   key: 'metaInfo.object',
                           //   fontSize: 'md',
                           //   fontWeight: 'semibold',
-                          //   color: 'secondary',
+                          //   color: { palette: 'secondary' },
                           // },
                         },
                         fields: [
@@ -3253,18 +3358,18 @@ export const APP_CONFIG: AppConfig = {
                               1: {
                                 text: { it: 'Pagato', en: 'Paid' },
                                 lineHeight: 'md',
-                                color: 'success',
+                                color: { palette: 'success' },
                               },
                               0: {
                                 text: { it: 'Non pagato', en: 'Pending' },
                                 lineHeight: 'md',
-                                color: 'danger',
+                                color: { palette: 'danger' },
                               },
                             },
                             fallbackBadge: {
                               text: { it: 'Sconosciuto', en: 'Unknown' },
                               fontSize: 'sm',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                           },
                         ],
@@ -3276,7 +3381,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'downloadReport',
                               params: [true],
@@ -3300,7 +3404,6 @@ export const APP_CONFIG: AppConfig = {
                             label: { text: { it: 'Apri PDF', en: 'Open PDF' } },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'downloadReport',
                               params: [false],
@@ -3347,7 +3450,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Referto non trovato', en: 'Report not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -3357,7 +3460,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -3388,7 +3491,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Benvenuto', en: 'Welcome' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'black',
+              color: { palette: 'black' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -3398,7 +3501,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'black',
+              color: { palette: 'black' },
               lineHeight: 'normal',
             },
           },
@@ -3427,7 +3530,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -3437,7 +3540,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -3500,14 +3603,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'title',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           // subTitle: {
                           //   key: 'title',
                           //   fontSize: 'md',
                           //   fontWeight: 'semibold',
-                          //   color: 'secondary',
+                          //   color: { palette: 'secondary' },
                           // },
                           imageBlockConfig: {
                             id: 'departmentImg',
@@ -3580,7 +3683,6 @@ export const APP_CONFIG: AppConfig = {
                               type: 'fa',
                               position: 'after',
                             },
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'viewUnits',
                               params: ['title'],
@@ -3661,14 +3763,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'title',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           // subTitle: {
                           //   key: 'metaInfo.object',
                           //   fontSize: 'md',
                           //   fontWeight: 'semibold',
-                          //   color: 'secondary',
+                          //   color: { palette: 'secondary' },
                           // },
                         },
                         fields: [
@@ -3723,7 +3825,6 @@ export const APP_CONFIG: AppConfig = {
                               type: 'fa',
                               position: 'after',
                             },
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'viewUnit',
                               params: ['title'],
@@ -3810,14 +3911,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'departmentName',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           subTitle: {
                             key: 'title',
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -3879,7 +3980,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'bold',
-                              color: 'white', // per saltare una riga (color di background)
+                              color: { palette: 'white' }, // per saltare una riga (color di background)
                               lineHeight: 'md',
                             },
                             label: {
@@ -3949,14 +4050,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'Orario di apertura',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           // subTitle: {
                           //   key: 'metaInfo.object',
                           //   fontSize: 'md',
                           //   fontWeight: 'semibold',
-                          //   color: 'secondary',
+                          //   color: { palette: 'secondary' },
                           // },
                         },
                         fields: [
@@ -4116,14 +4217,14 @@ export const APP_CONFIG: AppConfig = {
                             key: '',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           // subTitle: {
                           //   key: 'metaInfo.object',
                           //   fontSize: 'md',
                           //   fontWeight: 'semibold',
-                          //   color: 'secondary',
+                          //   color: { palette: 'secondary' },
                           // },
                         },
                         fields: [
@@ -4138,13 +4239,13 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'normal',
-                              // color: 'dark',
+                              // color: { palette: 'dark' },
                               lineHeight: 'md',
                             },
                             listStyle: 'bullet',
                             label: {
                               fontWeight: 'bold',
-                              color: 'black',
+                              color: { palette: 'black' },
                               text: { it: 'Servizi', en: 'Services' },
                             },
                           },
@@ -4363,7 +4464,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'sm',
                             fontWeight: 'normal',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -4378,7 +4479,7 @@ export const APP_CONFIG: AppConfig = {
                               },
                               fontSize: 'sm',
                               fontWeight: 'normal',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                           },
                           {
@@ -4392,7 +4493,7 @@ export const APP_CONFIG: AppConfig = {
                               },
                               fontSize: 'sm',
                               fontWeight: 'normal',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                           },
                           {
@@ -4405,7 +4506,7 @@ export const APP_CONFIG: AppConfig = {
                               },
                               fontSize: 'sm',
                               fontWeight: 'normal',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                             imageMap: {
                               PagoPa: {
@@ -4427,7 +4528,7 @@ export const APP_CONFIG: AppConfig = {
                               },
                               fontSize: 'sm',
                               fontWeight: 'normal',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                             badgeMap: {
                               NOT_PAYED: {
@@ -4435,7 +4536,7 @@ export const APP_CONFIG: AppConfig = {
                                   it: 'Da pagare',
                                   en: 'To pay',
                                 },
-                                color: 'warning',
+                                color: { palette: 'warning' },
                                 fontWeight: 'semibold',
                               },
                               PAYED: {
@@ -4443,7 +4544,7 @@ export const APP_CONFIG: AppConfig = {
                                   it: 'Pagato',
                                   en: 'Paid',
                                 },
-                                color: 'success',
+                                color: { palette: 'success' },
                                 fontWeight: 'semibold',
                               },
                               VERIFICATION: {
@@ -4451,7 +4552,7 @@ export const APP_CONFIG: AppConfig = {
                                   it: 'In verifica',
                                   en: 'Under verification',
                                 },
-                                color: 'info',
+                                color: { palette: 'info' },
                                 fontWeight: 'semibold',
                               },
                             },
@@ -4508,7 +4609,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -4518,7 +4619,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -4547,7 +4648,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -4557,7 +4658,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -4635,7 +4736,7 @@ export const APP_CONFIG: AppConfig = {
                             key: 'causale',
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -4676,12 +4777,12 @@ export const APP_CONFIG: AppConfig = {
                               PAYED: {
                                 text: { it: 'Pagato', en: 'Paid' },
                                 lineHeight: 'md',
-                                color: 'success',
+                                color: { palette: 'success' },
                               },
                               NOT_PAYED: {
                                 text: { it: 'Da pagare', en: 'To pay' },
                                 lineHeight: 'md',
-                                color: 'warning',
+                                color: { palette: 'warning' },
                               },
                               VERIFICATION: {
                                 text: {
@@ -4689,13 +4790,13 @@ export const APP_CONFIG: AppConfig = {
                                   en: 'Pending verification',
                                 },
                                 lineHeight: 'md',
-                                color: 'danger',
+                                color: { palette: 'danger' },
                               },
                             },
                             fallbackBadge: {
                               text: { it: 'Sconosciuto', en: 'Unknown' },
                               fontSize: 'sm',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                           },
                           {
@@ -4759,7 +4860,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'pay',
                               params: [],
@@ -4776,7 +4876,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'downloadPdf',
                               params: [],
@@ -4823,7 +4922,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -4833,7 +4932,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -4862,7 +4961,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -4872,7 +4971,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -5062,7 +5161,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5072,7 +5171,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -5101,7 +5200,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5111,7 +5210,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -5186,7 +5285,7 @@ export const APP_CONFIG: AppConfig = {
                             key: 'custom Ticket prenotazione',
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -5227,18 +5326,18 @@ export const APP_CONFIG: AppConfig = {
                               PAGATA: {
                                 text: { it: 'Pagato', en: 'Paid' },
                                 lineHeight: 'md',
-                                color: 'success',
+                                color: { palette: 'success' },
                               },
                               'DA PAGARE': {
                                 text: { it: 'Da pagare', en: 'To pay' },
                                 lineHeight: 'md',
-                                color: 'warning',
+                                color: { palette: 'warning' },
                               },
                             },
                             fallbackBadge: {
                               text: { it: 'Sconosciuto', en: 'Unknown' },
                               fontSize: 'sm',
-                              color: 'secondary',
+                              color: { palette: 'secondary' },
                             },
                           },
                           {
@@ -5317,7 +5416,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'pay',
                               params: [],
@@ -5334,7 +5432,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'downloadPdf',
                               params: ['iuv'],
@@ -5380,7 +5477,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5390,7 +5487,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -5420,7 +5517,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Pagamenti non trovati', en: 'Payments not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5430,7 +5527,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -5531,14 +5628,14 @@ export const APP_CONFIG: AppConfig = {
                             key: 'title',
                             fontSize: 'lg',
                             fontWeight: 'bold',
-                            color: 'black',
+                            color: { palette: 'black' },
                             lineHeight: 'md',
                           },
                           subTitle: {
                             key: 'subtitle',
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -5553,7 +5650,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'normal',
-                              color: 'dark',
+                              color: { palette: 'dark' },
                               lineHeight: 'xxl',
                             },
                             label: {
@@ -5575,7 +5672,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'normal',
-                              color: 'dark',
+                              color: { palette: 'dark' },
                               lineHeight: 'md',
                             },
                             listStyle: 'comma',
@@ -5597,7 +5694,6 @@ export const APP_CONFIG: AppConfig = {
                             type: 'callback',
                             renderAs: 'button',
                             className: 'btn btn-danger',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'deleteBooking',
                               params: ['id'],
@@ -5641,7 +5737,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5651,7 +5747,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -5681,7 +5777,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5691,7 +5787,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -5768,7 +5864,7 @@ export const APP_CONFIG: AppConfig = {
                           //   key: 'dateTime',
                           //   fontSize: 'md',
                           //   fontWeight: 'semibold',
-                          //   color: 'secondary',
+                          //   color: { palette: 'secondary' },
                           // },
                         },
                         fields: [
@@ -5783,7 +5879,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'bold',
-                              color: 'danger',
+                              color: { palette: 'danger' },
                               lineHeight: 'md',
                             },
                             label: {
@@ -5837,7 +5933,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'goToDetails',
                               params: ['id'],
@@ -5880,7 +5975,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5890,7 +5985,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -5920,7 +6015,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -5930,7 +6025,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },
@@ -6010,7 +6105,7 @@ export const APP_CONFIG: AppConfig = {
                             joinWith: ', ',
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            color: 'secondary',
+                            color: { palette: 'secondary' },
                           },
                         },
                         fields: [
@@ -6074,7 +6169,7 @@ export const APP_CONFIG: AppConfig = {
                             valueStyle: {
                               fontSize: 'md',
                               fontWeight: 'bold',
-                              color: 'danger',
+                              color: { palette: 'danger' },
                               lineHeight: 'md',
                             },
                             label: {
@@ -6163,7 +6258,6 @@ export const APP_CONFIG: AppConfig = {
                             type: 'callback',
                             renderAs: 'button',
                             className: 'btn btn-outline-primary',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'onPrintMemo',
                               params: [],
@@ -6186,7 +6280,6 @@ export const APP_CONFIG: AppConfig = {
                             type: 'callback',
                             renderAs: 'button',
                             className: 'btn btn-outline-primary',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'onSendEmailNotification',
                               params: [],
@@ -6209,7 +6302,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'onReschedule',
                               params: [],
@@ -6232,7 +6324,6 @@ export const APP_CONFIG: AppConfig = {
                             type: 'callback',
                             renderAs: 'button',
                             className: 'btn btn-danger',
-                            fullWidth: false,
                             callback: {
                               nameFunction: 'onCancel',
                               params: [],
@@ -6278,7 +6369,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Errore', en: 'Error' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -6288,7 +6379,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'danger',
+              color: { palette: 'danger' },
               lineHeight: 'normal',
             },
           },
@@ -6318,7 +6409,7 @@ export const APP_CONFIG: AppConfig = {
               text: { it: 'Prenotazioni non trovate', en: 'Bookings not found' },
               fontSize: 'xl',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
             subTitle: {
@@ -6328,7 +6419,7 @@ export const APP_CONFIG: AppConfig = {
               },
               fontSize: 'md',
               fontWeight: 'normal',
-              color: 'warning',
+              color: { palette: 'warning' },
               lineHeight: 'normal',
             },
           },

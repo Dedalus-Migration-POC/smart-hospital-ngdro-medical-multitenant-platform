@@ -16,6 +16,7 @@ import {
 } from '../../shared/utility/image-accessibility.utils';
 import { getTooltipClassName, getTooltipLabel } from '../../shared/utility/tooltip.utils';
 import { getLocalizedText, getTextClasses } from '../../shared/utility/text.utils';
+import { getTextColorHex } from '../../shared/utility/style.utils';
 
 @Component({
   selector: 'app-image-block',
@@ -32,6 +33,7 @@ export class ImageBlock {
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextClasses = getTextClasses;
+  protected readonly getTextColorHex = getTextColorHex;
   protected readonly getAlignClass = getAlignClass;
   protected readonly getJustifyClass = getJustifyClass;
 
@@ -78,10 +80,7 @@ export class ImageBlock {
 
     if (cfg.image?.decorative) {
       return this.sanitizer.bypassSecurityTrustHtml(
-        svgString.replace(
-          '<svg',
-          '<svg class="img-fluid" aria-hidden="true" focusable="false"',
-        ),
+        svgString.replace('<svg', '<svg class="img-fluid" aria-hidden="true" focusable="false"'),
       );
     }
 
