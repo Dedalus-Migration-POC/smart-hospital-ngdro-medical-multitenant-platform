@@ -14,7 +14,9 @@
 </div>
 
 @if (units()) {
-  <app-card [config]="renderedCardsConfig()"></app-card>
+  <div class="mt-4 mb-4">
+    <app-card [config]="renderedCardsConfig()"></app-card>
+  </div>
 } @else {
   <p>{{ 'units-page.no-units' | translate }}</p>
 }

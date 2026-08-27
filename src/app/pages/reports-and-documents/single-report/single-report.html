@@ -46,6 +46,8 @@
 
   <!-- Cards with results -->
   @if (!loading() && !error() && (reports()?.length ?? 0) > 0) {
-    <app-card [config]="renderedCardsConfig()"></app-card>
+    <div class="mt-4 mb-4">
+      <app-card [config]="renderedCardsConfig()"></app-card>
+    </div>
   }
 }

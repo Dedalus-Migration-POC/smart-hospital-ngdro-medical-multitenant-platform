@@ -18,7 +18,9 @@
   @let reportsList = reports();
 
   @if (reportsList && reportsList.length > 0) {
-    <app-card [config]="renderedCardsConfig()"></app-card>
+    <div class="mt-4 mb-4">
+      <app-card [config]="renderedCardsConfig()"></app-card>
+    </div>
   }
 
   @if (!loading() && !error() && (!reportsList || reportsList.length === 0)) {

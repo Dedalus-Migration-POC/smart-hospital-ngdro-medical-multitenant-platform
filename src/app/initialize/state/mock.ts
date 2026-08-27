@@ -2,7 +2,8 @@ import { AppConfig } from './app-config.model';
 
 export const APP_CONFIG: AppConfig = {
   name: 'Smart Hospital',
-  favicon: '/assets/favicon.ico',
+  favicon:
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFRElEQVR4nO2aXUwcVRTHB9r6oLZpVWSmhZgaI9gHY6jWKhYoSIEYokUWdhdohWID7FZKbSKlM9037YMPGtOoMcZH45MPtPWjvrQWbGNttD7Asiz7wUeXubPfMwuUpcfc4UN22JmdhdmlTTjJPyHZ3Xv/v7ln7tw5B4LYiI3YiDWHDmAT4428xrB8z6m7oct6px9VDHPREisCLPy3welnP/SEL+Hv9HDCfgtAJrHecdYbyWVY4TzD8mMMEqB5LADFQxwcsKK4wp+1jAYBf5dm+VGaFT6xcEJO2o2fmQhlMUj4mmb5GdEMEqDO4Zc1LlW90y/+hpkHmaFZ/kvLeOiptJinUdhIs4IXT74ogyug2vyijC7/0u9FsQJHsxF9yowfB9jCIOGbmEmRAKaJUNLmF2WaCMVCiCD8V3guTc1bxuFRGgmXpZN1szyU2eRzPpHKbBycmZQAzOsSnlMT8/hqxDM/nzrq815ODW5JKv2fUlcsAI+sGSBe2mDhK1eisOOoVfEQJ65kvDnwzb0m8+dQuCHu1UECNLqTv3Hl1OQOxF8FJMA5NlK/KvPdweCTNBKQ3MDlNq9mAOU2rywA3vFWtcXifV5u0JN3w5qZP7CgLk9YAYK/kJT5o67A3mKFyXL7XED0Dmiq3D6X7HxFVgSNo8FXVQPUjPj7la7W1is2zQG2/TasuEKH7b4+1Qez0iEUlRuocBBBRu+g5gAZFwfhjUFWFgB7KgbYnBCgwR1sUboSBXc8mpsnFlTwr0dxFQyu4BEV6eP9VWmQ/FtjKQN44a9xRYB3Hb6fEwJU231jSoPs/sOdMoBnb7gVAapHfO6EAOU2blppkJzrzpQB5PQ5FQEO2biphAClVnRfaRDqd0fKAKhrDkWAg0NoLiFAkVX5fJN9NXUA2ddGFOfG3h5IgO3f2lUB4IfrA5lCxr3TkN8zkTCFStWk0HrcxI0vzYCZAqg6FoKigTXexNV2r/I2ekP7bbShYB4A6+jhGSi5HT+Nq+1c4m201uH7Jd0PMsPL00sAWK2Fs1B21bfyQTbi+ykhQJ3D35zuo4R+31QMAFZ73n2o+iH2pcno9DWpOsyVpfkwV7d/JQBWRy7AO5+Flw5z2BuhJmpG/H3pPE7rXo8PsCjD8Smosao8Tq/HC01tYUQRQFyNvLn+zmdgu2oIXBGQe8XDr39KK5Ssmg/dSwggigRr507IUwVgCQSeSNdLfUvVrDoACsBEgtecDaUqVyGilwPApRCtANqq1QOIEBTMmig4oQoC1yrjAXSLhS2kSWGrsyaqnP/knBzIp+qaFyz/YypLi1218QF0O7xQsOUfOPiYXWqcN5Hw+YldoK63gAutuOCqdXH3zYXibpc+FuC9rAi8uPk27Caui3ouox/ez76HjQex8Y4sIIlVFXnj7EzmifCay+unjLEAbWQUns+8uQSQn3kTdDu4O0lto3KBa5XS3cm4igbH8qp0V9PKFKrY6oY9m/6Et7aNQzs5J159TQCW6qYsf4FB/PRiiwm3jdSar4/pzvDTnZVRmyTHh1vJe7SJmgtIttCzhJbRwwm7cKOOYXk3NtOSoMmHy/HHFpp84m9Y4WM8hpmE7xcM/m0m4YiOmD/zmEk4L3mQcR1Z8DihdeCWaQ8n7GMQ3316Mtyrd/onK21ctHgIb5MIKmxc1OAOeE57wr004j9ikPDK8jarmYIPOkiolI7blg1Pm0iISFbnJPEwhYmELyRpNGrZo0HnJl3RvhNyTSTMSFahlXiYwkTBd8tWYKCDgrfX21NSYaYg30TBLTMJOgsR+y8K/wEjHp/YiiOktQAAAABJRU5ErkJggg==',
   firebaseConfig: {
     firebaseOptions: {
       apiKey: 'AIzaSyDuqUIu7O3ngRphC3MUPENUcaVjm2NR8N8',
@@ -3311,7 +3312,8 @@ export const APP_CONFIG: AppConfig = {
                         background: 'white',
                         titleSubtitle: {
                           title: {
-                            key: 'Referto di laboratorio',
+                            key: '',
+                            fallbackText: { it: 'Referto di laboratorio', en: 'Laboratory report' },
                             fontSize: 'lg',
                             fontWeight: 'bold',
                             color: { palette: 'black' },
@@ -3329,13 +3331,13 @@ export const APP_CONFIG: AppConfig = {
                             key: 'releaseDate',
                             type: 'date',
                             rowSize: {
-                              key: { basis: '30%' },
-                              value: { basis: '70%' },
+                              key: { basis: '40%' },
+                              value: { basis: '60%' },
                             },
+                            margin: 'my-2',
                             format: 'dd/MM/yyyy',
                             label: {
                               fontWeight: 'bold',
-
                               text: {
                                 it: 'Data',
                                 en: 'Date',
@@ -3346,6 +3348,7 @@ export const APP_CONFIG: AppConfig = {
                           {
                             key: 'paymentStatus',
                             type: 'badge',
+                            margin: 'my-2',
                             rowSize: {
                               key: { basis: '40%' },
                               value: { basis: '60%' },
@@ -3605,6 +3608,7 @@ export const APP_CONFIG: AppConfig = {
                             fontWeight: 'bold',
                             color: { palette: 'black' },
                             lineHeight: 'md',
+                            className: 'w-75',
                           },
                           // subTitle: {
                           //   key: 'title',
@@ -3763,6 +3767,7 @@ export const APP_CONFIG: AppConfig = {
                             key: 'title',
                             fontSize: 'lg',
                             fontWeight: 'bold',
+                            className: 'w-75',
                             color: { palette: 'black' },
                             lineHeight: 'md',
                           },
@@ -3772,6 +3777,23 @@ export const APP_CONFIG: AppConfig = {
                           //   fontWeight: 'semibold',
                           //   color: { palette: 'secondary' },
                           // },
+                          imageBlockConfig: {
+                            id: 'departmentImg',
+                            className: '',
+                            layout: {
+                              direction: 'column',
+                              align: 'center',
+                              justify: 'center',
+                              gap: 'gap-2',
+                            },
+                            clickable: false,
+                            image: {
+                              type: 'url',
+                              value: 'assets/images/doctor.png',
+                              decorative: true,
+                              alt: { it: 'Dipartimento', en: 'Department' },
+                            },
+                          },
                         },
                         fields: [
                           {
@@ -3812,8 +3834,8 @@ export const APP_CONFIG: AppConfig = {
                             key: 'viewUnit',
                             label: {
                               text: {
-                                it: 'VEDI REPARTI',
-                                en: 'VIEW UNITS',
+                                it: 'VEDI DETTAGLI',
+                                en: 'VIEW DETAILS',
                               },
                               fontWeight: 'bold',
                             },
@@ -4048,6 +4070,7 @@ export const APP_CONFIG: AppConfig = {
                         titleSubtitle: {
                           title: {
                             key: 'Orario di apertura',
+                            fallbackText: { it: 'Orario di apertura', en: 'Opening hours' },
                             fontSize: 'lg',
                             fontWeight: 'bold',
                             color: { palette: 'black' },
@@ -5839,7 +5862,8 @@ export const APP_CONFIG: AppConfig = {
                     itemColBootstrapClasses: 'col-12 col-md-6 col-xl-4',
                     itemsLayout: {
                       direction: 'row',
-                      align: 'start',
+                      align: 'center',
+                      gap: 'gap-2',
                     },
                     actionsLayout: {
                       direction: 'row',
@@ -6257,6 +6281,16 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
+                            buttonStyle: {
+                              textStyle: {
+                                fontSize: 'md',
+                                fontWeight: 'semibold',
+                                color: { palette: 'success' },
+                              },
+                              backgroundColor: { fill: { palette: 'white' } },
+                              padding: { x: '12px', y: '8px' },
+                              //  size: { width: '50%' },
+                            },
                             className: 'btn btn-outline-primary',
                             callback: {
                               nameFunction: 'onPrintMemo',

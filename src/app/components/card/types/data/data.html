@@ -8,25 +8,30 @@
     >
       <div class="h-100 w-100 cursor-default" [ngClass]="getFlexLayoutClasses(layout)">
         <div class="card-text w-100">
-          @if (getTitleText(); as titleText) {
-            <h2
-              [ngClass]="[
-                'text-capitalize',
-                ...getTextClasses(
-                  mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title)
-                ),
-                card.titleSubtitle.title.className ?? '',
-                card.titleSubtitle.title.margin ?? '',
-              ]"
-              [style.color]="
-                mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title).color?.hex ??
-                card.titleSubtitle.title.colorHex ??
-                null
-              "
-            >
-              {{ titleText }}
-            </h2>
-          }
+          <div class="d-flex justify-content-between">
+            @if (getTitleText(); as titleText) {
+              <h2
+                [ngClass]="[
+                  'text-capitalize',
+                  ...getTextClasses(
+                    mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title)
+                  ),
+                  card.titleSubtitle.title.className ?? '',
+                  card.titleSubtitle.title.margin ?? '',
+                ]"
+                [style.color]="
+                  mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title).color?.hex ??
+                  card.titleSubtitle.title.colorHex ??
+                  null
+                "
+              >
+                {{ titleText }}
+              </h2>
+            }
+            @if (card.titleSubtitle.imageBlockConfig) {
+              <app-image-block [config]="card.titleSubtitle.imageBlockConfig"></app-image-block>
+            }
+          </div>
 
           @if (getSubTitleText(); as subTitleText) {
             <h3

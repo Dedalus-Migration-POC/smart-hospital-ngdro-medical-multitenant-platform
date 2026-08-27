@@ -175,7 +175,7 @@ export class Data {
       return joinedValue || undefined;
     }
 
-    return value == null || value === '' ? undefined : String(value);
+    return value == null || value === '' ? binding.fallbackText?.[this.lang()] : String(value);
   }
 
   getImageBlockConfig(field: CardField): ImageBlockConfig | null {

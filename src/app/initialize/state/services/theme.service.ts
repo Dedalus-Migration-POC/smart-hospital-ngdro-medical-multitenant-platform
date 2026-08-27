@@ -145,6 +145,13 @@ export class ThemeService {
         document.head.appendChild(favicon);
       }
 
+      // browsers need an explicit mime type to render data-URI (base64) favicons
+      const dataUriMatch = config.favicon.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,/);
+      if (dataUriMatch) {
+        favicon.type = dataUriMatch[1];
+      } else {
+        favicon.removeAttribute('type');
+      }
       favicon.href = config.favicon;
     }
   }
