@@ -116,7 +116,6 @@ export interface DataCardTitleBinding {
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   color?: ColorConfig;
-  colorHex?: string; // colore custom in formato hex, ha precedenza su color
   lineHeight?: LineHeight;
   className?: string;
   margin?: Margin;
@@ -133,7 +132,6 @@ export type CardField =
   | DataCardImageField
   | DataCardBadgeField;
 
-// TODO: coloxHex deve andare nel textStyle, ma per ora lo lascio qui per retrocompatibilità con le card già configurate
 export interface BaseCardField {
   key: string; // es. 'metaInfo.insertionDate' o il size campo BE
   label: TextConfig;
@@ -141,7 +139,7 @@ export interface BaseCardField {
   prefix?: string;
   suffix?: string;
   className?: string;
-  colorHex?: string; // colore custom in formato hex applicato al valore del campo
+  color?: ColorConfig; // colore applicato al valore del campo
   margin?: Margin;
   rowSize?: DataCardFieldRowSize;
 }
@@ -233,7 +231,6 @@ export interface BaseDataCardAction {
   disabledIf?: DataCardCondition[]; // l’action si vede, ma è disabilitata
   hideIf?: DataCardCondition[]; // l’action non si vede
   hideMessage?: TextConfig; // messaggio mostrato al posto dell'action quando è nascosta
-  className?: string;
 }
 
 export interface DataCardActionCallback {

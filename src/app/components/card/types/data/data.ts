@@ -78,22 +78,25 @@ export class Data {
   }
 
   getMergedValueStyle(field: CardField) {
-    return this.mergeTextStyles(this.dataTheme()?.fields?.valueStyle, field.valueStyle);
+    return this.mergeTextStyles(this.dataTheme()?.fields?.valueStyle, {
+      ...field.valueStyle,
+      color: field.color,
+    });
   }
 
   getMergedButtonTextStyle(actionLabel: TextConfig) {
-    return this.mergeTextStyles(this.dataTheme()?.action?.buttonStyle?.textStyle, actionLabel);
+    return this.mergeTextStyles(this.dataTheme()?.actions?.buttonStyle?.textStyle, actionLabel);
   }
 
   getMergedLinkTextStyle(actionLabel: TextConfig) {
-    return this.mergeTextStyles(this.dataTheme()?.action?.linkStyle?.textStyle, actionLabel);
+    return this.mergeTextStyles(this.dataTheme()?.actions?.linkStyle?.textStyle, actionLabel);
   }
 
   getActionStyles(action: DataCardAction): Record<string, string> {
     const styles: Record<string, string> = {};
 
     if (action.renderAs === 'button') {
-      const config = this.mergeButtonConfig(this.dataTheme()?.action?.buttonStyle, action);
+      const config = this.mergeButtonConfig(this.dataTheme()?.actions?.buttonStyle, action);
       const textColor = this.getColorValue(config.textStyle?.color);
       const background = this.getBackgroundValue(config.backgroundColor);
       const borderColor = this.getColorValue(config.border?.color);
@@ -113,7 +116,7 @@ export class Data {
       this.addSpacingStyles(styles, config.padding);
       this.addSizeStyles(styles, config.size);
     } else {
-      const config = this.mergeLinkConfig(this.dataTheme()?.action?.linkStyle, action);
+      const config = this.mergeLinkConfig(this.dataTheme()?.actions?.linkStyle, action);
       const textColor = this.getColorValue(config.textStyle?.color);
 
       if (textColor) styles['--bs-btn-color'] = textColor;

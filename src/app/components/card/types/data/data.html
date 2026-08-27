@@ -20,9 +20,9 @@
                   card.titleSubtitle.title.margin ?? '',
                 ]"
                 [style.color]="
-                  mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title).color?.hex ??
-                  card.titleSubtitle.title.colorHex ??
-                  null
+                  getTextColorHex(
+                    mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title)
+                  )
                 "
               >
                 {{ titleText }}
@@ -44,10 +44,9 @@
                 card.titleSubtitle.subTitle?.margin ?? '',
               ]"
               [style.color]="
-                mergeTextStyles(dataTheme()?.subTitleStyle, card.titleSubtitle.subTitle).color
-                  ?.hex ??
-                card.titleSubtitle.subTitle?.colorHex ??
-                null
+                getTextColorHex(
+                  mergeTextStyles(dataTheme()?.subTitleStyle, card.titleSubtitle.subTitle)
+                )
               "
             >
               {{ subTitleText }}
@@ -137,13 +136,12 @@
         @for (action of card.actions; track action.key) {
           @if (action.renderAs === 'message') {
             @if (action.message.text[lang()]; as msg) {
-              <div class="px-3 pb-1">
-                <span
-                  [ngClass]="getTextClasses(getMergedButtonTextStyle(action.message))"
-                  [style.color]="getTextColorHex(getMergedButtonTextStyle(action.message))"
-                  >{{ msg }}</span
-                >
-              </div>
+              <span
+                class="cursor-default"
+                [ngClass]="getTextClasses(action.message)"
+                [style.color]="getTextColorHex(action.message)"
+                >{{ msg }}</span
+              >
             }
           }
         }

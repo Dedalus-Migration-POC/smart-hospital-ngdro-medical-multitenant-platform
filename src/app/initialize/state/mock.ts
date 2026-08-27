@@ -133,12 +133,12 @@ export const APP_CONFIG: AppConfig = {
             color: { palette: 'success' },
           },
         },
-        action: {
+        actions: {
           buttonStyle: {
             textStyle: {
               fontSize: 'md',
               fontWeight: 'semibold',
-              color: { palette: 'white' },
+              // color: { palette: 'white' },
             },
             backgroundColor: { fill: { palette: 'primary' } },
             padding: { x: '12px', y: '8px' },
@@ -4349,7 +4349,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'bold',
-                            colorHex: '#2F475E', // secondary color in hex
+                            color: { palette: '#2F475E' },
                             lineHeight: 'sm',
                             margin: 'mb-4',
                           },
@@ -4372,7 +4372,9 @@ export const APP_CONFIG: AppConfig = {
                               fontSize: 'md',
                               fontWeight: 'normal',
                               lineHeight: 'md',
-                              colorHex: '#747474',
+                              color: {
+                                palette: '#747474',
+                              },
                             },
                           },
                           {
@@ -4392,7 +4394,7 @@ export const APP_CONFIG: AppConfig = {
                               fontSize: 'md',
                               fontWeight: 'normal',
                               lineHeight: 'md',
-                              colorHex: '#747474',
+                              color: { palette: '#747474' },
                             },
                           },
                           {
@@ -4411,7 +4413,7 @@ export const APP_CONFIG: AppConfig = {
                               fontSize: 'md',
                               fontWeight: 'normal',
                               lineHeight: 'md',
-                              colorHex: '#747474',
+                              color: { palette: '#747474' },
                             },
                             imageMap: {
                               PagoPa: {
@@ -4440,7 +4442,7 @@ export const APP_CONFIG: AppConfig = {
                                 en: 'Show Details',
                               },
                               isUppercase: true,
-                              colorHex: '#123c73',
+                              color: { palette: '#123c73' },
                               fontWeight: 'semibold',
                             },
                             callback: {
@@ -5064,7 +5066,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             fontSize: 'md',
                             fontWeight: 'semibold',
-                            colorHex: '#2F475E', // secondary color in hex
+                            color: { palette: '#2F475E' }, // secondary color in hex
                             lineHeight: 'sm',
                             margin: 'mb-4',
                           },
@@ -5087,7 +5089,7 @@ export const APP_CONFIG: AppConfig = {
                               fontSize: 'md',
                               fontWeight: 'normal',
                               lineHeight: 'md',
-                              colorHex: '#747474',
+                              color: { palette: '#747474' },
                             },
                           },
                           //da backend non arriva il sistema di pagamento.
@@ -5108,7 +5110,7 @@ export const APP_CONFIG: AppConfig = {
                               fontSize: 'md',
                               fontWeight: 'normal',
                               lineHeight: 'md',
-                              colorHex: '#747474',
+                              color: { palette: '#747474' },
                             },
                             imageMap: {
                               PAGATA: {
@@ -5142,7 +5144,7 @@ export const APP_CONFIG: AppConfig = {
                                 en: 'Show Details',
                               },
                               isUppercase: true,
-                              colorHex: '#123c73',
+                              color: { hex: '#123c73' },
                               fontWeight: 'semibold',
                             },
                             callback: {
