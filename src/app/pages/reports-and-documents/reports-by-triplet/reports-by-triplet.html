@@ -26,17 +26,17 @@
   @if (!loading() && !error() && (!reportsList || reportsList.length === 0)) {
     @if (isInitialSearch) {
       <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-        <app-image-block [config]="pageConfig.notFoundMessage.imageBlockConfig"></app-image-block>
+        <app-image-block [config]="pageConfig.message.notFound"></app-image-block>
       </div>
     } @else {
       <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-        <app-image-block [config]="pageConfig.initMessage.imageBlockConfig"></app-image-block>
+        <app-image-block [config]="pageConfig.message.init"></app-image-block>
       </div>
     }
   }
   @if (error()) {
     <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-      <app-image-block [config]="pageConfig.errorMessage.imageBlockConfig"></app-image-block>
+      <app-image-block [config]="pageConfig.message.error"></app-image-block>
     </div>
   }
   @if (loading()) {

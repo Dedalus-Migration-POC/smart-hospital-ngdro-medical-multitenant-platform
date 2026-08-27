@@ -25,9 +25,11 @@ export interface PageConfig {
 
   infoPopup?: InfoPopupConfig;
 
-  notFoundMessage?: { imageBlockConfig: ImageBlockConfig };
-  errorMessage?: { imageBlockConfig: ImageBlockConfig };
-  initMessage?: { imageBlockConfig: ImageBlockConfig };
+  message?: {
+    notFound?: ImageBlockConfig;
+    error?: ImageBlockConfig;
+    init?: ImageBlockConfig;
+  };
 }
 
 // Per l'accessibilità

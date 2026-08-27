@@ -17,16 +17,14 @@
     >
       @if (bookingsListError()) {
         <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-          <app-image-block [config]="pageConfig.errorMessage.imageBlockConfig"></app-image-block>
+          <app-image-block [config]="pageConfig.message.error"></app-image-block>
         </div>
       }
       @if (!bookingsListError() && !loading()) {
         @if (bookingsList(); as bookingsList) {
           @if (!bookingsList.appointments.length) {
             <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-              <app-image-block
-                [config]="pageConfig.notFoundMessage.imageBlockConfig"
-              ></app-image-block>
+              <app-image-block [config]="pageConfig.message.notFound"></app-image-block>
             </div>
           } @else {
             <div class="h4">
