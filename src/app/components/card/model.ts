@@ -18,6 +18,8 @@ import {
   BorderConfig,
   SpacingConfig,
   ButtonConfig,
+  BootstrapButtonConfig,
+  CustomButtonConfig,
   LinkConfig,
 } from '../../shared/models/shared_model';
 import { ImageBlockConfig } from '../image-block/model';
@@ -205,10 +207,9 @@ export interface DataCardCondition {
   value?: unknown;
 }
 
-export interface DataCardButtonRender extends ButtonConfig {
-  renderAs: 'button';
-  className?: string;
-}
+export type DataCardButtonRender =
+  | (BootstrapButtonConfig & { renderAs: 'button' })
+  | (CustomButtonConfig & { renderAs: 'button' });
 
 export interface DataCardLinkIcon {
   value: string; // unicode/testo oppure classi FA es. 'fa-solid fa-arrow-right'
@@ -218,7 +219,6 @@ export interface DataCardLinkIcon {
 
 export interface DataCardLinkRender extends LinkConfig {
   renderAs: 'link';
-  className?: string;
   icon?: DataCardLinkIcon;
 }
 

@@ -138,9 +138,9 @@ export const APP_CONFIG: AppConfig = {
             textStyle: {
               fontSize: 'md',
               fontWeight: 'semibold',
-              // color: { palette: 'white' },
             },
-            backgroundColor: { fill: { palette: 'primary' } },
+            mode: 'bootstrap',
+            palette: 'primary',
             padding: { x: '12px', y: '8px' },
             //  size: { width: '50%' },
           },
@@ -4588,7 +4588,7 @@ export const APP_CONFIG: AppConfig = {
                             key: 'view',
                             type: 'callback',
                             renderAs: 'button',
-                            className: 'btn btn-primary',
+
                             label: {
                               text: {
                                 it: 'Dettagli',
@@ -5718,7 +5718,9 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            className: 'btn btn-danger',
+                            backgroundColor: {
+                              palette: 'danger',
+                            },
                             callback: {
                               nameFunction: 'deleteBooking',
                               params: ['id'],
@@ -6289,11 +6291,11 @@ export const APP_CONFIG: AppConfig = {
                                 fontWeight: 'semibold',
                                 color: { palette: 'success' },
                               },
-                              backgroundColor: { fill: { palette: 'white' } },
+
                               padding: { x: '12px', y: '8px' },
                               //  size: { width: '50%' },
                             },
-                            className: 'btn btn-outline-primary',
+
                             callback: {
                               nameFunction: 'onPrintMemo',
                               params: [],
@@ -6315,7 +6317,7 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            className: 'btn btn-outline-primary',
+                            outline: true,
                             callback: {
                               nameFunction: 'onSendEmailNotification',
                               params: [],

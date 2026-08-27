@@ -154,10 +154,10 @@
                 [class.btn-link]="action.renderAs === 'link'"
                 [class.p-0]="action.renderAs === 'link'"
                 [ngClass]="[
-                  action.className ?? (action.renderAs === 'link' ? '' : 'btn-primary'),
+                  ...getActionClasses(action),
                   ...(action.renderAs === 'link'
                     ? getTextClasses(getMergedLinkTextStyle(action.label))
-                    : getTextClasses(getMergedButtonTextStyle(action.label))),
+                    : getTextClasses(getMergedButtonTextStyle(action.label, action))),
                 ]"
                 [ngStyle]="getActionStyles(action)"
                 [disabled]="action.disabled"
