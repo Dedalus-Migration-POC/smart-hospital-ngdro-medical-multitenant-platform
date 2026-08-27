@@ -174,19 +174,31 @@ export interface SizeConfig {
   minWidth?: string;
 }
 
-// TODO: va potenziato in futuro con gli stati dei bottoni
-// (hover, focus, active, disabled)
-// SOLO SE usi le palette di colori del tema,
-// non serve specificare i colori in ogni stato
-// se usiamo hex non vengono generati gli stati,
-// quindi bisogna specificare i colori in ogni stato (implementare)
-export interface ButtonConfig {
-  textStyle?: TextStyle;
-  backgroundColor?: BackgroundConfig;
+export interface ButtonBaseConfig {
   border?: BorderConfig;
   padding?: SpacingConfig;
   size?: SizeConfig;
+  radius?: string;
 }
+
+// Configurazione dei bottoni Bootstrap Italia. Gli stati interattivi sono
+// gestiti dalla classe btn-* generata a partire dalla palette.
+export interface BootstrapButtonConfig extends ButtonBaseConfig {
+  mode?: 'bootstrap';
+  palette?: Colors;
+  outline?: boolean;
+  textStyle?: Omit<TextStyle, 'color'>;
+}
+
+// TODO: non ancora supportato. Da implementare con gestione completa degli
+// stati custom (base, hover, focus, active e disabled).
+export interface CustomButtonConfig extends ButtonBaseConfig {
+  mode: 'custom';
+  textStyle?: TextStyle;
+  backgroundColor?: BackgroundConfig;
+}
+
+export type ButtonConfig = BootstrapButtonConfig | CustomButtonConfig;
 
 // TODO: va potenziato in futuro con gli stati dei bottoni
 // stesso discorso dei bottoni

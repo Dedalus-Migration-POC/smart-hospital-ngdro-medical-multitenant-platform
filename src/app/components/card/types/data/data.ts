@@ -2,6 +2,7 @@ import { Component, computed, inject, input } from '@angular/core';
 import {
   CardField,
   CompiledDataCard,
+  DataCardButtonRender,
   DataCardAction,
   DataCardCompiledMessageAction,
   DataCardSubTitleBinding,
@@ -11,8 +12,10 @@ import {
   BackgroundConfig,
   BorderConfig,
   ButtonConfig,
+  BootstrapButtonConfig,
   Colors,
   ColorConfig,
+  CustomButtonConfig,
   FlexLayoutConfig,
   ImageConfig,
   LinkConfig,
@@ -78,42 +81,58 @@ export class Data {
   }
 
   getMergedValueStyle(field: CardField) {
-    return this.mergeTextStyles(this.dataTheme()?.fields?.valueStyle, field.valueStyle);
+    return this.mergeTextStyles(this.dataTheme()?.fields?.valueStyle, {
+      ...field.valueStyle,
+      color: field.color,
+    });
   }
 
-  getMergedButtonTextStyle(actionLabel: TextConfig) {
-    return this.mergeTextStyles(this.dataTheme()?.action?.buttonStyle?.textStyle, actionLabel);
+  getMergedButtonTextStyle(actionLabel: TextConfig, action?: DataCardButtonRender) {
+    const style = this.mergeTextStyles(
+      this.dataTheme()?.actions?.buttonStyle?.textStyle,
+      actionLabel,
+    );
+
+    const mode = action?.mode ?? this.dataTheme()?.actions?.buttonStyle?.mode ?? 'bootstrap';
+
+    // In modalita bootstrap il colore del testo e gestito dalla palette della classe btn-*.
+    // Lo stile custom puo invece applicare il colore definito nel TextConfig.
+    if (mode === 'custom') {
+      return style;
+    }
+
+    return { ...style, color: undefined };
   }
 
   getMergedLinkTextStyle(actionLabel: TextConfig) {
-    return this.mergeTextStyles(this.dataTheme()?.action?.linkStyle?.textStyle, actionLabel);
+    return this.mergeTextStyles(this.dataTheme()?.actions?.linkStyle?.textStyle, actionLabel);
+  }
+
+  getActionClasses(action: DataCardAction): string[] {
+    if (action.renderAs !== 'button') return [];
+
+    const config = this.mergeButtonConfig(this.dataTheme()?.actions?.buttonStyle, action);
+    if (config.mode === 'custom') return [];
+
+    const palette = config.palette ?? 'primary';
+    return [config.outline ? `btn-outline-${palette}` : `btn-${palette}`];
   }
 
   getActionStyles(action: DataCardAction): Record<string, string> {
     const styles: Record<string, string> = {};
 
     if (action.renderAs === 'button') {
-      const config = this.mergeButtonConfig(this.dataTheme()?.action?.buttonStyle, action);
-      const textColor = this.getColorValue(config.textStyle?.color);
-      const background = this.getBackgroundValue(config.backgroundColor);
+      const config = this.mergeButtonConfig(this.dataTheme()?.actions?.buttonStyle, action);
       const borderColor = this.getColorValue(config.border?.color);
 
-      if (textColor) styles['--bs-btn-color'] = textColor;
-      if (background) {
-        if (config.backgroundColor?.gradient) {
-          styles['background'] = background;
-        } else {
-          styles['--bs-btn-bg'] = background;
-        }
-      }
       if (borderColor) styles['--bs-btn-border-color'] = borderColor;
       if (config.border?.width) styles['border-width'] = config.border.width;
       if (config.border?.style) styles['border-style'] = config.border.style;
-      if (config.border?.radius) styles['border-radius'] = config.border.radius;
+      if (config.radius) styles['border-radius'] = config.radius;
       this.addSpacingStyles(styles, config.padding);
       this.addSizeStyles(styles, config.size);
     } else {
-      const config = this.mergeLinkConfig(this.dataTheme()?.action?.linkStyle, action);
+      const config = this.mergeLinkConfig(this.dataTheme()?.actions?.linkStyle, action);
       const textColor = this.getColorValue(config.textStyle?.color);
 
       if (textColor) styles['--bs-btn-color'] = textColor;
@@ -281,15 +300,37 @@ export class Data {
   }
 
   private mergeButtonConfig(theme?: ButtonConfig, action?: ButtonConfig): ButtonConfig {
+    const mode = action?.mode ?? theme?.mode ?? 'bootstrap';
+
+    if (mode === 'custom') {
+      return {
+        mode: 'custom',
+        ...theme,
+        ...action,
+        textStyle: this.mergeTextStyles(theme?.textStyle, action?.textStyle),
+        border: this.mergeBorderConfig(theme?.border, action?.border),
+        padding: this.mergeSpacingConfig(theme?.padding, action?.padding),
+        size: { ...theme?.size, ...action?.size },
+        radius: action?.radius ?? theme?.radius,
+      } as CustomButtonConfig;
+    }
+
     return {
+      mode: 'bootstrap',
       ...theme,
       ...action,
       textStyle: this.mergeTextStyles(theme?.textStyle, action?.textStyle),
-      backgroundColor: this.mergeBackgroundConfig(theme?.backgroundColor, action?.backgroundColor),
+      palette:
+        action?.mode === 'bootstrap'
+          ? action.palette
+          : theme?.mode === 'bootstrap'
+            ? theme.palette
+            : undefined,
       border: this.mergeBorderConfig(theme?.border, action?.border),
       padding: this.mergeSpacingConfig(theme?.padding, action?.padding),
       size: { ...theme?.size, ...action?.size },
-    };
+      radius: action?.radius ?? theme?.radius,
+    } as BootstrapButtonConfig;
   }
 
   private mergeLinkConfig(theme?: LinkConfig, action?: LinkConfig): LinkConfig {

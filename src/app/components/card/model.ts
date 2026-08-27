@@ -18,6 +18,8 @@ import {
   BorderConfig,
   SpacingConfig,
   ButtonConfig,
+  BootstrapButtonConfig,
+  CustomButtonConfig,
   LinkConfig,
 } from '../../shared/models/shared_model';
 import { ImageBlockConfig } from '../image-block/model';
@@ -116,7 +118,6 @@ export interface DataCardTitleBinding {
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   color?: ColorConfig;
-  colorHex?: string; // colore custom in formato hex, ha precedenza su color
   lineHeight?: LineHeight;
   className?: string;
   margin?: Margin;
@@ -133,7 +134,6 @@ export type CardField =
   | DataCardImageField
   | DataCardBadgeField;
 
-// TODO: coloxHex deve andare nel textStyle, ma per ora lo lascio qui per retrocompatibilità con le card già configurate
 export interface BaseCardField {
   key: string; // es. 'metaInfo.insertionDate' o il size campo BE
   label: TextConfig;
@@ -141,7 +141,7 @@ export interface BaseCardField {
   prefix?: string;
   suffix?: string;
   className?: string;
-  colorHex?: string; // colore custom in formato hex applicato al valore del campo
+  color?: ColorConfig; // colore applicato al valore del campo
   margin?: Margin;
   rowSize?: DataCardFieldRowSize;
 }
@@ -207,10 +207,9 @@ export interface DataCardCondition {
   value?: unknown;
 }
 
-export interface DataCardButtonRender extends ButtonConfig {
-  renderAs: 'button';
-  className?: string;
-}
+export type DataCardButtonRender =
+  | (BootstrapButtonConfig & { renderAs: 'button' })
+  | (CustomButtonConfig & { renderAs: 'button' });
 
 export interface DataCardLinkIcon {
   value: string; // unicode/testo oppure classi FA es. 'fa-solid fa-arrow-right'
@@ -220,7 +219,6 @@ export interface DataCardLinkIcon {
 
 export interface DataCardLinkRender extends LinkConfig {
   renderAs: 'link';
-  className?: string;
   icon?: DataCardLinkIcon;
 }
 
@@ -233,7 +231,6 @@ export interface BaseDataCardAction {
   disabledIf?: DataCardCondition[]; // l’action si vede, ma è disabilitata
   hideIf?: DataCardCondition[]; // l’action non si vede
   hideMessage?: TextConfig; // messaggio mostrato al posto dell'action quando è nascosta
-  className?: string;
 }
 
 export interface DataCardActionCallback {

@@ -95,7 +95,7 @@ export interface AppConfig {
           labelStyle?: TextStyle;
           valueStyle?: TextStyle;
         };
-        action?: {
+        actions?: {
           buttonStyle?: ButtonConfig;
           linkStyle?: LinkConfig;
         };
