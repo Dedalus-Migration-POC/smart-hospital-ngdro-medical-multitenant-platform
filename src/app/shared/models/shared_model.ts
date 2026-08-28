@@ -193,7 +193,7 @@ export interface ButtonBaseConfig {
 // gestiti dalla classe btn-* generata a partire dalla palette.
 export interface BootstrapButtonConfig extends ButtonBaseConfig {
   mode?: 'bootstrap';
-  palette?: Colors;
+  palette: Colors;
   outline?: boolean;
   textStyle?: Omit<TextStyle, 'color'>;
 }
@@ -208,9 +208,23 @@ export interface CustomButtonConfig extends ButtonBaseConfig {
 
 export type ButtonConfig = BootstrapButtonConfig | CustomButtonConfig;
 
-// TODO: va potenziato in futuro con gli stati dei bottoni
-// stesso discorso dei bottoni
-export interface LinkConfig {
-  textStyle?: TextStyle;
+export interface LinkBaseConfig {
   textDecoration?: TextDecoration;
 }
+
+// Configurazione dei link Bootstrap Italia. Il colore e gestito dalla
+// classe text-* generata a partire dalla palette.
+export interface BootstrapLinkConfig extends LinkBaseConfig {
+  mode?: 'bootstrap';
+  palette: Colors;
+  textStyle?: Omit<TextStyle, 'color'>;
+}
+
+// TODO: non ancora supportato. Da implementare con gestione completa degli
+// stati custom (base, hover, focus, active e disabled).
+export interface CustomLinkConfig extends LinkBaseConfig {
+  mode: 'custom';
+  textStyle?: TextStyle;
+}
+
+export type LinkConfig = BootstrapLinkConfig | CustomLinkConfig;

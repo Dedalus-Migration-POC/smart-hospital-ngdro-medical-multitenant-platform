@@ -20,7 +20,8 @@ import {
   ButtonConfig,
   BootstrapButtonConfig,
   CustomButtonConfig,
-  LinkConfig,
+  BootstrapLinkConfig,
+  CustomLinkConfig,
 } from '../../shared/models/shared_model';
 import { ImageBlockConfig } from '../image-block/model';
 
@@ -217,10 +218,9 @@ export interface DataCardLinkIcon {
   position?: 'before' | 'after'; // default: 'after'
 }
 
-export interface DataCardLinkRender extends LinkConfig {
-  renderAs: 'link';
-  icon?: DataCardLinkIcon;
-}
+export type DataCardLinkRender =
+  | (BootstrapLinkConfig & { renderAs: 'link'; icon?: DataCardLinkIcon })
+  | (CustomLinkConfig & { renderAs: 'link'; icon?: DataCardLinkIcon });
 
 export type DataCardActionRender = DataCardButtonRender | DataCardLinkRender;
 

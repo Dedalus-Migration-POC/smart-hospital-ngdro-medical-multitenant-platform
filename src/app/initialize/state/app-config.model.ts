@@ -59,6 +59,7 @@ export interface AppConfig {
       };
     };
     buttonsStyle: ButtonConfig;
+    linksStyle: LinkConfig;
     card?: {
       // Base theme applicate a TUTTE le card
       // mediaText e data estendono/sovrascrivono il base

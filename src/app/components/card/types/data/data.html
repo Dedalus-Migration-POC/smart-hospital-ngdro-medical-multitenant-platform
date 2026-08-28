@@ -156,7 +156,7 @@
                 [ngClass]="[
                   ...getActionClasses(action),
                   ...(action.renderAs === 'link'
-                    ? getTextClasses(getMergedLinkTextStyle(action.label))
+                    ? getTextClasses(getMergedLinkTextStyle(action.label, action))
                     : getTextClasses(getMergedButtonTextStyle(action.label, action))),
                 ]"
                 [ngStyle]="getActionStyles(action)"

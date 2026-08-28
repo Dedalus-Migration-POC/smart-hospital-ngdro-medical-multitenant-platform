@@ -47,9 +47,16 @@ export const APP_CONFIG: AppConfig = {
       },
     },
     buttonsStyle: {
+      mode: 'bootstrap',
+      palette: 'primary',
       border: {
         radius: '4px',
       },
+    },
+    linksStyle: {
+      mode: 'bootstrap',
+      palette: 'primary',
+      textDecoration: 'none',
     },
     card: {
       container: {
@@ -159,8 +166,9 @@ export const APP_CONFIG: AppConfig = {
             textStyle: {
               fontSize: 'md',
               fontWeight: 'normal',
-              color: { palette: 'primary' },
             },
+            mode: 'bootstrap',
+            palette: 'primary',
             textDecoration: 'underline',
           },
         },
@@ -3680,7 +3688,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'link',
-                            decoration: 'none',
                             icon: {
                               value: 'fa-solid fa-arrow-right',
                               type: 'fa',
@@ -3840,7 +3847,6 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'link',
-                            decoration: 'none',
                             icon: {
                               value: 'fa-solid fa-arrow-right',
                               type: 'fa',
@@ -4428,8 +4434,6 @@ export const APP_CONFIG: AppConfig = {
                             key: 'view',
                             type: 'callback',
                             renderAs: 'link',
-                            // className: 'btn btn-primary',
-                            decoration: 'none',
                             icon: {
                               value: 'fa-solid fa-arrow-right',
                               type: 'fa',
@@ -5126,8 +5130,6 @@ export const APP_CONFIG: AppConfig = {
                             key: 'view',
                             type: 'callback',
                             renderAs: 'link',
-                            // className: 'btn btn-primary',
-                            decoration: 'none',
                             icon: {
                               value: 'fa-solid fa-arrow-right',
                               type: 'fa',
