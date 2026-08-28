@@ -5,7 +5,7 @@ export interface FeedRssProps {
   title: TextConfig;
   button: TextConfig;
   feedRssConnectionData: FeedRssConnectionData | 'getFromFirebase';
-  notFoundMessage?: { imageBlockConfig: ImageBlockConfig };
+  notFoundMessage?: ImageBlockConfig;
   layout: 'horizontal' | 'vertical';
   width?: string;
   height?: string;

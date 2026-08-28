@@ -11,12 +11,15 @@ export class ThemeService {
   apply(config: AppConfig): void {
     if (!config) return;
 
+    const buttonRadius = config.theme?.buttonsStyle?.border?.radius;
+
     const properties = [
       ...this.buildColorProperties(config.theme?.colors),
       ...this.buildTypographyProperties(config.theme?.typography),
+      ...this.buildPropertyIfValue('--tenant-btn-border-radius', buttonRadius),
     ];
 
-    const css = this.buildRootCss(properties);
+    const css = this.buildRootCss(properties, config.theme?.colors, buttonRadius);
     this.upsertStyleElement(css);
     this.applyDocumentMetadata(config);
   }
@@ -107,14 +110,91 @@ export class ThemeService {
     return `${name}: ${value};`;
   }
 
-  private buildPropertyIfValue(name: string, value: string | number | undefined): string[] {
+  private buildPropertyIfValue(name: string, value?: string | number | null): string[] {
     return value == null ? [] : [this.buildProperty(name, value)];
   }
 
-  private buildRootCss(properties: string[]): string {
+  private buildRootCss(properties: string[], colors?: ColorConfig, buttonRadius?: string): string {
+    const buttonCss = colors
+      ? Object.keys(colors)
+          .map((color) => this.buildButtonCss(color))
+          .join('\n')
+      : '';
+
+    const buttonRadiusCss = buttonRadius
+      ? `
+      .btn {
+        --bs-btn-border-radius: var(--tenant-btn-border-radius);
+        border-radius: var(--tenant-btn-border-radius);
+      }
+    `
+      : '';
+
     return `
       :root {
         ${properties.join('\n')}
+      }
+
+      ${buttonRadiusCss}
+
+      ${buttonCss}
+    `;
+  }
+
+  private buildButtonCss(color: string): string {
+    return `
+      .btn-${color} {
+        --bs-btn-bg: var(--bs-${color});
+        --bs-btn-border-color: var(--bs-${color});
+        --bs-btn-hover-bg: var(--bs-${color});
+        --bs-btn-hover-border-color: var(--bs-${color});
+        --bs-btn-active-bg: var(--bs-${color});
+        --bs-btn-active-border-color: var(--bs-${color});
+        --bs-btn-disabled-bg: var(--bs-${color});
+        --bs-btn-disabled-border-color: var(--bs-${color});
+      }
+
+      .btn-${color}:disabled,
+      .btn-${color}.disabled {
+        background-color: var(--bs-${color});
+        border-color: var(--bs-${color});
+      }
+
+      .btn-outline-${color} {
+        color: var(--bs-${color});
+        border-color: var(--bs-${color});
+        box-shadow: inset 0 0 0 2px var(--bs-${color});
+        --bs-btn-color: var(--bs-${color});
+        --bs-btn-border-color: var(--bs-${color});
+        --bs-btn-hover-border-color: var(--bs-${color});
+        --bs-btn-active-bg: var(--bs-${color});
+        --bs-btn-active-border-color: var(--bs-${color});
+        --bs-btn-focus-shadow-rgb: var(--bs-${color}-rgb);
+        --bs-btn-disabled-color: var(--bs-${color});
+        --bs-btn-disabled-border-color: var(--bs-${color});
+        --bs-btn-disabled-bg: transparent;
+      }
+
+      .btn-outline-${color},
+      .btn-outline-${color}:hover,
+      .btn-outline-${color}:focus,
+      .btn-outline-${color}:focus-visible,
+      .btn-outline-${color}:active,
+      .btn-outline-${color}:disabled,
+      .btn-outline-${color}.disabled {
+        box-shadow: inset 0 0 0 2px var(--bs-${color});
+      }
+
+      .btn-outline-${color}:focus,
+      .btn-outline-${color}:focus-visible {
+        border-color: var(--bs-${color});
+      }
+
+      .btn-outline-${color}:disabled,
+      .btn-outline-${color}.disabled {
+        color: var(--bs-${color});
+        background-color: transparent;
+        border-color: var(--bs-${color});
       }
     `;
   }

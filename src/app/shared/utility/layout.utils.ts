@@ -73,6 +73,8 @@ export function getAlignClass(align?: Align): string {
       return 'align-self-start';
     case 'self-end':
       return 'align-self-end';
+    case 'self-center':
+      return 'align-self-center';
     default:
       return '';
   }

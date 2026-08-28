@@ -16,7 +16,7 @@ export const APP_CONFIG: AppConfig = {
   },
   theme: {
     colors: {
-      primary: '#3823f5',
+      primary: '#6d3ccf',
       secondary: '#6c757d',
       success: '#198754',
       warning: '#ffc107',
@@ -44,6 +44,11 @@ export const APP_CONFIG: AppConfig = {
         normal: 400,
         semibold: 600,
         bold: 700,
+      },
+    },
+    buttonsStyle: {
+      border: {
+        radius: '4px',
       },
     },
     card: {
@@ -141,6 +146,12 @@ export const APP_CONFIG: AppConfig = {
             },
             mode: 'bootstrap',
             palette: 'primary',
+            // border: {
+            //   width: '1px',
+            //   style: 'solid',
+            //   color: { hex: '#972222' },
+            // },
+            // radius: '4px',
             padding: { x: '12px', y: '8px' },
             //  size: { width: '50%' },
           },
@@ -1384,42 +1395,40 @@ export const APP_CONFIG: AppConfig = {
                     height: '300px',
                     // width: '300px',
                     notFoundMessage: {
-                      imageBlockConfig: {
-                        id: 'reportNotFound',
-                        className: '',
-                        layout: {
-                          direction: 'column',
-                          align: 'center',
-                          justify: 'center',
-                          gap: 'gap-2',
+                      id: 'reportNotFound',
+                      className: '',
+                      layout: {
+                        direction: 'column',
+                        align: 'center',
+                        justify: 'center',
+                        gap: 'gap-2',
+                      },
+                      clickable: false,
+                      image: {
+                        type: 'url',
+                        value:
+                          'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
+                        decorative: true,
+                        alt: { it: 'FeedRss non trovati', en: 'FeedRss not found' },
+                        height: '150px',
+                      },
+                      text: {
+                        title: {
+                          text: { it: 'FeedRss non trovati', en: 'FeedRss not found' },
+                          fontSize: 'xl',
+                          fontWeight: 'normal',
+                          color: 'warning',
+                          lineHeight: 'normal',
                         },
-                        clickable: false,
-                        image: {
-                          type: 'url',
-                          value:
-                            'https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg',
-                          decorative: true,
-                          alt: { it: 'FeedRss non trovati', en: 'FeedRss not found' },
-                          height: '150px',
-                        },
-                        text: {
-                          title: {
-                            text: { it: 'FeedRss non trovati', en: 'FeedRss not found' },
-                            fontSize: 'xl',
-                            fontWeight: 'normal',
-                            color: 'warning',
-                            lineHeight: 'normal',
+                        subTitle: {
+                          text: {
+                            it: 'Riprova più tardi',
+                            en: 'Please try again later.',
                           },
-                          subTitle: {
-                            text: {
-                              it: 'Riprova più tardi',
-                              en: 'Please try again later.',
-                            },
-                            fontSize: 'md',
-                            fontWeight: 'normal',
-                            color: 'warning',
-                            lineHeight: 'normal',
-                          },
+                          fontSize: 'md',
+                          fontWeight: 'normal',
+                          color: 'warning',
+                          lineHeight: 'normal',
                         },
                       },
                     },
@@ -2521,8 +2530,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      notFoundMessage: {
-        imageBlockConfig: {
+      message: {
+        notFound: {
           id: 'reportNotFound',
           className: '',
           layout: {
@@ -2560,9 +2569,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      errorMessage: {
-        imageBlockConfig: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -2645,7 +2652,7 @@ export const APP_CONFIG: AppConfig = {
                     },
                     submitButton: {
                       label: { it: 'Cerca', en: 'Search' },
-                      layout: { align: 'self-end' },
+                      layout: { align: 'self-center' },
                     },
                     fields: [
                       {
@@ -2940,8 +2947,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      notFoundMessage: {
-        imageBlockConfig: {
+      message: {
+        notFound: {
           id: 'reportNotFound',
           className: '',
           layout: {
@@ -2979,9 +2986,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      initMessage: {
-        imageBlockConfig: {
+        init: {
           id: 'initMessage',
           className: '',
           layout: {
@@ -3019,10 +3024,8 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
 
-      errorMessage: {
-        imageBlockConfig: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -3429,8 +3432,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      notFoundMessage: {
-        imageBlockConfig: {
+      message: {
+        notFound: {
           id: 'reportNotFound',
           className: '',
           layout: {
@@ -3468,9 +3471,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      initMessage: {
-        imageBlockConfig: {
+        init: {
           id: 'initMessage',
           className: '',
           layout: {
@@ -3509,9 +3510,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      errorMessage: {
-        imageBlockConfig: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -4610,8 +4609,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      notFoundMessage: {
-        imageBlockConfig: {
+      message: {
+        notFound: {
           id: 'paymentsNotFound',
           className: '',
           layout: {
@@ -4649,9 +4648,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      errorMessage: {
-        imageBlockConfig: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -4923,8 +4920,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      notFoundMessage: {
-        imageBlockConfig: {
+      message: {
+        notFound: {
           id: 'paymentsNotFound',
           className: '',
           layout: {
@@ -4962,9 +4959,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      errorMessage: {
-        imageBlockConfig: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -5162,8 +5157,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      notFoundMessage: {
-        imageBlockConfig: {
+      message: {
+        notFound: {
           id: 'paymentsNotFound',
           className: '',
           layout: {
@@ -5201,9 +5196,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      errorMessage: {
-        imageBlockConfig: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -5479,8 +5472,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      errorMessage: {
-        imageBlockConfig: {
+      message: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -5517,9 +5510,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      notFoundMessage: {
-        imageBlockConfig: {
+        notFound: {
           id: 'paymentsNotFound',
           className: '',
           layout: {
@@ -5718,9 +5709,8 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            backgroundColor: {
-                              palette: 'danger',
-                            },
+                            mode: 'bootstrap',
+                            palette: 'danger',
                             callback: {
                               nameFunction: 'deleteBooking',
                               params: ['id'],
@@ -5741,8 +5731,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      errorMessage: {
-        imageBlockConfig: {
+      message: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -5779,9 +5769,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      notFoundMessage: {
-        imageBlockConfig: {
+        notFound: {
           id: 'bookingsNotFound',
           className: '',
           layout: {
@@ -5980,8 +5968,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-      errorMessage: {
-        imageBlockConfig: {
+      message: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -6018,9 +6006,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      notFoundMessage: {
-        imageBlockConfig: {
+        notFound: {
           id: 'bookingsNotFound',
           className: '',
           layout: {
@@ -6285,27 +6271,13 @@ export const APP_CONFIG: AppConfig = {
                             },
                             type: 'callback',
                             renderAs: 'button',
-                            buttonStyle: {
-                              textStyle: {
-                                fontSize: 'md',
-                                fontWeight: 'semibold',
-                                color: { palette: 'success' },
-                              },
-
-                              padding: { x: '12px', y: '8px' },
-                              //  size: { width: '50%' },
-                            },
-
+                            // mode: 'bootstrap',
+                            // palette: 'danger',
+                            outline: true,
                             callback: {
                               nameFunction: 'onPrintMemo',
                               params: [],
                             },
-                            // hideIf: [
-                            //   { key: 'appointment.isAtMostTomorrow', operator: 'eq', value: false },
-                            // ],
-                            // TEST hideIf: nasconde "Scarica" se lo stato pagamento è PENDING
-                            //    hideIf: [{ key: 'paymentInfo.status', operator: 'eq', value: 'PAYED' }],
-                            //  hideMessage: { text: { it: 'Pagamento in sospeso', en: 'Payment pending' } },
                           },
                           {
                             key: 'email',
@@ -6360,8 +6332,9 @@ export const APP_CONFIG: AppConfig = {
                               },
                             },
                             type: 'callback',
+                            mode: 'bootstrap',
                             renderAs: 'button',
-                            className: 'btn btn-danger',
+                            palette: 'danger',
                             callback: {
                               nameFunction: 'onCancel',
                               params: [],
@@ -6383,9 +6356,8 @@ export const APP_CONFIG: AppConfig = {
           },
         },
       ],
-
-      errorMessage: {
-        imageBlockConfig: {
+      message: {
+        error: {
           id: 'errorMessage',
           className: '',
           layout: {
@@ -6422,9 +6394,7 @@ export const APP_CONFIG: AppConfig = {
             },
           },
         },
-      },
-      notFoundMessage: {
-        imageBlockConfig: {
+        notFound: {
           id: 'bookingsNotFound',
           className: '',
           layout: {

@@ -51,7 +51,7 @@
     } @else {
       @if (config.notFoundMessage; as notFoundMessage) {
         <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-          <app-image-block [config]="notFoundMessage.imageBlockConfig"></app-image-block>
+          <app-image-block [config]="notFoundMessage"></app-image-block>
         </div>
       }
     }
