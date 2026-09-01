@@ -23,6 +23,7 @@ import { SelectComponent } from '../select/select.component';
 })
 export class DynamicFormComponent {
   formConfig = input<DynamicFormConfig>();
+  formGroupInput = input<FormGroup | null>(null);
   formSubmit = output<any>();
   lang = input<keyof LocalizedText>('it' as keyof LocalizedText);
 
@@ -33,6 +34,15 @@ export class DynamicFormComponent {
   constructor(private fb: FormBuilder) {
     effect(() => {
       const config = this.formConfig();
+      const externalForm = this.formGroupInput();
+      if (externalForm) {
+        if (config) {
+          this.applyDisabledState(config, externalForm);
+        }
+        this.formGroup.set(externalForm);
+        return;
+      }
+
       if (config) {
         this.formGroup.set(this.buildForm(config));
       }
@@ -44,10 +54,28 @@ export class DynamicFormComponent {
 
     config.fields.forEach((field) => {
       const validators = this.buildValidators(field.validators);
-      group[field.id] = [field.value ?? '', validators];
+      group[field.id] = [{ value: field.value ?? '', disabled: !!field.disabled }, validators];
     });
 
     return this.fb.group(group);
+  }
+
+  private applyDisabledState(config: DynamicFormConfig, formGroup: FormGroup): void {
+    config.fields.forEach((field) => {
+      const control = formGroup.get(field.id);
+
+      if (!control) {
+        return;
+      }
+
+      if (field.disabled && control.enabled) {
+        control.disable({ emitEvent: false });
+      }
+
+      if (!field.disabled && control.disabled) {
+        control.enable({ emitEvent: false });
+      }
+    });
   }
 
   private buildValidators(validatorConfigs?: ValidatorConfig[]): any[] {
@@ -74,6 +102,12 @@ export class DynamicFormComponent {
             return Validators.maxLength(config.value as number);
           case 'taxCode':
             return NgxFormValidators.taxCodeValidator;
+          case 'phone_number':
+            return NgxFormValidators.mobilePhoneNumber({ validatePhoneNumber: true });
+          case 'cap':
+            return NgxFormValidators.cap({ validateCap: true });
+          case 'text':
+            return NgxFormValidators.text({ validateText: true });
           default:
             return null;
         }
@@ -155,6 +189,10 @@ export class DynamicFormComponent {
     }
 
     return classes;
+  }
+
+  showSubmitButton(): boolean {
+    return this.formConfig()?.showSubmitButton !== false;
   }
 
   onFormSubmit(): void {

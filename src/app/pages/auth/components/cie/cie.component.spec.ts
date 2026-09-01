@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing'
-import { DEPLOY_URL } from 'src/constants'
-import { CieComponent } from './cie.component'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CieComponent } from './cie.component';
 
 describe('CieComponent', () => {
-  let component: CieComponent
-  let fixture: ComponentFixture<CieComponent>
+  let component: CieComponent;
+  let fixture: ComponentFixture<CieComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CieComponent],
-      providers: [{ provide: DEPLOY_URL, useValue: '/' }],
-    }).compileComponents()
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(CieComponent)
-    component = fixture.componentInstance
-    fixture.detectChanges()
-  })
+    fixture = TestBed.createComponent(CieComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
-    expect(component).toBeTruthy()
-  })
-})
+    expect(component).toBeTruthy();
+  });
+});

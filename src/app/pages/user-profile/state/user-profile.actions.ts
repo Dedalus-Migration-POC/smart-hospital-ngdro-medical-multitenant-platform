@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { UserConfig, UserConsent, UserProfile } from '../user-profile.model';
+import { UserConsent, UserProfile } from '../user-profile.model';
 
 export const sessionRefreshed = createAction('[UserProfile] Session Refreshed');
 
@@ -23,18 +23,6 @@ export const fetchUserProfileFailure = createAction(
   '[UserProfile] Fetch UserProfile Failure',
   props<{ error: any }>(),
 );
-
-// export const fetchUserConfig = createAction('[UserProfile] Fetch UserConfig');
-
-// export const fetchUserConfigSuccess = createAction(
-//   '[UserConfig] Fetch UserConfig Success',
-//   props<{ data: UserConfig }>(),
-// );
-
-// export const fetchUserConfigFailure = createAction(
-//   '[UserConfig] Fetch UserConfig Failure',
-//   props<{ error: any }>(),
-// );
 
 export const fetchUserConsents = createAction('[UserProfile] Fetch UserConsents');
 

@@ -38,25 +38,6 @@ export const selectUserProfile = createSelector(
   (data, loading, error, temporary) => ({ data, loading, error, temporary }),
 );
 
-// export const selectUserConfigData = createSelector(
-//   selectUserProfileState,
-//   (state) => state.userConfig,
-// )
-// export const selectUserConfigLoading = createSelector(
-//   selectUserProfileState,
-//   (state) => state.userConfigLoading,
-// )
-// export const selectUserConfigError = createSelector(
-//   selectUserProfileState,
-//   (state) => state.userConfigError,
-// )
-// export const selectUserConfig = createSelector(
-//   selectUserConfigData,
-//   selectUserConfigLoading,
-//   selectUserConfigError,
-//   (data, loading, error) => ({ data, loading, error }),
-// )
-
 export const selectUserConsentsData = createSelector(
   selectUserProfileState,
   (state) => state.userConsents,

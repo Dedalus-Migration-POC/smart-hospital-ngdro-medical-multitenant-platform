@@ -50,6 +50,7 @@ export class App implements OnInit {
   }
   ngOnInit(): void {
     this.store.dispatch(fetchUserProfile());
+
     if (this.appConfig()?.firebaseConfig) {
       this.remoteConfigService.initialize();
     }

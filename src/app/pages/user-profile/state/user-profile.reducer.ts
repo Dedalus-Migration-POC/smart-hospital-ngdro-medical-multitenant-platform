@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as UserProfileActions from './user-profile.actions';
-import { UserConfig, UserConsent, UserProfile } from '../user-profile.model';
+import { UserConsent, UserProfile } from '../user-profile.model';
 
 export const featureKey = 'userProfileState';
 
@@ -11,10 +11,6 @@ export interface State {
   userProfileLoading: boolean;
   userProfileError: boolean;
   temporary: boolean;
-
-  // userConfig: UserConfig | null;
-  // userConfigLoading: boolean;
-  // userConfigError: boolean;
 
   userConsents: UserConsent[];
   userConsentsLoading: boolean;
@@ -37,10 +33,6 @@ export const initialState: State = {
   userProfileLoading: false,
   userProfileError: false,
   temporary: false,
-
-  // userConfig: null,
-  // userConfigLoading: false,
-  // userConfigError: false,
 
   userConsents: [],
   userConsentsLoading: false,
@@ -77,21 +69,7 @@ export const reducer = createReducer(
     userProfileError: true,
     initialized: true,
   })),
-  // on(UserProfileActions.fetchUserConfig, (state) => ({
-  //   ...state,
-  //   userConfigLoading: true,
-  //   userConfigError: false,
-  // })),
-  // on(UserProfileActions.fetchUserConfigSuccess, (state, action) => ({
-  //   ...state,
-  //   userConfigLoading: false,
-  //   userConfig: action.data,
-  // })),
-  // on(UserProfileActions.fetchUserConfigFailure, (state) => ({
-  //   ...state,
-  //   userConfigLoading: false,
-  //   userConfigError: true,
-  // })),
+
   on(UserProfileActions.fetchUserConsents, (state) => ({
     ...state,
     userConsents: [],

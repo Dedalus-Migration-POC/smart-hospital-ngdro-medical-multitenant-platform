@@ -1031,159 +1031,198 @@ export const USER_PROFILE = {
   id: '/user-profile', // === url!
   name: { it: 'Profilo utente', en: 'User Profile' }, // Nome nel browser per accessibilità
   route: '/user-profile', //non serve, non lo possono cambiare
-  page: {
-    backgroundColor: '#ffffff', //o color o img!
-    // backgroundImage: '/assets/images/bg.svg',
-    breadcrumb: {
-      backgroundColor: '#e6e8ea',
-      color: '#333333',
-      title: { it: 'Il tuo profilo', en: 'Your profile' },
-      subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
-      items: [
-        {
-          name: { it: 'Home', en: 'Home' },
-          routerLink: '/',
-        },
-        {
-          name: { it: 'User Profile', en: 'User Profile' },
-          routerLink: '/user-profile',
-        },
-      ],
-    },
-    userConfig: {
-      sections: [
-        {
-          title: { it: 'Dati account', en: 'Account details' },
-          readOnly: true,
-          fields: [
-            {
-              key: 'fiscalCode',
-              type: 'text',
-              readOnly: true,
-              alignment: 'horizontal',
-              label: { it: 'Codice Fiscale', en: 'Fiscal Code' },
-              labelContainerClasses: 'col-auto',
-              labelClasses: 'fw-normal  pe-4',
-              fieldContainerClasses: 'col-auto',
-              fieldClasses: 'text-uppercase ',
-            },
-            {
-              key: 'firstName',
-              type: 'text',
-              readOnly: true,
-              alignment: 'horizontal',
-              label: { it: 'Nome', en: 'First Name' },
-              labelContainerClasses: 'col-auto',
-              labelClasses: 'fw-normal pe-4',
-              fieldContainerClasses: 'col-auto',
-              fieldClasses: '',
-            },
-            {
-              key: 'lastName',
-              type: 'text',
-              readOnly: true,
-              alignment: 'horizontal',
-              label: { it: 'Cognome', en: 'Last Name' },
-              labelContainerClasses: 'col-auto',
-              labelClasses: 'fw-normal  pe-4',
-              fieldContainerClasses: 'col-auto',
-              fieldClasses: '',
-            },
-            {
-              key: 'date_of_birth',
-              type: 'date',
-              readOnly: true,
-              alignment: 'horizontal',
-              label: { it: 'Data di nascita', en: 'Date of Birth' },
-              labelContainerClasses: 'col-auto',
-              labelClasses: 'fw-normal  pe-4',
-              fieldContainerClasses: 'col-auto',
-              fieldClasses: '',
-            },
-          ],
-        },
-        {
-          title: { it: 'Domicilio', en: 'Domicile' },
-          subTitle: { it: 'Campi obbligatori', en: 'Fields required' },
-          fields: [
-            {
-              key: 'address',
-              type: 'text',
-              alignment: 'vertical',
-              fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
-              label: { it: 'Indirizzo', en: 'Address' },
-              labelClasses: 'fw-normal  pe-4',
-              fieldClasses: '',
-              validators: [{ type: 'text' }],
-            },
-            {
-              key: 'city',
-              type: 'text',
-              alignment: 'vertical',
-              fieldContainerClasses: 'col-md-6 col-12 pe-5 mb-2',
-              label: { it: 'Città', en: 'City' },
-              labelClasses: 'fw-normal  pe-4',
-              fieldClasses: '',
-              validators: [{ type: 'text' }],
-            },
-            {
-              key: 'postal_code',
-              type: 'text',
-              alignment: 'vertical',
-              fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
-              label: { it: 'CAP', en: 'Postal Code' },
-              labelClasses: 'fw-normal  pe-4',
-              fieldClasses: '',
-              validators: [{ type: 'cap' }],
-            },
-            {
-              key: 'province',
-              type: 'text',
-              alignment: 'vertical',
-              fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
-              label: { it: 'Provincia', en: 'Province' },
-              labelClasses: 'fw-normal  pe-4',
-              fieldClasses: '',
-              validators: [{ type: 'text' }],
-            },
-          ],
-        },
-        {
-          title: { it: 'Contatti', en: 'Contacts' },
-          subTitle: { it: 'Campi obbligatori', en: 'Fields required' },
-          alignment: 'vertical',
-          fields: [
-            {
-              key: 'email',
-              type: 'text',
-              alignment: 'vertical',
-              fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
-              label: { it: 'Email', en: 'Email' },
-              labelClasses: 'fw-normal  pe-4',
-              fieldClasses: '',
-              validators: [{ type: 'required' }, { type: 'email' }],
-            },
-            {
-              key: 'phone_number',
-              type: 'text',
-              alignment: 'vertical',
-              fieldContainerClasses: 'col-md-6 col-12 pe-5 my-2',
-              label: { it: 'Numero di telefono', en: 'Phone Number' },
-              labelClasses: 'fw-normal  pe-4',
-              fieldClasses: '',
-              validators: [{ type: 'phone_number' }],
-            },
-          ],
-        },
-      ],
-      consents: {
-        title: { it: 'Consensi', en: 'Consents' },
-        subTitle: { it: 'Gestisci i tuoi consensi', en: 'Manage your consents' },
+  backgroundColor: '#ffffff', //o color o img!
+  // backgroundImage: '/assets/images/bg.svg',
+  breadcrumb: {
+    backgroundColor: '#e6e8ea',
+    color: '#333333',
+    title: { it: 'Il tuo profilo', en: 'Your profile' },
+    subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
+    items: [
+      {
+        name: { it: 'Home', en: 'Home' },
+        routerLink: '/',
       },
-      button: {
-        text: { it: 'Salva', en: 'Save' },
+      {
+        name: { it: 'User Profile', en: 'User Profile' },
+        routerLink: '/user-profile',
+      },
+    ],
+  },
+  breadcrumbRegistration: {
+    backgroundColor: '#e6e8ea',
+    color: '#333333',
+    title: { it: 'Registrazione', en: 'Registration' },
+    subTitle: { it: 'Per prosegure devi registrarti', en: 'You need to register to proceed' },
+    items: [
+      {
+        name: { it: 'Home', en: 'Home' },
+        routerLink: '/',
+      },
+      {
+        name: { it: 'User Profile', en: 'User Profile' },
+        routerLink: '/user-profile',
+      },
+    ],
+  },
+  sections: [
+    {
+      title: { it: 'Dati account', en: 'Account details' },
+      readOnly: true,
+      areas: {
+        center: {
+          items: [
+            {
+              id: 'account-details-form',
+              type: 'DYNAMIC_FORM',
+              enabled: true,
+              props: {
+                layoutForm: { direction: 'column', gap: 'gap-3' },
+                layoutFields: {
+                  direction: ['column'],
+                  wrap: 'wrap',
+                  gap: 'gap-2',
+                },
+                fields: [
+                  {
+                    id: 'fiscalCode',
+                    type: 'text',
+                    disabled: true,
+                    inputClass: 'form-control text-uppercase',
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-1' },
+                    label: { it: 'Codice Fiscale', en: 'Fiscal Code' },
+                  },
+                  {
+                    id: 'firstName',
+                    type: 'text',
+                    disabled: true,
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-1' },
+                    label: { it: 'Nome', en: 'First Name' },
+                  },
+                  {
+                    id: 'lastName',
+                    type: 'text',
+                    disabled: true,
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-1' },
+                    label: { it: 'Cognome', en: 'Last Name' },
+                  },
+                  {
+                    id: 'date_of_birth',
+                    type: 'text',
+                    disabled: true,
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-1' },
+                    label: { it: 'Data di nascita', en: 'Date of Birth' },
+                  },
+                ],
+              },
+            },
+          ],
+        },
       },
     },
+    {
+      title: { it: 'Domicilio', en: 'Domicile' },
+      subTitle: { it: 'Campi obbligatori', en: 'Fields required' },
+      areas: {
+        center: {
+          items: [
+            {
+              id: 'domicile-form',
+              type: 'DYNAMIC_FORM',
+              enabled: true,
+              props: {
+                layoutForm: { direction: 'column', gap: 'gap-3' },
+                layoutFields: {
+                  direction: ['column', 'md-row'],
+                  wrap: 'wrap',
+                  gap: 'gap-2',
+                },
+                fields: [
+                  {
+                    id: 'address',
+                    type: 'text',
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-0' },
+                    size: { basis: 'calc(50% - 0.25rem)', width: '100%' },
+                    label: { it: 'Indirizzo', en: 'Address' },
+                    validators: [{ type: 'text' }],
+                  },
+                  {
+                    id: 'city',
+                    type: 'text',
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-0' },
+                    size: { basis: 'calc(50% - 0.25rem)', width: '100%' },
+                    label: { it: 'Città', en: 'City' },
+                    validators: [{ type: 'text' }],
+                  },
+                  {
+                    id: 'postal_code',
+                    type: 'text',
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-0' },
+                    size: { basis: 'calc(50% - 0.25rem)', width: '100%' },
+                    label: { it: 'CAP', en: 'Postal Code' },
+                    validators: [{ type: 'cap' }],
+                  },
+                  {
+                    id: 'province',
+                    type: 'text',
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-0' },
+                    size: { basis: 'calc(50% - 0.25rem)', width: '100%' },
+                    label: { it: 'Provincia', en: 'Province' },
+                    validators: [{ type: 'text' }],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    },
+    {
+      title: { it: 'Contatti', en: 'Contacts' },
+      subTitle: { it: 'Campi obbligatori', en: 'Fields required' },
+      areas: {
+        center: {
+          items: [
+            {
+              id: 'contacts-form',
+              type: 'DYNAMIC_FORM',
+              enabled: true,
+              props: {
+                layoutForm: { direction: 'column', gap: 'gap-3' },
+                layoutFields: {
+                  direction: ['column', 'md-row'],
+                  wrap: 'wrap',
+                  gap: 'gap-2',
+                },
+                fields: [
+                  {
+                    id: 'email',
+                    type: 'email',
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-1' },
+                    label: { it: 'Email', en: 'Email' },
+                    validators: [{ type: 'required' }, { type: 'email' }],
+                  },
+                  {
+                    id: 'phone_number',
+                    type: 'text',
+                    layoutField: { direction: 'column', shrink: 'shrink-0', grow: 'grow-1' },
+                    label: { it: 'Numero di telefono', en: 'Phone Number' },
+                    validators: [{ type: 'phone_number' }],
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      },
+    },
+  ],
+  consents: {
+    title: { it: 'Consensi', en: 'Consents' },
+    subTitle: { it: 'Gestisci i tuoi consensi', en: 'Manage your consents' },
+  },
+  submitButton: {
+    label: { it: 'Salva', en: 'Save' },
   },
 };
 
@@ -5411,7 +5450,6 @@ export const RESCHEDULE_BOOKING_HERO = {
     },
   },
 };
-
 
 export const APP_CONFIG: AppConfig = {
   name: 'Smart Hospital',

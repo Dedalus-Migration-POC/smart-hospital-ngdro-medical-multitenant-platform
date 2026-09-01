@@ -8,25 +8,27 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, convertToParamMap, Params } from '@angular/router';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from '../../store/reducers';
 import {
   Alignment,
   Field,
+  FieldType,
   UserConfig,
-  UserConsent,
   UserProfile as UserProfileModel,
   ValidationType,
+  UserProfileState,
+  ConsentViewModel,
 } from './user-profile.model';
+import { FormFieldConfig } from '../../components/dynamic-form/dynamic-form.model';
 import {
   selectspidConfirmLoading,
   selectUpdateUserConsentsError,
   selectUpdateUserConsentsLoading,
   selectUpdateUserProfileError,
   selectUpdateUserProfileLoading,
-  // selectUserConfig,
   selectUserProfile,
   selectUserProfileLoading,
 } from './state/user-profile.selectors';
@@ -39,24 +41,6 @@ import { Breadcrumb } from '../../components/breadcrumb/breadcrumb';
 import { UserProfileRegistrationComponent } from './user-profile-registration/user-profile-registration.component';
 import { Spinner } from '../../components/spinner/spinner';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
-
-type UserProfileState = {
-  data: UserProfileModel | null;
-  loading?: boolean;
-  error?: boolean;
-  temporary?: boolean;
-};
-
-type UserConfigState = {
-  data: UserConfig | null;
-  loading?: boolean;
-  error?: boolean;
-};
-
-type ConsentViewModel = UserConsent & {
-  text?: string;
-  linkText?: string;
-};
 
 @Component({
   selector: 'app-user-profile',
@@ -90,6 +74,8 @@ export class UserProfile {
     () => this.queryParamMap().get('profilecode') ?? undefined,
   );
 
+  readonly isRegistration = computed(() => !!this.profileCode());
+
   readonly userProfileState = toSignal(
     this.store.select(selectUserProfile) as Observable<UserProfileState>,
     {
@@ -97,15 +83,7 @@ export class UserProfile {
     },
   );
 
-  // readonly userConfigState = toSignal(
-  //   this.store.select(selectUserConfig) as Observable<UserConfigState>,
-  //   {
-  //     initialValue: { data: null, loading: false, error: false } as UserConfigState,
-  //   },
-  // );
-
   readonly userProfile = computed(() => this.userProfileState()?.data);
-  readonly userConfig = computed(() => this.pageConfig()?.page.userConfig);
   readonly rawUserConsents = computed(() => this.userProfile()?.consents ?? []);
 
   readonly consents = computed<ConsentViewModel[]>(() => {
@@ -179,7 +157,7 @@ export class UserProfile {
 
     effect(() => {
       const userProfile = this.userProfile();
-      const userConfig = this.userConfig();
+      const userConfig = this.pageConfig();
 
       if (!userProfile || !userConfig) {
         return;
@@ -191,8 +169,6 @@ export class UserProfile {
     effect(() => {
       this.userConsentsForm.controls.consents.setValue(this.consents());
     });
-
-    // this.store.dispatch(fetchUserConfig());
 
     this.destroyRef.onDestroy(() => {
       if (this.userProfileState()?.temporary) {
@@ -211,23 +187,73 @@ export class UserProfile {
       ) || {};
 
     userConfig.sections.forEach((section) => {
-      section.fields.forEach((field) => {
+      section.fields?.forEach((field) => {
         const additionalAttribute = userProfile.additionalAttributes?.find(
           (el) => el.key === field.key,
         );
 
         const required = additionalAttribute?.required || false;
         const key = getLastPartKey(field.key);
-        const value =
-          (userProfile as Record<string, any>)?.[key] ?? additionalAttributesMap[key] ?? '';
+        const value = this.getFormValue(key, userProfile, additionalAttributesMap);
 
         const validators = field.readOnly ? [] : this.getValidators(field, required);
 
         group[key] = new FormControl(value, validators);
       });
+
+      this.getDynamicFormFields(section).forEach((field) => {
+        const additionalAttribute = userProfile.additionalAttributes?.find(
+          (el) => el.key === field.id,
+        );
+
+        const required = additionalAttribute?.required || false;
+        const key = getLastPartKey(field.id);
+        const value = this.getFormValue(key, userProfile, additionalAttributesMap);
+
+        group[key] = new FormControl(
+          { value, disabled: !!field.disabled || !!section.readOnly },
+          this.getDynamicFormValidators(field, required),
+        );
+      });
     });
 
     return this.fb.group(group);
+  }
+
+  private getDynamicFormFields(section: UserConfig['sections'][number]): FormFieldConfig[] {
+    return (
+      section.areas?.center?.items
+        ?.filter((item) => item.type === 'DYNAMIC_FORM' && item.enabled !== false)
+        .flatMap((item) => item.props.fields) ?? []
+    );
+  }
+
+  private getFormValue(
+    key: string,
+    userProfile: UserProfileModel,
+    additionalAttributesMap: Record<string, string>,
+  ) {
+    const value = (userProfile as Record<string, any>)?.[key] ?? additionalAttributesMap[key] ?? '';
+
+    if (key === 'fiscalCode' && typeof value === 'string') {
+      return value.toUpperCase().startsWith('TINIT-') ? value.slice(6) : value;
+    }
+
+    return value;
+  }
+
+  private getDynamicFormValidators(field: FormFieldConfig, required: boolean): ValidatorFn[] {
+    return this.getValidators(
+      {
+        key: field.id,
+        type: field.type === 'hidden' ? FieldType.TEXT : FieldType.TEXT,
+        alignment: Alignment.VERTICAL,
+        validators: field.validators?.map((validator) => ({
+          type: validator.type as ValidationType,
+        })),
+      },
+      required,
+    );
   }
 
   getValidators(field: Field, required: boolean): ValidatorFn[] {

@@ -1,13 +1,16 @@
 @if (pageConfig(); as pageConfig) {
   @if (userProfile()) {
-    @if (pageConfig.page.breadcrumb) {
-      <app-breadcrumb [config]="pageConfig.page.breadcrumb"></app-breadcrumb>
+    @if (pageConfig.breadcrumb) {
+      <app-breadcrumb
+        [config]="isRegistration() ? pageConfig.breadcrumbRegistration : pageConfig.breadcrumb"
+      ></app-breadcrumb>
     }
 
     <app-user-profile-registration
       [form]="form()"
-      [userConfig]="userConfig()"
+      [userConfig]="pageConfig"
       [userConsentsForm]="userConsentsForm"
+      [isRegistration]="isRegistration()"
       (submit)="submit()"
       (toggleConsent)="toggleConsent($event)"
     />

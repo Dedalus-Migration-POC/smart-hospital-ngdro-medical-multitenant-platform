@@ -1,4 +1,8 @@
 import { LocalizedText } from '../../shared/models/shared_model';
+import {
+  DynamicFormConfig,
+  SubmitButtonConfig,
+} from '../../components/dynamic-form/dynamic-form.model';
 
 export enum Alignment {
   HORIZONTAL = 'horizontal',
@@ -57,7 +61,19 @@ export interface Section {
   readOnly?: boolean;
   title: LocalizedText;
   subTitle?: LocalizedText;
-  fields: Field[];
+  fields?: Field[];
+  areas?: {
+    center?: {
+      items?: UserConfigSectionItem[];
+    };
+  };
+}
+
+export interface UserConfigSectionItem {
+  id: string;
+  type: 'DYNAMIC_FORM';
+  enabled?: boolean;
+  props: DynamicFormConfig;
 }
 
 // Used to dynamically create the registration form layout from the registration.json
@@ -68,9 +84,7 @@ export interface UserConfig {
     title: { [key: string]: string };
     subtitle: { [key: string]: string };
   } | null;
-  button?: {
-    text: { [key: string]: string };
-  };
+  submitButton?: SubmitButtonConfig;
 }
 
 export interface AdditionalAttribute {
@@ -105,3 +119,21 @@ export interface UserConsent {
   type: string;
   requireLogin?: boolean;
 }
+
+export type UserProfileState = {
+  data: UserProfile | null;
+  loading?: boolean;
+  error?: boolean;
+  temporary?: boolean;
+};
+
+export type UserConfigState = {
+  data: UserConfig | null;
+  loading?: boolean;
+  error?: boolean;
+};
+
+export type ConsentViewModel = UserConsent & {
+  text?: string;
+  linkText?: string;
+};

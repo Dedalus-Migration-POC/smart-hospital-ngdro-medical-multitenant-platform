@@ -4,10 +4,11 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { UserConfig } from '../user-profile.model';
-import { FieldTypesComponent } from '../registration-form/field/types/types.component';
-import { ReadOnlySectionComponent } from '../registration-form/readonly-section.component';
 import { ConsentsFormComponent } from '../consents-form/consents-form.component';
 import { LanguageService } from '../../../initialize/state/services/language.service';
+import { DynamicFormComponent } from 'src/app/components/dynamic-form/dynamic-form.component';
+import { DynamicFormConfig } from 'src/app/components/dynamic-form/dynamic-form.model';
+import { getFlexLayoutClasses } from 'src/app/shared/utility/layout.utils';
 
 @Component({
   selector: 'app-user-profile-registration',
@@ -16,9 +17,8 @@ import { LanguageService } from '../../../initialize/state/services/language.ser
     ReactiveFormsModule,
     TranslateModule,
     DesignAngularKitModule,
-    FieldTypesComponent,
-    ReadOnlySectionComponent,
     ConsentsFormComponent,
+    DynamicFormComponent,
   ],
   templateUrl: './user-profile-registration.component.html',
   styleUrls: ['./user-profile-registration.component.scss'],
@@ -27,57 +27,41 @@ export class UserProfileRegistrationComponent {
   readonly form = input<FormGroup | undefined>(undefined);
   readonly userConfig = input<UserConfig | null>(null);
   readonly userConsentsForm = input<FormGroup | undefined>(undefined);
+  readonly isRegistration = input(true);
   readonly submit = output<void>();
   readonly toggleConsent = output<any>();
 
   private langService = inject(LanguageService);
   lang = this.langService.lang;
+  protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
 
-  totalFields = 0;
-  completedFieldsCount = 0;
-
-  triggerSubmit: boolean = false;
-
-  // For accessibility before submitting
-  // I check the text fields whether to insert (in the case of fields with an error) or delete the attributes
-  // aria-invalid and aria-describedby
-  onSubmit() {
-    this.totalFields =
-      this.userConfig()?.sections.reduce((count, section) => {
-        return count + section.fields.filter((field) => !field.readOnly).length;
-      }, 0) || 0;
-    // console.log('TotalFields', this.totalFields)
-
-    this.completedFieldsCount = 0;
-
-    this.triggerSubmit = true;
+  submitForm() {
+    this.submit.emit();
   }
 
-  // After checking the attributes, for accessibility, for all form fields then submit
-  onFieldCompleted() {
-    this.completedFieldsCount++;
-    if (this.completedFieldsCount === this.totalFields) {
-      // console.log('All fields have completed their operations.')
-
-      setTimeout(() => {
-        this.triggerSubmit = false;
-        this.submit.emit();
-        this.scrollToFirstError();
-      });
-    }
+  getDynamicForms(section: UserConfig['sections'][number]): DynamicFormConfig[] {
+    return (
+      section.areas?.center?.items
+        ?.filter((item) => item.type === 'DYNAMIC_FORM' && item.enabled !== false)
+        .map((item) => ({
+          ...item.props,
+          showSubmitButton: false,
+          fields: item.props.fields.map((field) => ({
+            ...field,
+            disabled: section.readOnly || field.disabled,
+          })),
+        })) ?? []
+    );
   }
 
-  private scrollToFirstError() {
-    const firstInvalidControl: HTMLElement = document.querySelector(
-      'app-field-types it-input.ng-invalid',
-    ) as HTMLElement;
+  getSubmitButtonClasses(): string[] {
+    const buttonConfig = this.userConfig()?.submitButton;
 
-    if (firstInvalidControl) {
-      firstInvalidControl.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-      });
-      firstInvalidControl.focus();
-    }
+    return [
+      ...getFlexLayoutClasses(buttonConfig?.layout),
+      'btn',
+      'btn-primary',
+      buttonConfig?.className ?? '',
+    ].filter(Boolean);
   }
 }

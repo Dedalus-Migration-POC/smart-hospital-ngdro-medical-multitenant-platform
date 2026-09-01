@@ -114,8 +114,10 @@ describe('UserProfile', () => {
     code: null,
   };
 
-  async function createComponent(temporary = false) {
-    queryParamMap$ = new BehaviorSubject(convertToParamMap({ profilecode: 'ABC123' }));
+  async function createComponent(temporary = false, profileCode: string | undefined = 'ABC123') {
+    queryParamMap$ = new BehaviorSubject(
+      convertToParamMap(profileCode ? { profilecode: profileCode } : {}),
+    );
     userProfileState$ = new BehaviorSubject<{
       data: UserProfileModel | null;
       loading?: boolean;
@@ -209,6 +211,7 @@ describe('UserProfile', () => {
 
     expect(component).toBeTruthy();
     expect(component.profileCode()).toBe('ABC123');
+    expect(component.isRegistration()).toBe(true);
     expect(component.form()?.get('email')?.value).toBe('mario@example.com');
     expect(component.form()?.get('city')?.value).toBe('Rome');
 
@@ -310,5 +313,12 @@ describe('UserProfile', () => {
     fixture.destroy();
 
     expect(store.dispatch).toHaveBeenCalledWith(sessionExpired());
+  });
+
+  it('uses the active profile view when profilecode is not present', async () => {
+    await createComponent(false, undefined);
+
+    expect(component.profileCode()).toBeUndefined();
+    expect(component.isRegistration()).toBe(false);
   });
 });

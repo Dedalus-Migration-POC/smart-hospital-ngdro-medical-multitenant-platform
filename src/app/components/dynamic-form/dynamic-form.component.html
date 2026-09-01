@@ -1,13 +1,39 @@
 @if (formGroup()) {
-  <form
-    [ngClass]="getFlexLayoutClasses(formConfig()?.layoutForm)"
-    [formGroup]="formGroup()!"
-    (ngSubmit)="onFormSubmit()"
-  >
+  @if (showSubmitButton()) {
+    <form
+      [ngClass]="getFlexLayoutClasses(formConfig()?.layoutForm)"
+      [formGroup]="formGroup()!"
+      (ngSubmit)="onFormSubmit()"
+    >
+      <ng-container [ngTemplateOutlet]="formFields"></ng-container>
+
+      <button
+        type="submit"
+        [ngClass]="[
+          ...getFlexLayoutClasses(formConfig()?.submitButton?.layout),
+          ...getButtonClasses(),
+        ]"
+        [disabled]="formGroup()?.invalid"
+      >
+        {{ getButtonLabel() }}
+      </button>
+    </form>
+  } @else {
+    <div [ngClass]="getFlexLayoutClasses(formConfig()?.layoutForm)" [formGroup]="formGroup()!">
+      <ng-container [ngTemplateOutlet]="formFields"></ng-container>
+    </div>
+  }
+
+  <ng-template #formFields>
     <div [ngClass]="getFlexLayoutClasses(formConfig()?.layoutFields)">
       @for (field of formConfig()?.fields; track field.id) {
         @if (field.type !== 'hidden') {
-          <div [ngClass]="getFlexLayoutClasses(field.layoutField)">
+          <div
+            [ngClass]="getFlexLayoutClasses(field.layoutField)"
+            [style.flex-basis]="field.size?.basis ?? null"
+            [style.width]="field.size?.width ?? null"
+            [style.min-width]="field.size?.minWidth ?? null"
+          >
             @if (isSelectField(field)) {
               <app-select-component
                 [fieldName]="field.id"
@@ -18,6 +44,7 @@
                 [placeholder]="getFieldPlaceholder(field.id)"
                 [options]="getSelectOptions(field)"
                 [autocomplete]="'off'"
+                [wrapperClass]="field.wrapperClass ?? 'select-wrapper mb-3'"
                 [errorMessages]="getFieldErrorMessages(field)"
               ></app-select-component>
             } @else {
@@ -30,6 +57,8 @@
                 [showErrors]="true"
                 [placeholder]="getFieldPlaceholder(field.id)"
                 [autocomplete]="'off'"
+                [inputClass]="field.inputClass ?? 'form-control'"
+                [wrapperClass]="field.wrapperClass ?? 'form-floating mb-3'"
                 [errorMessages]="getFieldErrorMessages(field)"
               ></app-input-component>
             }
@@ -37,16 +66,5 @@
         }
       }
     </div>
-
-    <button
-      type="submit"
-      [ngClass]="[
-        ...getFlexLayoutClasses(formConfig()?.submitButton?.layout),
-        ...getButtonClasses(),
-      ]"
-      [disabled]="formGroup()?.invalid"
-    >
-      {{ getButtonLabel() }}
-    </button>
-  </form>
+  </ng-template>
 }
