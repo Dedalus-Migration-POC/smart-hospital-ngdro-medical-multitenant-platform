@@ -32,8 +32,8 @@
                 [ngClass]="
                   getTextClasses(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.title))
                 "
-                [style.color]="
-                  getTextColorHex(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.title))
+                [ngStyle]="
+                  getTextStyles(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.title))
                 "
               >
                 {{ titleText }}
@@ -45,8 +45,8 @@
                 [ngClass]="
                   getTextClasses(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.subTitle))
                 "
-                [style.color]="
-                  getTextColorHex(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.subTitle))
+                [ngStyle]="
+                  getTextStyles(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.subTitle))
                 "
               >
                 {{ subTitleText }}

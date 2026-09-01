@@ -1,10 +1,27 @@
-import { LocalizedText } from '../../shared/models/shared_model';
+import {
+  BackgroundConfig,
+  LocalizedText,
+  SpacingConfig,
+  TextStyle,
+} from '../../shared/models/shared_model';
 
-export interface BreadcrumbConfig {
+export interface BreadcrumbItemsContainerStyle {
+  background?: BackgroundConfig;
+  margin?: SpacingConfig;
+  padding?: SpacingConfig;
+}
+
+export interface BreadcrumbStyle {
+  itemsContainerStyle?: BreadcrumbItemsContainerStyle;
+  itemsStyle?: TextStyle;
+  activeItemStyle?: TextStyle;
+  titleStyle?: TextStyle;
+  subTitleStyle?: TextStyle;
+}
+
+export interface BreadcrumbConfig extends BreadcrumbStyle {
   title: LocalizedText;
   subTitle?: LocalizedText;
-  backgroundColor?: string;
-  color?: string;
   items: BreadcrumbItem[];
   button?: LocalizedText;
   buttonIcon?: string;

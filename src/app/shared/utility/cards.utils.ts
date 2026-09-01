@@ -1,24 +1,10 @@
 import { PageSectionConfig } from '../../pages/page.model';
 import { Item } from '../layout-system/models/layout.model';
 import { BaseCard } from '../../components/card/model';
-import { TextStyle } from '../models/shared_model';
 
 // Id di sezione predefinito usato per individuare le card nelle
 // pagine statiche/configurabili.
 const DEFAULT_CARDS_SECTION_ID = 'cards-section';
-
-export function mergeTextStyles(themeStyle?: TextStyle, specificStyle?: TextStyle): TextStyle {
-  return {
-    fontSize: specificStyle?.fontSize ?? themeStyle?.fontSize,
-    fontWeight: specificStyle?.fontWeight ?? themeStyle?.fontWeight,
-    color: {
-      ...themeStyle?.color,
-      ...specificStyle?.color,
-    },
-    lineHeight: specificStyle?.lineHeight ?? themeStyle?.lineHeight,
-    isUppercase: specificStyle?.isUppercase ?? themeStyle?.isUppercase,
-  };
-}
 
 // Unisce il tema base alla card, dando precedenza alla configurazione specifica.
 export function mergeCardBase<T extends BaseCard>(base: Partial<BaseCard> | undefined, card: T): T {

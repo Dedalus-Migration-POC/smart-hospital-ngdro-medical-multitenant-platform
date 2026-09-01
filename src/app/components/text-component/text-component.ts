@@ -2,6 +2,8 @@ import { Component, inject, input } from '@angular/core';
 import { TextProps } from './model';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { CommonModule } from '@angular/common';
+import { getTextStyles } from '../../shared/utility/style.utils';
+import { getTextClasses } from '../../shared/utility/text.utils';
 
 @Component({
   selector: 'app-text-component',
@@ -15,20 +17,10 @@ export class TextComponent {
   private langService = inject(LanguageService);
 
   lang = this.langService.lang;
+  protected readonly getTextStyles = getTextStyles;
+  protected readonly getTextClasses = getTextClasses;
 
   classes(config: TextProps): string[] {
-    return [
-      'cursor-default',
-      'text-' + config.color,
-      'text-' + config.textTransform,
-      'text-decoration-' + config.textDecoration,
-      'fw-' + config.fontWeight,
-      'fs-' + config.fontSize,
-      config?.marginTop || '',
-      config?.marginBottom || '',
-      config?.marginLeft || '',
-      config?.marginRight || '',
-      'lh-' + (config?.lineHeight ?? ''),
-    ];
+    return ['cursor-default', config.className ?? '', ...this.getTextClasses(config)];
   }
 }

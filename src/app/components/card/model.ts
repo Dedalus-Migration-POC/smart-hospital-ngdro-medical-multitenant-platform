@@ -13,7 +13,6 @@ import {
   TextStyle,
   ColorConfig,
   SizeConfig,
-  Margin,
   BackgroundConfig,
   BorderConfig,
   SpacingConfig,
@@ -121,7 +120,7 @@ export interface DataCardTitleBinding {
   color?: ColorConfig;
   lineHeight?: LineHeight;
   className?: string;
-  margin?: Margin;
+  margin?: SpacingConfig;
 }
 
 export interface DataCardSubTitleBinding extends DataCardTitleBinding {
@@ -143,7 +142,7 @@ export interface BaseCardField {
   suffix?: string;
   className?: string;
   color?: ColorConfig; // colore applicato al valore del campo
-  margin?: Margin;
+  margin?: SpacingConfig;
   rowSize?: DataCardFieldRowSize;
 }
 

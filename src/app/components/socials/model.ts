@@ -1,26 +1,12 @@
 import {
-  Align,
-  Colors,
-  Direction,
-  FontSize,
-  FontWeight,
-  Gap,
+  ColorConfig,
   FlexLayoutConfig,
   LinkTarget,
-  TextTransform,
+  TextConfig,
 } from '../../shared/models/shared_model';
 
 export interface ISocials {
-  title: {
-    text: {
-      it: string;
-      en: string;
-    };
-    fontSize: FontSize;
-    fontWeight?: FontWeight;
-    color: Colors;
-    textTransform?: TextTransform;
-  };
+  title: TextConfig;
   socials: {
     id: string;
     showLabel: boolean;
@@ -40,7 +26,7 @@ export interface ISocials {
     url: string;
     target: LinkTarget;
     disabled: boolean;
-    color: Colors;
+    color: ColorConfig;
   }[];
   layout: FlexLayoutConfig;
 }

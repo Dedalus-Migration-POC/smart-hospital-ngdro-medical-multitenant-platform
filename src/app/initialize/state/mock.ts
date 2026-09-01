@@ -33,18 +33,12 @@ export const LOGIN = {
               it: `I servizi online dell’ASL di Latina`,
               en: `Online services from the Latina Local Health Authority`,
             },
-            isHeader: 'h1',
+            headingTag: 'h1',
             fontSize: 'xxl',
             fontWeight: 'semibold',
             textDecoration: 'none',
-            color: 'black',
-            // layout?: {
-            //   marginTop?: Margin;
-            //   marginBottom?: Margin;
-            //   marginRight?: Margin;
-            //   marginLeft?: Margin;
-            //   lineHeight?: LineHeight;
-            // };
+            lineHeight: 'sm',
+            color: { palette: 'black' },
           },
         },
         {
@@ -60,7 +54,7 @@ export const LOGIN = {
             fontSize: 'md',
             fontWeight: 'normal',
             textDecoration: 'none',
-            color: 'black',
+            color: { palette: 'black' },
           },
         },
       ],
@@ -199,7 +193,7 @@ export const HOME = {
           size: { basis: '50%' },
           layout: {
             direction: 'column',
-            gap: 'gap-3',
+            //   gap: 'gap-3',
             align: 'start',
             wrap: 'nowrap',
           },
@@ -214,11 +208,12 @@ export const HOME = {
                   it: `I servizi online dell'ASL di Latina`,
                   en: `Online services from the Latina Local Health Authority`,
                 },
-                isHeader: 'h1',
+                headingTag: 'h1',
                 fontSize: 'xxl',
+                lineHeight: 'sm',
                 fontWeight: 'semibold',
                 textDecoration: 'none',
-                color: 'primary',
+                color: { palette: 'primary' },
               },
             },
             {
@@ -234,7 +229,10 @@ export const HOME = {
                 fontSize: 'md',
                 fontWeight: 'normal',
                 textDecoration: 'none',
-                color: 'black',
+                color: { palette: 'black' },
+                margin: {
+                  bottom: '8px',
+                },
               },
             },
             {
@@ -259,6 +257,9 @@ export const HOME = {
                   type: 'externalLink',
                   url: 'https://commission.europa.eu/',
                   target: '_blank',
+                },
+                margin: {
+                  bottom: '16px',
                 },
               },
             },
@@ -1233,8 +1234,8 @@ export const MEDICAL_REPORTS = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
+    //background: { fill: { hex: '#e6e8ea' } },
+    itemsStyle: { color: { hex: '#b41919' } },
     title: { it: 'Referti e documenti', en: 'Medical Reports and Documents' },
     subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
     items: [
@@ -1557,8 +1558,9 @@ export const SINGLE_REPORT = {
 
   backgroundColor: '#ffffff',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
+    background: { fill: { hex: '#175492' } },
+    itemsStyle: { color: { hex: '#c52424' } },
+    activeItemStyle: { color: { hex: '#14d6c6' } },
     title: { it: 'Referto', en: 'Medical Report' },
     subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
     items: [
@@ -2014,8 +2016,6 @@ export const REPORTS_BY_TRIPLET = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
     title: { it: 'Referto', en: 'Medical Report' },
     subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
     items: [
@@ -2280,7 +2280,7 @@ export const REPORTS_BY_TRIPLET = {
                           key: { basis: '40%' },
                           value: { basis: '60%' },
                         },
-                        margin: 'my-2',
+                        margin: { y: '.5rem' },
                         format: 'dd/MM/yyyy',
                         label: {
                           fontWeight: 'bold',
@@ -2498,8 +2498,6 @@ export const DEPARTMENTS = {
   name: { it: 'Dipartimenti', en: 'Departments' }, // Nome nel browser per accessibilità
   route: '/departments',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
     title: { it: 'Dipartimenti', en: 'Departments' },
     subTitle: {
       it: 'Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale.',
@@ -2654,12 +2652,13 @@ export const UNITS = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
+    itemsStyle: { color: { hex: '#333333' } },
     title: { it: '{{department}}', en: '{{department}}' },
     subTitle: {
-      it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
-      en: 'View the units of the department or search for a service.',
+      text: {
+        it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
+        en: 'View the units of the department or search for a service.',
+      },
     },
     items: [
       {
@@ -2813,12 +2812,12 @@ export const UNIT = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
     title: { it: '{{unit}}', en: '{{unit}}' },
     subTitle: {
-      it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
-      en: 'View the units of the department or search for a service.',
+      text: {
+        it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
+        en: 'View the units of the department or search for a service.',
+      },
     },
     items: [
       {
@@ -3234,13 +3233,8 @@ export const PAYMENTS_PA = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
     title: { it: 'Pagamenti', en: 'Payments' },
-    subTitle: {
-      it: 'Visualizza i pagamenti.',
-      en: 'View the payments.',
-    },
+    subTitle: { it: 'Visualizza i pagamenti.', en: 'View the payments.' },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -3266,6 +3260,7 @@ export const PAYMENTS_PA = {
                 itemColBootstrapClasses: 'col-12 col-md-6',
                 itemsLayout: {
                   direction: 'row',
+                  gap: 'gap-1',
                 },
                 actionsLayout: {
                   direction: 'row',
@@ -3282,7 +3277,7 @@ export const PAYMENTS_PA = {
                         joinWith: ' / ',
                         fontSize: 'lg',
                         lineHeight: 'sm',
-                        margin: 'mb-3',
+                        margin: { bottom: '1rem' },
                       },
                       subTitle: {
                         key: 'state',
@@ -3293,9 +3288,9 @@ export const PAYMENTS_PA = {
                         },
                         fontSize: 'md',
                         fontWeight: 'bold',
-                        color: { palette: '#2F475E' },
+                        color: { hex: '#2F475E' },
                         lineHeight: 'sm',
-                        margin: 'mb-4',
+                        margin: { bottom: '1.5rem' },
                       },
                     },
                     fields: [
@@ -3303,7 +3298,7 @@ export const PAYMENTS_PA = {
                         key: 'appointmentDate',
                         type: 'date',
                         format: 'dd/MM/yyyy',
-                        margin: 'mb-2',
+                        margin: { bottom: '.5rem' },
                         rowSize: {
                           key: { basis: '50%' },
                           value: { basis: '50%' },
@@ -3317,7 +3312,7 @@ export const PAYMENTS_PA = {
                           fontWeight: 'normal',
                           lineHeight: 'md',
                           color: {
-                            palette: '#747474',
+                            hex: '#747474',
                           },
                         },
                       },
@@ -3338,7 +3333,7 @@ export const PAYMENTS_PA = {
                           fontSize: 'md',
                           fontWeight: 'normal',
                           lineHeight: 'md',
-                          color: { palette: '#747474' },
+                          color: { hex: '#747474' },
                         },
                       },
                       {
@@ -3357,7 +3352,7 @@ export const PAYMENTS_PA = {
                           fontSize: 'md',
                           fontWeight: 'normal',
                           lineHeight: 'md',
-                          color: { palette: '#747474' },
+                          color: { hex: '#747474' },
                         },
                         imageMap: {
                           PagoPa: {
@@ -3383,8 +3378,8 @@ export const PAYMENTS_PA = {
                             it: 'Vedi dettaglio',
                             en: 'Show Details',
                           },
-                          isUppercase: true,
-                          color: { palette: '#123c73' },
+                          textTransform: 'uppercase',
+                          color: { hex: '#123c73' },
                           fontWeight: 'semibold',
                         },
                         callback: {
@@ -3638,12 +3633,9 @@ export const PAYMENT_DETAILS_PA = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
     title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
     subTitle: {
-      it: 'Visualizza i dettagli del pagamento.',
-      en: 'View the payment details.',
+      text: { it: 'Visualizza i dettagli del pagamento.', en: 'View the payment details.' },
     },
     items: [
       {
@@ -3950,13 +3942,8 @@ export const PAYMENTS_JCASH = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
     title: { it: 'Pagamenti', en: 'Payments' },
-    subTitle: {
-      it: 'Visualizza i pagamenti.',
-      en: 'View the payments.',
-    },
+    subTitle: { it: 'Visualizza i pagamenti.', en: 'View the payments.' },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -4006,7 +3993,7 @@ export const PAYMENTS_JCASH = {
                         },
                         fontSize: 'md',
                         fontWeight: 'semibold',
-                        color: { palette: '#2F475E' }, // secondary color in hex
+                        color: { hex: '#2F475E' }, // secondary color in hex
                         lineHeight: 'sm',
                         margin: 'mb-4',
                       },
@@ -4029,7 +4016,7 @@ export const PAYMENTS_JCASH = {
                           fontSize: 'md',
                           fontWeight: 'normal',
                           lineHeight: 'md',
-                          color: { palette: '#747474' },
+                          color: { hex: '#747474' },
                         },
                       },
                       //da backend non arriva il sistema di pagamento.
@@ -4050,7 +4037,7 @@ export const PAYMENTS_JCASH = {
                           fontSize: 'md',
                           fontWeight: 'normal',
                           lineHeight: 'md',
-                          color: { palette: '#747474' },
+                          color: { hex: '#747474' },
                         },
                         imageMap: {
                           PAGATA: {
@@ -4081,7 +4068,7 @@ export const PAYMENTS_JCASH = {
                             it: 'Vedi dettaglio',
                             en: 'Show Details',
                           },
-                          isUppercase: true,
+                          textTransform: 'uppercase',
                           color: { hex: '#123c73' },
                           fontWeight: 'semibold',
                         },
@@ -4186,12 +4173,9 @@ export const PAYMENT_DETAILS_JCASH = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
     title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
     subTitle: {
-      it: 'Visualizza i dettagli del pagamento.',
-      en: 'View the payment details.',
+      text: { it: 'Visualizza i dettagli del pagamento.', en: 'View the payment details.' },
     },
     items: [
       {
@@ -4337,7 +4321,7 @@ export const PAYMENT_DETAILS_JCASH = {
                       {
                         key: 'user.fullName',
                         type: 'text',
-                        margin: 'mt-4 mb-2',
+                        margin: { top: '1.5rem', bottom: '.5rem' },
                         rowSize: {
                           key: { basis: '40%' },
                           value: { basis: '60%' },
@@ -4503,12 +4487,12 @@ export const NEW_BOOKING = {
     backgroundColor: '#ffffff', //o color o img!
     // backgroundImage: '/assets/images/bg.svg',
     breadcrumb: {
-      backgroundColor: '#e6e8ea',
-      color: '#333333',
       title: { it: 'Nuova prenotazione', en: 'New booking' },
       subTitle: {
-        it: 'Crea una nuova prenotazione Arianna-CUP',
-        en: 'Create a new Arianna-CUP booking',
+        text: {
+          it: 'Crea una nuova prenotazione Arianna-CUP',
+          en: 'Create a new Arianna-CUP booking',
+        },
       },
       items: [
         {
@@ -4535,12 +4519,11 @@ export const BOOKINGS = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
+    background: { fill: { hex: '#e6e8ea' } },
+    itemsStyle: { color: { hex: '#333333' } },
     title: { it: 'Prenotazioni', en: 'Bookings' },
     subTitle: {
-      it: 'Visualizza le prenotazioni Arianna-CUP.',
-      en: 'View the Arianna-CUP bookings.',
+      text: { it: 'Visualizza le prenotazioni Arianna-CUP.', en: 'View the Arianna-CUP bookings.' },
     },
     button: {
       it: 'Nuova prenotazione',
@@ -4763,13 +4746,10 @@ export const BOOKINGS_HERO = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
+    background: { fill: { hex: '#e6e8ea' } },
+    itemsStyle: { color: { hex: '#333333' } },
     title: { it: 'Prenotazioni', en: 'Bookings' },
-    subTitle: {
-      it: 'Visualizza le prenotazioni Hero.',
-      en: 'View the Hero bookings.',
-    },
+    subTitle: { it: 'Visualizza le prenotazioni Hero.', en: 'View the Hero bookings.' },
     button: {
       it: 'Nuova prenotazione',
       en: 'New booking',
@@ -5001,13 +4981,10 @@ export const BOOKING_HERO_DETAILS = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    backgroundColor: '#e6e8ea',
-    color: '#333333',
+    background: { fill: { hex: '#e6e8ea' } },
+    itemsStyle: { color: { hex: '#333333' } },
     title: { it: 'Dettagli della Prenotazione {{bookingId}}', en: 'Booking {{bookingId}}' },
-    subTitle: {
-      it: 'Visualizza le prenotazioni Hero.',
-      en: 'View the Hero bookings.',
-    },
+    subTitle: { it: 'Visualizza le prenotazioni Hero.', en: 'View the Hero bookings.' },
 
     items: [
       {
@@ -5391,12 +5368,11 @@ export const NEW_BOOKING_HERO = {
     backgroundColor: '#ffffff', //o color o img!
     // backgroundImage: '/assets/images/bg.svg',
     breadcrumb: {
-      backgroundColor: '#e6e8ea',
-      color: '#333333',
+      background: { fill: { hex: '#e6e8ea' } },
+      itemsStyle: { color: { hex: '#333333' } },
       title: { it: 'Nuova prenotazione', en: 'New Booking' },
       subTitle: {
-        it: 'Crea una nuova prenotazione Hero.',
-        en: 'Create a new Hero booking.',
+        text: { it: 'Crea una nuova prenotazione Hero.', en: 'Create a new Hero booking.' },
       },
 
       items: [
@@ -5425,12 +5401,14 @@ export const RESCHEDULE_BOOKING_HERO = {
     backgroundColor: '#ffffff', //o color o img!
     // backgroundImage: '/assets/images/bg.svg',
     breadcrumb: {
-      backgroundColor: '#e6e8ea',
-      color: '#333333',
+      background: { fill: { hex: '#e6e8ea' } },
+      itemsStyle: { color: { hex: '#333333' } },
       title: { it: 'Sposta prenotazione', en: 'Reschedule Booking' },
       subTitle: {
-        it: 'Modifica una prenotazione esistente Hero.',
-        en: 'Modify an existing Hero booking.',
+        text: {
+          it: 'Modifica una prenotazione esistente Hero.',
+          en: 'Modify an existing Hero booking.',
+        },
       },
 
       items: [
@@ -5483,13 +5461,14 @@ export const APP_CONFIG: AppConfig = {
         md: '16px',
         lg: '18px',
         xl: '20px',
-        xxl: '22px',
+        xxl: '32px',
       },
       lineHeight: {
         sm: 1.2,
         md: 1.5,
         lg: 1.6,
         xl: 1.7,
+        xxl: 1.8,
       },
       fontWeight: {
         normal: 400,
@@ -5507,7 +5486,36 @@ export const APP_CONFIG: AppConfig = {
     linksStyle: {
       mode: 'bootstrap',
       palette: 'primary',
-      textDecoration: 'none',
+      textStyle: {
+        textDecoration: 'none',
+      },
+    },
+    breadcrumb: {
+      itemsStyle: {
+        color: { hex: '#333333' },
+        //  textDecoration: 'none',
+      },
+      activeItemStyle: {
+        color: { palette: 'dark' },
+        fontWeight: 'semibold',
+      },
+      titleStyle: {
+        fontSize: 'xxl',
+        fontWeight: 'bold',
+        lineHeight: 'sm',
+      },
+      subTitleStyle: {
+        fontSize: 'lg',
+        margin: { bottom: '8px' },
+        //  lineHeight: 'md',
+      },
+      itemsContainerStyle: {
+        background: {
+          fill: { hex: '#e6e8ea' },
+        },
+        padding: { y: '8px' },
+        margin: { bottom: '0px' },
+      },
     },
     card: {
       container: {
@@ -5617,10 +5625,10 @@ export const APP_CONFIG: AppConfig = {
             textStyle: {
               fontSize: 'md',
               fontWeight: 'normal',
+              textDecoration: 'underline',
             },
             mode: 'bootstrap',
             palette: 'primary',
-            textDecoration: 'underline',
           },
         },
       },
@@ -5758,10 +5766,10 @@ export const APP_CONFIG: AppConfig = {
                 external: true,
                 disabled: false,
                 style: {
-                  color: 'white',
+                  mode: 'bootstrap',
+                  palette: 'white',
                   textDecoration: 'none',
-                  font: 'md',
-                  fontWeight: 'normal',
+                  textStyle: { fontSize: 'md', fontWeight: 'normal' },
                 },
               },
             },
@@ -5943,8 +5951,8 @@ export const APP_CONFIG: AppConfig = {
                     en: 'Follow us',
                   },
                   fontSize: 'md',
-                  bold: false,
-                  color: 'white',
+                  fontWeight: 'normal',
+                  color: { palette: 'white' },
                 },
                 socials: [
                   {
@@ -5966,7 +5974,7 @@ export const APP_CONFIG: AppConfig = {
                     url: 'https://www.facebook.com',
                     target: '_blank',
                     disabled: false,
-                    color: 'black',
+                    color: { palette: 'black' },
                   },
                   {
                     id: 'instagram',
@@ -5986,7 +5994,7 @@ export const APP_CONFIG: AppConfig = {
                     url: 'https://www.instagram.com',
                     target: '_blank',
                     disabled: false,
-                    color: 'white',
+                    color: { palette: 'white' },
                   },
                   {
                     id: 'in',
@@ -6006,7 +6014,7 @@ export const APP_CONFIG: AppConfig = {
                     url: 'https://www.linkedin.com',
                     target: '_blank',
                     disabled: false,
-                    color: 'primary',
+                    color: { palette: 'primary' },
                   },
                 ],
               },
@@ -6120,10 +6128,10 @@ export const APP_CONFIG: AppConfig = {
                 external: false,
                 disabled: false,
                 style: {
-                  color: 'primary',
+                  mode: 'bootstrap',
+                  palette: 'primary',
                   textDecoration: 'underline',
-                  font: 'md',
-                  fontWeight: 'semibold',
+                  textStyle: { fontSize: 'md', fontWeight: 'semibold' },
                 },
               },
             },
@@ -6143,10 +6151,10 @@ export const APP_CONFIG: AppConfig = {
                 external: false,
                 disabled: false,
                 style: {
-                  color: 'primary',
+                  mode: 'bootstrap',
+                  palette: 'primary',
                   textDecoration: 'none',
-                  font: 'md',
-                  fontWeight: 'semibold',
+                  textStyle: { fontSize: 'md', fontWeight: 'semibold' },
                 },
               },
             },
@@ -6193,12 +6201,8 @@ export const APP_CONFIG: AppConfig = {
                 },
                 fontSize: 'md',
                 fontWeight: 'normal',
-                color: 'white',
-                marginTop: 'mt-3',
-                // marginBottom: '1',
-                // marginRight: '1',
-                // marginLeft: '0',
-                // lineHeight: 'xxl',
+                color: { palette: 'white' },
+                margin: { top: '1rem' },
               },
             },
             {
@@ -6398,7 +6402,7 @@ export const APP_CONFIG: AppConfig = {
                   },
                   fontSize: 'md',
                   fontWeight: 'semibold',
-                  color: 'white',
+                  color: { palette: 'white' },
                   textTransform: 'uppercase',
                 },
                 socials: [
@@ -6421,7 +6425,7 @@ export const APP_CONFIG: AppConfig = {
                     url: 'https://www.facebook.com',
                     target: '_blank',
                     disabled: false,
-                    color: 'black',
+                    color: { palette: 'black' },
                   },
                   {
                     id: 'instagram',
@@ -6441,7 +6445,7 @@ export const APP_CONFIG: AppConfig = {
                     url: 'https://www.instagram.com',
                     target: '_blank',
                     disabled: false,
-                    color: 'white',
+                    color: { palette: 'white' },
                   },
                   {
                     id: 'in',
@@ -6461,7 +6465,7 @@ export const APP_CONFIG: AppConfig = {
                     url: 'https://www.linkedin.com',
                     target: '_blank',
                     disabled: false,
-                    color: 'primary',
+                    color: { palette: 'primary' },
                   },
                 ],
               },
@@ -6512,10 +6516,10 @@ export const APP_CONFIG: AppConfig = {
                 target: '_blank',
                 disabled: false,
                 style: {
-                  color: 'danger',
+                  mode: 'bootstrap',
+                  palette: 'danger',
                   textDecoration: 'none',
-                  font: 'md',
-                  fontWeight: 'semibold',
+                  textStyle: { fontSize: 'md', fontWeight: 'semibold' },
                 },
               },
             },
@@ -6537,10 +6541,10 @@ export const APP_CONFIG: AppConfig = {
                 target: '_blank',
                 disabled: false,
                 style: {
-                  color: 'primary',
+                  mode: 'bootstrap',
+                  palette: 'primary',
                   textDecoration: 'none',
-                  font: 'md',
-                  fontWeight: 'semibold',
+                  textStyle: { fontSize: 'md', fontWeight: 'semibold' },
                 },
               },
             },

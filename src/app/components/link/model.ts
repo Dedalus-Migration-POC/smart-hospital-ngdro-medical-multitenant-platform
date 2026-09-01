@@ -1,10 +1,4 @@
-import {
-  Colors,
-  FontSize,
-  FontWeight,
-  LinkTarget,
-  TextDecoration,
-} from '../../shared/models/shared_model';
+import { LinkConfig, LinkTarget } from '../../shared/models/shared_model';
 
 export interface ILink {
   text: {
@@ -23,10 +17,5 @@ export interface ILink {
     it: string;
   };
   disabled: boolean;
-  style: {
-    color: Colors;
-    textDecoration: TextDecoration;
-    font: FontSize;
-    fontWeight: FontWeight;
-  };
+  style?: LinkConfig;
 }

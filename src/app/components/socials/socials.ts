@@ -3,6 +3,8 @@ import { ISocials } from './model';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { getTextStyles } from '../../shared/utility/style.utils';
+import { getTextClasses } from '../../shared/utility/text.utils';
 
 @Component({
   selector: 'app-socials',
@@ -17,6 +19,8 @@ export class Socials {
   private sanitizer = inject(DomSanitizer);
 
   lang = this.langService.lang;
+  protected readonly getTextStyles = getTextStyles;
+  protected readonly getTextClasses = getTextClasses;
 
   sanitizeSvg(social: any) {
     const cfg = this.socials();

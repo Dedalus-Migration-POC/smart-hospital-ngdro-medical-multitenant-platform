@@ -9,12 +9,8 @@
   >
     <div
       class="social-title"
-      [ngClass]="[
-        'fs-' + socials.title.fontSize,
-        'fw-' + socials.title.fontWeight,
-        'text-' + socials.title.color,
-        'text-' + socials.title.textTransform,
-      ]"
+      [ngClass]="getTextClasses(socials.title)"
+      [ngStyle]="getTextStyles(socials.title)"
     >
       {{ socials.title.text[lang()] || 'socials.title.text' }}
     </div>
@@ -24,7 +20,8 @@
           <a
             [href]="social.url"
             [target]="social.target"
-            [ngClass]="'text-' + social.color"
+            [ngClass]="social.color.palette ? 'text-' + social.color.palette : ''"
+            [style.color]="social.color.hex ?? null"
             rel="noopener noreferrer"
           >
             @if (social.icon.type === 'font') {

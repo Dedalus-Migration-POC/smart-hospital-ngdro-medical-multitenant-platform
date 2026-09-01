@@ -16,7 +16,8 @@ import {
 } from '../../shared/utility/image-accessibility.utils';
 import { getTooltipClassName, getTooltipLabel } from '../../shared/utility/tooltip.utils';
 import { getLocalizedText, getTextClasses } from '../../shared/utility/text.utils';
-import { getTextColorHex } from '../../shared/utility/style.utils';
+import { getSpacingStyles, getTextStyles } from '../../shared/utility/style.utils';
+import { ImageStyle } from '../../shared/models/shared_model';
 
 @Component({
   selector: 'app-image-block',
@@ -33,7 +34,7 @@ export class ImageBlock {
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextClasses = getTextClasses;
-  protected readonly getTextColorHex = getTextColorHex;
+  protected readonly getTextStyles = getTextStyles;
   protected readonly getAlignClass = getAlignClass;
   protected readonly getJustifyClass = getJustifyClass;
 
@@ -48,6 +49,22 @@ export class ImageBlock {
 
   tooltipLabel = computed(() => getTooltipLabel(this.config()?.image?.tooltip, this.lang()));
   tooltipClassName = computed(() => getTooltipClassName(this.config()?.image?.tooltip));
+
+  getBlockStyles(config: ImageBlockConfig): Record<string, string> {
+    return {
+      ...getSpacingStyles(config.margin),
+      ...getSpacingStyles(config.padding, 'padding'),
+    };
+  }
+
+  getImageStyles(image: ImageStyle): Record<string, string> {
+    return {
+      ...(image.width ? { width: image.width } : {}),
+      ...(image.height ? { height: image.height } : {}),
+      ...getSpacingStyles(image.margin),
+      ...getSpacingStyles(image.padding, 'padding'),
+    };
+  }
 
   // ACTION HANDLER
   handleClick(): void {

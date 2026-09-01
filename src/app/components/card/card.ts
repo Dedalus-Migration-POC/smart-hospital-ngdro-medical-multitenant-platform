@@ -7,11 +7,10 @@ import { LanguageService } from '../../initialize/state/services/language.servic
 import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
 import { MediaText } from './types/media-text/media-text';
 import { Data } from './types/data/data';
-import { getTextClasses } from 'src/app/shared/utility/text.utils';
+import { getTextClasses, mergeTextStyles } from 'src/app/shared/utility/text.utils';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
-import { mergeTextStyles } from 'src/app/shared/utility/cards.utils';
-import { getTextColorHex } from 'src/app/shared/utility/style.utils';
+import { getTextStyles } from 'src/app/shared/utility/style.utils';
 
 @Component({
   selector: 'app-card',
@@ -22,7 +21,7 @@ import { getTextColorHex } from 'src/app/shared/utility/style.utils';
 export class Card {
   readonly config = input<CompiledCardsContainer | null>(null);
   protected readonly getTextClasses = getTextClasses;
-  protected readonly getTextColorHex = getTextColorHex;
+  protected readonly getTextStyles = getTextStyles;
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
 

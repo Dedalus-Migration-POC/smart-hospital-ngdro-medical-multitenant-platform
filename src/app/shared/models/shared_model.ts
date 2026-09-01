@@ -34,51 +34,13 @@ export type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 export type LineHeight = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 export type TextHeader = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
-// TODO: da togliere c e SpacingConfig
-// appena finisco di fare il default delle card
-export type Margin =
-  | 'mt-0'
-  | 'mt-1'
-  | 'mt-2'
-  | 'mt-3'
-  | 'mt-4'
-  | 'mt-5'
-  | 'mb-0'
-  | 'mb-1'
-  | 'mb-2'
-  | 'mb-3'
-  | 'mb-4'
-  | 'mb-5'
-  | 'ms-0'
-  | 'ms-1'
-  | 'ms-2'
-  | 'ms-3'
-  | 'ms-4'
-  | 'ms-5'
-  | 'me-0'
-  | 'me-1'
-  | 'me-2'
-  | 'me-3'
-  | 'me-4'
-  | 'me-5'
-  | 'my-0'
-  | 'my-1'
-  | 'my-2'
-  | 'my-3'
-  | 'my-4'
-  | 'my-5'
-  | 'mx-0'
-  | 'mx-1'
-  | 'mx-2'
-  | 'mx-3'
-  | 'mx-4'
-  | 'mx-5';
-
 export type ImageType = 'url' | 'inlineSvg' | 'file' | 'base64';
 
 export interface ImageStyle {
   width?: string;
   height?: string;
+  margin?: SpacingConfig;
+  padding?: SpacingConfig;
 }
 
 export interface ImageConfig extends ImageStyle {
@@ -142,13 +104,15 @@ export interface TextConfig extends TextStyle {
   text: LocalizedText;
 }
 
-// TODO: valutare se aggiungere margin e padding qui
 export interface TextStyle {
   fontSize?: FontSize;
   fontWeight?: FontWeight;
   color?: ColorConfig;
   lineHeight?: LineHeight;
-  isUppercase?: boolean; // se true, aggiunge la classe text-uppercase
+  textTransform?: TextTransform;
+  textDecoration?: TextDecoration;
+  margin?: SpacingConfig;
+  padding?: SpacingConfig;
 }
 
 export type ActionType = 'route' | 'externalLink' | 'comingSoon';
@@ -208,13 +172,9 @@ export interface CustomButtonConfig extends ButtonBaseConfig {
 
 export type ButtonConfig = BootstrapButtonConfig | CustomButtonConfig;
 
-export interface LinkBaseConfig {
-  textDecoration?: TextDecoration;
-}
-
 // Configurazione dei link Bootstrap Italia. Il colore e gestito dalla
 // classe text-* generata a partire dalla palette.
-export interface BootstrapLinkConfig extends LinkBaseConfig {
+export interface BootstrapLinkConfig {
   mode?: 'bootstrap';
   palette: Colors;
   textStyle?: Omit<TextStyle, 'color'>;
@@ -222,7 +182,7 @@ export interface BootstrapLinkConfig extends LinkBaseConfig {
 
 // TODO: non ancora supportato. Da implementare con gestione completa degli
 // stati custom (base, hover, focus, active e disabled).
-export interface CustomLinkConfig extends LinkBaseConfig {
+export interface CustomLinkConfig {
   mode: 'custom';
   textStyle?: TextStyle;
 }

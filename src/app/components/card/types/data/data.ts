@@ -31,13 +31,18 @@ import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
-import { getTextClasses } from '../../../../shared/utility/text.utils';
+import { getTextClasses, mergeTextStyles } from '../../../../shared/utility/text.utils';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
-import { mergeCardBase, mergeTextStyles } from '../../../../shared/utility/cards.utils';
-import { getBackgroundPaletteClass, getTextColorHex } from '../../../../shared/utility/style.utils';
+import { mergeCardBase } from '../../../../shared/utility/cards.utils';
+import {
+  getBackgroundPaletteClass,
+  getSpacingStyles,
+  getTextStyles,
+  getTextColorHex,
+} from '../../../../shared/utility/style.utils';
 import { getCardStyles } from '../../../../shared/utility/cards.utils';
 import { ImageBlock } from '../../../image-block/image-block';
 import { ImageBlockConfig } from '../../../image-block/model';
@@ -64,7 +69,10 @@ export class Data {
   // Precedenza stile action: 1) config specifica sull'action della pagina,
   // 2) tema generale delle card (dataTheme.actions), 3) tema generale button/link.
   protected readonly buttonsTheme = computed(() =>
-    this.mergeButtonConfig(this.appConfig()?.theme.buttonsStyle, this.dataTheme()?.actions?.buttonStyle),
+    this.mergeButtonConfig(
+      this.appConfig()?.theme.buttonsStyle,
+      this.dataTheme()?.actions?.buttonStyle,
+    ),
   );
   protected readonly linksTheme = computed(() =>
     this.mergeLinkConfig(this.appConfig()?.theme.linksStyle, this.dataTheme()?.actions?.linkStyle),
@@ -83,6 +91,8 @@ export class Data {
   protected readonly getCardStyles = getCardStyles;
   protected readonly mergeTextStyles = mergeTextStyles;
   protected readonly getTextColorHex = getTextColorHex;
+  protected readonly getSpacingStyles = getSpacingStyles;
+  protected readonly getTextStyles = getTextStyles;
 
   // Fallback unico quando un valore non e disponibile o non e valido.
   private readonly emptyValue = '-';
@@ -165,7 +175,9 @@ export class Data {
         const textColor = this.getColorValue(config.textStyle?.color);
         if (textColor) styles['--bs-btn-color'] = textColor;
       }
-      if (config.textDecoration) styles['text-decoration'] = config.textDecoration;
+      if (config.textStyle?.textDecoration) {
+        styles['text-decoration'] = config.textStyle.textDecoration;
+      }
     }
 
     return styles;
@@ -326,6 +338,13 @@ export class Data {
     }
 
     return Object.keys(styles).length ? styles : null;
+  }
+
+  getFieldStyles(field: CardField, layoutDirection: FlexLayoutConfig['direction']) {
+    return {
+      ...this.getSpacingStyles(field.margin),
+      ...(this.getFieldRowPartStyles(field, 'value', layoutDirection) ?? {}),
+    };
   }
 
   private mergeButtonConfig(theme?: ButtonConfig, action?: ButtonConfig): ButtonConfig {
