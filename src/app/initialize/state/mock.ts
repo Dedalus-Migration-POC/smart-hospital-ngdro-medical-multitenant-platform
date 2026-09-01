@@ -1558,7 +1558,9 @@ export const SINGLE_REPORT = {
 
   backgroundColor: '#ffffff',
   breadcrumb: {
-    background: { fill: { hex: '#175492' } },
+    itemsContainerStyle: {
+      background: { fill: { hex: '#175492' } },
+    },
     itemsStyle: { color: { hex: '#c52424' } },
     activeItemStyle: { color: { hex: '#14d6c6' } },
     title: { it: 'Referto', en: 'Medical Report' },
