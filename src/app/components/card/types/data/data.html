@@ -63,8 +63,10 @@
                   <div
                     [ngClass]="getTextClasses(getMergedLabelStyle(field))"
                     [class.field-label-row]="layout.direction === 'row'"
-                    [ngStyle]="getFieldRowPartStyles(field, 'key', layout.direction)"
-                    [ngStyle]="getTextStyles(getMergedLabelStyle(field))"
+                    [ngStyle]="{
+                      ...getFieldRowPartStyles(field, 'key', layout.direction),
+                      ...getTextStyles(getMergedLabelStyle(field)),
+                    }"
                   >
                     {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
                   </div>
