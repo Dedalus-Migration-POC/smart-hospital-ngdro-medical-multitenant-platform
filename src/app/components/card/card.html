@@ -4,7 +4,7 @@
       <h2
         class="cursor-default mb-0"
         [ngClass]="getTextClasses(headerTitleStyle())"
-        [style.color]="getTextColorHex(headerTitleStyle())"
+        [ngStyle]="getTextStyles(headerTitleStyle())"
       >
         {{ config.header.title.text[lang()] }}
       </h2>
@@ -13,7 +13,7 @@
         <p
           class="cursor-default mb-0"
           [ngClass]="getTextClasses(headerSubtitleStyle())"
-          [style.color]="getTextColorHex(headerSubtitleStyle())"
+          [ngStyle]="getTextStyles(headerSubtitleStyle())"
         >
           {{ config.header.subTitle.text[lang()] }}
         </p>

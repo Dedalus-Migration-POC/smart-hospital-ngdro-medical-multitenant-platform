@@ -10,14 +10,14 @@
     [attr.role]="config.clickable ? 'button' : null"
     [attr.tabindex]="config.clickable ? '0' : null"
     [attr.title]="tooltipLabel()"
+    [ngStyle]="getBlockStyles(config)"
   >
     @if (config.image) {
       @if (config.image.type === 'url' || config.image.type === 'file') {
         <img
           class="img-fluid"
           [src]="config.image.value"
-          [style.width]="config.image.width"
-          [style.height]="config.image.height"
+          [ngStyle]="getImageStyles(config.image)"
           loading="lazy"
           [attr.alt]="altText() ?? ''"
           [attr.aria-hidden]="ariaHidden()"
@@ -28,8 +28,7 @@
         <img
           class="img-fluid"
           [src]="getSafeBase64Url(config.image.value)"
-          [style.width]="config.image.width"
-          [style.height]="config.image.height"
+          [ngStyle]="getImageStyles(config.image)"
           loading="lazy"
           [attr.alt]="altText() ?? ''"
           [attr.aria-hidden]="ariaHidden()"
@@ -38,8 +37,7 @@
 
       @if (config.image.type === 'inlineSvg') {
         <div
-          [style.width]="config.image.width"
-          [style.height]="config.image.height"
+          [ngStyle]="getImageStyles(config.image)"
           [innerHTML]="sanitizeSvg(config.image.value.replace(/\n/g, ''))"
         ></div>
       }
@@ -55,7 +53,7 @@
       >
         <div
           [ngClass]="getTextClasses(config.text.title)"
-          [style.color]="getTextColorHex(config.text.title)"
+          [ngStyle]="getTextStyles(config.text.title)"
         >
           {{ titleText() }}
         </div>
@@ -63,7 +61,7 @@
         @if (config.text.subTitle) {
           <div
             [ngClass]="getTextClasses(config.text.subTitle)"
-            [style.color]="getTextColorHex(config.text.subTitle)"
+            [ngStyle]="getTextStyles(config.text.subTitle)"
           >
             {{ subTitleText() }}
           </div>

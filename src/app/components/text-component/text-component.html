@@ -1,25 +1,54 @@
 @if (config(); as config) {
-  @if (!config.isHeader) {
-    <div [innerHTML]="config.text[lang()]" class="cursor-default" [ngClass]="classes(config)"></div>
+  @if (!config.headingTag) {
+    <div
+      [innerHTML]="config.text[lang()]"
+      class="cursor-default"
+      [ngClass]="classes(config)"
+      [ngStyle]="getTextStyles(config)"
+    ></div>
   } @else {
-    @switch (config.isHeader) {
+    @switch (config.headingTag) {
       @case ('h1') {
-        <h1 [innerHTML]="config.text[lang()]" [ngClass]="classes(config)"></h1>
+        <h1
+          [innerHTML]="config.text[lang()]"
+          [ngClass]="classes(config)"
+          [ngStyle]="getTextStyles(config)"
+        ></h1>
       }
       @case ('h2') {
-        <h2 [innerHTML]="config.text[lang()]" [ngClass]="classes(config)"></h2>
+        <h2
+          [innerHTML]="config.text[lang()]"
+          [ngClass]="classes(config)"
+          [ngStyle]="getTextStyles(config)"
+        ></h2>
       }
       @case ('h3') {
-        <h3 [innerHTML]="config.text[lang()]" [ngClass]="classes(config)"></h3>
+        <h3
+          [innerHTML]="config.text[lang()]"
+          [ngClass]="classes(config)"
+          [ngStyle]="getTextStyles(config)"
+        ></h3>
       }
       @case ('h4') {
-        <h4 [innerHTML]="config.text[lang()]" [ngClass]="classes(config)"></h4>
+        <h4
+          [innerHTML]="config.text[lang()]"
+          [ngClass]="classes(config)"
+          [ngStyle]="getTextStyles(config)"
+        ></h4>
       }
       @case ('h5') {
-        <h5 [innerHTML]="config.text[lang()]" [ngClass]="classes(config)"></h5>
+        <h5
+          [innerHTML]="config.text[lang()]"
+          [ngClass]="classes(config)"
+          [ngStyle]="getTextStyles(config)"
+        ></h5>
       }
       @case ('h6') {
-        <h6 [innerHTML]="config.text[lang()]" [ngClass]="classes(config)"></h6>
+        <h6
+          [innerHTML]="config.text[lang()]"
+          [ngClass]="classes(config)"
+          [ngStyle]="getTextStyles(config)"
+        ></h6>
       }
     }
   }

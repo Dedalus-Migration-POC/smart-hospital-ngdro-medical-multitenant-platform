@@ -17,8 +17,8 @@
                     mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title)
                   ),
                   card.titleSubtitle.title.className ?? '',
-                  card.titleSubtitle.title.margin ?? '',
                 ]"
+                [ngStyle]="getSpacingStyles(card.titleSubtitle.title.margin)"
                 [style.color]="
                   getTextColorHex(
                     mergeTextStyles(dataTheme()?.titleStyle, card.titleSubtitle.title)
@@ -41,8 +41,8 @@
                   mergeTextStyles(dataTheme()?.subTitleStyle, card.titleSubtitle.subTitle)
                 ),
                 card.titleSubtitle.subTitle?.className ?? '',
-                card.titleSubtitle.subTitle?.margin ?? '',
               ]"
+              [ngStyle]="getSpacingStyles(card.titleSubtitle.subTitle?.margin)"
               [style.color]="
                 getTextColorHex(
                   mergeTextStyles(dataTheme()?.subTitleStyle, card.titleSubtitle.subTitle)
@@ -56,18 +56,15 @@
           @if (card.fields.length) {
             @for (field of card.fields; track field.key; let i = $index) {
               <div
-                [ngClass]="[
-                  ...getFlexLayoutClasses(layout),
-                  field.className ?? '',
-                  field.margin ?? '',
-                ]"
+                [ngClass]="[...getFlexLayoutClasses(layout), field.className ?? '']"
+                [ngStyle]="getSpacingStyles(field.margin)"
               >
                 @if (field.label.text[lang()]; as fieldLabel) {
                   <div
                     [ngClass]="getTextClasses(getMergedLabelStyle(field))"
                     [class.field-label-row]="layout.direction === 'row'"
                     [ngStyle]="getFieldRowPartStyles(field, 'key', layout.direction)"
-                    [style.color]="getTextColorHex(getMergedLabelStyle(field))"
+                    [ngStyle]="getTextStyles(getMergedLabelStyle(field))"
                   >
                     {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
                   </div>
@@ -88,7 +85,7 @@
                               ...getTextClasses(getMergedValueStyle(field)),
                               getListItemClass(field.listStyle),
                             ]"
-                            [style.color]="getTextColorHex(getMergedValueStyle(field))"
+                            [ngStyle]="getTextStyles(getMergedValueStyle(field))"
                           >
                             {{ value }}
                           </div>
@@ -96,7 +93,7 @@
                       } @else {
                         <div
                           [ngClass]="getTextClasses(getMergedValueStyle(field))"
-                          [style.color]="getTextColorHex(getMergedValueStyle(field))"
+                          [ngStyle]="getTextStyles(getMergedValueStyle(field))"
                         >
                           {{ getFieldDisplayValue(field) }}
                         </div>
@@ -110,7 +107,10 @@
                             badge.bgColorHex ? '' : 'text-bg-' + badge.bgColor,
                             ...getTextClasses(badge.config),
                           ]"
-                          [style.background-color]="badge.bgColorHex ?? null"
+                          [ngStyle]="{
+                            ...getTextStyles(badge.config),
+                            'background-color': badge.bgColorHex ?? null,
+                          }"
                         >
                           {{ badge.displayText }}
                         </span>
@@ -119,7 +119,7 @@
                     @default {
                       <div
                         [ngClass]="getTextClasses(getMergedValueStyle(field))"
-                        [style.color]="getTextColorHex(getMergedValueStyle(field))"
+                        [ngStyle]="getTextStyles(getMergedValueStyle(field))"
                       >
                         {{ getFieldDisplayValue(field) }}
                       </div>
@@ -139,7 +139,7 @@
               <span
                 class="cursor-default"
                 [ngClass]="getTextClasses(action.message)"
-                [style.color]="getTextColorHex(action.message)"
+                [ngStyle]="getTextStyles(action.message)"
                 >{{ msg }}</span
               >
             }

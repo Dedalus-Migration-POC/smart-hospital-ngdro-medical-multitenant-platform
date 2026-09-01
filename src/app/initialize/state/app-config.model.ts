@@ -2,6 +2,7 @@ import { FooterConfig } from '../../layout/footer/footer.model';
 import { HeaderConfig } from '../../layout/header/header.model';
 import { FirebaseOptions } from 'firebase/app';
 import { PageConfig } from '../../pages/page.model';
+import { BreadcrumbStyle } from '../../components/breadcrumb/model';
 import { NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { LocalizedText } from 'src/app/shared/layout-system/models/localized.model';
 import {
@@ -60,6 +61,7 @@ export interface AppConfig {
     };
     buttonsStyle: ButtonConfig;
     linksStyle: LinkConfig;
+    breadcrumb?: BreadcrumbStyle;
     card?: {
       // Base theme applicate a TUTTE le card
       // mediaText e data estendono/sovrascrivono il base

@@ -1,46 +1,40 @@
 @if (link(); as link) {
-  @if (link.external) {
-    <!-- LINK ESTERNO -->
-    <a
-      [href]="link.url"
-      [attr.target]="link.target"
-      [attr.rel]="'noopener noreferrer'"
-      [ngClass]="[
-        'text-' + link.style.color,
-        'text-decoration-' + link.style.textDecoration,
-        'fw-' + link.style.fontWeight,
-        'fs-' + link.style.font,
-      ]"
-      [class.disabled]="link.disabled"
-      [attr.aria-disabled]="link.disabled"
-    >
-      {{ link.text[lang()] || 'link.text' }}
-      @if (link.description) {
-        <span class="visually-hidden">
-          {{ link.description[lang()] || 'link.description' }}
-        </span>
-      }
-    </a>
-  } @else {
-    <!-- LINK INTERNO (Angular Router) -->
-    <a
-      [routerLink]="link.url"
-      [ngClass]="[
-        'text-' + link.style.color,
-        'text-decoration-' + link.style.textDecoration,
-        'fw-' + link.style.fontWeight,
-        'fs-' + link.style.font,
-      ]"
-      [class.disabled]="link.disabled"
-      [attr.aria-disabled]="link.disabled"
-    >
-      {{ link.text[lang()] || 'link.text' }}
+  @if (effectiveStyle(); as style) {
+    @if (link.external) {
+      <!-- LINK ESTERNO -->
+      <a
+        [href]="link.url"
+        [attr.target]="link.target"
+        [attr.rel]="'noopener noreferrer'"
+        [ngClass]="getLinkClasses(style)"
+        [ngStyle]="getTextStyles(style.textStyle)"
+        [class.disabled]="link.disabled"
+        [attr.aria-disabled]="link.disabled"
+      >
+        {{ link.text[lang()] || 'link.text' }}
+        @if (link.description) {
+          <span class="visually-hidden">
+            {{ link.description[lang()] || 'link.description' }}
+          </span>
+        }
+      </a>
+    } @else {
+      <!-- LINK INTERNO (Angular Router) -->
+      <a
+        [routerLink]="link.url"
+        [ngClass]="getLinkClasses(style)"
+        [ngStyle]="getTextStyles(style.textStyle)"
+        [class.disabled]="link.disabled"
+        [attr.aria-disabled]="link.disabled"
+      >
+        {{ link.text[lang()] || 'link.text' }}
 
-      @if (link.description) {
-        <small class="visually-hidden">
-          {{ link.description[lang()] || 'link.description' }}
-        </small>
-      }
-    </a>
+        @if (link.description) {
+          <small class="visually-hidden">
+            {{ link.description[lang()] || 'link.description' }}
+          </small>
+        }
+      </a>
+    }
   }
 }

@@ -1,31 +1,62 @@
 @if (config(); as config) {
-  <nav class="breadcrumb-container pb-2" #breadcrumbContainer>
+  <nav class="breadcrumb-container" #breadcrumbContainer>
     <div
       class="breadcrumb-bg breadcrumb m-0 p-0"
-      [style.backgroundColor]="config.backgroundColor"
-      [style.color]="config.color"
+      [ngClass]="
+        getBackgroundPaletteClass({ background: getItemsContainerStyle(config)?.background })
+      "
+      [ngStyle]="{
+        background: getItemsContainerStyle(config)?.background?.fill?.hex ?? null,
+      }"
       #backgroundDiv
     ></div>
-    <ol class="breadcrumb" [style.color]="config.color">
+    <ol
+      class="breadcrumb"
+      [ngClass]="
+        getBackgroundPaletteClass({ background: getItemsContainerStyle(config)?.background })
+      "
+      [ngStyle]="getItemsContainerStyles(config)"
+    >
       @for (item of config.items; track item.name; let last = $last) {
         <li class="breadcrumb-item" [class.active]="last">
           @if (!last) {
-            <a [routerLink]="item.routerLink" [queryParams]="item.queryParams">
+            <a
+              [routerLink]="item.routerLink"
+              [queryParams]="item.queryParams"
+              [ngClass]="getTextClasses(getItemsStyle(config))"
+              [ngStyle]="getTextStyles(getItemsStyle(config))"
+            >
               {{ item.name?.[lang()] || '' }}
             </a>
             <span class="separator">/</span>
           }
           @if (last) {
-            <span class="cursor-default">{{ item.name?.[lang()] || '' }}</span>
+            <span
+              class="cursor-default"
+              [ngClass]="getTextClasses(getActiveItemStyle(config))"
+              [ngStyle]="getTextStyles(getActiveItemStyle(config))"
+            >
+              {{ item.name?.[lang()] || '' }}
+            </span>
           }
         </li>
       }
     </ol>
     <div class="breadcrumb-title-wrapper">
       <div class="breadcrumb-title w-100">
-        <h1 class="fw-bold fs-1 lh-sm cursor-default">{{ config.title[lang()] }}</h1>
+        <h1
+          class="cursor-default"
+          [ngClass]="getTextClasses(getTitleStyle(config))"
+          [ngStyle]="getTextStyles(getTitleStyle(config))"
+        >
+          {{ config.title[lang()] }}
+        </h1>
         @if (config.subTitle) {
-          <p class="col-xl-5 col-lg-6 mb-0 cursor-default">
+          <p
+            class="col-xl-5 col-lg-6 cursor-default"
+            [ngClass]="getTextClasses(getSubTitleStyle(config))"
+            [ngStyle]="getTextStyles(getSubTitleStyle(config))"
+          >
             {{ config.subTitle[lang()] }}
           </p>
         }

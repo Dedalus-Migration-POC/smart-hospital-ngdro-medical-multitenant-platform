@@ -4,21 +4,25 @@ import {
   ActionType,
   TextSection,
   ImageConfig,
+  SpacingConfig,
 } from '../../shared/models/shared_model';
 
-// Section text: the title and subtitle are ALWAYS positioned one below the other
+// Il titolo e il sottotitolo sono sempre disposti uno sotto l'altro.
+// Possibilità di aggiungere spaziatura tra immagine e testo, tra titolo e sottotitolo, tra blocco e altri elementi della pagina.
 export interface ImageBlockConfig {
   id: string;
   className?: string;
-  layout?: FlexLayoutConfig; // layout container (for image and text)
+  margin?: SpacingConfig;
+  padding?: SpacingConfig;
+  layout?: FlexLayoutConfig; // layout del contenitore per immagine e testo
   action?: {
-    // for container (image + test)
+    // azione del contenitore (immagine e testo)
     type: ActionType;
     url: string;
     target?: LinkTarget;
   };
-  clickable?: boolean; // for container (image + test)
+  clickable?: boolean; // abilita il click sul contenitore (immagine e testo)
   image: ImageConfig;
-  // the layout consists of a title and a description bottom
+  // Testo opzionale composto da titolo e sottotitolo.
   text?: TextSection;
 }

@@ -12,13 +12,13 @@ import {
 import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
 import { ImageBlock } from '../../../image-block/image-block';
 import { ImageBlockConfig } from '../../../image-block/model';
-import { getTextClasses } from '../../../../shared/utility/text.utils';
+import { getTextClasses, mergeTextStyles } from '../../../../shared/utility/text.utils';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
-import { mergeCardBase, mergeTextStyles } from '../../../../shared/utility/cards.utils';
-import { getBackgroundPaletteClass, getTextColorHex } from '../../../../shared/utility/style.utils';
+import { mergeCardBase } from '../../../../shared/utility/cards.utils';
+import { getBackgroundPaletteClass, getTextStyles } from '../../../../shared/utility/style.utils';
 import { getCardStyles } from '../../../../shared/utility/cards.utils';
 
 @Component({
@@ -44,7 +44,7 @@ export class MediaText {
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextClasses = getTextClasses;
-  protected readonly getTextColorHex = getTextColorHex;
+  protected readonly getTextStyles = getTextStyles;
   protected readonly mergeTextStyles = mergeTextStyles;
   protected readonly getCardBackgroundClass = getBackgroundPaletteClass;
   protected readonly getCardStyles = getCardStyles;
