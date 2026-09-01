@@ -1,12 +1,7 @@
 import {
   Colors,
-  FontSize,
-  FontWeight,
-  LineHeight,
   LocalizedText,
-  Margin,
   TextDecoration,
-  TextHeader,
   TextTransform,
 } from '../../shared/models/shared_model';
 
