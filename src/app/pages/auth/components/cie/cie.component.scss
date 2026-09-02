@@ -1,19 +1,33 @@
 .cie-btn-icon {
-  border-right: rgba(255, 255, 255, 0.1) 0.1em solid;
+  border-right: rgba(255, 255, 255, 0.2) 0.1em solid;
   padding: 0.6em 0.8em 0.5em;
   > img {
     height: 28px;
+    width: auto;
   }
 }
 .cie-btn-text {
   padding: 0.95em 1em 0.85em;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .btn.btn-cie {
   padding: 0px;
   border-radius: 0px;
-  background-color: #06c;
+  background-color: #004b99;
+  color: #ffffff;
+  font-weight: 600;
   &:hover {
-    background-color: #036;
+    background-color: #003366;
+    color: #ffffff;
+  }
+  &:focus,
+  &:focus-visible {
+    background-color: #003366;
+    color: #ffffff;
+    outline: 3px solid #ffbf00 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 75, 153, 0.5) !important;
   }
 }

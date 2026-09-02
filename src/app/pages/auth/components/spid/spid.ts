@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, HostListener, inject, input, OnDestroy, OnInit } from '@angular/core';
 import { Env, SpidAuthMethod } from '../../model';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { DEFAULT_PROVIDERS } from './default-providers';
@@ -15,7 +15,7 @@ import { UserProfileService } from '../../../user-profile/state/user-profile.ser
   templateUrl: './spid.html',
   styleUrl: './spid.scss',
 })
-export class Spid {
+export class Spid implements OnInit, OnDestroy {
   readonly spidConfig = input<SpidAuthMethod | null>(null);
   readonly router = inject(Router);
   private langService = inject(LanguageService);
@@ -25,7 +25,11 @@ export class Spid {
   env: Env = 'dev'; //come definiamo environment?
   showProvidersList = false;
   providers = DEFAULT_PROVIDERS;
-  shuffledProviders: typeof DEFAULT_PROVIDERS = [];
+  shuffledProviders: typeof DEFAULT_PROVIDERS = DEFAULT_PROVIDERS;
+
+  ngOnInit(): void {
+    this.shuffleProviders();
+  }
 
   spidProviderPrefix = computed(() => {
     const spidConfig = this.spidConfig();
@@ -64,6 +68,13 @@ export class Spid {
 
   dismissShowProviderList() {
     this.showProvidersList = false;
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey() {
+    if (this.showProvidersList) {
+      this.dismissShowProviderList();
+    }
   }
   shuffleProviders() {
     this.shuffledProviders = this.providers

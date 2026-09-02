@@ -12,22 +12,17 @@
         (submit)="submit()"
       >
         @if (!spidConfigUa()) {
-          <label hidden for="returnUrl">returnUrl</label>
-          <input hidden name="returnUrl" id="returnUrl" [value]="returnUrl()" />
-
-          <label hidden for="Accept-Language">Accept-Language</label>
-          <input hidden name="Accept-Language" id="Accept-Language" [value]="lang()" />
+          <input type="hidden" name="returnUrl" id="returnUrl" [value]="returnUrl()" />
+          <input type="hidden" name="Accept-Language" id="Accept-Language" [value]="lang()" />
         }
 
-        <a
-          class="italia-it-button italia-it-button-size-m button-spid d-inline-flex"
-          spid-idp-button="#spid-idp-button-small-get"
+        <button
+          type="button"
+          class="italia-it-button italia-it-button-size-m button-spid d-inline-flex border-0"
           (click)="shuffleProviders(); toggleShowProviderList()"
-          aria-haspopup="true"
-          aria-expanded="false"
-          tabindex="0"
+          aria-haspopup="dialog"
+          [attr.aria-expanded]="showProvidersList"
           id="button-spid"
-          (keyup.enter)="focusNext('button-spid')"
         >
           <span class="italia-it-button-icon">
             <img
@@ -38,84 +33,114 @@
           <span class="italia-it-button-text" id="spid-idp">{{
             spidConfig.button.text[lang()]
           }}</span>
-        </a>
+        </button>
+
         <div
-          id="spid-idp-button-large-post"
-          class="spid-idp-button spid-idp-button-tip"
-          [ngClass]="{ 'd-block': showProvidersList }"
+          class="modal fade show"
+          [class.d-block]="showProvidersList"
+          [class.d-none]="!showProvidersList"
+          tabindex="-1"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="spid-idp-modal-title"
+          (click)="dismissShowProviderList()"
         >
-          <ul
-            id="spid-idp-list-large-root-post"
-            class="spid-idp-button-menu"
-            aria-labelledby="spid-idp"
-          >
-            @if (testProvider(); as testProvider) {
-              <li class="spid-idp-button-link" [attr.data-idp]="testProvider.iconName">
+          <div class="modal-dialog modal-lg" (click)="$event.stopPropagation()">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h2 class="modal-title h5 mb-0" id="spid-idp-modal-title">
+                  {{ spidConfig.button.text[lang()] }}
+                </h2>
                 <button
-                  type="submit"
-                  class="idp-button-idp-logo"
-                  [name]="spidConfigUa() ? 'idp' : 'providerId'"
-                  [value]="spidConfigUa() ? testProvider.url : testProvider.name"
-                >
-                  <span class="spid-sr-only">{{ testProvider.name }}</span>
-                  <img
-                    class="spid-idp-button-logo"
-                    [src]="
-                      'assets/common/spid-sp-access-button/src/production/img/spid-idp-' +
-                      testProvider.iconName +
-                      '.svg'
-                    "
-                    onerror="
-                      this.src = 'assets/images/idp-logo.png';
-                      this.onerror = null;
-                    "
-                    alt=""
-                  />
-                </button>
-              </li>
-            }
-            @for (provider of shuffledProviders; track $index; let i = $index) {
-              <li class="spid-idp-button-link" [attr.data-idp]="provider.iconName">
-                <button
-                  class="idp-button-idp-logo"
-                  [name]="spidConfigUa() ? 'idp' : 'providerId'"
-                  [value]="spidConfigUa() ? provider.url : spidProviderPrefix + provider.name"
-                  type="submit"
-                >
-                  <span class="spid-sr-only">{{ spidProviderPrefix + provider.name }}</span>
-                  <img
-                    class="spid-idp-button-logo"
-                    [src]="
-                      'assets/common/spid-sp-access-button/src/production/img/spid-idp-' +
-                      provider.iconName +
-                      '.svg'
-                    "
-                    onerror="
-                      this.src = 'assets/images/idp-logo.png';
-                      this.onerror = null;
-                    "
-                    alt=""
-                  />
-                </button>
-              </li>
-            }
-            <li class="spid-idp-support-link" data-spidlink="info">
-              <a href="https://www.spid.gov.it" target="_blank">
-                {{ 'tenant.access-page.spid-main-info' | translate }}
-              </a>
-            </li>
-            <li class="spid-idp-support-link" data-spidlink="rich">
-              <a href="https://www.spid.gov.it/richiedi-spid" target="_blank">
-                {{ 'tenant.access-page.have-spid' | translate }}
-              </a>
-            </li>
-            <li class="spid-idp-support-link" data-spidlink="help">
-              <a href="https://www.spid.gov.it/serve-aiuto" target="_blank">
-                {{ 'tenant.access-page.need-help' | translate }}
-              </a>
-            </li>
-          </ul>
+                  type="button"
+                  class="btn-close"
+                  [attr.aria-label]="'commons.close' | translate"
+                  (click)="dismissShowProviderList()"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div id="spid-idp-button-large-post" class="spid-idp-button-container">
+                  <ul
+                    id="spid-idp-list-large-root-post"
+                    class="spid-idp-button-menu spid-providers-grid"
+                    aria-labelledby="spid-idp-modal-title"
+                  >
+                    @if (testProvider(); as testProvider) {
+                      <li class="spid-idp-button-link" [attr.data-idp]="testProvider.iconName">
+                        <button
+                          type="submit"
+                          class="idp-button-idp-logo"
+                          [name]="spidConfigUa() ? 'idp' : 'providerId'"
+                          [value]="spidConfigUa() ? testProvider.url : testProvider.name"
+                        >
+                          <span class="spid-sr-only">{{ testProvider.name }}</span>
+                          <img
+                            class="spid-idp-button-logo"
+                            [src]="
+                              'assets/common/spid-sp-access-button/src/production/img/spid-idp-' +
+                              testProvider.iconName +
+                              '.svg'
+                            "
+                            onerror="
+                              this.src = 'assets/images/idp-logo.png';
+                              this.onerror = null;
+                            "
+                            alt=""
+                          />
+                        </button>
+                      </li>
+                    }
+                    @for (provider of shuffledProviders; track $index; let i = $index) {
+                      <li class="spid-idp-button-link" [attr.data-idp]="provider.iconName">
+                        <button
+                          class="idp-button-idp-logo"
+                          [name]="spidConfigUa() ? 'idp' : 'providerId'"
+                          [value]="
+                            spidConfigUa() ? provider.url : spidProviderPrefix + provider.name
+                          "
+                          type="submit"
+                        >
+                          <span class="spid-sr-only">{{ spidProviderPrefix + provider.name }}</span>
+                          <img
+                            class="spid-idp-button-logo"
+                            [src]="
+                              'assets/common/spid-sp-access-button/src/production/img/spid-idp-' +
+                              provider.iconName +
+                              '.svg'
+                            "
+                            onerror="
+                              this.src = 'assets/images/idp-logo.png';
+                              this.onerror = null;
+                            "
+                            alt=""
+                          />
+                        </button>
+                      </li>
+                    }
+                    <li class="spid-idp-support-link" data-spidlink="info">
+                      <a href="https://www.spid.gov.it" target="_blank">
+                        {{ 'tenant.access-page.spid-main-info' | translate }}
+                      </a>
+                    </li>
+                    <li class="spid-idp-support-link" data-spidlink="rich">
+                      <a href="https://www.spid.gov.it/richiedi-spid" target="_blank">
+                        {{ 'tenant.access-page.have-spid' | translate }}
+                      </a>
+                    </li>
+                    <li class="spid-idp-support-link" data-spidlink="help">
+                      <a href="https://www.spid.gov.it/serve-aiuto" target="_blank">
+                        {{ 'tenant.access-page.need-help' | translate }}
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        @if (showProvidersList) {
+          <div class="modal-backdrop fade show" (click)="dismissShowProviderList()"></div>
+        }
       </form>
       <div class="d-flex flex-row justify-content-between spid-info">
         <div>

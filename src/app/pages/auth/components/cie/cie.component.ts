@@ -28,7 +28,22 @@ export class CieComponent {
 
   providerId = computed(() => {
     const cieConfig = this.cieConfig();
-    return cieConfig?.config.providerId ? cieConfig.config.providerId[this.env] : 'cie';
+    if (!cieConfig?.config?.providerId) {
+      return 'cie';
+    }
+    const val = (cieConfig.config.providerId as Record<string, unknown>)[this.env];
+    if (typeof val === 'string') {
+      return val;
+    }
+    if (
+      val &&
+      typeof val === 'object' &&
+      'name' in val &&
+      typeof (val as { name: unknown }).name === 'string'
+    ) {
+      return (val as { name: string }).name;
+    }
+    return typeof val === 'object' ? JSON.stringify(val) : String(val ?? 'cie');
   });
 
   submit() {
