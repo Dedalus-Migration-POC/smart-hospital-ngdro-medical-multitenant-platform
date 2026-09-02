@@ -1,16 +1,52 @@
 @use 'styles/breakpoints' as bp;
 
-.breadcrumb-bg {
+// Bleed edge-to-edge del background: si "sgancia" dal parent con la tecnica
+// full-bleed. La larghezza sottrae --breadcrumb-scrollbar-w (calcolata in TS)
+// per allinearsi alla viewport reale anche con scroll verticale.
+@mixin full-bleed-background {
+  content: '';
   position: absolute;
-  left: 0;
-  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: calc(100vw - var(--breadcrumb-scrollbar-w, 0px));
+  margin-left: calc(-50vw + var(--breadcrumb-scrollbar-w, 0px) / 2);
+  background: inherit;
   z-index: -1;
 }
+
+// Copre l'altezza dell'intero componente (items + titolo + bottone).
+.breadcrumb-container {
+  position: relative;
+
+  &::before {
+    @include full-bleed-background;
+  }
+}
+
+// Copre solo la riga breadcrumb (items).
+.breadcrumb {
+  position: relative;
+  padding: 0px; // reset default bootstrap
+
+  &::before {
+    @include full-bleed-background;
+  }
+}
+
 .breadcrumb-title-wrapper {
   display: flex;
   justify-content: space-between;
   .breadcrumb-title {
     width: -webkit-fill-available;
+
+    // reset default bootstrap
+    h1 {
+      margin-bottom: 0px;
+    }
+    p {
+      margin-bottom: 0px;
+    }
   }
   .action-button {
     white-space: nowrap;
@@ -22,6 +58,6 @@
 .breadcrumb-title-wrapper {
   @include bp.media-breakpoint-down(md) {
     flex-direction: column !important;
-    gap: 0.5rem;
+    gap: 0.25rem;
   }
 }

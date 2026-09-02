@@ -7,10 +7,11 @@ import {
   inject,
   input,
   output,
-  ViewChild,
+  signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BreadcrumbConfig, BreadcrumbItemsContainerStyle } from './model';
+import { DesignAngularKitModule } from 'design-angular-kit';
+import { BreadcrumbConfig, BreadcrumbContainerStyle } from './model';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import {
   getBackgroundPaletteClass,
@@ -18,7 +19,13 @@ import {
   getTextStyles,
 } from '../../shared/utility/style.utils';
 import { getTextClasses, mergeTextStyles } from '../../shared/utility/text.utils';
-import { TextStyle } from '../../shared/models/shared_model';
+import {
+  getButtonPaletteClasses,
+  getButtonStyles,
+  getButtonTextStyle as getMergedButtonTextStyle,
+  mergeButtonStyle,
+} from '../../shared/utility/button.utils';
+import { ButtonStyle, TextStyle } from '../../shared/models/shared_model';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from '../../store/reducers';
 import { selectAppConfig } from '../../initialize/state/selector';
@@ -26,9 +33,10 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, DesignAngularKitModule],
   templateUrl: './breadcrumb.html',
   styleUrl: './breadcrumb.scss',
+  host: { '[style.--breadcrumb-scrollbar-w]': 'scrollbarWidth()' },
 })
 export class Breadcrumb {
   readonly config = input<BreadcrumbConfig | null>(null);
@@ -37,30 +45,58 @@ export class Breadcrumb {
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
   private readonly breadcrumbTheme = computed(() => this.appConfig()?.theme.breadcrumb);
+  private readonly buttonsTheme = computed(() => this.appConfig()?.theme.buttonsStyle);
   private langService = inject(LanguageService);
   lang = this.langService.lang;
   protected readonly getBackgroundPaletteClass = getBackgroundPaletteClass;
   protected readonly getTextClasses = getTextClasses;
   protected readonly getTextStyles = getTextStyles;
   protected readonly getSpacingStyles = getSpacingStyles;
+  protected readonly getButtonPaletteClasses = getButtonPaletteClasses;
+  protected readonly getButtonStyles = getButtonStyles;
 
   // Gli stili della pagina sovrascrivono il tema; le proprietà mancanti ereditano dal tema generale.
   getTitleStyle(config: BreadcrumbConfig): TextStyle {
-    return mergeTextStyles(this.breadcrumbTheme()?.titleStyle, config.titleStyle);
+    return mergeTextStyles(this.breadcrumbTheme()?.titleStyle, config.title);
   }
 
   getSubTitleStyle(config: BreadcrumbConfig): TextStyle {
-    return mergeTextStyles(this.breadcrumbTheme()?.subTitleStyle, config.subTitleStyle);
+    return mergeTextStyles(this.breadcrumbTheme()?.subTitleStyle, config.subTitle);
   }
 
   getItemsStyle(config: BreadcrumbConfig): TextStyle {
     return mergeTextStyles(this.breadcrumbTheme()?.itemsStyle, config.itemsStyle);
   }
 
-  getItemsContainerStyle(config: BreadcrumbConfig): BreadcrumbItemsContainerStyle | undefined {
-    const theme = this.breadcrumbTheme()?.itemsContainerStyle;
-    const page = config.itemsContainerStyle;
+  // Sfondo/margin/padding del contenitore generale: va applicato sul nav.
+  getContainerStyle(config: BreadcrumbConfig): BreadcrumbContainerStyle | undefined {
+    return this.mergeContainerStyle(this.breadcrumbTheme()?.containerStyle, config.containerStyle);
+  }
 
+  getContainerStyles(config: BreadcrumbConfig): Record<string, string> {
+    return this.getContainerSpacingStyles(this.getContainerStyle(config));
+  }
+
+  // Sfondo/margin/padding della sola riga breadcrumb: va applicato sull'ol.
+  getItemsContainerStyle(config: BreadcrumbConfig): BreadcrumbContainerStyle | undefined {
+    return this.mergeContainerStyle(
+      this.breadcrumbTheme()?.itemsContainerStyle,
+      config.itemsContainerStyle,
+    );
+  }
+
+  // Il bleed edge-to-edge e gestito in CSS (::before full-bleed su .breadcrumb),
+  // qui basta impostare il colore di sfondo normale.
+  getItemsContainerStyles(config: BreadcrumbConfig): Record<string, string> {
+    return this.getContainerSpacingStyles(this.getItemsContainerStyle(config));
+  }
+
+  // Merge condiviso da containerStyle/itemsContainerStyle: la config della pagina
+  // sovrascrive il tema, le proprieta mancanti ereditano dal tema generale.
+  private mergeContainerStyle(
+    theme?: BreadcrumbContainerStyle,
+    page?: BreadcrumbContainerStyle,
+  ): BreadcrumbContainerStyle | undefined {
     if (!theme && !page) return undefined;
 
     return {
@@ -76,8 +112,7 @@ export class Breadcrumb {
     };
   }
 
-  getItemsContainerStyles(config: BreadcrumbConfig): Record<string, string> {
-    const style = this.getItemsContainerStyle(config);
+  private getContainerSpacingStyles(style?: BreadcrumbContainerStyle): Record<string, string> {
     const background = style?.background?.gradient ?? style?.background?.fill?.hex;
 
     return {
@@ -95,33 +130,69 @@ export class Breadcrumb {
     );
   }
 
-  @ViewChild('breadcrumbContainer', { static: false })
-  breadcrumbContainer: ElementRef | null = null;
-  @ViewChild('backgroundDiv', { static: false })
-  backgroundDiv: ElementRef | null = null;
+  // Lo stile del bottone segue quello configurato sul componente; le proprieta
+  // mancanti ereditano dal tema generale dei bottoni. Il testo viene sempre dalla config.
+  getButtonStyle(config: BreadcrumbConfig): ButtonStyle {
+    return mergeButtonStyle(this.buttonsTheme(), config.button);
+  }
 
-  contentHeight: number = 0;
+  getButtonTextStyle(config: BreadcrumbConfig): TextStyle {
+    return getMergedButtonTextStyle(this.getButtonStyle(config));
+  }
+
+  // Larghezza della scrollbar verticale (0 se assente): usata dal bleed CSS per
+  // calcolare la viewport reale ed evitare lo scroll orizzontale residuo.
+  // Signal (non un campo semplice): il ResizeObserver gira fuori da zone.js/CD,
+  // solo un signal.set() garantisce l'aggiornamento del DOM in ogni configurazione.
+  scrollbarWidth = signal('0px');
+
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
+  private resizeObserver?: ResizeObserver;
 
   ngAfterViewInit(): void {
-    this.updateHeight();
+    // Il container scrollabile puo non essere ancora in overflow al primo render:
+    // il ResizeObserver ricalcola quando il suo stato cambia davvero.
+    const scrollContainer =
+      this.findScrollContainer(this.elementRef.nativeElement) ?? document.body;
+    this.updateScrollbarWidth();
+    this.resizeObserver = new ResizeObserver(() => this.updateScrollbarWidth());
+    this.resizeObserver.observe(scrollContainer);
+  }
+
+  ngOnDestroy(): void {
+    this.resizeObserver?.disconnect();
   }
 
   @HostListener('window:resize')
   onWindowResize() {
-    this.updateHeight();
+    this.updateScrollbarWidth();
   }
 
-  updateHeight() {
-    if (this.breadcrumbContainer) {
-      this.contentHeight = this.breadcrumbContainer.nativeElement.offsetHeight;
-      this.setDynamicHeight();
-    }
+  // Lo scroll verticale non e detto che sia su window/body: puo essere su un
+  // layout container antenato (es. <main overflow-y:auto>). Va trovato quello vero.
+  private updateScrollbarWidth() {
+    const container = this.findScrollContainer(this.elementRef.nativeElement);
+
+    const width = container
+      ? container.offsetWidth - container.clientWidth
+      : window.innerWidth - document.documentElement.clientWidth;
+
+    this.scrollbarWidth.set(`${width}px`);
   }
 
-  setDynamicHeight() {
-    if (this.backgroundDiv) {
-      const element = this.backgroundDiv.nativeElement as HTMLElement;
-      element.style.setProperty('height', `${this.contentHeight}px`);
+  // Ritorna il piu vicino antenato con overflow-y auto/scroll, indipendentemente
+  // dal fatto che stia gia andando in overflow in questo momento.
+  private findScrollContainer(el: HTMLElement): HTMLElement | null {
+    let node: HTMLElement | null = el.parentElement;
+
+    while (node) {
+      const overflowY = getComputedStyle(node).overflowY;
+      if (overflowY === 'auto' || overflowY === 'scroll') {
+        return node;
+      }
+      node = node.parentElement;
     }
+
+    return null;
   }
 }

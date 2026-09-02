@@ -1,15 +1,5 @@
 @if (config(); as config) {
-  <nav class="breadcrumb-container" #breadcrumbContainer>
-    <div
-      class="breadcrumb-bg breadcrumb m-0 p-0"
-      [ngClass]="
-        getBackgroundPaletteClass({ background: getItemsContainerStyle(config)?.background })
-      "
-      [ngStyle]="{
-        background: getItemsContainerStyle(config)?.background?.fill?.hex ?? null,
-      }"
-      #backgroundDiv
-    ></div>
+  <nav class="breadcrumb-container" [ngStyle]="getContainerStyles(config)">
     <ol
       class="breadcrumb"
       [ngClass]="
@@ -49,28 +39,37 @@
           [ngClass]="getTextClasses(getTitleStyle(config))"
           [ngStyle]="getTextStyles(getTitleStyle(config))"
         >
-          {{ config.title[lang()] }}
+          {{ config.title.text[lang()] }}
         </h1>
-        @if (config.subTitle) {
+        @if (config.subTitle?.text?.[lang()]) {
           <p
             class="col-xl-5 col-lg-6 cursor-default"
             [ngClass]="getTextClasses(getSubTitleStyle(config))"
             [ngStyle]="getTextStyles(getSubTitleStyle(config))"
           >
-            {{ config.subTitle[lang()] }}
+            {{ config.subTitle!.text[lang()] }}
           </p>
         }
       </div>
       @if (config.button) {
         <button
-          class="btn btn-primary action-button"
-          [ngClass]="{ 'd-flex align-items-center gap-2': config.buttonIcon }"
+          class="btn action-button"
+          [ngClass]="[
+            ...getButtonPaletteClasses(getButtonStyle(config)),
+            ...getTextClasses(getButtonTextStyle(config)),
+            getButtonStyle(config).icon ? 'd-flex align-items-center gap-2' : '',
+          ]"
+          [ngStyle]="getButtonStyles(getButtonStyle(config))"
           (click)="buttonAction.emit()"
         >
-          @if (config.buttonIcon) {
-            <i [class]="config.buttonIcon"></i>
+          @if (getButtonStyle(config).icon; as icon) {
+            @if (icon.type === 'font-awesome') {
+              <i [ngClass]="icon.name"></i>
+            } @else {
+              <it-icon [name]="icon.name"></it-icon>
+            }
           }
-          {{ config.button[lang()] }}
+          {{ config.button.text.text[lang()] }}
         </button>
       }
     </div>

@@ -1037,8 +1037,8 @@ export const USER_PROFILE = {
   breadcrumb: {
     backgroundColor: '#e6e8ea',
     color: '#333333',
-    title: { it: 'Il tuo profilo', en: 'Your profile' },
-    subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
+    title: { text: { it: 'Il tuo profilo', en: 'Your profile' } },
+    subTitle: { text: { it: 'Sottotitolo', en: 'Subtitle' } },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -1053,8 +1053,10 @@ export const USER_PROFILE = {
   breadcrumbRegistration: {
     backgroundColor: '#e6e8ea',
     color: '#333333',
-    title: { it: 'Registrazione', en: 'Registration' },
-    subTitle: { it: 'Per prosegure devi registrarti', en: 'You need to register to proceed' },
+    title: { text: { it: 'Registrazione', en: 'Registration' } },
+    subTitle: {
+      text: { it: 'Per prosegure devi registrarti', en: 'You need to register to proceed' },
+    },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -1236,8 +1238,8 @@ export const MEDICAL_REPORTS = {
   breadcrumb: {
     //background: { fill: { hex: '#e6e8ea' } },
     itemsStyle: { color: { hex: '#b41919' } },
-    title: { it: 'Referti e documenti', en: 'Medical Reports and Documents' },
-    subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
+    title: { text: { it: 'Referti e documenti', en: 'Medical Reports and Documents' } },
+    subTitle: { text: { it: 'Sottotitolo', en: 'Subtitle' } },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -1558,13 +1560,13 @@ export const SINGLE_REPORT = {
 
   backgroundColor: '#ffffff',
   breadcrumb: {
-    itemsContainerStyle: {
+    containerStyle: {
       background: { fill: { hex: '#175492' } },
     },
     itemsStyle: { color: { hex: '#c52424' } },
     activeItemStyle: { color: { hex: '#14d6c6' } },
-    title: { it: 'Referto', en: 'Medical Report' },
-    subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
+    title: { text: { it: 'Referto', en: 'Medical Report' } },
+    subTitle: { text: { it: 'Sottotitolo', en: 'Subtitle' } },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -2018,8 +2020,8 @@ export const REPORTS_BY_TRIPLET = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    title: { it: 'Referto', en: 'Medical Report' },
-    subTitle: { it: 'Sottotitolo', en: 'Subtitle' },
+    title: { text: { it: 'Referto', en: 'Medical Report' } },
+    subTitle: { text: { it: 'Sottotitolo', en: 'Subtitle' } },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -2500,10 +2502,12 @@ export const DEPARTMENTS = {
   name: { it: 'Dipartimenti', en: 'Departments' }, // Nome nel browser per accessibilità
   route: '/departments',
   breadcrumb: {
-    title: { it: 'Dipartimenti', en: 'Departments' },
+    title: { text: { it: 'Dipartimenti', en: 'Departments' } },
     subTitle: {
-      it: 'Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale.',
-      en: 'View the contacts, departments, and healthcare services of the Hospital.',
+      text: {
+        it: 'Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale.',
+        en: 'View the contacts, departments, and healthcare services of the Hospital.',
+      },
     },
     items: [
       {
@@ -2625,8 +2629,8 @@ export const DEPARTMENTS = {
                         type: 'callback',
                         renderAs: 'link',
                         icon: {
-                          value: 'fa-solid fa-arrow-right',
-                          type: 'fa',
+                          type: 'font-awesome',
+                          name: 'fa-solid fa-arrow-right',
                           position: 'after',
                         },
                         callback: {
@@ -2655,7 +2659,7 @@ export const UNITS = {
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
     itemsStyle: { color: { hex: '#333333' } },
-    title: { it: '{{department}}', en: '{{department}}' },
+    title: { text: { it: '{{department}}', en: '{{department}}' } },
     subTitle: {
       text: {
         it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
@@ -2786,8 +2790,8 @@ export const UNITS = {
                         type: 'callback',
                         renderAs: 'link',
                         icon: {
-                          value: 'fa-solid fa-arrow-right',
-                          type: 'fa',
+                          type: 'font-awesome',
+                          name: 'fa-solid fa-arrow-right',
                           position: 'after',
                         },
                         callback: {
@@ -2814,7 +2818,7 @@ export const UNIT = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    title: { it: '{{unit}}', en: '{{unit}}' },
+    title: { text: { it: '{{unit}}', en: '{{unit}}' } },
     subTitle: {
       text: {
         it: 'Visualizza i reparti del dipartimento o ricerca una prestazione.',
@@ -3235,8 +3239,8 @@ export const PAYMENTS_PA = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    title: { it: 'Pagamenti', en: 'Payments' },
-    subTitle: { it: 'Visualizza i pagamenti.', en: 'View the payments.' },
+    title: { text: { it: 'Pagamenti', en: 'Payments' } },
+    subTitle: { text: { it: 'Visualizza i pagamenti.', en: 'View the payments.' } },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -3371,8 +3375,8 @@ export const PAYMENTS_PA = {
                         type: 'callback',
                         renderAs: 'link',
                         icon: {
-                          value: 'fa-solid fa-arrow-right',
-                          type: 'fa',
+                          type: 'font-awesome',
+                          name: 'fa-solid fa-arrow-right',
                           position: 'after',
                         },
                         label: {
@@ -3635,7 +3639,7 @@ export const PAYMENT_DETAILS_PA = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+    title: { text: { it: 'Dettaglio Pagamenti', en: 'Payment Details' } },
     subTitle: {
       text: { it: 'Visualizza i dettagli del pagamento.', en: 'View the payment details.' },
     },
@@ -3944,8 +3948,8 @@ export const PAYMENTS_JCASH = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    title: { it: 'Pagamenti', en: 'Payments' },
-    subTitle: { it: 'Visualizza i pagamenti.', en: 'View the payments.' },
+    title: { text: { it: 'Pagamenti', en: 'Payments' } },
+    subTitle: { text: { it: 'Visualizza i pagamenti.', en: 'View the payments.' } },
     items: [
       {
         name: { it: 'Home', en: 'Home' },
@@ -4061,8 +4065,8 @@ export const PAYMENTS_JCASH = {
                         type: 'callback',
                         renderAs: 'link',
                         icon: {
-                          value: 'fa-solid fa-arrow-right',
-                          type: 'fa',
+                          type: 'font-awesome',
+                          name: 'fa-solid fa-arrow-right',
                           position: 'after',
                         },
                         label: {
@@ -4175,7 +4179,7 @@ export const PAYMENT_DETAILS_JCASH = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    title: { it: 'Dettaglio Pagamenti', en: 'Payment Details' },
+    title: { text: { it: 'Dettaglio Pagamenti', en: 'Payment Details' } },
     subTitle: {
       text: { it: 'Visualizza i dettagli del pagamento.', en: 'View the payment details.' },
     },
@@ -4489,7 +4493,7 @@ export const NEW_BOOKING = {
     backgroundColor: '#ffffff', //o color o img!
     // backgroundImage: '/assets/images/bg.svg',
     breadcrumb: {
-      title: { it: 'Nuova prenotazione', en: 'New booking' },
+      title: { text: { it: 'Nuova prenotazione', en: 'New booking' } },
       subTitle: {
         text: {
           it: 'Crea una nuova prenotazione Arianna-CUP',
@@ -4521,15 +4525,21 @@ export const BOOKINGS = {
   backgroundColor: '#ffffff', //o color o img!
   // backgroundImage: '/assets/images/bg.svg',
   breadcrumb: {
-    background: { fill: { hex: '#e6e8ea' } },
     itemsStyle: { color: { hex: '#333333' } },
-    title: { it: 'Prenotazioni', en: 'Bookings' },
-    subTitle: {
-      text: { it: 'Visualizza le prenotazioni Arianna-CUP.', en: 'View the Arianna-CUP bookings.' },
-    },
+    title: { text: { it: 'Prenotazioni', en: 'Bookings' } },
+    // subTitle: {
+    //   text: {
+    //     it: 'Visualizza le prenotazioni Arianna-CUP.',
+    //     en: 'View the Arianna-CUP bookings.',
+    //   },
+    // },
     button: {
-      it: 'Nuova prenotazione',
-      en: 'New booking',
+      text: {
+        text: {
+          it: 'Nuova prenotazione',
+          en: 'New booking',
+        },
+      },
     },
     items: [
       {
@@ -4750,11 +4760,15 @@ export const BOOKINGS_HERO = {
   breadcrumb: {
     background: { fill: { hex: '#e6e8ea' } },
     itemsStyle: { color: { hex: '#333333' } },
-    title: { it: 'Prenotazioni', en: 'Bookings' },
-    subTitle: { it: 'Visualizza le prenotazioni Hero.', en: 'View the Hero bookings.' },
+    title: { text: { it: 'Prenotazioni', en: 'Bookings' } },
+    subTitle: { text: { it: 'Visualizza le prenotazioni Hero.', en: 'View the Hero bookings.' } },
     button: {
-      it: 'Nuova prenotazione',
-      en: 'New booking',
+      text: {
+        text: {
+          it: 'Nuova prenotazione',
+          en: 'New booking',
+        },
+      },
     },
     items: [
       {
@@ -4985,8 +4999,10 @@ export const BOOKING_HERO_DETAILS = {
   breadcrumb: {
     background: { fill: { hex: '#e6e8ea' } },
     itemsStyle: { color: { hex: '#333333' } },
-    title: { it: 'Dettagli della Prenotazione {{bookingId}}', en: 'Booking {{bookingId}}' },
-    subTitle: { it: 'Visualizza le prenotazioni Hero.', en: 'View the Hero bookings.' },
+    title: {
+      text: { it: 'Dettagli della Prenotazione {{bookingId}}', en: 'Booking {{bookingId}}' },
+    },
+    subTitle: { text: { it: 'Visualizza le prenotazioni Hero.', en: 'View the Hero bookings.' } },
 
     items: [
       {
@@ -5372,7 +5388,7 @@ export const NEW_BOOKING_HERO = {
     breadcrumb: {
       background: { fill: { hex: '#e6e8ea' } },
       itemsStyle: { color: { hex: '#333333' } },
-      title: { it: 'Nuova prenotazione', en: 'New Booking' },
+      title: { text: { it: 'Nuova prenotazione', en: 'New Booking' } },
       subTitle: {
         text: { it: 'Crea una nuova prenotazione Hero.', en: 'Create a new Hero booking.' },
       },
@@ -5405,7 +5421,7 @@ export const RESCHEDULE_BOOKING_HERO = {
     breadcrumb: {
       background: { fill: { hex: '#e6e8ea' } },
       itemsStyle: { color: { hex: '#333333' } },
-      title: { it: 'Sposta prenotazione', en: 'Reschedule Booking' },
+      title: { text: { it: 'Sposta prenotazione', en: 'Reschedule Booking' } },
       subTitle: {
         text: {
           it: 'Modifica una prenotazione esistente Hero.',
@@ -5512,11 +5528,17 @@ export const APP_CONFIG: AppConfig = {
         //  lineHeight: 'md',
       },
       itemsContainerStyle: {
+        // background: {
+        //   fill: { hex: '#e6e8ea' },
+        // },
+        padding: { bottom: '8px' },
+        margin: { bottom: '0px' },
+      },
+      containerStyle: {
         background: {
           fill: { hex: '#e6e8ea' },
         },
         padding: { y: '8px' },
-        margin: { bottom: '0px' },
       },
     },
     card: {

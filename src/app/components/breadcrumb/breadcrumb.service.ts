@@ -27,13 +27,19 @@ export class BreadcrumbService {
     return {
       ...config,
       title: {
-        it: interpolate(config.title?.it ?? ''),
-        en: interpolate(config.title?.en ?? ''),
+        ...config.title,
+        text: {
+          it: interpolate(config.title?.text?.it ?? ''),
+          en: interpolate(config.title?.text?.en ?? ''),
+        },
       },
       subTitle: config.subTitle
         ? {
-            it: interpolate(config.subTitle?.it ?? ''),
-            en: interpolate(config.subTitle?.en ?? ''),
+            ...config.subTitle,
+            text: {
+              it: interpolate(config.subTitle?.text?.it ?? ''),
+              en: interpolate(config.subTitle?.text?.en ?? ''),
+            },
           }
         : undefined,
       items: config.items?.map((item: BreadcrumbItem) => ({
