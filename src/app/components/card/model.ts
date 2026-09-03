@@ -16,9 +16,8 @@ import {
   BackgroundConfig,
   BorderConfig,
   SpacingConfig,
-  ButtonConfig,
-  BootstrapButtonConfig,
-  CustomButtonConfig,
+  BootstrapButtonStyle,
+  CustomButtonStyle,
   BootstrapLinkConfig,
   CustomLinkConfig,
 } from '../../shared/models/shared_model';
@@ -208,18 +207,12 @@ export interface DataCardCondition {
 }
 
 export type DataCardButtonRender =
-  | (BootstrapButtonConfig & { renderAs: 'button' })
-  | (CustomButtonConfig & { renderAs: 'button' });
-
-export interface DataCardLinkIcon {
-  value: string; // unicode/testo oppure classi FA es. 'fa-solid fa-arrow-right'
-  type?: 'fa' | 'text'; // default: 'text'
-  position?: 'before' | 'after'; // default: 'after'
-}
+  | (BootstrapButtonStyle & { renderAs: 'button' })
+  | (CustomButtonStyle & { renderAs: 'button' });
 
 export type DataCardLinkRender =
-  | (BootstrapLinkConfig & { renderAs: 'link'; icon?: DataCardLinkIcon })
-  | (CustomLinkConfig & { renderAs: 'link'; icon?: DataCardLinkIcon });
+  | (BootstrapLinkConfig & { renderAs: 'link' })
+  | (CustomLinkConfig & { renderAs: 'link' });
 
 export type DataCardActionRender = DataCardButtonRender | DataCardLinkRender;
 

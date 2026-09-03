@@ -12,14 +12,15 @@ import {
 import {
   BackgroundConfig,
   BorderConfig,
-  ButtonConfig,
-  BootstrapButtonConfig,
+  ButtonStyle,
+  BootstrapButtonStyle,
   BootstrapLinkConfig,
   Colors,
   ColorConfig,
-  CustomButtonConfig,
+  CustomButtonStyle,
   CustomLinkConfig,
   FlexLayoutConfig,
+  IconConfig,
   ImageConfig,
   LinkConfig,
   SpacingConfig,
@@ -28,6 +29,7 @@ import {
   TextStyle,
 } from '../../../../shared/models/shared_model';
 import { CommonModule } from '@angular/common';
+import { DesignAngularKitModule } from 'design-angular-kit';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { getFlexLayoutClasses } from '../../../../shared/utility/layout.utils';
@@ -54,7 +56,7 @@ import {
 
 @Component({
   selector: 'app-data-card',
-  imports: [CommonModule, ImageBlock],
+  imports: [CommonModule, ImageBlock, DesignAngularKitModule],
   templateUrl: './data.html',
   styleUrl: './data.scss',
 })
@@ -181,6 +183,22 @@ export class Data {
     }
 
     return styles;
+  }
+
+  getActionIcon(action: DataCardAction): IconConfig | undefined {
+    if (action.renderAs === 'button') {
+      return this.mergeButtonConfig(this.buttonsTheme(), action).icon;
+    }
+
+    if (action.renderAs === 'link') {
+      return this.mergeLinkConfig(this.linksTheme(), action).icon;
+    }
+
+    return undefined;
+  }
+
+  getActionIconPosition(action: DataCardAction): 'before' | 'after' {
+    return this.getActionIcon(action)?.position ?? 'before';
   }
 
   getTitleText(): string | undefined {
@@ -347,7 +365,7 @@ export class Data {
     };
   }
 
-  private mergeButtonConfig(theme?: ButtonConfig, action?: ButtonConfig): ButtonConfig {
+  private mergeButtonConfig(theme?: ButtonStyle, action?: ButtonStyle): ButtonStyle {
     const mode = action?.mode ?? theme?.mode ?? 'bootstrap';
 
     if (mode === 'custom') {
@@ -360,7 +378,7 @@ export class Data {
         padding: this.mergeSpacingConfig(theme?.padding, action?.padding),
         size: { ...theme?.size, ...action?.size },
         radius: action?.radius ?? theme?.radius,
-      } as CustomButtonConfig;
+      } as CustomButtonStyle;
     }
 
     return {
@@ -378,7 +396,7 @@ export class Data {
       padding: this.mergeSpacingConfig(theme?.padding, action?.padding),
       size: { ...theme?.size, ...action?.size },
       radius: action?.radius ?? theme?.radius,
-    } as BootstrapButtonConfig;
+    } as BootstrapButtonStyle;
   }
 
   private mergeLinkConfig(theme?: LinkConfig, action?: LinkConfig): LinkConfig {

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ModalService, ModalType, Modal, ModalButton } from './modal.service';
+import { ModalService } from './modal.service';
+import { Modal, ModalButton } from './model';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
@@ -13,8 +14,6 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 })
 export class ModalComponent {
   @Input() modal!: Modal;
-
-  Type = ModalType;
 
   constructor(private modalService: ModalService) {}
 

@@ -8,7 +8,7 @@ import { LocalizedText } from 'src/app/shared/layout-system/models/localized.mod
 import {
   BackgroundConfig,
   BorderConfig,
-  ButtonConfig,
+  ButtonStyle,
   ColorConfig,
   Colors,
   FlexLayoutConfig,
@@ -59,7 +59,7 @@ export interface AppConfig {
         bold: number;
       };
     };
-    buttonsStyle: ButtonConfig;
+    buttonsStyle: ButtonStyle;
     linksStyle: LinkConfig;
     breadcrumb?: BreadcrumbStyle;
     card?: {
@@ -100,7 +100,7 @@ export interface AppConfig {
           valueStyle?: TextStyle;
         };
         actions?: {
-          buttonStyle?: ButtonConfig;
+          buttonStyle?: ButtonStyle;
           linkStyle?: LinkConfig;
         };
       };

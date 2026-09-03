@@ -165,25 +165,41 @@
                 [disabled]="action.disabled"
                 (click)="action.compiledCallback?.()"
               >
-                @if (
-                  action.renderAs === 'link' && action.icon && action.icon.position === 'before'
-                ) {
-                  @if (action.icon.type === 'fa') {
-                    <i [ngClass]="action.icon.value" class="me-1"></i>
-                  } @else {
-                    <span class="me-1">{{ action.icon.value }}</span>
+                @if (getActionIcon(action); as icon) {
+                  @if (getActionIconPosition(action) === 'before') {
+                    @if (icon.type === 'font-awesome') {
+                      <i
+                        [ngClass]="icon.name"
+                        [class.me-1]="!icon.margin"
+                        [ngStyle]="getSpacingStyles(icon.margin)"
+                      ></i>
+                    } @else {
+                      <it-icon
+                        [name]="icon.name"
+                        [class.me-1]="!icon.margin"
+                        [ngStyle]="getSpacingStyles(icon.margin)"
+                      ></it-icon>
+                    }
                   }
                 }
 
                 {{ resolveLabel(action.label.text[lang()], card) }}
 
-                @if (
-                  action.renderAs === 'link' && action.icon && action.icon.position !== 'before'
-                ) {
-                  @if (action.icon.type === 'fa') {
-                    <i [ngClass]="action.icon.value" class="ms-1"></i>
-                  } @else {
-                    <span class="ms-1">{{ action.icon.value }}</span>
+                @if (getActionIcon(action); as icon) {
+                  @if (getActionIconPosition(action) !== 'before') {
+                    @if (icon.type === 'font-awesome') {
+                      <i
+                        [ngClass]="icon.name"
+                        [class.ms-1]="!icon.margin"
+                        [ngStyle]="getSpacingStyles(icon.margin)"
+                      ></i>
+                    } @else {
+                      <it-icon
+                        [name]="icon.name"
+                        [class.ms-1]="!icon.margin"
+                        [ngStyle]="getSpacingStyles(icon.margin)"
+                      ></it-icon>
+                    }
                   }
                 }
               </button>

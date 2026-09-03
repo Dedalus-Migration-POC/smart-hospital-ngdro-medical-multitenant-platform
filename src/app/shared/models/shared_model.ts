@@ -1,3 +1,5 @@
+import { IconName } from 'design-angular-kit';
+
 export type Colors =
   | 'white'
   | 'primary'
@@ -61,6 +63,28 @@ export interface ColorConfig {
   palette?: Colors;
   hex?: string;
 }
+
+export interface IconStyle {
+  color?: ColorConfig;
+  size?: SizeConfig;
+  margin?: SpacingConfig;
+  padding?: SpacingConfig;
+  position?: 'before' | 'after'; // rispetto al testo dell'azione, default: 'before'
+}
+
+export interface FontAwesomeIconConfig extends IconStyle {
+  type: 'font-awesome';
+  name: string;
+  prefix?: 'fa-solid' | 'fa-regular' | 'fa-brands';
+}
+
+// Per accessibilità meglio usare FontAwesomeIconConfig
+export interface DesignKitIconConfig extends IconStyle {
+  type: 'design-kit';
+  name: IconName;
+}
+
+export type IconConfig = FontAwesomeIconConfig | DesignKitIconConfig;
 
 export interface BackgroundConfig {
   fill?: ColorConfig;
@@ -151,11 +175,12 @@ export interface ButtonBaseConfig {
   padding?: SpacingConfig;
   size?: SizeConfig;
   radius?: string;
+  icon?: IconConfig;
 }
 
-// Configurazione dei bottoni Bootstrap Italia. Gli stati interattivi sono
+// Stile dei bottoni Bootstrap Italia. Gli stati interattivi sono
 // gestiti dalla classe btn-* generata a partire dalla palette.
-export interface BootstrapButtonConfig extends ButtonBaseConfig {
+export interface BootstrapButtonStyle extends ButtonBaseConfig {
   mode?: 'bootstrap';
   palette: Colors;
   outline?: boolean;
@@ -164,13 +189,17 @@ export interface BootstrapButtonConfig extends ButtonBaseConfig {
 
 // TODO: non ancora supportato. Da implementare con gestione completa degli
 // stati custom (base, hover, focus, active e disabled).
-export interface CustomButtonConfig extends ButtonBaseConfig {
+export interface CustomButtonStyle extends ButtonBaseConfig {
   mode: 'custom';
   textStyle?: TextStyle;
   backgroundColor?: BackgroundConfig;
 }
 
-export type ButtonConfig = BootstrapButtonConfig | CustomButtonConfig;
+export type ButtonStyle = BootstrapButtonStyle | CustomButtonStyle;
+
+export type ButtonConfig = ButtonStyle & {
+  text: TextConfig;
+};
 
 // Configurazione dei link Bootstrap Italia. Il colore e gestito dalla
 // classe text-* generata a partire dalla palette.
@@ -178,6 +207,7 @@ export interface BootstrapLinkConfig {
   mode?: 'bootstrap';
   palette: Colors;
   textStyle?: Omit<TextStyle, 'color'>;
+  icon?: IconConfig;
 }
 
 // TODO: non ancora supportato. Da implementare con gestione completa degli
@@ -185,6 +215,7 @@ export interface BootstrapLinkConfig {
 export interface CustomLinkConfig {
   mode: 'custom';
   textStyle?: TextStyle;
+  icon?: IconConfig;
 }
 
 export type LinkConfig = BootstrapLinkConfig | CustomLinkConfig;
