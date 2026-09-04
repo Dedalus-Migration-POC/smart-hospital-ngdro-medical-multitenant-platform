@@ -12,6 +12,7 @@ import {
 import {
   BackgroundConfig,
   BorderConfig,
+  ButtonConfig,
   ButtonStyle,
   BootstrapButtonStyle,
   BootstrapLinkConfig,
@@ -23,6 +24,7 @@ import {
   IconConfig,
   ImageConfig,
   LinkConfig,
+  LinkStyle,
   SpacingConfig,
   SizeConfig,
   TextConfig,
@@ -47,6 +49,8 @@ import {
 } from '../../../../shared/utility/style.utils';
 import { getCardStyles } from '../../../../shared/utility/cards.utils';
 import { ImageBlock } from '../../../image-block/image-block';
+import { ButtonComponent } from '../../../button/button.component';
+import { Link } from '../../../link/link';
 import { ImageBlockConfig } from '../../../image-block/model';
 import { format as formatDateFns } from 'date-fns';
 import {
@@ -56,7 +60,7 @@ import {
 
 @Component({
   selector: 'app-data-card',
-  imports: [CommonModule, ImageBlock, DesignAngularKitModule],
+  imports: [CommonModule, ImageBlock, DesignAngularKitModule, ButtonComponent, Link],
   templateUrl: './data.html',
   styleUrl: './data.scss',
 })
@@ -199,6 +203,45 @@ export class Data {
 
   getActionIconPosition(action: DataCardAction): 'before' | 'after' {
     return this.getActionIcon(action)?.position ?? 'before';
+  }
+
+  getButtonConfig(action: DataCardAction): ButtonConfig | null {
+    if (action.renderAs !== 'button') return null;
+
+    const style = this.mergeButtonConfig(this.buttonsTheme(), action);
+    return {
+      ...style,
+      disabled: action.disabled ?? false,
+      text: {
+        ...action.label,
+        text: {
+          it: this.resolveLabel(action.label.text.it, this.card()),
+          en: this.resolveLabel(action.label.text.en, this.card()),
+        },
+      },
+    } as ButtonConfig;
+  }
+
+  getLinkConfig(action: DataCardAction): LinkConfig | null {
+    if (action.renderAs !== 'link') return null;
+
+    const style = this.mergeLinkConfig(this.linksTheme(), action);
+    return {
+      text: {
+        it: this.resolveLabel(action.label.text.it, this.card()),
+        en: this.resolveLabel(action.label.text.en, this.card()),
+      },
+      url: action.type === 'route' || action.type === 'externalLink' ? action.url : undefined,
+      external: action.type === 'externalLink',
+      target: action.type === 'externalLink' ? action.target : undefined,
+      disabled: action.disabled ?? false,
+      icon: style.icon,
+      callback: action.compiledCallback,
+      style: {
+        ...style,
+        textStyle: this.getMergedLinkTextStyle(action.label, action),
+      },
+    };
   }
 
   getTitleText(): string | undefined {
@@ -367,6 +410,7 @@ export class Data {
 
   private mergeButtonConfig(theme?: ButtonStyle, action?: ButtonStyle): ButtonStyle {
     const mode = action?.mode ?? theme?.mode ?? 'bootstrap';
+    const actionPalette = action && 'palette' in action ? action.palette : undefined;
 
     if (mode === 'custom') {
       return {
@@ -386,12 +430,7 @@ export class Data {
       ...theme,
       ...action,
       textStyle: this.mergeTextStyles(theme?.textStyle, action?.textStyle),
-      palette:
-        action?.mode === 'bootstrap'
-          ? action.palette
-          : theme?.mode === 'bootstrap'
-            ? theme.palette
-            : undefined,
+      palette: actionPalette ?? (theme?.mode === 'bootstrap' ? theme.palette : undefined),
       border: this.mergeBorderConfig(theme?.border, action?.border),
       padding: this.mergeSpacingConfig(theme?.padding, action?.padding),
       size: { ...theme?.size, ...action?.size },
@@ -399,7 +438,7 @@ export class Data {
     } as BootstrapButtonStyle;
   }
 
-  private mergeLinkConfig(theme?: LinkConfig, action?: LinkConfig): LinkConfig {
+  private mergeLinkConfig(theme?: LinkStyle, action?: LinkStyle): LinkStyle {
     const mode = action?.mode ?? theme?.mode ?? 'bootstrap';
 
     if (mode === 'custom') {

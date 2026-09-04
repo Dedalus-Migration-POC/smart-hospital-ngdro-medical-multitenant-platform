@@ -1,0 +1,18 @@
+<button
+  type="button"
+  class="btn"
+  [ngClass]="[...getButtonPaletteClasses(), ...getTextClasses(getButtonTextStyle())]"
+  [ngStyle]="getButtonStyles()"
+  [disabled]="config().disabled ?? false"
+  (click)="clicked.emit()"
+>
+  @if (config().icon && config().icon?.position !== 'after') {
+    <app-icon [config]="config().icon!" defaultMarginClass="me-1" />
+  }
+
+  {{ config().text.text[lang()] }}
+
+  @if (config().icon?.position === 'after') {
+    <app-icon [config]="config().icon!" defaultMarginClass="ms-1" />
+  }
+</button>

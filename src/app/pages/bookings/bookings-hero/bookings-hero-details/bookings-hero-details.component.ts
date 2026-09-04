@@ -29,9 +29,10 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { Availability } from '../state/model';
 import { format, isBefore, startOfTomorrow } from 'date-fns';
-import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
+import { ModalService } from 'src/app/components/modal/modal.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { toLocalizedText } from 'src/app/shared/utility/text.utils';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
@@ -260,25 +261,47 @@ export class BookingHeroDetailsComponent implements OnInit {
 
   onCancel() {
     this.modalService.open(this.viewContainerRef, {
-      type: ModalType.INFO,
-      title: this.translateService.instant('bookings-hero.bookings-list.delete-modal.title'),
-      body: this.translateService.instant('bookings-hero.bookings-list.delete-modal.body'),
-      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
-      centered: true,
-      buttons: [
-        {
-          label: this.translateService.instant('bookings-hero.bookings-list.delete-modal.cancel'),
-          styleClass: 'btn-outline-primary',
-          callback: () => console.log('Annullata modale'),
+      header: {
+        title: {
+          text: toLocalizedText(
+            this.translateService.instant('bookings-hero.bookings-list.delete-modal.title'),
+          ),
         },
-        {
-          label: this.translateService.instant('bookings-hero.bookings-list.delete-modal.confirm'),
-          styleClass: 'btn-primary',
-          callback: () => {
-            this.deleteBooking();
+      },
+      body: {
+        text: {
+          text: toLocalizedText(
+            this.translateService.instant('bookings-hero.bookings-list.delete-modal.body'),
+          ),
+        },
+      },
+      footer: {
+        actions: [
+          {
+            button: {
+              outline: true,
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant('bookings-hero.bookings-list.delete-modal.cancel'),
+                ),
+              },
+            },
+            callback: () => console.log('Annullata modale'),
           },
-        },
-      ],
+          {
+            button: {
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant('bookings-hero.bookings-list.delete-modal.confirm'),
+                ),
+              },
+            },
+            callback: () => {
+              this.deleteBooking();
+            },
+          },
+        ],
+      },
     });
   }
 

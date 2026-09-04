@@ -6,36 +6,66 @@
   aria-labelledby="modalTitle"
   aria-describedby="modalBody"
 >
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content" [ngClass]="modal.styleClass">
-      <div class="modal-header pt-3">
-        <div class="d-flex gap-2 modal-header-container">
-          <it-icon *ngIf="modal.icon" [name]="modal.icon" [ngClass]="modal.iconClass"></it-icon>
-          <h4 class="modal-title" id="modalTitle">{{ modal.title }}</h4>
+  @if (config(); as config) {
+    <div class="modal-dialog" [ngClass]="dialogClasses()" (click)="onBackdropClick()">
+      <div
+        class="modal-content"
+        [ngClass]="containerBgClass()"
+        [ngStyle]="containerStyles()"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="modal-header" [ngClass]="headerBgClass()" [ngStyle]="headerStyles()">
+          <div class="d-flex flex-row align-items-center">
+            @if (config.header.icon; as icon) {
+              <app-icon [config]="icon" defaultMarginClass="ms-1" />
+            }
+            <h4
+              class="modal-title"
+              id="modalTitle"
+              [ngClass]="getTextClasses(config.header.title)"
+              [ngStyle]="getTextStyles(config.header.title)"
+              [innerHTML]="config.header.title.text[lang()]"
+            ></h4>
+          </div>
+          @if (config.header.closeButton !== false) {
+            <button
+              type="button"
+              class="btn btn-sm p-0"
+              [attr.aria-label]="'commons.close' | translate"
+              (click)="onClose()"
+            >
+              <it-icon name="close" aria-hidden="true"></it-icon>
+            </button>
+          }
         </div>
-        <button
-          type="button"
-          class="btn btn-sm p-0"
-          [attr.aria-label]="'commons.close' | translate"
-          (click)="onClose()"
-        >
-          <it-icon name="close" aria-hidden="true"></it-icon>
-        </button>
-      </div>
-      <div *ngIf="modal.body" class="modal-body pt-2" id="modalBody">
-        <p class="cursor-default mb-0" [innerHTML]="modal.body"></p>
-      </div>
-      <div *ngIf="modal.buttons?.length" class="modal-footer pt-2 pb-3">
-        <button
-          *ngFor="let btn of modal.buttons"
-          type="button"
-          class="btn"
-          [ngClass]="btn.styleClass || 'btn-outline-primary'"
-          (click)="onButtonClick(btn)"
-        >
-          {{ btn.label }}
-        </button>
+        <div class="modal-body" id="modalBody" [ngClass]="bodyBgClass()" [ngStyle]="bodyStyles()">
+          <p
+            class="cursor-default mb-0"
+            [ngClass]="getTextClasses(config.body.text)"
+            [ngStyle]="getTextStyles(config.body.text)"
+            [innerHTML]="config.body.text.text[lang()]"
+          ></p>
+        </div>
+        @if (config.footer; as footer) {
+          <div
+            class="modal-footer"
+            [ngClass]="[footerBgClass(), ...getFlexLayoutClasses(footer.layout)]"
+            [ngStyle]="footerStyles()"
+          >
+            @if (footer.text; as footerText) {
+              <p
+                class="cursor-default mb-0"
+                [ngClass]="getTextClasses(footerText)"
+                [ngStyle]="getTextStyles(footerText)"
+                [innerHTML]="footerText.text[lang()]"
+              ></p>
+            }
+            @for (action of footer.actions; track $index) {
+              <app-button [config]="action.button" (clicked)="onActionClick(action)" />
+            }
+          </div>
+        }
       </div>
     </div>
-  </div>
+  }
 </div>

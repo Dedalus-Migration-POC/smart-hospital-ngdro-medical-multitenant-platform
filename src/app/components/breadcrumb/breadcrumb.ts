@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../button/button.component';
 import {
   Component,
   computed,
@@ -20,12 +21,9 @@ import {
 } from '../../shared/utility/style.utils';
 import { getTextClasses, mergeTextStyles } from '../../shared/utility/text.utils';
 import {
-  getButtonPaletteClasses,
-  getButtonStyles,
-  getButtonTextStyle as getMergedButtonTextStyle,
   mergeButtonStyle,
 } from '../../shared/utility/button.utils';
-import { ButtonStyle, TextStyle } from '../../shared/models/shared_model';
+import { ButtonConfig, ButtonStyle, TextStyle } from '../../shared/models/shared_model';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from '../../store/reducers';
 import { selectAppConfig } from '../../initialize/state/selector';
@@ -33,7 +31,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [CommonModule, RouterModule, DesignAngularKitModule],
+  imports: [CommonModule, RouterModule, DesignAngularKitModule, ButtonComponent],
   templateUrl: './breadcrumb.html',
   styleUrl: './breadcrumb.scss',
   host: { '[style.--breadcrumb-scrollbar-w]': 'scrollbarWidth()' },
@@ -52,8 +50,6 @@ export class Breadcrumb {
   protected readonly getTextClasses = getTextClasses;
   protected readonly getTextStyles = getTextStyles;
   protected readonly getSpacingStyles = getSpacingStyles;
-  protected readonly getButtonPaletteClasses = getButtonPaletteClasses;
-  protected readonly getButtonStyles = getButtonStyles;
 
   // Gli stili della pagina sovrascrivono il tema; le proprietà mancanti ereditano dal tema generale.
   getTitleStyle(config: BreadcrumbConfig): TextStyle {
@@ -132,12 +128,11 @@ export class Breadcrumb {
 
   // Lo stile del bottone segue quello configurato sul componente; le proprieta
   // mancanti ereditano dal tema generale dei bottoni. Il testo viene sempre dalla config.
-  getButtonStyle(config: BreadcrumbConfig): ButtonStyle {
-    return mergeButtonStyle(this.buttonsTheme(), config.button);
-  }
-
-  getButtonTextStyle(config: BreadcrumbConfig): TextStyle {
-    return getMergedButtonTextStyle(this.getButtonStyle(config));
+  getButtonStyle(config: BreadcrumbConfig): ButtonConfig {
+    return {
+      ...mergeButtonStyle(this.buttonsTheme(), config.button),
+      text: config.button!.text,
+    } as ButtonConfig;
   }
 
   // Larghezza della scrollbar verticale (0 se assente): usata dal bleed CSS per

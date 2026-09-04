@@ -14,10 +14,13 @@ import {
   input,
   signal,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map, take } from 'rxjs';
 import { SummaryComponent } from '../../components/summary/summary.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
+import { selectAppConfig } from 'src/app/initialize/state/selector';
 import {
   selectFirstAvailability,
   selectOtherAvailability,
@@ -40,7 +43,9 @@ import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-
 import { selectUserPhoneNumber } from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { isEqual, isValid, parse } from 'date-fns';
 import { Spinner } from 'src/app/components/spinner/spinner';
-import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
+import { ModalService } from 'src/app/components/modal/modal.service';
+import { toLocalizedText } from 'src/app/shared/utility/text.utils';
+import { ModalConfig } from 'src/app/components/modal/model';
 
 @Component({
   selector: 'app-booking-availability',
@@ -56,6 +61,15 @@ export class BookingAvailabilityComponent implements OnInit, AfterViewInit {
 
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
+
+  // config testuale della modale di conferma, con fallback sulle chiavi di traduzione se assente
+  readonly pageConfig = toSignal(
+    this.store.select(selectAppConfig).pipe(
+      take(1),
+      map((config) => config.pages.find((page: any) => page.id === '/bookings/new')),
+    ),
+    { initialValue: null },
+  );
 
   @ViewChild('tabsAvailability', { read: ElementRef })
   tabsAvailability!: ElementRef<HTMLElement>;
@@ -234,40 +248,62 @@ export class BookingAvailabilityComponent implements OnInit, AfterViewInit {
         hl7Messages,
       };
 
-      // in the services the dates are always the same
-      const date = schedule?.services[0].date;
-
-      const body = this.translateService.instant(
-        'bookings.booking-new.availability.confirm-modal.body',
-        { date: date },
-      );
-
-      const title = this.translateService.instant(
-        'bookings.booking-new.availability.confirm-modal.title',
-      );
-      this.modalService.open(this.viewContainerRef, {
-        type: ModalType.INFO,
-        title: title,
-        body: body,
-        styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
-        centered: true,
-        buttons: [
-          {
-            label: this.translateService.instant(
-              'bookings.booking-new.availability.confirm-modal.cancel',
+      // config di pagina (contenuto + stile) oppure fallback sulle chiavi di traduzione esistenti
+      const modalConfig: ModalConfig = this.pageConfig()?.page?.modals?.['confirmAvailability'] ?? {
+        header: {
+          title: {
+            text: toLocalizedText(
+              this.translateService.instant(
+                'bookings.booking-new.availability.confirm-modal.title',
+              ),
             ),
-            styleClass: 'btn-outline-primary',
-            callback: () => {},
           },
-          {
-            label: this.translateService.instant(
-              'bookings.booking-new.availability.confirm-modal.confirm',
+        },
+        body: {
+          text: {
+            text: toLocalizedText(
+              this.translateService.instant(
+                'bookings.booking-new.availability.confirm-modal.body',
+                { date: schedule?.services[0].date },
+              ),
             ),
-            styleClass: 'btn-primary',
-            callback: () => this.confirmBooking(choiceAvailability),
           },
-        ],
-      });
+        },
+        footer: {
+          actions: [
+            {
+              button: {
+                outline: true,
+                text: {
+                  text: toLocalizedText(
+                    this.translateService.instant(
+                      'bookings.booking-new.availability.confirm-modal.cancel',
+                    ),
+                  ),
+                },
+              },
+            },
+            {
+              button: {
+                text: {
+                  text: toLocalizedText(
+                    this.translateService.instant(
+                      'bookings.booking-new.availability.confirm-modal.confirm',
+                    ),
+                  ),
+                },
+              },
+            },
+          ],
+        },
+      };
+
+      // le callback esistono solo a runtime: la config (statica) non puo' contenerle
+      const [cancelAction, confirmAction] = modalConfig.footer?.actions ?? [];
+      if (cancelAction) cancelAction.callback = () => {};
+      if (confirmAction) confirmAction.callback = () => this.confirmBooking(choiceAvailability);
+
+      this.modalService.open(this.viewContainerRef, modalConfig);
     }
   }
 

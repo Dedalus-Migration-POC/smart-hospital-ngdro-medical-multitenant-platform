@@ -1,40 +1,16 @@
-.modal {
-  background-color: rgba(0, 0, 0, 0.5);
-  overflow-y: hidden;
+.modal-dialog.modal-fullscreen {
+  margin-top: 0px;
+}
 
-  .modal-warning {
-    .modal-header {
-      .modal-header-container {
-        .modal-title {
-          // color: var(--#{$prefix}warning);
-        }
+// reset
+.modal .modal-dialog .modal-content {
+  box-shadow: none;
+}
 
-        ::ng-deep .icon {
-          // fill: var(--#{$prefix}warning);
-        }
-      }
-
-      .btn {
-        ::ng-deep .icon {
-          // fill: var(--#{$prefix}gray);
-          width: 40px;
-          height: 40px;
-        }
-      }
-    }
-  }
-
-  .modal-danger {
-    .modal-header {
-      .modal-header-container {
-        .modal-title {
-          // color: var(--#{$prefix}danger);
-        }
-
-        ::ng-deep .icon {
-          // fill: var(--#{$prefix}danger);
-        }
-      }
-    }
+.modal .modal-dialog .modal-content {
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 0;
   }
 }

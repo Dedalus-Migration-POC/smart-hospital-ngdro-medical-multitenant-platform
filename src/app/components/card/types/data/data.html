@@ -150,59 +150,16 @@
         <div class="card-actions p-3" [ngClass]="getFlexLayoutClasses(actionsLayout())">
           @for (action of card.actions; track action.key) {
             @if (action.renderAs !== 'message') {
-              <button
-                type="button"
-                class="btn"
-                [class.btn-link]="action.renderAs === 'link'"
-                [class.p-0]="action.renderAs === 'link'"
-                [ngClass]="[
-                  ...getActionClasses(action),
-                  ...(action.renderAs === 'link'
-                    ? getTextClasses(getMergedLinkTextStyle(action.label, action))
-                    : getTextClasses(getMergedButtonTextStyle(action.label, action))),
-                ]"
-                [ngStyle]="getActionStyles(action)"
-                [disabled]="action.disabled"
-                (click)="action.compiledCallback?.()"
-              >
-                @if (getActionIcon(action); as icon) {
-                  @if (getActionIconPosition(action) === 'before') {
-                    @if (icon.type === 'font-awesome') {
-                      <i
-                        [ngClass]="icon.name"
-                        [class.me-1]="!icon.margin"
-                        [ngStyle]="getSpacingStyles(icon.margin)"
-                      ></i>
-                    } @else {
-                      <it-icon
-                        [name]="icon.name"
-                        [class.me-1]="!icon.margin"
-                        [ngStyle]="getSpacingStyles(icon.margin)"
-                      ></it-icon>
-                    }
-                  }
+              @if (action.renderAs === 'button' && getButtonConfig(action); as buttonConfig) {
+                <app-button
+                  [config]="buttonConfig"
+                  (clicked)="action.compiledCallback?.()"
+                />
+              } @else {
+                @if (getLinkConfig(action); as linkConfig) {
+                  <app-link [link]="linkConfig" />
                 }
-
-                {{ resolveLabel(action.label.text[lang()], card) }}
-
-                @if (getActionIcon(action); as icon) {
-                  @if (getActionIconPosition(action) !== 'before') {
-                    @if (icon.type === 'font-awesome') {
-                      <i
-                        [ngClass]="icon.name"
-                        [class.ms-1]="!icon.margin"
-                        [ngStyle]="getSpacingStyles(icon.margin)"
-                      ></i>
-                    } @else {
-                      <it-icon
-                        [name]="icon.name"
-                        [class.ms-1]="!icon.margin"
-                        [ngStyle]="getSpacingStyles(icon.margin)"
-                      ></it-icon>
-                    }
-                  }
-                }
-              </button>
+              }
             }
           }
         </div>

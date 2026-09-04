@@ -52,25 +52,10 @@
         }
       </div>
       @if (config.button) {
-        <button
-          class="btn action-button"
-          [ngClass]="[
-            ...getButtonPaletteClasses(getButtonStyle(config)),
-            ...getTextClasses(getButtonTextStyle(config)),
-            getButtonStyle(config).icon ? 'd-flex align-items-center gap-2' : '',
-          ]"
-          [ngStyle]="getButtonStyles(getButtonStyle(config))"
-          (click)="buttonAction.emit()"
-        >
-          @if (getButtonStyle(config).icon; as icon) {
-            @if (icon.type === 'font-awesome') {
-              <i [ngClass]="icon.name"></i>
-            } @else {
-              <it-icon [name]="icon.name"></it-icon>
-            }
-          }
-          {{ config.button.text.text[lang()] }}
-        </button>
+        <app-button
+          [config]="getButtonStyle(config)"
+          (clicked)="buttonAction.emit()"
+        />
       }
     </div>
   </nav>

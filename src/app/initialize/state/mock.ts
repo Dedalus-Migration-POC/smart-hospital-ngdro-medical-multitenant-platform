@@ -4515,6 +4515,38 @@ export const NEW_BOOKING = {
         },
       ],
     },
+    modals: {
+      confirmAvailability: {
+        header: {
+          title: {
+            text: { it: 'Conferma prenotazione', en: 'Confirm booking' },
+          },
+        },
+        body: {
+          text: {
+            text: {
+              it: 'Vuoi confermare la prenotazione per la data selezionata?',
+              en: 'Do you want to confirm the booking for the selected date?',
+            },
+          },
+        },
+        footer: {
+          actions: [
+            {
+              button: {
+                outline: true,
+                text: { text: { it: 'Annulla', en: 'Cancel' } },
+              },
+            },
+            {
+              button: {
+                text: { text: { it: 'Conferma', en: 'Confirm' } },
+              },
+            },
+          ],
+        },
+      },
+    },
   },
 };
 
@@ -4540,6 +4572,7 @@ export const BOOKINGS = {
           en: 'New booking',
         },
       },
+      whiteSpace: 'nowrap',
     },
     items: [
       {
@@ -4551,6 +4584,49 @@ export const BOOKINGS = {
         routerLink: '/bookings',
       },
     ],
+  },
+  modals: {
+    deleteBooking: {
+      centered: true,
+      header: {
+        icon: {
+          type: 'font-awesome',
+          name: 'fa-solid fa-trash',
+        },
+      },
+      // header: {
+      //   title: {
+      //     text: { it: 'Elimina prenotazione', en: 'Delete booking' },
+      //   },
+      // },
+      // body: {
+      //   text: {
+      //     text: {
+      //       it: 'Sei sicuro di voler eliminare la prenotazione?',
+      //       en: 'Are you sure you want to delete the booking?',
+      //     },
+      //   },
+      // },
+      // footer: {
+      //   actions: [
+      //     {
+      //       button: {
+      //         mode: 'bootstrap',
+      //         palette: 'primary',
+      //         outline: true,
+      //         text: { text: { it: 'Annulla', en: 'Cancel' } },
+      //       },
+      //     },
+      //     {
+      //       button: {
+      //         mode: 'bootstrap',
+      //         palette: 'danger',
+      //         text: { text: { it: 'Elimina', en: 'Delete' } },
+      //       },
+      //     },
+      //   ],
+      // },
+    },
   },
   sections: [
     {
@@ -5539,6 +5615,38 @@ export const APP_CONFIG: AppConfig = {
           fill: { hex: '#e6e8ea' },
         },
         padding: { y: '8px' },
+      },
+    },
+    modal: {
+      centered: false,
+      shadow: '0 2px 10px 0 rgba(0, 0, 0, 0.1)',
+      backdrop: true,
+      keyboard: false,
+      border: {
+        width: '1px',
+        style: 'solid',
+        color: { hex: '#6d6464' },
+        radius: '4px',
+      },
+      header: {
+        padding: {
+          all: '8px',
+        },
+        closeButton: true,
+      },
+      body: {
+        padding: {
+          all: '12px',
+        },
+      },
+      footer: {
+        padding: {
+          all: '8px',
+        },
+        actionsButtonStyle: {
+          mode: 'bootstrap',
+          palette: 'primary',
+        },
       },
     },
     card: {

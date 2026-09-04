@@ -1,0 +1,16 @@
+@if (config(); as icon) {
+  @if (icon.type === 'font-awesome') {
+    <i
+      [ngClass]="[icon.name, ...getIconClasses(icon), !icon.margin ? defaultMarginClass() : '']"
+      [ngStyle]="getIconStyles(icon)"
+      aria-hidden="true"
+    ></i>
+  } @else {
+    <it-icon
+      [name]="icon.name"
+      [ngClass]="[...getIconClasses(icon), !icon.margin ? defaultMarginClass() : '']"
+      [ngStyle]="getIconStyles(icon)"
+      aria-hidden="true"
+    ></it-icon>
+  }
+}

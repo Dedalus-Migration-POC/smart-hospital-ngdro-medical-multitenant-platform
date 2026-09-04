@@ -20,7 +20,9 @@ import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { Card } from 'src/app/components/card/card';
 import { CardActionsService } from 'src/app/shared/services/card-actions.service';
 import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
-import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
+import { ModalService } from 'src/app/components/modal/modal.service';
+import { toLocalizedText } from 'src/app/shared/utility/text.utils';
+import { TextConfig } from 'src/app/shared/models/shared_model';
 
 @Component({
   selector: 'app-bookings-list',
@@ -99,26 +101,73 @@ export class BookingsListComponent implements OnInit {
   }
 
   deleteBooking(indexSchedule: number): void {
+    // merge campo per campo: il mock puo' definire testo e/o stile; se manca il testo viene preso dagli assets
+    const pageModal = this.pageConfig()?.modals?.['deleteBooking'];
+
+    const title: TextConfig = {
+      ...pageModal?.header?.title,
+      text:
+        pageModal?.header?.title?.text ??
+        toLocalizedText(this.translateService.instant('bookings.bookings-list.delete-modal.title')),
+    };
+    const body: TextConfig = {
+      ...pageModal?.body?.text,
+      text:
+        pageModal?.body?.text?.text ??
+        toLocalizedText(this.translateService.instant('bookings.bookings-list.delete-modal.body')),
+    };
+
+    const cancelAction = pageModal?.footer?.actions?.[0];
+    const cancelText: TextConfig = {
+      ...cancelAction?.button?.text,
+      text:
+        cancelAction?.button?.text?.text ??
+        toLocalizedText(
+          this.translateService.instant('bookings.bookings-list.delete-modal.cancel'),
+        ),
+    };
+    const confirmAction = pageModal?.footer?.actions?.[1];
+    const confirmText: TextConfig = {
+      ...confirmAction?.button?.text,
+      text:
+        confirmAction?.button?.text?.text ??
+        toLocalizedText(
+          this.translateService.instant('bookings.bookings-list.delete-modal.confirm'),
+        ),
+    };
+
     this.modalService.open(this.viewContainerRef, {
-      type: ModalType.INFO,
-      title: this.translateService.instant('bookings.bookings-list.delete-modal.title'),
-      body: this.translateService.instant('bookings.bookings-list.delete-modal.body'),
-      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
-      centered: true,
-      buttons: [
-        {
-          label: this.translateService.instant('bookings.bookings-list.delete-modal.cancel'),
-          styleClass: 'btn-outline-primary',
-          callback: () => console.log('Annullata modale'),
-        },
-        {
-          label: this.translateService.instant('bookings.bookings-list.delete-modal.confirm'),
-          styleClass: 'btn-primary',
-          callback: () => {
-            this.deleteSchedule(indexSchedule);
+      ...pageModal,
+      header: {
+        ...pageModal?.header,
+        title,
+      },
+      body: {
+        ...pageModal?.body,
+        text: body,
+      },
+      footer: {
+        ...pageModal?.footer,
+        actions: [
+          {
+            button: {
+              outline: true,
+              ...cancelAction?.button,
+              text: cancelText,
+            },
+            callback: () => console.log('Annullata modale'),
           },
-        },
-      ],
+          {
+            button: {
+              ...confirmAction?.button,
+              text: confirmText,
+            },
+            callback: () => {
+              this.deleteSchedule(indexSchedule);
+            },
+          },
+        ],
+      },
     });
   }
 

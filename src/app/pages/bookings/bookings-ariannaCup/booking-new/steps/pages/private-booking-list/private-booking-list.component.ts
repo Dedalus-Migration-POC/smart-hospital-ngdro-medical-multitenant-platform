@@ -23,7 +23,8 @@ import { SummaryComponent } from '../../components/summary/summary.component';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { InputComponent } from 'src/app/components/input/input.component';
-import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
+import { ModalService } from 'src/app/components/modal/modal.service';
+import { toLocalizedText } from 'src/app/shared/utility/text.utils';
 
 type PrestazioneItem = RetrievePrestazioni['documents'][number];
 
@@ -107,36 +108,53 @@ export class PrivateBookingListComponent implements OnInit {
     const selectedBooking = this.selectedBooking();
     if (!selectedBooking) return;
 
-    const body = this.translateService.instant(
-      'bookings.booking-new.private-booking-list.confirm-modal.body',
-      { descPrest: selectedBooking.descPrest },
-    );
-
-    const title = this.translateService.instant(
-      'bookings.booking-new.availability.confirm-modal.title',
-    );
     this.modalService.open(this.viewContainerRef, {
-      type: ModalType.INFO,
-      title: title,
-      body: body,
-      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
-      centered: true,
-      buttons: [
-        {
-          label: this.translateService.instant(
-            'bookings.booking-new.private-booking-list.confirm-modal.cancel',
+      header: {
+        title: {
+          text: toLocalizedText(
+            this.translateService.instant('bookings.booking-new.availability.confirm-modal.title'),
           ),
-          styleClass: 'btn-outline-primary',
-          callback: () => {},
         },
-        {
-          label: this.translateService.instant(
-            'bookings.booking-new.private-booking-list.confirm-modal.confirm',
+      },
+      body: {
+        text: {
+          text: toLocalizedText(
+            this.translateService.instant(
+              'bookings.booking-new.private-booking-list.confirm-modal.body',
+              { descPrest: selectedBooking.descPrest },
+            ),
           ),
-          styleClass: 'btn-primary',
-          callback: () => this.confirmBooking(this.selectedBooking()!),
         },
-      ],
+      },
+      footer: {
+        actions: [
+          {
+            button: {
+              outline: true,
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant(
+                    'bookings.booking-new.private-booking-list.confirm-modal.cancel',
+                  ),
+                ),
+              },
+            },
+            callback: () => {},
+          },
+          {
+            button: {
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant(
+                    'bookings.booking-new.private-booking-list.confirm-modal.confirm',
+                  ),
+                ),
+              },
+            },
+            callback: () => this.confirmBooking(this.selectedBooking()!),
+          },
+        ],
+      },
     });
   }
 

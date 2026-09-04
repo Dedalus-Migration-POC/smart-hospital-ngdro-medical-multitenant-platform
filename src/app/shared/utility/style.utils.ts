@@ -1,5 +1,22 @@
 // Crea proprietà CSS inline, ad esempio color: #333333, margin-bottom: 3px
-import { BackgroundConfig, SpacingConfig, TextStyle } from '../models/shared_model';
+import {
+  BackgroundConfig,
+  FontSize,
+  LineHeight,
+  SpacingConfig,
+  TextStyle,
+} from '../models/shared_model';
+
+const fontSizeTokens: FontSize[] = ['sm', 'md', 'lg', 'xl', 'xxl'];
+const lineHeightTokens: LineHeight[] = ['sm', 'md', 'lg', 'xl', 'xxl'];
+
+function isFontSizeToken(value: string): value is FontSize {
+  return fontSizeTokens.includes(value as FontSize);
+}
+
+function isLineHeightToken(value: string): value is LineHeight {
+  return lineHeightTokens.includes(value as LineHeight);
+}
 
 export function getTextColorHex(text?: TextStyle): string | null {
   return typeof text?.color === 'object' ? (text.color.hex ?? null) : null;
@@ -28,8 +45,12 @@ export function getSpacingStyles(
 // Spaziatura (margin/padding) e colore hex.
 export function getTextStyles(text?: TextStyle): Record<string, string> {
   const color = getTextColorHex(text);
+  const fontSize = text?.fontSize;
+  const lineHeight = text?.lineHeight;
 
   return {
+    ...(fontSize && !isFontSizeToken(fontSize) ? { 'font-size': fontSize } : {}),
+    ...(lineHeight && !isLineHeightToken(lineHeight) ? { 'line-height': lineHeight } : {}),
     ...getSpacingStyles(text?.margin),
     ...getSpacingStyles(text?.padding, 'padding'),
     ...(color ? { color } : {}),

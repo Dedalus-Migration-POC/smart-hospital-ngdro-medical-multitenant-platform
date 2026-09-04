@@ -67,6 +67,7 @@ export interface ColorConfig {
 export interface IconStyle {
   color?: ColorConfig;
   size?: SizeConfig;
+  fontSize?: FontSize | string;
   margin?: SpacingConfig;
   padding?: SpacingConfig;
   position?: 'before' | 'after'; // rispetto al testo dell'azione, default: 'before'
@@ -76,6 +77,7 @@ export interface FontAwesomeIconConfig extends IconStyle {
   type: 'font-awesome';
   name: string;
   prefix?: 'fa-solid' | 'fa-regular' | 'fa-brands';
+  color: ColorConfig;
 }
 
 // Per accessibilità meglio usare FontAwesomeIconConfig
@@ -129,10 +131,10 @@ export interface TextConfig extends TextStyle {
 }
 
 export interface TextStyle {
-  fontSize?: FontSize;
+  fontSize?: FontSize | string;
   fontWeight?: FontWeight;
   color?: ColorConfig;
-  lineHeight?: LineHeight;
+  lineHeight?: LineHeight | string;
   textTransform?: TextTransform;
   textDecoration?: TextDecoration;
   margin?: SpacingConfig;
@@ -176,13 +178,14 @@ export interface ButtonBaseConfig {
   size?: SizeConfig;
   radius?: string;
   icon?: IconConfig;
+  whiteSpace?: 'normal' | 'nowrap';
 }
 
-// Stile dei bottoni Bootstrap Italia. Gli stati interattivi sono
-// gestiti dalla classe btn-* generata a partire dalla palette.
+// Se mode non viene specificato, il bottone viene gestito come Bootstrap.
+// Gli stati interattivi sono gestiti dalla classe btn-* generata dalla palette.
 export interface BootstrapButtonStyle extends ButtonBaseConfig {
   mode?: 'bootstrap';
-  palette: Colors;
+  palette?: Colors;
   outline?: boolean;
   textStyle?: Omit<TextStyle, 'color'>;
 }
@@ -199,10 +202,11 @@ export type ButtonStyle = BootstrapButtonStyle | CustomButtonStyle;
 
 export type ButtonConfig = ButtonStyle & {
   text: TextConfig;
+  disabled?: boolean;
 };
 
-// Configurazione dei link Bootstrap Italia. Il colore e gestito dalla
-// classe text-* generata a partire dalla palette.
+// Stile dei link Bootstrap Italia. Il colore e gestito dalla classe text-*
+// generata a partire dalla palette.
 export interface BootstrapLinkConfig {
   mode?: 'bootstrap';
   palette: Colors;
@@ -218,4 +222,17 @@ export interface CustomLinkConfig {
   icon?: IconConfig;
 }
 
-export type LinkConfig = BootstrapLinkConfig | CustomLinkConfig;
+export type LinkStyle = BootstrapLinkConfig | CustomLinkConfig;
+
+export interface LinkConfig {
+  text: LocalizedText;
+  description?: LocalizedText;
+  url?: string; // opzionale perchè il link potrebbe essere gestito tramite callback invece che tramite URL
+  external: boolean;
+  target?: LinkTarget;
+  icon?: IconConfig;
+  callback?: () => void;
+  ariaLabel?: LocalizedText;
+  disabled?: boolean;
+  style?: LinkStyle;
+}

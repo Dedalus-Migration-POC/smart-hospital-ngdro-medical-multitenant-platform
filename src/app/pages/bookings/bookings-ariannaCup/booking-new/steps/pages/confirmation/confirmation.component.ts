@@ -41,8 +41,9 @@ import { PRIVATE_BOOKING_AVAILABILITY_REQUEST } from 'src/app/pages/bookings/boo
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { InputComponent } from 'src/app/components/input/input.component';
-import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
+import { ModalService } from 'src/app/components/modal/modal.service';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
+import { toLocalizedText } from 'src/app/shared/utility/text.utils';
 
 @Component({
   selector: 'app-booking-confirmation',
@@ -150,23 +151,45 @@ export class ConfirmationComponent implements OnInit, OnDestroy {
 
   confirmBooking() {
     this.modalService.open(this.viewContainerRef, {
-      type: ModalType.INFO,
-      title: this.translateService.instant('bookings.booking-new.confirmation.modal.title'),
-      body: this.translateService.instant('bookings.booking-new.confirmation.modal.body'),
-      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
-      centered: true,
-      buttons: [
-        {
-          label: this.translateService.instant('bookings.booking-new.confirmation.modal.cancel'),
-          styleClass: 'btn-outline-primary',
-          callback: () => {},
+      header: {
+        title: {
+          text: toLocalizedText(
+            this.translateService.instant('bookings.booking-new.confirmation.modal.title'),
+          ),
         },
-        {
-          label: this.translateService.instant('bookings.booking-new.confirmation.modal.confirm'),
-          styleClass: 'btn-primary',
-          callback: () => this.confirmBookingModal(),
+      },
+      body: {
+        text: {
+          text: toLocalizedText(
+            this.translateService.instant('bookings.booking-new.confirmation.modal.body'),
+          ),
         },
-      ],
+      },
+      footer: {
+        actions: [
+          {
+            button: {
+              outline: true,
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant('bookings.booking-new.confirmation.modal.cancel'),
+                ),
+              },
+            },
+            callback: () => {},
+          },
+          {
+            button: {
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant('bookings.booking-new.confirmation.modal.confirm'),
+                ),
+              },
+            },
+            callback: () => this.confirmBookingModal(),
+          },
+        ],
+      },
     });
   }
 

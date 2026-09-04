@@ -9,7 +9,8 @@ import { Store } from '@ngrx/store';
 import { MedicoPrestazione } from 'src/app/pages/bookings/bookings-ariannaCup/state/model';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
 import { InputComponent } from 'src/app/components/input/input.component';
-import { ModalService, ModalType } from 'src/app/components/modal/modal.service';
+import { ModalService } from 'src/app/components/modal/modal.service';
+import { toLocalizedText } from 'src/app/shared/utility/text.utils';
 
 @Component({
   selector: 'app-doctor-selector',
@@ -69,36 +70,55 @@ export class PrivateDoctorSelectorComponent {
     const selectedDoctor = this.selectedDoctor();
     if (!selectedDoctor) return;
 
-    const body = this.translateService.instant(
-      'bookings.booking-new.private-doctor-selector.confirm-modal.body',
-      { descMedico: selectedDoctor.descMedico },
-    );
-
-    const title = this.translateService.instant(
-      'bookings.booking-new.private-doctor-selector.confirm-modal.title',
-    );
     this.modalService.open(this.viewContainerRef, {
-      type: ModalType.INFO,
-      title: title,
-      body: body,
-      styleClass: 'modal-' + ModalType.INFO.toLowerCase(),
-      centered: true,
-      buttons: [
-        {
-          label: this.translateService.instant(
-            'bookings.booking-new.private-doctor-selector.confirm-modal.cancel',
+      header: {
+        title: {
+          text: toLocalizedText(
+            this.translateService.instant(
+              'bookings.booking-new.private-doctor-selector.confirm-modal.title',
+            ),
           ),
-          styleClass: 'btn-outline-primary',
-          callback: () => {},
         },
-        {
-          label: this.translateService.instant(
-            'bookings.booking-new.private-doctor-selector.confirm-modal.confirm',
+      },
+      body: {
+        text: {
+          text: toLocalizedText(
+            this.translateService.instant(
+              'bookings.booking-new.private-doctor-selector.confirm-modal.body',
+              { descMedico: selectedDoctor.descMedico },
+            ),
           ),
-          styleClass: 'btn-primary',
-          callback: () => this.confirmDoctor(selectedDoctor!),
         },
-      ],
+      },
+      footer: {
+        actions: [
+          {
+            button: {
+              outline: true,
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant(
+                    'bookings.booking-new.private-doctor-selector.confirm-modal.cancel',
+                  ),
+                ),
+              },
+            },
+            callback: () => {},
+          },
+          {
+            button: {
+              text: {
+                text: toLocalizedText(
+                  this.translateService.instant(
+                    'bookings.booking-new.private-doctor-selector.confirm-modal.confirm',
+                  ),
+                ),
+              },
+            },
+            callback: () => this.confirmDoctor(selectedDoctor!),
+          },
+        ],
+      },
     });
   }
 

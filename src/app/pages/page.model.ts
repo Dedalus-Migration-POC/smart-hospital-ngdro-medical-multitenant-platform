@@ -1,5 +1,6 @@
 import { BreadcrumbConfig } from '../components/breadcrumb/model';
 import { ImageBlockConfig } from '../components/image-block/model';
+import { ModalConfig } from '../components/modal/model';
 import { AreasConfig } from '../shared/layout-system/models/layout.model';
 import { Colors, LocalizedText } from '../shared/models/shared_model';
 
@@ -24,6 +25,11 @@ export interface PageConfig {
   sections: PageSectionConfig[];
 
   infoPopup?: InfoPopupConfig;
+
+  // chiave = id semantico (es. 'deleteBooking') e deve combaciare esattamente con quella usata
+  // nel componente: this.pageConfig()?.modals?.['deleteBooking']. Le callback delle action
+  // vengono assegnate dal componente, non dalla config.
+  modals?: Record<string, ModalConfig>;
 
   message?: {
     notFound?: ImageBlockConfig;

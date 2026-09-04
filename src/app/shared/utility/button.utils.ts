@@ -22,6 +22,7 @@ function mergeBorderConfig(theme?: BorderConfig, action?: BorderConfig): BorderC
 
 export function mergeButtonStyle(theme?: ButtonStyle, config?: ButtonStyle): ButtonStyle {
   const mode = config?.mode ?? theme?.mode ?? 'bootstrap';
+  const configPalette = config && 'palette' in config ? config.palette : undefined;
 
   const common = {
     textStyle: mergeTextStyles(theme?.textStyle, config?.textStyle),
@@ -42,11 +43,8 @@ export function mergeButtonStyle(theme?: ButtonStyle, config?: ButtonStyle): But
     mode: 'bootstrap',
     ...common,
     palette:
-      config?.mode === 'bootstrap'
-        ? config.palette
-        : theme?.mode === 'bootstrap'
-          ? theme.palette
-          : undefined,
+      configPalette ??
+      (theme?.mode === 'bootstrap' ? theme.palette : undefined),
   } as BootstrapButtonStyle;
 }
 
@@ -70,6 +68,7 @@ export function getButtonStyles(config: ButtonStyle): Record<string, string> {
   if (config.border?.width) styles['border-width'] = config.border.width;
   if (config.border?.style) styles['border-style'] = config.border.style;
   if (config.radius) styles['border-radius'] = config.radius;
+  if (config.whiteSpace) styles['white-space'] = config.whiteSpace;
 
   Object.assign(styles, getSpacingStyles(config.padding, 'padding'));
 

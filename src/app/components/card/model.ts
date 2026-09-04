@@ -114,10 +114,10 @@ export interface DataCardTitleBinding {
   itemKey?: string; // se il valore BE è un array di oggetti, specifica la key dell'oggetto da usare
   joinWith?: string; // separatore da usare quando il valore BE è un array. Default: ' / '
   fallbackText?: LocalizedText; // testo da mostrare se il valore BE è null, undefined o '' (vuoto)
-  fontSize?: FontSize;
+  fontSize?: FontSize | string;
   fontWeight?: FontWeight;
   color?: ColorConfig;
-  lineHeight?: LineHeight;
+  lineHeight?: LineHeight | string;
   className?: string;
   margin?: SpacingConfig;
 }

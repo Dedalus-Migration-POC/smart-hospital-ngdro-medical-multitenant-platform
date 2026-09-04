@@ -3,6 +3,7 @@ import { HeaderConfig } from '../../layout/header/header.model';
 import { FirebaseOptions } from 'firebase/app';
 import { PageConfig } from '../../pages/page.model';
 import { BreadcrumbStyle } from '../../components/breadcrumb/model';
+import { ModalThemeStyle } from '../../components/modal/model';
 import { NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { LocalizedText } from 'src/app/shared/layout-system/models/localized.model';
 import {
@@ -16,7 +17,7 @@ import {
   FontWeight,
   ImageStyle,
   LineHeight,
-  LinkConfig,
+  LinkStyle,
   SizeConfig,
   SpacingConfig,
   TextStyle,
@@ -60,8 +61,9 @@ export interface AppConfig {
       };
     };
     buttonsStyle: ButtonStyle;
-    linksStyle: LinkConfig;
+    linksStyle: LinkStyle;
     breadcrumb?: BreadcrumbStyle;
+    modal?: ModalThemeStyle; // default condiviso da tutte le modali, sovrascrivibile da PageConfig.modals
     card?: {
       // Base theme applicate a TUTTE le card
       // mediaText e data estendono/sovrascrivono il base
@@ -101,7 +103,7 @@ export interface AppConfig {
         };
         actions?: {
           buttonStyle?: ButtonStyle;
-          linkStyle?: LinkConfig;
+          linkStyle?: LinkStyle;
         };
       };
     };
