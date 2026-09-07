@@ -15,7 +15,7 @@ import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectUserProfileData } from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { mergePdfByUrls } from '../state/actions';
-import { HealthcareUnit } from '../booking-unified.service';
+import { HealthcareUnit } from '../state/model';
 import {
   selectAvailableListToBook,
   selectBookAppointmentResponse,

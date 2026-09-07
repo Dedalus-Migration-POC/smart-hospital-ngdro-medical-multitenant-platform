@@ -1,3 +1,9 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.breadcrumb) {
+    <app-breadcrumb [config]="breadcrumbConfig()"></app-breadcrumb>
+  }
+}
+
 <section class="container py-4">
   <h1 class="h3 mb-4">{{ 'bookingTitle' | translate: { location: '' } }}</h1>
 
@@ -11,7 +17,9 @@
         >
           <img class="card-img-top" [src]="card.imageUrl" alt="" aria-hidden="true" />
           <span class="card-body">
-            <span class="card-title h5 d-block mb-0">{{ card.titleKey | translate }}</span>
+            <span class="card-title h5 d-block mb-0">{{
+              'booking-a4h.' + card.targetUrl | translate
+            }}</span>
           </span>
         </button>
       </div>

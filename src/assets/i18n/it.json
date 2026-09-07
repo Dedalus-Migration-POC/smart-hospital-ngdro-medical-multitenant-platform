@@ -443,5 +443,11 @@
         "go-bookings": "Vai alle tue prenotazioni"
       }
     }
+  },
+  "booking-a4h": {
+    "booking-with-ssn": "Prenotazione con il Servizio Sanitario Nazionale (SSN)",
+    "booking-no-doctor-select": "Prenotazione privata senza scelta del medico",
+    "booking-with-doctor-select": "Prenotazione privata con scelta del medico",
+    "physicians": "Prenotazione medici"
   }
 }

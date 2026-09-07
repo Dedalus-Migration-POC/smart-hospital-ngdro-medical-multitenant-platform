@@ -15,7 +15,7 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 import { InputComponent } from 'src/app/components/input/input.component';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { BookingUnifiedModalService } from '../../booking-unified-modal.service';
-import { MedicalService } from '../../booking-unified.service';
+import { MedicalService } from '../../state/model';
 import { BOOKING_FLOW_CODES, BookingType } from '../../models/booking-type';
 import {
   addMedicalService,

@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
 import { InputComponent } from 'src/app/components/input/input.component';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
-import { IDoctor } from '../../booking-unified.service';
+import { IDoctor } from '../../state/model';
 import { BookingType } from '../../models/booking-type';
 import {
   findForAvailableDays,

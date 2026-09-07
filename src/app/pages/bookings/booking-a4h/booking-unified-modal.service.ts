@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ModalService } from 'src/app/components/modal/modal.service';
 import { ModalActionConfig, ModalConfig } from 'src/app/components/modal/model';
 import { toLocalizedText } from 'src/app/shared/utility/text.utils';
-import { HealthcareUnit } from './booking-unified.service';
+import { HealthcareUnit } from './state/model';
 
 @Injectable({ providedIn: 'root' })
 export class BookingUnifiedModalService {

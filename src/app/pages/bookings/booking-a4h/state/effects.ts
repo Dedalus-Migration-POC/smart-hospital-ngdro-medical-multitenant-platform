@@ -10,7 +10,7 @@ import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
-import { BookingUnifiedService } from '../booking-unified.service';
+import { BookingUnifiedService } from './service';
 import * as BookingUnifiedActions from './actions';
 import {
   selectActiveStep,

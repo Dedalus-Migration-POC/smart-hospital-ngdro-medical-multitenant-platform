@@ -390,21 +390,21 @@ export const HOME = {
                 },
                 items: [
                   {
-                    id: 'vaccination-history',
+                    id: 'booking-a4h',
                     type: 'mediaText',
                     ariaLabel: {
-                      it: 'Apri storico vaccinale',
-                      en: 'Open vaccination history',
+                      it: 'Prenotazioni',
+                      en: 'Bookings',
                     },
                     action: {
                       type: 'route',
-                      url: '/storico-vaccinale',
+                      url: '/booking-a4h',
                     },
                     text: {
                       title: {
                         text: {
-                          it: 'Storico vaccinale',
-                          en: 'Vaccination history',
+                          it: 'Prenotazioni',
+                          en: 'Bookings',
                         },
                         fontSize: 'md',
                         fontWeight: 'bold',
@@ -413,8 +413,8 @@ export const HOME = {
                       },
                       subTitle: {
                         text: {
-                          it: 'Non sviluppato',
-                          en: 'Not developed',
+                          it: 'A4H',
+                          en: 'A4H',
                         },
                         fontSize: 'sm',
                         fontWeight: 'normal',
@@ -5523,6 +5523,37 @@ export const RESCHEDULE_BOOKING_HERO = {
   },
 };
 
+export const NEW_BOOKING_A4H = {
+  id: '/booking-a4h', // === url!
+  name: { it: 'Nuova Prenotazione', en: 'New Booking' }, // Nome nel browser per accessibilità
+  route: '/booking-a4h', //non serve, non lo possono cambiare
+  backgroundColor: '#ffffff', //o color o img!
+  // backgroundImage: '/assets/images/bg.svg',
+  breadcrumb: {
+    background: { fill: { hex: '#e6e8ea' } },
+    itemsStyle: { color: { hex: '#333333' } },
+    title: { text: { it: 'Nuova prenotazione', en: 'New Booking' } },
+    subTitle: {
+      text: { it: 'Crea una nuova prenotazione A4H.', en: 'Create a new A4H booking.' },
+    },
+
+    items: [
+      {
+        name: { it: 'Home', en: 'Home' },
+        routerLink: '/',
+      },
+      {
+        name: { it: 'Prenotazione A4H', en: 'A4H Bookings' },
+        routerLink: '/booking-a4h',
+      },
+      {
+        name: { it: '{{bookingType}}', en: '{{bookingType}}' },
+        routerLink: '/booking-a4h',
+      },
+    ],
+  },
+};
+
 export const APP_CONFIG: AppConfig = {
   name: 'Smart Hospital',
   favicon:
@@ -6715,5 +6746,6 @@ export const APP_CONFIG: AppConfig = {
     BOOKING_HERO_DETAILS,
     NEW_BOOKING_HERO,
     RESCHEDULE_BOOKING_HERO,
+    NEW_BOOKING_A4H,
   ],
 };

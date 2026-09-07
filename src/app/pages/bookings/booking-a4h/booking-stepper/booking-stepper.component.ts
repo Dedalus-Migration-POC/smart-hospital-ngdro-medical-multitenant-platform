@@ -23,7 +23,12 @@ import { addDays, endOfDay, formatISO, startOfDay } from 'date-fns';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { selectUserProfileData } from 'src/app/pages/user-profile/state/user-profile.selectors';
-import { HealthcareUnit, MedicalService } from '../booking-unified.service';
+import {
+  HealthcareUnit,
+  MedicalService,
+  PrescriptionServiceRequest,
+  PrescriptionSubService,
+} from '../state/model';
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 
 import { BookingStepKey, BookingType, isBookingType, stepsFor } from '../models/booking-type';
@@ -151,9 +156,9 @@ export class BookingStepperComponent implements OnInit {
   protected readonly serviceCatalog = computed(() => [
     ...this.servicesList().map((s) => ({ id: s.id, name: s.name })),
     ...(this.prescriptionSession()?.prescription.serviceRequestList ?? [])
-      .map((req) => req.service.subServices)
+      .map((req: PrescriptionServiceRequest) => req.service.subServices)
       .flat()
-      .map((s) => ({ id: s.id, name: s.name })),
+      .map((s: PrescriptionSubService) => ({ id: s.id, name: s.name })),
   ]);
 
   protected readonly selectedMedicalServicesList = computed(() =>

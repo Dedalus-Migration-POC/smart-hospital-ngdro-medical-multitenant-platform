@@ -1,12 +1,8 @@
-<it-breadcrumb separator="/">
-  <it-breadcrumb-item href="/">{{ 'home' | translate }}</it-breadcrumb-item>
-  <it-breadcrumb-item href="/booking-a4h">{{ 'booking.label' | translate }}</it-breadcrumb-item>
-  @if (bookingType(); as activeBookingType) {
-    <it-breadcrumb-item>
-      {{ flowLabels[activeBookingType] | translate }}
-    </it-breadcrumb-item>
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.breadcrumb) {
+    <app-breadcrumb [config]="breadcrumbConfig()"></app-breadcrumb>
   }
-</it-breadcrumb>
+}
 
 <router-outlet></router-outlet>
 

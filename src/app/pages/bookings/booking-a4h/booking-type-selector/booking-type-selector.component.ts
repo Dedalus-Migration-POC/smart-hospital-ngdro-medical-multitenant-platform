@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   DestroyRef,
   effect,
   inject,
@@ -11,6 +12,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Store } from '@ngrx/store';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map, take } from 'rxjs';
+import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
+import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import {
   fetchStrutture,
@@ -24,10 +29,9 @@ import {
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 import { BookingType } from '../models/booking-type';
 
-/** Landing page for `/booking-a4h`: pick which flow to start. */
 @Component({
   selector: 'app-booking-type-selector',
-  imports: [TranslateModule, DesignAngularKitModule],
+  imports: [TranslateModule, DesignAngularKitModule, Breadcrumb],
   templateUrl: './booking-type-selector.component.html',
   styleUrls: ['./booking-type-selector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,6 +47,24 @@ export class BookingTypeSelectorComponent {
   private readonly struttureLoading = this.store.selectSignal(selectStruttureLoading);
   private readonly struttureError = this.store.selectSignal(selectStruttureError);
   private readonly pendingBookingType = signal<BookingType | null>(null);
+
+  protected readonly pageConfig = toSignal(
+    this.store.select(selectAppConfig).pipe(
+      take(1),
+      map((config) => config.pages.find((page: any) => page.id === '/booking-a4h')),
+    ),
+    { initialValue: null },
+  );
+
+  protected readonly breadcrumbConfig = computed(() => {
+    const config = this.pageConfig();
+    if (!config?.breadcrumb) return null;
+
+    return {
+      ...config.breadcrumb,
+      items: config.breadcrumb.items.slice(0, -1),
+    };
+  });
 
   // Se false, la struttura viene scelta automaticamente (la prima della
   // risposta) e la modale non viene mostrata.
@@ -91,22 +113,18 @@ export class BookingTypeSelectorComponent {
 
   protected readonly cards = [
     {
-      titleKey: 'bookingCardSsn',
       imageUrl: 'assets/images/ricetta_ssn.svg',
       targetUrl: BookingType.Ssn,
     },
     {
-      titleKey: 'bookingCardPrivateNoDoc',
       imageUrl: 'assets/images/senza_scelta_medico.svg',
       targetUrl: BookingType.NoDocSelect,
     },
     {
-      titleKey: 'bookingCardPrivateWithDoc',
       imageUrl: 'assets/images/con_scelta_medico.svg',
       targetUrl: BookingType.WithDocSelect,
     },
     {
-      titleKey: 'breadcrumbs.physicians',
       imageUrl: 'assets/images/concept_medici.svg',
       targetUrl: BookingType.Physicians,
     },

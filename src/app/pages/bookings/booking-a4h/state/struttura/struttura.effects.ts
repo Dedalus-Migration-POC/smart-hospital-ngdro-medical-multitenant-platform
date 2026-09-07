@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, concatMap, map, of, withLatestFrom } from 'rxjs';
-import { BookingUnifiedService } from 'src/app/pages/bookings/booking-a4h/booking-unified.service';
+import { BookingUnifiedService } from 'src/app/pages/bookings/booking-a4h/state/service';
 import { SmartHospitalState } from '../../../../../store/reducers';
 import * as StrutturaActions from './struttura.actions';
 import { selectAllStrutture } from './struttura.selectors';

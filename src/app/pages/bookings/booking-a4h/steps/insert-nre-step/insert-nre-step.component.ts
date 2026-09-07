@@ -17,7 +17,7 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 import { InputComponent } from 'src/app/components/input/input.component';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectUserProfileData } from 'src/app/pages/user-profile/state/user-profile.selectors';
-import { BookingUnifiedService } from '../../booking-unified.service';
+import { BookingUnifiedService } from '../../state/service';
 import { NgxFormValidators } from 'src/validators';
 import { arrayBufferToBase64 } from 'src/utils/buffer-utils';
 import { findPrescriptionByNre, resetMedicalService, setNreInfo } from '../../state/actions';

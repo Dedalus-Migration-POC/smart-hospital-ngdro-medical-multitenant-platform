@@ -10,7 +10,7 @@ import {
   MedicalService,
   NreInfo,
   PrescriptionSession,
-} from '../booking-unified.service';
+} from './model';
 import { BookingType } from '../models/booking-type';
 
 export const featureKey = 'bookingUnifiedState';

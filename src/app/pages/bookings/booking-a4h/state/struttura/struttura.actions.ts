@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { HealthcareUnit } from 'src/app/pages/bookings/booking-a4h/booking-unified.service';
+import { HealthcareUnit } from 'src/app/pages/bookings/booking-a4h/state/model';
 
 export const fetchStrutture = createAction('[Struttura] Fetch Strutture');
 
