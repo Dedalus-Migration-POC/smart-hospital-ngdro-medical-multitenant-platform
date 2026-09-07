@@ -1,0 +1,50 @@
+<form class="form-display" [formGroup]="nrecfForm" (ngSubmit)="onStartBookingSession()">
+  <div class="form-container">
+    <div class="nre-cf-form-container">
+      <app-input-component
+        [formGroup]="nrecfForm"
+        fieldName="leftCode"
+        [label]="'enterLeftNRE' | translate"
+        [maxlength]="5"
+      ></app-input-component>
+
+      <app-input-component
+        [formGroup]="nrecfForm"
+        fieldName="rightCode"
+        [label]="'enterRightNRE' | translate"
+        [maxlength]="10"
+      ></app-input-component>
+
+      <app-input-component
+        [formGroup]="nrecfForm"
+        fieldName="fiscalCode"
+        [label]="'enterCf' | translate"
+        [errorMessages]="{ invalidFiscalCode: 'invalidFiscalCode' | translate }"
+      ></app-input-component>
+    </div>
+
+    <div class="nre-upload-container">
+      <img alt="uploader" src="assets/images/ricetta_NRE.svg" />
+      @if (!scanning()) {
+        <button type="button" class="btn btn-outline-primary" (click)="uploader.click()">
+          {{ 'selectPrescription' | translate | uppercase }}
+        </button>
+      }
+      <input type="file" class="d-none" #uploader title="uploader" (change)="onUpload()" />
+      @if (scanning()) {
+        <it-spinner></it-spinner>
+      }
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button
+      class="btn btn-primary button--primary"
+      type="submit"
+      [disabled]="nrecfForm.invalid"
+      blurOnClick
+    >
+      {{ 'request' | translate }}
+    </button>
+  </div>
+</form>

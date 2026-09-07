@@ -9,6 +9,8 @@ import * as fromPaymentsJcash from '../pages/payments/payments-jcash/state/reduc
 import * as fromTripletReport from '../pages/reports-and-documents/reports-by-triplet/state/reducer';
 import * as fromBookings from '../pages/bookings/bookings-ariannaCup/state/reducer';
 import * as fromBookingsHero from '../pages/bookings/bookings-hero/state/reducer';
+import * as fromBookingUnified from '../pages/bookings/booking-unified/state/reducer';
+import * as fromStruttura from '../pages/bookings/booking-unified/state/struttura/struttura.reducer';
 export interface SmartHospitalState {
   [fromInitializeApp.featureKey]: fromInitializeApp.State;
   [fromUserProfile.featureKey]: fromUserProfile.State;
@@ -20,6 +22,8 @@ export interface SmartHospitalState {
   [fromTripletReport.featureKey]: fromTripletReport.State;
   [fromBookings.featureKey]: fromBookings.State;
   [fromBookingsHero.featureKey]: fromBookingsHero.State;
+  [fromBookingUnified.featureKey]: fromBookingUnified.State;
+  [fromStruttura.featureKey]: fromStruttura.StrutturaState;
 }
 
 export const reducers: ActionReducerMap<SmartHospitalState> = {
@@ -33,7 +37,8 @@ export const reducers: ActionReducerMap<SmartHospitalState> = {
   [fromTripletReport.featureKey]: fromTripletReport.reducer,
   [fromBookings.featureKey]: fromBookings.reducer,
   [fromBookingsHero.featureKey]: fromBookingsHero.reducer,
+  [fromBookingUnified.featureKey]: fromBookingUnified.reducer,
+  [fromStruttura.featureKey]: fromStruttura.reducer,
 };
 
 export const metaReducers: MetaReducer<SmartHospitalState>[] = [];
-

@@ -1,0 +1,77 @@
+<div class="stepper-subtitle">
+  <div class="stepper-subtitle-info">
+    {{ 'servicesAlphabeticalOrder' | translate }}
+  </div>
+</div>
+
+<div class="form-container">
+  <div class="search-field-container">
+    <app-input-component
+      [control]="filterControl"
+      fieldName="medicalServiceSearch"
+      type="search"
+      [label]="'searchTitle' | translate"
+      [showErrors]="false"
+    ></app-input-component>
+    <!-- <it-checkbox
+      [checked]="(showAllServices$ | async)!"
+      (change)="isChecked()"
+      label="Mostra tutte le prestazioni della struttura"
+    ></it-checkbox> -->
+
+    <div class="selected-medical-services-conteiner">
+      @if (selectedMedicalServicesList().length) {
+        <div class="selected-medical-services-title">
+          {{ 'selectedMedicalServices' | translate }}:
+        </div>
+        @for (serv of selectedMedicalServicesList(); track serv.id) {
+          <div class="selected-medical-service">
+            &#x2022; {{ serv.name }}
+            <button
+              class="btn btn-link"
+              type="button"
+              [attr.aria-label]="'delete' | translate"
+              (click)="onServiceDelete(serv)"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        }
+      }
+    </div>
+  </div>
+
+  @if (!loading()) {
+    <div class="select-medical-service-conteiner">
+      @for (group of groupedServices(); track group.letter) {
+        <it-accordion [title]="group.letter" [opened]="true" [multi]="true">
+          @for (service of group.services; track service.id) {
+            <div class="medical-service-item">
+              <input
+                type="checkbox"
+                [id]="'selected-service' + service.id"
+                [checked]="service.isChecked"
+                [disabled]="!service.isChecked && limitReached"
+                (change)="toggleService(service.id)"
+              />
+              <label [for]="'selected-service' + service.id">{{ service.name }}</label>
+            </div>
+          }
+        </it-accordion>
+      }
+    </div>
+  } @else {
+    <it-spinner></it-spinner>
+  }
+</div>
+
+<div class="button-container">
+  <button
+    type="button"
+    class="btn btn-primary button--primary"
+    (click)="onConfirmClick()"
+    [disabled]="!selectedMedicalServicesId().length"
+  >
+    {{ 'confirm' | translate }}
+  </button>
+</div>

@@ -1,0 +1,231 @@
+@if (steps[activeStep()] === BookingStepKey.Review && expireOn()) {
+  <div class="alert alert-info" role="status">
+    {{ 'expiration-session-message' | translate }}
+  </div>
+}
+
+@if (!flag()) {
+  <h1 class="page-title">{{ pageTitle() }}</h1>
+  @if (selectedStruttura(); as struttura) {
+    <div class="struttura-chip">
+      <strong>{{ 'selectedFacility' | translate }}:</strong>
+      {{ struttura.name | titlecase }}
+      @if (struttura.address || struttura.state) {
+        <span>
+          - {{ struttura.address | titlecase }}
+          @if (struttura.state) {
+            <span>, {{ struttura.state | titlecase }}</span>
+          }
+        </span>
+      }
+    </div>
+  }
+}
+
+@if (!flag()) {
+  <it-steppers-container
+    [activeStep]="activeStep()"
+    steppersNumber="true"
+    showBackButton="false"
+    showForwardButton="false"
+  >
+    @for (step of steps; track step) {
+      <it-steppers-item [label]="stepLabel(step) | translate | uppercase" icon="locked">
+        @switch (step) {
+          @case (BookingStepKey.InsertNre) {
+            <app-insert-nre-step></app-insert-nre-step>
+          }
+
+          @case (BookingStepKey.SelectService) {
+            <app-select-service-step></app-select-service-step>
+          }
+
+          @case (BookingStepKey.SelectMedicalService) {
+            <app-select-medical-service-step
+              [bookingType]="bookingType"
+            ></app-select-medical-service-step>
+          }
+
+          @case (BookingStepKey.SelectDoctor) {
+            <app-select-doctor-step [bookingType]="bookingType"></app-select-doctor-step>
+          }
+
+          @case (BookingStepKey.DateTime) {
+            <div class="stepper-subtitle">
+              @if (isOptimized()) {
+                <div class="stepper-subtitle-info">
+                  {{ 'stepperSubtitleInfo' | translate }}
+                  @for (
+                    serviceName of selectedMedicalServicesList();
+                    track serviceName.id;
+                    let last = $last
+                  ) {
+                    <strong class="stepper-subtitle-service">
+                      {{ serviceName.name + (last ? '' : ', ') }}
+                    </strong>
+                  }
+                </div>
+              } @else {
+                <div class="stepper-subtitle-info">
+                  {{ 'stepperSubtitleInfo' | translate }}
+                  <strong class="stepper-subtitle-service">{{
+                    selectedServiceName()?.name
+                  }}</strong>
+                </div>
+              }
+
+              <div class="data-filter">
+                <div class="data-filter-title" (click)="calendarToggle.set(true)">
+                  @if (!calendarToggle()) {
+                    {{ 'filterData' | translate }}
+                  }
+                </div>
+                @if (calendarToggle()) {
+                  <div class="data-filter-calendar">
+                    <form style="display: flex; flex-direction: row" [formGroup]="rangeDate">
+                      <div class="calendar-form-field">
+                        <input
+                          type="date"
+                          class="input-calendar"
+                          formControlName="start"
+                          id="start"
+                        />
+                        <label for="start" class="calendar-input-label">{{
+                          'insertDataFrom' | translate
+                        }}</label>
+                      </div>
+                      <div class="calendar-form-field">
+                        <input type="date" class="input-calendar" formControlName="end" id="end" />
+                        <label for="end" class="calendar-input-label">{{
+                          'insertDataTo' | translate
+                        }}</label>
+                      </div>
+                    </form>
+                  </div>
+                }
+                <button
+                  type="button"
+                  class="btn btn-link p-0"
+                  (click)="calendarToggle() ? applyFilter() : calendarToggle.set(true)"
+                  aria-label="Filter"
+                >
+                  {{ 'searchTitle' | translate }}
+                </button>
+              </div>
+            </div>
+
+            @if (availableListToBook(); as availableListToBook) {
+              <div class="card-booking-services">
+                <div class="card-booking-services-title">Prestazione</div>
+                <div class="card-booking-services-container">
+                  @for (serviceToBook of availableListToBook; track serviceToBook.hash) {
+                    <div
+                      [class]="
+                        serviceToBook.status === 'BOOKED'
+                          ? 'service-booked'
+                          : serviceToBook.hash === selectedServiceName()?.hash
+                            ? 'service-in-booking'
+                            : 'service-to-book'
+                      "
+                    >
+                      {{ serviceToBook.name }}
+                      @if (serviceToBook.status === 'BOOKED') {
+                        <span class="ms-2" aria-hidden="true">✓</span>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+
+            @if (availableDays()?.appointments?.length) {
+              <div class="cards-container row g-3">
+                @for (appointment of availableDays()?.appointments; track appointment.id) {
+                  <div class="col-12 col-md-6 col-xl-4">
+                    <button
+                      type="button"
+                      class="card h-100 w-100 text-start"
+                      (click)="onAppointmentClick(appointment.id)"
+                    >
+                      <span class="card-body">
+                        <span class="d-block fw-semibold">{{
+                          appointment.dateTime | date: 'dd/MM/yyyy ' : 'GMT'
+                        }}</span>
+                        <span>{{ appointment.dateTime | date: 'HH:mm' : 'GMT' }}</span>
+                      </span>
+                    </button>
+                  </div>
+                }
+              </div>
+            } @else {
+              <div class="d-flex justify-content-center">
+                @if (rangeDate.getRawValue().start || rangeDate.getRawValue().end) {
+                  <img
+                    style="margin-right: 2rem"
+                    alt="no-availabilities"
+                    src="assets/images/icon_popup_attention.svg"
+                  />
+                  <h5
+                    style="color: #000; text-align: center"
+                    [innerHTML]="
+                      'appointments.edit-page.noAvailabilities'
+                        | translate
+                          : {
+                              dateFrom: rangeDate.getRawValue().start || currentDate | date,
+                              dateTo: rangeDate.getRawValue().end || currentDate | date,
+                            }
+                    "
+                  ></h5>
+                }
+              </div>
+              @if (!rangeDate.getRawValue().start && !rangeDate.getRawValue().end) {
+                <h5 style="color: #000; text-align: center">
+                  {{ 'emptyAvailableDaysList' | translate }}
+                </h5>
+              }
+            }
+          }
+
+          @case (BookingStepKey.Review) {
+            <div class="summary-card-container">
+              <div class="card">
+                <div class="card-body">
+                  <h2 class="h5">{{ 'appointmentSummary' | translate }}</h2>
+                  @if (bookingSummary(); as summary) {
+                    <p class="mb-1">{{ summary.dateTime | date: 'dd/MM/yyyy HH:mm' : 'GMT' }}</p>
+                    @if (selectedStruttura(); as struttura) {
+                      <p class="mb-1">{{ struttura.name | titlecase }}</p>
+                    }
+                    @if (summary.location.description) {
+                      <p class="mb-1">{{ summary.location.description }}</p>
+                    }
+                  }
+                  <div class="d-flex gap-2 mt-3">
+                    <button type="button" class="btn btn-primary" (click)="onSubmit()">
+                      {{ 'confirm' | translate }}
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">
+                      {{ 'cancel' | translate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        }
+      </it-steppers-item>
+    }
+  </it-steppers-container>
+}
+
+<div class="booking-login-wrapper">
+  <router-outlet></router-outlet>
+</div>
+
+@if (!flag()) {
+  <div class="button-container">
+    <button type="button" class="btn btn-outline-secondary" (click)="onBackClick()">
+      {{ 'back' | translate }}
+    </button>
+  </div>
+}

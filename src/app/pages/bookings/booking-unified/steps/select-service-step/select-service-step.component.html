@@ -1,0 +1,58 @@
+@if (servicesList(); as servicesList) {
+  @if (showAlert()) {
+    <div class="services-alert">
+      <div class="d-flex justify-content-center align-items-center">
+        <img alt="attention" src="assets/images/icon_popup_attention.svg" />
+        <div class="services-alert-header">
+          {{ 'servicesAlertHeader' | translate }}
+        </div>
+      </div>
+      <div class="services-alert-text">
+        {{ 'servicesAlertContent' | translate }}
+      </div>
+    </div>
+  }
+
+  <form [formGroup]="form">
+    @for (
+      service of servicesList.prescription.serviceRequestList;
+      track service.id;
+      let serviceIndex = $index
+    ) {
+      <div class="select-service-container">
+        <h2 class="service-name">{{ service.service.name | titlecase }}</h2>
+        <div class="subServices-container">
+          @for (subService of service.service.subServices; track subService.id) {
+            <div class="subServices-select">
+              <input
+                type="radio"
+                [name]="subService.id + '(' + serviceIndex + ')'"
+                [checked]="
+                  form.value.selectedPrescriptions &&
+                  form.value.selectedPrescriptions[
+                    service.service.id + '(' + serviceIndex + ')'
+                  ] === subService.id
+                "
+                (change)="
+                  toggleService(service.service.id + '(' + serviceIndex + ')', subService.id)
+                "
+              />
+              <label [for]="subService.id + '(' + serviceIndex + ')'">{{ subService.name }}</label>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </form>
+}
+
+<div class="button-container">
+  <button
+    type="button"
+    class="btn btn-primary button--primary"
+    (click)="onConfirmClick()"
+    [disabled]="form.invalid"
+  >
+    {{ 'confirm' | translate }}
+  </button>
+</div>

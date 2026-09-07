@@ -1,0 +1,18 @@
+.doctor-item {
+  padding: 0.5rem 0;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 100%;
+  justify-content: space-around;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}

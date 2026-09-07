@@ -102,6 +102,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'booking-unified',
+    canActivate: [authenticatedGuard()],
+    loadChildren: () =>
+      import('./pages/bookings/booking-unified/booking-unified.routes').then(
+        (m) => m.bookingUnifiedRoutes,
+      ),
+  },
+  {
     path: 'payments-jcash',
     component: PaymentsJcashRouting,
     canActivate: [authenticatedGuard()],

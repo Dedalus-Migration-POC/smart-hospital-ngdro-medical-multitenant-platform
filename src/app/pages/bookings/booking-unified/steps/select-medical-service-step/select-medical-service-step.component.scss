@@ -1,0 +1,119 @@
+.medical-service-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+::ng-deep it-steppers-container {
+  .steppers .steppers-header ul {
+    background-color: #f1f9fc;
+    li {
+      font-size: 1rem;
+    }
+    li.active {
+      color: #0d4d8d;
+
+      .steppers-number {
+        background: #0d4d8d;
+        border-color: #0d4d8d;
+        color: #fff;
+
+        svg {
+          fill: #fff;
+        }
+      }
+    }
+    li.confirmed {
+      color: #0d4d8d;
+
+      .steppers-number {
+        background: #0d4d8d;
+        border-color: #0d4d8d;
+        color: #fff;
+
+        svg {
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .booking-login-wrapper {
+  it-breadcrumb {
+    display: none;
+  }
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 100%;
+  justify-content: space-around;
+  margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+  .search-field-container {
+    width: 30%;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    .selected-medical-services-conteiner {
+      background-color: #f1f9fc;
+      padding: 1rem;
+      .selected-medical-services-title {
+        color: #0d4d8d;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .selected-medical-service {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  }
+  .select-medical-service-conteiner {
+    width: 50%;
+    max-height: 50vh;
+    overflow: auto;
+    margin-top: 20px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
+
+.stepper-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  .stepper-subtitle-info {
+    font-family: 'TitilliumWeb-Regular';
+    font-size: 24px;
+    font-weight: 400;
+    margin-right: 4rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    .stepper-subtitle-info {
+      margin-right: 0;
+    }
+  }
+}
+
+.button-container {
+  margin-top: 6rem;
+  display: flex;
+  width: fit-content;
+  justify-self: right;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}

@@ -1,0 +1,51 @@
+<div class="stepper-subtitle">
+  <div class="stepper-subtitle-info">{{ 'doctorsList' | translate }}</div>
+</div>
+
+<div class="form-container">
+  <div class="search-field-container">
+    <app-input-component
+      [control]="filterControl"
+      fieldName="doctorSearch"
+      type="search"
+      [label]="'searchTitle' | translate"
+      [showErrors]="false"
+    ></app-input-component>
+  </div>
+
+  @if (!isLoading()) {
+    <div class="select-medical-service-conteiner">
+      @if (bookingType() === BookingType.Physicians) {
+        @for (group of groupedDoctors(); track group.letter) {
+          <it-accordion [title]="group.letter" [opened]="true" [multi]="true">
+            <div class="d-flex flex-column">
+              @for (doctor of group.doctors; track doctor.id) {
+                <button
+                  type="button"
+                  class="doctor-item btn btn-link text-start"
+                  (click)="toggleDoctor(doctor)"
+                >
+                  {{ doctor.description + ' ' + doctor.lastName + ' ' + doctor.firstName }}
+                </button>
+              }
+            </div>
+          </it-accordion>
+        }
+      } @else {
+        @for (doctor of filteredDoctors(); track doctor.id) {
+          <div class="d-flex flex-column">
+            <button
+              type="button"
+              class="doctor-item btn btn-link text-start"
+              (click)="toggleDoctor(doctor)"
+            >
+              {{ doctor.description + ' ' + doctor.lastName + ' ' + doctor.firstName }}
+            </button>
+          </div>
+        }
+      }
+    </div>
+  } @else {
+    <it-spinner></it-spinner>
+  }
+</div>

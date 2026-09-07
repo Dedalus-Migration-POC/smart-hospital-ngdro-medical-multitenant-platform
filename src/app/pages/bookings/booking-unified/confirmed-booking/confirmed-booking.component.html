@@ -1,0 +1,50 @@
+<h1 class="page-title">{{ 'bookingResultTitle' | translate }}</h1>
+
+<div class="confirmed-info-container">
+  <span aria-hidden="true">✓</span>
+  {{ 'bookingConfirm.bookingConfirm' | translate }}
+</div>
+
+@if (user(); as activeUser) {
+  <div class="confirmed-info-email">
+    {{ ('bookingConfirm.emailConfirm' | translate) + ' ' + activeUser.email }}
+  </div>
+
+  <div class="confirmed-info-pay">
+    {{ 'bookingConfirm.payConfirm' | translate }}
+  </div>
+}
+
+<div class="summary-card-container">
+  @for (summary of bookingSummary(); track summary.id) {
+    <div class="card mb-3">
+      <div class="card-body">
+        <h2 class="h5">{{ 'appointmentSummary' | translate }}</h2>
+        @if (selectedStruttura(); as struttura) {
+          <p class="mb-1">{{ struttura.name | titlecase }}</p>
+        }
+        <p class="mb-1">{{ summary.dateTime | date: 'dd/MM/yyyy HH:mm' : 'GMT' }}</p>
+        @if (summary.location?.description) {
+          <p class="mb-0">{{ summary.location.description }}</p>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+@if (downloadLink(); as activeDownloadLink) {
+  <div class="pdf-info-container">
+    <p>
+      {{ 'bookingConfirm.load' | translate }}
+      <a class="link-to-preparation" (click)="onDownload(activeDownloadLink)" target="_blank">
+        {{ 'bookingConfirm.preparationRules' | translate }}</a
+      >
+    </p>
+  </div>
+}
+
+<div class="button-container">
+  <button type="button" class="btn btn-primary button--primary" routerLink="/payments-pa">
+    {{ 'goToPayments' | translate }}
+  </button>
+</div>
