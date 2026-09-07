@@ -33,6 +33,8 @@ export interface ModalThemeStyle extends ModalStyle {
   scrollable?: boolean;
   fullscreen?: ModalFullscreen;
   backdrop?: boolean;
+  backdropColor?: string;
+  backdropOpacity?: number;
   keyboard?: boolean;
 }
 
@@ -68,5 +70,7 @@ export interface ModalConfig extends ModalStyle {
   scrollable?: boolean; // rende scrollabile solo il body della modale
   fullscreen?: ModalFullscreen; // sm, md, lg, xl e xxl corrispondono alle classi *-down
   backdrop?: boolean; // true impedisce la chiusura al click esterno (backdrop statico)
+  backdropColor?: string; // colore dello sfondo dietro la modale, default nero
+  backdropOpacity?: number; // opacita dello sfondo dietro la modale, default 0.5
   keyboard?: boolean; // false impedisce la chiusura con il tasto Esc, default true
 }

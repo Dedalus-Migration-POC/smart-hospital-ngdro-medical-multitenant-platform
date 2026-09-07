@@ -16,10 +16,12 @@ export class ModalService {
 
   private modalRef: ComponentRef<ModalComponent> | null = null;
   private viewContainerRef: ViewContainerRef | null = null;
+  private onClose?: () => void;
 
   // viene passata la config completa, se non c e quella specifica della pagina usa la config di default del tema
-  open(viewContainerRef: ViewContainerRef, config: ModalConfig) {
+  open(viewContainerRef: ViewContainerRef, config: ModalConfig, onClose?: () => void) {
     const componentRef = this.createModal(viewContainerRef);
+    this.onClose = onClose;
     componentRef.setInput('config', this.mergeWithTheme(config));
   }
 
@@ -27,6 +29,9 @@ export class ModalService {
     if (this.modalRef && this.viewContainerRef) {
       this.viewContainerRef.clear();
       this.modalRef = null;
+      const onClose = this.onClose;
+      this.onClose = undefined;
+      onClose?.();
     }
   }
 
@@ -39,53 +44,6 @@ export class ModalService {
     const componentRef = this.viewContainerRef.createComponent(ModalComponent);
     this.modalRef = componentRef;
     return componentRef;
-  }
-
-  private mergePageModalConfig(
-    pageConfig: Partial<ModalConfig> | undefined,
-    overrides: Partial<ModalConfig> = {},
-  ): ModalConfig {
-    const mergedHeader = {
-      ...pageConfig?.header,
-      ...overrides.header,
-      title: {
-        ...pageConfig?.header?.title,
-        ...overrides.header?.title,
-      },
-    };
-
-    const mergedBody = {
-      ...pageConfig?.body,
-      ...overrides.body,
-      text: {
-        ...pageConfig?.body?.text,
-        ...overrides.body?.text,
-      },
-    };
-
-    const mergedFooter = {
-      ...pageConfig?.footer,
-      ...overrides.footer,
-      actions: overrides.footer?.actions ?? pageConfig?.footer?.actions,
-    };
-
-    return {
-      ...pageConfig,
-      ...overrides,
-      centered: overrides.centered ?? pageConfig?.centered,
-      scrollable: overrides.scrollable ?? pageConfig?.scrollable,
-      fullscreen: overrides.fullscreen ?? pageConfig?.fullscreen,
-      shadow: overrides.shadow ?? pageConfig?.shadow,
-      backdrop: overrides.backdrop ?? pageConfig?.backdrop,
-      keyboard: overrides.keyboard ?? pageConfig?.keyboard,
-      background: overrides.background ?? pageConfig?.background,
-      border: overrides.border ?? pageConfig?.border,
-      padding: overrides.padding ?? pageConfig?.padding,
-      size: overrides.size ?? pageConfig?.size,
-      header: mergedHeader,
-      body: mergedBody,
-      footer: mergedFooter,
-    } as ModalConfig;
   }
 
   // Applica il default del tema generale (AppConfig.theme.modal) dove la config di pagina/componente
@@ -104,6 +62,8 @@ export class ModalService {
       scrollable: config.scrollable ?? theme.scrollable,
       fullscreen: config.fullscreen ?? theme.fullscreen,
       backdrop: config.backdrop ?? theme.backdrop,
+      backdropColor: config.backdropColor ?? theme.backdropColor,
+      backdropOpacity: config.backdropOpacity ?? theme.backdropOpacity,
       keyboard: config.keyboard ?? theme.keyboard,
       header: {
         ...config.header,

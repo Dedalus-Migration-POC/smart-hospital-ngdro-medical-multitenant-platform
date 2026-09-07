@@ -5621,6 +5621,8 @@ export const APP_CONFIG: AppConfig = {
       centered: false,
       shadow: '0 2px 10px 0 rgba(0, 0, 0, 0.1)',
       backdrop: true,
+      backdropColor: '#000000',
+      backdropOpacity: 0.5,
       keyboard: false,
       border: {
         width: '1px',
@@ -5816,11 +5818,11 @@ export const APP_CONFIG: AppConfig = {
         <a aria-label="learn more about our terms of service" tabindex="2" class="cc-link" href="{{tosHref}}" target="_blank" rel="noopener">{{tosLink}}</a>
       </span>
       <span id="cookieconsent:desc" class="cc-message">{{message}}
-      <a aria-label="learn more about cookies" tabindex="0" class="cookie_policy_link" id='show_cookie_policy_info' type="button" itButton="outline-primary" data-bs-toggle="modal" data-bs-target="#show_cookie_policy_modal">{{policy}} - MODALE</a>
+      <button aria-label="learn more about cookies" class="cookie_policy_link btn btn-link p-0" id="show_cookie_policy_info" type="button">{{policy}} - MODALE</button>
     </span>
 
     <span id="cookieconsent:desc" class="cc-message">{{message}}
-      <a aria-label="learn more about cookies" tabindex="0" class="cookie_policy_link_pdf" id='show_cookie_policy_pdf' type="button" itButton="outline-primary" >{{policy}} - PDF</a>
+      <button aria-label="learn more about cookies" class="cookie_policy_link_pdf btn btn-link p-0" id="show_cookie_policy_pdf" type="button">{{policy}} - PDF</button>
     </span>
       `,
     },
@@ -5846,12 +5848,43 @@ export const APP_CONFIG: AppConfig = {
       tosLink: { it: 'Terms of Service IT', en: 'Terms of Service EN' },
     },
     cookieConsentModal: {
-      title: { it: 'Titolo IT', en: 'Title EN' },
-      text: {
-        it: "Il nostro sito utilizza esclusivamente cookie tecnici obbligatori, necessari per garantire il corretto funzionamento del sito e fornire i servizi richiesti dagli utenti. <br /><br /> Questi cookie non richiedono il consenso dell'utente, in quanto essenziali per: <br /> La navigazione e la fruizione del sito web<br /> La gestione della sessione e l’autenticazione (se prevista)<br /> La memorizzazione delle preferenze dell'utente (ad esempio, lingua o impostazioni di accessibilità)<br />La sicurezza del sito e la prevenzione di frodi<br /><br />Questi cookie non raccolgono informazioni personali né vengono utilizzati per finalità di marketing. Se disabilitati, il sito potrebbe non funzionare correttamente.",
-        en: 'Our site uses only strictly necessary technical cookies, required to ensure the proper functioning of the site and to provide the services requested by users. <br /><br /> These cookies do not require user consent, as they are essential for: <br /> Browsing and using the website<br /> Session management and authentication (if applicable)<br /> Storing user preferences (e.g., language or accessibility settings)<br /> Website security and fraud prevention<br /><br /> These cookies do not collect personal information nor are they used for marketing purposes. If disabled, the site may not function correctly.',
+      openerId: 'show_cookie_policy_info',
+      header: {
+        background: {
+          fill: { hex: '#a53e3e' },
+        },
+        padding: {
+          all: '8px',
+        },
+        title: {
+          text: { it: 'Titolo IT', en: 'Title EN' },
+        },
       },
-      closeButtonText: { it: 'Chiudi', en: 'Close' },
+      body: {
+        background: {
+          fill: { hex: '#345678' },
+        },
+        text: {
+          text: {
+            it: "Il nostro sito utilizza esclusivamente cookie tecnici obbligatori, necessari per garantire il corretto funzionamento del sito e fornire i servizi richiesti dagli utenti. <br /><br /> Questi cookie non richiedono il consenso dell'utente, in quanto essenziali per: <br /> La navigazione e la fruizione del sito web<br /> La gestione della sessione e l’autenticazione (se prevista)<br /> La memorizzazione delle preferenze dell'utente (ad esempio, lingua o impostazioni di accessibilità)<br />La sicurezza del sito e la prevenzione di frodi<br /><br />Questi cookie non raccolgono informazioni personali né vengono utilizzati per finalità di marketing. Se disabilitati, il sito potrebbe non funzionare correttamente.",
+            en: 'Our site uses only strictly necessary technical cookies, required to ensure the proper functioning of the site and to provide the services requested by users. <br /><br /> These cookies do not require user consent, as they are essential for: <br /> Browsing and using the website<br /> Session management and authentication (if applicable)<br /> Storing user preferences (e.g., language or accessibility settings)<br /> Website security and fraud prevention<br /><br /> These cookies do not collect personal information nor are they used for marketing purposes. If disabled, the site may not function correctly.',
+          },
+        },
+      },
+      footer: {
+        actions: [
+          {
+            button: {
+              mode: 'bootstrap',
+              palette: 'info',
+              outline: true,
+              text: {
+                text: { it: 'Chiudi', en: 'Close' },
+              },
+            },
+          },
+        ],
+      },
     },
     cookieConsentOpenPdf: {
       url: 'https://pdfobject.com/pdf/sample.pdf',
