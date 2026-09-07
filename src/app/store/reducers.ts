@@ -9,8 +9,8 @@ import * as fromPaymentsJcash from '../pages/payments/payments-jcash/state/reduc
 import * as fromTripletReport from '../pages/reports-and-documents/reports-by-triplet/state/reducer';
 import * as fromBookings from '../pages/bookings/bookings-ariannaCup/state/reducer';
 import * as fromBookingsHero from '../pages/bookings/bookings-hero/state/reducer';
-import * as fromBookingUnified from '../pages/bookings/booking-unified/state/reducer';
-import * as fromStruttura from '../pages/bookings/booking-unified/state/struttura/struttura.reducer';
+import * as fromBookingUnified from '../pages/bookings/booking-a4h/state/reducer';
+import * as fromStruttura from '../pages/bookings/booking-a4h/state/struttura/struttura.reducer';
 export interface SmartHospitalState {
   [fromInitializeApp.featureKey]: fromInitializeApp.State;
   [fromUserProfile.featureKey]: fromUserProfile.State;

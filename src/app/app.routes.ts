@@ -102,10 +102,10 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'booking-unified',
+    path: 'booking-a4h',
     canActivate: [authenticatedGuard()],
     loadChildren: () =>
-      import('./pages/bookings/booking-unified/booking-unified.routes').then(
+      import('./pages/bookings/booking-a4h/booking-unified.routes').then(
         (m) => m.bookingUnifiedRoutes,
       ),
   },

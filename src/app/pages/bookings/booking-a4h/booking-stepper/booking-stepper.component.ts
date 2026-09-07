@@ -21,7 +21,7 @@ import { filter, take } from 'rxjs';
 import { addDays, endOfDay, formatISO, startOfDay } from 'date-fns';
 
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-unified/state/struttura/struttura.selectors';
+import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { selectUserProfileData } from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { HealthcareUnit, MedicalService } from '../booking-unified.service';
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
@@ -227,7 +227,7 @@ export class BookingStepperComponent implements OnInit {
           });
         });
       } else if (this.bookingType) {
-        this.router.navigate(['booking-unified', this.bookingType, 'confirmed-booking']);
+        this.router.navigate(['booking-a4h', this.bookingType, 'confirmed-booking']);
       }
     });
   }
@@ -314,7 +314,7 @@ export class BookingStepperComponent implements OnInit {
       }
       this.store.dispatch(setActiveStep({ step: this.activeStep() - 1 }));
     } else {
-      this.router.navigate(['booking-unified']);
+      this.router.navigate(['booking-a4h']);
     }
   }
 
@@ -346,6 +346,6 @@ export class BookingStepperComponent implements OnInit {
       }),
     );
     this.store.dispatch(resetState());
-    this.router.navigate(['booking-unified']);
+    this.router.navigate(['booking-a4h']);
   }
 }

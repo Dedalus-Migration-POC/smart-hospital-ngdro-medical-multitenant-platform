@@ -10,7 +10,7 @@ import { TitleCasePipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-unified/state/struttura/struttura.selectors';
+import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { addMedicalService, findForAvailableDays, resetMedicalService } from '../../state/actions';
 import { selectFindPrescriptionByNre } from '../../state/selectors';
 

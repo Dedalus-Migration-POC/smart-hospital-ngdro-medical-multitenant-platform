@@ -6,8 +6,8 @@ import { SingleReportEffects } from '../pages/reports-and-documents/single-repor
 import { UserProfileEffects } from '../pages/user-profile/state/user-profile.effects';
 import { BookingsEffects } from '../pages/bookings/bookings-ariannaCup/state/effects';
 import { BookingsHeroEffects } from '../pages/bookings/bookings-hero/state/effects';
-import { BookingUnifiedEffects } from '../pages/bookings/booking-unified/state/effects';
-import { StrutturaEffects } from '../pages/bookings/booking-unified/state/struttura/struttura.effects';
+import { BookingUnifiedEffects } from '../pages/bookings/booking-a4h/state/effects';
+import { StrutturaEffects } from '../pages/bookings/booking-a4h/state/struttura/struttura.effects';
 
 export const effects = [
   UserProfileEffects,

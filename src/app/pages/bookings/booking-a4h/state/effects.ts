@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-unified/state/struttura/struttura.selectors';
+import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 import { BookingUnifiedService } from '../booking-unified.service';
@@ -370,7 +370,7 @@ export class BookingUnifiedEffects {
                 take(1),
                 tap((isOptimized) => {
                   if (isOptimized) {
-                    this.router.navigate(['booking-unified', bookingType, 'confirmed-booking']);
+                    this.router.navigate(['booking-a4h', bookingType, 'confirmed-booking']);
                     this.store.dispatch(BookingUnifiedActions.resetState());
                   } else {
                     combineLatest([

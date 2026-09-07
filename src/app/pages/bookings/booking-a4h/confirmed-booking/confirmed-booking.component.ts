@@ -13,7 +13,7 @@ import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectUserProfileData } from 'src/app/pages/user-profile/state/user-profile.selectors';
-import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-unified/state/struttura/struttura.selectors';
+import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { mergePdfByUrls } from '../state/actions';
 import { HealthcareUnit } from '../booking-unified.service';
 import {
@@ -80,7 +80,7 @@ export class ConfirmedBookingComponent {
     });
 
     effect(() => {
-      if (!this.bookingSummary().length) this.router.navigate(['/booking-unified']);
+      if (!this.bookingSummary().length) this.router.navigate(['/booking-a4h']);
     });
   }
 

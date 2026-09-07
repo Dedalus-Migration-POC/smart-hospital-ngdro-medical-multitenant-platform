@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { HealthcareUnit } from 'src/app/pages/bookings/booking-unified/booking-unified.service';
+import { HealthcareUnit } from 'src/app/pages/bookings/booking-a4h/booking-unified.service';
 import * as StrutturaActions from './struttura.actions';
 
 export const featureKey = 'strutturaState';

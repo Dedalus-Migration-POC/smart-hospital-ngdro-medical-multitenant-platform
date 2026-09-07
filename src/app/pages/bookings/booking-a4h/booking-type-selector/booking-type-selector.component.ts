@@ -15,16 +15,16 @@ import { SmartHospitalState } from 'src/app/store/reducers';
 import {
   fetchStrutture,
   setSelectedStruttura,
-} from 'src/app/pages/bookings/booking-unified/state/struttura/struttura.actions';
+} from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.actions';
 import {
   selectAllStrutture,
   selectStruttureError,
   selectStruttureLoading,
-} from 'src/app/pages/bookings/booking-unified/state/struttura/struttura.selectors';
+} from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 import { BookingType } from '../models/booking-type';
 
-/** Landing page for `/booking-unified`: pick which flow to start. */
+/** Landing page for `/booking-a4h`: pick which flow to start. */
 @Component({
   selector: 'app-booking-type-selector',
   imports: [TranslateModule, DesignAngularKitModule],
