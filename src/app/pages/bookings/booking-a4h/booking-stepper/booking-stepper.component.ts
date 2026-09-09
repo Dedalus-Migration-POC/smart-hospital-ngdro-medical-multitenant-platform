@@ -61,6 +61,7 @@ import { InsertNreStepComponent } from '../steps/insert-nre-step/insert-nre-step
 import { SelectDoctorStepComponent } from '../steps/select-doctor-step/select-doctor-step.component';
 import { SelectMedicalServiceStepComponent } from '../steps/select-medical-service-step/select-medical-service-step.component';
 import { SelectServiceStepComponent } from '../steps/select-service-step/select-service-step.component';
+import { DateTimeStepComponent } from '../steps/date-time-step/date-time-step.component';
 
 /** Translation key for the page title of each step, independent of its numeric index. */
 const STEP_TITLE_KEY: Record<BookingStepKey, string> = {
@@ -102,6 +103,7 @@ const STEP_LABEL_KEY: Record<BookingStepKey, string> = {
     SelectServiceStepComponent,
     SelectMedicalServiceStepComponent,
     SelectDoctorStepComponent,
+    DateTimeStepComponent,
   ],
   templateUrl: './booking-stepper.component.html',
   styleUrls: ['./booking-stepper.component.scss'],
@@ -120,12 +122,10 @@ export class BookingStepperComponent implements OnInit {
   protected steps: BookingStepKey[] = [];
   protected readonly activeStep = this.store.selectSignal(selectActiveStep);
   protected readonly flag = signal(false);
-  protected readonly calendarToggle = signal(false);
   private readonly sessionId = signal<string | undefined>(undefined);
   protected readonly selectedServiceName = signal<
     { id: string; name?: string; hash?: string } | undefined
   >(undefined);
-  protected readonly currentDate = new Date();
   private selectedUnitId: string | undefined;
   private selectedDoctorId: string | undefined;
 
@@ -239,11 +239,12 @@ export class BookingStepperComponent implements OnInit {
 
   pageTitle(): string {
     const key = STEP_TITLE_KEY[this.steps[this.activeStep()]];
-    return key ? this.translate.instant(key) : '';
+    return key ? this.translate.instant('booking-a4h.' + key) : '';
   }
 
   stepLabel(step: BookingStepKey): string {
-    return STEP_LABEL_KEY[step] ?? '';
+    const key = STEP_LABEL_KEY[step];
+    return key ? this.translate.instant('booking-a4h.stepsTitle.' + key) : '';
   }
 
   ngOnInit(): void {
@@ -261,13 +262,13 @@ export class BookingStepperComponent implements OnInit {
     }
   }
 
-  applyFilter() {
+  applyFilter(range: { start: string | null; end: string | null } = this.rangeDate.getRawValue()) {
     this.store.dispatch(
       findForAvailableDays({
         payload: {
           sessionId: this.sessionId()!,
-          from: startOfDay(new Date(this.rangeDate.getRawValue().start ?? Date.now())),
-          to: endOfDay(new Date(this.rangeDate.getRawValue().end ?? Date.now())),
+          from: startOfDay(new Date(range.start ?? Date.now())),
+          to: endOfDay(new Date(range.end ?? Date.now())),
           serviceIds: this.selectedMedicalServicesId(),
           unitId: this.selectedUnitId ? [this.selectedUnitId] : undefined,
           physicianId: this.selectedDoctorId,

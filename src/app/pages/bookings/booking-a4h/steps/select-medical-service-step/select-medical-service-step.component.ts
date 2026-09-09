@@ -5,6 +5,7 @@ import {
   inject,
   input,
   OnInit,
+  output,
   signal,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +31,7 @@ import {
   selectServicesListLoading,
   selectServicesVisibility,
 } from '../../state/selectors';
+import { Spinner } from 'src/app/components/spinner/spinner';
 
 /** Max simultaneous services a citizen can pick when no physician is pre-selected. */
 const MAX_SERVICES_WITHOUT_DOCTOR = 8;
@@ -41,12 +43,13 @@ const MAX_SERVICES_WITHOUT_DOCTOR = 8;
  */
 @Component({
   selector: 'app-select-medical-service-step',
-  imports: [ReactiveFormsModule, TranslateModule, DesignAngularKitModule, InputComponent],
+  imports: [ReactiveFormsModule, TranslateModule, DesignAngularKitModule, InputComponent, Spinner],
   templateUrl: './select-medical-service-step.component.html',
   styleUrls: ['./select-medical-service-step.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectMedicalServiceStepComponent implements OnInit {
+  protected readonly back = output<void>();
   readonly bookingType = input<BookingType | null>(null);
 
   protected readonly BookingType = BookingType;
@@ -133,10 +136,20 @@ export class SelectMedicalServiceStepComponent implements OnInit {
   }
 
   onConfirmClick() {
-    this.store.dispatch(
-      createSession({
-        payload: { serviceIds: this.selectedMedicalServicesId() },
-      }),
-    );
+    const services = this.selectedMedicalServicesList()
+      .map((service) => `&#x2022; ${service.name}`)
+      .join('<br>');
+
+    this.modalService.openConfirm({
+      titleKey: 'booking-a4h.selectService.confirmModal.title',
+      bodyKey: 'booking-a4h.selectService.confirmModal.body',
+      bodyParams: { services },
+      onConfirm: () =>
+        this.store.dispatch(
+          createSession({
+            payload: { serviceIds: this.selectedMedicalServicesId() },
+          }),
+        ),
+    });
   }
 }

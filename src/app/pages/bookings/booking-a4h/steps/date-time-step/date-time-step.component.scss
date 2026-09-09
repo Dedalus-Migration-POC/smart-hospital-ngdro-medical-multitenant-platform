@@ -1,0 +1,87 @@
+.stepper-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .stepper-subtitle-info {
+      margin-right: 0;
+    }
+  }
+}
+
+.data-filter {
+  display: flex;
+  color: #0d4d8d;
+
+  @media (max-width: 768px) {
+    align-self: end;
+    margin-top: 2rem;
+  }
+
+  .data-filter-title {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+    text-wrap: nowrap;
+  }
+}
+
+.data-filter-calendar {
+  display: flex;
+  flex-direction: row;
+
+  form {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.card-booking-services {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+  padding: 1rem;
+  margin-bottom: 3rem;
+  width: fit-content;
+
+  .card-booking-services-title {
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+    align-self: baseline;
+    margin-right: 1rem;
+  }
+
+  .card-booking-services-container {
+    display: flex;
+    flex-direction: column;
+
+    .service-booked {
+      color: green;
+    }
+
+    .service-in-booking {
+      color: #0d4d8d;
+      text-decoration: underline;
+    }
+  }
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-container {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  bottom: 0;
+}

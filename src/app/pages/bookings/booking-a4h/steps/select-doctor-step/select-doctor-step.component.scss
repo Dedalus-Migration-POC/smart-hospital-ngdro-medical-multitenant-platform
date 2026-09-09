@@ -16,3 +16,19 @@
     flex-direction: column;
   }
 }
+.select-medical-service-conteiner {
+  width: 50%;
+  max-height: 50vh;
+  overflow: auto;
+  margin-top: 20px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+}

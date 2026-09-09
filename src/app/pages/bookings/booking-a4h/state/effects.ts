@@ -63,6 +63,11 @@ export class BookingUnifiedEffects {
       concatMap(([action, bookingType]) =>
         this.bookingService.findPrescriptionByNre(action.payload).pipe(
           map((data) => {
+            if (!data) {
+              this.notifyError('commons.error', 'commons.generic-error');
+              return BookingUnifiedActions.findPrescriptionByNreSuccess({ data });
+            }
+
             this.store.dispatch(
               BookingUnifiedActions.setActiveStep({
                 step: this.stepIndex(bookingType, BookingStepKey.SelectService),

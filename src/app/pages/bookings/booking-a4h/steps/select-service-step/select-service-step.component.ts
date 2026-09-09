@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  output,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -23,6 +30,7 @@ import { selectFindPrescriptionByNre } from '../../state/selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectServiceStepComponent {
+  protected readonly back = output<void>();
   private readonly store = inject(Store<SmartHospitalState>);
   protected readonly servicesList = this.store.selectSignal(selectFindPrescriptionByNre);
   private readonly selectedStruttura = this.store.selectSignal(selectSelectedStruttura);

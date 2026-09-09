@@ -1,0 +1,142 @@
+<div class="stepper-subtitle">
+  @if (isOptimized()) {
+    <div class="stepper-subtitle-info">
+      {{ 'stepperSubtitleInfo' | translate }}
+      @for (serviceName of selectedMedicalServices(); track serviceName.id; let last = $last) {
+        <strong class="stepper-subtitle-service">
+          {{ serviceName.name + (last ? '' : ', ') }}
+        </strong>
+      }
+    </div>
+  } @else {
+    <div class="stepper-subtitle-info">
+      {{ 'stepperSubtitleInfo' | translate }}
+      <strong class="stepper-subtitle-service">{{ selectedService()?.name }}</strong>
+    </div>
+  }
+
+  <div class="data-filter">
+    <div class="data-filter-title" (click)="openCalendar()">
+      @if (!calendarToggle()) {
+        {{ 'booking-a4h.dateTime.filterData' | translate }}
+      }
+    </div>
+    @if (calendarToggle()) {
+      <div class="data-filter-calendar">
+        <form [formGroup]="rangeDate">
+          <div class="">
+            <app-input-component
+              [control]="rangeDate.controls.start"
+              fieldName="start"
+              type="date"
+              inputClass="form-control input-calendar"
+              wrapperClass=""
+              [label]="'booking-a4h.dateTime.insertDataFrom' | translate"
+              [showErrors]="false"
+            ></app-input-component>
+          </div>
+          <div class="">
+            <app-input-component
+              [control]="rangeDate.controls.end"
+              fieldName="end"
+              type="date"
+              inputClass="form-control input-calendar"
+              wrapperClass=""
+              [label]="'booking-a4h.dateTime.insertDataTo' | translate"
+              [showErrors]="false"
+            ></app-input-component>
+          </div>
+        </form>
+      </div>
+    }
+    <button
+      type="button"
+      class="btn btn-link p-0 ms-2"
+      (click)="calendarToggle() ? applyFilter() : openCalendar()"
+      aria-label="Filter"
+    >
+      <i class="icon-search fa-solid fa-search" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+
+@if (availableServices(); as services) {
+  <div class="card-booking-services">
+    <div class="card-booking-services-title">Prestazione</div>
+    <div class="card-booking-services-container">
+      @for (serviceToBook of services; track serviceToBook.hash) {
+        <div
+          [class]="
+            serviceToBook.status === 'BOOKED'
+              ? 'service-booked'
+              : serviceToBook.hash === selectedService()?.hash
+                ? 'service-in-booking'
+                : 'service-to-book'
+          "
+        >
+          {{ serviceToBook.name }}
+          @if (serviceToBook.status === 'BOOKED') {
+            <span class="ms-2" aria-hidden="true">✓</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+}
+
+@if (availableDays()?.appointments?.length) {
+  <div class="cards-container row g-3">
+    @for (appointment of availableDays()?.appointments; track appointment.id) {
+      <div class="col-6 col-md-3">
+        <button
+          type="button"
+          class="card shadow h-100 w-100 text-start"
+          (click)="onAppointmentClick(appointment.id)"
+        >
+          <span class="card-body">
+            <span class="d-block">
+              {{ 'booking-a4h.dateTime.date' | translate }}
+              <span class="fw-semibold">{{
+                appointment.dateTime | date: 'dd/MM/yyyy ' : 'GMT'
+              }}</span></span
+            >
+            <span>
+              {{ 'booking-a4h.dateTime.time' | translate }}
+              <span class="fw-semibold">{{ appointment.dateTime | date: 'HH:mm' : 'GMT' }}</span>
+            </span>
+          </span>
+        </button>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="d-flex justify-content-center">
+    @if (rangeDate.getRawValue().start || rangeDate.getRawValue().end) {
+      <img
+        style="margin-right: 2rem"
+        alt="no-availabilities"
+        src="assets/images/icon_popup_attention.svg"
+      />
+      <h5
+        style="color: #000; text-align: center"
+        [innerHTML]="
+          'appointments.edit-page.noAvailabilities'
+            | translate
+              : {
+                  dateFrom: rangeDate.getRawValue().start || currentDate | date,
+                  dateTo: rangeDate.getRawValue().end || currentDate | date,
+                }
+        "
+      ></h5>
+    }
+  </div>
+  @if (!rangeDate.getRawValue().start && !rangeDate.getRawValue().end) {
+    <h5 style="color: #000; text-align: center">{{ 'emptyAvailableDaysList' | translate }}</h5>
+  }
+}
+
+<div class="button-container">
+  <button type="button" class="btn btn-outline-secondary" (click)="back.emit()">
+    {{ 'back' | translate }}
+  </button>
+</div>

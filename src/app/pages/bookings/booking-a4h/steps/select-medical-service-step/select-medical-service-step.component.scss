@@ -94,7 +94,6 @@
   margin-bottom: 3rem;
 
   .stepper-subtitle-info {
-    font-family: 'TitilliumWeb-Regular';
     font-size: 24px;
     font-weight: 400;
     margin-right: 4rem;
@@ -110,10 +109,11 @@
 
 .button-container {
   margin-top: 6rem;
+  margin-bottom: 3rem;
   display: flex;
-  width: fit-content;
-  justify-self: right;
-  position: sticky;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
   bottom: 0;
-  z-index: 1;
+  position: sticky;
 }

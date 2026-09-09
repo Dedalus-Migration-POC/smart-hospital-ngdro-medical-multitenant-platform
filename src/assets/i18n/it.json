@@ -445,9 +445,46 @@
     }
   },
   "booking-a4h": {
+    "bookingTypeTitle": "Prenota la tua visita presso la struttura di",
     "booking-with-ssn": "Prenotazione con il Servizio Sanitario Nazionale (SSN)",
     "booking-no-doctor-select": "Prenotazione privata senza scelta del medico",
     "booking-with-doctor-select": "Prenotazione privata con scelta del medico",
-    "physicians": "Prenotazione medici"
+    "physicians": "Prenotazione medici",
+    "prenotazione": "Prenotazione",
+    "stepCounter": "{{current}} di {{total}}: {{name}}",
+    "selectedFacility": "Struttura",
+    "bookingWithSsnTitle": "Inserisci i codici di prenotazione o scansiona per intero la ricetta",
+    "stepTitleSelectService": "Seleziona le prestazioni di cui hai bisogno",
+    "stepTitleSelectDoctor": "Seleziona un medico dall'elenco",
+    "stepTitleSelectDateTime": "Seleziona data e ora per effettuare la prestazione",
+    "stepTitleSelectDateTimeShort": "Seleziona data e ora",
+    "stepTitleReviewAndConfirm": "Riepilogo selezione, controlla e conferma le scelte",
+    "stepsTitle": {
+      "insertNre": "NRE",
+      "selectService": "Seleziona prestazione",
+      "selectDoctor": "Seleziona medico",
+      "selectDateAndTime": "Seleziona data e ora",
+      "appointmentSummary": "Riepilogo appuntamento"
+    },
+    "selectService": {
+      "servicesAlphabeticalOrder": "Elenco delle prestazioni in ordine alfabetico",
+      "searchTitle": "Testo da cercare",
+      "selectedMedicalServices": "Prestazioni selezionate",
+      "confirmModal": {
+        "title": "Conferma selezione",
+        "body": "Hai selezionato le seguenti prestazioni:<br><br>{{services}}<br><br>Confermi le tue scelte?"
+      }
+    },
+    "selectDoctor": {
+      "searchTitle": "Testo da cercare",
+      "doctorsList": "Elenco specialisti"
+    },
+    "dateTime": {
+      "date": "Data:",
+      "time": "Ora:",
+      "filterData": "Filtra per data",
+      "insertDataFrom": "Inserisci la data da",
+      "insertDataTo": "Inserisci la data a"
+    }
   }
 }

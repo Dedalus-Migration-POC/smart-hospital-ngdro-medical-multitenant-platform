@@ -5,6 +5,7 @@ import {
   inject,
   input,
   OnInit,
+  output,
   signal,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +29,7 @@ import {
   selectDoctorsListLoading,
   selectSelectedMedicalService,
 } from '../../state/selectors';
+import { Spinner } from 'src/app/components/spinner/spinner';
 
 /**
  * Doctor picker shared by with-doc-select (flat, filtered by the chosen
@@ -35,12 +37,13 @@ import {
  */
 @Component({
   selector: 'app-select-doctor-step',
-  imports: [ReactiveFormsModule, TranslateModule, DesignAngularKitModule, InputComponent],
+  imports: [ReactiveFormsModule, TranslateModule, DesignAngularKitModule, InputComponent, Spinner],
   templateUrl: './select-doctor-step.component.html',
   styleUrls: ['./select-doctor-step.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectDoctorStepComponent implements OnInit {
+  protected readonly back = output<void>();
   readonly bookingType = input<BookingType | null>(null);
 
   protected readonly BookingType = BookingType;

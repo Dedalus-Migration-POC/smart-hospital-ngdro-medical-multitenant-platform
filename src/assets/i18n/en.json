@@ -443,5 +443,13 @@
         "go-bookings": "Go to your bookings"
       }
     }
+  },
+  "booking-a4h": {
+    "selectService": {
+      "confirmModal": {
+        "title": "Confirm selection",
+        "body": "You selected the following services:<br><br>{{services}}<br><br>Do you confirm your choices?"
+      }
+    }
   }
 }

@@ -24,7 +24,7 @@
     </div>
 
     <div class="nre-upload-container">
-      <img alt="uploader" src="assets/images/ricetta_NRE.svg" />
+      <img alt="uploader" src="assets/images/prescription.svg" />
       @if (!scanning()) {
         <button type="button" class="btn btn-outline-primary" (click)="uploader.click()">
           {{ 'selectPrescription' | translate | uppercase }}
@@ -32,12 +32,19 @@
       }
       <input type="file" class="d-none" #uploader title="uploader" (change)="onUpload()" />
       @if (scanning()) {
-        <it-spinner></it-spinner>
+        <app-spinner
+          [fullScreen]="true"
+          text="Loading"
+          [className]="'flex-column gap-3 text-secondary'"
+        ></app-spinner>
       }
     </div>
   </div>
 
   <div class="button-container">
+    <button type="button" class="btn btn-outline-secondary" (click)="back.emit()">
+      {{ 'back' | translate }}
+    </button>
     <button
       class="btn btn-primary button--primary"
       type="submit"

@@ -1,195 +1,195 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromBookingUnified from './reducer';
+import { selectStruttureLoading } from './struttura/struttura.selectors';
 
-export const selectBookingUnifiedState =
-  createFeatureSelector<fromBookingUnified.State>(
-    fromBookingUnified.featureKey
-  );
+export const selectBookingUnifiedState = createFeatureSelector<fromBookingUnified.State>(
+  fromBookingUnified.featureKey,
+);
 
 export const selectBookingType = createSelector(
   selectBookingUnifiedState,
-  (state) => state.bookingType
+  (state) => state.bookingType,
 );
 
-export const selectNreInfo = createSelector(
-  selectBookingUnifiedState,
-  (state) => state.nreInfo
-);
+export const selectNreInfo = createSelector(selectBookingUnifiedState, (state) => state.nreInfo);
 export const selectFindPrescriptionByNre = createSelector(
   selectBookingUnifiedState,
-  (state) => state.findPrescriptionByNreData
+  (state) => state.findPrescriptionByNreData,
 );
 export const selectFindPrescriptionByNreLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.findPrescriptionByNreLoading
+  (state) => state.findPrescriptionByNreLoading,
 );
 export const selectFindPrescriptionByNreError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.findPrescriptionByNreError
+  (state) => state.findPrescriptionByNreError,
 );
 
 export const selectDoctorsList = createSelector(
   selectBookingUnifiedState,
-  (state) => state.doctorsList
+  (state) => state.doctorsList,
 );
 export const selectDoctorsListLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.doctorsListLoading
+  (state) => state.doctorsListLoading,
 );
 export const selectDoctorsListError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.doctorsListError
+  (state) => state.doctorsListError,
 );
 export const selectSelectedDoctor = createSelector(
   selectBookingUnifiedState,
-  (state) => state.selectedDoctor
+  (state) => state.selectedDoctor,
 );
 
 export const selectServicesList = createSelector(
   selectBookingUnifiedState,
-  (state) => state.servicesList
+  (state) => state.servicesList,
 );
 export const selectServicesListLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.servicesListLoading
+  (state) => state.servicesListLoading,
 );
 export const selectServicesListError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.servicesListError
+  (state) => state.servicesListError,
 );
 export const selectServicesVisibility = createSelector(
   selectBookingUnifiedState,
-  (state) => state.servicesVisibility
+  (state) => state.servicesVisibility,
 );
 export const selectSelectedMedicalService = createSelector(
   selectBookingUnifiedState,
-  (state) => state.selectedMedicalService
+  (state) => state.selectedMedicalService,
 );
 
 export const selectCreateSessionResponse = createSelector(
   selectBookingUnifiedState,
-  (state) => state.createSessionResponse
+  (state) => state.createSessionResponse,
 );
 export const selectCreateSessionLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.createSessionLoading
+  (state) => state.createSessionLoading,
 );
 export const selectCreateSessionError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.createSessionError
+  (state) => state.createSessionError,
 );
 
 export const selectFindResponse = createSelector(
   selectBookingUnifiedState,
-  (state) => state.findResponse
+  (state) => state.findResponse,
 );
 export const selectFindLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.findLoading
+  (state) => state.findLoading,
 );
 export const selectFindError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.findError
+  (state) => state.findError,
 );
 
 export const selectCheckAvailableDaysResponse = createSelector(
   selectBookingUnifiedState,
-  (state) => state.checkAvailableDaysResponse
+  (state) => state.checkAvailableDaysResponse,
 );
 export const selectCheckAvailableDaysLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.checkAvailableDaysLoading
+  (state) => state.checkAvailableDaysLoading,
 );
 export const selectCheckAvailableDaysError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.checkAvailableDaysError
+  (state) => state.checkAvailableDaysError,
 );
 
 export const selectActiveStep = createSelector(
   selectBookingUnifiedState,
-  (state) => state.activeStep
+  (state) => state.activeStep,
 );
 export const selectIsOptimized = createSelector(
   selectBookingUnifiedState,
-  (state) => state.isOptimized
+  (state) => state.isOptimized,
 );
 
 export const selectLockAppointmentResponse = createSelector(
   selectBookingUnifiedState,
-  (state) => state.lockAppointmentResponse
+  (state) => state.lockAppointmentResponse,
 );
 export const selectLockAppointmentLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.lockAppointmentLoading
+  (state) => state.lockAppointmentLoading,
 );
 export const selectLockAppointmentError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.lockAppointmentError
+  (state) => state.lockAppointmentError,
 );
 export const selectExpireOnLockAppointmentResponse = createSelector(
   selectBookingUnifiedState,
-  (state) => state.lockAppointmentResponse?.expireOn
+  (state) => state.lockAppointmentResponse?.expireOn,
 );
 
 export const selectBookAppointmentResponse = createSelector(
   selectBookingUnifiedState,
-  (state) => state.bookAppointmentResponse
+  (state) => state.bookAppointmentResponse,
 );
 export const selectBookAppointmentLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.bookAppointmentLoading
+  (state) => state.bookAppointmentLoading,
 );
 export const selectBookAppointmentError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.bookAppointmentError
+  (state) => state.bookAppointmentError,
 );
 
 export const selectCheckAvailabilityResponse = createSelector(
   selectBookingUnifiedState,
-  (state) => state.checkAvailabilityResponse
+  (state) => state.checkAvailabilityResponse,
 );
 export const selectCheckAvailabilityLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.checkAvailabilityLoading
+  (state) => state.checkAvailabilityLoading,
 );
 export const selectCheckAvailabilityError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.checkAvailabilityError
+  (state) => state.checkAvailabilityError,
 );
 
 export const selectHealthCareUnit = createSelector(
   selectBookingUnifiedState,
-  (state) => state.healthCareUnit
+  (state) => state.healthCareUnit,
 );
 export const selectHealthCareUnitLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.healthCareUnitLoading
+  (state) => state.healthCareUnitLoading,
 );
 export const selectHealthCareUnitError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.healthCareUnitError
+  (state) => state.healthCareUnitError,
 );
 
 export const selectAvailableListToBook = createSelector(
   selectBookingUnifiedState,
-  (state) => state.availableListToBook
+  (state) => state.availableListToBook,
 );
 
 export const selectMergePdfByUrls = createSelector(
   selectBookingUnifiedState,
-  (state) => state.mergePdfByUrls
+  (state) => state.mergePdfByUrls,
 );
 export const selectMergePdfByUrlsLoading = createSelector(
   selectBookingUnifiedState,
-  (state) => state.mergePdfByUrlsLoading
+  (state) => state.mergePdfByUrlsLoading,
 );
 export const selectMergePdfByUrlsError = createSelector(
   selectBookingUnifiedState,
-  (state) => state.mergePdfByUrlsError
+  (state) => state.mergePdfByUrlsError,
 );
 
 /** True while any of the network calls the stepper depends on is in flight. */
 export const selectAnyLoading = createSelector(
+  selectStruttureLoading,
+  selectDoctorsListLoading,
+  selectCreateSessionLoading,
   selectFindLoading,
   selectCheckAvailableDaysLoading,
   selectBookAppointmentLoading,
@@ -197,17 +197,23 @@ export const selectAnyLoading = createSelector(
   selectCheckAvailabilityLoading,
   selectFindPrescriptionByNreLoading,
   (
+    struttureLoading,
+    doctorsListLoading,
+    createSessionLoading,
     findLoading,
     checkAvailableDaysLoading,
     bookAppointmentLoading,
     lockAppointmentLoading,
     checkAvailabilityLoading,
-    findPrescriptionByNreLoading
+    findPrescriptionByNreLoading,
   ) =>
+    struttureLoading ||
+    doctorsListLoading ||
+    createSessionLoading ||
     findLoading ||
     checkAvailableDaysLoading ||
     bookAppointmentLoading ||
     lockAppointmentLoading ||
     checkAvailabilityLoading ||
-    findPrescriptionByNreLoading
+    findPrescriptionByNreLoading,
 );

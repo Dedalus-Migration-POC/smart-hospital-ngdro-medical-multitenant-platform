@@ -5,6 +5,7 @@ import {
   effect,
   ElementRef,
   inject,
+  output,
   signal,
   viewChild,
 } from '@angular/core';
@@ -21,6 +22,7 @@ import { BookingUnifiedService } from '../../state/service';
 import { NgxFormValidators } from 'src/validators';
 import { arrayBufferToBase64 } from 'src/utils/buffer-utils';
 import { findPrescriptionByNre, resetMedicalService, setNreInfo } from '../../state/actions';
+import { Spinner } from 'src/app/components/spinner/spinner';
 
 /** Step 0 of the SSN flow: scan/insert the NRE prescription codes. */
 @Component({
@@ -31,12 +33,14 @@ import { findPrescriptionByNre, resetMedicalService, setNreInfo } from '../../st
     DesignAngularKitModule,
     InputComponent,
     UpperCasePipe,
+    Spinner,
   ],
   templateUrl: './insert-nre-step.component.html',
   styleUrls: ['./insert-nre-step.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InsertNreStepComponent {
+  protected readonly back = output<void>();
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly bookingUnifiedService = inject(BookingUnifiedService);
   private readonly userProfile = this.store.selectSignal(selectUserProfileData);
@@ -59,8 +63,11 @@ export class InsertNreStepComponent {
     effect(() => {
       const fiscalCode = this.userProfile()?.fiscalCode;
       if (!fiscalCode) return;
+      const validFiscalCode = fiscalCode.toUpperCase().startsWith('TINIT-')
+        ? fiscalCode.slice(6)
+        : fiscalCode;
 
-      this.nrecfForm.controls.fiscalCode.setValue(fiscalCode, { emitEvent: false });
+      this.nrecfForm.controls.fiscalCode.setValue(validFiscalCode, { emitEvent: false });
       this.nrecfForm.controls.fiscalCode.disable({ emitEvent: false });
       this.fiscalCodeDisabled.set(true);
     });

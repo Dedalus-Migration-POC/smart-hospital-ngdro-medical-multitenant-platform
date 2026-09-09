@@ -1,6 +1,6 @@
 <div class="stepper-subtitle">
   <div class="stepper-subtitle-info">
-    {{ 'servicesAlphabeticalOrder' | translate }}
+    {{ 'booking-a4h.selectService.servicesAlphabeticalOrder' | translate }}
   </div>
 </div>
 
@@ -10,7 +10,7 @@
       [control]="filterControl"
       fieldName="medicalServiceSearch"
       type="search"
-      [label]="'searchTitle' | translate"
+      [label]="'booking-a4h.selectService.searchTitle' | translate"
       [showErrors]="false"
     ></app-input-component>
     <!-- <it-checkbox
@@ -19,26 +19,28 @@
       label="Mostra tutte le prestazioni della struttura"
     ></it-checkbox> -->
 
-    <div class="selected-medical-services-conteiner">
-      @if (selectedMedicalServicesList().length) {
+    @if (selectedMedicalServicesList().length) {
+      <div class="selected-medical-services-conteiner">
         <div class="selected-medical-services-title">
-          {{ 'selectedMedicalServices' | translate }}:
+          {{ 'booking-a4h.selectService.selectedMedicalServices' | translate }}:
         </div>
         @for (serv of selectedMedicalServicesList(); track serv.id) {
           <div class="selected-medical-service">
             &#x2022; {{ serv.name }}
             <button
-              class="btn btn-link"
+              class="btn"
               type="button"
               [attr.aria-label]="'delete' | translate"
               (click)="onServiceDelete(serv)"
             >
-              <span aria-hidden="true">×</span>
+              <span aria-hidden="true">
+                <i class="icon-trash fa-solid fa-trash" aria-hidden="true"></i>
+              </span>
             </button>
           </div>
         }
-      }
-    </div>
+      </div>
+    }
   </div>
 
   @if (!loading()) {
@@ -61,11 +63,18 @@
       }
     </div>
   } @else {
-    <it-spinner></it-spinner>
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
   }
 </div>
 
 <div class="button-container">
+  <button type="button" class="btn btn-outline-secondary" (click)="back.emit()">
+    {{ 'back' | translate }}
+  </button>
   <button
     type="button"
     class="btn btn-primary button--primary"

@@ -24,10 +24,11 @@ import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { map, take } from 'rxjs';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { BreadcrumbService } from 'src/app/components/breadcrumb/breadcrumb.service';
+import { Spinner } from 'src/app/components/spinner/spinner';
 
 @Component({
   selector: 'app-booking-unified',
-  imports: [RouterOutlet, TranslateModule, DesignAngularKitModule, Breadcrumb],
+  imports: [RouterOutlet, TranslateModule, DesignAngularKitModule, Breadcrumb, Spinner],
   templateUrl: './booking-unified.component.html',
   styleUrls: ['./booking-unified.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

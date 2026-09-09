@@ -1,5 +1,5 @@
 <div class="stepper-subtitle">
-  <div class="stepper-subtitle-info">{{ 'doctorsList' | translate }}</div>
+  <div class="stepper-subtitle-info">{{ 'booking-a4h.selectDoctor.doctorsList' | translate }}</div>
 </div>
 
 <div class="form-container">
@@ -8,7 +8,7 @@
       [control]="filterControl"
       fieldName="doctorSearch"
       type="search"
-      [label]="'searchTitle' | translate"
+      [label]="'booking-a4h.selectDoctor.searchTitle' | translate"
       [showErrors]="false"
     ></app-input-component>
   </div>
@@ -46,6 +46,16 @@
       }
     </div>
   } @else {
-    <it-spinner></it-spinner>
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
   }
+</div>
+
+<div class="button-container">
+  <button type="button" class="btn btn-outline-secondary" (click)="back.emit()">
+    {{ 'back' | translate }}
+  </button>
 </div>

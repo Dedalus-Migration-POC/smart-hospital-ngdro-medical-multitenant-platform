@@ -3,12 +3,12 @@
     {{ 'expiration-session-message' | translate }}
   </div>
 }
-
+<div class="mt-4"></div>
 @if (!flag()) {
-  <h1 class="page-title">{{ pageTitle() }}</h1>
+  <h1 class="page-title h3">{{ pageTitle() }}</h1>
   @if (selectedStruttura(); as struttura) {
     <div class="struttura-chip">
-      <strong>{{ 'selectedFacility' | translate }}:</strong>
+      <strong>{{ 'booking-a4h.selectedFacility' | translate }}:</strong>
       {{ struttura.name | titlecase }}
       @if (struttura.address || struttura.state) {
         <span>
@@ -33,157 +33,38 @@
       <it-steppers-item [label]="stepLabel(step) | translate | uppercase" icon="locked">
         @switch (step) {
           @case (BookingStepKey.InsertNre) {
-            <app-insert-nre-step></app-insert-nre-step>
+            <app-insert-nre-step (back)="onBackClick()"></app-insert-nre-step>
           }
 
           @case (BookingStepKey.SelectService) {
-            <app-select-service-step></app-select-service-step>
+            <app-select-service-step (back)="onBackClick()"></app-select-service-step>
           }
 
           @case (BookingStepKey.SelectMedicalService) {
             <app-select-medical-service-step
               [bookingType]="bookingType"
+              (back)="onBackClick()"
             ></app-select-medical-service-step>
           }
 
           @case (BookingStepKey.SelectDoctor) {
-            <app-select-doctor-step [bookingType]="bookingType"></app-select-doctor-step>
+            <app-select-doctor-step
+              [bookingType]="bookingType"
+              (back)="onBackClick()"
+            ></app-select-doctor-step>
           }
 
           @case (BookingStepKey.DateTime) {
-            <div class="stepper-subtitle">
-              @if (isOptimized()) {
-                <div class="stepper-subtitle-info">
-                  {{ 'stepperSubtitleInfo' | translate }}
-                  @for (
-                    serviceName of selectedMedicalServicesList();
-                    track serviceName.id;
-                    let last = $last
-                  ) {
-                    <strong class="stepper-subtitle-service">
-                      {{ serviceName.name + (last ? '' : ', ') }}
-                    </strong>
-                  }
-                </div>
-              } @else {
-                <div class="stepper-subtitle-info">
-                  {{ 'stepperSubtitleInfo' | translate }}
-                  <strong class="stepper-subtitle-service">{{
-                    selectedServiceName()?.name
-                  }}</strong>
-                </div>
-              }
-
-              <div class="data-filter">
-                <div class="data-filter-title" (click)="calendarToggle.set(true)">
-                  @if (!calendarToggle()) {
-                    {{ 'filterData' | translate }}
-                  }
-                </div>
-                @if (calendarToggle()) {
-                  <div class="data-filter-calendar">
-                    <form style="display: flex; flex-direction: row" [formGroup]="rangeDate">
-                      <div class="calendar-form-field">
-                        <input
-                          type="date"
-                          class="input-calendar"
-                          formControlName="start"
-                          id="start"
-                        />
-                        <label for="start" class="calendar-input-label">{{
-                          'insertDataFrom' | translate
-                        }}</label>
-                      </div>
-                      <div class="calendar-form-field">
-                        <input type="date" class="input-calendar" formControlName="end" id="end" />
-                        <label for="end" class="calendar-input-label">{{
-                          'insertDataTo' | translate
-                        }}</label>
-                      </div>
-                    </form>
-                  </div>
-                }
-                <button
-                  type="button"
-                  class="btn btn-link p-0"
-                  (click)="calendarToggle() ? applyFilter() : calendarToggle.set(true)"
-                  aria-label="Filter"
-                >
-                  {{ 'searchTitle' | translate }}
-                </button>
-              </div>
-            </div>
-
-            @if (availableListToBook(); as availableListToBook) {
-              <div class="card-booking-services">
-                <div class="card-booking-services-title">Prestazione</div>
-                <div class="card-booking-services-container">
-                  @for (serviceToBook of availableListToBook; track serviceToBook.hash) {
-                    <div
-                      [class]="
-                        serviceToBook.status === 'BOOKED'
-                          ? 'service-booked'
-                          : serviceToBook.hash === selectedServiceName()?.hash
-                            ? 'service-in-booking'
-                            : 'service-to-book'
-                      "
-                    >
-                      {{ serviceToBook.name }}
-                      @if (serviceToBook.status === 'BOOKED') {
-                        <span class="ms-2" aria-hidden="true">✓</span>
-                      }
-                    </div>
-                  }
-                </div>
-              </div>
-            }
-
-            @if (availableDays()?.appointments?.length) {
-              <div class="cards-container row g-3">
-                @for (appointment of availableDays()?.appointments; track appointment.id) {
-                  <div class="col-12 col-md-6 col-xl-4">
-                    <button
-                      type="button"
-                      class="card h-100 w-100 text-start"
-                      (click)="onAppointmentClick(appointment.id)"
-                    >
-                      <span class="card-body">
-                        <span class="d-block fw-semibold">{{
-                          appointment.dateTime | date: 'dd/MM/yyyy ' : 'GMT'
-                        }}</span>
-                        <span>{{ appointment.dateTime | date: 'HH:mm' : 'GMT' }}</span>
-                      </span>
-                    </button>
-                  </div>
-                }
-              </div>
-            } @else {
-              <div class="d-flex justify-content-center">
-                @if (rangeDate.getRawValue().start || rangeDate.getRawValue().end) {
-                  <img
-                    style="margin-right: 2rem"
-                    alt="no-availabilities"
-                    src="assets/images/icon_popup_attention.svg"
-                  />
-                  <h5
-                    style="color: #000; text-align: center"
-                    [innerHTML]="
-                      'appointments.edit-page.noAvailabilities'
-                        | translate
-                          : {
-                              dateFrom: rangeDate.getRawValue().start || currentDate | date,
-                              dateTo: rangeDate.getRawValue().end || currentDate | date,
-                            }
-                    "
-                  ></h5>
-                }
-              </div>
-              @if (!rangeDate.getRawValue().start && !rangeDate.getRawValue().end) {
-                <h5 style="color: #000; text-align: center">
-                  {{ 'emptyAvailableDaysList' | translate }}
-                </h5>
-              }
-            }
+            <app-date-time-step
+              [isOptimized]="isOptimized()"
+              [selectedMedicalServices]="selectedMedicalServicesList()"
+              [selectedService]="selectedServiceName()"
+              [availableServices]="availableListToBook()"
+              [availableDays]="availableDays()"
+              (filter)="applyFilter($event)"
+              (appointmentSelected)="onAppointmentClick($event)"
+              (back)="onBackClick()"
+            ></app-date-time-step>
           }
 
           @case (BookingStepKey.Review) {
@@ -200,7 +81,10 @@
                       <p class="mb-1">{{ summary.location.description }}</p>
                     }
                   }
-                  <div class="d-flex gap-2 mt-3">
+                  <div class="d-flex justify-content-between gap-2 mt-3">
+                    <button type="button" class="btn btn-outline-secondary" (click)="onBackClick()">
+                      {{ 'back' | translate }}
+                    </button>
                     <button type="button" class="btn btn-primary" (click)="onSubmit()">
                       {{ 'confirm' | translate }}
                     </button>
@@ -221,11 +105,3 @@
 <div class="booking-login-wrapper">
   <router-outlet></router-outlet>
 </div>
-
-@if (!flag()) {
-  <div class="button-container">
-    <button type="button" class="btn btn-outline-secondary" (click)="onBackClick()">
-      {{ 'back' | translate }}
-    </button>
-  </div>
-}

@@ -7,7 +7,9 @@
 <router-outlet></router-outlet>
 
 @if (loading()) {
-  <div class="full-screen-spinner">
-    <it-spinner></it-spinner>
-  </div>
+  <app-spinner
+    [fullScreen]="true"
+    text="Loading"
+    [className]="'flex-column gap-3 text-secondary'"
+  ></app-spinner>
 }

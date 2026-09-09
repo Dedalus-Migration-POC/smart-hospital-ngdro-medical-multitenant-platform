@@ -1,6 +1,52 @@
+.form-display {
+  display: flex;
+  flex-direction: column;
+}
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 100%;
+  justify-content: space-around;
+  margin-top: 3rem;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
 .nre-upload-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+  width: 40%;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    img {
+      width: 50%;
+      align-self: center;
+    }
+  }
+
+  it-spinner {
+    align-self: center;
+  }
+}
+
+.nre-cf-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-self: center;
+
+  @media (max-width: 767px) {
+    width: 80%;
+  }
+}
+
+.button-container {
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  width: 100%;
 }
