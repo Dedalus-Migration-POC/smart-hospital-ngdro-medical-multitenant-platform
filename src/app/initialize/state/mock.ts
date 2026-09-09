@@ -4585,49 +4585,49 @@ export const BOOKINGS = {
       },
     ],
   },
-  modals: {
-    deleteBooking: {
-      centered: true,
-      header: {
-        icon: {
-          type: 'font-awesome',
-          name: 'fa-solid fa-trash',
-        },
-      },
-      // header: {
-      //   title: {
-      //     text: { it: 'Elimina prenotazione', en: 'Delete booking' },
-      //   },
-      // },
-      // body: {
-      //   text: {
-      //     text: {
-      //       it: 'Sei sicuro di voler eliminare la prenotazione?',
-      //       en: 'Are you sure you want to delete the booking?',
-      //     },
-      //   },
-      // },
-      // footer: {
-      //   actions: [
-      //     {
-      //       button: {
-      //         mode: 'bootstrap',
-      //         palette: 'primary',
-      //         outline: true,
-      //         text: { text: { it: 'Annulla', en: 'Cancel' } },
-      //       },
-      //     },
-      //     {
-      //       button: {
-      //         mode: 'bootstrap',
-      //         palette: 'danger',
-      //         text: { text: { it: 'Elimina', en: 'Delete' } },
-      //       },
-      //     },
-      //   ],
-      // },
-    },
-  },
+  // modals: {
+  //   deleteBooking: {
+  //     centered: true,
+  //     header: {
+  //       icon: {
+  //         type: 'font-awesome',
+  //         name: 'fa-solid fa-trash',
+  //       },
+  //     },
+  //     // header: {
+  //     //   title: {
+  //     //     text: { it: 'Elimina prenotazione', en: 'Delete booking' },
+  //     //   },
+  //     // },
+  //     // body: {
+  //     //   text: {
+  //     //     text: {
+  //     //       it: 'Sei sicuro di voler eliminare la prenotazione?',
+  //     //       en: 'Are you sure you want to delete the booking?',
+  //     //     },
+  //     //   },
+  //     // },
+  //     // footer: {
+  //     //   actions: [
+  //     //     {
+  //     //       button: {
+  //     //         mode: 'bootstrap',
+  //     //         palette: 'primary',
+  //     //         outline: true,
+  //     //         text: { text: { it: 'Annulla', en: 'Cancel' } },
+  //     //       },
+  //     //     },
+  //     //     {
+  //     //       button: {
+  //     //         mode: 'bootstrap',
+  //     //         palette: 'danger',
+  //     //         text: { text: { it: 'Elimina', en: 'Delete' } },
+  //     //       },
+  //     //     },
+  //     //   ],
+  //     // },
+  //   },
+  // },
   sections: [
     {
       id: 'cards-section',
@@ -5929,7 +5929,6 @@ export const APP_CONFIG: AppConfig = {
                 },
                 url: 'https://www.dedalus.com/italy/it/',
                 external: true,
-                disabled: false,
                 style: {
                   mode: 'bootstrap',
                   palette: 'white',
@@ -6105,6 +6104,14 @@ export const APP_CONFIG: AppConfig = {
               type: 'SOCIAL',
               enabled: true,
               props: {
+                showLabel: false,
+                labelStyle: {
+                  fontSize: 'sm',
+                  fontWeight: 'normal',
+                  color: { palette: 'success' },
+                  textDecoration: 'none',
+                  textTransform: 'capitalize',
+                },
                 layout: {
                   direction: 'row',
                   gap: 'gap-2',
@@ -6122,7 +6129,6 @@ export const APP_CONFIG: AppConfig = {
                 socials: [
                   {
                     id: 'fb',
-                    showLabel: false,
                     label: {
                       it: 'Facebook',
                       en: 'Facebook',
@@ -6132,18 +6138,32 @@ export const APP_CONFIG: AppConfig = {
                       en: 'Facebook (open new tab)',
                     },
                     icon: {
-                      type: 'svg', //"<svg | img | font>",
-                      value:
-                        '<svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>',
+                      type: 'font-awesome',
+                      name: 'fa-brands fa-facebook-f',
                     },
                     url: 'https://www.facebook.com',
                     target: '_blank',
-                    disabled: false,
-                    color: { palette: 'black' },
                   },
+                  // {
+                  //   id: 'fb',
+                  //   label: { it: 'Facebook', en: 'Facebook' },
+                  //   ariaLabel: {
+                  //     it: 'Facebook (si apre in una nuova scheda)',
+                  //     en: 'Facebook (open new tab)',
+                  //   },
+                  //   image: {
+                  //     type: 'inlineSvg',
+                  //     value:
+                  //       '<svg viewBox="0 0 24 24" width="24" height="24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5V9.7c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6v1.9H16l-.4 2.9h-2.1v7A10 10 0 0 0 22 12Z"/></svg>',
+                  //     decorative: false,
+                  //     width: '24px',
+                  //     height: '24px',
+                  //   },
+                  //   url: 'https://www.facebook.com',
+                  //   target: '_blank',
+                  // },
                   {
                     id: 'instagram',
-                    showLabel: false,
                     label: {
                       it: 'Instagram',
                       en: 'Instagram',
@@ -6153,17 +6173,14 @@ export const APP_CONFIG: AppConfig = {
                       en: 'Instagram (open new tab)',
                     },
                     icon: {
-                      type: 'font', //"<svg | img | font>",
-                      value: 'fa-brands fa-instagram',
+                      type: 'font-awesome',
+                      name: 'fa-brands fa-instagram',
                     },
                     url: 'https://www.instagram.com',
                     target: '_blank',
-                    disabled: false,
-                    color: { palette: 'white' },
                   },
                   {
                     id: 'in',
-                    showLabel: false,
                     label: {
                       it: 'Linkedin',
                       en: 'Linkedin',
@@ -6173,13 +6190,11 @@ export const APP_CONFIG: AppConfig = {
                       en: 'Linkedin (open new tab)',
                     },
                     icon: {
-                      type: 'font', //"<svg | img | font>",
-                      value: 'fa-brands fa-linkedin-in',
+                      type: 'font-awesome',
+                      name: 'fa-brands fa-linkedin-in',
                     },
                     url: 'https://www.linkedin.com',
                     target: '_blank',
-                    disabled: false,
-                    color: { palette: 'primary' },
                   },
                 ],
               },
@@ -6291,7 +6306,6 @@ export const APP_CONFIG: AppConfig = {
                 // },
                 url: '/',
                 external: false,
-                disabled: false,
                 style: {
                   mode: 'bootstrap',
                   palette: 'primary',
@@ -6314,7 +6328,6 @@ export const APP_CONFIG: AppConfig = {
                 // },
                 url: '/login',
                 external: false,
-                disabled: false,
                 style: {
                   mode: 'bootstrap',
                   palette: 'primary',
@@ -6555,6 +6568,7 @@ export const APP_CONFIG: AppConfig = {
               type: 'SOCIAL',
               enabled: true,
               props: {
+                showLabel: false,
                 layout: {
                   direction: 'column',
                   gap: 'gap-2',
@@ -6573,7 +6587,6 @@ export const APP_CONFIG: AppConfig = {
                 socials: [
                   {
                     id: 'fb',
-                    showLabel: false,
                     label: {
                       it: 'Facebook',
                       en: 'Facebook',
@@ -6583,18 +6596,14 @@ export const APP_CONFIG: AppConfig = {
                       en: 'Facebook (open new tab)',
                     },
                     icon: {
-                      type: 'svg', //"<svg | img | font>",
-                      value:
-                        '<svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>',
+                      type: 'font-awesome',
+                      name: 'fa-brands fa-facebook-f',
                     },
                     url: 'https://www.facebook.com',
                     target: '_blank',
-                    disabled: false,
-                    color: { palette: 'black' },
                   },
                   {
                     id: 'instagram',
-                    showLabel: false,
                     label: {
                       it: 'Instagram',
                       en: 'Instagram',
@@ -6604,17 +6613,14 @@ export const APP_CONFIG: AppConfig = {
                       en: 'Instagram (open new tab)',
                     },
                     icon: {
-                      type: 'font', //"<svg | img | font>",
-                      value: 'fa-brands fa-instagram',
+                      type: 'font-awesome',
+                      name: 'fa-brands fa-instagram',
                     },
                     url: 'https://www.instagram.com',
                     target: '_blank',
-                    disabled: false,
-                    color: { palette: 'white' },
                   },
                   {
                     id: 'in',
-                    showLabel: false,
                     label: {
                       it: 'Linkedin',
                       en: 'Linkedin',
@@ -6624,13 +6630,11 @@ export const APP_CONFIG: AppConfig = {
                       en: 'Linkedin (open new tab)',
                     },
                     icon: {
-                      type: 'font', //"<svg | img | font>",
-                      value: 'fa-brands fa-linkedin-in',
+                      type: 'font-awesome',
+                      name: 'fa-brands fa-linkedin-in',
                     },
                     url: 'https://www.linkedin.com',
                     target: '_blank',
-                    disabled: false,
-                    color: { palette: 'primary' },
                   },
                 ],
               },
@@ -6679,7 +6683,6 @@ export const APP_CONFIG: AppConfig = {
                 url: 'https://italia.github.io/bootstrap-italia/',
                 external: true,
                 target: '_blank',
-                disabled: false,
                 style: {
                   mode: 'bootstrap',
                   palette: 'danger',
@@ -6704,7 +6707,6 @@ export const APP_CONFIG: AppConfig = {
                 url: 'https://fontawesome.com/search',
                 external: true,
                 target: '_blank',
-                disabled: false,
                 style: {
                   mode: 'bootstrap',
                   palette: 'primary',

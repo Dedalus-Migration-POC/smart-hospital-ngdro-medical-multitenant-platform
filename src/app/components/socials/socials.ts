@@ -1,35 +1,55 @@
 import { Component, inject, input } from '@angular/core';
-import { ISocials } from './model';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from '../../initialize/state/services/language.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import { getTextStyles } from '../../shared/utility/style.utils';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { getSpacingStyles, getTextStyles } from '../../shared/utility/style.utils';
 import { getTextClasses } from '../../shared/utility/text.utils';
+import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
+import { ImageConfig, TextStyle } from '../../shared/models/shared_model';
+import { SocialItem, SocialsConfig } from './model';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-socials',
-  imports: [CommonModule],
+  imports: [CommonModule, IconComponent],
   templateUrl: './socials.html',
   styleUrl: './socials.scss',
 })
 export class Socials {
-  readonly socials = input<ISocials | null>(null);
+  readonly socials = input<SocialsConfig | null>(null);
 
   private langService = inject(LanguageService);
   private sanitizer = inject(DomSanitizer);
 
   lang = this.langService.lang;
+  protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextStyles = getTextStyles;
   protected readonly getTextClasses = getTextClasses;
+  protected readonly getSpacingStyles = getSpacingStyles;
 
-  sanitizeSvg(social: any) {
-    const cfg = this.socials();
-    const lang = this.lang();
-    if (!cfg) return social.icon.value;
+  isInlineSvg(icon: ImageConfig): boolean {
+    return icon.type === 'inlineSvg';
+  }
 
-    const label = social.ariaLabel[lang];
+  getTextDecorationClass(labelStyle?: TextStyle): string {
+    return labelStyle?.textDecoration ? `text-decoration-${labelStyle.textDecoration}` : '';
+  }
+
+  getImageSource(image: ImageConfig): string {
+    return image.value;
+  }
+
+  getImageStyles(image: ImageConfig): Record<string, string> {
+    return {
+      ...(image.width ? { width: image.width } : {}),
+      ...(image.height ? { height: image.height } : {}),
+    };
+  }
+
+  sanitizeSvg(social: SocialItem, svg: string): SafeHtml {
+    const label = social.ariaLabel[this.lang()];
     return this.sanitizer.bypassSecurityTrustHtml(
-      social.icon.value.replace('<svg', `<svg role="img" aria-alt="${label}" focusable="true"`),
+      svg.replace('<svg', `<svg role="img" aria-label="${label}" focusable="false"`),
     );
   }
 }
