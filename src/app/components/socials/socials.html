@@ -18,20 +18,20 @@
               <app-icon [config]="social.icon" />
             }
 
-            @if (social.image && isInlineSvg(social.image)) {
-              <div
-                [innerHTML]="sanitizeSvg(social, social.image.value)"
-                class="icon-svg d-inline-block align-text-bottom"
-              ></div>
-            }
-
-            @if (social.image && !isInlineSvg(social.image)) {
-              <img
-                [src]="getImageSource(social.image)"
-                [ngStyle]="getImageStyles(social.image)"
-                [attr.alt]="social.ariaLabel[lang()] || 'social.ariaLabel'"
-                class="icon-img"
-              />
+            @if (social.image; as image) {
+              @if (isInlineSvg(image)) {
+                <div
+                  [innerHTML]="sanitizeSvg(social, image.value)"
+                  class="icon-svg d-inline-block align-text-bottom"
+                ></div>
+              } @else {
+                <img
+                  [src]="getImageSource(image)"
+                  [ngStyle]="getImageStyles(image)"
+                  [attr.alt]="social.ariaLabel[lang()] || 'social.ariaLabel'"
+                  class="icon-img"
+                />
+              }
             }
 
             @if (socials.showLabel) {

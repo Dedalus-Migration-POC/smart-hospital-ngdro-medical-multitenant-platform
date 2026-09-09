@@ -6,7 +6,7 @@ import { getSpacingStyles, getTextStyles } from '../../shared/utility/style.util
 import { getTextClasses } from '../../shared/utility/text.utils';
 import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
 import { ImageConfig, TextStyle } from '../../shared/models/shared_model';
-import { SocialItem, SocialsConfig } from './model';
+import { SocialItem, SocialsProps } from './model';
 import { IconComponent } from '../icon/icon.component';
 
 @Component({
@@ -16,7 +16,7 @@ import { IconComponent } from '../icon/icon.component';
   styleUrl: './socials.scss',
 })
 export class Socials {
-  readonly socials = input<SocialsConfig | null>(null);
+  readonly socials = input<SocialsProps | null>(null);
 
   private langService = inject(LanguageService);
   private sanitizer = inject(DomSanitizer);

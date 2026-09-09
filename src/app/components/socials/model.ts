@@ -24,7 +24,7 @@ export interface SocialItem {
 // labelStyle definisce lo stile comune a tutte le etichette.
 // layout definisce la disposizione del contenitore Socials. (titolo e icone social con visualizzazione o meno della label)
 // TODO: in futuro considerare la possibilità di aggiungere ulteriori configurazioni per il layout delle icone social (icone e label)
-export interface SocialsConfig {
+export interface SocialsProps {
   title: TextConfig;
   showLabel: boolean;
   labelStyle?: TextStyle;
