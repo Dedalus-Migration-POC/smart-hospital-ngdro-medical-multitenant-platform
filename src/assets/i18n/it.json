@@ -459,6 +459,18 @@
     "stepTitleSelectDateTime": "Seleziona data e ora per effettuare la prestazione",
     "stepTitleSelectDateTimeShort": "Seleziona data e ora",
     "stepTitleReviewAndConfirm": "Riepilogo selezione, controlla e conferma le scelte",
+    "multipleAppointments": "Ti informiamo che le prestazioni che hai scelto richiederanno più appuntamenti. Ti preghiamo di selezionare le disponibilità necessarie per procedere con le prenotazioni. Grazie.",
+    "singleAppointmentOptimized": "Ti informiamo che le prestazioni che hai scelto verranno ottimizzate in un singolo appuntamento. Ti preghiamo di selezionare la disponibilità necessaria per procedere con la prenotazione. Grazie.",
+    "cancel": "Annulla",
+    "proceed": "Prosegui",
+    "warning": "Attenzione",
+    "warningExcl": "Attenzione!",
+    "error": "Errore",
+    "errorExcl": "Errore!",
+    "partialUnavailability": "Ti informiamo che alcune delle prestazioni selezionate non hanno disponibilità per questo anno:",
+    "bookAvailableQuestion": "Vuoi prenotare",
+    "noAvailability": "Al momento non ci sono disponibilità per le prestazioni richieste. Si prega di contattare direttamente il CUP della Struttura per maggiori informazioni e per supporto alla prenotazione.",
+
     "stepsTitle": {
       "insertNre": "NRE",
       "selectService": "Seleziona prestazione",
@@ -484,7 +496,8 @@
       "time": "Ora:",
       "filterData": "Filtra per data",
       "insertDataFrom": "Inserisci la data da",
-      "insertDataTo": "Inserisci la data a"
+      "insertDataTo": "Inserisci la data a",
+      "stepperSubtitleInfo": "Elenco disponibilità per"
     }
   }
 }

@@ -21,6 +21,7 @@ import {
   selectNreInfo,
   selectSelectedDoctor,
   selectSelectedMedicalService,
+  selectServicesList,
 } from './selectors';
 import { BookingStepKey, BOOKING_FLOW_CODES, BookingType, stepsFor } from '../models/booking-type';
 
@@ -106,7 +107,7 @@ export class BookingUnifiedEffects {
                   )
                   .subscribe();
               } else {
-                this.notifyError('booking.warning', 'booking.noServicesForDoctor');
+                this.notifyError('booking-a4h.warning', 'booking-a4h.noServicesForDoctor');
               }
             }
             return BookingUnifiedActions.getServicesListSuccess({ data });
@@ -247,10 +248,10 @@ export class BookingUnifiedEffects {
                     const firstEntry = activeStep < dateTimeStep && !availableListToBook?.length;
                     if (selectedMedicalService?.length > 1 && firstEntry) {
                       this.modalService.openConfirm({
-                        titleKey: 'booking.warning',
-                        bodyKey: 'booking.singleAppointmentOptimized',
-                        cancelKey: 'booking.cancel',
-                        confirmKey: 'booking.proceed',
+                        titleKey: 'booking-a4h.warning',
+                        bodyKey: 'booking-a4h.singleAppointmentOptimized',
+                        cancelKey: 'booking-a4h.cancel',
+                        confirmKey: 'booking-a4h.proceed',
                         onConfirm: () =>
                           this.store.dispatch(
                             BookingUnifiedActions.setActiveStep({
@@ -284,14 +285,14 @@ export class BookingUnifiedEffects {
                     // Con una sola prestazione non c'è nulla da spezzare in più appuntamenti:
                     // ripetere check-availability porterebbe a un giro infinito find -> 204 -> check-availability.
                     if (serviceIds.length < 2) {
-                      this.notifyError('booking.warningExcl', 'booking.noAvailability');
+                      this.notifyError('booking-a4h.warningExcl', 'booking-a4h.noAvailability');
                       return;
                     }
                     this.modalService.openConfirm({
-                      titleKey: 'booking.warning',
-                      bodyKey: 'booking.multipleAppointments',
-                      cancelKey: 'booking.cancel',
-                      confirmKey: 'booking.proceed',
+                      titleKey: 'booking-a4h.warning',
+                      bodyKey: 'booking-a4h.multipleAppointments',
+                      cancelKey: 'booking-a4h.cancel',
+                      confirmKey: 'booking-a4h.proceed',
                       onConfirm: () =>
                         this.store.dispatch(
                           BookingUnifiedActions.checkAvailability({
@@ -315,8 +316,8 @@ export class BookingUnifiedEffects {
           }),
           catchError((error) => {
             this.notifyError(
-              error.status === 417 ? 'booking.warningExcl' : 'booking.errorExcl',
-              error.status === 417 ? 'booking.noAvailability' : 'general-error-message',
+              error.status === 417 ? 'booking-a4h.warningExcl' : 'booking-a4h.errorExcl',
+              error.status === 417 ? 'booking-a4h.noAvailability' : 'general-error-message',
             );
             return of(BookingUnifiedActions.checkAvailableDaysFailure({ error }));
           }),
@@ -340,7 +341,7 @@ export class BookingUnifiedEffects {
             return BookingUnifiedActions.lockAppointmentSuccess({ data });
           }),
           catchError((error) => {
-            this.notifyError('booking.error', 'general-error-message');
+            this.notifyError('booking-a4h.error', 'general-error-message');
             return of(BookingUnifiedActions.lockAppointmentFailure({ error }));
           }),
         ),
@@ -418,7 +419,7 @@ export class BookingUnifiedEffects {
             return BookingUnifiedActions.bookAppointmentSuccess({ data });
           }),
           catchError((error) => {
-            this.notifyError('booking.error', 'general-error-message');
+            this.notifyError('booking-a4h.error', 'general-error-message');
             return of(BookingUnifiedActions.bookAppointmentFailure({ error }));
           }),
         ),
@@ -429,8 +430,11 @@ export class BookingUnifiedEffects {
   checkAvailability$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingUnifiedActions.checkAvailability),
-      withLatestFrom(this.store.select(selectSelectedStruttura)),
-      concatMap(([action, struttura]) => {
+      withLatestFrom(
+        this.store.select(selectSelectedStruttura),
+        this.store.select(selectServicesList),
+      ),
+      concatMap(([action, struttura, servicesList]) => {
         // Re-read the facility at call time: the action can be dispatched from a
         // dialog confirmAction created earlier, whose captured unitId may be stale/undefined.
         const payload = {
@@ -447,15 +451,20 @@ export class BookingUnifiedEffects {
             );
 
             if (available.length && unavailable.length) {
+              const serviceName = (service: (typeof data.services)[number]) =>
+                service.name ??
+                servicesList.find((item) => item.id === service.service)?.name ??
+                service.service;
+
               this.modalService.openConfirmText({
-                titleKey: 'booking.warning',
-                body: `${this.translate.instant('booking.partialUnavailability')} ${unavailable
-                  .map((s) => s.service + ' ')
-                  .join()}. ${this.translate.instant(
-                  'booking.bookAvailableQuestion',
-                )} ${available.map((s) => s.service + ' ').join()}?`,
-                cancelKey: 'booking.cancel',
-                confirmKey: 'booking.proceed',
+                titleKey: 'booking-a4h.warning',
+                body: `${this.translate.instant('booking-a4h.partialUnavailability')} <br> - ${unavailable
+                  .map(serviceName)
+                  .join('<br> - ')}.<br> <strong>${this.translate.instant(
+                  'booking-a4h.bookAvailableQuestion',
+                )}</strong> <br> - ${available.map(serviceName).join(', <br> - ')}?`,
+                cancelKey: 'booking-a4h.cancel',
+                confirmKey: 'booking-a4h.proceed',
                 onConfirm: () => {
                   this.store.dispatch(BookingUnifiedActions.resetMedicalService());
                   this.store.dispatch(
@@ -473,7 +482,7 @@ export class BookingUnifiedEffects {
                 }),
               );
             } else {
-              this.notifyError('booking.warning', 'booking.noneAvailable');
+              this.notifyError('booking-a4h.warning', 'booking-a4h.noneAvailable');
             }
             return BookingUnifiedActions.checkAvailabilitySuccess({ data });
           }),

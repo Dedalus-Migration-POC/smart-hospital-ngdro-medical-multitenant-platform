@@ -1,7 +1,7 @@
 <div class="stepper-subtitle">
   @if (isOptimized()) {
     <div class="stepper-subtitle-info">
-      {{ 'stepperSubtitleInfo' | translate }}
+      {{ 'booking-a4h.dateTime.stepperSubtitleInfo' | translate }}
       @for (serviceName of selectedMedicalServices(); track serviceName.id; let last = $last) {
         <strong class="stepper-subtitle-service">
           {{ serviceName.name + (last ? '' : ', ') }}
@@ -10,7 +10,7 @@
     </div>
   } @else {
     <div class="stepper-subtitle-info">
-      {{ 'stepperSubtitleInfo' | translate }}
+      {{ 'booking-a4h.dateTime.stepperSubtitleInfo' | translate }}
       <strong class="stepper-subtitle-service">{{ selectedService()?.name }}</strong>
     </div>
   }
@@ -55,7 +55,7 @@
       (click)="calendarToggle() ? applyFilter() : openCalendar()"
       aria-label="Filter"
     >
-      <i class="icon-search fa-solid fa-search" aria-hidden="true"></i>
+      <i class="icon-search fa-solid fa-search text-primary" aria-hidden="true"></i>
     </button>
   </div>
 </div>
@@ -85,25 +85,34 @@
 }
 
 @if (availableDays()?.appointments?.length) {
-  <div class="cards-container row g-3">
+  <div class="cards-container row g-5">
     @for (appointment of availableDays()?.appointments; track appointment.id) {
-      <div class="col-6 col-md-3">
+      <div class="col-12 col-md-4 col-xl-3">
         <button
           type="button"
-          class="card shadow h-100 w-100 text-start"
+          class="it-card shadow text-start border-0"
           (click)="onAppointmentClick(appointment.id)"
         >
-          <span class="card-body">
-            <span class="d-block">
-              {{ 'booking-a4h.dateTime.date' | translate }}
+          <span class="it-card-body">
+            <div class="p-2">
+              <span>
+                <i
+                  class="icon-calendar fa-regular fa-calendar text-primary me-2"
+                  aria-hidden="true"
+                ></i>
+              </span>
+              <span> {{ ('booking-a4h.dateTime.date' | translate) + ' ' }} </span>
               <span class="fw-semibold">{{
                 appointment.dateTime | date: 'dd/MM/yyyy ' : 'GMT'
-              }}</span></span
-            >
-            <span>
-              {{ 'booking-a4h.dateTime.time' | translate }}
+              }}</span>
+            </div>
+            <div class="p-2">
+              <span>
+                <i class="icon-time fa-regular fa-clock text-primary me-2" aria-hidden="true"></i>
+              </span>
+              <span> {{ ('booking-a4h.dateTime.time' | translate) + ' ' }}</span>
               <span class="fw-semibold">{{ appointment.dateTime | date: 'HH:mm' : 'GMT' }}</span>
-            </span>
+            </div>
           </span>
         </button>
       </div>

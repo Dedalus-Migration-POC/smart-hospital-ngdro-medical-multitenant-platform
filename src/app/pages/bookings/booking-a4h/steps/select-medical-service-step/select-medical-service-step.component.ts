@@ -144,6 +144,8 @@ export class SelectMedicalServiceStepComponent implements OnInit {
       titleKey: 'booking-a4h.selectService.confirmModal.title',
       bodyKey: 'booking-a4h.selectService.confirmModal.body',
       bodyParams: { services },
+      cancelKey: 'booking-a4h.cancel',
+      confirmKey: 'booking-a4h.proceed',
       onConfirm: () =>
         this.store.dispatch(
           createSession({
