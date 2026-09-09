@@ -4,21 +4,21 @@
       <app-input-component
         [formGroup]="nrecfForm"
         fieldName="leftCode"
-        [label]="'enterLeftNRE' | translate"
+        [label]="'booking-a4h.insertNre.enterLeftNRE' | translate"
         [maxlength]="5"
       ></app-input-component>
 
       <app-input-component
         [formGroup]="nrecfForm"
         fieldName="rightCode"
-        [label]="'enterRightNRE' | translate"
+        [label]="'booking-a4h.insertNre.enterRightNRE' | translate"
         [maxlength]="10"
       ></app-input-component>
 
       <app-input-component
         [formGroup]="nrecfForm"
         fieldName="fiscalCode"
-        [label]="'enterCf' | translate"
+        [label]="'booking-a4h.insertNre.enterCf' | translate"
         [errorMessages]="{ invalidFiscalCode: 'invalidFiscalCode' | translate }"
       ></app-input-component>
     </div>
@@ -27,7 +27,7 @@
       <img alt="uploader" src="assets/images/prescription.svg" />
       @if (!scanning()) {
         <button type="button" class="btn btn-outline-primary" (click)="uploader.click()">
-          {{ 'selectPrescription' | translate | uppercase }}
+          {{ 'booking-a4h.insertNre.selectPrescription' | translate | uppercase }}
         </button>
       }
       <input type="file" class="d-none" #uploader title="uploader" (change)="onUpload()" />
@@ -43,7 +43,7 @@
 
   <div class="button-container">
     <button type="button" class="btn btn-outline-secondary" (click)="back.emit()">
-      {{ 'back' | translate }}
+      {{ 'booking-a4h.back' | translate }}
     </button>
     <button
       class="btn btn-primary button--primary"
@@ -51,7 +51,7 @@
       [disabled]="nrecfForm.invalid"
       blurOnClick
     >
-      {{ 'request' | translate }}
+      {{ 'booking-a4h.request' | translate }}
     </button>
   </div>
 </form>

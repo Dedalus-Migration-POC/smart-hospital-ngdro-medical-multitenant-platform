@@ -1,0 +1,111 @@
+<div class="summary-card-container">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="h5 mb-4">{{ 'appointmentSummary' | translate }}</h2>
+      @if (bookingSummary(); as summary) {
+        <div class="summary-info-list">
+          @if (user(); as profile) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-user text-primary" aria-hidden="true"></i>
+                {{ 'booking-summary.name' | translate }}
+              </div>
+              <div class="summary-value">
+                {{ profile.firstName }} {{ profile.lastName }} · {{ profile.fiscalCode }}
+              </div>
+            </div>
+          }
+
+          <div class="summary-info">
+            <div class="summary-label">
+              <i class="fa-solid fa-stethoscope text-primary" aria-hidden="true"></i>
+              {{ 'booking-summary.service' | translate }}
+            </div>
+            <div class="summary-value summary-value-list">
+              @for (service of summary.serviceDescriptionList ?? []; track service.id) {
+                <div>{{ service.description }}</div>
+              }
+            </div>
+          </div>
+
+          <div class="summary-info">
+            <div class="summary-label">
+              <i class="fa-solid fa-hospital text-primary" aria-hidden="true"></i>
+              {{ 'booking-summary.place' | translate }}
+            </div>
+            <div class="summary-value">
+              @if (selectedStruttura(); as struttura) {
+                {{ struttura.name | titlecase }}
+                @if (struttura.address || struttura.state) {
+                  <span>
+                    — {{ struttura.address | titlecase }}
+                    @if (struttura.state) {
+                      , {{ struttura.state | titlecase }}
+                    }
+                  </span>
+                }
+              } @else {
+                {{ 'mondinoAddress' | translate }}
+              }
+            </div>
+          </div>
+
+          @if (summary.physician?.firstName) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-user-doctor text-primary" aria-hidden="true"></i>
+                {{ 'booking-summary.doctor' | translate }}
+              </div>
+              <div class="summary-value">
+                {{ summary.physician?.lastName }} {{ summary.physician?.firstName }}
+              </div>
+            </div>
+          }
+
+          <div class="summary-info">
+            <div class="summary-label">
+              <i class="fa-solid fa-building text-primary" aria-hidden="true"></i>
+              {{ 'booking-summary.hospital' | translate }}
+            </div>
+            <div class="summary-value">{{ summary.location.description }}</div>
+          </div>
+
+          <div class="summary-info">
+            <div class="summary-label">
+              <i class="fa-solid fa-clock text-primary" aria-hidden="true"></i>
+              {{ 'booking-summary.dateTime' | translate }}
+            </div>
+            <div class="summary-value">
+              {{ summary.dateTime | date: 'EEE dd/MM/yyyy HH:mm' : 'GMT' }}
+            </div>
+          </div>
+
+          @if (summary.billingInfo?.length) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-euro-sign text-primary" aria-hidden="true"></i>
+                {{ 'booking-summary.price' | translate }}
+              </div>
+              <div class="summary-value summary-value-list">
+                @for (price of summary.billingInfo; track price.contractName) {
+                  <div>€ {{ price.finalPrice.toFixed(2) }}</div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      }
+      <div class="d-flex justify-content-between gap-2 mt-3">
+        <button type="button" class="btn btn-outline-secondary" (click)="back.emit()">
+          {{ 'back' | translate }}
+        </button>
+        <button type="button" class="btn btn-primary" (click)="confirm.emit()">
+          {{ 'confirm' | translate }}
+        </button>
+        <button type="button" class="btn btn-outline-secondary" (click)="cancel.emit()">
+          {{ 'cancel' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

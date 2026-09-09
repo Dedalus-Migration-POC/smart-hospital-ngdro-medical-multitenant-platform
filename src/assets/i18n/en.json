@@ -444,7 +444,20 @@
       }
     }
   },
+  "mondinoAddress": "Fondazione Mondino, Via Mondino, 2 - 27100 Pavia",
+  "booking-summary": {
+    "name": "Name",
+    "service": "Service",
+    "place": "Place",
+    "doctor": "Doctor",
+    "hospital": "Clinic",
+    "dateTime": "Date and time",
+    "price": "Price"
+  },
   "booking-a4h": {
+    "warning": "Warning",
+    "understood": "Understood",
+    "multipleServices": "Your prescription includes multiple services. Pay attention to choosing the correct type!",
     "selectService": {
       "confirmModal": {
         "title": "Confirm selection",

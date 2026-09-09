@@ -8,7 +8,7 @@ import {
   signal,
   untracked,
 } from '@angular/core';
-import { DatePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -62,6 +62,7 @@ import { SelectDoctorStepComponent } from '../steps/select-doctor-step/select-do
 import { SelectMedicalServiceStepComponent } from '../steps/select-medical-service-step/select-medical-service-step.component';
 import { SelectServiceStepComponent } from '../steps/select-service-step/select-service-step.component';
 import { DateTimeStepComponent } from '../steps/date-time-step/date-time-step.component';
+import { ReviewStepComponent } from '../steps/review-step/review-step.component';
 
 /** Translation key for the page title of each step, independent of its numeric index. */
 const STEP_TITLE_KEY: Record<BookingStepKey, string> = {
@@ -96,7 +97,6 @@ const STEP_LABEL_KEY: Record<BookingStepKey, string> = {
     RouterOutlet,
     TranslateModule,
     DesignAngularKitModule,
-    DatePipe,
     TitleCasePipe,
     UpperCasePipe,
     InsertNreStepComponent,
@@ -104,6 +104,7 @@ const STEP_LABEL_KEY: Record<BookingStepKey, string> = {
     SelectMedicalServiceStepComponent,
     SelectDoctorStepComponent,
     DateTimeStepComponent,
+    ReviewStepComponent,
   ],
   templateUrl: './booking-stepper.component.html',
   styleUrls: ['./booking-stepper.component.scss'],

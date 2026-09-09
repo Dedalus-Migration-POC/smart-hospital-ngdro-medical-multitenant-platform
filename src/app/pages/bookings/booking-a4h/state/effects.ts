@@ -69,15 +69,28 @@ export class BookingUnifiedEffects {
               return BookingUnifiedActions.findPrescriptionByNreSuccess({ data });
             }
 
-            this.store.dispatch(
-              BookingUnifiedActions.setActiveStep({
-                step: this.stepIndex(bookingType, BookingStepKey.SelectService),
-              }),
-            );
+            const continueToSelectService = () =>
+              this.store.dispatch(
+                BookingUnifiedActions.setActiveStep({
+                  step: this.stepIndex(bookingType, BookingStepKey.SelectService),
+                }),
+              );
+
+            if (data.prescription.serviceRequestList?.length > 1) {
+              this.modalService.openInfo(
+                'booking-a4h.warning',
+                'booking-a4h.multipleServices',
+                undefined,
+                continueToSelectService,
+                'booking-a4h.understood',
+              );
+            } else {
+              continueToSelectService();
+            }
             return BookingUnifiedActions.findPrescriptionByNreSuccess({ data });
           }),
           catchError((error) => {
-            this.notifyError('commons.error', 'general-error-message');
+            this.notifyError('commons.error', 'commons.generic-error');
             return of(BookingUnifiedActions.findPrescriptionByNreFailure({ error }));
           }),
         ),
@@ -317,7 +330,7 @@ export class BookingUnifiedEffects {
           catchError((error) => {
             this.notifyError(
               error.status === 417 ? 'booking-a4h.warningExcl' : 'booking-a4h.errorExcl',
-              error.status === 417 ? 'booking-a4h.noAvailability' : 'general-error-message',
+              error.status === 417 ? 'booking-a4h.noAvailability' : 'commons.generic-error',
             );
             return of(BookingUnifiedActions.checkAvailableDaysFailure({ error }));
           }),
@@ -341,7 +354,7 @@ export class BookingUnifiedEffects {
             return BookingUnifiedActions.lockAppointmentSuccess({ data });
           }),
           catchError((error) => {
-            this.notifyError('booking-a4h.error', 'general-error-message');
+            this.notifyError('booking-a4h.error', 'commons.generic-error');
             return of(BookingUnifiedActions.lockAppointmentFailure({ error }));
           }),
         ),
@@ -419,7 +432,7 @@ export class BookingUnifiedEffects {
             return BookingUnifiedActions.bookAppointmentSuccess({ data });
           }),
           catchError((error) => {
-            this.notifyError('booking-a4h.error', 'general-error-message');
+            this.notifyError('booking-a4h.error', 'commons.generic-error');
             return of(BookingUnifiedActions.bookAppointmentFailure({ error }));
           }),
         ),

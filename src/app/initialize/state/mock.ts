@@ -3,7 +3,7 @@ import { AppConfig } from './app-config.model';
 export const LOGIN = {
   id: '/login', // === url!
   name: { it: 'Accesso', en: 'Login' }, // Nome nel browser per accessibilità
-  route: '/', //non serve, non lo possono cambiare
+  route: '/login', //non serve, non lo possono cambiare
   // backgroundColor: 'aqua', //o color o img!
   backgroundImage: '/assets/images/bg.svg',
   areas: {

@@ -444,6 +444,16 @@
       }
     }
   },
+  "mondinoAddress": "Fondazione Mondino, Via Mondino, 2 - 27100 Pavia",
+  "booking-summary": {
+    "name": "Nominativo",
+    "service": "Prestazione",
+    "place": "Luogo",
+    "doctor": "Medico",
+    "hospital": "Ambulatorio",
+    "dateTime": "Data e ora",
+    "price": "Prezzo"
+  },
   "booking-a4h": {
     "bookingTypeTitle": "Prenota la tua visita presso la struttura di",
     "booking-with-ssn": "Prenotazione con il Servizio Sanitario Nazionale (SSN)",
@@ -457,6 +467,7 @@
     "stepTitleSelectService": "Seleziona le prestazioni di cui hai bisogno",
     "stepTitleSelectDoctor": "Seleziona un medico dall'elenco",
     "stepTitleSelectDateTime": "Seleziona data e ora per effettuare la prestazione",
+    "selectServiceTitle": "Seleziona le prestazioni",
     "stepTitleSelectDateTimeShort": "Seleziona data e ora",
     "stepTitleReviewAndConfirm": "Riepilogo selezione, controlla e conferma le scelte",
     "multipleAppointments": "Ti informiamo che le prestazioni che hai scelto richiederanno più appuntamenti. Ti preghiamo di selezionare le disponibilità necessarie per procedere con le prenotazioni. Grazie.",
@@ -465,18 +476,28 @@
     "proceed": "Prosegui",
     "warning": "Attenzione",
     "warningExcl": "Attenzione!",
+    "understood": "Ho capito",
     "error": "Errore",
     "errorExcl": "Errore!",
     "partialUnavailability": "Ti informiamo che alcune delle prestazioni selezionate non hanno disponibilità per questo anno:",
+    "multipleServices": "La tua impegnativa prevede diverse prestazioni. Fai attenzione a scegliere la tipologia corretta!",
     "bookAvailableQuestion": "Vuoi prenotare",
     "noAvailability": "Al momento non ci sono disponibilità per le prestazioni richieste. Si prega di contattare direttamente il CUP della Struttura per maggiori informazioni e per supporto alla prenotazione.",
-
+    "back": "Indietro",
+    "request": "Richiedi",
+    "confirm": "Conferma",
     "stepsTitle": {
       "insertNre": "NRE",
       "selectService": "Seleziona prestazione",
       "selectDoctor": "Seleziona medico",
       "selectDateAndTime": "Seleziona data e ora",
       "appointmentSummary": "Riepilogo appuntamento"
+    },
+    "insertNre": {
+      "enterCf": "Inserisci codice fiscale",
+      "enterRightNRE": "Inserisci NRE di destra",
+      "enterLeftNRE": "Inserisci NRE di sinistra",
+      "selectPrescription": "Carica la ricetta per l'autocompilazione"
     },
     "selectService": {
       "servicesAlphabeticalOrder": "Elenco delle prestazioni in ordine alfabetico",
@@ -485,7 +506,9 @@
       "confirmModal": {
         "title": "Conferma selezione",
         "body": "Hai selezionato le seguenti prestazioni:<br><br>{{services}}<br><br>Confermi le tue scelte?"
-      }
+      },
+      "servicesAlertHeader": "Attenzione!",
+      "servicesAlertContent": "Per motivi amministrativi, seleziona per tutte le prestazioni Primo accesso o Secondo accesso. La scelta deve essere uguale per ogni prestazione presente."
     },
     "selectDoctor": {
       "searchTitle": "Testo da cercare",

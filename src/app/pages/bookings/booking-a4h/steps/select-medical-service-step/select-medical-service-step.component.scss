@@ -5,41 +5,6 @@
   padding: 0.25rem 0;
 }
 
-::ng-deep it-steppers-container {
-  .steppers .steppers-header ul {
-    background-color: #f1f9fc;
-    li {
-      font-size: 1rem;
-    }
-    li.active {
-      color: #0d4d8d;
-
-      .steppers-number {
-        background: #0d4d8d;
-        border-color: #0d4d8d;
-        color: #fff;
-
-        svg {
-          fill: #fff;
-        }
-      }
-    }
-    li.confirmed {
-      color: #0d4d8d;
-
-      .steppers-number {
-        background: #0d4d8d;
-        border-color: #0d4d8d;
-        color: #fff;
-
-        svg {
-          fill: #fff;
-        }
-      }
-    }
-  }
-}
-
 ::ng-deep .booking-login-wrapper {
   it-breadcrumb {
     display: none;
@@ -65,7 +30,7 @@
       background-color: #f1f9fc;
       padding: 1rem;
       .selected-medical-services-title {
-        color: #0d4d8d;
+        color: var(--bs-primary);
         font-weight: 600;
         margin-bottom: 1rem;
       }

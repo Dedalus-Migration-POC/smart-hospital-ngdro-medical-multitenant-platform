@@ -26,11 +26,12 @@ export class BookingUnifiedModalService {
     bodyKey: string,
     bodyParams?: Record<string, unknown>,
     onOk?: () => void,
+    okKey = 'commons.confirm',
   ): void {
     this.open({
       title: this.translate.instant(titleKey),
       body: this.translate.instant(bodyKey, bodyParams),
-      actions: [this.okAction(onOk)],
+      actions: [this.okAction(onOk, okKey)],
     });
   }
 
@@ -131,10 +132,13 @@ export class BookingUnifiedModalService {
     this.modalService.open(this.viewContainerRef, modalConfig);
   }
 
-  private okAction(callback: () => void = () => {}): ModalActionConfig {
+  private okAction(
+    callback: () => void = () => {},
+    textKey = 'commons.confirm',
+  ): ModalActionConfig {
     return {
       button: {
-        text: { text: toLocalizedText('Ok') },
+        text: { text: toLocalizedText(this.translate.instant(textKey)) },
       },
       callback,
     };

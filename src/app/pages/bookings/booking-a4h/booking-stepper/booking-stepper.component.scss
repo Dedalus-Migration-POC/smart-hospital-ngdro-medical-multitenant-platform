@@ -5,11 +5,11 @@
       font-size: 1rem;
     }
     li.active {
-      color: #0d4d8d;
+      color: var(--bs-primary);
 
       .steppers-number {
-        background: #0d4d8d;
-        border-color: #0d4d8d;
+        background: var(--bs-primary);
+        border-color: var(--bs-primary);
         color: #fff;
 
         svg {
@@ -18,11 +18,11 @@
       }
     }
     li.confirmed {
-      color: #0d4d8d;
+      color: var(--bs-primary);
 
       .steppers-number {
-        background: #0d4d8d;
-        border-color: #0d4d8d;
+        background: var(--bs-primary);
+        border-color: var(--bs-primary);
         color: #fff;
 
         svg {
@@ -37,10 +37,4 @@
   it-breadcrumb {
     display: none;
   }
-}
-
-.summary-card-container {
-  display: flex;
-  width: 100%;
-  justify-content: center;
 }

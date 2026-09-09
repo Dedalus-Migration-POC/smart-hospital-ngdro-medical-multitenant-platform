@@ -68,33 +68,13 @@
           }
 
           @case (BookingStepKey.Review) {
-            <div class="summary-card-container">
-              <div class="card">
-                <div class="card-body">
-                  <h2 class="h5">{{ 'appointmentSummary' | translate }}</h2>
-                  @if (bookingSummary(); as summary) {
-                    <p class="mb-1">{{ summary.dateTime | date: 'dd/MM/yyyy HH:mm' : 'GMT' }}</p>
-                    @if (selectedStruttura(); as struttura) {
-                      <p class="mb-1">{{ struttura.name | titlecase }}</p>
-                    }
-                    @if (summary.location.description) {
-                      <p class="mb-1">{{ summary.location.description }}</p>
-                    }
-                  }
-                  <div class="d-flex justify-content-between gap-2 mt-3">
-                    <button type="button" class="btn btn-outline-secondary" (click)="onBackClick()">
-                      {{ 'back' | translate }}
-                    </button>
-                    <button type="button" class="btn btn-primary" (click)="onSubmit()">
-                      {{ 'confirm' | translate }}
-                    </button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="onCancel()">
-                      {{ 'cancel' | translate }}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <app-review-step
+              [bookingSummary]="bookingSummary()"
+              [selectedStruttura]="selectedStruttura()"
+              (back)="onBackClick()"
+              (confirm)="onSubmit()"
+              (cancel)="onCancel()"
+            ></app-review-step>
           }
         }
       </it-steppers-item>

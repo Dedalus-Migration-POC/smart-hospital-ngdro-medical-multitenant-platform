@@ -9,15 +9,11 @@
 
   <div class="cards-container row g-3">
     @for (card of cards; track card.targetUrl) {
-      <div class="col-12 col-md-6 col-xl-3">
-        <button
-          type="button"
-          class="card shadow booking-type-card h-100 w-100 text-start"
-          (click)="onCardClick(card.targetUrl)"
-        >
-          <img class="card-img-top" [src]="card.imageUrl" alt="" aria-hidden="true" />
-          <span class="card-body">
-            <span class="card-title h5 d-block mb-0">{{
+      <div class="col-12 col-md-6 col-xl-4">
+        <button type="button" class="it-card shadow border-0" (click)="onCardClick(card.targetUrl)">
+          <span class="it-card-body d-flex align-items-center">
+            <img class="button-img me-3" [src]="card.imageUrl" alt="" aria-hidden="true" />
+            <span class="select-service-title d-block mb-0">{{
               'booking-a4h.' + card.targetUrl | translate
             }}</span>
           </span>
