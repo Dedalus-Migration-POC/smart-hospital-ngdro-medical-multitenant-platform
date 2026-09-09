@@ -214,6 +214,9 @@ export const HOME = {
                 fontWeight: 'semibold',
                 textDecoration: 'none',
                 color: { palette: 'primary' },
+                margin: {
+                  bottom: '8px',
+                },
               },
             },
             {
