@@ -4,6 +4,7 @@ import { FirebaseOptions } from 'firebase/app';
 import { PageConfig } from '../../pages/page.model';
 import { BreadcrumbStyle } from '../../components/breadcrumb/model';
 import { ModalThemeStyle } from '../../components/modal/model';
+import { CookieConsentModalProps } from '../../components/cookie-consent-modal/model';
 import { NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { LocalizedText } from 'src/app/shared/layout-system/models/localized.model';
 import {
@@ -154,11 +155,7 @@ export interface CookieConsentConfig extends NgcCookieConsentConfig {
     privacyPolicyLink?: LocalizedText | undefined;
     tosLink?: LocalizedText | undefined;
   };
-  cookieConsentModal?: {
-    title: LocalizedText;
-    text: LocalizedText;
-    closeButtonText: LocalizedText;
-  };
+  cookieConsentModal?: CookieConsentModalProps;
   cookieConsentOpenPdf?: {
     url: string;
     method: 'GET' | 'POST';

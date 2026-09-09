@@ -52,6 +52,14 @@ export class ModalComponent {
   readonly containerBgClass = computed(() =>
     getBackgroundPaletteClass({ background: this.config()?.background }),
   );
+  readonly backdropStyles = computed(() => {
+    const config = this.config();
+    return {
+      'background-color': config?.backdrop
+        ? this.getBackdropColor(config.backdropColor, config.backdropOpacity)
+        : 'transparent',
+    };
+  });
 
   readonly headerStyles = computed(() => this.getBoxStyles(this.config()?.header));
   readonly headerBgClass = computed(() =>
@@ -116,5 +124,16 @@ export class ModalComponent {
     if (size?.minHeight) styles['min-height'] = size.minHeight;
 
     return styles;
+  }
+
+  private getBackdropColor(color = '#000000', opacity = 0.5): string {
+    const normalizedOpacity = Math.min(Math.max(opacity, 0), 1);
+    const hex = color.replace('#', '');
+    if (!/^[\da-f]{6}$/i.test(hex)) return color;
+
+    const red = Number.parseInt(hex.slice(0, 2), 16);
+    const green = Number.parseInt(hex.slice(2, 4), 16);
+    const blue = Number.parseInt(hex.slice(4, 6), 16);
+    return `rgba(${red}, ${green}, ${blue}, ${normalizedOpacity})`;
   }
 }

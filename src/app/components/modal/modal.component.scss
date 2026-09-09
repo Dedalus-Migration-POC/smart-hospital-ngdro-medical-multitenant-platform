@@ -2,15 +2,16 @@
   margin-top: 0px;
 }
 
-// reset
 .modal .modal-dialog .modal-content {
-  box-shadow: none;
-}
+  overflow: hidden;
 
-.modal .modal-dialog .modal-content {
   .modal-header,
   .modal-body,
   .modal-footer {
     padding: 0;
   }
+}
+
+.modal {
+  overflow-y: hidden;
 }
