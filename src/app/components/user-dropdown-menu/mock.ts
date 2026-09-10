@@ -72,35 +72,35 @@ export const MOCK_PROFILE: any = {
   ],
 };
 
-export const UserDropdownMenuProps_MOCK: any = {
-  userButton: {
-    background: 'light',
-    color: 'primary',
-    icon: 'fa-regular fa-user',
-    textDecoration: 'underline',
-    textTransform: 'uppercase',
-  },
-  dropdownMenu: {
-    background: 'light',
-    color: 'black',
-    profile: {
-      enabled: true,
-      icon: 'fa-regular fa-user',
-      text: { it: 'Profilo', en: 'Profile' },
-    },
-    logout: {
-      enabled: true,
-      icon: 'fa-solid fa-arrow-right-from-bracket',
-      text: { it: 'Esci', en: 'Logout' },
-    },
-  },
-  loginButton: {
-    enabled: true,
-    text: { it: 'Accedi', en: 'Login' },
-    textDecoration: 'underline',
-    textTransform: 'uppercase',
-    background: 'primary',
-    color: 'white',
-    icon: 'fa-regular fa-user',
-  },
-};
+// export const UserDropdownMenuProps_MOCK: any = {
+//   userButtonStyle: {
+//     background: 'light',
+//     color: 'primary',
+//     icon: 'fa-regular fa-user',
+//     textDecoration: 'underline',
+//     textTransform: 'uppercase',
+//   },
+//   dropdownMenu: {
+//     background: 'light',
+//     color: 'black',
+//     profile: {
+//       enabled: true,
+//       icon: 'fa-regular fa-user',
+//       text: { it: 'Profilo', en: 'Profile' },
+//     },
+//     logout: {
+//       enabled: true,
+//       icon: 'fa-solid fa-arrow-right-from-bracket',
+//       text: { it: 'Esci', en: 'Logout' },
+//     },
+//   },
+//   loginButton: {
+//     enabled: true,
+//     text: { it: 'Accedi', en: 'Login' },
+//     textDecoration: 'underline',
+//     textTransform: 'uppercase',
+//     background: 'primary',
+//     color: 'white',
+//     icon: 'fa-regular fa-user',
+//   },
+// };

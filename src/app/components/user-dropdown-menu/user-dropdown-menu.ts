@@ -1,17 +1,32 @@
-import { Component, inject, input, Signal } from '@angular/core';
+import { Component, inject, input, signal, Signal } from '@angular/core';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { CommonModule } from '@angular/common';
-import { UserDropdownMenuProps } from './model';
-import { Router, RouterModule } from '@angular/router';
+import { CaretConfig, DropdownMenuAction, DropdownMenuItem, UserDropdownMenuProps } from './model';
+import { Router } from '@angular/router';
 import { UserProfile } from '../../pages/user-profile/user-profile.model';
 import { SmartHospitalState } from '../../store/reducers';
 import { Store } from '@ngrx/store';
 import { selectUserProfileData } from '../../pages/user-profile/state/user-profile.selectors';
 import { UserProfileService } from '../../pages/user-profile/state/user-profile.service';
+import {
+  BackgroundConfig,
+  BorderConfig,
+  ButtonStyle,
+  ColorConfig,
+} from '../../shared/models/shared_model';
+import { getButtonPaletteClasses, getButtonStyles } from '../../shared/utility/button.utils';
+import { getTextClasses } from '../../shared/utility/text.utils';
+import {
+  getBackgroundPaletteClass,
+  getSpacingStyles,
+  getTextColorHex,
+  getTextStyles,
+} from '../../shared/utility/style.utils';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-user-dropdown-menu',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, IconComponent],
   templateUrl: './user-dropdown-menu.html',
   styleUrl: './user-dropdown-menu.scss',
 })
@@ -26,18 +41,96 @@ export class UserDropdownMenu {
   private router = inject(Router);
 
   lang = this.langService.lang;
+  protected readonly getButtonStyles = getButtonStyles;
+  protected readonly getTextClasses = getTextClasses;
+  protected readonly getTextStyles = getTextStyles;
+
+  // Stato aperto/chiuso del dropdown, aggiornato dagli eventi nativi di Bootstrap.
+  isOpen = signal(false);
+
+  // Azioni invocabili dalle voci del menu tramite DropdownMenuItem.nameFunction.
+  private readonly actions: Record<DropdownMenuAction, () => void> = {
+    gotoUserProfile: () => this.router.navigate(['/user-profile']),
+    logout: () => {
+      this.userProfileService.logout().subscribe(() => {
+        this.router.navigate(['/']);
+      });
+    },
+  };
 
   focusNext(id: string) {
     document.getElementById(id)?.click();
   }
 
-  gotoUserProfile() {
-    this.router.navigate(['/user-profile']);
+  onDropdownToggle(isOpen: boolean) {
+    this.isOpen.set(isOpen);
   }
 
-  logout() {
-    this.userProfileService.logout().subscribe(() => {
-      this.router.navigate(['/']);
-    });
+  runAction(nameFunction: DropdownMenuAction) {
+    this.actions[nameFunction]();
+  }
+
+  // Da disconnesso il bottone naviga al login; da loggato il click e' gestito dal toggle del dropdown.
+  onButtonClick() {
+    if (!this.userProfile()) {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  itemStyles(item: DropdownMenuItem): Record<string, string> {
+    return getSpacingStyles(item.padding, 'padding');
+  }
+
+  // Toggle/login: se la palette non è impostata resta neutro
+  // (btn-dropdown) e riceve una classe dedicata per l'hover custom
+  toggleButtonClasses(config: ButtonStyle): string[] {
+    const palette = 'palette' in config ? config.palette : undefined;
+    return palette ? getButtonPaletteClasses(config) : ['btn-dropdown', 'no-palette-hover'];
+  }
+
+  loggedInUserTextClasses(config: ButtonStyle): string[] {
+    return getTextClasses(config.textStyle);
+  }
+
+  // Il colore si applica con text-{palette}.
+  // Se caret.color non è impostato, eredita il colore dell'icona del bottone.
+  caretClasses(caret: CaretConfig, fallbackColor?: ColorConfig): string[] {
+    const palette = caret.color?.palette ?? fallbackColor?.palette;
+    return [
+      'fa-solid',
+      this.isOpen() ? 'fa-angle-up' : 'fa-angle-down',
+      ...(palette ? [`text-${palette}`] : []),
+    ];
+  }
+
+  caretStyles(fontSize?: string): Record<string, string> {
+    return fontSize ? { 'font-size': fontSize } : {};
+  }
+
+  backgroundClass(background: BackgroundConfig): string {
+    return getBackgroundPaletteClass({ background });
+  }
+
+  borderClass(border: BorderConfig): string {
+    return border.color?.palette ? `border-${border.color.palette}` : '';
+  }
+
+  borderStyles(border: BorderConfig): Record<string, string> {
+    const color = getTextColorHex({ color: border.color });
+    return {
+      ...(border.width ? { 'border-width': border.width } : {}),
+      ...(border.style ? { 'border-style': border.style } : {}),
+      ...(border.radius ? { 'border-radius': border.radius } : {}),
+      ...(color ? { 'border-color': color } : {}),
+    };
+  }
+
+  backgroundStyles(dropdownMenu: UserDropdownMenuProps['dropdownMenu']): Record<string, string> {
+    const value =
+      dropdownMenu.background.gradient ?? getTextColorHex({ color: dropdownMenu.background.fill });
+    return {
+      ...(value ? { background: value } : {}),
+      ...getSpacingStyles(dropdownMenu.padding, 'padding'),
+    };
   }
 }

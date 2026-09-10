@@ -1,41 +1,51 @@
 import {
-  Colors,
-  LocalizedText,
-  TextDecoration,
-  TextTransform,
+  BackgroundConfig,
+  BorderConfig,
+  BootstrapButtonStyle,
+  ButtonConfig,
+  ColorConfig,
+  IconConfig,
+  SpacingConfig,
+  TextConfig,
 } from '../../shared/models/shared_model';
 
+// nome del metodo del componente da invocare al click, vincolato alle azioni disponibili.
+export type DropdownMenuAction = 'gotoUserProfile' | 'logout';
+
+// le voci di menu
+export interface DropdownMenuItem {
+  id: string;
+  icon?: IconConfig;
+  text: TextConfig;
+  padding?: SpacingConfig;
+  nameFunction: DropdownMenuAction;
+}
+
+// icona freccia del toggle dropdown
+export interface CaretConfig {
+  show: boolean;
+  color?: ColorConfig;
+}
+
+/*
+TODO: 
+ - in futuro si può aggiungere layoutItem per avere anche la disposizione a row degli itemsù
+ - possibilià di aggiungere la posizione del dropdown (vedi bootstrap italia)
+*/
 export interface UserDropdownMenuProps {
   id: string;
-  userButton: {
-    background: Colors;
-    color: Colors;
-    icon: string;
-    textDecoration?: TextDecoration;
-    textTransform?: TextTransform;
+  button: {
+    // loggedInUser: Toggle del dropdown quando l'utente è loggato: icona + nome utente (nome non configurabile).
+    // se non viene messa la paletta per il bottone e il colore per icona prende usa solo .btn-dropdown di bootstrap (come un link)
+    loggedInUser: BootstrapButtonStyle;
+    login: ButtonConfig;
   };
+  caret?: CaretConfig;
+  // contenitore del menu a tendina
   dropdownMenu: {
-    background: Colors;
-    color: Colors;
-    profile: {
-      enabled: boolean;
-      icon: string;
-      text: LocalizedText;
-    };
-    logout: {
-      enabled: boolean;
-      icon: string;
-      text: LocalizedText;
-    };
+    padding: SpacingConfig;
+    background: BackgroundConfig;
+    border: BorderConfig;
+    items: DropdownMenuItem[];
   };
-  loginButton: {
-    enabled: boolean;
-    text: LocalizedText;
-    textDecoration?: TextDecoration;
-    textTransform?: TextTransform;
-    background: Colors;
-    color: Colors;
-    icon: string;
-  };
-  className?: string;
 }
