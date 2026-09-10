@@ -5,6 +5,7 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { metaReducers, reducers } from './store/reducers';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { APP_BASE_HREF } from '@angular/common';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideDesignAngularKit } from 'design-angular-kit';
 import { provideInitializeApp } from './initialize/providers/initialize-app.provider';
@@ -19,6 +20,7 @@ import { HttpRefreshTokenInterceptor } from './interceptors/http-refresh-token-i
 import { HttpSmartHealthcareInterceptor } from './interceptors/http-smart-healthcare-interceptor';
 import { provideNgcCookieConsent } from 'ngx-cookieconsent';
 import { normalizeAssetUrl } from 'src/app/shared/utility/asset-url.utils';
+import { API_BASE_HREF } from '../constants';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,6 +33,11 @@ export const appConfig: ApplicationConfig = {
     }),
     provideDesignAngularKit(),
     provideHttpClient(withInterceptorsFromDi()),
+    { provide: API_BASE_HREF, useValue: window.location.origin },
+    {
+      provide: APP_BASE_HREF,
+      useValue: document.querySelector('base')?.getAttribute('href') ?? '/',
+    },
     { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpRefreshTokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
