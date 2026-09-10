@@ -116,8 +116,8 @@ export class ThemeService {
 
   private buildRootCss(properties: string[], colors?: ColorConfig, buttonRadius?: string): string {
     const buttonCss = colors
-      ? Object.keys(colors)
-          .map((color) => this.buildButtonCss(color))
+      ? Object.entries(colors)
+        .map(([color, value]) => this.buildButtonCss(color, value))
           .join('\n')
       : '';
 
@@ -141,15 +141,18 @@ export class ThemeService {
     `;
   }
 
-  private buildButtonCss(color: string): string {
+  private buildButtonCss(color: string, value: string): string {
+    const hoverColor = this.shadeColor(value, 0.1) ?? `color-mix(in srgb, var(--bs-${color}) 90%, #000)`;
+    const activeColor = this.shadeColor(value, 0.2) ?? `color-mix(in srgb, var(--bs-${color}) 80%, #000)`;
+
     return `
       .btn-${color} {
         --bs-btn-bg: var(--bs-${color});
         --bs-btn-border-color: var(--bs-${color});
-        --bs-btn-hover-bg: var(--bs-${color});
-        --bs-btn-hover-border-color: var(--bs-${color});
-        --bs-btn-active-bg: var(--bs-${color});
-        --bs-btn-active-border-color: var(--bs-${color});
+        --bs-btn-hover-bg: ${hoverColor};
+        --bs-btn-hover-border-color: ${hoverColor};
+        --bs-btn-active-bg: ${activeColor};
+        --bs-btn-active-border-color: ${activeColor};
         --bs-btn-disabled-bg: var(--bs-${color});
         --bs-btn-disabled-border-color: var(--bs-${color});
       }
@@ -197,6 +200,16 @@ export class ThemeService {
         border-color: var(--bs-${color});
       }
     `;
+  }
+
+  private shadeColor(hex: string, amount: number): string | null {
+    const rgb = this.hexToRgb(hex);
+    if (!rgb) return null;
+
+    const shade = (channel: number) => Math.round(channel * (1 - amount));
+    return `#${[shade(rgb.r), shade(rgb.g), shade(rgb.b)]
+      .map((channel) => channel.toString(16).padStart(2, '0'))
+      .join('')}`;
   }
 
   private upsertStyleElement(css: string): void {

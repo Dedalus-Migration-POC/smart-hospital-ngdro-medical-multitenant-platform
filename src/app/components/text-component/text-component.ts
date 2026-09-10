@@ -21,6 +21,6 @@ export class TextComponent {
   protected readonly getTextClasses = getTextClasses;
 
   classes(config: TextProps): string[] {
-    return ['cursor-default', config.className ?? '', ...this.getTextClasses(config)];
+    return ['cursor-default', ...this.getTextClasses(config)];
   }
 }

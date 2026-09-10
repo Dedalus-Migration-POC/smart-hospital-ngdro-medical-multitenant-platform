@@ -8,20 +8,17 @@ import {
   HttpXsrfTokenExtractor,
 } from '@angular/common/http';
 import { USER_SESSION_KEY } from '../../constants';
-import { LanguageService } from '../initialize/state/services/language.service';
 
 @Injectable()
 export class HttpHeadersInterceptor implements HttpInterceptor {
-  constructor(
-    private tokenExtractor: HttpXsrfTokenExtractor,
-    private languageService: LanguageService,
-  ) {}
+  constructor(private tokenExtractor: HttpXsrfTokenExtractor) {}
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const headerName = 'X-XSRF-TOKEN';
     const token = this.tokenExtractor.getToken() as string;
+    const localeId = localStorage.getItem('localeId') ?? 'it';
 
     req = req.clone({
-      headers: req.headers.set('Accept-Language', this.languageService.currentLanguage.localeId),
+      headers: req.headers.set('Accept-Language', localeId),
     });
 
     if (token !== null && !req.headers.has(headerName)) {

@@ -18,6 +18,8 @@ import { HttpHeadersInterceptor } from './interceptors/http-headers-interceptor'
 import { HttpRefreshTokenInterceptor } from './interceptors/http-refresh-token-interceptor';
 import { HttpSmartHealthcareInterceptor } from './interceptors/http-smart-healthcare-interceptor';
 import { provideNgcCookieConsent } from 'ngx-cookieconsent';
+import { API_BASE_HREF } from 'src/constants';
+import { APP_BASE_HREF } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -36,11 +38,13 @@ export const appConfig: ApplicationConfig = {
     { provide: HTTP_INTERCEPTORS, useClass: HttpSmartHealthcareInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: API_BASE_HREF, useValue: window.location.origin },
+    { provide: APP_BASE_HREF, useValue: window.location.origin + '/ui/' },
     provideInitializeApp(),
     provideTranslateService({
       fallbackLang: 'it',
       loader: provideTranslateHttpLoader({
-        prefix: '/assets/i18n/',
+        prefix: 'assets/i18n/',
         suffix: '.json',
       }),
     }),

@@ -1,93 +1,92 @@
 @if (config(); as config) {
-  @if (userProfile(); as user) {
+  <div class="dropdown">
     <button
-      href="#"
-      class="btn btn-icon dropdown-toggle px-2 py-0 btn-xs"
-      [ngClass]="[
-        'bg-' + config.userButton.background,
-        'text-' + config.userButton.color,
-        'text-' + config.userButton.textTransform,
-        'text-decoration-' + config.userButton.textDecoration,
-      ]"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-      id="userDropdownMenu"
+      type="button"
+      class="btn d-inline-flex align-items-center justify-content-center"
+      [class.dropdown-toggle]="userProfile()"
+      [ngClass]="
+        toggleButtonClasses(userProfile() ? config.button.loggedInUser : config.button.login)
+      "
+      [ngStyle]="getButtonStyles(userProfile() ? config.button.loggedInUser : config.button.login)"
+      [attr.data-bs-toggle]="userProfile() ? 'dropdown' : null"
+      [attr.aria-expanded]="userProfile() ? 'false' : null"
+      [id]="userProfile() ? 'userDropdownMenu' : null"
+      (click)="onButtonClick()"
+      (shown.bs.dropdown)="onDropdownToggle(true)"
+      (hidden.bs.dropdown)="onDropdownToggle(false)"
     >
-      <span
-        class="rounded-icon"
-        [ngClass]="['bg-' + config.userButton.background, 'text-' + config.userButton.color]"
-      >
-        <i [class]="config.userButton.icon"></i>
-      </span>
-      <span class="d-none d-lg-block"> {{ user.firstName }} {{ user.lastName }} </span>
-    </button>
-    <div class="dropdown-menu" role="region" aria-labelledby="userDropdownMenu">
-      <div class="link-list-wrapper">
-        <ul class="link-list">
-          @if (config.dropdownMenu.profile.enabled) {
-            <li>
-              <a
-                class="dropdown-item list-item"
-                [ngClass]="[
-                  'bg-' + config.dropdownMenu.background,
-                  'text-' + config.dropdownMenu.color,
-                ]"
-                (click)="$event.preventDefault(); gotoUserProfile()"
-                id="user-profile-button"
-                (keyup.enter)="focusNext('user-profile-button')"
-                href="#"
-                tabindex="0"
-              >
-                <i [ngClass]="config.dropdownMenu.profile.icon" class="me-2" aria-hidden="true"></i>
-                {{ config.dropdownMenu.profile.text[lang()] }}
-              </a>
-            </li>
-          }
-          @if (config.dropdownMenu.logout.enabled) {
-            <li>
-              <a
-                class="dropdown-item list-item"
-                [ngClass]="[
-                  'bg-' + config.dropdownMenu.background,
-                  'text-' + config.dropdownMenu.color,
-                ]"
-                href="#"
-                (click)="$event.preventDefault(); logout()"
-                (keyup.enter)="focusNext('logout-button')"
-                id="logout-button"
-                tabindex="0"
-              >
-                <i [ngClass]="config.dropdownMenu.logout.icon" class="me-2" aria-hidden="true"></i>
-                {{ config.dropdownMenu.logout.text[lang()] }}
-              </a>
-            </li>
-          }
-        </ul>
-      </div>
-    </div>
-  } @else {
-    <a
-      routerLink="/login"
-      class="btn btn-icon px-2 py-0 btn-xs"
-      [ngClass]="[
-        config.loginButton.enabled ? '' : 'd-none',
-        'bg-' + config.loginButton.background,
-        'text-' + config.loginButton.color,
-        'text-' + config.loginButton.textTransform,
-        'text-decoration-' + config.loginButton.textDecoration,
-      ]"
-    >
-      @if (config.loginButton.icon) {
+      @if (userProfile(); as user) {
+        @if (config.button.loggedInUser.icon; as icon) {
+          <app-icon [config]="icon" defaultMarginClass="me-lg-2" />
+        }
         <span
-          class="rounded-icon"
-          [ngClass]="['bg-' + config.loginButton.background, 'text-' + config.loginButton.color]"
+          class="d-none d-lg-inline-block"
+          [ngClass]="loggedInUserTextClasses(config.button.loggedInUser)"
+          [ngStyle]="getTextStyles(config.button.loggedInUser.textStyle)"
         >
-          <i [class]="config.loginButton.icon"></i>
+          {{ user.firstName }} {{ user.lastName }}
+        </span>
+        @if (config.caret?.show) {
+          <i
+            class="ms-1"
+            [ngClass]="caretClasses(config.caret!, config.button.loggedInUser.icon?.color)"
+            [ngStyle]="caretStyles(config.button.loggedInUser.icon?.fontSize)"
+            aria-hidden="true"
+          ></i>
+        }
+      } @else {
+        @if (config.button.login.icon; as icon) {
+          <app-icon [config]="icon" defaultMarginClass="me-lg-2" />
+        }
+        <span
+          class="d-none d-lg-inline-block"
+          [ngClass]="getTextClasses(config.button.login.text)"
+          [ngStyle]="getTextStyles(config.button.login.text)"
+        >
+          {{ config.button.login.text.text[lang()] }}
         </span>
       }
+    </button>
 
-      <span class="d-none d-lg-block"> {{ config.loginButton.text[lang()] }}</span>
-    </a>
-  }
+    @if (userProfile()) {
+      <div
+        class="dropdown-menu"
+        [ngClass]="[
+          backgroundClass(config.dropdownMenu.background),
+          borderClass(config.dropdownMenu.border),
+        ]"
+        [ngStyle]="{
+          ...backgroundStyles(config.dropdownMenu),
+          ...borderStyles(config.dropdownMenu.border),
+        }"
+        role="region"
+        aria-labelledby="userDropdownMenu"
+      >
+        <div class="link-list-wrapper">
+          <ul class="link-list">
+            @for (item of config.dropdownMenu.items; track item.id) {
+              <li>
+                <a
+                  class="dropdown-item list-item"
+                  (click)="$event.preventDefault(); runAction(item.nameFunction)"
+                  [id]="item.id"
+                  [ngStyle]="itemStyles(item)"
+                  (keyup.enter)="focusNext(item.id)"
+                  href="#"
+                  tabindex="0"
+                >
+                  @if (item.icon; as icon) {
+                    <app-icon [config]="icon" defaultMarginClass="me-2" />
+                  }
+                  <span [ngClass]="getTextClasses(item.text)" [ngStyle]="getTextStyles(item.text)">
+                    {{ item.text.text[lang()] }}
+                  </span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    }
+  </div>
 }
