@@ -5978,35 +5978,76 @@ export const APP_CONFIG: AppConfig = {
               type: 'USER_DROPDOWN_MENU',
               enabled: true,
               props: {
-                userButton: {
-                  background: 'primary',
-                  color: 'white',
-                  icon: 'fa-regular fa-user',
-                  textDecoration: 'underline',
-                  textTransform: 'uppercase',
+                button: {
+                  loggedInUser: {
+                    padding: {
+                      all: '4px',
+                    },
+                    textStyle: {
+                      textDecoration: 'underline',
+                      textTransform: 'uppercase',
+                      color: { palette: 'white' },
+                      fontSize: 'sm',
+                    },
+                    icon: {
+                      type: 'font-awesome',
+                      name: 'fa-regular fa-user',
+                      color: { palette: 'white' },
+                      fontSize: '14px',
+                    },
+                    // palette: 'success',
+                  },
+                  login: {
+                    //  palette: 'primary',
+                    text: {
+                      text: { it: 'Accedi', en: 'Login' },
+                      textDecoration: 'underline',
+                      textTransform: 'uppercase',
+                      color: { palette: 'white' },
+                    },
+                    icon: {
+                      type: 'font-awesome',
+                      name: 'fa-regular fa-user',
+                      color: { palette: 'white' },
+                    },
+                  },
                 },
+                caret: { show: true },
                 dropdownMenu: {
-                  background: 'light',
-                  color: 'black',
-                  profile: {
-                    enabled: true,
-                    icon: 'fa-regular fa-user',
-                    text: { it: 'Profilo', en: 'Profile' },
+                  background: { fill: { palette: 'light' } },
+                  border: {
+                    radius: '4px',
                   },
-                  logout: {
-                    enabled: true,
-                    icon: 'fa-solid fa-arrow-right-from-bracket',
-                    text: { it: 'Esci', en: 'Logout' },
-                  },
-                },
-                loginButton: {
-                  enabled: true,
-                  text: { it: 'Accedi', en: 'Login' },
-                  textDecoration: 'underline',
-                  textTransform: 'uppercase',
-                  background: 'primary',
-                  color: 'white',
-                  icon: 'fa-regular fa-user',
+                  items: [
+                    {
+                      id: 'profile',
+                      padding: {
+                        y: '4px',
+                        x: '12px',
+                      },
+                      icon: {
+                        type: 'font-awesome',
+                        name: 'fa-regular fa-user',
+                        color: { palette: 'black' },
+                      },
+                      text: { text: { it: 'Profilo', en: 'Profile' }, color: { palette: 'black' } },
+                      nameFunction: 'gotoUserProfile',
+                    },
+                    {
+                      id: 'logout',
+                      padding: {
+                        y: '4px',
+                        x: '12px',
+                      },
+                      icon: {
+                        type: 'font-awesome',
+                        name: 'fa-solid fa-arrow-right-from-bracket',
+                        color: { palette: 'black' },
+                      },
+                      text: { text: { it: 'Esci', en: 'Logout' }, color: { palette: 'black' } },
+                      nameFunction: 'logout',
+                    },
+                  ],
                 },
               },
             },
