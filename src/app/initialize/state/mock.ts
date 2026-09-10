@@ -5,7 +5,7 @@ export const LOGIN = {
   name: { it: 'Accesso', en: 'Login' }, // Nome nel browser per accessibilità
   route: '/', //non serve, non lo possono cambiare
   // backgroundColor: 'aqua', //o color o img!
-  backgroundImage: '/assets/images/bg.svg',
+  backgroundImage: '/styles/bg.svg',
   areas: {
     layout: {
       direction: ['column', 'md-row'],
