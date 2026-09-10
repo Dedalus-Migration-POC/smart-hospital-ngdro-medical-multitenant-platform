@@ -5,7 +5,7 @@ export const LOGIN = {
   name: { it: 'Accesso', en: 'Login' }, // Nome nel browser per accessibilità
   route: '/', //non serve, non lo possono cambiare
   // backgroundColor: 'aqua', //o color o img!
-  backgroundImage: '/styles/bg.svg',
+  backgroundImage: '/assets/images/bg.svg',
   areas: {
     layout: {
       direction: ['column', 'md-row'],
@@ -5978,78 +5978,35 @@ export const APP_CONFIG: AppConfig = {
               type: 'USER_DROPDOWN_MENU',
               enabled: true,
               props: {
-                button: {
-                  loggedInUser: {
-                    padding: {
-                      all: '4px',
-                    },
-                    textStyle: {
-                      textDecoration: 'underline',
-                      textTransform: 'uppercase',
-                      color: { palette: 'white' },
-                      fontSize: 'sm',
-                    },
-                    icon: {
-                      type: 'font-awesome',
-                      name: 'fa-regular fa-user',
-                      color: { palette: 'white' },
-                      fontSize: '14px',
-                    },
-                    // palette: 'success',
+                userButton: {
+                  background: 'primary',
+                  color: 'white',
+                  icon: 'fa-regular fa-user',
+                  textDecoration: 'underline',
+                  textTransform: 'uppercase',
+                },
+                dropdownMenu: {
+                  background: 'light',
+                  color: 'black',
+                  profile: {
+                    enabled: true,
+                    icon: 'fa-regular fa-user',
+                    text: { it: 'Profilo', en: 'Profile' },
                   },
-                  login: {
-                    //  palette: 'primary',
-                    text: {
-                      text: { it: 'Accedi', en: 'Login' },
-                      textDecoration: 'underline',
-                      textTransform: 'uppercase',
-                      color: { palette: 'white' },
-                      fontSize: '16px',
-                    },
-                    icon: {
-                      type: 'font-awesome',
-                      name: 'fa-regular fa-user',
-                      color: { palette: 'white' },
-                      fontSize: '14px',
-                    },
+                  logout: {
+                    enabled: true,
+                    icon: 'fa-solid fa-arrow-right-from-bracket',
+                    text: { it: 'Esci', en: 'Logout' },
                   },
                 },
-                caret: { show: true },
-                dropdownMenu: {
-                  background: { fill: { palette: 'light' } },
-                  border: {
-                    radius: '4px',
-                  },
-                  items: [
-                    {
-                      id: 'profile',
-                      padding: {
-                        y: '4px',
-                        x: '12px',
-                      },
-                      icon: {
-                        type: 'font-awesome',
-                        name: 'fa-regular fa-user',
-                        color: { palette: 'black' },
-                      },
-                      text: { text: { it: 'Profilo', en: 'Profile' }, color: { palette: 'black' } },
-                      nameFunction: 'gotoUserProfile',
-                    },
-                    {
-                      id: 'logout',
-                      padding: {
-                        y: '4px',
-                        x: '12px',
-                      },
-                      icon: {
-                        type: 'font-awesome',
-                        name: 'fa-solid fa-arrow-right-from-bracket',
-                        color: { palette: 'black' },
-                      },
-                      text: { text: { it: 'Esci', en: 'Logout' }, color: { palette: 'black' } },
-                      nameFunction: 'logout',
-                    },
-                  ],
+                loginButton: {
+                  enabled: true,
+                  text: { it: 'Accedi', en: 'Login' },
+                  textDecoration: 'underline',
+                  textTransform: 'uppercase',
+                  background: 'primary',
+                  color: 'white',
+                  icon: 'fa-regular fa-user',
                 },
               },
             },
