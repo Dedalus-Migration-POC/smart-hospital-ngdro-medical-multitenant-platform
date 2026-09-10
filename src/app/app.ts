@@ -17,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CookieConsentModal } from './components/cookie-consent-modal/cookie-consent-modal';
 import { CookieConsentService } from './initialize/state/services/cookie-consent.service';
 import { AppConfig } from './initialize/state/app-config.model';
+import { normalizeAssetUrl } from 'src/app/shared/utility/asset-url.utils';
 @Component({
   selector: 'app-root',
   imports: [
@@ -77,7 +78,7 @@ export class App implements OnInit {
     const url = this.currentUrl();
     if (!config) return '';
     const page = config.pages.find((p: any) => p.id === url);
-    return page?.backgroundImage ?? '';
+    return normalizeAssetUrl(page?.backgroundImage);
   });
   readonly bgColor = computed(() => {
     const config = this.appConfig();

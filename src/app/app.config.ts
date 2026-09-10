@@ -18,6 +18,7 @@ import { HttpHeadersInterceptor } from './interceptors/http-headers-interceptor'
 import { HttpRefreshTokenInterceptor } from './interceptors/http-refresh-token-interceptor';
 import { HttpSmartHealthcareInterceptor } from './interceptors/http-smart-healthcare-interceptor';
 import { provideNgcCookieConsent } from 'ngx-cookieconsent';
+import { normalizeAssetUrl } from 'src/app/shared/utility/asset-url.utils';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -40,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     provideTranslateService({
       fallbackLang: 'it',
       loader: provideTranslateHttpLoader({
-        prefix: '/assets/i18n/',
+        prefix: normalizeAssetUrl('assets/i18n/'),
         suffix: '.json',
       }),
     }),

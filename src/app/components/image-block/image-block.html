@@ -16,7 +16,7 @@
       @if (config.image.type === 'url' || config.image.type === 'file') {
         <img
           class="img-fluid"
-          [src]="config.image.value"
+          [src]="imageUrl()"
           [ngStyle]="getImageStyles(config.image)"
           loading="lazy"
           [attr.alt]="altText() ?? ''"
