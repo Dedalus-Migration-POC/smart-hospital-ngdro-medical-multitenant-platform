@@ -9,7 +9,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideDesignAngularKit } from 'design-angular-kit';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
-import { normalizeAssetUrl } from '../shared/utility/asset-url.utils';
 
 export const appAdminConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +24,7 @@ export const appAdminConfig: ApplicationConfig = {
     provideTranslateService({
       fallbackLang: 'it',
       loader: provideTranslateHttpLoader({
-        prefix: normalizeAssetUrl('assets/i18n/'),
+        prefix: '/assets/i18n/',
         suffix: '.json',
       }),
     }),

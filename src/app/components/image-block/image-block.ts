@@ -18,7 +18,6 @@ import { getTooltipClassName, getTooltipLabel } from '../../shared/utility/toolt
 import { getLocalizedText, getTextClasses } from '../../shared/utility/text.utils';
 import { getSpacingStyles, getTextStyles } from '../../shared/utility/style.utils';
 import { ImageStyle } from '../../shared/models/shared_model';
-import { normalizeAssetUrl } from '../../shared/utility/asset-url.utils';
 
 @Component({
   selector: 'app-image-block',
@@ -50,7 +49,6 @@ export class ImageBlock {
 
   tooltipLabel = computed(() => getTooltipLabel(this.config()?.image?.tooltip, this.lang()));
   tooltipClassName = computed(() => getTooltipClassName(this.config()?.image?.tooltip));
-  imageUrl = computed(() => normalizeAssetUrl(this.config()?.image?.value));
 
   getBlockStyles(config: ImageBlockConfig): Record<string, string> {
     return {

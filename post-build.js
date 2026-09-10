@@ -1,21 +1,31 @@
-const fs = require('node:fs');
-const path = require('node:path');
+/* global process, indexHtmlFile  */
 
-const packageJson = require('./package.json');
-const indexHtmlPath = path.join(__dirname, 'dist', 'index.html');
-const buildDate = new Date().toISOString();
-const deploymentMarker = '<!-- deployment-info -->';
-const deploymentInfo = `${deploymentMarker}\n<script>console.info('[${packageJson.name}] Build deployed: ${buildDate} (v${packageJson.version})');</script>`;
+const fs = require('fs')
+const pjson = require('./package.json')
 
-if (!fs.existsSync(indexHtmlPath)) {
-    console.error(`Post-build skipped: ${indexHtmlPath} was not found.`);
-    process.exitCode = 1;
-} else {
-    const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-    const updatedIndexHtml = indexHtml.includes(deploymentMarker)
-        ? indexHtml.replace(new RegExp(`${deploymentMarker}[\\s\\S]*?</script>`), deploymentInfo)
-        : indexHtml.replace('</head>', `  ${deploymentInfo}\n</head>`);
+const appTitle = pjson.name
+const appVersion = pjson.version
 
-    fs.writeFileSync(indexHtmlPath, updatedIndexHtml, 'utf8');
-    console.log(`Deployment information added to ${indexHtmlPath}: ${buildDate}`);
-}
+let args = process.argv.slice(2)
+let deployUrl = args[0]
+deployUrl = deployUrl.endsWith('/') ? deployUrl.slice(0, -1) : deployUrl
+
+const environmentValue = 'Smart Hospital s.r.l. - A Dedalus group company'
+const indexHtmlFile = './dist/index.html'
+
+fs.readFile(indexHtmlFile, 'utf8', function (err, indexHtmlFileData) {
+    if (err) {
+        console.log(err)
+        return
+    }
+
+    const result = `<!-- ${appTitle} v.`
+        .concat(appVersion)
+        .concat(' - ')
+        .concat(new Date().toUTCString())
+        .concat(` - by ${environmentValue} -->\n`)
+        .concat(indexHtmlFileData)
+    fs.writeFile(indexHtmlFile, result, 'utf8', function (err) {
+        if (err) return console.log(err)
+    })
+})
