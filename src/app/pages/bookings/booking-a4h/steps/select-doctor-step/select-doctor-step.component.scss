@@ -1,10 +1,5 @@
-.doctor-item {
-  padding: 0.5rem 0;
-  cursor: pointer;
-
-  &:hover {
-    text-decoration: underline;
-  }
+::ng-deep .accordion-header .accordion-button {
+  border-top: 0;
 }
 .form-container {
   display: flex;
@@ -23,6 +18,26 @@
   margin-top: 20px;
   @media (max-width: 768px) {
     width: 100%;
+  }
+}
+
+.stepper-subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  .stepper-subtitle-info {
+    font-size: 24px;
+    font-weight: 400;
+    margin-right: 4rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    .stepper-subtitle-info {
+      margin-right: 0;
+    }
   }
 }
 

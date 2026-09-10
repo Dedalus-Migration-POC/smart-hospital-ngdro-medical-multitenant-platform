@@ -4,6 +4,10 @@
   justify-content: space-between;
   margin-bottom: 3rem;
 
+  .stepper-subtitle-info {
+    font-size: 24px;
+    margin-right: 4rem;
+  }
   @media (max-width: 768px) {
     flex-direction: column;
 

@@ -78,12 +78,15 @@ export class ConfirmedBookingComponent {
         }),
       );
     });
-
-    effect(() => {
-      if (!this.bookingSummary().length) this.router.navigate(['/booking-a4h']);
-    });
   }
 
+  ngAfterViewInit(): void {
+    // Check on component init only (like the old component)
+    // Don't use reactive effect to avoid re-navigation on state changes
+    if (!this.bookingSummary().length) {
+      this.router.navigate(['/booking-a4h']);
+    }
+  }
   onDownload(link: string) {
     const downloadLink = document.createElement('a');
     downloadLink.href = link;

@@ -73,7 +73,7 @@
 
 <div class="button-container">
   <button type="button" class="btn btn-outline-secondary" (click)="back.emit()">
-    {{ 'back' | translate }}
+    {{ 'booking-a4h.back' | translate }}
   </button>
   <button
     type="button"
@@ -81,6 +81,6 @@
     (click)="onConfirmClick()"
     [disabled]="!selectedMedicalServicesId().length"
   >
-    {{ 'confirm' | translate }}
+    {{ 'booking-a4h.confirm' | translate }}
   </button>
 </div>

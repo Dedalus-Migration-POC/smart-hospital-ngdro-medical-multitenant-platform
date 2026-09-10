@@ -17,6 +17,12 @@
       "invalid-field": "The value entered is not valid"
     }
   },
+  "it": {
+    "errors": {
+      "required-field": "The field is required",
+      "invalid-field": "The value entered is not valid"
+    }
+  },
   "input": {
     "errors": {
       "required-field": "The field is required",
@@ -445,24 +451,96 @@
     }
   },
   "mondinoAddress": "Fondazione Mondino, Via Mondino, 2 - 27100 Pavia",
-  "booking-summary": {
-    "name": "Name",
-    "service": "Service",
-    "place": "Place",
-    "doctor": "Doctor",
-    "hospital": "Clinic",
-    "dateTime": "Date and time",
-    "price": "Price"
-  },
   "booking-a4h": {
+    "bookingTypeTitle": "Book your visit at",
+    "booking-with-ssn": "Booking through the National Health Service (NHS)",
+    "booking-no-doctor-select": "Private booking without choosing a doctor",
+    "booking-with-doctor-select": "Private booking with a doctor",
+    "physicians": "Doctor booking",
+    "prenotazione": "Booking",
+    "stepCounter": "{{current}} of {{total}}: {{name}}",
+    "selectedFacility": "Facility",
+    "bookingWithSsnTitle": "Enter the booking codes or scan the complete prescription",
+    "stepTitleSelectService": "Select the services you need",
+    "stepTitleSelectDoctor": "Select a doctor from the list",
+    "stepTitleSelectDateTime": "Select a date and time for the service",
+    "selectServiceTitle": "Select the services",
+    "stepTitleSelectDateTimeShort": "Select date and time",
+    "stepTitleReviewAndConfirm": "Review your selection, check and confirm your choices",
+    "multipleAppointments": "The services you selected require multiple appointments. Please select the necessary availabilities to complete the bookings. Thank you.",
+    "singleAppointmentOptimized": "The services you selected will be optimized into a single appointment. Please select the necessary availability to complete the booking. Thank you.",
+    "noServicesForDoctor": "There are no services available for the selected doctor.",
+    "cancel": "Cancel",
+    "proceed": "Continue",
     "warning": "Warning",
+    "warningExcl": "Warning!",
+    "error": "Error",
+    "errorExcl": "Error!",
+    "partialUnavailability": "Some of the selected services are not available this year:",
+    "bookAvailableQuestion": "Do you want to book",
+    "noAvailability": "There is currently no availability for the requested services. Please contact the facility's booking office for more information and assistance.",
+    "noneAvailable": "None of the selected services are available. Please choose another one.",
+    "back": "Back",
+    "request": "Request",
+    "confirm": "Confirm",
+    "stepsTitle": {
+      "insertNre": "NRE",
+      "selectService": "Select service",
+      "selectDoctor": "Select doctor",
+      "selectDateAndTime": "Select date and time",
+      "appointmentSummary": "Appointment summary"
+    },
+    "insertNre": {
+      "enterCf": "Enter tax code",
+      "enterRightNRE": "Enter the right part of the NRE",
+      "enterLeftNRE": "Enter the left part of the NRE",
+      "selectPrescription": "Upload the prescription for automatic completion"
+    },
     "understood": "Understood",
     "multipleServices": "Your prescription includes multiple services. Pay attention to choosing the correct type!",
     "selectService": {
       "confirmModal": {
         "title": "Confirm selection",
         "body": "You selected the following services:<br><br>{{services}}<br><br>Do you confirm your choices?"
-      }
+      },
+      "servicesAlphabeticalOrder": "List of services in alphabetical order",
+      "searchTitle": "Text to search",
+      "selectedMedicalServices": "Selected services",
+      "servicesAlertHeader": "Warning!",
+      "servicesAlertContent": "For administrative reasons, select First visit or Follow-up visit for all services. The choice must be the same for every service."
+    },
+    "selectDoctor": {
+      "searchTitle": "Text to search",
+      "doctorsList": "List of specialists",
+      "noDoctorsForServices": "The doctor search for the services",
+      "noDoctorsForServicesSuffix": "returned no results. If the selected services belong to different medical specialties, try a new search."
+    },
+    "dateTime": {
+      "date": "Date:",
+      "time": "Time:",
+      "filterData": "Filter by date",
+      "insertDataFrom": "Enter the date from",
+      "insertDataTo": "Enter the date to",
+      "stepperSubtitleInfo": "Availability list for"
+    },
+    "booking-summary": {
+      "appointmentSummary": "Appointment summary",
+      "name": "Name",
+      "service": "Service",
+      "place": "Place",
+      "doctor": "Doctor",
+      "hospital": "Clinic",
+      "dateTime": "Date and time",
+      "price": "Price"
+    },
+    "booking-confirmed": {
+      "title": "Booking completed",
+      "bookingConfirm": "Booking confirmed successfully!",
+      "emailConfirm": "You will receive confirmation at the email address",
+      "payConfirm": "You can now proceed with the booking payment.",
+      "load": "Download",
+      "preparationRules": "the preparation instructions",
+      "goToPayments": "Go to payments"
     }
   }
 }

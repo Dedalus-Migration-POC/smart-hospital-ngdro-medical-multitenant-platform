@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, of, switchMap, timer } from 'rxjs';
+import { delay, Observable, of, switchMap, timer } from 'rxjs';
 import type {
   MedicalService,
   CreateSessionResponse,
@@ -17,10 +17,13 @@ import type {
   FindByNrePayload,
   PrescriptionSession,
 } from './model';
+import { BOOK_APPOINTMENT_RESP } from './mock';
 
 @Injectable({ providedIn: 'root' })
 export class BookingUnifiedService {
   private readonly httpClient = inject(HttpClient);
+  private readonly IS_DEV = true;
+
   private checkAvailableDaysCounter = 0;
 
   getServicesList(bookingFlow: string): Observable<MedicalService[]> {
@@ -70,6 +73,9 @@ export class BookingUnifiedService {
   }
 
   book(payload: LockAppointmentPayload): Observable<BookAppointmentResponse> {
+    if (this.IS_DEV) {
+      return of(BOOK_APPOINTMENT_RESP).pipe(delay(500));
+    }
     return this.httpClient.post<BookAppointmentResponse>('/medical-booking/api/book', payload);
   }
 

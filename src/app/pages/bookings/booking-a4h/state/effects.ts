@@ -5,6 +5,7 @@ import { combineLatest, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
+import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
@@ -48,9 +49,20 @@ export class BookingUnifiedEffects {
   private router = inject(Router);
   private translate = inject(TranslateService);
   private modalService = inject(BookingUnifiedModalService);
+  private readonly notificationService = inject(ItNotificationService);
 
-  private notifyError(titleKey: string, descriptionKey: string) {
-    this.modalService.openInfo(titleKey, descriptionKey);
+  private notifyError(titleKey: string, descriptionKey: string, options?: { okKey?: string }) {
+    this.modalService.openInfo(titleKey, descriptionKey, undefined, undefined, options?.okKey);
+  }
+
+  private notifyErrorGeneral() {
+    this.notificationService.error(
+      this.translate.instant('commons.error'),
+      this.translate.instant('commons.generic-error'),
+      true,
+      8000,
+      NotificationPosition.Top,
+    );
   }
 
   private stepIndex(bookingType: BookingType | null, key: BookingStepKey): number {
@@ -120,12 +132,17 @@ export class BookingUnifiedEffects {
                   )
                   .subscribe();
               } else {
-                this.notifyError('booking-a4h.warning', 'booking-a4h.noServicesForDoctor');
+                this.notifyError('booking-a4h.warning', 'booking-a4h.noServicesForDoctor', {
+                  okKey: 'booking-a4h.understood',
+                });
               }
             }
             return BookingUnifiedActions.getServicesListSuccess({ data });
           }),
-          catchError((error) => of(BookingUnifiedActions.getServicesListFailure({ error }))),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.getServicesListFailure({ error }));
+          }),
         ),
       ),
     ),
@@ -147,7 +164,10 @@ export class BookingUnifiedEffects {
             }
             return BookingUnifiedActions.getDoctorsListSuccess({ data });
           }),
-          catchError((error) => of(BookingUnifiedActions.getDoctorsListFailure({ error }))),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.getDoctorsListFailure({ error }));
+          }),
         ),
       ),
     ),
@@ -173,7 +193,10 @@ export class BookingUnifiedEffects {
             }
             return BookingUnifiedActions.createSessionSuccess({ data });
           }),
-          catchError((error) => of(BookingUnifiedActions.createSessionFailure({ error }))),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.createSessionFailure({ error }));
+          }),
         ),
       ),
     ),
@@ -223,7 +246,10 @@ export class BookingUnifiedEffects {
             );
             return BookingUnifiedActions.findForAvailableDaysSuccess({ data });
           }),
-          catchError((error) => of(BookingUnifiedActions.findForAvailableDaysFailure({ error }))),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.findForAvailableDaysFailure({ error }));
+          }),
         );
       }),
     ),
@@ -368,9 +394,10 @@ export class BookingUnifiedEffects {
       concatMap((action) =>
         this.bookingService.releaseLockBookingSession(action.payload).pipe(
           map((data) => BookingUnifiedActions.releaseLockBookingSessionSuccess({ data })),
-          catchError((error) =>
-            of(BookingUnifiedActions.releaseLockBookingSessionFailure({ error })),
-          ),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.releaseLockBookingSessionFailure({ error }));
+          }),
         ),
       ),
     ),
@@ -390,7 +417,6 @@ export class BookingUnifiedEffects {
                 tap((isOptimized) => {
                   if (isOptimized) {
                     this.router.navigate(['booking-a4h', bookingType, 'confirmed-booking']);
-                    this.store.dispatch(BookingUnifiedActions.resetState());
                   } else {
                     combineLatest([
                       this.store.select(selectLockAppointmentResponse),
@@ -432,7 +458,7 @@ export class BookingUnifiedEffects {
             return BookingUnifiedActions.bookAppointmentSuccess({ data });
           }),
           catchError((error) => {
-            this.notifyError('booking-a4h.error', 'commons.generic-error');
+            this.notifyErrorGeneral();
             return of(BookingUnifiedActions.bookAppointmentFailure({ error }));
           }),
         ),
@@ -499,7 +525,10 @@ export class BookingUnifiedEffects {
             }
             return BookingUnifiedActions.checkAvailabilitySuccess({ data });
           }),
-          catchError((error) => of(BookingUnifiedActions.checkAvailabilityFailure({ error }))),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.checkAvailabilityFailure({ error }));
+          }),
         );
       }),
     ),
@@ -511,7 +540,10 @@ export class BookingUnifiedEffects {
       concatMap(() =>
         this.bookingService.getHealthCareUnit().pipe(
           map((data) => BookingUnifiedActions.getHealthCareUnitSuccess({ data })),
-          catchError((error) => of(BookingUnifiedActions.getHealthCareUnitFailure({ error }))),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.getHealthCareUnitFailure({ error }));
+          }),
         ),
       ),
     ),
@@ -523,7 +555,11 @@ export class BookingUnifiedEffects {
       concatMap((action) =>
         this.bookingService.mergePdfByUrls(action.payload).pipe(
           map((data) => BookingUnifiedActions.mergePdfByUrlsSuccess({ data })),
-          catchError((error) => of(BookingUnifiedActions.mergePdfByUrlsFailure({ error }))),
+          catchError((error) => {
+            // Log the error but don't dispatch a notification - the PDF merge is optional
+            console.error('mergePdfByUrls error:', error);
+            return of(BookingUnifiedActions.mergePdfByUrlsFailure({ error }));
+          }),
         ),
       ),
     ),

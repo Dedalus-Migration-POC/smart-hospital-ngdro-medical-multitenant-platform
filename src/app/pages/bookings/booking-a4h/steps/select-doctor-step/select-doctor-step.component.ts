@@ -28,6 +28,7 @@ import {
   selectDoctorsList,
   selectDoctorsListLoading,
   selectSelectedMedicalService,
+  selectServicesList,
 } from '../../state/selectors';
 import { Spinner } from 'src/app/components/spinner/spinner';
 
@@ -52,12 +53,17 @@ export class SelectDoctorStepComponent implements OnInit {
 
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly loading = this.store.selectSignal(selectDoctorsListLoading);
-  private readonly doctors = this.store.selectSignal(selectDoctorsList);
+  protected readonly doctors = this.store.selectSignal(selectDoctorsList);
   private readonly createSessionResponse = this.store.selectSignal(selectCreateSessionResponse);
   private readonly selectedMedicalService = this.store.selectSignal(selectSelectedMedicalService);
+  private readonly services = this.store.selectSignal(selectServicesList);
   private readonly selectedStruttura = this.store.selectSignal(selectSelectedStruttura);
 
   protected readonly isLoading = computed(() => this.loading());
+  protected readonly selectedMedicalServicesList = computed(() => {
+    const selectedIds = this.selectedMedicalService();
+    return this.services().filter((service) => selectedIds.includes(service.id));
+  });
   protected readonly filteredDoctors = computed(() => {
     const filter = this.filter().toLowerCase();
     return this.doctors().filter(

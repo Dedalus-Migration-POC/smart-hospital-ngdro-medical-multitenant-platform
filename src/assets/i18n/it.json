@@ -444,16 +444,7 @@
       }
     }
   },
-  "mondinoAddress": "Fondazione Mondino, Via Mondino, 2 - 27100 Pavia",
-  "booking-summary": {
-    "name": "Nominativo",
-    "service": "Prestazione",
-    "place": "Luogo",
-    "doctor": "Medico",
-    "hospital": "Ambulatorio",
-    "dateTime": "Data e ora",
-    "price": "Prezzo"
-  },
+
   "booking-a4h": {
     "bookingTypeTitle": "Prenota la tua visita presso la struttura di",
     "booking-with-ssn": "Prenotazione con il Servizio Sanitario Nazionale (SSN)",
@@ -472,6 +463,8 @@
     "stepTitleReviewAndConfirm": "Riepilogo selezione, controlla e conferma le scelte",
     "multipleAppointments": "Ti informiamo che le prestazioni che hai scelto richiederanno più appuntamenti. Ti preghiamo di selezionare le disponibilità necessarie per procedere con le prenotazioni. Grazie.",
     "singleAppointmentOptimized": "Ti informiamo che le prestazioni che hai scelto verranno ottimizzate in un singolo appuntamento. Ti preghiamo di selezionare la disponibilità necessaria per procedere con la prenotazione. Grazie.",
+    "noServicesForDoctor": "Non ci sono i servizi disponibili per il medico selezionato.",
+
     "cancel": "Annulla",
     "proceed": "Prosegui",
     "warning": "Attenzione",
@@ -483,6 +476,8 @@
     "multipleServices": "La tua impegnativa prevede diverse prestazioni. Fai attenzione a scegliere la tipologia corretta!",
     "bookAvailableQuestion": "Vuoi prenotare",
     "noAvailability": "Al momento non ci sono disponibilità per le prestazioni richieste. Si prega di contattare direttamente il CUP della Struttura per maggiori informazioni e per supporto alla prenotazione.",
+    "noneAvailable": "Nessuno dei servizi selezionati hanno disponibilità. Scegliere un altro.",
+
     "back": "Indietro",
     "request": "Richiedi",
     "confirm": "Conferma",
@@ -512,7 +507,9 @@
     },
     "selectDoctor": {
       "searchTitle": "Testo da cercare",
-      "doctorsList": "Elenco specialisti"
+      "doctorsList": "Elenco specialisti",
+      "noDoctorsForServices": "La ricerca del medico per le prestazioni",
+      "noDoctorsForServicesSuffix": "non ha prodotto risultati. Se le prestazioni selezionate appartengono a specializzazioni mediche diverse, prova ad eseguire una nuova ricerca."
     },
     "dateTime": {
       "date": "Data:",
@@ -521,6 +518,25 @@
       "insertDataFrom": "Inserisci la data da",
       "insertDataTo": "Inserisci la data a",
       "stepperSubtitleInfo": "Elenco disponibilità per"
+    },
+    "booking-summary": {
+      "appointmentSummary": "Riepilogo appuntamento",
+      "name": "Nominativo",
+      "service": "Prestazione",
+      "place": "Luogo",
+      "doctor": "Medico",
+      "hospital": "Ambulatorio",
+      "dateTime": "Data e ora",
+      "price": "Prezzo"
+    },
+    "booking-confirmed": {
+      "title": "Prenotazione completata",
+      "bookingConfirm": "La prenotazione è andata a buon fine!",
+      "emailConfirm": "Riceverai la conferma all'indirizzo email",
+      "payConfirm": "Puoi procedere con il pagamento della prenotazione.",
+      "load": "Scarica",
+      "preparationRules": "le indicazioni per la preparazione",
+      "goToPayments": "Vai ai pagamenti"
     }
   }
 }

@@ -82,7 +82,7 @@ export interface AdditionalProperties {
   contractId?: string;
   time?: string;
   token?: string;
-  preparation?: { link?: string }[];
+  preparation?: { link?: string }[] | any;
   flowType?: string;
   idReserve?: string;
   a4hAppointmentId?: string;

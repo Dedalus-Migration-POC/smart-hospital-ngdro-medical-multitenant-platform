@@ -1,7 +1,8 @@
 @if (steps[activeStep()] === BookingStepKey.Review && expireOn()) {
-  <div class="alert alert-info" role="status">
-    {{ 'expiration-session-message' | translate }}
-  </div>
+  <app-countdown-timer
+    [expireOn]="expireOn() ?? null"
+    (onExpiration)="onExpiration()"
+  ></app-countdown-timer>
 }
 <div class="mt-4"></div>
 @if (!flag()) {

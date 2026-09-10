@@ -1,17 +1,17 @@
-<h1 class="page-title">{{ 'bookingResultTitle' | translate }}</h1>
+<h1 class="page-title">{{ 'booking-a4h.booking-confirmed.title' | translate }}</h1>
 
 <div class="confirmed-info-container">
   <span aria-hidden="true">✓</span>
-  {{ 'bookingConfirm.bookingConfirm' | translate }}
+  {{ 'booking-a4h.booking-confirmed.bookingConfirm' | translate }}
 </div>
 
 @if (user(); as activeUser) {
   <div class="confirmed-info-email">
-    {{ ('bookingConfirm.emailConfirm' | translate) + ' ' + activeUser.email }}
+    {{ ('booking-a4h.booking-confirmed.emailConfirm' | translate) + ' ' + activeUser.email }}
   </div>
 
   <div class="confirmed-info-pay">
-    {{ 'bookingConfirm.payConfirm' | translate }}
+    {{ 'booking-a4h.booking-confirmed.payConfirm' | translate }}
   </div>
 }
 
@@ -19,14 +19,105 @@
   @for (summary of bookingSummary(); track summary.id) {
     <div class="card mb-3">
       <div class="card-body">
-        <h2 class="h5">{{ 'appointmentSummary' | translate }}</h2>
-        @if (selectedStruttura(); as struttura) {
-          <p class="mb-1">{{ struttura.name | titlecase }}</p>
-        }
-        <p class="mb-1">{{ summary.dateTime | date: 'dd/MM/yyyy HH:mm' : 'GMT' }}</p>
-        @if (summary.location?.description) {
-          <p class="mb-0">{{ summary.location.description }}</p>
-        }
+        <h2 class="h5 mb-4">{{ 'booking-a4h.booking-summary.appointmentSummary' | translate }}</h2>
+        <div class="summary-info-list">
+          @if (user(); as profile) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-user text-primary" aria-hidden="true"></i>
+                {{ 'booking-a4h.booking-summary.name' | translate }}
+              </div>
+              <div class="summary-value">
+                {{ profile.firstName }} {{ profile.lastName }}
+                @if (profile.fiscalCode) {
+                  · {{ profile.fiscalCode }}
+                }
+              </div>
+            </div>
+          }
+
+          @if (summary.serviceDescriptionList?.length) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-stethoscope text-primary" aria-hidden="true"></i>
+                {{ 'booking-a4h.booking-summary.service' | translate }}
+              </div>
+              <div class="summary-value summary-value-list">
+                @for (service of summary.serviceDescriptionList; track service.id) {
+                  <div>{{ service.description }}</div>
+                }
+              </div>
+            </div>
+          }
+
+          <div class="summary-info">
+            <div class="summary-label">
+              <i class="fa-solid fa-hospital text-primary" aria-hidden="true"></i>
+              {{ 'booking-a4h.booking-summary.place' | translate }}
+            </div>
+            <div class="summary-value">
+              @if (selectedStruttura(); as struttura) {
+                {{ struttura.name | titlecase }}
+                @if (struttura.address || struttura.state) {
+                  <span>
+                    — {{ struttura.address | titlecase }}
+                    @if (struttura.state) {
+                      , {{ struttura.state | titlecase }}
+                    }
+                  </span>
+                }
+              } @else {
+                {{ 'mondinoAddress' | translate }}
+              }
+            </div>
+          </div>
+
+          @if (summary.physician?.firstName || summary.physician?.lastName) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-user-doctor text-primary" aria-hidden="true"></i>
+                {{ 'booking-a4h.booking-summary.doctor' | translate }}
+              </div>
+              <div class="summary-value">
+                {{ summary.physician?.lastName }} {{ summary.physician?.firstName }}
+              </div>
+            </div>
+          }
+
+          @if (summary.location?.description) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-building text-primary" aria-hidden="true"></i>
+                {{ 'booking-a4h.booking-summary.hospital' | translate }}
+              </div>
+              <div class="summary-value">{{ summary.location.description }}</div>
+            </div>
+          }
+
+          <div class="summary-info">
+            <div class="summary-label">
+              <i class="fa-solid fa-clock text-primary" aria-hidden="true"></i>
+              {{ 'booking-a4h.booking-summary.dateTime' | translate }}
+            </div>
+            <div class="summary-value">
+              {{ summary.dateTime | date: 'EEE dd/MM/yyyy HH:mm' : 'GMT' }}
+            </div>
+          </div>
+
+          @if (summary.billingInfo?.length) {
+            <div class="summary-info">
+              <div class="summary-label">
+                <i class="fa-solid fa-euro-sign text-primary" aria-hidden="true"></i>
+                {{ 'booking-a4h.booking-summary.price' | translate }}
+              </div>
+              <div class="summary-value summary-value-list">
+                @for (price of summary.billingInfo; track price.contractName) {
+                  <div>€ {{ price.finalPrice.toFixed(2) }}</div>
+                }
+              </div>
+            </div>
+          }
+        </div>
       </div>
     </div>
   }
@@ -35,16 +126,16 @@
 @if (downloadLink(); as activeDownloadLink) {
   <div class="pdf-info-container">
     <p>
-      {{ 'bookingConfirm.load' | translate }}
+      {{ 'booking-a4h.booking-confirmed.load' | translate }}
       <a class="link-to-preparation" (click)="onDownload(activeDownloadLink)" target="_blank">
-        {{ 'bookingConfirm.preparationRules' | translate }}</a
+        {{ 'booking-a4h.booking-confirmed.preparationRules' | translate }}</a
       >
     </p>
   </div>
 }
 
-<div class="button-container">
+<div class="button-container mb-3">
   <button type="button" class="btn btn-primary button--primary" routerLink="/payments-pa">
-    {{ 'goToPayments' | translate }}
+    {{ 'booking-a4h.booking-confirmed.goToPayments' | translate }}
   </button>
 </div>
