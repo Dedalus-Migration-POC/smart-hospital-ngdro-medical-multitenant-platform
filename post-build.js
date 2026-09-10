@@ -10,7 +10,7 @@ let args = process.argv.slice(2)
 let deployUrl = args[0]
 deployUrl = deployUrl.endsWith('/') ? deployUrl.slice(0, -1) : deployUrl
 
-const environmentValue = 'Smart Hospital s.r.l. - A Dedalus group company'
+const environmentValue = 'Dedalus group company'
 const indexHtmlFile = './dist/index.html'
 
 fs.readFile(indexHtmlFile, 'utf8', function (err, indexHtmlFileData) {
