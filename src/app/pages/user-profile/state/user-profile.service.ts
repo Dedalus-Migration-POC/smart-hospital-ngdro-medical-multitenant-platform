@@ -14,7 +14,7 @@ export class UserProfileService {
     private http: HttpClient,
     private store: Store<SmartHospitalState>,
   ) {}
-  private readonly IS_DEV = true;
+  private readonly IS_DEV = false;
 
   updateUserProfile(data: UserProfile) {
     // if (this.IS_DEV) {

@@ -7,6 +7,7 @@ import {
   IconConfig,
   SpacingConfig,
   TextConfig,
+  TextDecoration,
 } from '../../shared/models/shared_model';
 
 // nome del metodo del componente da invocare al click, vincolato alle azioni disponibili.
@@ -27,6 +28,17 @@ export interface CaretConfig {
   color?: ColorConfig;
 }
 
+type UserDropdownHover = {
+  hover?: {
+    textDecoration?: TextDecoration;
+    textDecorationThickness?: string;
+  };
+};
+
+export type UserDropdownButtonStyle =
+  | (BootstrapButtonStyle & UserDropdownHover)
+  | (ButtonConfig & UserDropdownHover);
+
 /*
 TODO: 
  - in futuro si può aggiungere layoutItem per avere anche la disposizione a row degli itemsù
@@ -37,8 +49,8 @@ export interface UserDropdownMenuProps {
   button: {
     // loggedInUser: Toggle del dropdown quando l'utente è loggato: icona + nome utente (nome non configurabile).
     // se non viene messa la paletta per il bottone e il colore per icona prende usa solo .btn-dropdown di bootstrap (come un link)
-    loggedInUser: BootstrapButtonStyle;
-    login: ButtonConfig;
+    loggedInUser: BootstrapButtonStyle & UserDropdownHover;
+    login: ButtonConfig & UserDropdownHover;
   };
   caret?: CaretConfig;
   // contenitore del menu a tendina

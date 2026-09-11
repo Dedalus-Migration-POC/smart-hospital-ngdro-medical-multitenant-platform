@@ -1,6 +1,6 @@
-@if (pageConfig()) {
-  @if (pageConfig().breadcrumb) {
-    <app-breadcrumb [config]="pageConfig().breadcrumb"></app-breadcrumb>
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.breadcrumb"></app-breadcrumb>
   }
 
   <!-- Form sempre visibile -->
@@ -17,7 +17,7 @@
   <!-- Init message (prima ricerca) -->
   @if (isInitialSearch() && !loading() && !error()) {
     <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-      <app-image-block [config]="pageConfig().message.init"></app-image-block>
+      <app-image-block [config]="pageConfig.message?.init"></app-image-block>
     </div>
   }
 
@@ -33,14 +33,14 @@
   <!-- Error message -->
   @if (error() && !loading()) {
     <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-      <app-image-block [config]="pageConfig().message.error"></app-image-block>
+      <app-image-block [config]="pageConfig.message?.error"></app-image-block>
     </div>
   }
 
   <!-- Not found message -->
   @if (!loading() && !error() && !isInitialSearch() && (!reports() || reports()?.length === 0)) {
     <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
-      <app-image-block [config]="pageConfig().message.notFound"></app-image-block>
+      <app-image-block [config]="pageConfig.message?.notFound"></app-image-block>
     </div>
   }
 

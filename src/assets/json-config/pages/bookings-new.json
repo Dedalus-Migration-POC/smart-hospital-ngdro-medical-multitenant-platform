@@ -1,0 +1,91 @@
+{
+  "id": "/bookings/new",
+  "name": {
+    "it": "Nuova Prenotazione",
+    "en": "New Booking"
+  },
+  "route": "/bookings/new",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+      "title": {
+        "text": {
+          "it": "Nuova prenotazione",
+          "en": "New booking"
+        }
+      },
+      "subTitle": {
+        "text": {
+          "it": "Crea una nuova prenotazione Arianna-CUP",
+          "en": "Create a new Arianna-CUP booking"
+        }
+      },
+      "items": [
+        {
+          "name": {
+            "it": "Home",
+            "en": "Home"
+          },
+          "routerLink": "/"
+        },
+        {
+          "name": {
+            "it": "Prenotazioni",
+            "en": "Bookings"
+          },
+          "routerLink": "/bookings"
+        },
+        {
+          "name": {
+            "it": "Nuova prenotazione",
+            "en": "New booking"
+          },
+          "routerLink": "/bookings/new"
+        }
+      ]
+  },
+  "modals": {
+    "confirmAvailability": {
+        "header": {
+          "title": {
+            "text": {
+              "it": "Conferma prenotazione",
+              "en": "Confirm booking"
+            }
+          }
+        },
+        "body": {
+          "text": {
+            "text": {
+              "it": "Vuoi confermare la prenotazione per la data selezionata?",
+              "en": "Do you want to confirm the booking for the selected date?"
+            }
+          }
+        },
+        "footer": {
+          "actions": [
+            {
+              "button": {
+                "outline": true,
+                "text": {
+                  "text": {
+                    "it": "Annulla",
+                    "en": "Cancel"
+                  }
+                }
+              }
+            },
+            {
+              "button": {
+                "text": {
+                  "text": {
+                    "it": "Conferma",
+                    "en": "Confirm"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+  }
+}

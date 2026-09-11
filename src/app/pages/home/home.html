@@ -1,5 +1,5 @@
 @if (pageConfig(); as pageConfig) {
-  @for (section of pageConfig.sections ?? []; track section.id) {
+  @for (section of pageConfig.sections; track section.id) {
     <section
       [attr.id]="section.id"
       [ngClass]="[section.className ?? '', section.background ? 'bg-' + section.background : '']"

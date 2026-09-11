@@ -13,7 +13,7 @@ import { Spinner } from '../../../components/spinner/spinner';
 import { LanguageService } from '../../../initialize/state/services/language.service';
 import { ImageBlock } from '../../../components/image-block/image-block';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from '../../../initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { map, take } from 'rxjs';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
 import { ReportTriplet, Structure } from './state/model';
@@ -43,6 +43,7 @@ export class TripletReport {
   private store = inject(Store);
   private langService = inject(LanguageService);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
   lang = this.langService.lang;
   reportsLoading = this.store.selectSignal(selectTripletReportLoading);
@@ -53,13 +54,9 @@ export class TripletReport {
   isInitialSearch = false;
   selectedStructure: string | null = null;
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/reports-by-triplet')), //TODO page type
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/reports-by-triplet'), {
+    initialValue: null,
+  });
 
   readonly formConfig = computed<DynamicFormConfig | undefined>(() => {
     const config = this.pageConfig();

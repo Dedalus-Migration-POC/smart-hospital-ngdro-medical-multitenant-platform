@@ -1,0 +1,489 @@
+{
+  "id": "/departments/units/details",
+  "name": {
+    "it": "Reparto",
+    "en": "Unit"
+  },
+  "route": "/departments/units/details",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "title": {
+      "text": {
+        "it": "{{unit}}",
+        "en": "{{unit}}"
+      }
+    },
+    "subTitle": {
+      "text": {
+        "it": "Visualizza i reparti del dipartimento o ricerca una prestazione.",
+        "en": "View the units of the department or search for a service."
+      }
+    },
+    "items": [
+      {
+        "name": {
+          "it": "Home",
+          "en": "Home"
+        },
+        "routerLink": "/"
+      },
+      {
+        "name": {
+          "it": "Dipartimenti",
+          "en": "Departments"
+        },
+        "routerLink": "/departments"
+      },
+      {
+        "name": {
+          "it": "{{department}}",
+          "en": "{{department}}"
+        },
+        "routerLink": "/departments/units",
+        "queryParams": {
+          "department": "{{department}}"
+        }
+      },
+      {
+        "name": {
+          "it": "{{unit}}",
+          "en": "{{unit}}"
+        },
+        "routerLink": ""
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "cards-section",
+      "areas": {
+        "layout": {
+          "direction": [
+            "column",
+            "md-row"
+          ],
+          "gap": "gap-4"
+        },
+        "start": {
+          "size": {
+            "basis": "100%"
+          },
+          "layout": {
+            "direction": "column",
+            "gap": "gap-3",
+            "align": "start",
+            "wrap": "nowrap"
+          },
+          "items": [
+            {
+              "id": "unit-general-info-cards",
+              "type": "SERVICE_CARDS",
+              "className": "w-100",
+              "enabled": true,
+              "props": {
+                "itemColBootstrapClasses": "col-12",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "start"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "background": "white",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "departmentName",
+                        "fontSize": "lg",
+                        "fontWeight": "bold",
+                        "color": {
+                          "palette": "black"
+                        },
+                        "lineHeight": "md"
+                      },
+                      "subTitle": {
+                        "key": "title",
+                        "fontSize": "md",
+                        "fontWeight": "semibold",
+                        "color": {
+                          "palette": "secondary"
+                        }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "pavilion",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Padiglione",
+                            "en": "Pavilion"
+                          }
+                        }
+                      },
+                      {
+                        "key": "detail.floor",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Piano",
+                            "en": "Floor"
+                          }
+                        }
+                      },
+                      {
+                        "key": "manager",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Responsabile",
+                            "en": "Manager"
+                          }
+                        }
+                      },
+                      {
+                        "key": "",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "valueStyle": {
+                          "fontSize": "md",
+                          "fontWeight": "bold",
+                          "color": {
+                            "palette": "white"
+                          },
+                          "lineHeight": "md"
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "",
+                            "en": ""
+                          }
+                        }
+                      },
+                      {
+                        "key": "phoneNumber",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Telefono",
+                            "en": "Phone Number"
+                          }
+                        }
+                      },
+                      {
+                        "key": "email",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Email",
+                            "en": "Email"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "unit-additional-info-cards",
+              "type": "SERVICE_CARDS",
+              "className": "w-100",
+              "enabled": true,
+              "props": {
+                "itemColBootstrapClasses": "col-12",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "start"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "background": "white",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "Orario di apertura",
+                        "fallbackText": {
+                          "it": "Orario di apertura",
+                          "en": "Opening hours"
+                        },
+                        "fontSize": "lg",
+                        "fontWeight": "bold",
+                        "color": {
+                          "palette": "black"
+                        },
+                        "lineHeight": "md"
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "detail.visitTime.mon",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Lunedì",
+                            "en": "Monday"
+                          }
+                        }
+                      },
+                      {
+                        "key": "detail.visitTime.tue",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Martedì",
+                            "en": "Tuesday"
+                          }
+                        }
+                      },
+                      {
+                        "key": "detail.visitTime.wed",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Mercoledì",
+                            "en": "Wednesday"
+                          }
+                        }
+                      },
+                      {
+                        "key": "detail.visitTime.thu",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Giovedì",
+                            "en": "Thursday"
+                          }
+                        }
+                      },
+                      {
+                        "key": "detail.visitTime.fri",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Venerdì",
+                            "en": "Friday"
+                          }
+                        }
+                      },
+                      {
+                        "key": "detail.visitTime.sat",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Sabato",
+                            "en": "Saturday"
+                          }
+                        }
+                      },
+                      {
+                        "key": "detail.visitTime.sun",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Domenica",
+                            "en": "Sunday"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "end": {
+          "size": {
+            "basis": "100%",
+            "width": "100%"
+          },
+          "layout": {
+            "direction": "column",
+            "gap": "gap-2",
+            "align": "center",
+            "justify": "start",
+            "wrap": "nowrap"
+          },
+          "items": [
+            {
+              "id": "unit-services-info-cards",
+              "type": "SERVICE_CARDS",
+              "enabled": true,
+              "className": "w-100",
+              "props": {
+                "itemColBootstrapClasses": "col-12",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "start"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "background": "white",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "",
+                        "fontSize": "lg",
+                        "fontWeight": "bold",
+                        "color": {
+                          "palette": "black"
+                        },
+                        "lineHeight": "md"
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "services",
+                        "type": "array",
+                        "rowSize": {
+                          "key": {
+                            "basis": "30%"
+                          },
+                          "value": {
+                            "basis": "70%"
+                          }
+                        },
+                        "valueStyle": {
+                          "fontSize": "md",
+                          "fontWeight": "normal",
+                          "lineHeight": "md"
+                        },
+                        "listStyle": "bullet",
+                        "label": {
+                          "fontWeight": "bold",
+                          "color": {
+                            "palette": "black"
+                          },
+                          "text": {
+                            "it": "Servizi",
+                            "en": "Services"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

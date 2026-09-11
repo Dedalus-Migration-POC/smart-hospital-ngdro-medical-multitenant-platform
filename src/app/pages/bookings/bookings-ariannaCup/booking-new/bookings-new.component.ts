@@ -13,7 +13,7 @@ import { PrivateBookingAvailabilityComponent } from './steps/pages/private-booki
 import { PrivateDoctorSelectorComponent } from './steps/pages/private-doctor-selector/private-doctor-selector.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { map, take } from 'rxjs';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 
@@ -32,16 +32,13 @@ interface StepConfig {
 export class BookingNewComponent implements OnInit, OnDestroy {
   constructor() {}
   private readonly store = inject(Store<SmartHospitalState>);
+  private readonly pageConfigService = inject(PageConfigService);
 
   activeStepIndex = 0;
   steps: StepConfig[] = [];
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/bookings/new')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/bookings/new'), {
+    initialValue: null,
+  });
 
   ngOnInit() {
     this.steps = this.buildSteps();

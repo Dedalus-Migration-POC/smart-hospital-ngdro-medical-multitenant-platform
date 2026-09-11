@@ -36,11 +36,19 @@ import { sessionExpired, updateUserProfile } from './state/user-profile.actions'
 import { NgxFormValidators } from '../../../validators';
 import { getLastPartKey } from '../../../utils/string-utils';
 import { map, Observable, take } from 'rxjs';
-import { selectAppConfig } from '../../initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
+import { PageConfig } from 'src/app/pages/page.model';
+import { BreadcrumbConfig } from 'src/app/components/breadcrumb/model';
 import { Breadcrumb } from '../../components/breadcrumb/breadcrumb';
 import { UserProfileRegistrationComponent } from './user-profile-registration/user-profile-registration.component';
 import { Spinner } from '../../components/spinner/spinner';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
+
+// il json di questa pagina unisce i campi condivisi (breadcrumb, id, ...) con lo shape UserConfig
+type UserProfilePageConfig = Omit<PageConfig, 'sections'> &
+  UserConfig & {
+    breadcrumbRegistration?: BreadcrumbConfig;
+  };
 
 @Component({
   selector: 'app-user-profile',
@@ -55,12 +63,10 @@ export class UserProfile {
   private readonly translate = inject(TranslateService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly notificationService = inject(ItNotificationService);
+  private readonly pageConfigService = inject(PageConfigService);
 
   readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/user-profile')), //TODO page type
-    ),
+    this.pageConfigService.get('/user-profile') as unknown as Observable<UserProfilePageConfig>,
     { initialValue: null },
   );
 
@@ -163,6 +169,7 @@ export class UserProfile {
         return;
       }
 
+      // PageConfig e' il tipo generico condiviso; per questa pagina la forma reale include anche UserConfig
       this.form.set(this.createForm(userProfile, userConfig));
     });
 

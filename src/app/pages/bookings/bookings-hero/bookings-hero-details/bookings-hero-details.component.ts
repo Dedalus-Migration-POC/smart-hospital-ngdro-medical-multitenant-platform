@@ -37,7 +37,7 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { BreadcrumbService } from 'src/app/components/breadcrumb/breadcrumb.service';
 import {
   getServiceCardsConfigById,
@@ -72,14 +72,11 @@ export class BookingHeroDetailsComponent implements OnInit {
   private viewContainerRef = inject(ViewContainerRef);
   private breadcrumbService = inject(BreadcrumbService);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/bookings-hero/details')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/bookings-hero/details'), {
+    initialValue: null,
+  });
   readonly breadcrumbConfig = computed(() => {
     const config = this.pageConfig();
     const bookingId = this.bookingId;

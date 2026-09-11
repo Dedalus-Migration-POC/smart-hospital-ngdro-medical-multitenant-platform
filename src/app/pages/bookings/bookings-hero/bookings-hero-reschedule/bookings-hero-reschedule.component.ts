@@ -16,7 +16,7 @@ import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, take } from 'rxjs';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 
 interface StepConfig {
   id: string;
@@ -34,15 +34,12 @@ interface StepConfig {
 export class BookingHeroRescheduleComponent implements OnInit, OnDestroy {
   private store = inject(Store<SmartHospitalState>);
   private router = inject(Router);
+  private pageConfigService = inject(PageConfigService);
   readonly activeStepId = this.store.selectSignal(selectActiveStep);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/bookings-hero/reschedule')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/bookings-hero/reschedule'), {
+    initialValue: null,
+  });
 
   steps: StepConfig[] = [];
 

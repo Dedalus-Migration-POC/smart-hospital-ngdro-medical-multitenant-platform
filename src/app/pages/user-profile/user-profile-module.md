@@ -6,7 +6,7 @@
 
 La feature `user-profile` visualizza e aggiorna i dati anagrafici dell'utente autenticato, gli attributi aggiuntivi e i consensi privacy. Gestisce anche il completamento della registrazione dopo il login SPID attraverso un profilo temporaneo identificato dal query parameter `profilecode`.
 
-Il form e la sua disposizione in sezioni sono multi-tenant: la configurazione (`UserConfig`) non e' caricata con una chiamata HTTP dedicata, ma fa parte della configurazione applicativa globale (`AppConfig.pages`) risolta all'avvio tramite `provideInitializeApp()` (`AppConfigApiService.loadAppConfig()`) e messa in stato con `selectAppConfig`. Il componente estrae la propria configurazione cercando, tra le pagine, quella con `id === '/user-profile'`.
+Il form e la sua disposizione in sezioni sono multi-tenant: la configurazione (`UserConfig`) e' caricata da `PageConfigService.get('/user-profile')`, che fa il fetch (con cache in-memory) del json dedicato alla pagina in `assets/pages/user-profile.json`, indipendente dalla configurazione applicativa globale (`AppConfig`, risolta da `AppConfigService.loadAppConfig()` e messa in stato con `selectAppConfig`).
 
 ## Accesso e routing
 
@@ -76,7 +76,7 @@ AppComponent
   -> userProfileState (temporary=false)
 
 UserProfile (componente)
-  -> pageConfig = selectAppConfig -> config.pages.find(page.id === '/user-profile')
+  -> pageConfig = PageConfigService.get('/user-profile')
   -> effect: quando userProfile() e pageConfig() sono entrambi disponibili
      -> form.set(createForm(userProfile, userConfig))
 ```

@@ -1,7 +1,13 @@
 import { Component, inject, input, signal, Signal } from '@angular/core';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { CommonModule } from '@angular/common';
-import { CaretConfig, DropdownMenuAction, DropdownMenuItem, UserDropdownMenuProps } from './model';
+import {
+  CaretConfig,
+  DropdownMenuAction,
+  DropdownMenuItem,
+  UserDropdownButtonStyle,
+  UserDropdownMenuProps,
+} from './model';
 import { Router } from '@angular/router';
 import { UserProfile } from '../../pages/user-profile/user-profile.model';
 import { SmartHospitalState } from '../../store/reducers';
@@ -81,11 +87,20 @@ export class UserDropdownMenu {
     return getSpacingStyles(item.padding, 'padding');
   }
 
-  // Toggle/login: se la palette non è impostata resta neutro
-  // (btn-dropdown) e riceve una classe dedicata per l'hover custom
+  // Toggle/login: se la palette non è impostata resta neutro.
   toggleButtonClasses(config: ButtonStyle): string[] {
     const palette = 'palette' in config ? config.palette : undefined;
-    return palette ? getButtonPaletteClasses(config) : ['btn-dropdown', 'no-palette-hover'];
+    return palette ? getButtonPaletteClasses(config) : ['btn-dropdown'];
+  }
+
+  getHoverTextDecorationClass(config: UserDropdownButtonStyle): string {
+    return config.hover?.textDecoration === 'underline' ? 'user-dropdown-hover-underline' : '';
+  }
+
+  getHoverTextDecorationStyles(config: UserDropdownButtonStyle): Record<string, string> {
+    return config.hover?.textDecorationThickness
+      ? { '--user-dropdown-hover-text-decoration-thickness': config.hover.textDecorationThickness }
+      : {};
   }
 
   loggedInUserTextClasses(config: ButtonStyle): string[] {

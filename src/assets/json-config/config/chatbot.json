@@ -1,0 +1,7 @@
+{
+  "apiUrl": "https://echatbot-iet-demo.apps.cluokdtst01.pe-ita.aws/api/v1/queries",
+  "language": "it",
+  "themeColor": "#332ebe",
+  "position": "bottom-right",
+  "botName": "Pippo"
+}

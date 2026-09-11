@@ -9,7 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { Spinner } from 'src/app/components/spinner/spinner';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { fetchPayments } from '../state/actions';
 import { selectPaymentsData, selectPaymentsError, selectPaymentsLoading } from '../state/selectors';
@@ -41,14 +41,11 @@ export class PaymentsJcashListComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private store = inject(Store<SmartHospitalState>);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/payments-jcash')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/payments-jcash'), {
+    initialValue: null,
+  });
 
   ngOnInit(): void {
     this.store.dispatch(fetchPayments());

@@ -1,0 +1,56 @@
+{
+  "id": "/bookings-hero/new",
+  "name": {
+    "it": "Nuova Prenotazione",
+    "en": "New Booking"
+  },
+  "route": "/bookings-hero/new",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+      "background": {
+        "fill": {
+          "hex": "#e6e8ea"
+        }
+      },
+      "itemsStyle": {
+        "color": {
+          "hex": "#333333"
+        }
+      },
+      "title": {
+        "text": {
+          "it": "Nuova prenotazione",
+          "en": "New Booking"
+        }
+      },
+      "subTitle": {
+        "text": {
+          "it": "Crea una nuova prenotazione Hero.",
+          "en": "Create a new Hero booking."
+        }
+      },
+      "items": [
+        {
+          "name": {
+            "it": "Home",
+            "en": "Home"
+          },
+          "routerLink": "/"
+        },
+        {
+          "name": {
+            "it": "Prenotazioni",
+            "en": "Bookings"
+          },
+          "routerLink": "/bookings-hero"
+        },
+        {
+          "name": {
+            "it": "Nuova Prenotazione",
+            "en": "New Booking"
+          },
+          "routerLink": "/bookings-hero/new"
+        }
+      ]
+  }
+}

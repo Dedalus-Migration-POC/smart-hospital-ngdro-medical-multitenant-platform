@@ -58,8 +58,18 @@ export function getTextStyles(text?: TextStyle): Record<string, string> {
 }
 
 export function getBackgroundPaletteClass(config: { background?: BackgroundConfig }): string {
-  // Le palette usano una classe Bootstrap;
-  // i colori hex sono gestiti da getCardStyles.
+  // Le palette usano una classe Bootstrap; hex e gradient sono gestiti da getBackgroundStyles.
   const palette = config.background?.fill?.palette;
   return palette ? `bg-${palette}` : '';
+}
+
+export function getBackgroundStyles(config: {
+  background?: BackgroundConfig;
+}): Record<string, string> {
+  const background = config.background;
+
+  if (background?.gradient) return { background: background.gradient };
+  if (background?.fill?.hex) return { 'background-color': background.fill.hex };
+
+  return {};
 }

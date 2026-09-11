@@ -24,7 +24,7 @@
         [attr.rel]="link.external ? 'noopener noreferrer' : null"
         (click)="onClick($event, link)"
         [ngClass]="getLinkClasses(style)"
-        [ngStyle]="getTextStyles(style.textStyle)"
+        [ngStyle]="getLinkStyles(style)"
         [class.disabled]="link.disabled"
         [attr.aria-disabled]="link.disabled"
       >
@@ -37,7 +37,7 @@
         class="btn btn-link p-0"
         (click)="onClick($event, link)"
         [ngClass]="getLinkClasses(style)"
-        [ngStyle]="getTextStyles(style.textStyle)"
+        [ngStyle]="getLinkStyles(style)"
         [disabled]="link.disabled"
         [attr.aria-label]="link.ariaLabel?.[lang()]"
       >

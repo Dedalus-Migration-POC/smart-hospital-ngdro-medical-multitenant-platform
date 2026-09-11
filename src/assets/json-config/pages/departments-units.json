@@ -1,0 +1,192 @@
+{
+  "id": "/departments/units",
+  "name": {
+    "it": "Reparti",
+    "en": "Units"
+  },
+  "route": "/departments/units",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "itemsStyle": {
+      "color": {
+        "hex": "#333333"
+      }
+    },
+    "title": {
+      "text": {
+        "it": "{{department}}",
+        "en": "{{department}}"
+      }
+    },
+    "subTitle": {
+      "text": {
+        "it": "Visualizza i reparti del dipartimento o ricerca una prestazione.",
+        "en": "View the units of the department or search for a service."
+      }
+    },
+    "items": [
+      {
+        "name": {
+          "it": "Home",
+          "en": "Home"
+        },
+        "routerLink": "/"
+      },
+      {
+        "name": {
+          "it": "Dipartimenti",
+          "en": "Departments"
+        },
+        "routerLink": "/departments"
+      },
+      {
+        "name": {
+          "it": "{{department}}",
+          "en": "{{department}}"
+        },
+        "routerLink": ""
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "cards-section",
+      "areas": {
+        "layout": {
+          "direction": "column",
+          "gap": "gap-4"
+        },
+        "center": {
+          "layout": {
+            "direction": "row",
+            "wrap": "wrap",
+            "gap": "gap-4"
+          },
+          "items": [
+            {
+              "id": "unit-cards",
+              "type": "SERVICE_CARDS",
+              "enabled": true,
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-6 col-xl-4",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "start"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "wrap": "wrap",
+                  "justify": "start",
+                  "gap": "gap-2"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "background": "white",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "title",
+                        "fontSize": "lg",
+                        "fontWeight": "bold",
+                        "className": "w-75",
+                        "color": {
+                          "palette": "black"
+                        },
+                        "lineHeight": "md"
+                      },
+                      "imageBlockConfig": {
+                        "id": "departmentImg",
+                        "className": "",
+                        "layout": {
+                          "direction": "column",
+                          "align": "center",
+                          "justify": "center",
+                          "gap": "gap-2"
+                        },
+                        "clickable": false,
+                        "image": {
+                          "type": "url",
+                          "value": "assets/images/doctor.png",
+                          "decorative": true,
+                          "alt": {
+                            "it": "Dipartimento",
+                            "en": "Department"
+                          }
+                        }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "pavilion",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Padiglione",
+                            "en": "Pavilion"
+                          }
+                        }
+                      },
+                      {
+                        "key": "manager",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "normal",
+                          "text": {
+                            "it": "Responsabile",
+                            "en": "Manager"
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "viewUnit",
+                        "label": {
+                          "text": {
+                            "it": "VEDI DETTAGLI",
+                            "en": "VIEW DETAILS"
+                          },
+                          "fontWeight": "bold"
+                        },
+                        "type": "callback",
+                        "renderAs": "link",
+                        "icon": {
+                          "type": "font-awesome",
+                          "name": "fa-solid fa-arrow-right",
+                          "position": "after"
+                        },
+                        "callback": {
+                          "nameFunction": "viewUnit",
+                          "params": [
+                            "title"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

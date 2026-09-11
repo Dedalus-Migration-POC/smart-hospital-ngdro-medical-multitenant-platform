@@ -1,0 +1,13 @@
+{
+  "firebaseOptions": {
+    "apiKey": "AIzaSyDuqUIu7O3ngRphC3MUPENUcaVjm2NR8N8",
+    "appId": "1:679999290374:android:ee8d7de08e4f8c82961787",
+    "messagingSenderId": "679999290374",
+    "projectId": "asl-rieti-f9d38",
+    "storageBucket": "asl-rieti-f9d38.firebasestorage.app"
+  },
+  "keys": [
+    "department",
+    "feedrss"
+  ]
+}

@@ -20,7 +20,7 @@ import { SearchByNreComponent } from './search-by-nre/search-by-nre.component';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, take } from 'rxjs';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
@@ -54,14 +54,11 @@ export class BookingsHeroListComponent implements OnInit {
   private translateService = inject(TranslateService);
   private store = inject(Store<SmartHospitalState>);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/bookings-hero')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/bookings-hero'), {
+    initialValue: null,
+  });
 
   ngOnInit(): void {
     this.store.dispatch(fetchBookingsList());

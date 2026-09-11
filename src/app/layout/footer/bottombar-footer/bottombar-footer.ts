@@ -3,6 +3,10 @@ import { FooterSection } from '../footer.model';
 import { CommonModule } from '@angular/common';
 import { AreasLayout } from '../../../shared/layout-system/components/areas-layout/areas-layout';
 import { OverflowDetectorDirective } from '../../../shared/directives/overflow-detector.directive';
+import {
+  getBackgroundPaletteClass,
+  getBackgroundStyles,
+} from '../../../shared/utility/style.utils';
 
 @Component({
   selector: 'app-bottombar-footer',
@@ -12,4 +16,6 @@ import { OverflowDetectorDirective } from '../../../shared/directives/overflow-d
 })
 export class BottombarFooter {
   readonly bottombar = input<FooterSection | null>(null);
+  protected readonly getBackgroundPaletteClass = getBackgroundPaletteClass;
+  protected readonly getBackgroundStyles = getBackgroundStyles;
 }
