@@ -19,6 +19,7 @@ import { BookingType, isBookingType, BOOKING_FLOW_LABELS } from './models/bookin
 import { initBooking, resetState } from './state/actions';
 import { selectAnyLoading, selectBookingType } from './state/selectors';
 import { BookingUnifiedModalService } from './booking-unified-modal.service';
+import { BookingResumeService } from './booking-resume.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { map, take } from 'rxjs';
@@ -39,6 +40,7 @@ export class BookingUnifiedComponent implements OnInit, OnDestroy {
   private readonly viewContainerRef = inject(ViewContainerRef);
   private readonly destroyRef = inject(DestroyRef);
   private readonly bookingUnifiedModalService = inject(BookingUnifiedModalService);
+  private readonly bookingResumeService = inject(BookingResumeService);
   private breadcrumbService = inject(BreadcrumbService);
   private translateService = inject(TranslateService);
 
@@ -75,11 +77,13 @@ export class BookingUnifiedComponent implements OnInit, OnDestroy {
   });
 
   ngOnInit(): void {
-    ensureStrutturaSelected(this.store);
-
     const bookingType = this.activatedRoute.snapshot.paramMap.get('bookingType');
     if (isBookingType(bookingType)) {
       this.store.dispatch(initBooking({ bookingType: bookingType as BookingType }));
+      const restoredUrl = this.bookingResumeService.restore(bookingType);
+      if (!restoredUrl) {
+        ensureStrutturaSelected(this.store);
+      }
     }
   }
 

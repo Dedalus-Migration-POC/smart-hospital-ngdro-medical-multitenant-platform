@@ -5,84 +5,76 @@
   ></app-countdown-timer>
 }
 <div class="mt-4"></div>
-@if (!flag()) {
-  <h1 class="page-title h3">{{ pageTitle() }}</h1>
-  @if (selectedStruttura(); as struttura) {
-    <div class="struttura-chip">
-      <strong>{{ 'booking-a4h.selectedFacility' | translate }}:</strong>
-      {{ struttura.name | titlecase }}
-      @if (struttura.address || struttura.state) {
-        <span>
-          - {{ struttura.address | titlecase }}
-          @if (struttura.state) {
-            <span>, {{ struttura.state | titlecase }}</span>
-          }
-        </span>
-      }
-    </div>
-  }
-}
-
-@if (!flag()) {
-  <it-steppers-container
-    [activeStep]="activeStep()"
-    steppersNumber="true"
-    showBackButton="false"
-    showForwardButton="false"
-  >
-    @for (step of steps; track step) {
-      <it-steppers-item [label]="stepLabel(step) | translate | uppercase" icon="locked">
-        @switch (step) {
-          @case (BookingStepKey.InsertNre) {
-            <app-insert-nre-step (back)="onBackClick()"></app-insert-nre-step>
-          }
-
-          @case (BookingStepKey.SelectService) {
-            <app-select-service-step (back)="onBackClick()"></app-select-service-step>
-          }
-
-          @case (BookingStepKey.SelectMedicalService) {
-            <app-select-medical-service-step
-              [bookingType]="bookingType"
-              (back)="onBackClick()"
-            ></app-select-medical-service-step>
-          }
-
-          @case (BookingStepKey.SelectDoctor) {
-            <app-select-doctor-step
-              [bookingType]="bookingType"
-              (back)="onBackClick()"
-            ></app-select-doctor-step>
-          }
-
-          @case (BookingStepKey.DateTime) {
-            <app-date-time-step
-              [isOptimized]="isOptimized()"
-              [selectedMedicalServices]="selectedMedicalServicesList()"
-              [selectedService]="selectedServiceName()"
-              [availableServices]="availableListToBook()"
-              [availableDays]="availableDays()"
-              (filter)="applyFilter($event)"
-              (appointmentSelected)="onAppointmentClick($event)"
-              (back)="onBackClick()"
-            ></app-date-time-step>
-          }
-
-          @case (BookingStepKey.Review) {
-            <app-review-step
-              [bookingSummary]="bookingSummary()"
-              [selectedStruttura]="selectedStruttura()"
-              (back)="onBackClick()"
-              (confirm)="onSubmit()"
-              (cancel)="onCancel()"
-            ></app-review-step>
-          }
+<h1 class="page-title h3">{{ pageTitle() }}</h1>
+@if (selectedStruttura(); as struttura) {
+  <div class="struttura-chip">
+    <strong>{{ 'booking-a4h.selectedFacility' | translate }}:</strong>
+    {{ struttura.name | titlecase }}
+    @if (struttura.address || struttura.state) {
+      <span>
+        - {{ struttura.address | titlecase }}
+        @if (struttura.state) {
+          <span>, {{ struttura.state | titlecase }}</span>
         }
-      </it-steppers-item>
+      </span>
     }
-  </it-steppers-container>
+  </div>
 }
 
-<div class="booking-login-wrapper">
-  <router-outlet></router-outlet>
-</div>
+<it-steppers-container
+  [activeStep]="activeStep()"
+  steppersNumber="true"
+  showBackButton="false"
+  showForwardButton="false"
+>
+  @for (step of steps; track step) {
+    <it-steppers-item [label]="stepLabel(step) | translate | uppercase" icon="locked">
+      @switch (step) {
+        @case (BookingStepKey.InsertNre) {
+          <app-insert-nre-step (back)="onBackClick()"></app-insert-nre-step>
+        }
+
+        @case (BookingStepKey.SelectService) {
+          <app-select-service-step (back)="onBackClick()"></app-select-service-step>
+        }
+
+        @case (BookingStepKey.SelectMedicalService) {
+          <app-select-medical-service-step
+            [bookingType]="bookingType"
+            (back)="onBackClick()"
+          ></app-select-medical-service-step>
+        }
+
+        @case (BookingStepKey.SelectDoctor) {
+          <app-select-doctor-step
+            [bookingType]="bookingType"
+            (back)="onBackClick()"
+          ></app-select-doctor-step>
+        }
+
+        @case (BookingStepKey.DateTime) {
+          <app-date-time-step
+            [isOptimized]="isOptimized()"
+            [selectedMedicalServices]="selectedMedicalServicesList()"
+            [selectedService]="selectedServiceName()"
+            [availableServices]="availableListToBook()"
+            [availableDays]="availableDays()"
+            (filter)="applyFilter($event)"
+            (appointmentSelected)="onAppointmentClick($event)"
+            (back)="onBackClick()"
+          ></app-date-time-step>
+        }
+
+        @case (BookingStepKey.Review) {
+          <app-review-step
+            [bookingSummary]="bookingSummary()"
+            [selectedStruttura]="selectedStruttura()"
+            (back)="onBackClick()"
+            (confirm)="onSubmit()"
+            (cancel)="onCancel()"
+          ></app-review-step>
+        }
+      }
+    </it-steppers-item>
+  }
+</it-steppers-container>

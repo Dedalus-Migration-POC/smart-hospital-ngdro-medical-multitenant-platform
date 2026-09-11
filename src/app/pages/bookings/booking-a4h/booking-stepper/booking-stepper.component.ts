@@ -12,12 +12,10 @@ import { TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
-import { filter, take } from 'rxjs';
 import { addDays, endOfDay, formatISO, startOfDay } from 'date-fns';
 
 import { SmartHospitalState } from 'src/app/store/reducers';
@@ -41,7 +39,6 @@ import {
   removeMedicalService,
   resetMedicalService,
   resetState,
-  restoreStateFromLocalStorage,
   setActiveStep,
 } from '../state/actions';
 import {
@@ -64,6 +61,7 @@ import { SelectServiceStepComponent } from '../steps/select-service-step/select-
 import { DateTimeStepComponent } from '../steps/date-time-step/date-time-step.component';
 import { ReviewStepComponent } from '../steps/review-step/review-step.component';
 import { CountdownTimerComponent } from 'src/app/components/countdown-timer/countdown-timer.component';
+import { BookingResumeService } from '../booking-resume.service';
 
 /** Translation key for the page title of each step, independent of its numeric index. */
 const STEP_TITLE_KEY: Record<BookingStepKey, string> = {
@@ -95,7 +93,6 @@ const STEP_LABEL_KEY: Record<BookingStepKey, string> = {
   selector: 'app-booking-stepper',
   imports: [
     ReactiveFormsModule,
-    RouterOutlet,
     TranslateModule,
     DesignAngularKitModule,
     TitleCasePipe,
@@ -120,11 +117,11 @@ export class BookingStepperComponent implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly translate = inject(TranslateService);
   private readonly modalService = inject(BookingUnifiedModalService);
+  private readonly bookingResumeService = inject(BookingResumeService);
 
   protected bookingType: BookingType | null = null;
   protected steps: BookingStepKey[] = [];
   protected readonly activeStep = this.store.selectSignal(selectActiveStep);
-  protected readonly flag = signal(false);
   private readonly sessionId = signal<string | undefined>(undefined);
   protected readonly selectedServiceName = signal<
     { id: string; name?: string; hash?: string } | undefined
@@ -255,14 +252,7 @@ export class BookingStepperComponent implements OnInit {
     this.bookingType = isBookingType(parentParams) ? parentParams : null;
     this.steps = stepsFor(this.bookingType);
 
-    const queryParams = this.activatedRoute.snapshot.queryParams;
-    const customToken = queryParams['authToken'];
-    const newState = localStorage.getItem('allState');
-    if (customToken && newState) {
-      this.store.dispatch(restoreStateFromLocalStorage({ state: JSON.parse(newState) }));
-      localStorage.removeItem('allState');
-      this.sessionId.set(localStorage.getItem('bookingSessionId') ?? undefined);
-    }
+    this.sessionId.set(localStorage.getItem('bookingSessionId') ?? undefined);
   }
 
   applyFilter(range: { start: string | null; end: string | null } = this.rangeDate.getRawValue()) {
@@ -302,14 +292,6 @@ export class BookingStepperComponent implements OnInit {
   }
 
   onBackClick() {
-    if (this.flag()) {
-      this.router.navigate(['..'], {
-        replaceUrl: true,
-        relativeTo: this.activatedRoute,
-      });
-      this.flag.set(false);
-      return;
-    }
     if (this.activeStep() > 0) {
       if (this.steps[this.activeStep()] === BookingStepKey.Review) {
         this.store.dispatch(
@@ -330,15 +312,15 @@ export class BookingStepperComponent implements OnInit {
   onSubmit() {
     const user = this.userProfile();
     if (!user) {
-      this.flag.set(true);
-      this.router.navigate(['login'], {
-        relativeTo: this.activatedRoute,
-        queryParams: { returnUrl: this.router.routerState.snapshot.url },
+      if (!this.bookingType) {
+        this.router.navigate(['/']);
+        return;
+      }
+
+      this.bookingResumeService.save(this.router.url, this.bookingType);
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: this.router.url },
       });
-      this.store
-        .select(selectUserProfileData)
-        .pipe(filter(Boolean), take(1))
-        .subscribe(() => this.flag.set(false));
       return;
     }
 

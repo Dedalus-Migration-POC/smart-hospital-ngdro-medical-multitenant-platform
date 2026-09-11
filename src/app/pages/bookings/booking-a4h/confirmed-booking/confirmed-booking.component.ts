@@ -12,7 +12,11 @@ import { RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { selectUserProfileData } from 'src/app/pages/user-profile/state/user-profile.selectors';
+import { BookingResumeService } from '../booking-resume.service';
+import {
+  selectInitialized,
+  selectUserProfileData,
+} from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { mergePdfByUrls } from '../state/actions';
 import { HealthcareUnit } from '../state/model';
@@ -35,6 +39,8 @@ export class ConfirmedBookingComponent {
   private readonly mergePdfByUrlsResponse = this.store.selectSignal(selectMergePdfByUrls);
   private readonly bookAppointmentResponse = this.store.selectSignal(selectBookAppointmentResponse);
   private readonly availableListToBook = this.store.selectSignal(selectAvailableListToBook);
+  private readonly authInitialized = this.store.selectSignal(selectInitialized);
+  private readonly bookingResumeService = inject(BookingResumeService);
 
   protected readonly user = this.store.selectSignal(selectUserProfileData);
   private readonly selectedStrutturaState = this.store.selectSignal(selectSelectedStruttura);
@@ -68,6 +74,20 @@ export class ConfirmedBookingComponent {
 
   constructor() {
     effect(() => {
+      if (!this.authInitialized()) return;
+
+      if (!this.user() || !this.bookingSummary().length) {
+        this.router.navigate(['/'], { replaceUrl: true });
+      }
+    });
+
+    effect(() => {
+      if (this.bookingSummary().length) {
+        this.bookingResumeService.clear();
+      }
+    });
+
+    effect(() => {
       const links = this.preparationLinks();
       if (!links.length || this.pdfRequested()) return;
 
@@ -80,13 +100,6 @@ export class ConfirmedBookingComponent {
     });
   }
 
-  ngAfterViewInit(): void {
-    // Check on component init only (like the old component)
-    // Don't use reactive effect to avoid re-navigation on state changes
-    if (!this.bookingSummary().length) {
-      this.router.navigate(['/booking-a4h']);
-    }
-  }
   onDownload(link: string) {
     const downloadLink = document.createElement('a');
     downloadLink.href = link;

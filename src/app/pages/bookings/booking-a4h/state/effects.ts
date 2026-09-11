@@ -447,6 +447,14 @@ export class BookingUnifiedEffects {
                                 payload: newList,
                               }),
                             );
+
+                            if (!newList.some((el: any) => el.status === 'TO_BOOK')) {
+                              this.router.navigate([
+                                'booking-a4h',
+                                bookingType,
+                                'confirmed-booking',
+                              ]);
+                            }
                           }
                         }),
                       )

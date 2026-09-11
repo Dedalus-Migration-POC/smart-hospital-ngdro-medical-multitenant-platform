@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Auth } from '../../auth/auth';
 import { BookingStepperComponent } from './booking-stepper/booking-stepper.component';
 import { BookingTypeSelectorComponent } from './booking-type-selector/booking-type-selector.component';
 import { BookingUnifiedComponent } from './booking-unified.component';
@@ -18,7 +17,6 @@ export const bookingUnifiedRoutes: Routes = [
       {
         path: '',
         component: BookingStepperComponent,
-        children: [{ path: 'login', pathMatch: 'full', component: Auth }],
       },
       {
         path: 'confirmed-booking',
