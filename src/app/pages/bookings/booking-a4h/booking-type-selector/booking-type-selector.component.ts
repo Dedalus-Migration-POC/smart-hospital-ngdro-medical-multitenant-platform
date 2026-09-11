@@ -68,7 +68,7 @@ export class BookingTypeSelectorComponent {
 
   // Se false, la struttura viene scelta automaticamente (la prima della
   // risposta) e la modale non viene mostrata.
-  private readonly SHOW_STRUTTURA_SELECTION = false;
+  private readonly SHOW_STRUTTURA_SELECTION = true;
 
   constructor() {
     this.bookingUnifiedModalService.register(this.viewContainerRef);

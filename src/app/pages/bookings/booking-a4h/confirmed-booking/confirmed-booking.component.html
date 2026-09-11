@@ -1,7 +1,7 @@
-<h1 class="page-title">{{ 'booking-a4h.booking-confirmed.title' | translate }}</h1>
+<h1 class="page-title my-3">{{ 'booking-a4h.booking-confirmed.title' | translate }}</h1>
 
-<div class="confirmed-info-container">
-  <span aria-hidden="true">✓</span>
+<div class="confirmed-info-container h4">
+  <i class="fa-solid fa-check text-success" aria-hidden="true"></i>
   {{ 'booking-a4h.booking-confirmed.bookingConfirm' | translate }}
 </div>
 
@@ -15,7 +15,7 @@
   </div>
 }
 
-<div class="summary-card-container">
+<div class="summary-card-container d-flex flex-column">
   @for (summary of bookingSummary(); track summary.id) {
     <div class="card mb-3">
       <div class="card-body">
@@ -30,7 +30,12 @@
               <div class="summary-value">
                 {{ profile.firstName }} {{ profile.lastName }}
                 @if (profile.fiscalCode) {
-                  · {{ profile.fiscalCode }}
+                  -
+                  {{
+                    profile.fiscalCode.toUpperCase().startsWith('TINIT-')
+                      ? profile.fiscalCode.slice(6).toUpperCase()
+                      : profile.fiscalCode.toUpperCase()
+                  }}
                 }
               </div>
             </div>
@@ -66,8 +71,6 @@
                     }
                   </span>
                 }
-              } @else {
-                {{ 'mondinoAddress' | translate }}
               }
             </div>
           </div>

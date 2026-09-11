@@ -17,7 +17,7 @@ import type {
   FindByNrePayload,
   PrescriptionSession,
 } from './model';
-import { BOOK_APPOINTMENT_RESP } from './mock';
+import { BOOK_APPOINTMENT_RESP, STRUCTURE } from './mock';
 
 @Injectable({ providedIn: 'root' })
 export class BookingUnifiedService {
@@ -87,6 +87,9 @@ export class BookingUnifiedService {
   }
 
   getHealthCareUnit(): Observable<{ healthcareUnits: HealthcareUnit[] }> {
+    // if (this.IS_DEV) {
+    //   return of(STRUCTURE).pipe(delay(500));
+    // }
     return this.httpClient.get<{ healthcareUnits: HealthcareUnit[] }>(
       '/medical-booking/api/health-care-unit/find-all',
     );

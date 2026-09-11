@@ -14,8 +14,8 @@ export const BOOK_APPOINTMENT_RESP: BookAppointmentResponse = {
     status: 'BOOKED',
     physician: {
       id: 'bc3a02c0-1047-427e-ae6a-4161593aa5a0',
-      firstName: 'MAGNETICA 1,5',
-      lastName: 'RISONANZA',
+      firstName: 'Mario',
+      lastName: 'Rossi',
     },
     billingInfo: [
       {
@@ -56,4 +56,65 @@ export const BOOK_APPOINTMENT_RESP: BookAppointmentResponse = {
     ],
   },
   additionalProperties: {},
+};
+
+export const STRUCTURE = {
+  healthcareUnits: [
+    {
+      id: 'MNDCEN',
+      name: 'MONDINO',
+      state: 'PAVIA',
+      postCode: '002058',
+      address: 'VIA MONDINO 2',
+    },
+    {
+      id: 'MNDALE',
+      name: 'MONDINO - SEDE DI ALESSANDRIA',
+      state: 'ALESSANDRIA',
+      postCode: '002058',
+      address: 'VIA GUASCO 36',
+    },
+    {
+      id: 'MNDCEN',
+      name: 'MONDINO',
+      state: 'PAVIA',
+      postCode: '002058',
+      address: 'VIA MONDINO 2',
+    },
+    {
+      id: 'MNDALE',
+      name: 'MONDINO - SEDE DI ALESSANDRIA',
+      state: 'ALESSANDRIA',
+      postCode: '002058',
+      address: 'VIA GUASCO 36',
+    },
+    {
+      id: 'MNDCEN',
+      name: 'MONDINO',
+      state: 'PAVIA',
+      postCode: '002058',
+      address: 'VIA MONDINO 2',
+    },
+    {
+      id: 'MNDALE',
+      name: 'MONDINO - SEDE DI ALESSANDRIA',
+      state: 'ALESSANDRIA',
+      postCode: '002058',
+      address: 'VIA GUASCO 36',
+    },
+    {
+      id: 'MNDCEN',
+      name: 'MONDINO',
+      state: 'PAVIA',
+      postCode: '002058',
+      address: 'VIA MONDINO 2',
+    },
+    {
+      id: 'MNDALE',
+      name: 'MONDINO - SEDE DI ALESSANDRIA',
+      state: 'ALESSANDRIA',
+      postCode: '002058',
+      address: 'VIA GUASCO 36',
+    },
+  ],
 };

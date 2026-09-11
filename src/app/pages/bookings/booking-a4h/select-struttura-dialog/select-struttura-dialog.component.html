@@ -1,0 +1,67 @@
+<div
+  class="modal-backdrop fade show"
+  aria-hidden="true"
+  [style.background-color]="backdropColor()"
+></div>
+
+<div
+  #modal
+  class="modal d-block overflow-hidden"
+  tabindex="-1"
+  role="dialog"
+  aria-modal="true"
+  id="selectStrutturaDialog"
+  aria-labelledby="selectStrutturaTitle"
+  aria-describedby="selectStrutturaDescription"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="selectStrutturaTitle">
+          {{ 'booking-a4h.selectStruttura.title' | translate }}
+        </h2>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="onClose.emit()"
+          [attr.aria-label]="'commons.close' | translate"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="text-secondary mb-3" id="selectStrutturaDescription">
+          {{ 'booking-a4h.selectStruttura.subtitle' | translate }}
+        </p>
+
+        <ul class="list-group overflow-auto mb-3">
+          @for (unit of units(); track unit.id) {
+            <li class="list-group-item p-0 mb-2 border-0">
+              <button
+                type="button"
+                class="list-group-item list-group-item-action d-flex align-items-center justify-content-between w-100 text-start"
+                (click)="onSelect.emit(unit)"
+                [attr.aria-label]="unit.name"
+              >
+                <span class="d-flex flex-column gap-1">
+                  <span class="fw-semibold">{{ unit.name }}</span>
+                  @if (unit.address || unit.city) {
+                    <span class="small text-secondary">
+                      {{ unit.address }}{{ unit.address && unit.city ? ', ' : '' }}{{ unit.city }}
+                    </span>
+                  }
+                  @if (unit.postCode || unit.state) {
+                    <span class="small text-secondary text-uppercase">
+                      {{ unit.postCode }}{{ unit.postCode && unit.state ? ' - ' : ''
+                      }}{{ unit.state }}
+                    </span>
+                  }
+                </span>
+                <span class="fs-4 text-primary ms-3" aria-hidden="true">&rsaquo;</span>
+              </button>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -122,7 +122,10 @@ export class SelectMedicalServiceStepComponent implements OnInit {
       }
       this.store.dispatch(addMedicalService({ id }));
       if (this.limitReached) {
-        this.modalService.openInfo('errorTitle', 'maxServicesLimitReached');
+        this.modalService.openInfo(
+          'booking-a4h.selectService.servicesAlertHeader',
+          'booking-a4h.selectService.maxServicesLimitReached',
+        );
       }
     } else {
       this.store.dispatch(removeMedicalService({ id }));

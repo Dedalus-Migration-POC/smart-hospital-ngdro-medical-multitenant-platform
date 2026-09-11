@@ -5537,7 +5537,7 @@ export const NEW_BOOKING_A4H = {
     itemsStyle: { color: { hex: '#333333' } },
     title: { text: { it: 'Nuova prenotazione', en: 'New Booking' } },
     subTitle: {
-      text: { it: 'Crea una nuova prenotazione A4H.', en: 'Create a new A4H booking.' },
+      text: { it: 'Crea una nuova prenotazione A4H', en: 'Create a new A4H booking' },
     },
 
     items: [

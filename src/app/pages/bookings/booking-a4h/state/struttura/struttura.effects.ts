@@ -1,10 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, concatMap, map, of, withLatestFrom } from 'rxjs';
+import { catchError, concatMap, map, of, tap, withLatestFrom } from 'rxjs';
 import { BookingUnifiedService } from 'src/app/pages/bookings/booking-a4h/state/service';
 import { SmartHospitalState } from '../../../../../store/reducers';
 import * as StrutturaActions from './struttura.actions';
+import { clearSelectedStrutturaStorage, saveSelectedStruttura } from './struttura-storage';
 import { selectAllStrutture } from './struttura.selectors';
 
 @Injectable()
@@ -30,5 +31,23 @@ export class StrutturaEffects {
         );
       }),
     ),
+  );
+
+  readonly persistSelectedStruttura$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(StrutturaActions.setSelectedStruttura),
+        tap(({ struttura }) => saveSelectedStruttura(struttura)),
+      ),
+    { dispatch: false },
+  );
+
+  readonly clearSelectedStruttura$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(StrutturaActions.clearSelectedStruttura),
+        tap(() => clearSelectedStrutturaStorage()),
+      ),
+    { dispatch: false },
   );
 }

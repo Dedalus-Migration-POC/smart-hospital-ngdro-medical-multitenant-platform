@@ -11,6 +11,7 @@ import {
   selectSelectedStruttura,
   selectStruttureLoading,
 } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
+import { loadSelectedStruttura } from './state/struttura/struttura-storage';
 
 /**
  * every booking flow needs
@@ -23,6 +24,13 @@ export function ensureStrutturaSelected(store: Store<SmartHospitalState>): void 
     .pipe(take(1))
     .subscribe((selected) => {
       if (selected) return;
+
+      const persistedStruttura = loadSelectedStruttura();
+      if (persistedStruttura) {
+        store.dispatch(setSelectedStruttura({ struttura: persistedStruttura }));
+        return;
+      }
+
       store.dispatch(fetchStrutture());
       combineLatest([store.select(selectAllStrutture), store.select(selectStruttureLoading)])
         .pipe(

@@ -477,10 +477,13 @@
     "bookAvailableQuestion": "Vuoi prenotare",
     "noAvailability": "Al momento non ci sono disponibilità per le prestazioni richieste. Si prega di contattare direttamente il CUP della Struttura per maggiori informazioni e per supporto alla prenotazione.",
     "noneAvailable": "Nessuno dei servizi selezionati hanno disponibilità. Scegliere un altro.",
-
     "back": "Indietro",
     "request": "Richiedi",
     "confirm": "Conferma",
+    "selectStruttura": {
+      "title": "Seleziona la struttura",
+      "subtitle": "Scegli la struttura presso cui effettuare la prenotazione"
+    },
     "stepsTitle": {
       "insertNre": "NRE",
       "selectService": "Seleziona prestazione",
@@ -503,7 +506,8 @@
         "body": "Hai selezionato le seguenti prestazioni:<br><br>{{services}}<br><br>Confermi le tue scelte?"
       },
       "servicesAlertHeader": "Attenzione!",
-      "servicesAlertContent": "Per motivi amministrativi, seleziona per tutte le prestazioni Primo accesso o Secondo accesso. La scelta deve essere uguale per ogni prestazione presente."
+      "servicesAlertContent": "Per motivi amministrativi, seleziona per tutte le prestazioni Primo accesso o Secondo accesso. La scelta deve essere uguale per ogni prestazione presente.",
+      "maxServicesLimitReached": "Hai raggiunto il limite massimo di 8 prestazioni"
     },
     "selectDoctor": {
       "searchTitle": "Testo da cercare",

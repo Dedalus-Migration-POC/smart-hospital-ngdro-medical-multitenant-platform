@@ -1,15 +1,17 @@
-import { Injectable, ViewContainerRef, inject } from '@angular/core';
+import { ComponentRef, Injectable, ViewContainerRef, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ModalService } from 'src/app/components/modal/modal.service';
 import { ModalActionConfig, ModalConfig } from 'src/app/components/modal/model';
 import { toLocalizedText } from 'src/app/shared/utility/text.utils';
 import { HealthcareUnit } from './state/model';
+import { SelectStrutturaDialogComponent } from './select-struttura-dialog/select-struttura-dialog.component';
 
 @Injectable({ providedIn: 'root' })
 export class BookingUnifiedModalService {
   private readonly modalService = inject(ModalService);
   private readonly translate = inject(TranslateService);
   private viewContainerRef: ViewContainerRef | null = null;
+  private selectStrutturaRef: ComponentRef<SelectStrutturaDialogComponent> | null = null;
 
   register(viewContainerRef: ViewContainerRef): void {
     this.viewContainerRef = viewContainerRef;
@@ -17,6 +19,7 @@ export class BookingUnifiedModalService {
 
   clear(viewContainerRef: ViewContainerRef): void {
     if (this.viewContainerRef === viewContainerRef) {
+      this.selectStrutturaRef = null;
       this.viewContainerRef = null;
     }
   }
@@ -98,17 +101,27 @@ export class BookingUnifiedModalService {
     units: HealthcareUnit[];
     onSelect: (unit: HealthcareUnit) => void;
   }): void {
-    this.open({
-      title: this.translate.instant('selectStruttura.title'),
-      body: this.translate.instant('selectStruttura.subtitle'),
-      actions: config.units.map((unit) => ({
-        button: {
-          text: { text: toLocalizedText(unit.name) },
-          whiteSpace: 'normal',
-        },
-        callback: () => config.onSelect(unit),
-      })),
+    if (!this.viewContainerRef) return;
+
+    this.modalService.close();
+    this.selectStrutturaRef?.destroy();
+
+    const componentRef = this.viewContainerRef.createComponent(SelectStrutturaDialogComponent);
+    this.selectStrutturaRef = componentRef;
+    componentRef.setInput('units', config.units);
+    componentRef.instance.onSelect.subscribe((unit) => {
+      this.closeSelectStruttura();
+      config.onSelect(unit);
     });
+    componentRef.instance.onClose.subscribe(() => this.closeSelectStruttura());
+    componentRef.changeDetectorRef.detectChanges();
+  }
+
+  private closeSelectStruttura(): void {
+    if (!this.selectStrutturaRef) return;
+
+    this.selectStrutturaRef.destroy();
+    this.selectStrutturaRef = null;
   }
 
   private open(config: { title: string; body: string; actions: ModalActionConfig[] }): void {
@@ -124,7 +137,7 @@ export class BookingUnifiedModalService {
         text: { text: toLocalizedText(config.body) },
       },
       footer: {
-        layout: { justify: 'end', gap: 'gap-2', wrap: 'wrap' },
+        layout: { justify: 'center', gap: 'gap-2', wrap: 'wrap' },
         actions: config.actions,
       },
     };
