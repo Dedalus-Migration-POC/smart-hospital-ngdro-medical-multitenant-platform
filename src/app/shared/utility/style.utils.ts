@@ -1,6 +1,7 @@
 // Crea proprietà CSS inline, ad esempio color: #333333, margin-bottom: 3px
 import {
   BackgroundConfig,
+  BorderConfig,
   FontSize,
   LineHeight,
   SpacingConfig,
@@ -68,8 +69,24 @@ export function getBackgroundStyles(config: {
 }): Record<string, string> {
   const background = config.background;
 
-  if (background?.gradient) return { background: background.gradient };
-  if (background?.fill?.hex) return { 'background-color': background.fill.hex };
+  return {
+    ...(background?.gradient ? { background: background.gradient } : {}),
+    ...(!background?.gradient && background?.fill?.hex
+      ? { 'background-color': background.fill.hex }
+      : {}),
+  };
+}
 
-  return {};
+export function getBorderStyles(config: { border?: BorderConfig }): Record<string, string> {
+  const border = config.border;
+  const borderColor =
+    border?.color?.hex ??
+    (border?.color?.palette ? `var(--bs-${border.color.palette})` : undefined);
+
+  return {
+    ...(border?.width ? { 'border-width': border.width } : {}),
+    ...(border?.style ? { 'border-style': border.style } : {}),
+    ...(borderColor ? { 'border-color': borderColor } : {}),
+    ...(border?.radius ? { 'border-radius': border.radius } : {}),
+  };
 }

@@ -6,6 +6,7 @@ import { OverflowDetectorDirective } from '../../../shared/directives/overflow-d
 import {
   getBackgroundPaletteClass,
   getBackgroundStyles,
+  getBorderStyles,
   getSpacingStyles,
 } from '../../../shared/utility/style.utils';
 
@@ -22,6 +23,7 @@ export class MainHeader {
   protected getHeaderStyles(section: HeaderSection): Record<string, string> {
     return {
       ...getBackgroundStyles(section),
+      ...getBorderStyles(section),
       ...getSpacingStyles(section.padding, 'padding'),
     };
   }

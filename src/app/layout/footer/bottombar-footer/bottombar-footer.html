@@ -5,13 +5,13 @@
     class="it-footer-small-prints d-flex"
     [style.height]="bottombar?.height"
     [ngClass]="[getBackgroundPaletteClass(bottombar), bottombar.className ?? '']"
-    [ngStyle]="getBackgroundStyles(bottombar)"
+    [ngStyle]="{ ...getBackgroundStyles(bottombar), ...getBorderStyles(bottombar) }"
     [attr.data-bs-toggle]="bottombar?.position?.type ? 'sticky' : null"
     [attr.data-bs-stackable]="bottombar?.position?.stackable ? true : null"
     [attr.data-bs-position-type]="bottombar?.position?.type ?? null"
     [attr.data-bs-sticky-class-name]="bottombar?.position?.className ?? null"
   >
-    <div class="container-xxl">
+    <div class="container">
       <div class="row h-100">
         <div #content class="col-12">
           <app-areas-layout [areas]="bottombar.areas"></app-areas-layout>

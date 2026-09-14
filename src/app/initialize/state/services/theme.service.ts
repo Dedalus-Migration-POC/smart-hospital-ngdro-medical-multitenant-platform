@@ -3,6 +3,7 @@ import { AppConfig } from '../app-config.model';
 
 type TypographyConfig = AppConfig['theme']['typography'];
 type ColorConfig = AppConfig['theme']['colors'];
+type LinksStyleConfig = AppConfig['theme']['linksStyle'];
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
@@ -16,10 +17,16 @@ export class ThemeService {
     const properties = [
       ...this.buildColorProperties(config.theme?.colors),
       ...this.buildTypographyProperties(config.theme?.typography),
+      ...this.buildLinkProperties(config.theme?.linksStyle),
       ...this.buildPropertyIfValue('--tenant-btn-border-radius', buttonRadius),
     ];
 
-    const css = this.buildRootCss(properties, config.theme?.colors, buttonRadius);
+    const css = this.buildRootCss(
+      properties,
+      config.theme?.colors,
+      buttonRadius,
+      config.theme?.linksStyle,
+    );
     this.upsertStyleElement(css);
     this.applyDocumentMetadata(config);
   }
@@ -93,6 +100,24 @@ export class ThemeService {
     ];
   }
 
+  private buildLinkProperties(style?: LinksStyleConfig): string[] {
+    if (!style) return [];
+
+    const baseColor =
+      style.mode === 'custom'
+        ? this.resolveColor(style.textStyle?.color)
+        : `var(--bs-${style.palette})`;
+
+    return [
+      ...this.buildPropertyIfValue('--bs-link-color', baseColor),
+      ...this.buildPropertyIfValue('--bs-link-hover-color', baseColor),
+    ];
+  }
+
+  private resolveColor(color?: { palette?: string; hex?: string }): string | undefined {
+    return color?.hex ?? (color?.palette ? `var(--bs-${color.palette})` : undefined);
+  }
+
   private buildMappedProperties(
     source: Record<string, string | number | undefined>,
     map: Record<string, string>,
@@ -114,7 +139,12 @@ export class ThemeService {
     return value == null ? [] : [this.buildProperty(name, value)];
   }
 
-  private buildRootCss(properties: string[], colors?: ColorConfig, buttonRadius?: string): string {
+  private buildRootCss(
+    properties: string[],
+    colors?: ColorConfig,
+    buttonRadius?: string,
+    linksStyle?: LinksStyleConfig,
+  ): string {
     const buttonCss = colors
       ? Object.entries(colors)
         .map(([color, value]) => this.buildButtonCss(color, value))
@@ -130,6 +160,8 @@ export class ThemeService {
     `
       : '';
 
+    const linksCss = this.buildLinksCss(linksStyle);
+
     return `
       :root {
         ${properties.join('\n')}
@@ -137,7 +169,28 @@ export class ThemeService {
 
       ${buttonRadiusCss}
 
+      ${linksCss}
+
       ${buttonCss}
+    `;
+  }
+
+  private buildLinksCss(style?: LinksStyleConfig): string {
+    if (!style) return '';
+
+    const textDecoration = style.textStyle?.textDecoration;
+    const hoverTextDecoration = style.hover?.textDecoration;
+    const hoverTextDecorationThickness = style.hover?.textDecorationThickness;
+
+    return `
+      a {
+        ${textDecoration ? `text-decoration: ${textDecoration};` : ''}
+      }
+
+      a:is(:hover, :focus-visible) {
+        ${hoverTextDecoration ? `text-decoration: ${hoverTextDecoration};` : ''}
+        ${hoverTextDecorationThickness ? `text-decoration-thickness: ${hoverTextDecorationThickness};` : ''}
+      }
     `;
   }
 

@@ -1,5 +1,5 @@
 import { AreasConfig } from '../../shared/layout-system/models/layout.model';
-import { BackgroundConfig } from '../../shared/models/shared_model';
+import { BackgroundConfig, BorderConfig } from '../../shared/models/shared_model';
 
 export interface FooterSection {
   height: string;
@@ -9,6 +9,7 @@ export interface FooterSection {
     stackable?: boolean;
   };
   background: BackgroundConfig;
+  border?: BorderConfig;
   className?: string;
   areas?: AreasConfig;
 }

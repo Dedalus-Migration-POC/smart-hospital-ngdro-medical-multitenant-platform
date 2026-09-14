@@ -6,6 +6,7 @@ import { OverflowDetectorDirective } from '../../../shared/directives/overflow-d
 import {
   getBackgroundPaletteClass,
   getBackgroundStyles,
+  getBorderStyles,
 } from '../../../shared/utility/style.utils';
 
 @Component({
@@ -18,4 +19,5 @@ export class MainFooter {
   readonly main = input<FooterSection | null>(null);
   protected readonly getBackgroundPaletteClass = getBackgroundPaletteClass;
   protected readonly getBackgroundStyles = getBackgroundStyles;
+  protected readonly getBorderStyles = getBorderStyles;
 }

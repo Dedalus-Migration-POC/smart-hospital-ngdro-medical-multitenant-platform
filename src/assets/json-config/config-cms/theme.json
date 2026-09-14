@@ -43,6 +43,10 @@
     "palette": "white",
     "textStyle": {
       "textDecoration": "none"
+    },
+    "hover": {
+      "textDecoration": "underline",
+      "textDecorationThickness": "2px"
     }
   },
   "breadcrumb": {
