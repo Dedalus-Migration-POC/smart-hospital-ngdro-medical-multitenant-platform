@@ -59,29 +59,18 @@
   </ng-template>
 
   @if (config.clickable && config.action) {
-    @if (config.action.type === 'route') {
-      <a
-        [routerLink]="config.action.url"
-        class="d-block cursor-pointer"
-        [ngClass]="[config.className || '', ...getFlexLayoutClasses(config.layout)]"
-        [attr.title]="tooltipLabel()"
-        [ngStyle]="getBlockStyles(config)"
-      >
-        <ng-container *ngTemplateOutlet="blockContent" />
-      </a>
-    } @else {
-      <a
-        [href]="config.action.url"
-        [target]="config.action.target || '_self'"
-        rel="noopener noreferrer"
-        class="d-block cursor-pointer"
-        [ngClass]="[config.className || '', ...getFlexLayoutClasses(config.layout)]"
-        [attr.title]="tooltipLabel()"
-        [ngStyle]="getBlockStyles(config)"
-      >
-        <ng-container *ngTemplateOutlet="blockContent" />
-      </a>
-    }
+    <a
+      [routerLink]="config.action.type === 'route' ? config.action.url : null"
+      [attr.href]="config.action.type === 'externalLink' ? config.action.url : null"
+      [attr.target]="config.action.type === 'externalLink' ? config.action.target || '_self' : null"
+      [attr.rel]="config.action.type === 'externalLink' ? 'noopener noreferrer' : null"
+      class="d-block cursor-pointer"
+      [ngClass]="[config.className || '', ...getFlexLayoutClasses(config.layout)]"
+      [attr.title]="tooltipLabel()"
+      [ngStyle]="getBlockStyles(config)"
+    >
+      <ng-container *ngTemplateOutlet="blockContent" />
+    </a>
   } @else {
     <div
       [ngClass]="[config.className || '', ...getFlexLayoutClasses(config.layout)]"
