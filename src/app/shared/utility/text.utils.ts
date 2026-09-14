@@ -1,5 +1,10 @@
 // Crea classi testuali, ad esempio fs-xl e text-decoration-none.
-import { FontSize, LineHeight, LocalizedText, TextStyle } from '../models/shared_model';
+import {
+  FontSize,
+  LineHeight,
+  LocalizedText,
+  TextStyle,
+} from '../models/shared_model';
 
 const fontSizeTokens: FontSize[] = ['sm', 'md', 'lg', 'xl', 'xxl'];
 const lineHeightTokens: LineHeight[] = ['sm', 'md', 'lg', 'xl', 'xxl'];

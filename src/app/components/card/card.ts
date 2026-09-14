@@ -31,13 +31,13 @@ export class Card {
   private readonly containerTheme = computed(() => this.appConfig()?.theme.card?.container);
 
   readonly itemsLayout = computed(
-    () => this.config()?.itemsLayout ?? this.containerTheme()?.itemsLayout,
+    () => this.config()?.itemsLayout ?? this.containerTheme()?.itemsLayout ?? {},
   );
   readonly itemColBootstrapClasses = computed(
     () => this.config()?.itemColBootstrapClasses ?? this.containerTheme()?.itemColBootstrapClasses,
   );
   readonly actionsLayout = computed(
-    () => this.config()?.actionsLayout ?? this.containerTheme()?.actionsLayout,
+    () => this.config()?.actionsLayout ?? this.containerTheme()?.actionsLayout ?? {},
   );
 
   readonly headerTitleStyle = computed(() =>

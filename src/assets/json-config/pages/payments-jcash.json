@@ -1,0 +1,281 @@
+{
+  "id": "/payments-jcash",
+  "name": {
+    "it": "Pagamenti",
+    "en": "Payments"
+  },
+  "route": "/payments-jcash",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "title": {
+      "text": {
+        "it": "Pagamenti",
+        "en": "Payments"
+      }
+    },
+    "subTitle": {
+      "text": {
+        "it": "Visualizza i pagamenti.",
+        "en": "View the payments."
+      }
+    },
+    "items": [
+      {
+        "name": {
+          "it": "Home",
+          "en": "Home"
+        },
+        "routerLink": "/"
+      },
+      {
+        "name": {
+          "it": "Pagamenti",
+          "en": "Payments"
+        },
+        "routerLink": ""
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "cards-section",
+      "areas": {
+        "center": {
+          "items": [
+            {
+              "id": "payments-jcash-cards",
+              "type": "SERVICE_CARDS",
+              "props": {
+                "itemsLayout": {
+                  "direction": "row"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "justify": "end",
+                  "gap": "gap-2"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "prestazioni",
+                        "fontSize": "lg",
+                        "lineHeight": "sm",
+                        "margin": "mb-3"
+                      },
+                      "subTitle": {
+                        "key": "statoDistinta",
+                        "valueMap": {
+                          "DA PAGARE": "payments.state.NOT_PAYED",
+                          "PAGATA": "payments.state.PAYED"
+                        },
+                        "fontSize": "md",
+                        "fontWeight": "semibold",
+                        "color": {
+                          "hex": "#2F475E"
+                        },
+                        "lineHeight": "sm",
+                        "margin": "mb-4"
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "importo",
+                        "type": "text",
+                        "suffix": " €",
+                        "margin": "mb-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "50%"
+                          },
+                          "value": {
+                            "basis": "50%"
+                          }
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Importo",
+                            "en": "Amount"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "normal",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        }
+                      },
+                      {
+                        "key": "statoDistinta",
+                        "type": "image",
+                        "margin": "mb-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "50%"
+                          },
+                          "value": {
+                            "basis": "50%"
+                          }
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Sistema",
+                            "en": "Payment system"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "normal",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        },
+                        "imageMap": {
+                          "PAGATA": {
+                            "type": "url",
+                            "value": "/assets/images/logo_pagoPa.png",
+                            "decorative": true
+                          },
+                          "DA PAGARE": {
+                            "type": "url",
+                            "value": "/assets/images/logo_pagoPa.png",
+                            "decorative": true
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "view",
+                        "type": "callback",
+                        "renderAs": "link",
+                        "icon": {
+                          "type": "font-awesome",
+                          "name": "fa-solid fa-arrow-right",
+                          "position": "after"
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Vedi dettaglio",
+                            "en": "Show Details"
+                          },
+                          "textTransform": "uppercase",
+                          "color": {
+                            "hex": "#123c73"
+                          },
+                          "fontWeight": "semibold"
+                        },
+                        "callback": {
+                          "nameFunction": "goDetail",
+                          "params": [
+                            "codiceDistinta"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "message": {
+    "notFound": {
+      "id": "paymentsNotFound",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Pagamenti non trovati",
+          "en": "Payments not found"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Pagamenti non trovati",
+            "en": "Payments not found"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "La tua richiesta non ha prodotto risultati.",
+            "en": "Your request did not produce any results."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    },
+    "error": {
+      "id": "errorMessage",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Errore",
+          "en": "Error"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Errore",
+            "en": "Error"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.",
+            "en": "An error occurred while fetching the payment. Please try again later."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    }
+  }
+}

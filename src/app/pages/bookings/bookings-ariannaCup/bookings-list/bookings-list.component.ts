@@ -13,7 +13,7 @@ import { isBefore, isValid, parse, startOfToday } from 'date-fns';
 import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-storage-utils';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { map, take } from 'rxjs';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
@@ -22,7 +22,7 @@ import { CardActionsService } from 'src/app/shared/services/card-actions.service
 import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
 import { ModalService } from 'src/app/components/modal/modal.service';
 import { toLocalizedText } from 'src/app/shared/utility/text.utils';
-import { TextConfig } from 'src/app/shared/models/shared_model';
+import { TextConfig, ButtonConfig } from 'src/app/shared/models/shared_model';
 
 @Component({
   selector: 'app-bookings-list',
@@ -35,14 +35,9 @@ export class BookingsListComponent implements OnInit {
   private cardActionsService = inject(CardActionsService);
   private modalService = inject(ModalService);
   private viewContainerRef = inject(ViewContainerRef);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/bookings')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/bookings'), { initialValue: null });
   readonly cardsConfig = computed<any>(() => {
     const config = this.pageConfig();
     const sections = config?.sections;
@@ -154,7 +149,7 @@ export class BookingsListComponent implements OnInit {
               outline: true,
               ...cancelAction?.button,
               text: cancelText,
-            },
+            } as ButtonConfig,
             callback: () => console.log('Annullata modale'),
           },
           {

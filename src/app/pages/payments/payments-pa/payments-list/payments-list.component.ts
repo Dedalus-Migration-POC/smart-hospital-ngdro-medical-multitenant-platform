@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { TranslateModule } from '@ngx-translate/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { Card } from 'src/app/components/card/card';
 import { CompiledCardsContainer } from 'src/app/components/card/model';
@@ -47,13 +47,11 @@ export class PaymentsPaList implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private store = inject(Store<SmartHospitalState>);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store
-      .select(selectAppConfig)
-      .pipe(map((config) => config.pages.find((page: any) => page.id === '/payments-pa'))),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/payments-pa'), {
+    initialValue: null,
+  });
 
   ngOnInit(): void {
     this.store.dispatch(fetchPayments());

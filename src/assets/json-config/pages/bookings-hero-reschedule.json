@@ -1,0 +1,56 @@
+{
+  "id": "/bookings-hero/reschedule",
+  "name": {
+    "it": "Sposta Prenotazione",
+    "en": "Reschedule Booking"
+  },
+  "route": "/bookings-hero/reschedule",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+      "background": {
+        "fill": {
+          "hex": "#e6e8ea"
+        }
+      },
+      "itemsStyle": {
+        "color": {
+          "hex": "#333333"
+        }
+      },
+      "title": {
+        "text": {
+          "it": "Sposta prenotazione",
+          "en": "Reschedule Booking"
+        }
+      },
+      "subTitle": {
+        "text": {
+          "it": "Modifica una prenotazione esistente Hero.",
+          "en": "Modify an existing Hero booking."
+        }
+      },
+      "items": [
+        {
+          "name": {
+            "it": "Home",
+            "en": "Home"
+          },
+          "routerLink": "/"
+        },
+        {
+          "name": {
+            "it": "Prenotazioni",
+            "en": "Bookings"
+          },
+          "routerLink": "/bookings-hero"
+        },
+        {
+          "name": {
+            "it": "Sposta Prenotazione",
+            "en": "Reschedule Booking"
+          },
+          "routerLink": "/bookings-hero/reschedule"
+        }
+      ]
+  }
+}

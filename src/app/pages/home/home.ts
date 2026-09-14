@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { SmartHospitalState } from '../../store/reducers';
-import { selectAppConfig } from '../../initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { Store } from '@ngrx/store';
 import { map, take } from 'rxjs';
 import { AreasLayout } from '../../shared/layout-system/components/areas-layout/areas-layout';
@@ -16,12 +16,7 @@ import { CommonModule } from '@angular/common';
 })
 export class HomePage {
   private store = inject(Store<SmartHospitalState>);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: PageConfig) => page.id === '/')), //TODO page type
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/'), { initialValue: null });
 }

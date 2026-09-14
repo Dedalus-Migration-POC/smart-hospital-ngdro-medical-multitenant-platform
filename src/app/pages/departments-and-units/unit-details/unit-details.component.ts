@@ -9,7 +9,7 @@ import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
 import { Departments, Unit } from '../state/model';
 import { selectFirebaseObject } from '../../../store/remote-config/remote-config.selectors';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from '../../../initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { BreadcrumbService } from '../../../components/breadcrumb/breadcrumb.service';
 import { CardActionsService } from 'src/app/shared/services/card-actions.service';
 import {
@@ -31,14 +31,11 @@ export class UnitDetailsComponent {
   private store = inject(Store<SmartHospitalState>);
   private breadcrumbService = inject(BreadcrumbService);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/departments/units/details')), //TODO page type
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/departments/units/details'), {
+    initialValue: null,
+  });
 
   readonly department = toSignal(
     this.activatedRoute.queryParamMap.pipe(

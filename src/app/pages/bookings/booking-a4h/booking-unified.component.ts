@@ -26,6 +26,7 @@ import { map, take } from 'rxjs';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { BreadcrumbService } from 'src/app/components/breadcrumb/breadcrumb.service';
 import { Spinner } from 'src/app/components/spinner/spinner';
+import { PageConfigService } from '../../page-config.service';
 
 @Component({
   selector: 'app-booking-unified',
@@ -47,23 +48,16 @@ export class BookingUnifiedComponent implements OnInit, OnDestroy {
   protected readonly loading = this.store.selectSignal(selectAnyLoading);
   protected readonly bookingType = this.store.selectSignal(selectBookingType);
   protected readonly flowLabels = BOOKING_FLOW_LABELS;
+  private readonly pageConfigService = inject(PageConfigService);
 
   constructor() {
     this.bookingUnifiedModalService.register(this.viewContainerRef);
     this.destroyRef.onDestroy(() => this.bookingUnifiedModalService.clear(this.viewContainerRef));
   }
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) =>
-        config.pages.find((page: any) => {
-          return page.id === '/booking-a4h';
-        }),
-      ),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/booking-a4h'), {
+    initialValue: null,
+  });
 
   readonly breadcrumbConfig = computed(() => {
     const config = this.pageConfig();

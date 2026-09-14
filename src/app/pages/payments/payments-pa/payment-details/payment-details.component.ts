@@ -1,7 +1,7 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, take } from 'rxjs';
+import { map, take, Observable } from 'rxjs';
 import {
   selectDownloadingInvoicePdf,
   selectPagoPaLinkLoading,
@@ -15,7 +15,7 @@ import { selectUserProfile } from 'src/app/pages/user-profile/state/user-profile
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
@@ -27,6 +27,12 @@ import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/
 import { CardActionsService } from 'src/app/shared/services/card-actions.service';
 import { Card } from 'src/app/components/card/card';
 import { PaymentSummary } from '../state/payments.model';
+import { PageConfig } from 'src/app/pages/page.model';
+
+// campo specifico di questa pagina, non parte del PageConfig condiviso
+interface PaymentDetailsPageConfig extends PageConfig {
+  isSimplePagoPa?: boolean;
+}
 
 @Component({
   selector: 'app-payment-pa-details',
@@ -40,12 +46,10 @@ export class PaymentsPaDetails implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private translate = inject(TranslateService);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
   readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/payments-pa/details')), //TODO page type
-    ),
+    this.pageConfigService.get('/payments-pa/details') as Observable<PaymentDetailsPageConfig>,
     { initialValue: null },
   );
 

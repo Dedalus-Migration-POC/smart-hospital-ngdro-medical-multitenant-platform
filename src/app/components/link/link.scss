@@ -2,3 +2,15 @@
   pointer-events: none;
   opacity: 0.7;
 }
+
+.link-hover-none:is(:hover, :focus-visible) {
+  text-decoration: none;
+}
+
+.link-hover-underline:is(:hover, :focus-visible) {
+  text-decoration: underline;
+}
+
+.link-hover-overline:is(:hover, :focus-visible) {
+  text-decoration: overline;
+}

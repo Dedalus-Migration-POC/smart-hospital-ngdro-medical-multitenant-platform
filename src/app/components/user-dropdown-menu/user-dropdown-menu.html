@@ -1,13 +1,21 @@
 @if (config(); as config) {
-  <div class="dropdown">
+  <div class="dropdown h-100">
     <button
       type="button"
-      class="btn d-inline-flex align-items-center justify-content-center"
+      class="mh-100 btn d-inline-flex align-items-center justify-content-center"
       [class.dropdown-toggle]="userProfile()"
       [ngClass]="
-        toggleButtonClasses(userProfile() ? config.button.loggedInUser : config.button.login)
+        [
+          ...toggleButtonClasses(userProfile() ? config.button.loggedInUser : config.button.login),
+          getHoverTextDecorationClass(userProfile() ? config.button.loggedInUser : config.button.login),
+        ]
       "
-      [ngStyle]="getButtonStyles(userProfile() ? config.button.loggedInUser : config.button.login)"
+      [ngStyle]="{
+        ...getButtonStyles(userProfile() ? config.button.loggedInUser : config.button.login),
+        ...getHoverTextDecorationStyles(
+          userProfile() ? config.button.loggedInUser : config.button.login
+        ),
+      }"
       [attr.data-bs-toggle]="userProfile() ? 'dropdown' : null"
       [attr.aria-expanded]="userProfile() ? 'false' : null"
       [id]="userProfile() ? 'userDropdownMenu' : null"
@@ -20,7 +28,7 @@
           <app-icon [config]="icon" defaultMarginClass="me-lg-2" />
         }
         <span
-          class="d-none d-lg-inline-block"
+          class="user-dropdown-label d-none d-lg-inline-block"
           [ngClass]="loggedInUserTextClasses(config.button.loggedInUser)"
           [ngStyle]="getTextStyles(config.button.loggedInUser.textStyle)"
         >
@@ -39,7 +47,7 @@
           <app-icon [config]="icon" defaultMarginClass="me-lg-2" />
         }
         <span
-          class="d-none d-lg-inline-block"
+          class="user-dropdown-label d-none d-lg-inline-block"
           [ngClass]="getTextClasses(config.button.login.text)"
           [ngStyle]="getTextStyles(config.button.login.text)"
         >

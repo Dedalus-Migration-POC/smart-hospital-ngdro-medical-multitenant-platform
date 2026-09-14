@@ -1,0 +1,424 @@
+{
+  "id": "/medical-reports",
+  "name": {
+    "it": "Referti",
+    "en": "Medical Reports"
+  },
+  "route": "/medical-reports",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "itemsStyle": {
+      "color": {
+        "hex": "#b41919"
+      }
+    },
+    "title": {
+      "text": {
+        "it": "Referti e documenti",
+        "en": "Medical Reports and Documents"
+      }
+    },
+    "subTitle": {
+      "text": {
+        "it": "Sottotitolo",
+        "en": "Subtitle"
+      }
+    },
+    "items": [
+      {
+        "name": {
+          "it": "Home",
+          "en": "Home"
+        },
+        "routerLink": "/"
+      },
+      {
+        "name": {
+          "it": "Referti e documenti",
+          "en": "Medical Reports and Documents"
+        },
+        "routerLink": "/medical-reports"
+      }
+    ]
+  },
+  "infoPopup": {
+    "title": {
+      "it": "Attenzione",
+      "en": "Attention"
+    },
+    "text": {
+      "it": "I referti non saranno più disponibili dopo 45 gg dalla data di caricamento indicata nel referto.",
+      "en": "Reports will no longer be available 45 days after the upload date indicated in the report."
+    },
+    "type": "warning"
+  },
+  "sections": [
+    {
+      "id": "search-form-section",
+      "areas": {
+        "layout": {
+          "direction": "column",
+          "gap": "gap-4"
+        },
+        "center": {
+          "layout": {
+            "direction": "row",
+            "wrap": "wrap",
+            "gap": "gap-4",
+            "justify": "end"
+          },
+          "items": [
+            {
+              "id": "search-form",
+              "type": "DYNAMIC_FORM",
+              "enabled": true,
+              "props": {
+                "layoutForm": {
+                  "direction": "row",
+                  "gap": "gap-3"
+                },
+                "submitButton": {
+                  "label": {
+                    "it": "Cerca",
+                    "en": "Search"
+                  },
+                  "layout": {
+                    "align": "self-end"
+                  }
+                },
+                "fields": [
+                  {
+                    "id": "typeCode",
+                    "type": "select",
+                    "layoutField": {
+                      "direction": "column",
+                      "gap": "gap-2"
+                    },
+                    "label": {
+                      "it": "Tipo Documento",
+                      "en": "Document Type"
+                    },
+                    "required": false
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "cards-section",
+      "areas": {
+        "layout": {
+          "direction": "column",
+          "gap": "gap-4"
+        },
+        "center": {
+          "layout": {
+            "direction": "row",
+            "wrap": "wrap",
+            "gap": "gap-4"
+          },
+          "items": [
+            {
+              "id": "reports-cards",
+              "type": "SERVICE_CARDS",
+              "enabled": true,
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-6 col-xl-4",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "start"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "wrap": "wrap",
+                  "justify": "around",
+                  "gap": "gap-2"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "background": "white",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "classification.practice.label",
+                        "fontSize": "lg",
+                        "fontWeight": "bold",
+                        "color": {
+                          "palette": "black"
+                        },
+                        "lineHeight": "md"
+                      },
+                      "subTitle": {
+                        "key": "classification.classes.label",
+                        "fontSize": "md",
+                        "fontWeight": "semibold",
+                        "color": {
+                          "palette": "secondary"
+                        }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "releaseDate",
+                        "type": "date",
+                        "format": "dd/MM/yyyy",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "valueStyle": {
+                          "fontSize": "md",
+                          "fontWeight": "bold",
+                          "color": {
+                            "palette": "danger"
+                          },
+                          "lineHeight": "md"
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Data",
+                            "en": "Date"
+                          }
+                        }
+                      },
+                      {
+                        "key": "classification.healthcareFacilityType.label",
+                        "type": "text",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Unità operativa",
+                            "en": "Operating unit"
+                          }
+                        }
+                      },
+                      {
+                        "key": "additionalInfo.expiredDate",
+                        "type": "date",
+                        "format": "dd/MM/yyyy",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Data scadenza",
+                            "en": "Expiration date"
+                          }
+                        }
+                      },
+                      {
+                        "key": "paymentStatus",
+                        "type": "badge",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Stato",
+                            "en": "Status"
+                          }
+                        },
+                        "badgeMap": {
+                          "0": {
+                            "text": {
+                              "it": "Non pagato",
+                              "en": "Pending"
+                            },
+                            "lineHeight": "md",
+                            "color": {
+                              "palette": "danger"
+                            }
+                          },
+                          "1": {
+                            "text": {
+                              "it": "Pagato",
+                              "en": "Paid"
+                            },
+                            "lineHeight": "md",
+                            "color": {
+                              "palette": "success"
+                            }
+                          }
+                        },
+                        "fallbackBadge": {
+                          "text": {
+                            "it": "Sconosciuto",
+                            "en": "Unknown"
+                          },
+                          "fontSize": "sm",
+                          "color": {
+                            "palette": "secondary"
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "downloadPdf",
+                        "label": {
+                          "text": {
+                            "it": "Scarica PDF ({{additionalInfo.size}})",
+                            "en": "Download PDF"
+                          }
+                        },
+                        "type": "callback",
+                        "renderAs": "button",
+                        "callback": {
+                          "nameFunction": "downloadPdf",
+                          "params": [
+                            true
+                          ]
+                        }
+                      },
+                      {
+                        "key": "openPdf",
+                        "label": {
+                          "text": {
+                            "it": "Apri PDF",
+                            "en": "Open PDF"
+                          }
+                        },
+                        "type": "callback",
+                        "renderAs": "button",
+                        "callback": {
+                          "nameFunction": "downloadPdf",
+                          "params": [
+                            false
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "message": {
+    "notFound": {
+      "id": "reportNotFound",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Referti non trovati",
+          "en": "Reports not found"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Referti non trovati",
+            "en": "Reports not found"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "La tua richiesta non ha prodotto risultati.",
+            "en": "Your request did not produce any results."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    },
+    "error": {
+      "id": "errorMessage",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Errore",
+          "en": "Error"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Errore",
+            "en": "Error"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Si è verificato un errore durante il recupero del referto. Riprova più tardi.",
+            "en": "An error occurred while fetching the report. Please try again later."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    }
+  }
+}

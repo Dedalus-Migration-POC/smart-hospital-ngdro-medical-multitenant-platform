@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
 import { BreadcrumbService } from '../../../components/breadcrumb/breadcrumb.service';
 import { SmartHospitalState } from '../../../store/reducers';
-import { selectAppConfig } from '../../../initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { InputComponent } from 'src/app/components/input/input.component';
 import { Card } from 'src/app/components/card/card';
 import { CardActionsService } from 'src/app/shared/services/card-actions.service';
@@ -29,14 +29,11 @@ export class UnitsComponent implements OnInit {
   private store = inject(Store<SmartHospitalState>);
   private breadcrumbService = inject(BreadcrumbService);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/departments/units')), //TODO page type
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/departments/units'), {
+    initialValue: null,
+  });
 
   readonly department = toSignal(
     this.activatedRoute.queryParamMap.pipe(

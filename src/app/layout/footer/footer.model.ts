@@ -1,5 +1,5 @@
-import { LayoutArea } from '../../shared/layout-system/models/layout.model';
-import { Colors, FlexLayoutConfig } from '../../shared/models/shared_model';
+import { AreasConfig } from '../../shared/layout-system/models/layout.model';
+import { BackgroundConfig } from '../../shared/models/shared_model';
 
 export interface FooterSection {
   height: string;
@@ -8,14 +8,9 @@ export interface FooterSection {
     className?: string;
     stackable?: boolean;
   };
-  background: Colors;
+  background: BackgroundConfig;
   className?: string;
-  areas?: {
-    layout: FlexLayoutConfig;
-    start?: LayoutArea;
-    center?: LayoutArea;
-    end?: LayoutArea;
-  };
+  areas?: AreasConfig;
 }
 
 export interface FooterConfig {

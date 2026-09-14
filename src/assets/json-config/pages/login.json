@@ -1,0 +1,223 @@
+{
+  "id": "/login",
+  "name": {
+    "it": "Accesso",
+    "en": "Login"
+  },
+  "route": "/",
+  "backgroundImage": "/assets/images/bg.svg",
+  "sections": [
+    {
+      "id": "login-section",
+      "areas": {
+        "layout": {
+          "direction": [
+            "column",
+            "md-row"
+          ],
+          "gap": "gap-5",
+          "align": "start"
+        },
+        "start": {
+          "size": {
+            "basis": "50%"
+          },
+          "layout": {
+            "direction": "column",
+            "gap": "gap-3",
+            "align": "start",
+            "wrap": "nowrap"
+          },
+          "items": [
+            {
+              "id": "auth-text",
+              "type": "TEXT",
+              "enabled": true,
+              "props": {
+                "id": "auth-title",
+                "text": {
+                  "it": "I servizi online dell’ASL di Latina",
+                  "en": "Online services from the Latina Local Health Authority"
+                },
+                "headingTag": "h1",
+                "fontSize": "xxl",
+                "fontWeight": "semibold",
+                "textDecoration": "none",
+                "lineHeight": "sm",
+                "color": {
+                  "palette": "black"
+                }
+              }
+            },
+            {
+              "id": "auth-text-info",
+              "type": "TEXT",
+              "enabled": true,
+              "props": {
+                "id": "auth-into",
+                "text": {
+                  "it": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Latina, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>",
+                  "en": "From this section you can access the main digital services of the Latina Local Health Authority, <strong>designed to simplify interaction with the healthcare system.</strong>"
+                },
+                "fontSize": "md",
+                "fontWeight": "normal",
+                "textDecoration": "none",
+                "color": {
+                  "palette": "black"
+                }
+              }
+            }
+          ]
+        },
+        "end": {
+          "size": {
+            "basis": "50%",
+            "width": "100%"
+          },
+          "layout": {
+            "direction": "row",
+            "gap": "gap-2",
+            "align": "center",
+            "justify": "center",
+            "wrap": "nowrap"
+          },
+          "items": [
+            {
+              "id": "auth-card",
+              "type": "AUTH_METHODS",
+              "className": "w-100 mt-3",
+              "enabled": true,
+              "props": {
+                "id": "auth-methods",
+                "isDarkTheme": false,
+                "isCard": false,
+                "isVertical": false,
+                "authMethods": [
+                  {
+                    "type": "SPID",
+                    "title": {
+                      "it": "SPID",
+                      "en": "SPID"
+                    },
+                    "description": {
+                      "it": "SPID, il <strong> Sistema Pubblico di Identità Digitale</strong> è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati. Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.",
+                      "en": "SPID, the <strong>Public Digital Identity System</strong>, is the access system that allows you to use online services offered by the Public Administration and accredited private entities with a single digital identity. If you already have a digital identity, log in with your provider's credentials. If you don't yet have a digital identity, request one from one of the providers."
+                    },
+                    "button": {
+                      "text": {
+                        "it": "Entra con SPID",
+                        "en": "Log in with SPID"
+                      },
+                      "showIcon": true,
+                      "align": "start"
+                    },
+                    "config": {
+                      "spidConfigUa": false,
+                      "testProvider": {
+                        "dev": {
+                          "enable": true,
+                          "name": "spid-test"
+                        },
+                        "test": {
+                          "enable": true,
+                          "name": "spid-test"
+                        },
+                        "prod": {
+                          "enable": false,
+                          "name": ""
+                        }
+                      },
+                      "prefixProvider": {
+                        "dev": "provaDev-",
+                        "test": "provaTest-",
+                        "prod": "provaProd-"
+                      },
+                      "returnUrl": null
+                    }
+                  },
+                  {
+                    "type": "CIE",
+                    "title": {
+                      "it": "CIE",
+                      "en": "CIE"
+                    },
+                    "description": {
+                      "it": "La <strong>Carta di Identità Elettronica (CIE)</strong> è il documento personale che attesta l'identità del cittadino. Dotata di microprocessore, oltre a comprovare l'identità personale, permette l'accesso ai servizi digitali della Pubblica Amministrazione.",
+                      "en": "The <strong>Electronic Identity Card (CIE)</strong> is the personal document that certifies the citizen's identity. Equipped with a microprocessor, in addition to proving personal identity, it allows access to the digital services of the Public Administration."
+                    },
+                    "button": {
+                      "text": {
+                        "it": "Entra con CIE",
+                        "en": "Log in with CIE"
+                      },
+                      "showIcon": true,
+                      "align": "start"
+                    },
+                    "config": {
+                      "providerId": {
+                        "dev": {
+                          "enable": true,
+                          "name": "cie-test"
+                        },
+                        "test": {
+                          "enable": true,
+                          "name": "cie-test"
+                        },
+                        "prod": {
+                          "enable": false,
+                          "name": "cie-tenant"
+                        }
+                      },
+                      "returnUrl": null
+                    }
+                  },
+                  {
+                    "type": "MYID",
+                    "title": {
+                      "it": "MyId",
+                      "en": "MyId"
+                    },
+                    "description": {
+                      "it": "<p>SPID, il <strong>Sistema Pubblico di Identità Digitale</strong> è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati.</p><p> Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.</p><p>La <strong>Carta di Identità Elettronica (CIE)</strong> è il documento personale che attesta l'identità del cittadino.</p><p> Dotata di microprocessore, oltre a comprovare l'identità personale, permette l'accesso ai servizi digitali della Pubblica Amministrazione.</p>",
+                      "en": "<p>SPID, the <strong>Public Digital Identity System</strong> is the access system that allows you to use, with a single digital identity, the online services of the Public Administration and accredited private entities.</p><p> If you already have a digital identity, log in with your provider's credentials. If you don't yet have a digital identity, request one from one of the providers.</p><p>The <strong>Electronic Identity Card (CIE)</strong> is the personal document that certifies the citizen's identity.</p><p> Equipped with a microprocessor, in addition to proving personal identity, it allows access to the digital services of the Public Administration.</p>"
+                    },
+                    "button": {
+                      "text": {
+                        "it": "Entra con myId",
+                        "en": "Log in with MyId"
+                      },
+                      "showIcon": true,
+                      "align": "start"
+                    },
+                    "config": {
+                      "returnUrl": null
+                    }
+                  },
+                  {
+                    "type": "LOCAL",
+                    "title": {
+                      "it": "Login",
+                      "en": "Login"
+                    },
+                    "description": {
+                      "it": "Inserisci login e password",
+                      "en": "Enter with your login and password"
+                    },
+                    "button": {
+                      "text": {
+                        "it": "Entra",
+                        "en": "Login"
+                      },
+                      "showIcon": true
+                    },
+                    "config": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

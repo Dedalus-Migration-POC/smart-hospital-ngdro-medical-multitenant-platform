@@ -4,15 +4,8 @@
     font-size: inherit;
   }
 
-  // Applicata solo quando non e' stata scelta una palette (vedi toggleButtonClasses).
-  // ::ng-deep serve per raggiungere icona/testo dentro app-icon, che ha una view incapsulata a parte.
-  .no-palette-hover {
-    &:hover,
-    &:focus-visible {
-      ::ng-deep i,
-      ::ng-deep span {
-        opacity: 0.75;
-      }
-    }
+  .user-dropdown-hover-underline:is(:hover, :focus-visible) .user-dropdown-label {
+    text-decoration: underline;
+    text-decoration-thickness: var(--user-dropdown-hover-text-decoration-thickness, auto);
   }
 }

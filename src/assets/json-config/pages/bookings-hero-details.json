@@ -1,0 +1,473 @@
+{
+  "id": "/bookings-hero/details",
+  "name": {
+    "it": "Prenotazione",
+    "en": "Booking"
+  },
+  "route": "/bookings-hero/details",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "background": {
+      "fill": {
+        "hex": "#e6e8ea"
+      }
+    },
+    "itemsStyle": {
+      "color": {
+        "hex": "#333333"
+      }
+    },
+    "title": {
+      "text": {
+        "it": "Dettagli della Prenotazione {{bookingId}}",
+        "en": "Booking {{bookingId}}"
+      }
+    },
+    "subTitle": {
+      "text": {
+        "it": "Visualizza le prenotazioni Hero.",
+        "en": "View the Hero bookings."
+      }
+    },
+    "items": [
+      {
+        "name": {
+          "it": "Home",
+          "en": "Home"
+        },
+        "routerLink": "/"
+      },
+      {
+        "name": {
+          "it": "Prenotazioni",
+          "en": "Bookings"
+        },
+        "routerLink": "/bookings-hero"
+      },
+      {
+        "name": {
+          "it": "Dettagli",
+          "en": "Details"
+        },
+        "routerLink": "/bookings-hero/details"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "cards-section",
+      "areas": {
+        "layout": {
+          "direction": "column",
+          "gap": "gap-4"
+        },
+        "center": {
+          "layout": {
+            "direction": "row",
+            "wrap": "wrap",
+            "gap": "gap-4"
+          },
+          "items": [
+            {
+              "id": "appointment-card",
+              "type": "SERVICE_CARDS",
+              "enabled": true,
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-10 col-lg-6",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "start"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "wrap": "wrap",
+                  "justify": "around",
+                  "gap": "gap-4"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "background": "white",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "appointment.descriptionList",
+                        "joinWith": " / ",
+                        "fontSize": "lg",
+                        "lineHeight": "sm",
+                        "margin": "mb-3"
+                      },
+                      "subTitle": {
+                        "key": "appointment.serviceDescriptionList",
+                        "itemKey": "description",
+                        "joinWith": ", ",
+                        "fontSize": "md",
+                        "fontWeight": "semibold",
+                        "color": {
+                          "palette": "secondary"
+                        }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "appointment.physician.name",
+                        "type": "text",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Medico",
+                            "en": "Physician"
+                          }
+                        }
+                      },
+                      {
+                        "key": "appointment.unitDescription",
+                        "type": "text",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Nome agenda",
+                            "en": "Schedule name"
+                          }
+                        }
+                      },
+                      {
+                        "key": "appointment.location.address",
+                        "type": "text",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Indirizzo",
+                            "en": "Address"
+                          }
+                        }
+                      },
+                      {
+                        "key": "appointment.dateTime",
+                        "type": "date",
+                        "format": "dd/MM/yyyy HH:mm",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "valueStyle": {
+                          "fontSize": "md",
+                          "fontWeight": "bold",
+                          "color": {
+                            "palette": "danger"
+                          },
+                          "lineHeight": "md"
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Data",
+                            "en": "Date"
+                          }
+                        }
+                      },
+                      {
+                        "key": "appointment.location.name",
+                        "type": "text",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Presidio",
+                            "en": "Location"
+                          }
+                        }
+                      },
+                      {
+                        "key": "appointment.delegateFiscalCode",
+                        "type": "text",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Prenotato per",
+                            "en": "Booked for"
+                          }
+                        }
+                      },
+                      {
+                        "key": "appointment.finalPrice",
+                        "type": "text",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Tariffa",
+                            "en": "Rate"
+                          }
+                        }
+                      },
+                      {
+                        "key": "appointment.additionalProperties.agenda_patient_text",
+                        "type": "text",
+                        "margin": "my-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "40%"
+                          },
+                          "value": {
+                            "basis": "60%"
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": {
+                            "it": "Condizioni e Prescrizioni",
+                            "en": "Conditions and Prescriptions"
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "print",
+                        "label": {
+                          "text": {
+                            "it": "Stampa",
+                            "en": "Print"
+                          }
+                        },
+                        "type": "callback",
+                        "renderAs": "button",
+                        "outline": true,
+                        "callback": {
+                          "nameFunction": "onPrintMemo",
+                          "params": []
+                        }
+                      },
+                      {
+                        "key": "email",
+                        "label": {
+                          "text": {
+                            "it": "Invia info via Email",
+                            "en": "Send info via Email"
+                          }
+                        },
+                        "type": "callback",
+                        "renderAs": "button",
+                        "outline": true,
+                        "callback": {
+                          "nameFunction": "onSendEmailNotification",
+                          "params": []
+                        },
+                        "hideIf": [
+                          {
+                            "key": "appointment.isAtMostTomorrow",
+                            "operator": "eq",
+                            "value": false
+                          }
+                        ]
+                      },
+                      {
+                        "key": "reschedule",
+                        "label": {
+                          "text": {
+                            "it": "Sposta",
+                            "en": "Reschedule"
+                          }
+                        },
+                        "type": "callback",
+                        "renderAs": "button",
+                        "callback": {
+                          "nameFunction": "onReschedule",
+                          "params": []
+                        },
+                        "hideIf": [
+                          {
+                            "key": "appointment.isAtMostTomorrow",
+                            "operator": "eq",
+                            "value": false
+                          }
+                        ]
+                      },
+                      {
+                        "key": "cancel",
+                        "label": {
+                          "text": {
+                            "it": "Cancella",
+                            "en": "Cancel"
+                          }
+                        },
+                        "type": "callback",
+                        "mode": "bootstrap",
+                        "renderAs": "button",
+                        "palette": "danger",
+                        "callback": {
+                          "nameFunction": "onCancel",
+                          "params": []
+                        },
+                        "hideIf": [
+                          {
+                            "key": "appointment.isAtMostTomorrow",
+                            "operator": "eq",
+                            "value": false
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "message": {
+    "error": {
+      "id": "errorMessage",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Errore",
+          "en": "Error"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Errore",
+            "en": "Error"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Si è verificato un errore durante il recupero dei referti. Riprova più tardi.",
+            "en": "An error occurred while fetching the reports. Please try again later."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    },
+    "notFound": {
+      "id": "bookingsNotFound",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Prenotazioni non trovate",
+          "en": "Bookings not found"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Prenotazioni non trovate",
+            "en": "Bookings not found"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "La tua richiesta non ha prodotto risultati.",
+            "en": "Your request did not produce any results."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    }
+  }
+}

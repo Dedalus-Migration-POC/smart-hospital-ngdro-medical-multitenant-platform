@@ -33,8 +33,15 @@ export class Link {
 
   getLinkClasses(style: LinkStyle): string[] {
     const paletteClass = style.mode === 'custom' ? '' : `text-${style.palette}`;
+    const hoverClass = style.hover?.textDecoration
+      ? `link-hover-${style.hover.textDecoration}`
+      : '';
 
-    return [paletteClass, ...this.getTextClasses(style.textStyle)].filter(Boolean);
+    return [paletteClass, ...this.getTextClasses(style.textStyle), hoverClass].filter(Boolean);
+  }
+
+  getLinkStyles(style: LinkStyle): Record<string, string> {
+    return this.getTextStyles(style.textStyle);
   }
 
   onClick(event: MouseEvent, link: LinkConfig) {

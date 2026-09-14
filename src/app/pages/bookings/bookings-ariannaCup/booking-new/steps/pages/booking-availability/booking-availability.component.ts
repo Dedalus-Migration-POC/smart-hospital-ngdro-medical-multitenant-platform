@@ -20,7 +20,7 @@ import { SummaryComponent } from '../../components/summary/summary.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { Store } from '@ngrx/store';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import {
   selectFirstAvailability,
   selectOtherAvailability,
@@ -58,18 +58,15 @@ export class BookingAvailabilityComponent implements OnInit, AfterViewInit {
   private readonly store = inject(Store<SmartHospitalState>);
   private modalService = inject(ModalService);
   private viewContainerRef = inject(ViewContainerRef);
+  private pageConfigService = inject(PageConfigService);
 
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
 
   // config testuale della modale di conferma, con fallback sulle chiavi di traduzione se assente
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/bookings/new')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/bookings/new'), {
+    initialValue: null,
+  });
 
   @ViewChild('tabsAvailability', { read: ElementRef })
   tabsAvailability!: ElementRef<HTMLElement>;
@@ -249,7 +246,7 @@ export class BookingAvailabilityComponent implements OnInit, AfterViewInit {
       };
 
       // config di pagina (contenuto + stile) oppure fallback sulle chiavi di traduzione esistenti
-      const modalConfig: ModalConfig = this.pageConfig()?.page?.modals?.['confirmAvailability'] ?? {
+      const modalConfig: ModalConfig = this.pageConfig()?.modals?.['confirmAvailability'] ?? {
         header: {
           title: {
             text: toLocalizedText(

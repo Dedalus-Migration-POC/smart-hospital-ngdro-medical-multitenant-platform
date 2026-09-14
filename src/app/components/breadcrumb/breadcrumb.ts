@@ -37,7 +37,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
   host: { '[style.--breadcrumb-scrollbar-w]': 'scrollbarWidth()' },
 })
 export class Breadcrumb {
-  readonly config = input<BreadcrumbConfig | null>(null);
+  readonly config = input<BreadcrumbConfig | null | undefined>(null);
   readonly buttonAction = output<void>();
 
   private readonly store = inject(Store<SmartHospitalState>);

@@ -28,6 +28,7 @@ import {
 } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 import { BookingType } from '../models/booking-type';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 
 @Component({
   selector: 'app-booking-type-selector',
@@ -48,13 +49,11 @@ export class BookingTypeSelectorComponent {
   private readonly struttureError = this.store.selectSignal(selectStruttureError);
   private readonly pendingBookingType = signal<BookingType | null>(null);
 
-  protected readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/booking-a4h')),
-    ),
-    { initialValue: null },
-  );
+  private readonly pageConfigService = inject(PageConfigService);
+
+  readonly pageConfig = toSignal(this.pageConfigService.get('/booking-a4h'), {
+    initialValue: null,
+  });
 
   protected readonly breadcrumbConfig = computed(() => {
     const config = this.pageConfig();

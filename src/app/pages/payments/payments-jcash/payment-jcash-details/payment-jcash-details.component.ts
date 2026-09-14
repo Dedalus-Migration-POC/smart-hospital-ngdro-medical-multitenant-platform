@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { Spinner } from 'src/app/components/spinner/spinner';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectUserProfile } from 'src/app/pages/user-profile/state/user-profile.selectors';
 import { downloadInvoicePdf, fetchPayments, getLinkPagoPa } from '../state/actions';
@@ -37,15 +37,11 @@ export class PaymentJcashDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private store = inject(Store<SmartHospitalState>);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store
-      .select(selectAppConfig)
-      .pipe(
-        map((config) => config.pages.find((page: any) => page.id === '/payments-jcash/details')),
-      ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/payments-jcash/details'), {
+    initialValue: null,
+  });
 
   ngOnInit() {
     if (!this.payments()?.length) {

@@ -1,0 +1,32 @@
+{
+  "id": "/booking-a4h",
+  "name": {
+    "it": "Nuova Prenotazione",
+    "en": "New Booking A4H"
+  },
+  "route": "/booking-a4h",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "background": { "fill": { "hex": "#e6e8ea" } },
+    "itemsStyle": { "color": { "hex": "#333333" } },
+    "title": { "text": { "it": "Nuova prenotazione", "en": "New Booking" } },
+    "subTitle": {
+      "text": { "it": "Crea una nuova prenotazione A4H", "en": "Create a new A4H booking" }
+    },
+
+    "items": [
+      {
+        "name": { "it": "Home", "en": "Home" },
+        "routerLink": "/"
+      },
+      {
+        "name": { "it": "Prenotazione A4H", "en": "A4H Bookings" },
+        "routerLink": "/booking-a4h"
+      },
+      {
+        "name": { "it": "{{bookingType}}", "en": "{{bookingType}}" },
+        "routerLink": "/booking-a4h"
+      }
+    ]
+  }
+}

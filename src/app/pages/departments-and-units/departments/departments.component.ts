@@ -10,7 +10,7 @@ import { SmartHospitalState } from '../../../store/reducers';
 import { selectFirebaseObject } from '../../../store/remote-config/remote-config.selectors';
 import { Department, Departments } from '../state/model';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from '../../../initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { Card } from 'src/app/components/card/card';
 import { CompiledCardsContainer, DataCardAction } from 'src/app/components/card/model';
 import { CardActionsService } from 'src/app/shared/services/card-actions.service';
@@ -30,14 +30,11 @@ export class DepartmentsComponent implements OnInit {
   ) {}
   private store = inject(Store<SmartHospitalState>);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/departments')), //TODO page type
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/departments'), {
+    initialValue: null,
+  });
 
   searchText = new FormControl<string>('');
   private readonly searchTextValue = toSignal(

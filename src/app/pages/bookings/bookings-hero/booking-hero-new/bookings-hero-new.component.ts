@@ -32,7 +32,7 @@ import { DelegaFormsComponent } from './steps/delega-forms/delega-forms.componen
 import { ConfirmedAppointmentComponent } from './steps/confirmed-appointment/confirmed-appointment.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 
@@ -52,14 +52,11 @@ interface StepConfig {
 export class BookingHeroNewComponent implements OnInit, OnDestroy {
   private readonly destroyRef = inject(DestroyRef);
   private readonly store = inject(Store<SmartHospitalState>);
+  private readonly pageConfigService = inject(PageConfigService);
 
-  readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      take(1),
-      map((config) => config.pages.find((page: any) => page.id === '/bookings-hero/new')),
-    ),
-    { initialValue: null },
-  );
+  readonly pageConfig = toSignal(this.pageConfigService.get('/bookings-hero/new'), {
+    initialValue: null,
+  });
 
   steps: StepConfig[] = [];
 

@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store';
 import * as InitializeAppActions from '../state/actions';
 import { AppConfig } from '../state/app-config.model';
 import { ThemeService } from '../state/services/theme.service';
-import { AppConfigApiService } from '../state/services/app-config-api.service';
+import { AppConfigService } from '../state/services/app-config.service';
 import { LanguageService } from '../state/services/language.service';
 import { getApps, initializeApp } from 'firebase/app';
 import { CookieConsentService } from '../state/services/cookie-consent.service';
@@ -17,7 +17,7 @@ import { CookieConsentService } from '../state/services/cookie-consent.service';
 export function provideInitializeApp(): EnvironmentProviders {
   return makeEnvironmentProviders([
     provideAppInitializer(async () => {
-      const api = inject(AppConfigApiService);
+      const api = inject(AppConfigService);
       const themeService = inject(ThemeService);
       const store = inject(Store);
       const languageService = inject(LanguageService);

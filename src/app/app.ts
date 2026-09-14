@@ -3,11 +3,11 @@ import { Store } from '@ngrx/store';
 import { SmartHospitalState } from './store/reducers';
 import { selectAppConfig } from './initialize/state/selector';
 import { CommonModule } from '@angular/common';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Header } from './layout/header/header';
 import { Footer } from './layout/footer/footer';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { LanguageService } from './initialize/state/services/language.service';
 import { fetchUserProfile } from './pages/user-profile/state/user-profile.actions';
 import { ItNotificationsComponent, DesignAngularKitModule } from 'design-angular-kit';
@@ -17,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CookieConsentModal } from './components/cookie-consent-modal/cookie-consent-modal';
 import { CookieConsentService } from './initialize/state/services/cookie-consent.service';
 import { AppConfig } from './initialize/state/app-config.model';
+import { PageConfigService } from './pages/page-config.service';
 @Component({
   selector: 'app-root',
   imports: [
@@ -39,6 +40,7 @@ export class App implements OnInit {
   private langService = inject(LanguageService);
   private remoteConfigService = inject(RemoteConfigService);
   private cookieConsentService = inject(CookieConsentService);
+  private pageConfigService = inject(PageConfigService);
 
   constructor() {
     effect(() => {
@@ -61,7 +63,7 @@ export class App implements OnInit {
 
   lang = this.langService.lang;
 
-  readonly appConfig: Signal<AppConfig> = toSignal(this.store.select(selectAppConfig), {
+  readonly appConfig: Signal<AppConfig | null> = toSignal(this.store.select(selectAppConfig), {
     initialValue: null,
   });
   readonly currentUrl = toSignal(
@@ -72,20 +74,13 @@ export class App implements OnInit {
     { initialValue: this.router.url.split('?')[0] },
   );
 
-  readonly bgImg = computed(() => {
-    const config = this.appConfig();
-    const url = this.currentUrl();
-    if (!config) return '';
-    const page = config.pages.find((p: any) => p.id === url);
-    return page?.backgroundImage ?? '';
-  });
-  readonly bgColor = computed(() => {
-    const config = this.appConfig();
-    const url = this.currentUrl();
-    if (!config) return '';
-    const page = config.pages.find((p: any) => p.id === url);
+  readonly backgroundStyle = computed(() => {
+    const page = this.currentPageConfig();
 
-    return page?.backgroundColor;
+    return {
+      'background-color': page?.backgroundColor ?? '#ffffff',
+      'background-image': page?.backgroundImage ? `url(${page.backgroundImage})` : 'none',
+    };
   });
 
   readonly pageName = computed(() => {
@@ -96,17 +91,16 @@ export class App implements OnInit {
     if (!config) return null;
     if (url === '/') return config.name;
 
-    const page = config.pages.find((p: any) => p.id === url);
-    return page?.name[lang] ?? config.name;
+    return this.currentPageConfig()?.name?.[lang] ?? config.name;
   });
 
-  readonly pageInfoPopUp = computed(() => {
-    const config = this.appConfig();
-    const url = this.currentUrl();
-    if (!config) return '';
-    const page = config.pages.find((p: any) => p.id === url);
-    return page?.infoPopup ?? '';
-  });
+  readonly pageInfoPopUp = computed(() => this.currentPageConfig()?.infoPopup);
+
+  // ogni cambio di route risolve la config della pagina corrente (undefined se non mappata)
+  private readonly currentPageConfig = toSignal(
+    toObservable(this.currentUrl).pipe(switchMap((url) => this.pageConfigService.getSafe(url))),
+    { initialValue: undefined },
+  );
 
   private widgetInstance: { destroy?: () => void } | null = null;
 

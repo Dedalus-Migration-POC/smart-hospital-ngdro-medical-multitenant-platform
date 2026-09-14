@@ -21,13 +21,20 @@ import { Spinner } from '../../../components/spinner/spinner';
 import { LanguageService } from '../../../initialize/state/services/language.service';
 import { ImageBlock } from '../../../components/image-block/image-block';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from '../../../initialize/state/selector';
-import { map } from 'rxjs';
+import { PageConfigService } from 'src/app/pages/page-config.service';
+import { map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Breadcrumb } from '../../../components/breadcrumb/breadcrumb';
 import { Card } from '../../../components/card/card';
 import { CompiledCardsContainer, DataCardAction } from '../../../components/card/model';
 import { DynamicFormComponent } from '../../../components/dynamic-form/dynamic-form.component';
+import { PageConfig } from '../../page.model';
+import { ReportEndpoint } from './state/model';
+
+// campo specifico di questa pagina, non parte del PageConfig condiviso
+interface SingleReportPageConfig extends PageConfig {
+  singleReportConfig?: { reportEndpoint: ReportEndpoint };
+}
 import { DynamicFormConfig } from '../../../components/dynamic-form/dynamic-form.model';
 import { CardActionsService } from '../../../shared/services/card-actions.service';
 
@@ -51,6 +58,7 @@ export class SingleReport implements OnDestroy {
   private langService = inject(LanguageService);
   private router = inject(Router);
   private cardActionsService = inject(CardActionsService);
+  private pageConfigService = inject(PageConfigService);
   lang = this.langService.lang;
 
   private singleReportSession = this.store.selectSignal(selectSingleReportSession);
@@ -67,12 +75,7 @@ export class SingleReport implements OnDestroy {
   readonly isInitialSearch = computed(() => !this.singleReportSession() && !this.reports());
 
   readonly pageConfig = toSignal(
-    this.store.select(selectAppConfig).pipe(
-      map((config) => {
-        const page = config.pages.find((page: any) => page.id === '/single-report');
-        return page;
-      }),
-    ),
+    this.pageConfigService.get('/single-report') as Observable<SingleReportPageConfig>,
     { initialValue: null },
   );
 

@@ -1,7 +1,6 @@
 import { FooterConfig } from '../../layout/footer/footer.model';
 import { HeaderConfig } from '../../layout/header/header.model';
 import { FirebaseOptions } from 'firebase/app';
-import { PageConfig } from '../../pages/page.model';
 import { BreadcrumbStyle } from '../../components/breadcrumb/model';
 import { ModalThemeStyle } from '../../components/modal/model';
 import { CookieConsentModalProps } from '../../components/cookie-consent-modal/model';
@@ -109,7 +108,7 @@ export interface AppConfig {
       };
     };
   };
-  translate?: {
+  translate: {
     googleTranslate?: {
       supportedLanguages: string;
     };
@@ -118,7 +117,7 @@ export interface AppConfig {
       supportedLanguages: string[];
     };
   };
-  chatbot: {
+  chatbot?: {
     apiUrl: string;
     language: 'it' | 'en' | 'es' | 'fr' | string;
     themeColor: string;
@@ -129,7 +128,6 @@ export interface AppConfig {
   cookieConsentConfig?: CookieConsentConfig;
   header: HeaderConfig;
   footer: FooterConfig;
-  pages: PageConfig[] | any;
 }
 
 export interface FirebaseConfig extends FirebaseOptions {

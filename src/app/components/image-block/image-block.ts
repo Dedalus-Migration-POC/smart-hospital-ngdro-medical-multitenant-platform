@@ -26,7 +26,7 @@ import { ImageStyle } from '../../shared/models/shared_model';
   styleUrl: './image-block.scss',
 })
 export class ImageBlock {
-  readonly config = input<ImageBlockConfig | null>(null);
+  readonly config = input<ImageBlockConfig | null | undefined>(null);
 
   private readonly router = inject(Router);
   private readonly sanitizer = inject(DomSanitizer);
