@@ -1,5 +1,12 @@
+@use 'styles/breakpoints' as bp;
+
 .it-header-center-wrapper {
   &.is-overflowing {
     height: auto !important;
+  }
+
+  // Override di Bootstrap Italia
+  @include bp.media-breakpoint-up(lg) {
+    padding-top: 0px;
   }
 }

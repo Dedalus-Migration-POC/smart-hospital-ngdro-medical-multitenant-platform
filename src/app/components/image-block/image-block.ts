@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, input } from '@angular/core';
 import { ImageBlockConfig } from './model';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import {
@@ -21,14 +21,13 @@ import { ImageStyle } from '../../shared/models/shared_model';
 
 @Component({
   selector: 'app-image-block',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './image-block.html',
   styleUrl: './image-block.scss',
 })
 export class ImageBlock {
   readonly config = input<ImageBlockConfig | null | undefined>(null);
 
-  private readonly router = inject(Router);
   private readonly sanitizer = inject(DomSanitizer);
   private langService = inject(LanguageService);
 
@@ -64,30 +63,6 @@ export class ImageBlock {
       ...getSpacingStyles(image.margin),
       ...getSpacingStyles(image.padding, 'padding'),
     };
-  }
-
-  // ACTION HANDLER
-  handleClick(): void {
-    const cfg = this.config();
-    if (!cfg?.clickable || !cfg.action) return;
-
-    const action = cfg.action;
-
-    if (action.type === 'route') {
-      this.router.navigate([action.url]);
-    } else {
-      window.open(action.url, action.target || '_self');
-    }
-  }
-
-  handleKeydown(event: KeyboardEvent): void {
-    const cfg = this.config();
-    if (!cfg?.clickable) return;
-
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      this.handleClick();
-    }
   }
 
   sanitizeSvg(svgString: string) {

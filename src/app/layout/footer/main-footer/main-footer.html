@@ -5,13 +5,13 @@
     class="it-footer-main d-flex"
     [style.height]="main?.height"
     [ngClass]="[getBackgroundPaletteClass(main), main.className ?? '']"
-    [ngStyle]="getBackgroundStyles(main)"
+    [ngStyle]="{ ...getBackgroundStyles(main), ...getBorderStyles(main) }"
     [attr.data-bs-toggle]="main?.position?.type ? 'sticky' : null"
     [attr.data-bs-stackable]="main?.position?.stackable ? true : null"
     [attr.data-bs-position-type]="main?.position?.type ?? null"
     [attr.data-bs-sticky-class-name]="main?.position?.className ?? null"
   >
-    <div class="container-xxl">
+    <div class="container">
       <div class="row h-100">
         <div #content class="col-12">
           <app-areas-layout [areas]="main.areas"></app-areas-layout>

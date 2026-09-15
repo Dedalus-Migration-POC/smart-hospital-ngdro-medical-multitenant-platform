@@ -27,21 +27,39 @@ export class Link {
   lang = this.langService.lang;
   protected readonly getTextClasses = getTextClasses;
   protected readonly getTextStyles = getTextStyles;
-  protected readonly effectiveStyle = computed(
-    () => this.link()?.style ?? this.appConfig()?.theme.linksStyle,
-  );
+  protected readonly effectiveStyle = computed(() => {
+    const themeStyle = this.appConfig()?.theme.linksStyle;
+    const linkStyle = this.link()?.style;
+
+    if (!themeStyle) return linkStyle;
+    if (!linkStyle) return themeStyle;
+
+    return {
+      ...themeStyle,
+      ...linkStyle,
+      textStyle: { ...themeStyle.textStyle, ...linkStyle.textStyle },
+      hover: { ...themeStyle.hover, ...linkStyle.hover },
+    } as LinkStyle;
+  });
 
   getLinkClasses(style: LinkStyle): string[] {
     const paletteClass = style.mode === 'custom' ? '' : `text-${style.palette}`;
-    const hoverClass = style.hover?.textDecoration
+    const hoverDecorationClass = style.hover?.textDecoration
       ? `link-hover-${style.hover.textDecoration}`
       : '';
 
-    return [paletteClass, ...this.getTextClasses(style.textStyle), hoverClass].filter(Boolean);
+    return [paletteClass, ...this.getTextClasses(style.textStyle), hoverDecorationClass].filter(
+      Boolean,
+    );
   }
 
   getLinkStyles(style: LinkStyle): Record<string, string> {
-    return this.getTextStyles(style.textStyle);
+    return {
+      ...this.getTextStyles(style.textStyle),
+      ...(style.hover?.textDecorationThickness
+        ? { '--tenant-link-hover-decoration-thickness': style.hover.textDecorationThickness }
+        : {}),
+    };
   }
 
   onClick(event: MouseEvent, link: LinkConfig) {

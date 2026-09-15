@@ -1,16 +1,26 @@
+a {
+  cursor: pointer;
+}
+
 .disabled {
   pointer-events: none;
   opacity: 0.7;
 }
 
 .link-hover-none:is(:hover, :focus-visible) {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .link-hover-underline:is(:hover, :focus-visible) {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 .link-hover-overline:is(:hover, :focus-visible) {
-  text-decoration: overline;
+  text-decoration: overline !important;
+}
+
+.link-hover-none:is(:hover, :focus-visible),
+.link-hover-underline:is(:hover, :focus-visible),
+.link-hover-overline:is(:hover, :focus-visible) {
+  text-decoration-thickness: var(--tenant-link-hover-decoration-thickness, auto) !important;
 }

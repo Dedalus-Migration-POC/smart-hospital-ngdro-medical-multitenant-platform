@@ -4,11 +4,11 @@
   &.is-overflowing {
     height: auto !important;
   }
+}
 
-  // override boostrap-italia
-  // without this removes the padding and sets a fixed height.
+.it-header-slim-wrapper .it-header-slim-wrapper-content {
+  // Override di Bootstrap Italia
   @include bp.media-breakpoint-up(lg) {
-    height: auto;
-    padding: 6.5px 18px;
+    padding: 6.5px 0px;
   }
 }

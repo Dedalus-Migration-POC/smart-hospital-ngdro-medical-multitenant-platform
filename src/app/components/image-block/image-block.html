@@ -1,17 +1,5 @@
 @if (config(); as config) {
-  <div
-    [ngClass]="[
-      config.className || '',
-      ...getFlexLayoutClasses(config.layout),
-      config.clickable ? 'cursor-pointer' : '',
-    ]"
-    (click)="handleClick()"
-    (keydown)="handleKeydown($event)"
-    [attr.role]="config.clickable ? 'button' : null"
-    [attr.tabindex]="config.clickable ? '0' : null"
-    [attr.title]="tooltipLabel()"
-    [ngStyle]="getBlockStyles(config)"
-  >
+  <ng-template #blockContent>
     @if (config.image) {
       @if (config.image.type === 'url' || config.image.type === 'file') {
         <img
@@ -68,5 +56,28 @@
         }
       </div>
     }
-  </div>
+  </ng-template>
+
+  @if (config.clickable && config.action) {
+    <a
+      [routerLink]="config.action.type === 'route' ? config.action.url : null"
+      [attr.href]="config.action.type === 'externalLink' ? config.action.url : null"
+      [attr.target]="config.action.type === 'externalLink' ? config.action.target || '_self' : null"
+      [attr.rel]="config.action.type === 'externalLink' ? 'noopener noreferrer' : null"
+      class="d-block cursor-pointer"
+      [ngClass]="[config.className || '', ...getFlexLayoutClasses(config.layout)]"
+      [attr.title]="tooltipLabel()"
+      [ngStyle]="getBlockStyles(config)"
+    >
+      <ng-container *ngTemplateOutlet="blockContent" />
+    </a>
+  } @else {
+    <div
+      [ngClass]="[config.className || '', ...getFlexLayoutClasses(config.layout)]"
+      [attr.title]="tooltipLabel()"
+      [ngStyle]="getBlockStyles(config)"
+    >
+      <ng-container *ngTemplateOutlet="blockContent" />
+    </div>
+  }
 }

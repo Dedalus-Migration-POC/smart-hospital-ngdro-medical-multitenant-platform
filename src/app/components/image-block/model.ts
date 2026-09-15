@@ -1,7 +1,6 @@
 import {
   FlexLayoutConfig,
   LinkTarget,
-  ActionType,
   TextSection,
   ImageConfig,
   SpacingConfig,
@@ -17,7 +16,7 @@ export interface ImageBlockConfig {
   layout?: FlexLayoutConfig; // layout del contenitore per immagine e testo
   action?: {
     // azione del contenitore (immagine e testo)
-    type: ActionType;
+    type: 'route' | 'externalLink';
     url: string;
     target?: LinkTarget;
   };

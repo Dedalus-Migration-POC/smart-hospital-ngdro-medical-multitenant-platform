@@ -1,5 +1,8 @@
 @if (socials(); as socials) {
-  <div class="cursor-default" [ngClass]="getFlexLayoutClasses(socials.layout)">
+  <div
+    class="cursor-default"
+    [ngClass]="[...getFlexLayoutClasses(socials.layout), socials.className ?? '']"
+  >
     <div [ngClass]="getTextClasses(socials.title)" [ngStyle]="getTextStyles(socials.title)">
       {{ socials.title.text[lang()] || 'socials.title.text' }}
     </div>

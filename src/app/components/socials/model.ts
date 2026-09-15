@@ -27,6 +27,7 @@ export interface SocialItem {
 export interface SocialsProps {
   title: TextConfig;
   showLabel: boolean;
+  className?: string;
   labelStyle?: TextStyle;
   socials: SocialItem[];
   layout: FlexLayoutConfig;

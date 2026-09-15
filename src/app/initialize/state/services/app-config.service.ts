@@ -24,9 +24,12 @@ export class AppConfigService {
     return this.http.get<T>(`${basePath}/${name}.json`);
   }
 
-  // sezioni facoltative per tenant: un json mancante (404) non è un errore, solo "feature non configurata"
-  private loadOptional<T>(name: string): Observable<T | undefined> {
-    return this.load<T>(name).pipe(
+  // Un json opzionale mancante (404) indica che la feature non è configurata.
+  private loadOptional<T>(
+    name: string,
+    basePath = COMMON_CONFIG_ASSETS_PATH,
+  ): Observable<T | undefined> {
+    return this.load<T>(name, basePath).pipe(
       catchError((err) => (err.status === 404 ? of(undefined) : throwError(() => err))),
     );
   }
@@ -40,7 +43,7 @@ export class AppConfigService {
         header: this.load<HeaderConfig>('header', CMS_CONFIG_ASSETS_PATH),
         footer: this.load<FooterConfig>('footer', CMS_CONFIG_ASSETS_PATH),
         firebaseConfig: this.loadOptional<FirebaseConfig>('firebase'),
-        chatbot: this.loadOptional<AppConfig['chatbot']>('chatbot'),
+        chatbot: this.loadOptional<AppConfig['chatbot']>('chatbot', CMS_CONFIG_ASSETS_PATH),
         cookieConsentConfig: this.loadOptional<CookieConsentConfig>('cookie-consent'),
       }).pipe(
         map(({ appMeta, cookieConsentConfig, ...rest }) => ({

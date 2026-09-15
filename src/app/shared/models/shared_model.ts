@@ -211,7 +211,7 @@ export interface BootstrapLinkConfig {
   mode?: 'bootstrap';
   palette: Colors;
   textStyle?: Omit<TextStyle, 'color'>;
-  hover?: { textDecoration?: TextDecoration };
+  hover?: { textDecoration?: TextDecoration; textDecorationThickness?: string };
   icon?: IconConfig;
 }
 
@@ -220,7 +220,7 @@ export interface BootstrapLinkConfig {
 export interface CustomLinkConfig {
   mode: 'custom';
   textStyle?: TextStyle;
-  hover?: { textDecoration?: TextDecoration };
+  hover?: { textDecoration?: TextDecoration; textDecorationThickness?: string };
   icon?: IconConfig;
 }
 
