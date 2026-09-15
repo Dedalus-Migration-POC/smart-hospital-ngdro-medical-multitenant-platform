@@ -14,14 +14,23 @@
         </span>
       }
     </ng-template>
-
-    @if (link.url) {
-      <!-- URL esterno o interno -->
+    <!-- URL esterno o interno -->
+    @if (link.url && link.external) {
       <a
-        [attr.href]="link.external ? link.url : null"
-        [routerLink]="link.external ? null : link.url"
-        [attr.target]="link.external ? link.target : null"
-        [attr.rel]="link.external ? 'noopener noreferrer' : null"
+        [attr.href]="link.url"
+        [attr.target]="link.target || '_self'"
+        rel="noopener noreferrer"
+        (click)="onClick($event, link)"
+        [ngClass]="getLinkClasses(style)"
+        [ngStyle]="getLinkStyles(style)"
+        [class.disabled]="link.disabled"
+        [attr.aria-disabled]="link.disabled"
+      >
+        <ng-container *ngTemplateOutlet="linkContent"></ng-container>
+      </a>
+    } @else if (link.url) {
+      <a
+        [routerLink]="link.url"
         (click)="onClick($event, link)"
         [ngClass]="getLinkClasses(style)"
         [ngStyle]="getLinkStyles(style)"
