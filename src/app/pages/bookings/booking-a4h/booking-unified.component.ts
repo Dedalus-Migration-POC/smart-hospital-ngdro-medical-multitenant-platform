@@ -21,12 +21,11 @@ import { selectAnyLoading, selectBookingType } from './state/selectors';
 import { BookingUnifiedModalService } from './booking-unified-modal.service';
 import { BookingResumeService } from './booking-resume.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
-import { map, take } from 'rxjs';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { BreadcrumbService } from 'src/app/components/breadcrumb/breadcrumb.service';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { PageConfigService } from '../../page-config.service';
+import { ConsentPdfService } from 'src/app/pages/user-profile/state/consents-privacy-a4h.service';
 
 @Component({
   selector: 'app-booking-unified',
@@ -41,6 +40,7 @@ export class BookingUnifiedComponent implements OnInit, OnDestroy {
   private readonly viewContainerRef = inject(ViewContainerRef);
   private readonly destroyRef = inject(DestroyRef);
   private readonly bookingUnifiedModalService = inject(BookingUnifiedModalService);
+  private readonly consentPdfService = inject(ConsentPdfService);
   private readonly bookingResumeService = inject(BookingResumeService);
   private breadcrumbService = inject(BreadcrumbService);
   private translateService = inject(TranslateService);
@@ -53,6 +53,8 @@ export class BookingUnifiedComponent implements OnInit, OnDestroy {
   constructor() {
     this.bookingUnifiedModalService.register(this.viewContainerRef);
     this.destroyRef.onDestroy(() => this.bookingUnifiedModalService.clear(this.viewContainerRef));
+    this.consentPdfService.register(this.viewContainerRef);
+    this.destroyRef.onDestroy(() => this.consentPdfService.clear(this.viewContainerRef));
   }
 
   readonly pageConfig = toSignal(this.pageConfigService.get('/booking-a4h'), {

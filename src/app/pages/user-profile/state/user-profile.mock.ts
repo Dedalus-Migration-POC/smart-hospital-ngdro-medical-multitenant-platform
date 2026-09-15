@@ -1,3 +1,5 @@
+import { ResponseUserA4HPrivacyConsent, UserProfileA4H } from '../user-profile.model';
+
 export const MOCK_CONSENTS: any = [
   {
     id: 3,
@@ -142,6 +144,40 @@ export const MOCK_PROFILE: any = {
   ],
 };
 
+export const MOCK_PROFILE_A4H: any = {
+  id: 182,
+  firstName: 'TEST',
+  lastName: 'TEST',
+  phoneNumber: '+393421619674',
+  email: 'ekaterina.voytovich@dedalus.eu',
+  identity: {
+    id: 191,
+    identity: 'SGKFNS81E10F579K',
+    activated: true,
+  },
+  idMpi: 'P10021301',
+  sequence: '20255003565',
+  residence: {
+    municipalityCode: '072006',
+    municipalityName: 'Bari',
+    street: 'piazza Test',
+    number: '43',
+    zipCode: '70121',
+  },
+  domicile: {
+    municipalityCode: '072006',
+    municipalityName: 'BARI',
+    street: 'piazza Test',
+    number: '43',
+    zipCode: '70121',
+  },
+  nationality: 'ITALIA',
+  citizenship: 'ITALIA',
+  privacy: true,
+  firstAccess: true,
+  userVerified: true,
+};
+
 // PADOVA
 // {
 //   fiscalCode: 'msslrt84d13g224q',
@@ -218,3 +254,12 @@ export const MOCK_PROFILE: any = {
 //     },
 //   ],
 // }
+
+export const MOCK_A4H_CONSENTS: ResponseUserA4HPrivacyConsent = {
+  Esito: 'OK',
+  Errore: '',
+  CodiceErrore: '',
+  PrivacyPDF:
+    'JVBERi0xLjQKMSAwIG9iago8PC9UeXBlIC9DYXRhbG9nCi9QYWdlcyAyIDAgUgo+PgplbmRvYmoK MiAwIG9iago8PC9UeXBlIC9QYWdlcwovS2lkcyBbMyAwIFJdCi9Db3VudCAxCj4+CmVuZG9iagoz IDAgb2JqCjw8L1R5cGUgL1BhZ2UKL1BhcmVudCAyIDAgUgovTWVkaWFCb3ggWzAgMCA1OTUgODQy XQovQ29udGVudHMgNSAwIFIKL1Jlc291cmNlcyA8PC9Qcm9jU2V0IFsvUERGIC9UZXh0XQovRm9u dCA8PC9GMSA0IDAgUj4+Cj4+Cj4+CmVuZG9iago0IDAgb2JqCjw8L1R5cGUgL0ZvbnQKL1N1YnR5 cGUgL1R5cGUxCi9OYW1lIC9GMQovQmFzZUZvbnQgL0hlbHZldGljYQovRW5jb2RpbmcgL01hY1Jv bWFuRW5jb2RpbmcKPj4KZW5kb2JqCjUgMCBvYmoKPDwvTGVuZ3RoIDUzCj4+CnN0cmVhbQpCVAov RjEgMjAgVGYKMjIwIDQwMCBUZAooRHVtbXkgUERGKSBUagpFVAplbmRzdHJlYW0KZW5kb2JqCnhy ZWYKMCA2CjAwMDAwMDAwMDAgNjU1MzUgZgowMDAwMDAwMDA5IDAwMDAwIG4KMDAwMDAwMDA2MyAw MDAwMCBuCjAwMDAwMDAxMjQgMDAwMDAgbgowMDAwMDAwMjc3IDAwMDAwIG4KMDAwMDAwMDM5MiAw MDAwMCBuCnRyYWlsZXIKPDwvU2l6ZSA2Ci9Sb290IDEgMCBSCj4+CnN0YXJ0eHJlZgo0OTUKJSVF T0YK',
+  consentPrivacyAccepted: false,
+};

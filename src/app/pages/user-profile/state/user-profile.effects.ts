@@ -9,6 +9,7 @@ import { ItNotificationService, NotificationPosition } from 'design-angular-kit'
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { SmartHospitalState } from '../../../store/reducers';
+import { DownloadUtils } from 'src/utils/download-utils';
 
 @Injectable()
 export class UserProfileEffects {
@@ -34,7 +35,19 @@ export class UserProfileEffects {
                 );
               }, 1740000);
             }
-
+            //--------prova A4H TO DELETE?? bisogna capire che servizio verrà usato per user A4H--------
+            if (data.identity) {
+              this.store.dispatch(
+                UserProfileActions.fetchUserA4hPrivacyConsent({
+                  payload: {
+                    codiceStruttura: '',
+                    idAnagrafico: data.sequence,
+                    taxCode: data.identity.identity,
+                  },
+                }),
+              );
+            }
+            //-------------------------
             return UserProfileActions.fetchUserProfileSuccess({
               data,
               temporary: !!action.profileCode,
@@ -52,7 +65,16 @@ export class UserProfileEffects {
       concatMap(() =>
         this.userProfileService.fetchUserConsents().pipe(
           map((data) => UserProfileActions.fetchUserConsentsSuccess({ data })),
-          catchError((error) => of(UserProfileActions.fetchUserConsentsFailure({ error }))),
+          catchError((error) => {
+            this.notificationService.error(
+              this.translate.instant('commons.error'),
+              this.translate.instant('commons.generic-error'),
+              true,
+              8000,
+              NotificationPosition.Top,
+            );
+            return of(UserProfileActions.fetchUserConsentsFailure({ error }));
+          }),
         ),
       ),
     );
@@ -144,4 +166,39 @@ export class UserProfileEffects {
       ),
     );
   });
+
+  //------- consents A4H-------------
+  fetchUserA4hPrivacyConsents$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserProfileActions.fetchUserA4hPrivacyConsent),
+      concatMap((action) =>
+        this.userProfileService.fetchUserA4hPrivacyConsent(action.payload).pipe(
+          map((response) => {
+            return UserProfileActions.fetchUserA4hPrivacyConsentSuccess({ data: response });
+          }),
+          catchError((error) =>
+            of(UserProfileActions.fetchUserA4hPrivacyConsentFailure({ error })),
+          ),
+        ),
+      ),
+    );
+  });
+
+  updateUserA4hPrivacyConsent$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(UserProfileActions.updateUserA4hPrivacyConsent),
+      concatMap((action) =>
+        this.userProfileService.updateUserA4hPrivacyConsent(action.payload).pipe(
+          map((response) => {
+            return UserProfileActions.updateUserA4hPrivacyConsentSuccess({ data: response });
+          }),
+          catchError((error) =>
+            of(UserProfileActions.updateUserA4hPrivacyConsentFailure({ error })),
+          ),
+        ),
+      ),
+    );
+  });
+
+  //--------fine consents A4H-------------
 }

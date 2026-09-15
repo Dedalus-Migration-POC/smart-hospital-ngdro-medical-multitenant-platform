@@ -32,6 +32,15 @@ export const DownloadUtils = {
     const pdfBlob = typeof pdf === 'string' ? base64ToBlob(pdf, mimeType) : pdf;
     openBlob(pdfBlob);
   },
+
+  createObjectUrl: (pdf: Blob | string, mimeType = 'application/pdf'): string => {
+    const pdfBlob = typeof pdf === 'string' ? base64ToBlob(pdf, mimeType) : pdf;
+    return window.URL.createObjectURL(pdfBlob);
+  },
+
+  revokeObjectUrl: (url: string): void => {
+    window.URL.revokeObjectURL(url);
+  },
 };
 
 function base64ToBlob(base64: string, mimeType: string): Blob {

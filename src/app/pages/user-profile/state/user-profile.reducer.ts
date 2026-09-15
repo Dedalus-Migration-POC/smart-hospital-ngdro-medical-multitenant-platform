@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as UserProfileActions from './user-profile.actions';
-import { UserConsent, UserProfile } from '../user-profile.model';
+import { ResponseUserA4HPrivacyConsent, UserConsent, UserProfile } from '../user-profile.model';
 
 export const featureKey = 'userProfileState';
 
@@ -24,6 +24,14 @@ export interface State {
 
   spidConfirmLoading: boolean;
   spidConfirmError: boolean;
+
+  userA4hPrivacyConsent: ResponseUserA4HPrivacyConsent | null;
+  userA4hPrivacyConsentLoading: boolean;
+  userA4hPrivacyConsentError: boolean;
+
+  updateUserA4hPrivacyConsent: ResponseUserA4HPrivacyConsent | null;
+  updateUserA4hPrivacyConsentLoading: boolean;
+  updateUserA4hPrivacyConsentError: boolean;
 }
 
 export const initialState: State = {
@@ -46,6 +54,14 @@ export const initialState: State = {
 
   spidConfirmLoading: false,
   spidConfirmError: false,
+
+  userA4hPrivacyConsent: null,
+  userA4hPrivacyConsentLoading: false,
+  userA4hPrivacyConsentError: false,
+
+  updateUserA4hPrivacyConsent: null,
+  updateUserA4hPrivacyConsentLoading: false,
+  updateUserA4hPrivacyConsentError: false,
 };
 
 export const reducer = createReducer(
@@ -138,4 +154,40 @@ export const reducer = createReducer(
     spidConfirmLoading: false,
     spidConfirmError: true,
   })),
+
+  //-----------consents A4H-----------------------
+  on(UserProfileActions.fetchUserA4hPrivacyConsent, (state) => ({
+    ...state,
+    userA4hPrivacyConsent: null,
+    userA4hPrivacyConsentLoading: true,
+    userA4hPrivacyConsentError: false,
+  })),
+  on(UserProfileActions.fetchUserA4hPrivacyConsentSuccess, (state, action) => ({
+    ...state,
+    userA4hPrivacyConsentLoading: false,
+    userA4hPrivacyConsent: action.data,
+  })),
+  on(UserProfileActions.fetchUserA4hPrivacyConsentFailure, (state) => ({
+    ...state,
+    userA4hPrivacyConsentLoading: false,
+    userA4hPrivacyConsentError: true,
+  })),
+
+  on(UserProfileActions.updateUserA4hPrivacyConsent, (state) => ({
+    ...state,
+    updateUserA4hPrivacyConsent: null,
+    updateUserA4hPrivacyConsentLoading: true,
+    updateUserA4hPrivacyConsentError: false,
+  })),
+  on(UserProfileActions.updateUserA4hPrivacyConsentSuccess, (state, action) => ({
+    ...state,
+    updateUserA4hPrivacyConsentLoading: false,
+    updateUserA4hPrivacyConsent: action.data,
+  })),
+  on(UserProfileActions.updateUserA4hPrivacyConsentFailure, (state) => ({
+    ...state,
+    updateUserA4hPrivacyConsentLoading: false,
+    updateUserA4hPrivacyConsentError: true,
+  })),
+  //-----------fine consents A4H-----------------------
 );

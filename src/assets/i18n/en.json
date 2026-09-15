@@ -540,6 +540,16 @@
       "load": "Download",
       "preparationRules": "the preparation instructions",
       "goToPayments": "Go to payments"
+    },
+    "consent-privacy": {
+      "title": "Confirm that you have read the privacy policy",
+      "question": "Have you read the privacy policy?",
+      "pdfTitle": "Privacy policy",
+      "pdfFallback": "The PDF cannot be displayed here.",
+      "openPdf": "Open the privacy policy in a new tab",
+      "downloadPdf": "Download the privacy policy",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
     }
   }
 }

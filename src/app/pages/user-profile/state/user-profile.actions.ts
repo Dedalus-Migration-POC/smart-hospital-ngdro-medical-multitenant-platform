@@ -1,5 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { UserConsent, UserProfile } from '../user-profile.model';
+import {
+  RequestUserA4HPrivacyConsentPayload,
+  ResponseUserA4HPrivacyConsent,
+  UserConsent,
+  UserProfile,
+} from '../user-profile.model';
 
 export const sessionRefreshed = createAction('[UserProfile] Session Refreshed');
 
@@ -71,3 +76,35 @@ export const spidConfirmFailure = createAction(
   '[UserProfile] Spid Confirm Failure',
   props<{ error: any }>(),
 );
+
+//-----------consents A4H-----------
+export const fetchUserA4hPrivacyConsent = createAction(
+  '[UserProfile] Fetch User A4H Privacy Consent',
+  props<{ payload: RequestUserA4HPrivacyConsentPayload }>(),
+);
+
+export const fetchUserA4hPrivacyConsentSuccess = createAction(
+  '[UserProfile] Fetch User A4H Privacy Consent Success',
+  props<{ data: ResponseUserA4HPrivacyConsent }>(),
+);
+
+export const fetchUserA4hPrivacyConsentFailure = createAction(
+  '[UserProfile] Fetch User A4H Privacy Consent Failure',
+  props<{ error: any }>(),
+);
+
+export const updateUserA4hPrivacyConsent = createAction(
+  '[UserProfile] Update User A4H Privacy Consent',
+  props<{ payload: RequestUserA4HPrivacyConsentPayload }>(),
+);
+
+export const updateUserA4hPrivacyConsentSuccess = createAction(
+  '[UserProfile] Update User A4H Privacy Consent Success',
+  props<{ data: ResponseUserA4HPrivacyConsent }>(),
+);
+
+export const updateUserA4hPrivacyConsentFailure = createAction(
+  '[UserProfile] Update User A4H Privacy Consent Failure',
+  props<{ error: any }>(),
+);
+//-----------fine consents A4H-----------------------

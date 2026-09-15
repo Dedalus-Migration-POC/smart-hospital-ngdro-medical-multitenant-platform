@@ -13,6 +13,7 @@ import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/stat
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 import { BookingUnifiedService } from './service';
 import * as BookingUnifiedActions from './actions';
+import { ConsentPdfService } from 'src/app/pages/user-profile/state/consents-privacy-a4h.service';
 import {
   selectActiveStep,
   selectAvailableListToBook,
@@ -50,6 +51,7 @@ export class BookingUnifiedEffects {
   private translate = inject(TranslateService);
   private modalService = inject(BookingUnifiedModalService);
   private readonly notificationService = inject(ItNotificationService);
+  private readonly consentPdfService = inject(ConsentPdfService);
 
   private notifyError(titleKey: string, descriptionKey: string, options?: { okKey?: string }) {
     this.modalService.openInfo(titleKey, descriptionKey, undefined, undefined, options?.okKey);
@@ -463,6 +465,7 @@ export class BookingUnifiedEffects {
                 }),
               )
               .subscribe();
+            this.consentPdfService.openConsent();
             return BookingUnifiedActions.bookAppointmentSuccess({ data });
           }),
           catchError((error) => {

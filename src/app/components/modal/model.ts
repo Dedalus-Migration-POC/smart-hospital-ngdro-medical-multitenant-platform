@@ -9,6 +9,7 @@ import {
   SpacingConfig,
   TextConfig,
 } from '../../shared/models/shared_model';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 export type ModalFullscreen = 'all' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
@@ -43,6 +44,15 @@ export interface ModalActionConfig {
   callback?: () => void; // assegnata dal componente che apre la modale (PageConfig.modals non puo' contenerla)
 }
 
+export interface ModalPdfConfig {
+  url: string;
+  resourceUrl: SafeResourceUrl;
+  title: string;
+  fallbackText: string;
+  openLabel: string;
+  downloadLabel: string;
+}
+
 export interface ModalConfig extends ModalStyle {
   header: {
     title: TextConfig;
@@ -54,6 +64,7 @@ export interface ModalConfig extends ModalStyle {
   };
   body: {
     text: TextConfig;
+    pdf?: ModalPdfConfig;
     background?: BackgroundConfig;
     padding?: SpacingConfig;
     border?: BorderConfig;

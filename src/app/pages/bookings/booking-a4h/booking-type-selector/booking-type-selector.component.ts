@@ -13,9 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map, take } from 'rxjs';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
-import { selectAppConfig } from 'src/app/initialize/state/selector';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import {
   fetchStrutture,
@@ -29,10 +27,11 @@ import {
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 import { BookingType } from '../models/booking-type';
 import { PageConfigService } from 'src/app/pages/page-config.service';
+import { Spinner } from 'src/app/components/spinner/spinner';
 
 @Component({
   selector: 'app-booking-type-selector',
-  imports: [TranslateModule, DesignAngularKitModule, Breadcrumb],
+  imports: [TranslateModule, DesignAngularKitModule, Breadcrumb, Spinner],
   templateUrl: './booking-type-selector.component.html',
   styleUrls: ['./booking-type-selector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,7 +44,7 @@ export class BookingTypeSelectorComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly bookingUnifiedModalService = inject(BookingUnifiedModalService);
   private readonly strutture = this.store.selectSignal(selectAllStrutture);
-  private readonly struttureLoading = this.store.selectSignal(selectStruttureLoading);
+  readonly struttureLoading = this.store.selectSignal(selectStruttureLoading);
   private readonly struttureError = this.store.selectSignal(selectStruttureError);
   private readonly pendingBookingType = signal<BookingType | null>(null);
 

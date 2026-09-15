@@ -5,12 +5,7 @@ import { DesignAngularKitModule } from 'design-angular-kit';
 import { ModalService } from './modal.service';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';
-import {
-  ModalActionConfig,
-  ModalConfig,
-  ModalFullscreen,
-  ModalStyle,
-} from './model';
+import { ModalActionConfig, ModalConfig, ModalFullscreen, ModalStyle } from './model';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import {
   getBackgroundPaletteClass,
@@ -87,8 +82,9 @@ export class ModalComponent {
   }
 
   onActionClick(action: ModalActionConfig): void {
-    action.callback?.();
+    const callback = action.callback;
     this.onClose();
+    callback?.();
   }
 
   onBackdropClick(): void {

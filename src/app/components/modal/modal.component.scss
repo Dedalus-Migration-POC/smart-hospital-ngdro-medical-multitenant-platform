@@ -15,3 +15,15 @@
 .modal {
   overflow-y: hidden;
 }
+
+.modal-pdf {
+  display: block;
+  width: 100%;
+  height: min(65vh, 720px);
+  border: 0;
+}
+
+.modal-pdf p,
+.modal-pdf a {
+  margin-right: 1rem;
+}

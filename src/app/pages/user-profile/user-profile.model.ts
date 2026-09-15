@@ -93,17 +93,27 @@ export interface AdditionalAttribute {
   value: string | null;
   required: boolean;
 }
-
 export interface UserProfile {
   fiscalCode: string;
   firstName: string;
   lastName: string;
   email: string;
   additionalAttributes: AdditionalAttribute[];
-  consents: UserConsent[];
-  hasDifferentData: boolean;
-  consentsSigned: boolean;
-  code: string | null;
+  consents?: UserConsent[];
+  hasDifferentData?: boolean;
+  consentsSigned?: boolean;
+  code?: string | null;
+  //-------a4h-----
+  nationality?: string;
+  citizenship?: string;
+  residence?: PatientAddressData;
+  domicile?: PatientAddressData;
+  sequence?: string;
+  privacy?: boolean;
+  idMpi?: string | null;
+  userVerified?: boolean;
+  firstAccess?: boolean;
+  identity?: Identity;
 }
 
 export interface UserConsent {
@@ -137,3 +147,53 @@ export type ConsentViewModel = UserConsent & {
   text?: string;
   linkText?: string;
 };
+
+//-------- A4H--------------------
+export type UserProfileA4H = {
+  id: string | number;
+  firstName: string;
+  lastName: string;
+  identity: Identity;
+  gender?: string;
+  birthDate?: string;
+  email?: string;
+  phoneNumber?: string;
+  nationality?: string;
+  citizenship?: string;
+  residence?: PatientAddressData;
+  domicile?: PatientAddressData;
+  sequence?: string;
+  privacy?: boolean;
+  idMpi?: string | null;
+  userVerified: boolean;
+  firstAccess: boolean;
+};
+
+export type Identity = {
+  identity: string;
+  id?: string | number;
+  activated: boolean;
+};
+
+export type PatientAddressData = {
+  municipalityCode?: string;
+  municipalityName?: string;
+  street?: string;
+  number?: string;
+  zipCode?: string;
+};
+
+export interface RequestUserA4HPrivacyConsentPayload {
+  idAnagrafico: string;
+  taxCode: string;
+  codiceStruttura: string;
+}
+
+export interface ResponseUserA4HPrivacyConsent {
+  Esito: string;
+  Errore?: string;
+  CodiceErrore?: string;
+  PrivacyPDF?: string;
+  consentPrivacyAccepted: boolean;
+}
+//-----fine A4H--------------------

@@ -40,6 +40,18 @@
           }
         </div>
         <div class="modal-body" id="modalBody" [ngClass]="bodyBgClass()" [ngStyle]="bodyStyles()">
+          @if (config.body.pdf; as pdf) {
+            <object
+              class="modal-pdf"
+              [data]="pdf.resourceUrl"
+              type="application/pdf"
+              [attr.title]="pdf.title"
+            >
+              <p class="mb-0">{{ pdf.fallbackText }}</p>
+              <a [href]="pdf.url" target="_blank" rel="noopener">{{ pdf.openLabel }}</a>
+              <a [href]="pdf.url" download>{{ pdf.downloadLabel }}</a>
+            </object>
+          }
           <p
             class="cursor-default mb-0"
             [ngClass]="getTextClasses(config.body.text)"

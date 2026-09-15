@@ -64,8 +64,8 @@ export class InsertNreStepComponent {
       const fiscalCode = this.userProfile()?.fiscalCode;
       if (!fiscalCode) return;
       const validFiscalCode = fiscalCode.toUpperCase().startsWith('TINIT-')
-        ? fiscalCode.slice(6)
-        : fiscalCode;
+        ? fiscalCode.slice(6).toUpperCase()
+        : fiscalCode.toUpperCase();
 
       this.nrecfForm.controls.fiscalCode.setValue(validFiscalCode, { emitEvent: false });
       this.nrecfForm.controls.fiscalCode.disable({ emitEvent: false });

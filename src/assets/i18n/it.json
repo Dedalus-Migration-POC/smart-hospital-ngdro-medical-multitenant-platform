@@ -541,6 +541,16 @@
       "load": "Scarica",
       "preparationRules": "le indicazioni per la preparazione",
       "goToPayments": "Vai ai pagamenti"
+    },
+    "consent-privacy": {
+      "title": "Conferma presa visione",
+      "question": "Hai preso visione dell'informativa privacy?",
+      "pdfTitle": "Informativa privacy",
+      "pdfFallback": "Il PDF non può essere visualizzato qui.",
+      "openPdf": "Apri l'informativa privacy in una nuova scheda",
+      "downloadPdf": "Scarica l'informativa privacy",
+      "cancel": "Annulla",
+      "confirm": "Conferma"
     }
   }
 }
