@@ -101,7 +101,7 @@ export class MediaText {
     const title = action.comingSoonMessage?.title?.text[this.lang()];
     const message = action.comingSoonMessage?.subTitle?.text[this.lang()];
 
-    this.notificationService.standard(
+    this.notificationService.info(
       title ?? '',
       message ?? '',
       true,

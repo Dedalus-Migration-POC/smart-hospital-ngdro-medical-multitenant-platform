@@ -40,7 +40,7 @@
   },
   "linksStyle": {
     "mode": "bootstrap",
-    "palette": "white",
+    "palette": "primary",
     "textStyle": {
       "textDecoration": "none"
     },
@@ -83,7 +83,7 @@
     "containerStyle": {
       "background": {
         "fill": {
-          "hex": "#e6e8ea"
+          "hex": "#ecf1f9"
         }
       },
       "padding": {
@@ -108,18 +108,19 @@
     },
     "header": {
       "padding": {
-        "all": "8px"
+        "all": "20px"
       },
       "closeButton": true
     },
     "body": {
       "padding": {
-        "all": "12px"
+        "all": "20px"
       }
     },
     "footer": {
+      "layout": { "justify": "center", "gap": "gap-2", "wrap": "wrap" },
       "padding": {
-        "all": "8px"
+        "bottom": "20px"
       },
       "actionsButtonStyle": {
         "mode": "bootstrap",
@@ -134,7 +135,7 @@
           "fontSize": "lg",
           "fontWeight": "semibold",
           "color": {
-            "palette": "danger"
+            "palette": "dark"
           },
           "lineHeight": "lg"
         },
@@ -216,14 +217,20 @@
           "fontSize": "sm",
           "fontWeight": "semibold",
           "color": {
-            "palette": "danger"
+            "palette": "dark"
+          },
+          "margin": {
+            "y": "5px"
           }
         },
         "valueStyle": {
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
-            "palette": "success"
+            "palette": "dark"
+          },
+          "margin": {
+            "y": "5px"
           }
         }
       },

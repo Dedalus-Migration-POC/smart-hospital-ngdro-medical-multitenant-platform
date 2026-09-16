@@ -4,17 +4,14 @@
     "it": "Accesso",
     "en": "Login"
   },
-  "route": "/",
-  "backgroundImage": "/assets/images/bg.svg",
+  "route": "/login",
+  "backgroundColor": "#ecf1f9",
   "sections": [
     {
       "id": "login-section",
       "areas": {
         "layout": {
-          "direction": [
-            "column",
-            "md-row"
-          ],
+          "direction": ["column", "md-row"],
           "gap": "gap-5",
           "align": "start"
         },
@@ -36,16 +33,20 @@
               "props": {
                 "id": "auth-title",
                 "text": {
-                  "it": "I servizi online dell’ASL di Latina",
-                  "en": "Online services from the Latina Local Health Authority"
+                  "it": "I servizi online dell’ASL di Demo",
+                  "en": "Online services from the ASL Demo"
                 },
                 "headingTag": "h1",
                 "fontSize": "xxl",
                 "fontWeight": "semibold",
                 "textDecoration": "none",
                 "lineHeight": "sm",
+                "margin": {
+                  "top": "50px",
+                  "bottom": "20px"
+                },
                 "color": {
-                  "palette": "black"
+                  "palette": "primary"
                 }
               }
             },
@@ -56,8 +57,8 @@
               "props": {
                 "id": "auth-into",
                 "text": {
-                  "it": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Latina, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>",
-                  "en": "From this section you can access the main digital services of the Latina Local Health Authority, <strong>designed to simplify interaction with the healthcare system.</strong>"
+                  "it": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Demo, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>",
+                  "en": "From this section you can access the main digital services of the ASL Demo, <strong>designed to simplify interaction with the healthcare system.</strong>"
                 },
                 "fontSize": "md",
                 "fontWeight": "normal",
@@ -85,7 +86,7 @@
             {
               "id": "auth-card",
               "type": "AUTH_METHODS",
-              "className": "w-100 mt-3",
+              "className": "w-100 mt-3 mb-4",
               "enabled": true,
               "props": {
                 "id": "auth-methods",

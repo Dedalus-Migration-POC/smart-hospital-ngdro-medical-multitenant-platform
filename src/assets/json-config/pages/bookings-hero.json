@@ -25,8 +25,8 @@
     },
     "subTitle": {
       "text": {
-        "it": "Visualizza le prenotazioni Hero.",
-        "en": "View the Hero bookings."
+        "it": "Visualizza le prenotazioni Hero",
+        "en": "View the Hero bookings"
       }
     },
     "button": {
@@ -35,7 +35,8 @@
           "it": "Nuova prenotazione",
           "en": "New booking"
         }
-      }
+      },
+      "whiteSpace": "nowrap"
     },
     "items": [
       {
@@ -180,9 +181,7 @@
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "goToDetails",
-                          "params": [
-                            "id"
-                          ]
+                          "params": ["id"]
                         }
                       }
                     ]

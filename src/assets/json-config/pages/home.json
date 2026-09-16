@@ -11,17 +11,14 @@
       "en": "Home"
     }
   },
-  "backgroundColor": "#c1e7e7",
+  "backgroundColor": "#ecf1f9",
   "sections": [
     {
       "id": "home-section",
       "className": "py-2",
       "areas": {
         "layout": {
-          "direction": [
-            "column",
-            "md-row"
-          ],
+          "direction": ["column", "md-row"],
           "gap": "gap-5",
           "align": "start"
         },
@@ -42,8 +39,8 @@
               "props": {
                 "id": "home-title",
                 "text": {
-                  "it": "I servizi online dell'ASL di Latina",
-                  "en": "Online services from the Latina Local Health Authority"
+                  "it": "I servizi online dell'ASL di Demo",
+                  "en": "Online services from the ASL Demo"
                 },
                 "headingTag": "h1",
                 "fontSize": "xxl",
@@ -54,7 +51,8 @@
                   "palette": "primary"
                 },
                 "margin": {
-                  "bottom": "8px"
+                  "top": "50px",
+                  "bottom": "20px"
                 }
               }
             },
@@ -65,8 +63,8 @@
               "props": {
                 "id": "home-info",
                 "text": {
-                  "it": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Latina, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>",
-                  "en": "From this section you can access the main digital services of the Latina Local Health Authority, <strong>designed to simplify interaction with the healthcare system.</strong>"
+                  "it": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Demo, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>",
+                  "en": "From this section you can access the main digital services of the ASL Demo, <strong>designed to simplify interaction with the healthcare system.</strong>"
                 },
                 "fontSize": "md",
                 "fontWeight": "normal",
@@ -75,7 +73,7 @@
                   "palette": "black"
                 },
                 "margin": {
-                  "bottom": "8px"
+                  "bottom": "20px"
                 }
               }
             },
@@ -87,7 +85,7 @@
                 "id": "hero-image",
                 "image": {
                   "type": "url",
-                  "value": "https://img.freepik.com/free-photo/lavender-field-sunset-near-valensole_268835-3910.jpg?semt=ais_hybrid&w=740&q=80",
+                  "value": "https://prod-cms-marche.s3.eu-south-1.amazonaws.com/67ff81fcbf93ca37d29f5ec1-image-b4e0aa2f-5efc-49ec-afe5-fd02e8a82fdd.jfif",
                   "decorative": false,
                   "className": "img-fluid rounded",
                   "alt": {
@@ -98,7 +96,7 @@
                 "clickable": true,
                 "action": {
                   "type": "externalLink",
-                  "url": "https://commission.europa.eu/",
+                  "url": "https://www.astpu.marche.it/it",
                   "target": "_blank"
                 },
                 "margin": {
@@ -237,8 +235,16 @@
                       "en": "Open vaccination history"
                     },
                     "action": {
-                      "type": "route",
-                      "url": "/storico-vaccinale"
+                      "type": "comingSoon",
+                      "comingSoonMessage": {
+                        "title": { "text": { "it": "Prossimamente", "en": "Coming soon" } },
+                        "subTitle": {
+                          "text": {
+                            "it": "Il servizio non è ancora disponibile",
+                            "en": "The service is not yet available"
+                          }
+                        }
+                      }
                     },
                     "text": {
                       "title": {

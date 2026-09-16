@@ -41,7 +41,10 @@
               "style": {
                 "textStyle": {
                   "fontSize": "sm",
-                  "fontWeight": "semibold"
+                  "fontWeight": "semibold",
+                  "color": {
+                    "palette": "white"
+                  }
                 },
                 "hover": {
                   "textDecorationThickness": "1px"
@@ -58,6 +61,16 @@
         },
         "items": [
           {
+            "id": "topbar-translate-1",
+            "type": "SELECT_LANG",
+            "enabled": true,
+            "props": {
+              "supportedLanguages": ["it", "en"],
+              "arialabel": "Lingua selezionata:",
+              "color": "white"
+            }
+          },
+          {
             "id": "user-menu",
             "type": "USER_DROPDOWN_MENU",
             "enabled": true,
@@ -70,7 +83,10 @@
                   "textStyle": {
                     "textDecoration": "none",
                     "textTransform": "capitalize",
-                    "fontSize": "md"
+                    "fontSize": "md",
+                    "color": {
+                      "palette": "white"
+                    }
                   },
                   "icon": {
                     "type": "font-awesome",
@@ -264,7 +280,7 @@
                 "fontSize": "sm",
                 "fontWeight": "normal",
                 "color": {
-                  "palette": "success"
+                  "palette": "white"
                 },
                 "textDecoration": "none",
                 "textTransform": "capitalize"
@@ -298,12 +314,13 @@
                   },
                   "icon": {
                     "type": "font-awesome",
-                    "name": "fa-brands fa-facebook-f"
+                    "name": "fa-brands fa-facebook-f",
+                    "fontSize": "1.25rem"
                   },
                   "url": "https://www.facebook.com",
                   "target": "_blank",
                   "margin": {
-                    "right": "1rem"
+                    "right": "0.5rem"
                   }
                 },
                 {
@@ -324,7 +341,7 @@
                   "url": "https://www.instagram.com",
                   "target": "_blank",
                   "margin": {
-                    "right": "1rem"
+                    "right": "0.5rem"
                   }
                 },
                 {
@@ -410,6 +427,9 @@
                 "textStyle": {
                   "fontSize": "md",
                   "fontWeight": "semibold",
+                  "color": {
+                    "palette": "white"
+                  },
                   "padding": {
                     "x": "24px",
                     "y": "12px"
@@ -433,6 +453,9 @@
                 "textStyle": {
                   "fontSize": "md",
                   "fontWeight": "semibold",
+                  "color": {
+                    "palette": "white"
+                  },
                   "padding": {
                     "x": "24px",
                     "y": "12px"

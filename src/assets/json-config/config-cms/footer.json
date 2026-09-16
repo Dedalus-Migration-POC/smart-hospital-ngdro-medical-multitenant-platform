@@ -315,7 +315,10 @@
               "style": {
                 "textStyle": {
                   "fontSize": "sm",
-                  "fontWeight": "semibold"
+                  "fontWeight": "semibold",
+                  "color": {
+                    "palette": "white"
+                  }
                 }
               }
             }
@@ -339,7 +342,10 @@
               "style": {
                 "textStyle": {
                   "fontSize": "sm",
-                  "fontWeight": "semibold"
+                  "fontWeight": "semibold",
+                  "color": {
+                    "palette": "white"
+                  }
                 }
               }
             }

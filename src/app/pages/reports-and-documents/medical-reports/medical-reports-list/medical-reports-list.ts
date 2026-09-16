@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, Signal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, Signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -62,12 +62,10 @@ export class MedicalReportsList implements OnInit {
     ...(this.documentsTypes() ?? []).map((el) => ({ value: el.code, label: el.label })),
   ]);
   selectedOption: string = '';
+  private documentsTypesRequested = false;
 
   ngOnInit() {
     this.store.dispatch(fetchReportsAndDocuments({ filter: undefined }));
-    if (this.formConfig()) {
-      this.store.dispatch(fetchDocumentsTypes());
-    }
   }
 
   readonly pageConfig = toSignal(this.pageConfigService.get('/medical-reports'), {
@@ -87,6 +85,20 @@ export class MedicalReportsList implements OnInit {
     );
     return { ...formItem.props, fields } as DynamicFormConfig;
   });
+
+  //aspetta il caricamento della configurazione e fetchDocumentsTypes esegue una sola volta quando trova il DYNAMIC_FORM.
+  private readonly loadDocumentsTypesWhenConfigured = effect(() => {
+    const config = this.pageConfig();
+    const hasDynamicForm = config?.sections?.some((section) =>
+      section.areas?.center?.items?.some((item) => item.type === 'DYNAMIC_FORM'),
+    );
+
+    if (hasDynamicForm && !this.documentsTypesRequested) {
+      this.documentsTypesRequested = true;
+      this.store.dispatch(fetchDocumentsTypes());
+    }
+  });
+
   onSelectChange() {
     this.store.dispatch(fetchReportsAndDocuments({ filter: this.selectedOption }));
   }

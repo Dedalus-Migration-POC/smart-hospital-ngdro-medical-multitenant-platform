@@ -22,7 +22,6 @@
   max-width: min(calc(100% - 1rem), 800px) !important;
   margin: 0.5rem auto !important;
   box-sizing: border-box !important;
-
   @include bp.media-breakpoint-up(sm) {
     margin: 1.75rem auto !important;
     max-width: min(calc(100% - 3.5rem), 800px) !important;
@@ -56,7 +55,7 @@
   display: block !important;
   margin-top: 0 !important;
   box-sizing: border-box !important;
-
+  margin-bottom: 2rem !important;
   &:before,
   &:after {
     display: none !important;

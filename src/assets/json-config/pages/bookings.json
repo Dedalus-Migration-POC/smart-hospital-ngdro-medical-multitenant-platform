@@ -18,6 +18,12 @@
         "en": "Bookings"
       }
     },
+    "subTitle": {
+      "text": {
+        "it": "Visualizza le prenotazioni AriannaCUP",
+        "en": "View the AriannaCUP bookings"
+      }
+    },
     "button": {
       "text": {
         "text": {
@@ -171,9 +177,7 @@
                         "palette": "danger",
                         "callback": {
                           "nameFunction": "deleteBooking",
-                          "params": [
-                            "id"
-                          ]
+                          "params": ["id"]
                         },
                         "disabledIf": [
                           {

@@ -13,8 +13,11 @@
             [attr.href]="social.url"
             [target]="social.target"
             [attr.aria-label]="social.ariaLabel[lang()]"
-            [ngClass]="getTextDecorationClass(socials.labelStyle)"
-            [ngStyle]="getSpacingStyles(social.margin)"
+            [ngClass]="socials.labelStyle ? getTextClasses(socials.labelStyle) : []"
+            [ngStyle]="{
+              ...getSpacingStyles(social.margin),
+              ...(socials.labelStyle ? getTextStyles(socials.labelStyle) : {}),
+            }"
             rel="noopener noreferrer"
           >
             @if (social.icon) {
