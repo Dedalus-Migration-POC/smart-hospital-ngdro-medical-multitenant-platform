@@ -6,8 +6,8 @@ import { HeaderConfig } from '../../../layout/header/header.model';
 import { FooterConfig } from '../../../layout/footer/footer.model';
 import { AppConfig, CookieConsentConfig, FirebaseConfig } from '../app-config.model';
 
-const COMMON_CONFIG_ASSETS_PATH = 'assets/json-config/config';
-const CMS_CONFIG_ASSETS_PATH = 'assets/json-config/config-cms';
+const COMMON_CONFIG_ASSETS_PATH = 'assets/json-config/default/config';
+const CMS_CONFIG_ASSETS_PATH = 'assets/json-config/cms/config';
 
 @Injectable({ providedIn: 'root' })
 export class AppConfigService {
@@ -18,7 +18,7 @@ export class AppConfigService {
 
   // ogni sezione dell'AppConfig arriva da un json separato, caricabile/gestibile in modo indipendente
   // theme, header e footer sono esempi di sezioni caricate da json separati per altri temi
-  // per far caricare dal percorso comune (assets/json-config/config)
+  // per far caricare dal percorso comune (assets/json-config/default/config)
   // bisogna togliere il secondo parametro (CMS_CONFIG_ASSETS_PATH)
   private load<T>(name: string, basePath = COMMON_CONFIG_ASSETS_PATH): Observable<T> {
     return this.http.get<T>(`${basePath}/${name}.json`);
@@ -44,7 +44,10 @@ export class AppConfigService {
         footer: this.load<FooterConfig>('footer', CMS_CONFIG_ASSETS_PATH),
         firebaseConfig: this.loadOptional<FirebaseConfig>('firebase'),
         chatbot: this.loadOptional<AppConfig['chatbot']>('chatbot', CMS_CONFIG_ASSETS_PATH),
-        cookieConsentConfig: this.loadOptional<CookieConsentConfig>('cookie-consent'),
+        cookieConsentConfig: this.loadOptional<CookieConsentConfig>(
+          'cookie-consent',
+          CMS_CONFIG_ASSETS_PATH,
+        ),
       }).pipe(
         map(({ appMeta, cookieConsentConfig, ...rest }) => ({
           ...appMeta,

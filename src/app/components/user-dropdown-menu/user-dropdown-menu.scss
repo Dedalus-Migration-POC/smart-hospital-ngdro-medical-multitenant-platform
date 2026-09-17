@@ -5,7 +5,7 @@
   }
 
   .user-dropdown-hover-underline:is(:hover, :focus-visible) .user-dropdown-label {
-    text-decoration: underline;
-    text-decoration-thickness: var(--user-dropdown-hover-text-decoration-thickness, auto);
+    text-decoration: underline !important;
+    text-decoration-thickness: var(--user-dropdown-hover-text-decoration-thickness, auto) !important;
   }
 }

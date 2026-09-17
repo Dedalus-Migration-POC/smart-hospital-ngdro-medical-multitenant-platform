@@ -88,6 +88,9 @@
                       "palette": "white"
                     }
                   },
+                  "hover": {
+                    "textDecoration": "underline"
+                  },
                   "icon": {
                     "type": "font-awesome",
                     "name": "fa-regular fa-user",

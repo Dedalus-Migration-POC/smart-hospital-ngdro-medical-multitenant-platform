@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, of, shareReplay } from 'rxjs';
+import { catchError, Observable, of, shareReplay, switchMap, throwError } from 'rxjs';
 import { PageConfig } from './page.model';
 
-const PAGES_ASSETS_PATH = 'assets/json-config/pages';
+const COMMON_PAGES_ASSETS_PATH = 'assets/json-config/default/pages';
+const CMS_PAGES_ASSETS_PATH = 'assets/json-config/cms/pages';
 
 // a differenza di AppConfig (nello store, letto ovunque), ogni pagina serve a un solo
 // componente: qui basta una cache locale per-id, non serve passare dallo store globale.
@@ -18,9 +19,26 @@ export class PageConfigService {
     if (!this.cache.has(id)) {
       // '/' -> 'home', '/user-profile' -> 'user-profile', '/departments/units' -> 'departments-units'
       const path = id === '/' ? 'home' : id.replace(/^\//, '').replace(/\//g, '-');
+
+      const commonPage$ = this.http.get<PageConfig>(
+        `${COMMON_PAGES_ASSETS_PATH}/${path}.json`,
+      );
+      const cmsPage$ = this.http
+        .get<PageConfig>(`${CMS_PAGES_ASSETS_PATH}/${path}.json`)
+        .pipe(
+          catchError((error) =>
+            error.status === 404 ? of(undefined) : throwError(() => error),
+          ),
+        );
+
       this.cache.set(
         id,
-        this.http.get<PageConfig>(`${PAGES_ASSETS_PATH}/${path}.json`).pipe(shareReplay(1)),
+        cmsPage$.pipe(
+          // Un file CMS sostituisce interamente la configurazione comune della pagina.
+          // Se manca, la pagina comune resta il fallback.
+          switchMap((cmsPage) => (cmsPage ? of(cmsPage) : commonPage$)),
+          shareReplay(1),
+        ),
       );
     }
     return this.cache.get(id)!;
