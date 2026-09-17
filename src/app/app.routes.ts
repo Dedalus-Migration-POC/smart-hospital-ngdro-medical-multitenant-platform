@@ -19,6 +19,7 @@ import { PaymentJcashDetailsComponent } from './pages/payments/payments-jcash/pa
 import { TripletReport } from './pages/reports-and-documents/reports-by-triplet/reports-by-triplet';
 import { BookingsListComponent } from './pages/bookings/bookings-ariannaCup/bookings-list/bookings-list.component';
 import { BookingNewComponent } from './pages/bookings/bookings-ariannaCup/booking-new/bookings-new.component';
+import { A4hConsents } from './pages/user-profile/a4h-consents/a4h-consents';
 
 export const routes: Routes = [
   { path: '', component: HomePage },
@@ -31,6 +32,11 @@ export const routes: Routes = [
     canActivate: [authenticatedGuard({ allowTemporary: true })],
     loadChildren: () =>
       import('./pages/user-profile/user-profile.routes').then((m) => m.userProfileRoutes),
+  },
+  {
+    path: 'consents-a4h',
+    canActivate: [authenticatedGuard()],
+    component: A4hConsents,
   },
   {
     path: 'idp-redirect',

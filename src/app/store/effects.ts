@@ -1,4 +1,5 @@
 import { PaymentsEffects } from '../pages/payments/payments-pa/state/payments.effects';
+import { ConsentsA4HEffects } from '../pages/user-profile/a4h-consents/state/effects';
 import { PaymentsJcEffects } from '../pages/payments/payments-jcash/state/effects';
 import { ReportsAndDocumentsEffects } from '../pages/reports-and-documents/medical-reports/state/effects';
 import { TripletReportEffects } from '../pages/reports-and-documents/reports-by-triplet/state/effects';
@@ -20,4 +21,5 @@ export const effects = [
   BookingsHeroEffects,
   BookingUnifiedEffects,
   StrutturaEffects,
+  ConsentsA4HEffects,
 ];

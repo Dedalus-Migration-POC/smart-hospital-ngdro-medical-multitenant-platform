@@ -6,14 +6,12 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
-
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
-
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
 import { BookingUnifiedService } from './service';
 import * as BookingUnifiedActions from './actions';
-import { ConsentPdfService } from 'src/app/pages/user-profile/state/consents-privacy-a4h.service';
+import { ConsentPdfService } from 'src/app/pages/user-profile/a4h-consents/consents-privacy-a4h.service';
 import {
   selectActiveStep,
   selectAvailableListToBook,

@@ -25,7 +25,7 @@ import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { BreadcrumbService } from 'src/app/components/breadcrumb/breadcrumb.service';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { PageConfigService } from '../../page-config.service';
-import { ConsentPdfService } from 'src/app/pages/user-profile/state/consents-privacy-a4h.service';
+import { ConsentPdfService } from 'src/app/pages/user-profile/a4h-consents/consents-privacy-a4h.service';
 
 @Component({
   selector: 'app-booking-unified',

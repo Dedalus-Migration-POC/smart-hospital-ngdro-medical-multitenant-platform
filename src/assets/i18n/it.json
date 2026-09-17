@@ -552,5 +552,11 @@
       "cancel": "Annulla",
       "confirm": "Conferma"
     }
+  },
+  "consents-a4h": {
+    "update-consent-success-title": "Aggiornamento consenso riuscito",
+    "update-consent-success-text": "Il consenso è stato aggiornato correttamente.",
+    "update-consent-error-title": "Errore aggiornamento consenso",
+    "update-consent-error-text": "Si è verificato un errore durante l'aggiornamento del consenso."
   }
 }

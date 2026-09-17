@@ -10,9 +10,12 @@ import { SmartHospitalState } from 'src/app/store/reducers';
 import { ModalService } from 'src/app/components/modal/modal.service';
 import { toLocalizedText } from 'src/app/shared/utility/text.utils';
 import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
-import { selectUserA4hPrivacyConsentData, selectUserProfileData } from './user-profile.selectors';
-import * as UserProfileActions from './user-profile.actions';
-import { ResponseUserA4HPrivacyConsent, UserProfileA4H } from '../user-profile.model';
+import { selectUserProfileData } from '../state/user-profile.selectors';
+import * as UserProfileActions from '../state/user-profile.actions';
+import * as ConsentsA4HActions from './state/actions';
+import { UserProfileA4H } from '../user-profile.model';
+import { ResponseUserA4HPrivacyConsent } from './state/model';
+import { selectUserA4hPrivacyConsentData } from './state/selectors';
 
 @Injectable({
   providedIn: 'root',
@@ -76,7 +79,7 @@ export class ConsentPdfService {
 
     this.actions$
       .pipe(
-        ofType(UserProfileActions.fetchUserA4hPrivacyConsentSuccess),
+        ofType(ConsentsA4HActions.fetchUserA4hPrivacyConsentSuccess),
         take(1),
         takeUntilDestroyed(this.destroyRef),
       )
@@ -87,7 +90,7 @@ export class ConsentPdfService {
       });
 
     this.store.dispatch(
-      UserProfileActions.fetchUserA4hPrivacyConsent({
+      ConsentsA4HActions.fetchUserA4hPrivacyConsent({
         payload: {
           codiceStruttura: this.selectedStruttura()?.id ?? '',
           idAnagrafico: profile.sequence,
@@ -167,7 +170,7 @@ export class ConsentPdfService {
 
   private confirmPrivacyConsent(profile: UserProfileA4H): void {
     this.store.dispatch(
-      UserProfileActions.updateUserA4hPrivacyConsent({
+      ConsentsA4HActions.updateUserA4hPrivacyConsent({
         payload: {
           codiceStruttura: this.selectedStruttura()?.id ?? '',
           idAnagrafico: profile.sequence ?? '',

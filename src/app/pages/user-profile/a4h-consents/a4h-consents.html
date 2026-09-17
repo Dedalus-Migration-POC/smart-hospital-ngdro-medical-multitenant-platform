@@ -1,0 +1,61 @@
+@if (pageConfig(); as pageConfig) {
+  @if (pageConfig.breadcrumb) {
+    <app-breadcrumb [config]="pageConfig.breadcrumb"></app-breadcrumb>
+  }
+
+  <div>
+    @if (userA4hPrivacyConsent(); as privacyConsent) {
+      <it-checkbox
+        [ngModel]="privacyConsentAccepted()"
+        (ngModelChange)="onPrivacyConsentToggleChange(privacyConsent, $event)"
+        (keydown.enter)="
+          $event.preventDefault();
+          onPrivacyConsentToggleChange(privacyConsent, !privacyConsentAccepted())
+        "
+        toggle="true"
+        [disabled]="privacyConsentAccepted()"
+      >
+        <ng-container label>
+          <span class="consent-label"> {{ 'privacyConsent' }}</span>
+        </ng-container>
+      </it-checkbox>
+    }
+    @if (userA4hPrivacyConsentLoading()) {
+      <app-spinner [fullScreen]="false" [className]="'flex-column gap-3'"></app-spinner>
+    }
+  </div>
+
+  @if (listConsents(); as consentsA4h) {
+    <div class="col-12 col-md-6 mt-3">
+      @for (consent of consentsA4h; track consent.Id) {
+        <it-checkbox
+          [ngModel]="consent.IsAgree"
+          (ngModelChange)="onToggleChange(consent, $event)"
+          (keydown.enter)="$event.preventDefault(); onToggleChange(consent, !consent.IsAgree)"
+          toggle="true"
+          [id]="consent.Id"
+        >
+          <ng-container label>
+            <span class="consent-label"> {{ consent.Type.Value }}</span>
+          </ng-container>
+        </it-checkbox>
+      }
+    </div>
+  }
+
+  @if (loading()) {
+    <app-spinner [fullScreen]="true" [className]="'flex-column gap-3'"></app-spinner>
+  }
+
+  @if (!loading() && !listConsents()?.length) {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig.message?.notFound"></app-image-block>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+      <app-image-block [config]="pageConfig.message?.error"></app-image-block>
+    </div>
+  }
+}

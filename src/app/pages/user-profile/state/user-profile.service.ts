@@ -1,18 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { delay, map, of, take } from 'rxjs';
-import {
-  MOCK_A4H_CONSENTS,
-  MOCK_CONSENTS,
-  MOCK_PROFILE,
-  MOCK_PROFILE_A4H,
-} from './user-profile.mock';
-import {
-  RequestUserA4HPrivacyConsentPayload,
-  ResponseUserA4HPrivacyConsent,
-  UserConsent,
-  UserProfile,
-} from '../user-profile.model';
+import { MOCK_CONSENTS, MOCK_PROFILE, MOCK_PROFILE_A4H } from './user-profile.mock';
+import { UserConsent, UserProfile } from '../user-profile.model';
 import { Store } from '@ngrx/store';
 
 import { selectUserProfile } from './user-profile.selectors';
@@ -53,7 +43,7 @@ export class UserProfileService {
 
   fetchUserProfile(profileCode?: string) {
     if (this.IS_DEV) {
-      return of(MOCK_PROFILE).pipe(delay(500));
+      return of(MOCK_PROFILE_A4H).pipe(delay(500));
     }
 
     if (profileCode) {
@@ -83,19 +73,5 @@ export class UserProfileService {
       return of(MOCK_CONSENTS).pipe(delay(500));
     }
     return this.http.get<UserConsent[]>('oauth/api/wrapper/consents');
-  }
-
-  fetchUserA4hPrivacyConsent(payload: RequestUserA4HPrivacyConsentPayload) {
-    if (this.IS_DEV) {
-      return of(MOCK_A4H_CONSENTS).pipe(delay(500));
-    }
-    return this.http.post<ResponseUserA4HPrivacyConsent>('checkin/api/consent/find', payload);
-  }
-
-  updateUserA4hPrivacyConsent(payload: RequestUserA4HPrivacyConsentPayload) {
-    if (this.IS_DEV) {
-      return of(MOCK_A4H_CONSENTS).pipe(delay(500));
-    }
-    return this.http.post<ResponseUserA4HPrivacyConsent>('checkin/api/consent/update', payload);
   }
 }

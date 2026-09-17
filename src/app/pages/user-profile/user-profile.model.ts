@@ -183,17 +183,4 @@ export type PatientAddressData = {
   zipCode?: string;
 };
 
-export interface RequestUserA4HPrivacyConsentPayload {
-  idAnagrafico: string;
-  taxCode: string;
-  codiceStruttura: string;
-}
-
-export interface ResponseUserA4HPrivacyConsent {
-  Esito: string;
-  Errore?: string;
-  CodiceErrore?: string;
-  PrivacyPDF?: string;
-  consentPrivacyAccepted: boolean;
-}
 //-----fine A4H--------------------

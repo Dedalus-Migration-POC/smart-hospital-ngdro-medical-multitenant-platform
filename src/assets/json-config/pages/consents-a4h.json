@@ -1,0 +1,230 @@
+{
+  "id": "/consents-a4h",
+  "name": {
+    "it": "Consensi",
+    "en": "Consents"
+  },
+  "route": "/consents-a4h",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "background": { "fill": { "hex": "#e6e8ea" } },
+    "itemsStyle": { "color": { "hex": "#333333" } },
+    "title": { "text": { "it": "Consensi", "en": "Consents" } },
+    "subTitle": {
+      "text": { "it": "Gestisci i tuoi consensi", "en": "Manage your consents" }
+    },
+
+    "items": [
+      {
+        "name": { "it": "Home", "en": "Home" },
+        "routerLink": "/"
+      },
+      {
+        "name": { "it": "Consensi", "en": "Consents" },
+        "routerLink": "/consents-a4h"
+      }
+    ]
+  },
+  "consentsA4h": [
+    {
+      "Id": "44d73137-bbde-46f1-8787-c3c607cbabef",
+      "Type": {
+        "Key": "FHR",
+        "Value": "Comunicazione contatti FHR",
+        "KeyValue": "FHR-Comunicazione contatti FHR"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2022-03-01T00:00:00+01:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    },
+    {
+      "Id": "a5ee8bb0-98fc-4dbe-8cab-4893096d4ca7",
+      "Type": {
+        "Key": "SRV",
+        "Value": "Customer",
+        "KeyValue": "SRV-Customer"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2022-03-01T00:00:00+01:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    },
+    {
+      "Id": "2aa557a5-6f6d-49a6-b51f-75b1224c754f",
+      "Type": {
+        "Key": "SM",
+        "Value": "SMS & Mail",
+        "KeyValue": "SM-SMS & Mail"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2022-03-01T00:00:00+01:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    },
+    {
+      "Id": "585fc858-76a2-4525-a7ed-6e0d51828a5c",
+      "Type": {
+        "Key": "MK",
+        "Value": "Marketing",
+        "KeyValue": "MK-Marketing"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2025-07-03T00:00:00+02:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    },
+    {
+      "Id": "ed8253ca-e3e2-4600-b025-d8f00fa87f56",
+      "Type": {
+        "Key": "DS",
+        "Value": "Dossier",
+        "KeyValue": "DS-Dossier"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2025-07-03T00:00:00+02:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    },
+    {
+      "Id": "39ddef9e-5186-444e-b26a-312ed4459a4e",
+      "Type": {
+        "Key": "MGT",
+        "Value": "Informazioni soggette a maggior tutela",
+        "KeyValue": "MGT-Informazioni soggette a maggior tutela"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2025-07-03T00:00:00+02:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    },
+    {
+      "Id": "4f6fcaf4-2063-4874-9044-2cfd56b3ee08",
+      "Type": {
+        "Key": "SPE",
+        "Value": "Presenza Specializzando",
+        "KeyValue": "SPE-Presenza Specializzando"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2025-07-03T00:00:00+02:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    },
+    {
+      "Id": "a1fa907a-053f-44a0-816b-130f28169e5c",
+      "Type": {
+        "Key": "RIC",
+        "Value": "Ricerca scientifica",
+        "KeyValue": "RIC-Ricerca scientifica"
+      },
+      "IdCompanyCode": "b66951c2-e9d4-4000-9011-1fb3a46a9ca7",
+      "ValidFrom": "2025-07-03T00:00:00+02:00",
+      "ValidTo": null,
+      "WithdrawalDate": null,
+      "IsAgree": false
+    }
+  ],
+  "message": {
+    "error": {
+      "id": "errorMessage",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Errore",
+          "en": "Error"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Errore",
+            "en": "Error"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Si è verificato un errore durante il recupero dei consensi. Riprova più tardi.",
+            "en": "An error occurred while fetching the consents. Please try again later."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    },
+    "notFound": {
+      "id": "consentsNotFound",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "gap-2"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Consensi non trovati",
+          "en": "Consents not found"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Consensi non trovati",
+            "en": "Consents not found"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "La tua richiesta non ha prodotto risultati.",
+            "en": "Your request did not produce any results."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    }
+  }
+}
