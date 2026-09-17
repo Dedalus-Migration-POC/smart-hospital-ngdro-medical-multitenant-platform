@@ -3,20 +3,17 @@
     <app-breadcrumb [config]="pageConfig.breadcrumb"></app-breadcrumb>
   }
 
-  <div>
-    @if (userA4hPrivacyConsent(); as privacyConsent) {
+  <div class="col-12 col-md-6 mt-3">
+    @if (userA4hPrivacyConsent()) {
       <it-checkbox
-        [ngModel]="privacyConsentAccepted()"
-        (ngModelChange)="onPrivacyConsentToggleChange(privacyConsent, $event)"
-        (keydown.enter)="
-          $event.preventDefault();
-          onPrivacyConsentToggleChange(privacyConsent, !privacyConsentAccepted())
-        "
+        [formControl]="privacyConsentControl"
+        (keydown.enter)="$event.preventDefault(); onPrivacyConsentEnter()"
         toggle="true"
-        [disabled]="privacyConsentAccepted()"
       >
         <ng-container label>
-          <span class="consent-label"> {{ 'privacyConsent' }}</span>
+          <button class="btn btn-link p-0 consent-label" (click)="openConsent()">
+            {{ 'consents-a4h.privacy-policy' | translate }}
+          </button>
         </ng-container>
       </it-checkbox>
     }

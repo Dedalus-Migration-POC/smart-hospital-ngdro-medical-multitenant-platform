@@ -541,7 +541,9 @@
       "load": "Scarica",
       "preparationRules": "le indicazioni per la preparazione",
       "goToPayments": "Vai ai pagamenti"
-    },
+    }
+  },
+  "consents-a4h": {
     "consent-privacy": {
       "title": "Conferma presa visione",
       "question": "Hai preso visione dell'informativa privacy?",
@@ -551,12 +553,14 @@
       "downloadPdf": "Scarica l'informativa privacy",
       "cancel": "Annulla",
       "confirm": "Conferma"
-    }
-  },
-  "consents-a4h": {
+    },
+    "privacy-policy": "Privacy Policy",
     "update-consent-success-title": "Aggiornamento consenso riuscito",
     "update-consent-success-text": "Il consenso è stato aggiornato correttamente.",
     "update-consent-error-title": "Errore aggiornamento consenso",
-    "update-consent-error-text": "Si è verificato un errore durante l'aggiornamento del consenso."
+    "update-consent-error-text": "Si è verificato un errore durante l'aggiornamento del consenso.",
+    "alreadyAcceptedInformative": "Ho già accettato l'informativa",
+    "readAndAcceptInformative": "Ho letto ed accetto l'informativa",
+    "closeInformative": "Chiudi"
   }
 }

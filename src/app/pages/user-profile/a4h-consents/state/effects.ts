@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
+import { catchError, map, concatMap, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
@@ -39,9 +39,11 @@ export class ConsentsA4HEffects {
       ofType(ConsentsA4HActions.updateUserA4hPrivacyConsent),
       concatMap((action) =>
         this.consentsA4HService.updateUserA4hPrivacyConsent(action.payload).pipe(
-          map((response) => {
-            return ConsentsA4HActions.updateUserA4hPrivacyConsentSuccess({ data: response });
-          }),
+          mergeMap((response) => [
+            ConsentsA4HActions.updateUserA4hPrivacyConsentSuccess({ data: response }),
+            // ricarica il consenso aggiornato dopo un update riuscito
+            ConsentsA4HActions.fetchUserA4hPrivacyConsent({ payload: action.payload }),
+          ]),
           catchError((error) =>
             of(ConsentsA4HActions.updateUserA4hPrivacyConsentFailure({ error })),
           ),

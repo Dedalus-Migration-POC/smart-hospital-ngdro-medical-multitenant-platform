@@ -1,5 +1,6 @@
 .modal-dialog.modal-fullscreen {
   margin-top: 0px;
+  margin-left: 0px;
 }
 
 .modal .modal-dialog .modal-content {
@@ -19,7 +20,7 @@
 .modal-pdf {
   display: block;
   width: 100%;
-  height: min(65vh, 720px);
+  height: min(85vh, 720px);
   border: 0;
 }
 

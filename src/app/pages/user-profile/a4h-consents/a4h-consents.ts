@@ -1,6 +1,18 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  Component,
+  computed,
+  DestroyRef,
+  effect,
+  inject,
+  OnInit,
+  signal,
+  ViewContainerRef,
+} from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Spinner } from 'src/app/components/spinner/spinner';
+import { ModalService } from 'src/app/components/modal/modal.service';
+import { toLocalizedText } from 'src/app/shared/utility/text.utils';
 import { Store } from '@ngrx/store';
 import { ItCheckboxComponent } from 'design-angular-kit';
 import { SmartHospitalState } from 'src/app/store/reducers';
@@ -23,24 +35,124 @@ import { selectUserProfileData } from '../state/user-profile.selectors';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { PageConfigService } from '../../page-config.service';
 import { Observable } from 'rxjs';
-import {
-  ConsentsA4H,
-  ConsentsA4hAddPayload,
-  ConsentsA4hRevokePayload,
-  ResponseUserA4HPrivacyConsent,
-} from './state/model';
+import { ConsentsA4H, ConsentsA4hAddPayload, ConsentsA4hRevokePayload } from './state/model';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
+import { ConsentPdfService } from './consents-privacy-a4h.service';
+import { UserProfile } from '../user-profile.model';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-a4h-consents',
-  imports: [Spinner, Breadcrumb, ItCheckboxComponent, FormsModule, ReactiveFormsModule, ImageBlock],
+  imports: [
+    Spinner,
+    Breadcrumb,
+    ItCheckboxComponent,
+    FormsModule,
+    ReactiveFormsModule,
+    ImageBlock,
+    TranslateModule,
+  ],
   templateUrl: './a4h-consents.html',
   styleUrls: ['./a4h-consents.scss'],
 })
 export class A4hConsents implements OnInit {
   private readonly store = inject(Store<SmartHospitalState>);
+  private readonly modalService = inject(ModalService);
+  private readonly viewContainerRef = inject(ViewContainerRef);
   private pageConfigService = inject(PageConfigService);
+  private consentPdfService = inject(ConsentPdfService);
+  private readonly translate = inject(TranslateService);
+
+  // il consenso privacy non e' revocabile: una volta accettato (true) resta disabled per sempre
+  readonly privacyConsentControl = new FormControl<boolean>(false, { nonNullable: true });
+
+  constructor() {
+    this.consentPdfService.register(this.viewContainerRef);
+    inject(DestroyRef).onDestroy(() => this.consentPdfService.clear(this.viewContainerRef));
+
+    // sincronizza il control con il dato del backend, senza emettere eventi spuri
+    effect(() => {
+      const consent = this.userA4hPrivacyConsent();
+      if (!consent) return;
+
+      this.privacyConsentControl.setValue(consent.consentPrivacyAccepted, { emitEvent: false });
+      if (consent.consentPrivacyAccepted) {
+        this.privacyConsentControl.disable({ emitEvent: false });
+      } else {
+        this.privacyConsentControl.enable({ emitEvent: false });
+      }
+    });
+
+    // l'utente deve confermare in una modale prima che il consenso venga effettivamente accettato
+    this.privacyConsentControl.valueChanges.pipe(takeUntilDestroyed()).subscribe((isAccepted) => {
+      if (!isAccepted) return;
+
+      this.openPrivacyConsentConfirmModal();
+    });
+  }
+
+  private openPrivacyConsentConfirmModal() {
+    this.modalService.open(this.viewContainerRef, {
+      header: {
+        title: {
+          text: toLocalizedText(this.translate.instant('consents-a4h.consent-privacy.title')),
+        },
+        closeButton: false,
+      },
+      body: {
+        text: {
+          text: toLocalizedText(this.translate.instant('consents-a4h.consent-privacy.question')),
+        },
+      },
+      footer: {
+        actions: [
+          {
+            button: {
+              outline: true,
+              text: {
+                text: toLocalizedText(
+                  this.translate.instant('consents-a4h.consent-privacy.cancel'),
+                ),
+              },
+            },
+            callback: () => this.privacyConsentControl.setValue(false, { emitEvent: false }),
+          },
+          {
+            button: {
+              text: {
+                text: toLocalizedText(
+                  this.translate.instant('consents-a4h.consent-privacy.confirm'),
+                ),
+              },
+            },
+            callback: () => this.dispatchUpdatePrivacyConsent(),
+          },
+        ],
+      },
+      backdrop: true,
+      keyboard: false,
+    });
+
+    // altri checkbox della pagina precedono la modale nel DOM: sposta il focus manualmente
+    setTimeout(() => {
+      document.querySelector<HTMLElement>('.modal[tabindex="-1"]')?.focus();
+    });
+  }
+
+  private dispatchUpdatePrivacyConsent() {
+    this.store.dispatch(
+      updateUserA4hPrivacyConsent({ payload: this.buildPrivacyConsentPayload() }),
+    );
+  }
+
+  private buildPrivacyConsentPayload() {
+    return {
+      codiceStruttura: '',
+      idAnagrafico: this.userProfile()?.sequence ?? '',
+      taxCode: this.userProfile()?.identity?.identity ?? '',
+    };
+  }
 
   readonly pageConfig = toSignal(
     this.pageConfigService.get('/consents-a4h') as unknown as Observable<any>,
@@ -55,13 +167,7 @@ export class A4hConsents implements OnInit {
     }
     if (this.userProfile() && this.userProfile()?.sequence) {
       this.store.dispatch(
-        fetchUserA4hPrivacyConsent({
-          payload: {
-            codiceStruttura: '',
-            idAnagrafico: this.userProfile()?.sequence!,
-            taxCode: this.userProfile()?.identity?.identity!,
-          },
-        }),
+        fetchUserA4hPrivacyConsent({ payload: this.buildPrivacyConsentPayload() }),
       );
     }
   }
@@ -87,14 +193,6 @@ export class A4hConsents implements OnInit {
 
   // Il backend non restituisce lo stato aggiornato dopo l'update, quindi lo teniamo in locale
   private readonly consentOverrides = signal<Record<string, boolean>>({});
-  private readonly privacyConsentOverride = signal<boolean | null>(null);
-
-  readonly privacyConsentAccepted = computed(
-    () =>
-      this.privacyConsentOverride() ??
-      this.userA4hPrivacyConsent()?.consentPrivacyAccepted ??
-      false,
-  );
 
   listConsents = computed(() => {
     const otherConsents = this.consentsA4h();
@@ -137,21 +235,12 @@ export class A4hConsents implements OnInit {
     this.store.dispatch(updateConsentA4h({ payload }));
   }
 
-  onPrivacyConsentToggleChange(
-    privacyConsentA4H: ResponseUserA4HPrivacyConsent,
-    isAccepted: boolean,
-  ) {
-    if (this.privacyConsentAccepted() === isAccepted) return;
+  onPrivacyConsentEnter() {
+    if (this.privacyConsentControl.disabled) return;
+    this.privacyConsentControl.setValue(true);
+  }
 
-    this.privacyConsentOverride.set(isAccepted);
-    this.store.dispatch(
-      updateUserA4hPrivacyConsent({
-        payload: {
-          codiceStruttura: '',
-          idAnagrafico: this.userProfile()?.sequence ?? '',
-          taxCode: this.userProfile()?.identity?.identity ?? '',
-        },
-      }),
-    );
+  openConsent() {
+    this.consentPdfService.fetchPrivacyConsent(this.userProfile() as unknown as UserProfile, true);
   }
 }

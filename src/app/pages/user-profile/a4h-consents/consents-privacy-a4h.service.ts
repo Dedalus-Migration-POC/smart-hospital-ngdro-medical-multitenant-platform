@@ -13,7 +13,7 @@ import { selectSelectedStruttura } from 'src/app/pages/bookings/booking-a4h/stat
 import { selectUserProfileData } from '../state/user-profile.selectors';
 import * as UserProfileActions from '../state/user-profile.actions';
 import * as ConsentsA4HActions from './state/actions';
-import { UserProfileA4H } from '../user-profile.model';
+import { UserProfile } from '../user-profile.model';
 import { ResponseUserA4HPrivacyConsent } from './state/model';
 import { selectUserA4hPrivacyConsentData } from './state/selectors';
 
@@ -52,7 +52,7 @@ export class ConsentPdfService {
   openConsent(): void {
     if (this.consent()?.consentPrivacyAccepted === true) return;
 
-    const profile = this.user() as unknown as UserProfileA4H | null;
+    const profile = this.user() as unknown as UserProfile | null;
     if (!profile?.sequence) {
       this.actions$
         .pipe(
@@ -61,7 +61,7 @@ export class ConsentPdfService {
           takeUntilDestroyed(this.destroyRef),
         )
         .subscribe(({ data: fetchedProfile }) => {
-          const a4hProfile = fetchedProfile as unknown as UserProfileA4H;
+          const a4hProfile = fetchedProfile as unknown as UserProfile;
           if (a4hProfile.sequence) {
             this.fetchPrivacyConsent(a4hProfile);
           }
@@ -74,7 +74,7 @@ export class ConsentPdfService {
     this.fetchPrivacyConsent(profile);
   }
 
-  private fetchPrivacyConsent(profile: UserProfileA4H): void {
+  fetchPrivacyConsent(profile: UserProfile, openIfAccepted: boolean = false): void {
     if (!profile.sequence) return;
 
     this.actions$
@@ -86,6 +86,8 @@ export class ConsentPdfService {
       .subscribe(({ data: consent }) => {
         if (consent.consentPrivacyAccepted !== true && consent.PrivacyPDF) {
           this.openPdf(consent, profile);
+        } else if (consent.PrivacyPDF && openIfAccepted) {
+          this.openPdf(consent, profile);
         }
       });
 
@@ -94,13 +96,13 @@ export class ConsentPdfService {
         payload: {
           codiceStruttura: this.selectedStruttura()?.id ?? '',
           idAnagrafico: profile.sequence,
-          taxCode: profile.identity.identity,
+          taxCode: profile.identity?.identity!,
         },
       }),
     );
   }
 
-  private openPdf(consent: ResponseUserA4HPrivacyConsent, profile: UserProfileA4H): void {
+  openPdf(consent: ResponseUserA4HPrivacyConsent, profile: UserProfile): void {
     if (!this.viewContainerRef) return;
 
     this.revokePdfUrl();
@@ -110,24 +112,25 @@ export class ConsentPdfService {
     this.modalService.open(
       this.viewContainerRef,
       {
+        fullscreen: 'all',
         centered: true,
         header: {
           title: {
-            text: toLocalizedText(this.translate.instant('booking-a4h.consent-privacy.title')),
+            text: toLocalizedText(this.translate.instant('consents-a4h.consent-privacy.title')),
           },
           closeButton: true,
         },
         body: {
           text: {
-            text: toLocalizedText(this.translate.instant('booking-a4h.consent-privacy.question')),
+            text: toLocalizedText(this.translate.instant('consents-a4h.consent-privacy.question')),
           },
           pdf: {
             url: this.pdfUrl,
             resourceUrl: this.pdfResourceUrl,
-            title: this.translate.instant('booking-a4h.consent-privacy.pdfTitle'),
-            fallbackText: this.translate.instant('booking-a4h.consent-privacy.pdfFallback'),
-            openLabel: this.translate.instant('booking-a4h.consent-privacy.openPdf'),
-            downloadLabel: this.translate.instant('booking-a4h.consent-privacy.downloadPdf'),
+            title: this.translate.instant('consents-a4h.consent-privacy.pdfTitle'),
+            fallbackText: this.translate.instant('consents-a4h.consent-privacy.pdfFallback'),
+            openLabel: this.translate.instant('consents-a4h.consent-privacy.openPdf'),
+            downloadLabel: this.translate.instant('consents-a4h.consent-privacy.downloadPdf'),
           },
         },
         footer: {
@@ -138,21 +141,27 @@ export class ConsentPdfService {
                 outline: true,
                 text: {
                   text: toLocalizedText(
-                    this.translate.instant('booking-a4h.consent-privacy.cancel'),
+                    consent.consentPrivacyAccepted === true
+                      ? this.translate.instant('consents-a4h.alreadyAcceptedInformative')
+                      : this.translate.instant('consents-a4h.closeInformative'),
                   ),
                 },
               },
             },
-            {
-              button: {
-                text: {
-                  text: toLocalizedText(
-                    this.translate.instant('booking-a4h.consent-privacy.confirm'),
-                  ),
-                },
-              },
-              callback: () => this.confirmPrivacyConsent(profile),
-            },
+            ...(consent.consentPrivacyAccepted !== true
+              ? [
+                  {
+                    button: {
+                      text: {
+                        text: toLocalizedText(
+                          this.translate.instant('consents-a4h.readAndAcceptInformative'),
+                        ),
+                      },
+                    },
+                    callback: () => this.confirmPrivacyConsent(profile),
+                  },
+                ]
+              : []),
           ],
         },
       },
@@ -168,13 +177,13 @@ export class ConsentPdfService {
     this.pdfResourceUrl = null;
   }
 
-  private confirmPrivacyConsent(profile: UserProfileA4H): void {
+  private confirmPrivacyConsent(profile: UserProfile): void {
     this.store.dispatch(
       ConsentsA4HActions.updateUserA4hPrivacyConsent({
         payload: {
           codiceStruttura: this.selectedStruttura()?.id ?? '',
           idAnagrafico: profile.sequence ?? '',
-          taxCode: profile.identity.identity,
+          taxCode: profile.identity?.identity!,
         },
       }),
     );
