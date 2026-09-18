@@ -82,6 +82,39 @@
     "payed": "Paid",
     "to-pay": "To pay"
   },
+  "payments-a4h": {
+    "title": "View and manage your payments",
+    "day": "Booking made on",
+    "pay": "Pay",
+    "invoice": "View invoice",
+    "date-time": "Appointment date and time",
+    "prescription-type": {
+      "ssn": "NHS booking",
+      "solv": "Private booking without physician",
+      "slp": "Private booking with physician (SLP)",
+      "lp": "Private booking with physician (LP)",
+      "empty": "Booking"
+    },
+    "empty-list": "No payments available",
+    "paid-label": "Paid",
+    "unpaid-label": "To pay",
+    "error": {
+      "list-payment": "An error occurred while retrieving payments.",
+      "list-pending-payment": "An error occurred while retrieving pending payments.",
+      "invoice": "An error occurred while downloading the invoice, please try again later.",
+      "invoice-not-found": "Invoice not found.",
+      "not-pay": "Payment failed, please try again"
+    },
+    "nexi": {
+      "transaction": "Transfer in progress",
+      "pay": "You are about to be transferred to the NEXI circuit to pay ",
+      "pay-ok": "Payment successfully completed",
+      "invoice": "Payment invoice details",
+      "detail": "You can always retrieve the same invoice in the \"Payments > Paid\" section",
+      "back": "Back to home",
+      "result": "Payment result"
+    }
+  },
   "departments-page": {
     "search-label": "Search for service or department"
   },

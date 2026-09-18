@@ -1,0 +1,447 @@
+{
+  "id": "/payments-a4h",
+  "name": {
+    "it": "Pagamenti",
+    "en": "Payments"
+  },
+  "route": "/payments-a4h",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "title": {
+      "text": {
+        "it": "Pagamenti",
+        "en": "Payments"
+      }
+    },
+    "subTitle": {
+      "text": {
+        "it": "Visualizza e gestisci i tuoi pagamenti.",
+        "en": "View and manage your payments."
+      }
+    },
+    "items": [
+      {
+        "name": {
+          "it": "Home",
+          "en": "Home"
+        },
+        "routerLink": "/"
+      },
+      {
+        "name": {
+          "it": "Pagamenti",
+          "en": "Payments"
+        },
+        "routerLink": ""
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "cards-section",
+      "areas": {
+        "center": {
+          "items": [
+            {
+              "id": "payments-a4h-pending-cards",
+              "type": "SERVICE_CARDS",
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-6",
+                "itemsLayout": {
+                  "direction": "column",
+                  "gap": "gap-2"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "justify": "end",
+                  "gap": "gap-2"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "orders",
+                        "itemKey": "activityName",
+                        "joinWith": " / ",
+                        "fontSize": "lg",
+                        "lineHeight": "sm",
+                        "margin": {
+                          "bottom": "1rem"
+                        }
+                      },
+                      "subTitle": {
+                        "key": "structure.name",
+                        "fontSize": "md",
+                        "fontWeight": "bold",
+                        "color": {
+                          "hex": "#2F475E"
+                        },
+                        "lineHeight": "sm",
+                        "margin": {
+                          "bottom": "1.5rem"
+                        }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "orders",
+                        "type": "array",
+                        "itemKey": "summary",
+                        "listStyle": "dash",
+                        "margin": {
+                          "bottom": ".5rem"
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Prestazioni prenotate",
+                            "en": "Booked services"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "semibold",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        }
+                      },
+                      {
+                        "key": "creationDate",
+                        "type": "date",
+                        "format": "dd/MM/yyyy",
+                        "margin": {
+                          "bottom": ".5rem"
+                        },
+                        "rowSize": {
+                          "key": {
+                            "basis": "50%"
+                          },
+                          "value": {
+                            "basis": "50%"
+                          }
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Data prenotazione effettuata",
+                            "en": "Booking date"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "semibold",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        }
+                      },
+                      {
+                        "key": "amount",
+                        "type": "text",
+                        "suffix": " €",
+                        "margin": "mb-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "50%"
+                          },
+                          "value": {
+                            "basis": "50%"
+                          }
+                        },
+                        "valueStyle": {
+                          "fontSize": "md",
+                          "fontWeight": "bold",
+                          "color": {
+                            "palette": "danger"
+                          },
+                          "lineHeight": "md"
+                        },
+
+                        "label": {
+                          "text": {
+                            "it": "Importo",
+                            "en": "Amount"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "semibold",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "pay",
+                        "type": "callback",
+                        "renderAs": "button",
+                        "label": {
+                          "text": {
+                            "it": "Paga",
+                            "en": "Pay"
+                          }
+                        },
+                        "callback": {
+                          "nameFunction": "payNexiFromCard",
+                          "params": ["amount", "structure.id", "episodeNumber"]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "payments-a4h-paid-cards",
+              "type": "SERVICE_CARDS",
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-6",
+                "itemsLayout": {
+                  "direction": "column",
+                  "gap": "gap-2"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "justify": "end",
+                  "gap": "gap-2"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "prescriptions",
+                        "itemKey": "description",
+                        "joinWith": " / ",
+                        "fontSize": "lg",
+                        "lineHeight": "sm",
+                        "margin": {
+                          "bottom": "1rem"
+                        }
+                      },
+                      "subTitle": {
+                        "key": "description",
+                        "fallbackText": {
+                          "it": "Pagato",
+                          "en": "Paid"
+                        },
+                        "fontSize": "md",
+                        "fontWeight": "bold",
+                        "color": {
+                          "palette": "success"
+                        },
+                        "lineHeight": "sm",
+                        "margin": {
+                          "bottom": "1.5rem"
+                        }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "prescriptions",
+                        "type": "array",
+                        "itemKey": "summary",
+                        "listStyle": "dash",
+                        "margin": {
+                          "bottom": ".5rem"
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Prestazioni",
+                            "en": "Services"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "semibold",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        }
+                      },
+                      {
+                        "key": "createdOn",
+                        "type": "date",
+                        "format": "dd/MM/yyyy",
+                        "margin": {
+                          "bottom": ".5rem"
+                        },
+                        "rowSize": {
+                          "key": {
+                            "basis": "50%"
+                          },
+                          "value": {
+                            "basis": "50%"
+                          }
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Data prenotazione effettuata",
+                            "en": "Booking date"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "semibold",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        }
+                      },
+                      {
+                        "key": "amount",
+                        "type": "text",
+                        "suffix": " €",
+                        "margin": "mb-2",
+                        "rowSize": {
+                          "key": {
+                            "basis": "50%"
+                          },
+                          "value": {
+                            "basis": "50%"
+                          }
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Importo",
+                            "en": "Amount"
+                          },
+                          "fontSize": "md",
+                          "fontWeight": "semibold",
+                          "lineHeight": "md",
+                          "color": {
+                            "hex": "#747474"
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "invoice",
+                        "type": "callback",
+                        "renderAs": "link",
+                        "icon": {
+                          "type": "font-awesome",
+                          "name": "fa-solid fa-arrow-right",
+                          "position": "after"
+                        },
+                        "label": {
+                          "text": {
+                            "it": "Visualizza la fattura",
+                            "en": "View invoice"
+                          },
+                          "textTransform": "uppercase",
+                          "color": {
+                            "hex": "#123c73"
+                          },
+                          "fontWeight": "semibold"
+                        },
+                        "callback": {
+                          "nameFunction": "downloadInvoicePdf",
+                          "params": ["id"]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "message": {
+    "notFound": {
+      "id": "paymentsA4hNotFound",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "md"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Pagamenti non trovati",
+          "en": "Payments not found"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Pagamenti non trovati",
+            "en": "Payments not found"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Nessun pagamento disponibile.",
+            "en": "No payments available."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "warning"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    },
+    "error": {
+      "id": "paymentsA4hError",
+      "className": "",
+      "layout": {
+        "direction": "column",
+        "align": "center",
+        "justify": "center",
+        "gap": "md"
+      },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
+        "decorative": true,
+        "alt": {
+          "it": "Errore",
+          "en": "Error"
+        },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": {
+            "it": "Errore",
+            "en": "Error"
+          },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Si è verificato un errore durante il recupero dei pagamenti. Riprova più tardi.",
+            "en": "An error occurred while fetching the payments. Please try again later."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": {
+            "palette": "danger"
+          },
+          "lineHeight": "normal"
+        }
+      }
+    }
+  }
+}

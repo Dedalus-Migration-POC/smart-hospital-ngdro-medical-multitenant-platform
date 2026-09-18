@@ -1,0 +1,16 @@
+.container-pay {
+  min-height: 40vh;
+}
+
+.button-container {
+  margin: 2rem 0;
+}
+
+::ng-deep it-tab-container {
+  ul {
+    width: 100%;
+    .nav-item {
+      width: 50%;
+    }
+  }
+}

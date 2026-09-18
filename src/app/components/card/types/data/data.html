@@ -88,9 +88,8 @@
                               getListItemClass(field.listStyle),
                             ]"
                             [ngStyle]="getTextStyles(getMergedValueStyle(field))"
-                          >
-                            {{ value }}
-                          </div>
+                            [innerHTML]="value"
+                          ></div>
                         }
                       } @else {
                         <div
@@ -151,10 +150,7 @@
           @for (action of card.actions; track action.key) {
             @if (action.renderAs !== 'message') {
               @if (action.renderAs === 'button' && getButtonConfig(action); as buttonConfig) {
-                <app-button
-                  [config]="buttonConfig"
-                  (clicked)="action.compiledCallback?.()"
-                />
+                <app-button [config]="buttonConfig" (clicked)="action.compiledCallback?.()" />
               } @else {
                 @if (getLinkConfig(action); as linkConfig) {
                   <app-link [link]="linkConfig" />

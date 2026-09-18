@@ -305,6 +305,39 @@
     "payed": "Pagati",
     "to-pay": "Da pagare"
   },
+  "payments-a4h": {
+    "title": "Visualizza e gestisci i tuoi pagamenti",
+    "day": "Prenot. effettuata il giorno",
+    "pay": "Paga",
+    "invoice": "Visualizza la fattura",
+    "date-time": "Data e ora appuntamento",
+    "prescription-type": {
+      "ssn": "Prenotazione SSN",
+      "solv": "Prenotazione SOLV senza medico",
+      "slp": "Prenotazione SLP Medico",
+      "lp": "Prenotazione LP Medico",
+      "empty": "Prenotazione"
+    },
+    "empty-list": "Nessun pagamento disponibile",
+    "paid-label": "Pagate",
+    "unpaid-label": "Da pagare",
+    "error": {
+      "list-payment": "Si è verificato un errore durante il recupero dei pagamenti.",
+      "list-pending-payment": "Si è verificato un errore durante il recupero dei pagamenti in sospeso.",
+      "invoice": "E' avvenuto un errore nel download della fattura, riprovare più tardi.",
+      "invoice-not-found": "Fattura non trovata.",
+      "not-pay": "Pagamento non riuscito, ripetere la procedura"
+    },
+    "nexi": {
+      "transaction": "Trasferimento in corso",
+      "pay": "Stai per essere trasferito al circuito NEXI per effettuare il pagamento di ",
+      "pay-ok": "Pagamento effettuato con successo",
+      "invoice": "Dettagli fattura del pagamento",
+      "detail": "Puoi sempre recuperare la stessa fattura nella sezione \"Pagamenti > Pagate\"",
+      "back": "Torna alla home",
+      "result": "Esito del pagamento"
+    }
+  },
   "departments-page": {
     "search-label": "Cerca prestazione o dipartimento"
   },

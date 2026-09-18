@@ -110,7 +110,7 @@ export class Data {
   getMergedValueStyle(field: CardField) {
     return this.mergeTextStyles(this.dataTheme()?.fields?.valueStyle, {
       ...field.valueStyle,
-      color: field.color,
+      // color: field.color,
     });
   }
 
@@ -541,7 +541,11 @@ export class Data {
           return this.emptyValue;
         }
 
-        const date = rawValue instanceof Date ? rawValue : new Date(String(rawValue));
+        // numeri = timestamp epoch (es. Date.now()): new Date(String(n)) li interpreterebbe male
+        const date =
+          rawValue instanceof Date
+            ? rawValue
+            : new Date(typeof rawValue === 'number' ? rawValue : String(rawValue));
         if (Number.isNaN(date.getTime())) {
           return this.emptyValue;
         }

@@ -6,6 +6,7 @@ import * as fromReportsAndDocuments from '../pages/reports-and-documents/medical
 import * as fromRemoteConfig from './remote-config/remote-config.reducer';
 import * as fromPayments from '../pages/payments/payments-pa/state/payments.reducer';
 import * as fromPaymentsJcash from '../pages/payments/payments-jcash/state/reducer';
+import * as fromPaymentsA4h from '../pages/payments/payments-a4h/state/reducer';
 import * as fromTripletReport from '../pages/reports-and-documents/reports-by-triplet/state/reducer';
 import * as fromBookings from '../pages/bookings/bookings-ariannaCup/state/reducer';
 import * as fromBookingsHero from '../pages/bookings/bookings-hero/state/reducer';
@@ -20,6 +21,7 @@ export interface SmartHospitalState {
   [fromRemoteConfig.featureKey]: fromRemoteConfig.RemoteConfigState;
   [fromPayments.featureKey]: fromPayments.State;
   [fromPaymentsJcash.featureKey]: fromPaymentsJcash.State;
+  [fromPaymentsA4h.featureKey]: fromPaymentsA4h.State;
   [fromTripletReport.featureKey]: fromTripletReport.State;
   [fromBookings.featureKey]: fromBookings.State;
   [fromBookingsHero.featureKey]: fromBookingsHero.State;
@@ -36,6 +38,7 @@ export const reducers: ActionReducerMap<SmartHospitalState> = {
   [fromRemoteConfig.featureKey]: fromRemoteConfig.reducer,
   [fromPayments.featureKey]: fromPayments.reducer,
   [fromPaymentsJcash.featureKey]: fromPaymentsJcash.reducer,
+  [fromPaymentsA4h.featureKey]: fromPaymentsA4h.reducer,
   [fromTripletReport.featureKey]: fromTripletReport.reducer,
   [fromBookings.featureKey]: fromBookings.reducer,
   [fromBookingsHero.featureKey]: fromBookingsHero.reducer,
