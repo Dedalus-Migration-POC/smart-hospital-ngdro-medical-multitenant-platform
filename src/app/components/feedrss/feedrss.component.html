@@ -1,36 +1,107 @@
 @if (config(); as config) {
-  <div class="feed-rss-container">
-    <h3>{{ config.title.text[lang()] }}</h3>
+  <div
+    class="feed-rss-container d-flex flex-column"
+    [ngClass]="getBackgroundPaletteClass(config.container)"
+    [ngStyle]="{
+      ...getSizeStyles(config.container.size),
+      ...getBackgroundStyles(config.container),
+      ...getSpacingStyles(config.container.margin),
+      ...getSpacingStyles(config.container.padding, 'padding'),
+    }"
+  >
+    <h3
+      class="cursor-default"
+      [ngClass]="getTextClasses(config.container.title)"
+      [ngStyle]="getTextStyles(config.container.title)"
+    >
+      {{ config.container.title.text[lang()] }}
+    </h3>
     @if (hasFeeds()) {
-      @if (config.layout === 'vertical') {
-        <div class="feed-rss-cards-container overflow-auto" [style.height]="config.height">
+      @if (config.orientation === 'vertical') {
+        <div class="feed-rss-cards-container h-100 overflow-auto">
           @for (item of feedsRss(); track $index) {
-            <div class="it-card border mb-2">
-              <div class="it-card-title h5">
-                {{ item.title }}
-              </div>
-              <div class="it-card-body">
-                <div class="category-top">
-                  <span class="badge bg-secondary me-2">{{ item.category }}</span>
-                  <span class="data">{{ item.pubDate | date: 'dd/MM/yyyy' }}</span>
+            <div
+              class="it-card cursor-default"
+              [ngClass]="[
+                getBackgroundPaletteClass(config.itemConfig.container ?? {}),
+                config.itemConfig.container?.margin ? '' : 'mb-2',
+                config.itemConfig.container?.padding ? '' : 'p-2',
+              ]"
+              [ngStyle]="{
+                ...getBackgroundStyles(config.itemConfig.container ?? {}),
+                ...getBorderStyles(config.itemConfig.container ?? {}),
+                ...getSpacingStyles(config.itemConfig.container?.margin),
+                ...getSpacingStyles(config.itemConfig.container?.padding, 'padding'),
+              }"
+            >
+              <div
+                class="it-card-body"
+                [ngClass]="
+                  getFlexLayoutClasses(
+                    config.itemConfig.fields?.layout ?? { direction: 'column', gap: 'gap-2' }
+                  )
+                "
+              >
+                <div
+                  class="it-card-title h5"
+                  [ngClass]="getTextClasses(config.itemConfig.fields?.title)"
+                  [ngStyle]="getTextStyles(config.itemConfig.fields?.title)"
+                >
+                  {{ item.title }}
                 </div>
-                <p class="card-text" [innerHTML]="item.description"></p>
-                @if (item.link) {
-                  <a
-                    [href]="item.link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="fw-semibold news-more"
-                    >{{ config.button.text[lang()] }}
-                    <i class="icon-news-more fa-solid fa-arrow-right" aria-hidden="true"></i>
-                  </a>
-                }
+                <div
+                  [ngClass]="
+                    getFlexLayoutClasses(
+                      config.itemConfig.fields?.content?.layout ?? {
+                        direction: 'column',
+                        gap: 'gap-1',
+                      }
+                    )
+                  "
+                >
+                  <div class="d-flex align-items-center gap-2">
+                    @if (item.category) {
+                      <span
+                        [class.badge]="
+                          config.itemConfig.fields?.content?.category?.isBadge !== false
+                        "
+                        [ngClass]="[
+                          getCategoryBackgroundClass(config.itemConfig.fields?.content?.category),
+                          ...getTextClasses(config.itemConfig.fields?.content?.category),
+                        ]"
+                        [ngStyle]="{
+                          ...getTextStyles(config.itemConfig.fields?.content?.category),
+                          ...getBackgroundStyles(config.itemConfig.fields?.content?.category ?? {}),
+                        }"
+                      >
+                        {{ item.category }}
+                      </span>
+                    }
+                    <span
+                      [ngClass]="getTextClasses(config.itemConfig.fields?.content?.date)"
+                      [ngStyle]="getTextStyles(config.itemConfig.fields?.content?.date)"
+                    >
+                      {{ item.pubDate | date: 'dd/MM/yyyy' }}
+                    </span>
+                  </div>
+                  @if (item.description) {
+                    <div
+                      class="card-text"
+                      [ngClass]="getTextClasses(config.itemConfig.fields?.content?.description)"
+                      [ngStyle]="getTextStyles(config.itemConfig.fields?.content?.description)"
+                      [innerHTML]="item.description"
+                    ></div>
+                  }
+                  @if (item.link) {
+                    <app-link [link]="getReadMoreLink(item, config.itemConfig.readMore)" />
+                  }
+                </div>
               </div>
             </div>
           }
         </div>
       }
-      <!-- @if (config.layout === 'horizontal') {
+      <!-- @if (config.orientation === 'horizontal') {
         <div class="bd-example">
           <it-carousel type="three-cols">
             @for (item of feedsRss(); track $index) {

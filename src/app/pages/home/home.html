@@ -2,7 +2,11 @@
   @for (section of pageConfig.sections; track section.id) {
     <section
       [attr.id]="section.id"
-      [ngClass]="[section.className ?? '', section.background ? 'bg-' + section.background : '']"
+      [ngClass]="[section.className ?? '', getSectionBackgroundClass(section.background)]"
+      [ngStyle]="{
+        ...getSectionBackgroundStyles(section.background),
+        ...getSectionSpacingStyles(section.margin),
+      }"
       [style.height]="section.height ?? null"
     >
       <app-areas-layout [areas]="section.areas"></app-areas-layout>

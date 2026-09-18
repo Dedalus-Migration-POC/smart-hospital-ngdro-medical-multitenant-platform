@@ -110,20 +110,53 @@
               "enabled": true,
               "props": {
                 "id": "feed_rss",
-                "title": {
-                  "text": {
-                    "it": "Notizie FeedRss",
-                    "en": "FeedRss News"
+                "container": {
+                  "title": {
+                    "text": {
+                      "it": "Notizie FeedRss",
+                      "en": "FeedRss News"
+                    },
+                    "fontSize": "md",
+                    "fontWeight": "bold",
+                    "color": {
+                      "palette": "dark"
+                    },
+                    "lineHeight": "md"
                   },
-                  "fontSize": "md",
-                  "fontWeight": "bold",
-                  "color": "dark",
-                  "lineHeight": "md"
+                  "size": {
+                    "height": "300px"
+                  }
                 },
-                "button": {
-                  "text": {
-                    "it": "LEGGI TUTTO",
-                    "en": "READ ALL"
+                "itemConfig": {
+                  "readMore": {
+                    "text": {
+                      "it": "LEGGI TUTTO",
+                      "en": "READ ALL"
+                    },
+                    "style": {
+                      "textStyle": {
+                        "fontWeight": "semibold"
+                      },
+                      "mode": "bootstrap",
+                      "palette": "primary",
+                      "hover": {
+                        "textDecoration": "underline"
+                      }
+                    },
+                    "icon": {
+                      "type": "font-awesome",
+                      "name": "fa-solid fa-arrow-right",
+                      "position": "after"
+                    }
+                  },
+                  "container": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": {
+                        "hex": "#C4C7C9"
+                      }
+                    }
                   }
                 },
                 "feedRssConnectionData": {
@@ -131,8 +164,7 @@
                   "apiKey": "c007033fa3c728e06bd2a6229f4c855ac4d2c4188ff8b0f28a0ca2cf285db6b43ab16c4e81208cd6b8bbaeca31ba1ff2c805054945f6e7bace3dc71839602bd7",
                   "domainName": "ast-latina-webapp.r-s.dev"
                 },
-                "layout": "vertical",
-                "height": "300px",
+                "orientation": "vertical",
                 "notFoundMessage": {
                   "id": "reportNotFound",
                   "className": "",
@@ -161,7 +193,9 @@
                       },
                       "fontSize": "xl",
                       "fontWeight": "normal",
-                      "color": "warning",
+                      "color": {
+                        "palette": "warning"
+                      },
                       "lineHeight": "normal"
                     },
                     "subTitle": {
@@ -171,7 +205,9 @@
                       },
                       "fontSize": "md",
                       "fontWeight": "normal",
-                      "color": "warning",
+                      "color": {
+                        "palette": "warning"
+                      },
                       "lineHeight": "normal"
                     }
                   }
@@ -251,25 +287,13 @@
                         "text": {
                           "it": "Storico vaccinale",
                           "en": "Vaccination history"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
-                        },
-                        "lineHeight": "md"
+                        }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Non sviluppato",
                           "en": "Not developed"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
-                        },
-                        "lineHeight": "lg"
+                        }
                       }
                     },
                     "blocked": false,
@@ -295,22 +319,12 @@
                         "text": {
                           "it": "Pagamenti",
                           "en": "Payments"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "PagoPA",
                           "en": "PagoPA"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -337,22 +351,12 @@
                         "text": {
                           "it": "Pagamenti",
                           "en": "Payments"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "J-Cash",
                           "en": "J-Cash"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -379,22 +383,12 @@
                         "text": {
                           "it": "I tuoi referti con un click",
                           "en": "Your reports with one click"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Vedi i tuoi referti",
                           "en": "View your medical reports"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -421,22 +415,12 @@
                         "text": {
                           "it": "Single report",
                           "en": "Single report"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Cerca il tuo referto",
                           "en": "Search your report"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -463,22 +447,12 @@
                         "text": {
                           "it": "Referti per triplette",
                           "en": "Triplet reports"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Cerca il tuo referto",
                           "en": "Search your report"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -505,11 +479,6 @@
                         "text": {
                           "it": "Dipartimenti e reparti",
                           "en": "Departments and units"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       }
                     },
@@ -536,22 +505,12 @@
                         "text": {
                           "it": "Prenotazioni",
                           "en": "Bookings"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Arianna-CUP",
                           "en": "Arianna-CUP"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -578,22 +537,12 @@
                         "text": {
                           "it": "Prenotazioni",
                           "en": "Bookings"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Hero",
                           "en": "Hero"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -669,22 +618,12 @@
                         "text": {
                           "it": "News",
                           "en": "News"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Apri link esterno per leggere le news",
                           "en": "Open external link for news"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },
@@ -711,22 +650,12 @@
                         "text": {
                           "it": "Cartella clinica",
                           "en": "Clinical records"
-                        },
-                        "fontSize": "md",
-                        "fontWeight": "bold",
-                        "color": {
-                          "palette": "dark"
                         }
                       },
                       "subTitle": {
                         "text": {
                           "it": "Apri link esterno per vedere la tua cartella clinica",
                           "en": "Open external link"
-                        },
-                        "fontSize": "sm",
-                        "fontWeight": "normal",
-                        "color": {
-                          "palette": "secondary"
                         }
                       }
                     },

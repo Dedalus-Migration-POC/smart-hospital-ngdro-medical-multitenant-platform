@@ -7,23 +7,6 @@
   "route": "/single-report",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
-    "containerStyle": {
-      "background": {
-        "fill": {
-          "hex": "#175492"
-        }
-      }
-    },
-    "itemsStyle": {
-      "color": {
-        "hex": "#c52424"
-      }
-    },
-    "activeItemStyle": {
-      "color": {
-        "hex": "#14d6c6"
-      }
-    },
     "title": {
       "text": {
         "it": "Referto",
@@ -410,9 +393,7 @@
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadSingleReport",
-                          "params": [
-                            true
-                          ]
+                          "params": [true]
                         },
                         "hideIf": [
                           {
@@ -434,9 +415,7 @@
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadSingleReport",
-                          "params": [
-                            false
-                          ]
+                          "params": [false]
                         },
                         "hideIf": [
                           {
@@ -458,9 +437,7 @@
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadSingleReport",
-                          "params": [
-                            true
-                          ]
+                          "params": [true]
                         },
                         "hideIf": [
                           {

@@ -2,7 +2,10 @@
   <div class="d-flex flex-column h-100">
     <app-header [config]="config.header"></app-header>
     <main class="flex-grow-1 page-bg-container" [ngStyle]="backgroundStyle()">
-      <div class="container h-100">
+      <div
+        class="h-100"
+        [ngClass]="!config.theme.fullWidth || currentUrl() !== '/' ? 'container' : ''"
+      >
         <router-outlet></router-outlet>
       </div>
       @if (config.chatbot) {

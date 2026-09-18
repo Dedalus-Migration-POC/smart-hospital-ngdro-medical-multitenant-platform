@@ -1,5 +1,9 @@
 @if (config(); as config) {
-  <nav class="breadcrumb-container" [ngStyle]="getContainerStyles(config)">
+  <nav
+    class="breadcrumb-container"
+    [ngClass]="appConfig()?.theme?.fullWidth ? 'container' : ''"
+    [ngStyle]="getContainerStyles(config)"
+  >
     <ol
       class="breadcrumb"
       [ngClass]="

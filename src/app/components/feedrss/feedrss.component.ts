@@ -19,14 +19,25 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectFirebaseObject } from 'src/app/store/remote-config/remote-config.selectors';
-import { FeedItem, FeedRssConnectionData, FeedRssProps } from './model';
+import { FeedCategoryConfig, FeedItem, FeedRssConnectionData, FeedRssProps } from './model';
 import { LanguageService } from 'src/app/initialize/state/services/language.service';
 import { ImageBlock } from '../image-block/image-block';
+import { Link } from '../link/link';
+import { getTextClasses } from 'src/app/shared/utility/text.utils';
+import { getFlexLayoutClasses, getSizeStyles } from 'src/app/shared/utility/layout.utils';
+import {
+  getBackgroundPaletteClass,
+  getBackgroundStyles,
+  getBorderStyles,
+  getSpacingStyles,
+  getTextStyles,
+} from 'src/app/shared/utility/style.utils';
+import { LinkConfig } from 'src/app/shared/models/shared_model';
 
 @Component({
   selector: 'app-feedrss',
   standalone: true,
-  imports: [CommonModule, DesignAngularKitModule, TranslateModule, ImageBlock],
+  imports: [CommonModule, DesignAngularKitModule, TranslateModule, ImageBlock, Link],
   templateUrl: './feedrss.component.html',
   styleUrls: ['./feedrss.component.scss'],
 })
@@ -39,6 +50,33 @@ export class FeedrssComponent {
 
   private readonly config$ = toObservable(this.config);
   lang = this.langService.lang;
+  protected readonly getTextClasses = getTextClasses;
+  protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
+  protected readonly getSizeStyles = getSizeStyles;
+  protected readonly getTextStyles = getTextStyles;
+  protected readonly getBackgroundPaletteClass = getBackgroundPaletteClass;
+  protected readonly getBackgroundStyles = getBackgroundStyles;
+  protected readonly getBorderStyles = getBorderStyles;
+  protected readonly getSpacingStyles = getSpacingStyles;
+
+  getCategoryBackgroundClass(category?: FeedCategoryConfig): string {
+    if (category?.isBadge === false) {
+      return '';
+    }
+
+    return category?.background ? getBackgroundPaletteClass(category) : 'bg-secondary';
+  }
+
+  getReadMoreLink(item: FeedItem, readMore: FeedRssProps['itemConfig']['readMore']): LinkConfig {
+    return {
+      text: readMore.text,
+      url: item.link,
+      external: true,
+      target: '_blank',
+      icon: readMore.icon,
+      style: readMore.style,
+    };
+  }
 
   readonly feedsRss = toSignal(
     this.getConnectionData$().pipe(switchMap((feedRssConfig) => this.getFeeds(feedRssConfig))),

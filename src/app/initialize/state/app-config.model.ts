@@ -28,6 +28,9 @@ export interface AppConfig {
   favicon: string;
   firebaseConfig?: FirebaseConfig;
   theme: {
+    // Usa tutta la larghezza della viewport per le sezioni della pagina.
+    // Il contenuto interno resta allineato nel container Bootstrap.
+    fullWidth?: boolean;
     colors: {
       primary: string;
       secondary: string;
@@ -89,7 +92,8 @@ export interface AppConfig {
       // Configurazione theme specifica per card di tipo mediaText
       // Estende le proprietà definite in base
       mediaText?: {
-        textStyle?: TextStyle;
+        titleStyle?: TextStyle;
+        subTitleStyle?: TextStyle;
         imageStyle?: ImageStyle;
       };
       // Configurazione theme specifica per card di tipo data

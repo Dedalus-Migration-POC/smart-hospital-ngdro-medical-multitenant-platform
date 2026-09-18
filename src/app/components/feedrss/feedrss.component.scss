@@ -2,3 +2,23 @@
   scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
   scrollbar-width: thin;
 }
+
+// Reset styles
+h3,
+::ng-deep p {
+  margin-bottom: 0px;
+}
+
+.it-card {
+  padding-bottom: 0rem;
+
+  .it-card-title {
+    margin-top: 0px;
+    padding: 0;
+  }
+
+  .it-card-body {
+    padding: 0px;
+    margin: 0px;
+  }
+}

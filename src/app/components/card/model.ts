@@ -36,6 +36,8 @@ export interface CardsContainer {
   id?: string;
   className?: string;
   ariaLabel?: LocalizedText;
+  padding?: SpacingConfig; // del contenitore principale, non delle singole card
+  margin?: SpacingConfig; // del contenitore principale, non delle singole card
   header?: TextSection;
 
   // layout del container principale
