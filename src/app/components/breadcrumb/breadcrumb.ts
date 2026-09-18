@@ -20,9 +20,7 @@ import {
   getTextStyles,
 } from '../../shared/utility/style.utils';
 import { getTextClasses, mergeTextStyles } from '../../shared/utility/text.utils';
-import {
-  mergeButtonStyle,
-} from '../../shared/utility/button.utils';
+import { mergeButtonStyle } from '../../shared/utility/button.utils';
 import { ButtonConfig, ButtonStyle, TextStyle } from '../../shared/models/shared_model';
 import { Store } from '@ngrx/store';
 import { SmartHospitalState } from '../../store/reducers';
@@ -41,7 +39,9 @@ export class Breadcrumb {
   readonly buttonAction = output<void>();
 
   private readonly store = inject(Store<SmartHospitalState>);
-  private readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
+  protected readonly appConfig = toSignal(this.store.select(selectAppConfig), {
+    initialValue: null,
+  });
   private readonly breadcrumbTheme = computed(() => this.appConfig()?.theme.breadcrumb);
   private readonly buttonsTheme = computed(() => this.appConfig()?.theme.buttonsStyle);
   private langService = inject(LanguageService);

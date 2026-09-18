@@ -62,10 +62,7 @@
                   "gap": "gap-3"
                 },
                 "layoutFields": {
-                  "direction": [
-                    "column",
-                    "md-row"
-                  ],
+                  "direction": ["column", "md-row"],
                   "wrap": "wrap",
                   "gap": "gap-2"
                 },
@@ -399,9 +396,7 @@
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadReport",
-                          "params": [
-                            true
-                          ]
+                          "params": [true]
                         },
                         "hideIf": [
                           {
@@ -429,9 +424,7 @@
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadReport",
-                          "params": [
-                            false
-                          ]
+                          "params": [false]
                         },
                         "hideIf": [
                           {

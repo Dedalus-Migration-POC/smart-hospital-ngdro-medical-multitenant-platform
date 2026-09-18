@@ -30,10 +30,10 @@
             @if (card.text.title.text[lang()]; as titleText) {
               <div
                 [ngClass]="
-                  getTextClasses(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.title))
+                  getTextClasses(mergeTextStyles(mediaTextTheme()?.titleStyle, card.text.title))
                 "
                 [ngStyle]="
-                  getTextStyles(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.title))
+                  getTextStyles(mergeTextStyles(mediaTextTheme()?.titleStyle, card.text.title))
                 "
               >
                 {{ titleText }}
@@ -43,10 +43,14 @@
             @if (card.text.subTitle?.text?.[lang()]; as subTitleText) {
               <div
                 [ngClass]="
-                  getTextClasses(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.subTitle))
+                  getTextClasses(
+                    mergeTextStyles(mediaTextTheme()?.subTitleStyle, card.text.subTitle)
+                  )
                 "
                 [ngStyle]="
-                  getTextStyles(mergeTextStyles(mediaTextTheme()?.textStyle, card.text.subTitle))
+                  getTextStyles(
+                    mergeTextStyles(mediaTextTheme()?.subTitleStyle, card.text.subTitle)
+                  )
                 "
               >
                 {{ subTitleText }}

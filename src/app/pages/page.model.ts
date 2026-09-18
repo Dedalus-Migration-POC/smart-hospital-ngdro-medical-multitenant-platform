@@ -2,7 +2,12 @@ import { BreadcrumbConfig } from '../components/breadcrumb/model';
 import { ImageBlockConfig } from '../components/image-block/model';
 import { ModalConfig } from '../components/modal/model';
 import { AreasConfig } from '../shared/layout-system/models/layout.model';
-import { Colors, LocalizedText } from '../shared/models/shared_model';
+import {
+  BackgroundConfig,
+  Colors,
+  LocalizedText,
+  SpacingConfig,
+} from '../shared/models/shared_model';
 
 export type RoutePage = '/medical-reports' | '/single-report' | '/login' | '/user-profile';
 
@@ -45,8 +50,9 @@ export interface PageMetaConfig {
 
 export interface PageSectionConfig {
   id: string;
-  background?: Colors;
+  background?: Colors | BackgroundConfig;
   className?: string;
+  margin?: SpacingConfig;
   height?: string;
   areas: AreasConfig;
 }

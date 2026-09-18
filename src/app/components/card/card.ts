@@ -10,7 +10,7 @@ import { Data } from './types/data/data';
 import { getTextClasses, mergeTextStyles } from 'src/app/shared/utility/text.utils';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { selectAppConfig } from 'src/app/initialize/state/selector';
-import { getTextStyles } from 'src/app/shared/utility/style.utils';
+import { getSpacingStyles, getTextStyles } from 'src/app/shared/utility/style.utils';
 
 @Component({
   selector: 'app-card',
@@ -22,6 +22,7 @@ export class Card {
   readonly config = input<CompiledCardsContainer | null>(null);
   protected readonly getTextClasses = getTextClasses;
   protected readonly getTextStyles = getTextStyles;
+  protected readonly getSpacingStyles = getSpacingStyles;
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
 

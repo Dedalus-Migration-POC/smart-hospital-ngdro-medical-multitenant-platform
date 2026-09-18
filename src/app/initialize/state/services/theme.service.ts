@@ -147,7 +147,7 @@ export class ThemeService {
   ): string {
     const buttonCss = colors
       ? Object.entries(colors)
-        .map(([color, value]) => this.buildButtonCss(color, value))
+          .map(([color, value]) => this.buildButtonCss(color, value))
           .join('\n')
       : '';
 
@@ -195,8 +195,10 @@ export class ThemeService {
   }
 
   private buildButtonCss(color: string, value: string): string {
-    const hoverColor = this.shadeColor(value, 0.1) ?? `color-mix(in srgb, var(--bs-${color}) 90%, #000)`;
-    const activeColor = this.shadeColor(value, 0.2) ?? `color-mix(in srgb, var(--bs-${color}) 80%, #000)`;
+    const hoverColor =
+      this.shadeColor(value, 0.1) ?? `color-mix(in srgb, var(--bs-${color}) 90%, #000)`;
+    const activeColor =
+      this.shadeColor(value, 0.2) ?? `color-mix(in srgb, var(--bs-${color}) 80%, #000)`;
 
     return `
       .btn-${color} {

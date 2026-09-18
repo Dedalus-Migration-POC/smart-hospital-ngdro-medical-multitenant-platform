@@ -1,32 +1,36 @@
 @if (config(); as config) {
-  @if (config.header) {
-    <div class="my-2">
-      <h2
-        class="cursor-default mb-0"
-        [ngClass]="getTextClasses(headerTitleStyle())"
-        [ngStyle]="getTextStyles(headerTitleStyle())"
-      >
-        {{ config.header.title.text[lang()] }}
-      </h2>
-
-      @if (config.header.subTitle) {
-        <p
-          class="cursor-default mb-0"
-          [ngClass]="getTextClasses(headerSubtitleStyle())"
-          [ngStyle]="getTextStyles(headerSubtitleStyle())"
-        >
-          {{ config.header.subTitle.text[lang()] }}
-        </p>
-      }
-    </div>
-  }
-
   @if (config.items.length) {
     <div
       [attr.id]="config.id ?? null"
       [attr.aria-label]="config.ariaLabel?.[lang()] ?? null"
       [ngClass]="containerClasses()"
+      [ngStyle]="{
+        ...getSpacingStyles(config.margin),
+        ...getSpacingStyles(config.padding, 'padding'),
+      }"
     >
+      @if (config.header) {
+        <div>
+          <h2
+            class="cursor-default"
+            [ngClass]="getTextClasses(headerTitleStyle())"
+            [ngStyle]="getTextStyles(headerTitleStyle())"
+          >
+            {{ config.header.title.text[lang()] }}
+          </h2>
+
+          @if (config.header.subTitle) {
+            <p
+              class="cursor-default"
+              [ngClass]="getTextClasses(headerSubtitleStyle())"
+              [ngStyle]="getTextStyles(headerSubtitleStyle())"
+            >
+              {{ config.header.subTitle.text[lang()] }}
+            </p>
+          }
+        </div>
+      }
+
       <div class="row g-3">
         @for (item of config.items; track item.id) {
           @switch (item.type) {

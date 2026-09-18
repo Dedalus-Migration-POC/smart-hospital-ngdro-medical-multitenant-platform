@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, of, shareReplay, switchMap, throwError } from 'rxjs';
+import { catchError, Observable, of, shareReplay } from 'rxjs';
 import { PageConfig } from './page.model';
 
-const COMMON_PAGES_ASSETS_PATH = 'assets/json-config/default/pages';
-const CMS_PAGES_ASSETS_PATH = 'assets/json-config/cms/pages';
+export const COMMON_PAGES_ASSETS_PATH = 'assets/json-config/default/pages';
+export const CMS_PAGES_ASSETS_PATH = 'assets/json-config/cms/pages';
+
+// Le route presenti qui vengono caricate da cms/pages; tutte le altre usano default/pages.
+const CMS_PAGE_IDS = new Set(['/']);
 
 // a differenza di AppConfig (nello store, letto ovunque), ogni pagina serve a un solo
 // componente: qui basta una cache locale per-id, non serve passare dallo store globale.
@@ -16,32 +19,19 @@ export class PageConfigService {
   private cache = new Map<string, Observable<PageConfig>>();
 
   get(id: string): Observable<PageConfig> {
-    if (!this.cache.has(id)) {
+    const basePath = CMS_PAGE_IDS.has(id) ? CMS_PAGES_ASSETS_PATH : COMMON_PAGES_ASSETS_PATH;
+    const cacheKey = `${basePath}:${id}`;
+
+    if (!this.cache.has(cacheKey)) {
       // '/' -> 'home', '/user-profile' -> 'user-profile', '/departments/units' -> 'departments-units'
       const path = id === '/' ? 'home' : id.replace(/^\//, '').replace(/\//g, '-');
 
-      const commonPage$ = this.http.get<PageConfig>(
-        `${COMMON_PAGES_ASSETS_PATH}/${path}.json`,
-      );
-      const cmsPage$ = this.http
-        .get<PageConfig>(`${CMS_PAGES_ASSETS_PATH}/${path}.json`)
-        .pipe(
-          catchError((error) =>
-            error.status === 404 ? of(undefined) : throwError(() => error),
-          ),
-        );
-
       this.cache.set(
-        id,
-        cmsPage$.pipe(
-          // Un file CMS sostituisce interamente la configurazione comune della pagina.
-          // Se manca, la pagina comune resta il fallback.
-          switchMap((cmsPage) => (cmsPage ? of(cmsPage) : commonPage$)),
-          shareReplay(1),
-        ),
+        cacheKey,
+        this.http.get<PageConfig>(`${basePath}/${path}.json`).pipe(shareReplay(1)),
       );
     }
-    return this.cache.get(id)!;
+    return this.cache.get(cacheKey)!;
   }
 
   // per url di route non noti a priori (es. l'url corrente osservato in app.ts): un 404

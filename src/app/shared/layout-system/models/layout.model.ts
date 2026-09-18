@@ -1,4 +1,4 @@
-import { FlexLayoutConfig, SpacingConfig } from '../../models/shared_model';
+import { BackgroundConfig, FlexLayoutConfig, SpacingConfig } from '../../models/shared_model';
 
 export type ItemType =
   | 'IMAGE_BLOCK'
@@ -39,6 +39,7 @@ export interface AreaSize {
 export interface LayoutArea {
   layout: FlexLayoutConfig; // tutte le proprietà flex (direction, align, justify, ...)
   size?: AreaSize; // dimensioni fisse non responsive
+  background?: BackgroundConfig;
   margin?: SpacingConfig;
   padding?: SpacingConfig;
   items: Item[];

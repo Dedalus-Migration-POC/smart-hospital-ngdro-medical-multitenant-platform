@@ -1,8 +1,17 @@
 @if (areas(); as areas) {
-  <div class="w-100 h-100" [ngClass]="getFlexLayoutClasses(areas.layout)">
+  <div
+    class="w-100 h-100"
+    [ngClass]="[
+      appConfig()?.theme?.fullWidth ? 'container' : '',
+      ...getFlexLayoutClasses(areas.layout),
+    ]"
+  >
     @if (areas.start; as start) {
       @if (start.items.length) {
-        <div [ngClass]="getFlexLayoutClasses(start.layout)" [ngStyle]="getAreaStyles(start)">
+        <div
+          [ngClass]="[...getFlexLayoutClasses(start.layout), getBackgroundPaletteClass(start)]"
+          [ngStyle]="getAreaStyles(start)"
+        >
           @for (item of start.items; track item.id) {
             @if (item.enabled) {
               <app-layout-item [item]="item" [ngClass]="item.className"></app-layout-item>
@@ -14,7 +23,10 @@
 
     @if (areas.center; as center) {
       @if (center.items.length) {
-        <div [ngClass]="getFlexLayoutClasses(center.layout)" [ngStyle]="getAreaStyles(center)">
+        <div
+          [ngClass]="[...getFlexLayoutClasses(center.layout), getBackgroundPaletteClass(center)]"
+          [ngStyle]="getAreaStyles(center)"
+        >
           @for (item of center.items; track item.id) {
             @if (item.enabled) {
               <app-layout-item [item]="item" [ngClass]="item.className"></app-layout-item>
@@ -26,7 +38,10 @@
 
     @if (areas.end; as end) {
       @if (end.items.length) {
-        <div [ngClass]="getFlexLayoutClasses(end.layout)" [ngStyle]="getAreaStyles(end)">
+        <div
+          [ngClass]="[...getFlexLayoutClasses(end.layout), getBackgroundPaletteClass(end)]"
+          [ngStyle]="getAreaStyles(end)"
+        >
           @for (item of end.items; track item.id) {
             @if (item.enabled) {
               <app-layout-item [item]="item" [ngClass]="item.className"></app-layout-item>
