@@ -467,13 +467,16 @@
 
       "areas": {
         "layout": {
-          "direction": ["row", "md-row"],
+          "direction": ["column-reverse", "md-row"],
           "gap": "gap-5",
           "align": "start"
         },
         "start": {
+          "size": {
+            "basis": "50%"
+          },
           "layout": {
-            "direction": "row",
+            "direction": ["row"],
             "align": "start",
             "wrap": "nowrap",
             "gap": "gap-5"
@@ -599,7 +602,20 @@
                   }
                 }
               }
-            },
+            }
+          ]
+        },
+        "end": {
+          "size": {
+            "basis": "50%"
+          },
+          "layout": {
+            "direction": ["column-reverse", "md-row"],
+            "align": "start",
+            "wrap": "nowrap",
+            "gap": "gap-5"
+          },
+          "items": [
             {
               "id": "service-cards2",
               "type": "SERVICE_CARDS",
