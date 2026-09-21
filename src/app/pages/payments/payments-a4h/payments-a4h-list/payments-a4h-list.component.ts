@@ -75,6 +75,14 @@ export class PaymentsA4hListComponent implements OnInit {
   payNexiState = this.store.selectSignal(selectPayNexi);
   downloadingInvoicePdf = this.store.selectSignal(selectDownloadingInvoicePdf);
 
+  readonly isLoading = computed(
+    () =>
+      this.payNexiState().loading ||
+      this.pendingPayments().loading ||
+      this.payments().loading ||
+      this.downloadingInvoicePdf(),
+  );
+
   readonly cardsSectionItems = computed<any[]>(() =>
     getServiceCardsItems(this.pageConfig()?.sections, '/payments-a4h'),
   );
@@ -195,8 +203,8 @@ export class PaymentsA4hListComponent implements OnInit {
         ...payment,
         orders: payment.orders.map((order) => ({
           ...order,
-          activityName: order.activity.name,
-          summary: this.toSummary(order.activity.name, order.scheduledOn),
+          scheduledOn:
+            this.datePipe.transform(order.scheduledOn, 'dd/MM/yyyy HH:mm') ?? order.scheduledOn,
         })),
       };
     }
@@ -205,16 +213,11 @@ export class PaymentsA4hListComponent implements OnInit {
       ...payment,
       prescriptions: payment.prescriptions.map((prescription) => ({
         ...prescription,
-        summary: this.toSummary(prescription.description, prescription.scheduledOn),
+        scheduledOn:
+          this.datePipe.transform(prescription.scheduledOn, 'dd/MM/yyyy HH:mm') ??
+          prescription.scheduledOn,
       })),
     };
-  }
-
-  private toSummary(name: string, scheduledOn: string | undefined): string {
-    const formattedDate = scheduledOn
-      ? this.datePipe.transform(scheduledOn, 'dd/MM/yyyy HH:mm')
-      : null;
-    return formattedDate ? `${name} - <strong>${formattedDate}</strong>` : name;
   }
 
   private removeQueryParams(): void {

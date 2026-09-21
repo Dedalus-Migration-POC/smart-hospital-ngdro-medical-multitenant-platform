@@ -54,7 +54,7 @@
           }
 
           @if (card.fields.length) {
-            @for (field of card.fields; track field.key; let i = $index) {
+            @for (field of card.fields; track field.key ?? i; let i = $index) {
               <div
                 [ngClass]="[...getFlexLayoutClasses(layout), field.className ?? '']"
                 [ngStyle]="getSpacingStyles(field.margin)"

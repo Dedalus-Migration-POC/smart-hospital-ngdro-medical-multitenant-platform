@@ -6,14 +6,6 @@
   <ng-template #payNexiPending let-amount="selectedAmount">
     <h1 class="page-title mb-3">{{ 'payments-a4h.nexi.transaction' | translate }}</h1>
     <h5 class="fw-normal">{{ 'payments-a4h.nexi.pay' | translate }}{{ amount }}&euro;</h5>
-
-    @if (payNexiState().loading) {
-      <app-spinner
-        [fullScreen]="true"
-        text="Loading"
-        [className]="'flex-column gap-3 text-secondary'"
-      ></app-spinner>
-    }
   </ng-template>
 
   <div class="container-pay">
@@ -28,14 +20,6 @@
         <it-tab-container>
           <it-tab-item [label]="'payments-a4h.unpaid-label' | translate" [active]="true">
             <div class="mt-4">
-              @if (pendingPayments().loading) {
-                <app-spinner
-                  [fullScreen]="true"
-                  text="Loading"
-                  [className]="'flex-column gap-3 text-secondary'"
-                ></app-spinner>
-              }
-
               @if (pendingPayments().error) {
                 <div
                   class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4"
@@ -64,14 +48,6 @@
 
           <it-tab-item [label]="'payments-a4h.paid-label' | translate">
             <div class="mt-4">
-              @if (payments().loading) {
-                <app-spinner
-                  [fullScreen]="true"
-                  text="Loading"
-                  [className]="'flex-column gap-3 text-secondary'"
-                ></app-spinner>
-              }
-
               @if (payments().error) {
                 <div
                   class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4"
@@ -98,18 +74,11 @@
     }
   </div>
 
-  <div class="button-container" [ngClass]="{ 'text-center': isPayNexiConfirm() }">
-    <button type="button" class="btn btn-primary" routerLink="/">
-      @if (!isPayNexiConfirm()) {
-        <span>{{ 'back' | translate }}</span>
-      } @else {
-        <span>{{ 'payments-a4h.nexi.back' | translate }}</span>
-      }
-    </button>
-  </div>
-
-  @if (downloadingInvoicePdf()) {
-    <app-spinner [fullScreen]="true" [className]="'flex-column gap-3 text-secondary'"></app-spinner>
+  @if (isLoading()) {
+    <app-spinner
+      [fullScreen]="true"
+      text="Loading"
+      [className]="'flex-column gap-3 text-secondary'"
+    ></app-spinner>
   }
 }
-

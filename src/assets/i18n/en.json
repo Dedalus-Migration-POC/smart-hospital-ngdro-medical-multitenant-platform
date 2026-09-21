@@ -515,6 +515,10 @@
     "back": "Back",
     "request": "Request",
     "confirm": "Confirm",
+    "selectStruttura": {
+      "title": "Select the facility",
+      "subtitle": "Choose the facility where you want to make the booking"
+    },
     "stepsTitle": {
       "insertNre": "NRE",
       "selectService": "Select service",
@@ -539,7 +543,8 @@
       "searchTitle": "Text to search",
       "selectedMedicalServices": "Selected services",
       "servicesAlertHeader": "Warning!",
-      "servicesAlertContent": "For administrative reasons, select First visit or Follow-up visit for all services. The choice must be the same for every service."
+      "servicesAlertContent": "For administrative reasons, select First visit or Follow-up visit for all services. The choice must be the same for every service.",
+      "maxServicesLimitReached": "You have reached the maximum limit of 8 services"
     },
     "selectDoctor": {
       "searchTitle": "Text to search",
@@ -584,5 +589,25 @@
       "cancel": "Cancel",
       "confirm": "Confirm"
     }
+  },
+  "consents-a4h": {
+    "consent-privacy": {
+      "title": "Confirm that you have read the privacy notice",
+      "question": "Have you read the privacy notice?",
+      "pdfTitle": "Privacy notice",
+      "pdfFallback": "The PDF cannot be displayed here.",
+      "openPdf": "Open the privacy notice in a new tab",
+      "downloadPdf": "Download the privacy notice",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "privacy-policy": "Privacy Policy",
+    "update-consent-success-title": "Consent update successful",
+    "update-consent-success-text": "The consent has been updated correctly.",
+    "update-consent-error-title": "Consent update error",
+    "update-consent-error-text": "An error occurred while updating the consent.",
+    "alreadyAcceptedInformative": "I have already accepted the privacy notice",
+    "readAndAcceptInformative": "I have read and accept the privacy notice",
+    "closeInformative": "Close"
   }
 }

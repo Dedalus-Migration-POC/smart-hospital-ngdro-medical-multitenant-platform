@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay, Observable, of } from 'rxjs';
 import { Payment, PaymentPending, PayRequest, PayResponseNexiOK } from './model';
-import { LIST_PAYMENTS_A4H, PENDING_PAYMENTS_A4H } from './mock';
+import { LIST_PAYMENTS_A4H, PAYMENTS_A4H_KO, PAYMENTS_A4H_OK, PENDING_PAYMENTS_A4H } from './mock';
 
 @Injectable({ providedIn: 'root' })
 export class PaymentsA4hService {
@@ -37,11 +37,17 @@ export class PaymentsA4hService {
   }
 
   confirmOKNexiPayment(codTrans: string): Observable<Array<PayResponseNexiOK>> {
+    if (this.IS_DEV) {
+      return of(PAYMENTS_A4H_OK).pipe(delay(500));
+    }
     const requestUrl = `${this.BASE_URL}/ok?codTrans=${codTrans}`;
     return this.http.get<Array<PayResponseNexiOK>>(requestUrl);
   }
 
   confirmKONexiPayment(codTrans: string): Observable<any> {
+    if (this.IS_DEV) {
+      return of(PAYMENTS_A4H_KO).pipe(delay(500));
+    }
     const requestUrl = `${this.BASE_URL}/ko?codTrans=${codTrans}`;
     return this.http.get<any>(requestUrl);
   }

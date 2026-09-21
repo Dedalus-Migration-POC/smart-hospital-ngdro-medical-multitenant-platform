@@ -1,4 +1,4 @@
-import { Payment, PaymentPending, PrescriptionType } from './model';
+import { Payment, PaymentPending, PayResponseNexiOK, PrescriptionType } from './model';
 
 export const PENDING_PAYMENTS_A4H: PaymentPending = {
   groupedAppointments: [
@@ -151,3 +151,29 @@ export const LIST_PAYMENTS_A4H: Payment[] = [
     ],
   },
 ];
+
+export const PAYMENTS_A4H_OK: PayResponseNexiOK[] = [
+  {
+    amount: 255.0,
+    createdOn: '2026-09-21T10:30:00+02:00',
+    episodes: ['2026000292'],
+    invoiceId: 'mock-invoice-a4h-ok-001',
+    invoiceNumber: 'A4H-2026-000001',
+    invoices: null,
+    result: 'OK',
+    structure: {
+      id: 'e6c5b143-d688-a14a-a280-29180816ac28',
+      code: 'MNDCEN',
+      name: 'MONDINO',
+      text: null,
+      synonym: null,
+    },
+  },
+];
+
+export const PAYMENTS_A4H_KO = {
+  codTrans: 'MOCK-COD-TRANS-KO-001',
+  result: 'KO',
+  errorCode: 'MOCK_PAYMENT_KO',
+  errorMessage: 'Pagamento Nexi non completato',
+};

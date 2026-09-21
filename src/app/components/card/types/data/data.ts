@@ -8,6 +8,7 @@ import {
   DataCardLinkRender,
   DataCardSubTitleBinding,
   DataCardTitleBinding,
+  DataCardValueBinding,
 } from '../../model';
 import {
   BackgroundConfig,
@@ -284,6 +285,10 @@ export class Data {
     if (Array.isArray(value)) {
       const joinedValue = value
         .map((item) => {
+          if (binding.itemValue && item != null && typeof item === 'object') {
+            return this.getCombinedValue(item as Record<string, unknown>, binding.itemValue);
+          }
+
           if (binding.itemKey && item != null && typeof item === 'object') {
             return this.toPlainValue((item as Record<string, unknown>)[binding.itemKey]);
           }
@@ -302,10 +307,7 @@ export class Data {
   getImageBlockConfig(field: CardField): ImageBlockConfig | null {
     if (field.type !== 'image') return null;
 
-    const rawValue = this.getValueByPath(
-      this.card() as unknown as Record<string, unknown>,
-      field.key,
-    );
+    const rawValue = this.getFieldRawValue(field);
 
     const image: ImageConfig | undefined =
       rawValue != null ? field.imageMap?.[String(rawValue)] : undefined;
@@ -314,7 +316,7 @@ export class Data {
     if (!resolved) return null;
 
     return {
-      id: field.key,
+      id: field.key ?? field.value?.paths.join('-') ?? field.itemValue?.paths.join('-') ?? 'image',
       image: resolved,
       clickable: false,
     };
@@ -329,10 +331,7 @@ export class Data {
   ): { config: TextConfig; displayText: string; bgColor: Colors; bgColorHex?: string } | null {
     if (field.type !== 'badge') return null;
 
-    const rawValue = this.getValueByPath(
-      this.card() as unknown as Record<string, unknown>,
-      field.key,
-    );
+    const rawValue = this.getFieldRawValue(field);
 
     const mapped = rawValue != null ? field.badgeMap?.[String(rawValue)] : undefined;
     const config = mapped ?? field.fallbackBadge;
@@ -355,15 +354,16 @@ export class Data {
   getArrayValues(field: CardField): string[] {
     if (field.type !== 'array') return [];
 
-    const rawValue = this.getValueByPath(
-      this.card() as unknown as Record<string, unknown>,
-      field.key,
-    );
+    const rawValue = this.getFieldRawValue(field);
 
     if (!Array.isArray(rawValue) || rawValue.length === 0) return [];
 
     return rawValue
       .map((item) => {
+        if (field.itemValue && item != null && typeof item === 'object') {
+          return this.getCombinedValue(item as Record<string, unknown>, field.itemValue);
+        }
+
         if (field.itemKey && item != null && typeof item === 'object') {
           return this.toPlainValue((item as Record<string, unknown>)[field.itemKey]);
         }
@@ -524,10 +524,7 @@ export class Data {
   }
 
   getFieldDisplayValue(field: CardField): string {
-    const rawValue = this.getValueByPath(
-      this.card() as unknown as Record<string, unknown>,
-      field.key,
-    );
+    const rawValue = this.getFieldRawValue(field);
 
     switch (field.type) {
       case 'text': {
@@ -564,6 +561,10 @@ export class Data {
 
         const values = rawValue
           .map((item) => {
+            if (field.itemValue && item != null && typeof item === 'object') {
+              return this.getCombinedValue(item as Record<string, unknown>, field.itemValue);
+            }
+
             if (field.itemKey && item != null && typeof item === 'object') {
               return this.toPlainValue((item as Record<string, unknown>)[field.itemKey]);
             }
@@ -611,6 +612,42 @@ export class Data {
     }
 
     return this.emptyValue;
+  }
+
+  private getFieldRawValue(field: CardField): unknown {
+    const source = this.card() as unknown as Record<string, unknown>;
+
+    if (field.value) {
+      return this.getCombinedValue(source, field.value);
+    }
+
+    const keyValue = field.key ? this.getValueByPath(source, field.key) : source;
+
+    if (field.type === 'array') {
+      return keyValue;
+    }
+
+    if (field.itemValue) {
+      if (keyValue != null && typeof keyValue === 'object' && !Array.isArray(keyValue)) {
+        return this.getCombinedValue(keyValue as Record<string, unknown>, field.itemValue);
+      }
+
+      return this.getCombinedValue(source, field.itemValue);
+    }
+
+    return field.key ? keyValue : undefined;
+  }
+
+  private getCombinedValue(source: Record<string, unknown>, binding: DataCardValueBinding): string {
+    const values = binding.paths
+      .map((path) => this.toPlainValue(this.getValueByPath(source, path)))
+      .filter((value) => value !== this.emptyValue);
+
+    if (!values.length) {
+      return binding.fallbackText?.[this.lang()] ?? this.emptyValue;
+    }
+
+    return values.join(binding.separator ?? ' ');
   }
 
   // Applica prefisso/suffisso solo su valori validi.

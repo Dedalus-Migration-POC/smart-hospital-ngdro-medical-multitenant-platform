@@ -3,7 +3,7 @@
     <div class="col-md-6 col-sm-8">
       <div class="card p-4 border-success">
         <div class="d-flex align-items-center gap-2">
-          <it-icon name="check-circle" class="icon icon-sm text-success"></it-icon>
+          <it-icon name="check-circle" color="success" size="lg"></it-icon>
           <h6 class="text-uppercase fw-bold mb-0">
             {{ 'payments-a4h.nexi.pay-ok' | translate }}
           </h6>
@@ -27,8 +27,10 @@
 </ng-template>
 
 <ng-template #error>
-  <div class="d-flex justify-content-center my-5">
-    <p class="fw-bold">{{ 'payments-a4h.error.not-pay' | translate }}</p>
+  <div class="d-flex flex-column justify-content-center align-items-center my-5">
+    <it-icon name="close-circle" color="danger" size="lg"></it-icon>
+
+    <p class="fw-bold mt-4">{{ 'payments-a4h.error.not-pay' | translate }}</p>
   </div>
 </ng-template>
 

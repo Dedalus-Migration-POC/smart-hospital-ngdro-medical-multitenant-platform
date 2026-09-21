@@ -114,6 +114,7 @@ export interface DataCardTitleBinding {
   // path nel dato BE
   key: string;
   itemKey?: string; // se il valore BE è un array di oggetti, specifica la key dell'oggetto da usare
+  itemValue?: DataCardValueBinding; // valore virtuale composto per ogni elemento dell'array
   joinWith?: string; // separatore da usare quando il valore BE è un array. Default: ' / '
   fallbackText?: LocalizedText; // testo da mostrare se il valore BE è null, undefined o '' (vuoto)
   fontSize?: FontSize | string;
@@ -136,7 +137,9 @@ export type CardField =
   | DataCardBadgeField;
 
 export interface BaseCardField {
-  key: string; // es. 'metaInfo.insertionDate' o il size campo BE
+  key?: string; // es. 'metaInfo.insertionDate' o il size campo BE. Opzionale per campi virtuali con value/itemValue.
+  value?: DataCardValueBinding; // valore virtuale composto da piu path del dato BE
+  itemValue?: DataCardValueBinding; // valore virtuale composto sull'oggetto indicato da key, o sulla card se key non c'e
   label: TextConfig;
   valueStyle?: TextStyle;
   prefix?: string;
@@ -152,6 +155,12 @@ export interface BaseCardField {
 export interface DataCardFieldRowSize {
   key?: SizeConfig;
   value?: SizeConfig;
+}
+
+export interface DataCardValueBinding {
+  paths: string[];
+  separator?: string;
+  fallbackText?: LocalizedText;
 }
 
 // valueMap: serve quando il BE manda un codice tecnico,
