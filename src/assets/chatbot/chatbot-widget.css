@@ -1,12 +1,16 @@
 /* EBot Styles - Minimalist Flat Design */
+/* DEPRECATED 2026-09-03 — legacy colour names. Canonical values now live in the
+   theme token block at the end of this file. These names are kept alive as
+   forwarding aliases because a host page may already set them; removing one
+   would break that host silently. Do not delete. Prefer the canonical token. */
 :root {
-  --chatbot-primary-color: #007bff;
-  --chatbot-secondary-color: #6c757d;
-  --chatbot-success-color: #28a745;
-  --chatbot-danger-color: #dc3545;
-  --chatbot-light-color: #f8f9fa;
-  --chatbot-dark-color: #343a40;
-  --chatbot-white: #ffffff;
+  --chatbot-primary-color: var(--chatbot-accent);
+  --chatbot-secondary-color: var(--chatbot-neutral);
+  --chatbot-success-color: var(--chatbot-success);
+  --chatbot-danger-color: var(--chatbot-danger);
+  --chatbot-light-color: var(--chatbot-surface-muted);
+  --chatbot-dark-color: var(--chatbot-ink);
+  --chatbot-white: var(--chatbot-on-accent);
   --chatbot-border-radius: 12px;
   --chatbot-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   --chatbot-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -71,11 +75,11 @@
 
 .chatbot-fab:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 25px var(--chatbot-scrim-20);
 }
 
 .chatbot-fab:focus {
-  outline: 3px solid rgba(0, 123, 255, 0.3);
+  outline: 3px solid var(--chatbot-focus-ring);
   outline-offset: 2px;
 }
 
@@ -114,7 +118,7 @@
   width: 350px;
   max-width: calc(100vw - 40px);
   height: 500px;
-  background: var(--chatbot-white);
+  background: var(--chatbot-surface);
   border-radius: var(--chatbot-border-radius);
   box-shadow: var(--chatbot-shadow);
   opacity: 0;
@@ -138,13 +142,6 @@
   height: 700px;
   max-width: calc(100vw - 40px);
   max-height: calc(100vh - 120px);
-}
-
-@media (max-width: 768px) {
-  .chatbot-container.expanded {
-    width: calc(100vw - 40px);
-    height: calc(100vh - 120px);
-  }
 }
 
 /* Positioning adjustments for different positions */
@@ -179,7 +176,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--chatbot-white);
+  background: var(--chatbot-surface);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,8 +197,12 @@
 
 .chatbot-status {
   font-size: 12px;
-  opacity: 0.9;
+  color: var(--chatbot-white);
   margin: 0;
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--chatbot-scrim-15);
 }
 
 /* Resize Button */
@@ -221,7 +222,7 @@
 }
 
 .chatbot-resize-button:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--chatbot-tint-10);
 }
 
 .chatbot-resize-button:active {
@@ -276,7 +277,8 @@
   font-size: 12px;
   font-weight: 600;
 }
-mkd .chatbot-message.bot .chatbot-message-avatar {
+
+.chatbot-message.bot .chatbot-message-avatar {
   background: var(--chatbot-primary-color);
   color: var(--chatbot-white);
 }
@@ -321,8 +323,8 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 /* Input Container */
 .chatbot-input-container {
   padding: 16px 20px;
-  border-top: 1px solid #e9ecef;
-  background: var(--chatbot-white);
+  border-top: 1px solid var(--chatbot-border);
+  background: var(--chatbot-surface);
 }
 
 .chatbot-input-form {
@@ -333,7 +335,7 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 
 .chatbot-input {
   flex: 1;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--chatbot-border);
   border-radius: 20px;
   padding: 10px 16px;
   font-size: 14px;
@@ -348,7 +350,7 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 .chatbot-input:focus {
   outline: none;
   border-color: var(--chatbot-primary-color);
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  box-shadow: 0 0 0 3px var(--chatbot-focus-glow);
 }
 
 .chatbot-input::placeholder {
@@ -371,12 +373,12 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 }
 
 .chatbot-send-button:hover:not(:disabled) {
-  background: #0056b3;
+  background: var(--chatbot-accent-strong);
   transform: scale(1.05);
 }
 
 .chatbot-send-button:focus {
-  outline: 3px solid rgba(0, 123, 255, 0.3);
+  outline: 3px solid var(--chatbot-focus-ring);
   outline-offset: 2px;
 }
 
@@ -442,7 +444,7 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
   color: var(--chatbot-secondary-color);
   font-size: 13px;
   padding: 20px;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid var(--chatbot-border);
 }
 
 /* Animations */
@@ -468,12 +470,6 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 
 /* Responsive Design */
 @media (max-width: 480px) {
-  .chatbot-container {
-    width: calc(100vw - 40px);
-    max-width: none;
-    bottom: 20px;
-  }
-
   .chatbot-widget.position-bottom-right,
   .chatbot-widget.position-bottom-left {
     left: 20px;
@@ -485,6 +481,7 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
   .chatbot-widget.position-bottom-left .chatbot-container {
     left: 0;
     right: 0;
+    bottom: 20px;
   }
 
   .chatbot-fab {
@@ -494,16 +491,6 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 }
 
 /* High Contrast Mode Support */
-@media (prefers-contrast: high) {
-  .chatbot-fab {
-    border: 2px solid var(--chatbot-white);
-  }
-
-  .chatbot-input {
-    border-width: 3px;
-  }
-}
-
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   .chatbot-widget * {
@@ -522,86 +509,119 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
   pointer-events: none;
 }
 
+/* Toggle Switches Wrapper */
+.chatbot-toggles-wrapper {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--chatbot-border);
+  background: var(--chatbot-white);
+}
+
 /* Toggle Switch for Response Mode */
 .chatbot-toggle-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-  border-bottom: 1px solid #e9ecef;
-  background: var(--chatbot-white);
+  padding: 10px 16px;
   font-size: 13px;
   color: var(--chatbot-dark-color);
+  flex: 1;
+  min-width: 0; /* Allow shrinking */
+}
+
+.chatbot-toggle-container:first-child {
+  border-right: 1px solid var(--chatbot-border);
 }
 
 .chatbot-toggle-label {
   font-weight: 500;
   margin: 0;
+  font-size: 12px;
+}
+
+.chatbot-toggle-container > div {
+  flex: 1;
+  min-width: 0;
+  margin-right: 8px;
 }
 
 .chatbot-toggle-switch {
-  appearance: none;
-  -webkit-appearance: none;
   position: relative;
   display: inline-block;
   width: 50px;
   height: 24px;
-  background-color: #ccc;
-  border-radius: 24px;
-  border: none;
-  cursor: pointer;
-  transition: var(--chatbot-transition);
 }
 
-.chatbot-toggle-switch::before {
+.chatbot-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.chatbot-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--chatbot-border);
+  transition: var(--chatbot-transition);
+  border-radius: 24px;
+}
+
+.chatbot-toggle-slider:before {
   position: absolute;
   content: '';
   height: 18px;
   width: 18px;
   left: 3px;
   bottom: 3px;
-  background-color: white;
+  background-color: var(--chatbot-white);
   transition: var(--chatbot-transition);
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px var(--chatbot-scrim-20);
 }
 
-.chatbot-toggle-switch:checked {
+.chatbot-toggle-switch input:checked + .chatbot-toggle-slider {
   background-color: var(--chatbot-primary-color);
 }
 
-.chatbot-toggle-switch:focus-visible {
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
-  outline: none;
+.chatbot-toggle-switch input:focus + .chatbot-toggle-slider {
+  box-shadow: 0 0 0 3px var(--chatbot-focus-ring);
 }
 
-.chatbot-toggle-switch:checked::before {
+.chatbot-toggle-switch input:checked + .chatbot-toggle-slider:before {
   transform: translateX(26px);
 }
 
 .chatbot-toggle-mode {
   font-size: 11px;
-  color: var(--chatbot-secondary-color);
+  color: var(--chatbot-muted);
   margin-top: 2px;
-  opacity: 0.8;
+}
+
+.chatbot-toggle-stream-mode {
+  font-size: 11px;
+  color: var(--chatbot-muted);
+  margin-top: 2px;
 }
 
 /* Sources Section */
 .chatbot-sources {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid var(--chatbot-scrim-10);
 }
 
 .chatbot-message.user .chatbot-sources {
-  border-top-color: rgba(255, 255, 255, 0.3);
+  border-top-color: var(--chatbot-tint-30);
 }
 
 .chatbot-sources-header {
   font-size: 11px;
   font-weight: 600;
   margin-bottom: 6px;
-  opacity: 0.8;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -614,7 +634,10 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 
 .chatbot-source-item {
   display: flex;
-  align-items: center;
+  /* Column so attached figures stack *under* the source link rather than
+     beside it, which would squeeze the filename into a one-character column. */
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .chatbot-source-link {
@@ -627,7 +650,7 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
   text-decoration: none;
   color: inherit;
   transition: var(--chatbot-transition);
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--chatbot-scrim-05);
   width: 100%;
   max-width: 100%;
   overflow-wrap: break-word;
@@ -638,17 +661,17 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 }
 
 .chatbot-message.user .chatbot-source-link {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--chatbot-tint-20);
   color: var(--chatbot-white);
 }
 
 .chatbot-source-link:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--chatbot-scrim-10);
   transform: translateX(2px);
 }
 
 .chatbot-message.user .chatbot-source-link:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--chatbot-tint-30);
 }
 
 .chatbot-source-link:focus {
@@ -662,6 +685,263 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
   fill: currentColor;
   flex-shrink: 0;
   opacity: 0.7;
+}
+
+.chatbot-source-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.chatbot-source-name {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.chatbot-source-meta {
+  font-size: 11px;
+}
+
+/* A source that carries related figures is shaded so the card itself signals
+   "open this to see attached figures" - the images live only in the popover
+   and the lightbox, never inline in the source list. */
+.chatbot-source-item-has-figures {
+  background: var(--chatbot-scrim-05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chatbot-message.user .chatbot-source-item-has-figures {
+  background: var(--chatbot-tint-20);
+}
+
+/* The block already carries the shade; a second one on the link would read as
+   a card nested inside a card. Hover still darkens on top of it. */
+.chatbot-source-item-has-figures .chatbot-source-link {
+  background: transparent;
+}
+
+/* Related figures shown inside the popover (not the source card - see above). */
+.chatbot-popover-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px 0;
+}
+
+.chatbot-popover-figure {
+  margin: 0;
+  max-width: 140px;
+}
+
+.chatbot-popover-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 96px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: var(--chatbot-white);
+}
+
+.chatbot-popover-figure figcaption {
+  margin-top: 2px;
+  font-size: 10px;
+  line-height: 1.3;
+  color: var(--chatbot-muted);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Actions that open the source document, shown under the popover body. */
+.chatbot-popover-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px 0;
+}
+
+.chatbot-popover-actions button {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--chatbot-text);
+  background: var(--chatbot-surface-2);
+  border: 1px solid var(--chatbot-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--chatbot-transition);
+}
+
+.chatbot-popover-actions button:hover,
+.chatbot-popover-actions button:focus-visible {
+  border-color: var(--chatbot-primary-color);
+  color: var(--chatbot-primary-color);
+}
+
+/* Any image that opens full-size on click. */
+.chatbot-zoomable {
+  cursor: zoom-in;
+}
+
+/* Full-size image viewer, above everything including the popover. */
+.chatbot-image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--chatbot-backdrop);
+  cursor: zoom-out;
+}
+
+.chatbot-lightbox-figure {
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: default;
+}
+
+.chatbot-lightbox-figure img {
+  max-width: 92vw;
+  /* Leave room for the caption under the image. */
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--chatbot-white);
+}
+
+.chatbot-lightbox-figure figcaption {
+  max-width: 92vw;
+  color: var(--chatbot-white);
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.chatbot-lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: var(--chatbot-tint-15);
+  color: var(--chatbot-white);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--chatbot-transition);
+}
+
+.chatbot-lightbox-close:hover,
+.chatbot-lightbox-close:focus-visible {
+  background: var(--chatbot-tint-30);
+}
+
+/* Citation number badge on each source card */
+.chatbot-source-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--chatbot-primary-color);
+  color: var(--chatbot-white);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Inline citation chips inside the answer text ([1], [2] ...) */
+.chatbot-citation {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  margin: 0 1px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--chatbot-primary-color) 15%, transparent);
+  /* Scheme-aware: the citation sits on a 15% accent tint, which is light in
+     the light scheme and dark in the dark one. A single fixed blue cannot clear
+     AA on both - a dark blue disappears on the dark tint and vice versa. */
+  color: var(--chatbot-citation-text);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  vertical-align: super;
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--chatbot-transition);
+}
+
+.chatbot-citation:hover,
+.chatbot-citation:focus {
+  background: var(--chatbot-primary-color);
+  color: var(--chatbot-white);
+  outline: none;
+}
+
+/* Brief highlight when a source card is targeted from a citation chip */
+.chatbot-source-link.chatbot-source-highlight {
+  outline: 2px solid var(--chatbot-primary-color);
+  outline-offset: 2px;
+  background: color-mix(in srgb, var(--chatbot-primary-color) 18%, transparent);
+}
+
+/* Markdown tables (reproduced from extracted PDF tables) */
+.chatbot-table-wrapper {
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.chatbot-table-wrapper table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+}
+
+.chatbot-table-wrapper th,
+.chatbot-table-wrapper td {
+  border: 1px solid var(--chatbot-scrim-15);
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.chatbot-table-wrapper thead th {
+  background: var(--chatbot-scrim-06);
+  font-weight: 600;
+}
+
+.chatbot-message.user .chatbot-table-wrapper th,
+.chatbot-message.user .chatbot-table-wrapper td {
+  border-color: var(--chatbot-tint-30);
+}
+
+.chatbot-message.user .chatbot-table-wrapper thead th {
+  background: var(--chatbot-tint-15);
+}
+
+.chatbot-message-content img {
+  max-width: 100%;
+  border-radius: 6px;
+  display: block;
+  margin: 8px 0;
 }
 
 /* Screen Reader Only Content */
@@ -679,13 +959,11 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 
 /* Blocked Message Styles (202 Response) */
 .chatbot-message.blocked .chatbot-message-avatar {
-  background: #fee;
-  border: 2px solid #dc3545;
+  background: var(--chatbot-danger-surface-2);
+  border: 2px solid var(--chatbot-danger-accent);
 }
 
 .chatbot-blocked-content {
-  background: #fff5f5;
-  border-left: 4px solid #dc3545;
   padding: 12px;
   border-radius: 8px;
 }
@@ -699,7 +977,7 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 }
 
 .chatbot-blocked-header strong {
-  color: #dc3545;
+  color: var(--chatbot-danger-accent);
   font-size: 14px;
 }
 
@@ -713,8 +991,8 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 }
 
 .chatbot-threat-critical {
-  background: #8b0000;
-  color: white;
+  background: var(--chatbot-danger-strong);
+  color: var(--chatbot-white);
   animation: pulse-critical 1.5s ease-in-out infinite;
 }
 
@@ -729,29 +1007,94 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 }
 
 .chatbot-threat-high {
-  background: #dc3545;
-  color: white;
+  background: var(--chatbot-danger-color);
+  color: var(--chatbot-white);
 }
 
 .chatbot-threat-medium {
-  background: #ffc107;
-  color: #333;
+  background: var(--chatbot-caution);
+  color: var(--chatbot-on-caution);
 }
 
 .chatbot-threat-low {
-  background: #28a745;
-  color: white;
+  background: var(--chatbot-success-color);
+  color: var(--chatbot-white);
 }
 
 .chatbot-threat-unknown {
-  background: #6c757d;
-  color: white;
+  background: var(--chatbot-secondary-color);
+  color: var(--chatbot-white);
 }
 
 .chatbot-blocked-message {
-  color: #333;
+  color: var(--chatbot-alert-text);
   line-height: 1.5;
   margin-bottom: 8px;
+}
+
+/* Error Message */
+.chatbot-message.bot.error .chatbot-message-avatar {
+  background: var(--chatbot-warning-surface-2);
+  border: 2px solid var(--chatbot-warning-accent);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The !important is pre-existing and load-bearing: the theme layer's
+   `.chatbot-message.bot .chatbot-message-content` (0,3,0) outranks this
+   selector and appears later in the file. Left as found. */
+.chatbot-error-content {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.chatbot-error-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.chatbot-error-header strong {
+  color: var(--chatbot-warning-accent);
+  font-size: 14px;
+}
+
+.chatbot-error-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.chatbot-error-network {
+  background: var(--chatbot-danger-color);
+  color: var(--chatbot-white);
+}
+
+.chatbot-error-timeout {
+  background: var(--chatbot-secondary-color);
+  color: var(--chatbot-white);
+}
+
+.chatbot-error-server {
+  background: var(--chatbot-warning);
+  color: var(--chatbot-white);
+}
+
+.chatbot-error-error {
+  background: var(--chatbot-caution);
+  color: var(--chatbot-on-caution);
+}
+
+.chatbot-error-message {
+  color: var(--chatbot-alert-text);
+  line-height: 1.5;
+  font-size: 13px;
 }
 
 /* Spinner Animation */
@@ -759,8 +1102,8 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
   display: inline-block;
   width: 14px;
   height: 14px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: #fff;
+  border: 2px solid var(--chatbot-tint-30);
+  border-top-color: var(--chatbot-white);
   border-radius: 50%;
   animation: chatbot-spin 0.8s linear infinite;
   margin-right: 8px;
@@ -782,12 +1125,384 @@ mkd .chatbot-message.bot .chatbot-message-avatar {
 .chatbot-reasoning-time {
   display: inline-block;
   font-size: 11px;
-  color: #6c757d;
+  color: var(--chatbot-chip-text);
   margin-top: 8px;
   padding: 4px 8px;
-  background: #f8f9fa;
+  background: var(--chatbot-chip-bg);
   border-radius: 4px;
   opacity: 0.8;
   float: right;
   clear: both;
+}
+
+/* ============================================================
+   Theme layer — surface tokens, sizing tokens and dark scheme.
+   Appended last so it overrides the base rules above.
+   All values are variables: host pages can retheme the widget
+   without touching this file.
+   ============================================================ */
+:root {
+  --chatbot-radius: 16px;
+  --chatbot-bubble-radius: 14px;
+  --chatbot-fab-size: 60px;
+  --chatbot-width: 380px;
+  --chatbot-height: 560px;
+  --chatbot-width-expanded: 620px;
+  --chatbot-height-expanded: 720px;
+  --chatbot-surface: #ffffff;
+  --chatbot-surface-2: #f6f7f9;
+  --chatbot-border: #e7e9ee;
+  --chatbot-text: #16181d;
+  --chatbot-muted: #5c6270;
+  --chatbot-shadow: 0 18px 48px rgba(15, 17, 22, 0.16);
+
+  /* Semantic palette — canonical. The legacy --chatbot-*-color names at the
+     top of this file forward here. */
+  /* #1a6fd4, not the older #007bff: white text on that lighter blue tops out at
+     3.98:1, below WCAG 2.2 AA, and a blue dark enough to fix it (#0056b3) drops
+     the bubble-vs-panel contrast to 2.49:1 in the dark scheme, under the 3:1 the
+     same standard asks of UI components. This value clears both, in both
+     schemes: 4.92:1 on text, 4.92 / 3.57:1 on components. */
+  --chatbot-accent: #1a6fd4;
+  --chatbot-accent-strong: #12539f;
+  --chatbot-citation-text: #12539f;
+  --chatbot-on-accent: #ffffff;
+  --chatbot-neutral: #6c757d;
+  --chatbot-success: #28a745;
+  --chatbot-danger: #dc3545;
+  --chatbot-danger-strong: #8b0000;
+  --chatbot-warning: #e67e22;
+  --chatbot-caution: #ffc107;
+  --chatbot-on-caution: #333333;
+  --chatbot-ink: #343a40;
+  --chatbot-surface-muted: #f8f9fa;
+
+  /* Alert cards. Scheme-aware: the dark block below re-tints these so blocked
+     and error messages stay readable instead of inheriting light literals. */
+  --chatbot-danger-surface: #fff5f5;
+  --chatbot-danger-surface-2: #ffeeee;
+  --chatbot-danger-accent: #dc3545;
+  --chatbot-warning-surface: #fffbf0;
+  --chatbot-warning-surface-2: #fff3cd;
+  --chatbot-warning-accent: #e67e22;
+  --chatbot-alert-text: #333333;
+
+  /* Reasoning-time chip. Scheme-aware for the same reason. */
+  --chatbot-chip-bg: #f8f9fa;
+  /* Darkened from #6b7280 (3.16:1) to clear WCAG 2.2 AA. The chip carries
+     opacity .8, so the value must be dark enough to survive compositing over
+     --chatbot-chip-bg: measured 5.5:1 after that blend. */
+  --chatbot-chip-text: #374151;
+
+  /* Focus indication. Derived from the accent so a host that rethemes the
+     widget keeps a visible ring; still overridable on its own. */
+  /* Plain rgba first: a browser without color-mix() keeps a visible focus ring
+     instead of dropping the declaration and rendering no ring at all. A browser
+     with color-mix() takes the second pair and tracks a retheming host's accent. */
+  --chatbot-focus-ring: rgba(0, 123, 255, 0.3);
+  --chatbot-focus-glow: rgba(0, 123, 255, 0.1);
+  --chatbot-focus-ring: color-mix(in srgb, var(--chatbot-accent) 30%, transparent);
+  --chatbot-focus-glow: color-mix(in srgb, var(--chatbot-accent) 10%, transparent);
+
+  /* Compositing overlays. Deliberately scheme-independent: each one sits on a
+     coloured or image backdrop that does not change between schemes. */
+  --chatbot-scrim-05: rgba(0, 0, 0, 0.05);
+  --chatbot-scrim-06: rgba(0, 0, 0, 0.06);
+  --chatbot-scrim-10: rgba(0, 0, 0, 0.1);
+  --chatbot-scrim-15: rgba(0, 0, 0, 0.15);
+  --chatbot-scrim-20: rgba(0, 0, 0, 0.2);
+  --chatbot-backdrop: rgba(0, 0, 0, 0.82);
+  --chatbot-tint-10: rgba(255, 255, 255, 0.1);
+  --chatbot-tint-15: rgba(255, 255, 255, 0.15);
+  --chatbot-tint-20: rgba(255, 255, 255, 0.2);
+  --chatbot-tint-30: rgba(255, 255, 255, 0.3);
+  --chatbot-tint-92: rgba(255, 255, 255, 0.92);
+}
+
+:root[data-chatbot-scheme='dark'] {
+  --chatbot-surface: #161922;
+  --chatbot-surface-2: #1d212b;
+  --chatbot-border: #2b2f3a;
+  --chatbot-text: #e8eaee;
+  --chatbot-muted: #9aa1ad;
+  --chatbot-surface-muted: #1d212b;
+  --chatbot-ink: #e8eaee;
+  --chatbot-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+
+  /* Dark-tinted alert surfaces keeping the semantic hue. Body text on each is
+     --chatbot-alert-text (#e8eaee): ~14.4:1 on the danger surface, ~13.2:1 on
+     the warning surface. The light literals these replace measured ~1.1:1. */
+  --chatbot-danger-surface: #2a1416;
+  --chatbot-danger-surface-2: #3a1b1e;
+  --chatbot-danger-accent: #ff6b7a;
+  --chatbot-warning-surface: #2a2113;
+  --chatbot-warning-surface-2: #3a2f14;
+  --chatbot-warning-accent: #f0a35a;
+  --chatbot-alert-text: #e8eaee;
+
+  /* Chip text is brightened rather than the chip lightened: the element
+     carries opacity 0.8, so a lighter background would lower the ratio. */
+  --chatbot-chip-bg: #20242f;
+  --chatbot-chip-text: #c6ccd8;
+  --chatbot-citation-text: #8ab4f8;
+}
+
+.chatbot-widget {
+  color: var(--chatbot-text);
+}
+
+.chatbot-fab {
+  width: var(--chatbot-fab-size);
+  height: var(--chatbot-fab-size);
+  box-shadow: var(--chatbot-shadow);
+}
+
+.chatbot-container {
+  width: var(--chatbot-width);
+  height: var(--chatbot-height);
+  background: var(--chatbot-surface);
+  border: 1px solid var(--chatbot-border);
+  border-radius: var(--chatbot-radius);
+  box-shadow: var(--chatbot-shadow);
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 120px);
+}
+
+.chatbot-container.expanded {
+  width: var(--chatbot-width-expanded);
+  height: var(--chatbot-height-expanded);
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 120px);
+}
+
+.chatbot-header {
+  padding: 14px 18px;
+}
+.chatbot-avatar {
+  background: var(--chatbot-tint-92);
+}
+
+.chatbot-toggles-wrapper {
+  background: var(--chatbot-surface-2);
+  border-bottom: 1px solid var(--chatbot-border);
+}
+
+.chatbot-toggle-container:first-child {
+  border-right: 1px solid var(--chatbot-border);
+}
+.chatbot-toggle-label {
+  color: var(--chatbot-text);
+}
+.chatbot-toggle-mode,
+.chatbot-toggle-stream-mode {
+  color: var(--chatbot-muted);
+}
+.chatbot-toggle-slider {
+  background-color: var(--chatbot-border);
+}
+
+.chatbot-welcome {
+  background: var(--chatbot-surface);
+  color: var(--chatbot-muted);
+  border-bottom: 1px solid var(--chatbot-border);
+}
+
+.chatbot-messages {
+  background: var(--chatbot-surface);
+}
+.chatbot-messages::-webkit-scrollbar-track {
+  background: var(--chatbot-surface);
+}
+.chatbot-messages::-webkit-scrollbar-thumb {
+  background: var(--chatbot-border);
+}
+
+.chatbot-message-content {
+  border-radius: var(--chatbot-bubble-radius);
+}
+
+.chatbot-message.bot .chatbot-message-content {
+  background: var(--chatbot-surface-2);
+  color: var(--chatbot-text);
+  border: 1px solid var(--chatbot-border);
+}
+
+/* The alert cards carry BOTH .chatbot-message-content and their own class
+   (chatbot-widget.js:1368, :1698), so the bot-bubble rule above matches them
+   too - at (0,3,0) it beat a bare .chatbot-blocked-content and silently erased
+   the whole scheme-aware alert surface, dark values included. Matching the
+   specificity here is what makes these render; an !important would work but
+   would hide the reason. */
+.chatbot-message.bot .chatbot-blocked-content {
+  background: var(--chatbot-danger-surface);
+  border: 1px solid var(--chatbot-border);
+  border-left: 4px solid var(--chatbot-danger-accent);
+}
+
+.chatbot-message.bot .chatbot-error-content {
+  background: var(--chatbot-warning-surface);
+  border: 1px solid var(--chatbot-border);
+  border-left: 4px solid var(--chatbot-warning-accent);
+}
+
+.chatbot-input-container {
+  background: var(--chatbot-surface);
+  border-top: 1px solid var(--chatbot-border);
+}
+
+.chatbot-input {
+  background: var(--chatbot-surface);
+  color: var(--chatbot-text);
+  border: 1px solid var(--chatbot-border);
+  border-radius: calc(var(--chatbot-bubble-radius) + 6px);
+}
+
+.chatbot-input::placeholder {
+  color: var(--chatbot-muted);
+}
+
+.chatbot-sources {
+  border-top: 1px solid var(--chatbot-border);
+}
+.chatbot-sources-header {
+  color: var(--chatbot-muted);
+}
+
+.chatbot-source-link {
+  background: var(--chatbot-surface);
+  border: 1px solid var(--chatbot-border);
+  color: var(--chatbot-text);
+}
+
+.chatbot-source-item-has-figures {
+  background: var(--chatbot-surface-2);
+}
+.chatbot-source-meta {
+  color: var(--chatbot-muted);
+  opacity: 1;
+}
+.chatbot-reasoning-time {
+  color: var(--chatbot-chip-text);
+}
+
+.chatbot-table-wrapper table {
+  color: var(--chatbot-text);
+}
+.chatbot-table-wrapper th,
+.chatbot-table-wrapper td {
+  border-color: var(--chatbot-border);
+}
+
+/*
+ * Mobile overrides — kept here, deliberately, at the end of the file.
+ * Required layer order: tokens -> base -> theme -> responsive, responsive
+ * last always, because every layer here shares equal selector specificity
+ * with the base and theme rules above, so only source order decides the
+ * winner, and responsive must win on small screens.
+ * The base toggle rules (~line 583) and the "modern theme" redeclaration
+ * (~line 1267) both have the same specificity as a `@media (max-width: 480px)`
+ * block, so by source order they would win over any mobile override placed
+ * earlier in the file. Do NOT move this block back above them — it must stay
+ * last so its `padding`, `.chatbot-toggle-switch` size, slider knob geometry
+ * and font sizes actually take effect on small screens. `.chatbot-container`
+ * moved here too: the theme layer's unconditional width/max-width (~line
+ * 1195) was silently defeating it above. `.chatbot-widget.position-*` and
+ * `.chatbot-fab` rules stay where they were (before this block) — verified
+ * nothing later in the file overrides those same properties.
+ */
+@media (max-width: 480px) {
+  .chatbot-container {
+    width: calc(100vw - 40px);
+    max-width: none;
+  }
+
+  .chatbot-resize-button {
+    padding: 12px;
+  }
+
+  .chatbot-send-button {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Hit area only — keeps the visible 40x20 track and the 20px knob
+     travel below untouched, just widens the clickable/tappable region
+     of the label to the 44px a11y minimum via an invisible pseudo-box. */
+  .chatbot-toggle-switch::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+
+  .chatbot-toggle-container {
+    padding: 8px 8px;
+  }
+
+  /* The divider is already set by the base rule and by the modern-theme
+     redeclaration (which uses var(--chatbot-border)); redeclaring it here
+     would hardcode the light-theme colour on small screens. */
+  .chatbot-toggle-container > div {
+    margin-right: 4px;
+  }
+
+  .chatbot-toggle-label,
+  .chatbot-toggle-mode,
+  .chatbot-toggle-stream-mode {
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
+  .chatbot-toggle-label {
+    font-size: 12px;
+  }
+
+  .chatbot-toggle-mode,
+  .chatbot-toggle-stream-mode {
+    font-size: 10px;
+  }
+
+  .chatbot-toggle-switch {
+    width: 40px;
+    height: 20px;
+  }
+
+  .chatbot-toggle-slider:before {
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+  }
+
+  .chatbot-toggle-switch input:checked + .chatbot-toggle-slider:before {
+    transform: translateX(20px);
+  }
+}
+
+/*
+ * Preference and breakpoint queries that must outrank the theme layer.
+ * Both blocks below used to sit earlier in the file, where the theme layer
+ * redeclared the same selectors at equal specificity and won by source order:
+ * the tablet expanded sizing and the high-contrast input border were dead CSS
+ * that nothing reported. Same order rule as the mobile block above —
+ * tokens -> base -> theme -> responsive, responsive last.
+ */
+/* The old `@media (max-width: 768px)` expanded-panel override lived here and
+   had been dead since the theme layer landed: that layer caps the panel with
+   max-width/max-height: calc(100vw - 40px)/calc(100vh - 120px), which achieves
+   the same intent at every width. Reviving it would have WIDENED the expanded
+   panel from 620px to 728px at a 768px viewport - a visible change nobody asked
+   for. Removed rather than resurrected. */
+
+@media (prefers-contrast: high) {
+  .chatbot-fab {
+    border: 2px solid var(--chatbot-on-accent);
+  }
+
+  .chatbot-input {
+    border-width: 3px;
+  }
 }
