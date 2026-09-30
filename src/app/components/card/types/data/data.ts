@@ -258,6 +258,13 @@ export class Data {
     return this.getSubTitleTextFromBinding(subTitleBinding);
   }
 
+  shouldRenderField(field: CardField): boolean {
+    if (!field.hideIfEmpty) return true;
+
+    const value = this.getFieldRawValue(field);
+    return value != null && value !== '';
+  }
+
   private getTitleTextFromBinding(binding: DataCardTitleBinding): string | undefined {
     return this.getBindingValue(binding);
   }
@@ -529,7 +536,10 @@ export class Data {
     switch (field.type) {
       case 'text': {
         const mapped = rawValue != null ? field.valueMap?.[String(rawValue)] : undefined;
-        const textValue = mapped?.text?.[this.lang()] ?? this.toPlainValue(rawValue);
+        const mappedText = mapped?.text?.[this.lang()];
+        const textValue = mappedText
+          ? this.resolveLabel(mappedText, this.card())
+          : this.toPlainValue(rawValue);
         return this.withAffixes(textValue, field.prefix, field.suffix);
       }
 

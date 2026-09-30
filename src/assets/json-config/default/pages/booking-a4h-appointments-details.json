@@ -1,0 +1,89 @@
+{
+  "id": "/booking-a4h/appointments/details",
+  "name": {
+    "it": "Dettaglio appuntamento",
+    "en": "Appointment details"
+  },
+  "route": "/booking-a4h/appointments/details",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "background": { "fill": { "hex": "#e6e8ea" } },
+    "itemsStyle": { "color": { "hex": "#333333" } },
+    "title": {
+      "text": {
+        "it": "Dettaglio prenotazione {{service}}",
+        "en": "Appointment details – {{service}}"
+      }
+    },
+    "items": [
+      {
+        "name": { "it": "Home", "en": "Home" },
+        "routerLink": "/"
+      },
+      {
+        "name": { "it": "Appuntamenti", "en": "Appointments" },
+        "routerLink": "/booking-a4h/appointments"
+      },
+      {
+        "name": { "it": "Dettaglio", "en": "Details" },
+        "routerLink": "/booking-a4h/appointments"
+      }
+    ]
+  },
+  "message": {
+    "error": {
+      "id": "appointmentError",
+      "className": "",
+      "layout": { "direction": "column", "align": "center", "justify": "center", "gap": "gap-2" },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
+        "decorative": true,
+        "alt": { "it": "Errore", "en": "Error" },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": { "it": "Errore", "en": "Error" },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": { "palette": "danger" },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Si è verificato un errore durante il recupero dell'appuntamento. Riprova più tardi.",
+            "en": "An error occurred while fetching the appointment. Please try again later."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": { "palette": "danger" },
+          "lineHeight": "normal"
+        }
+      }
+    },
+    "notFound": {
+      "id": "appointmentNotFound",
+      "className": "",
+      "layout": { "direction": "column", "align": "center", "justify": "center", "gap": "gap-2" },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
+        "decorative": true,
+        "alt": { "it": "Appuntamento non trovato", "en": "Appointment not found" },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": { "it": "Appuntamento non trovato", "en": "Appointment not found" },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": { "palette": "warning" },
+          "lineHeight": "normal"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "/booking-a4h/appointments/edit",
+  "name": {
+    "it": "Modifica appuntamento",
+    "en": "Edit appointment"
+  },
+  "route": "/booking-a4h/appointments/edit",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "background": { "fill": { "hex": "#e6e8ea" } },
+    "itemsStyle": { "color": { "hex": "#333333" } },
+    "title": { "text": { "it": "Modifica appuntamento", "en": "Edit appointment" } },
+    "items": [
+      {
+        "name": { "it": "Home", "en": "Home" },
+        "routerLink": "/"
+      },
+      {
+        "name": { "it": "Appuntamenti", "en": "Appointments" },
+        "routerLink": "/booking-a4h/appointments"
+      },
+      {
+        "name": { "it": "Modifica appuntamento", "en": "Edit appointment" },
+        "routerLink": "/booking-a4h/appointments"
+      }
+    ]
+  }
+}

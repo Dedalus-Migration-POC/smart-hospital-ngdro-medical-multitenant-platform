@@ -1,0 +1,151 @@
+@if (pageConfig(); as pageConfig) {
+  @if (breadcrumbConfig(); as breadcrumb) {
+    <app-breadcrumb [config]="breadcrumb"></app-breadcrumb>
+  }
+
+  @if (!loading()) {
+    @if (appointment(); as item) {
+      <div class="details-container mx-auto mt-4">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            @if (item.code) {
+              <div class="d-flex justify-content-between border-bottom pb-3 mb-4">
+                <span class="fw-semibold">
+                  {{ 'appointments.details-page.appointment-number' | translate }}
+                </span>
+                <span class="fw-bold">{{ item.code }}</span>
+              </div>
+            }
+
+            <dl class="details-list">
+              <div class="details-row">
+                <dt>
+                  <i class="fa-solid fa-file-medical text-primary" aria-hidden="true"></i>
+                  {{ 'appointments.details-page.preparation' | translate }}
+                </dt>
+                <dd>
+                  @if (item.linkNote) {
+                    <a [href]="item.linkNote" target="_blank" rel="noopener noreferrer">
+                      {{ 'appointments.details-page.download-vademecum' | translate }}
+                    </a>
+                  } @else {
+                    <span class="fst-italic text-decoration-underline">
+                      {{ 'appointments.details-page.download-vademecum-unavailable' | translate }}
+                    </span>
+                  }
+                </dd>
+              </div>
+
+              @for (row of rows(); track row.labelKey) {
+                <div class="details-row">
+                  <dt>
+                    <i class="fa-solid text-primary" [class]="row.icon" aria-hidden="true"></i>
+                    {{ row.labelKey | translate }}
+                  </dt>
+                  <dd>{{ row.value }}</dd>
+                </div>
+              }
+
+              @if (!isDone()) {
+                <div class="details-row">
+                  <dt>
+                    <i class="fa-solid fa-euro-sign text-primary" aria-hidden="true"></i>
+                    {{ 'appointments.details-page.payment-status' | translate }}
+                  </dt>
+                  <dd
+                    class="fw-bold"
+                    [class.text-success]="isPaid()"
+                    [class.text-danger]="!isPaid()"
+                  >
+                    {{
+                      (isPaid() ? 'appointments.card.paid' : 'appointments.card.unpaid')
+                        | translate
+                        | uppercase
+                    }}
+                  </dd>
+                </div>
+              }
+            </dl>
+
+            <app-checkin-hint
+              class="d-flex justify-content-center mt-3"
+              [appointment]="item"
+              [detailsMode]="true"
+            />
+
+            @if (!isDone()) {
+              <div class="d-flex flex-wrap justify-content-center gap-3 mt-5">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  [disabled]="!editable() || busy()"
+                  (click)="actions.editAppointment(item)"
+                >
+                  {{ 'appointments.details-page.edit-btn' | translate }}
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  [disabled]="!editable() || busy()"
+                  (click)="actions.deleteAppointment(item)"
+                >
+                  {{ 'appointments.details-page.delete-btn' | translate }}
+                  @if (deleting()) {
+                    <span class="spinner-border spinner-border-sm ms-1" aria-hidden="true"></span>
+                  }
+                </button>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3 mb-5">
+          <a
+            class="btn btn-outline-secondary"
+            [class.disabled]="requestingCheckIn()"
+            [routerLink]="['/booking-a4h', 'appointments']"
+          >
+            {{ 'appointments.back' | translate }}
+          </a>
+          @if (!isDone()) {
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              [disabled]="item.checkInStatus !== 'TO_DO' || !checkInEnabled() || busy()"
+              (click)="actions.requestCheckIn(item)"
+            >
+              {{ 'appointments.details-page.acceptance-btn' | translate }}
+            </button>
+          }
+        </div>
+      </div>
+    } @else if (error()) {
+      <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+        <app-image-block [config]="pageConfig.message?.error"></app-image-block>
+        <button type="button" class="btn btn-outline-primary" (click)="refresh()">
+          {{ 'appointments.refresh' | translate }}
+        </button>
+      </div>
+    } @else {
+      <div class="d-flex flex-column align-items-center justify-content-center gap-3 mt-4">
+        <app-image-block [config]="pageConfig.message?.notFound"></app-image-block>
+        <a class="btn btn-outline-secondary" [routerLink]="['/booking-a4h', 'appointments']">
+          {{ 'appointments.back' | translate }}
+        </a>
+      </div>
+    }
+  }
+}
+
+@if (loading()) {
+  <app-spinner
+    [fullScreen]="true"
+    [text]="
+      (requestingCheckIn()
+        ? 'appointments.requesting-check-in'
+        : 'appointments.details-page.fetching-appointment'
+      ) | translate
+    "
+    [className]="'flex-column gap-3 text-secondary'"
+  ></app-spinner>
+}

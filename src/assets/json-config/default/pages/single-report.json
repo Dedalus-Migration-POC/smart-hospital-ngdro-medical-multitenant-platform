@@ -81,37 +81,6 @@
                 },
                 "fields": [
                   {
-                    "id": "cf",
-                    "type": "text",
-                    "layoutField": {
-                      "direction": "column",
-                      "gap": "gap-2"
-                    },
-                    "label": {
-                      "it": "Codice Fiscale",
-                      "en": "Fiscal Code"
-                    },
-                    "required": true,
-                    "validators": [
-                      {
-                        "type": "required"
-                      },
-                      {
-                        "type": "taxCode"
-                      }
-                    ],
-                    "errorMessages": {
-                      "required": {
-                        "it": "Il codice fiscale è obbligatorio",
-                        "en": "Fiscal code is required"
-                      },
-                      "taxCode": {
-                        "it": "Il codice fiscale non è valido",
-                        "en": "Fiscal code is not valid"
-                      }
-                    }
-                  },
-                  {
                     "id": "id",
                     "type": "text",
                     "layoutField": {

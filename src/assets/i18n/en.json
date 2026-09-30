@@ -483,12 +483,99 @@
       }
     }
   },
+  "appointments": {
+    "title": "Check in to your appointments",
+    "requesting-check-in": "Checking in",
+    "toggleOnline": "ONLINE CHECK-IN",
+    "toggleAppointments": "APPOINTMENTS",
+    "refresh": "Refresh",
+    "back": "Back",
+    "retry": "Retry",
+    "continue": "Continue",
+    "warning": "Warning",
+    "card": {
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "medicalServiceName": "Service",
+      "ambulatory": "Clinic",
+      "precinct": "Location",
+      "details": "Details",
+      "acceptance": "Check-in",
+      "payment": "Payment",
+      "contract": {
+        "SSN": "NHS service",
+        "SOLV": "Private service",
+        "LP": "Private practice service"
+      }
+    },
+    "hint": {
+      "too-early": "Check-in is available <strong>{{hours}} hours before</strong> your appointment.",
+      "privacy": "To continue, please go to the reception desk.",
+      "to-pay": "To check in, please complete payment first.",
+      "mobile-payment-not-allowed": "In-app payment is not available.",
+      "user-not-verified": "To continue, please go to the reception desk.",
+      "unknown": "To continue, please go to the reception desk.",
+      "too-late": "Check-in is no longer available.",
+      "not-editable": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information."
+    },
+    "details-page": {
+      "fetching-appointment": "Looking up your appointment",
+      "appointment-number": "Appointment ID",
+      "medicalServiceName": "Service",
+      "preparation": "Preparation",
+      "download-vademecum": "Download Guidelines",
+      "download-vademecum-unavailable": "Document unavailable",
+      "scheduled-on": "Date and time",
+      "precinct": "Location",
+      "ambulatory": "Clinic",
+      "floor": "Floor",
+      "waiting-room": "Waiting room",
+      "examination-room": "Examination room",
+      "physician": "Physician",
+      "payment-status": "Payment status",
+      "edit-btn": "Change appointment date",
+      "delete-btn": "Cancel appointment",
+      "acceptance-btn": "Proceed with check-in",
+      "delete-popup-message": "Are you sure you want to cancel this appointment?",
+      "delete-popup-confirm-label": "Yes, cancel",
+      "delete-popup-not-cancellable-message": "This appointment can no longer be cancelled. If needed, please contact the facility's CUP.",
+      "delete-appointments-confirm-title": "Operation completed successfully!",
+      "delete-appointments-confirm-message": "The appointment has been cancelled."
+    },
+    "edit-page": {
+      "noAvailabilities": "No availabilities between <strong>{{dateFrom}}</strong> and <strong>{{dateTo}}</strong>.<br />Use the filter to search other dates."
+    },
+    "edit-appointment-popup": {
+      "title": "Warning",
+      "text": "Are you sure you want to move your appointment to {{date}} at {{time}}?"
+    },
+    "edit-appointment-error": {
+      "unknown": "An error occurred",
+      "406": "This appointment can no longer be modified. If needed, please contact the facility's CUP.",
+      "417": "There are currently no availabilities for the requested services. Please contact the facility's CUP directly for more information and booking support."
+    },
+    "edit-success-popup": {
+      "title": "Confirmation",
+      "text": "The appointment has been successfully updated"
+    },
+    "check-in-popup": {
+      "title": "CONFIRM CHECK-IN",
+      "text": "Do you confirm you want to check in for this booking?",
+      "failure-message": "An error occurred. If the problem persists, please contact the facility's CUP."
+    },
+    "check-in-success-popup": {
+      "title": "Operation completed",
+      "text": "Check-in has been confirmed"
+    }
+  },
+
   "booking-a4h": {
     "bookingTypeTitle": "Book your visit at",
     "booking-with-ssn": "Booking through the National Health Service (NHS)",
     "booking-no-doctor-select": "Private booking without choosing a doctor",
     "booking-with-doctor-select": "Private booking with a doctor",
     "physicians": "Doctor booking",
+    "edit-appointment": "Edit appointment",
     "prenotazione": "Booking",
     "stepCounter": "{{current}} of {{total}}: {{name}}",
     "selectedFacility": "Facility",

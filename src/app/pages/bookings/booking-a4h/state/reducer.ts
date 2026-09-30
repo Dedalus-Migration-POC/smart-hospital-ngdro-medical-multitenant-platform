@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import * as BookingUnifiedActions from './actions';
 import {
+  AppointmentToMove,
   BookAppointmentResponse,
   CheckAvailabilityResponse,
   CheckAvailableDays,
@@ -70,6 +71,8 @@ export interface State {
   mergePdfByUrls: any;
   mergePdfByUrlsLoading: boolean;
   mergePdfByUrlsError: boolean;
+
+  appointmentToMove: AppointmentToMove | null;
 }
 
 export const initialState: State = {
@@ -127,6 +130,8 @@ export const initialState: State = {
   mergePdfByUrls: null,
   mergePdfByUrlsLoading: false,
   mergePdfByUrlsError: false,
+
+  appointmentToMove: null,
 };
 
 export const reducer = createReducer(
@@ -369,6 +374,13 @@ export const reducer = createReducer(
   on(BookingUnifiedActions.resetState, (state) => ({
     ...initialState,
     bookingType: state.bookingType,
+  })),
+
+  on(BookingUnifiedActions.startAppointmentEdit, (state, action) => ({
+    ...initialState,
+    bookingType: BookingType.EditAppointment,
+    appointmentToMove: action.appointment,
+    servicesListLoading: true,
   })),
 
   on(BookingUnifiedActions.restoreStateFromLocalStorage, (state, action) => ({

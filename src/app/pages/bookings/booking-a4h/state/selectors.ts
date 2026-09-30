@@ -185,6 +185,11 @@ export const selectMergePdfByUrlsError = createSelector(
   (state) => state.mergePdfByUrlsError,
 );
 
+export const selectAppointmentToMove = createSelector(
+  selectBookingUnifiedState,
+  (state) => state.appointmentToMove,
+);
+
 /** True while any of the network calls the stepper depends on is in flight. */
 export const selectAnyLoading = createSelector(
   selectStruttureLoading,

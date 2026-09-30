@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import {
+  AppointmentToMove,
   BookAppointmentResponse,
   CheckAvailabilityPayload,
   CheckAvailabilityResponse,
@@ -216,6 +217,12 @@ export const releaseLockBookingSessionFailure = createAction(
 );
 
 export const resetState = createAction('[BookingUnified] ResetState');
+
+/** Avvia il flusso EditAppointment: resetta lo stato e cerca le disponibilità per l'appuntamento. */
+export const startAppointmentEdit = createAction(
+  '[BookingUnified] Start Appointment Edit',
+  props<{ appointment: AppointmentToMove }>(),
+);
 
 export const restoreStateFromLocalStorage = createAction(
   '[BookingUnified] RestoreStateFromLocalStorage',

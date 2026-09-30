@@ -148,6 +148,7 @@ export interface BaseCardField {
   color?: ColorConfig; // colore applicato al valore del campo
   margin?: SpacingConfig;
   rowSize?: DataCardFieldRowSize;
+  hideIfEmpty?: boolean; // non renderizza il campo se il valore e vuoto
 }
 
 // Size opzionale per layout row: permette di impostare separatamente

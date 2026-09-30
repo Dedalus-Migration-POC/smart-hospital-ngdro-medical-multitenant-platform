@@ -8,7 +8,7 @@ import {
   signal,
   untracked,
 } from '@angular/core';
-import { TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { formatDate, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -43,6 +43,7 @@ import {
 } from '../state/actions';
 import {
   selectActiveStep,
+  selectAppointmentToMove,
   selectAvailableListToBook,
   selectCheckAvailableDaysResponse,
   selectCreateSessionResponse,
@@ -62,6 +63,7 @@ import { DateTimeStepComponent } from '../steps/date-time-step/date-time-step.co
 import { ReviewStepComponent } from '../steps/review-step/review-step.component';
 import { CountdownTimerComponent } from 'src/app/components/countdown-timer/countdown-timer.component';
 import { BookingResumeService } from '../booking-resume.service';
+import { moveAppointment } from '../appointments/state/actions';
 
 /** Translation key for the page title of each step, independent of its numeric index. */
 const STEP_TITLE_KEY: Record<BookingStepKey, string> = {
@@ -130,9 +132,16 @@ export class BookingStepperComponent implements OnInit {
   private selectedDoctorId: string | undefined;
 
   private readonly selectedStrutturaState = this.store.selectSignal(selectSelectedStruttura);
-  protected readonly selectedStruttura = computed(
-    () => this.selectedStrutturaState() as HealthcareUnit | null,
-  );
+  private readonly appointmentToMove = this.store.selectSignal(selectAppointmentToMove);
+  protected readonly selectedStruttura = computed<HealthcareUnit | null>(() => {
+    // Nello spostamento la struttura è quella dell'appuntamento, non quella scelta per le nuove prenotazioni.
+    const toMove = this.appointmentToMove();
+    if (toMove) {
+      const { id, name, address } = toMove.location;
+      return { id: id ?? '', name, address: address ?? undefined };
+    }
+    return this.selectedStrutturaState() as HealthcareUnit | null;
+  });
   private readonly selectedDoctor = this.store.selectSignal(selectSelectedDoctor);
   protected readonly availableDays = this.store.selectSignal(selectCheckAvailableDaysResponse);
   protected readonly isOptimized = this.store.selectSignal(selectIsOptimized);
@@ -248,11 +257,30 @@ export class BookingStepperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const parentParams = this.activatedRoute.parent?.snapshot.paramMap.get('bookingType') ?? null;
-    this.bookingType = isBookingType(parentParams) ? parentParams : null;
+    const bookingTypeParam =
+      this.activatedRoute.parent?.snapshot.paramMap.get('bookingType') ?? null;
+    const routeBookingType = this.activatedRoute.snapshot.data['bookingType'] as
+      | BookingType
+      | undefined;
+    this.bookingType = isBookingType(bookingTypeParam)
+      ? bookingTypeParam
+      : (routeBookingType ?? null);
     this.steps = stepsFor(this.bookingType);
 
     this.sessionId.set(localStorage.getItem('bookingSessionId') ?? undefined);
+  }
+
+  private get isEditMode(): boolean {
+    return this.bookingType === BookingType.EditAppointment;
+  }
+
+  private exitEdit(): void {
+    const id = this.appointmentToMove()?.id;
+    this.store.dispatch(resetState());
+    this.router.navigate(
+      id ? ['booking-a4h', 'appointments', 'details', id] : ['booking-a4h', 'appointments'],
+      { replaceUrl: true },
+    );
   }
 
   applyFilter(range: { start: string | null; end: string | null } = this.rangeDate.getRawValue()) {
@@ -286,6 +314,10 @@ export class BookingStepperComponent implements OnInit {
 
   onExpiration() {
     this.modalService.openInfo('Info', 'expiration-session-message', undefined, () => {
+      if (this.isEditMode) {
+        this.exitEdit();
+        return;
+      }
       this.router.navigate(['booking']);
       this.store.dispatch(resetState());
     });
@@ -304,12 +336,19 @@ export class BookingStepperComponent implements OnInit {
         );
       }
       this.store.dispatch(setActiveStep({ step: this.activeStep() - 1 }));
+    } else if (this.isEditMode) {
+      this.exitEdit();
     } else {
       this.router.navigate(['booking-a4h']);
     }
   }
 
   onSubmit() {
+    if (this.isEditMode) {
+      this.confirmMove();
+      return;
+    }
+
     const user = this.userProfile();
     if (!user) {
       if (!this.bookingType) {
@@ -327,6 +366,29 @@ export class BookingStepperComponent implements OnInit {
     this.store.dispatch(bookAppointment({ payload: { sessionId: this.sessionId()! } }));
   }
 
+  private confirmMove() {
+    const summary = this.bookingSummary();
+    if (!summary) return;
+
+    // gli slot arrivano in GMT, come nelle altre visualizzazioni dello stepper
+    this.modalService.openConfirm({
+      titleKey: 'appointments.edit-appointment-popup.title',
+      bodyKey: 'appointments.edit-appointment-popup.text',
+      bodyParams: {
+        date: formatDate(summary.dateTime, 'dd/MM/yyyy', 'en-US', 'GMT'),
+        time: formatDate(summary.dateTime, 'HH:mm', 'en-US', 'GMT'),
+      },
+      cancelKey: 'commons.no',
+      confirmKey: 'commons.yes',
+      onConfirm: () =>
+        this.store.dispatch(
+          moveAppointment({
+            payload: { sessionId: this.sessionId()!, newAppointmentId: summary.id },
+          }),
+        ),
+    });
+  }
+
   onCancel() {
     this.store.dispatch(
       releaseLockBookingSession({
@@ -336,6 +398,10 @@ export class BookingStepperComponent implements OnInit {
         },
       }),
     );
+    if (this.isEditMode) {
+      this.exitEdit();
+      return;
+    }
     this.store.dispatch(resetState());
     this.router.navigate(['booking-a4h']);
   }

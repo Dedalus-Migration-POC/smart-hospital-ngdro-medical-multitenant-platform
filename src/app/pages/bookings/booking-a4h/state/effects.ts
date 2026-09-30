@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap, tap, take, withLatestFrom } from 'rxjs/operators';
-import { combineLatest, of } from 'rxjs';
+import { combineLatest, from, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,6 +14,7 @@ import * as BookingUnifiedActions from './actions';
 import { ConsentPdfService } from 'src/app/pages/user-profile/a4h-consents/consents-privacy-a4h.service';
 import {
   selectActiveStep,
+  selectAppointmentToMove,
   selectAvailableListToBook,
   selectBookingType,
   selectIsOptimized,
@@ -230,12 +231,24 @@ export class BookingUnifiedEffects {
   find$ = createEffect(() =>
     this.actions$.pipe(
       ofType(BookingUnifiedActions.findForAvailableDays),
-      withLatestFrom(this.store.select(selectSelectedStruttura)),
-      concatMap(([action, struttura]) => {
+      withLatestFrom(
+        this.store.select(selectSelectedStruttura),
+        this.store.select(selectAppointmentToMove),
+      ),
+      concatMap(([action, struttura, appointmentToMove]) => {
         // Re-read the facility at call time: callers may have captured it before selection.
+        // Nello spostamento la struttura è quella dell'appuntamento originale.
+        const unitId = appointmentToMove
+          ? appointmentToMove.location.id
+            ? [appointmentToMove.location.id]
+            : undefined
+          : (action.payload.unitId ?? (struttura?.id ? [struttura.id] : undefined));
         const payload = {
           ...action.payload,
-          unitId: action.payload.unitId ?? (struttura?.id ? [struttura.id] : undefined),
+          unitId,
+          appointmentToMove: appointmentToMove
+            ? { id: appointmentToMove.id }
+            : action.payload.appointmentToMove,
         };
         return this.bookingService.find(payload).pipe(
           map((data) => {
@@ -323,7 +336,8 @@ export class BookingUnifiedEffects {
                   tap(([serviceIds, struttura]) => {
                     // Con una sola prestazione non c'è nulla da spezzare in più appuntamenti:
                     // ripetere check-availability porterebbe a un giro infinito find -> 204 -> check-availability.
-                    if (serviceIds.length < 2) {
+                    // Uno spostamento riguarda sempre un singolo appuntamento esistente.
+                    if (serviceIds.length < 2 || bookingType === BookingType.EditAppointment) {
                       this.notifyError('booking-a4h.warningExcl', 'booking-a4h.noAvailability');
                       return;
                     }
@@ -552,6 +566,30 @@ export class BookingUnifiedEffects {
           catchError((error) => {
             this.notifyErrorGeneral();
             return of(BookingUnifiedActions.getHealthCareUnitFailure({ error }));
+          }),
+        ),
+      ),
+    ),
+  );
+
+  startAppointmentEdit$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(BookingUnifiedActions.startAppointmentEdit),
+      concatMap(({ appointment }) =>
+        this.bookingService.getServicesList(appointment.contract).pipe(
+          concatMap((services) => {
+            const serviceIds = services
+              .filter((s) => appointment.serviceIds.includes(s.id))
+              .map((s) => s.id);
+            return from([
+              BookingUnifiedActions.getServicesListSuccess({ data: services }),
+              ...serviceIds.map((id) => BookingUnifiedActions.addMedicalService({ id })),
+              BookingUnifiedActions.createSession({ payload: { serviceIds } }),
+            ]);
+          }),
+          catchError((error) => {
+            this.notifyErrorGeneral();
+            return of(BookingUnifiedActions.getServicesListFailure({ error }));
           }),
         ),
       ),

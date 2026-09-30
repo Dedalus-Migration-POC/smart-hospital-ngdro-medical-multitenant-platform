@@ -478,12 +478,99 @@
     }
   },
 
+  "appointments": {
+    "title": "Effettua l'accettazione degli appuntamenti",
+    "requesting-check-in": "Eseguo l'accettazione",
+    "toggleOnline": "ACCETTAZIONE ONLINE",
+    "toggleAppointments": "APPUNTAMENTI",
+    "refresh": "Aggiorna",
+    "back": "Indietro",
+    "retry": "Riprova",
+    "continue": "Continua",
+    "warning": "Attenzione",
+    "card": {
+      "paid": "Pagata",
+      "unpaid": "Da pagare",
+      "medicalServiceName": "Prestazione",
+      "ambulatory": "Ambulatorio",
+      "precinct": "Presidio",
+      "details": "Dettagli",
+      "acceptance": "Accettazione",
+      "payment": "Pagamento",
+      "contract": {
+        "SSN": "Prestazione SSN",
+        "SOLV": "Prestazione in solvenza",
+        "LP": "Prestazione in Libera Professione"
+      }
+    },
+    "hint": {
+      "too-early": "E' possibile effettuare l'accettazione <strong>{{hours}} ore prima</strong> dell'appuntamento.",
+      "privacy": "Per poter continuare è necessario recarsi in accettazione.",
+      "to-pay": "Per poter effettuare l'accettazione procedere al pagamento.",
+      "mobile-payment-not-allowed": "Non è possibile eseguire il pagamento in-app.",
+      "user-not-verified": "Per poter continuare è necessario recarsi in accettazione.",
+      "unknown": "Per poter continuare è necessario recarsi in accettazione.",
+      "too-late": "Non è più possibile effettuare l'accettazione.",
+      "not-editable": "Non è possibile modificare o eliminare questa prenotazione. Contattare il CUP della struttura per maggiori informazioni."
+    },
+    "details-page": {
+      "fetching-appointment": "Cerco il tuo appuntamento",
+      "appointment-number": "Identificativo appuntamento",
+      "medicalServiceName": "Prestazione",
+      "preparation": "Preparazione",
+      "download-vademecum": "Download Vademecum",
+      "download-vademecum-unavailable": "Documento non disponibile",
+      "scheduled-on": "Data ed ora",
+      "precinct": "Presidio",
+      "ambulatory": "Ambulatorio",
+      "floor": "Piano",
+      "waiting-room": "Sala d'aspetto",
+      "examination-room": "Sala ambulatorio",
+      "physician": "Medico",
+      "payment-status": "Stato del pagamento",
+      "edit-btn": "Modifica data appuntamento",
+      "delete-btn": "Cancella appuntamento",
+      "acceptance-btn": "Procedi con l'accettazione",
+      "delete-popup-message": "Confermi l'intenzione di voler cancellare questo appuntamento?",
+      "delete-popup-confirm-label": "Sì, cancella",
+      "delete-popup-not-cancellable-message": "Non è più possibile cancellare questo appuntamento. Se necessario, rivolgersi al CUP della struttura.",
+      "delete-appointments-confirm-title": "Operazione effettuata con successo!",
+      "delete-appointments-confirm-message": "L'appuntamento è stato cancellato."
+    },
+    "edit-page": {
+      "noAvailabilities": "Non ci sono disponibilità tra il <strong>{{dateFrom}}</strong> e il <strong>{{dateTo}}</strong>.<br />Usa il filtro per cercare in altre date."
+    },
+    "edit-appointment-popup": {
+      "title": "Attenzione",
+      "text": "Confermi di voler spostare il tuo appuntamento al {{date}} alle ore {{time}}?"
+    },
+    "edit-appointment-error": {
+      "unknown": "E' avvenuto un errore",
+      "406": "Non è più possibile modificare questo appuntamento. Se necessario, rivolgersi al CUP della struttura.",
+      "417": "Al momento non ci sono disponibilità per le prestazioni richieste. Si prega di contattare direttamente il CUP della struttura per maggiori informazioni e per supporto alla prenotazione."
+    },
+    "edit-success-popup": {
+      "title": "Conferma",
+      "text": "La modifica è avvenuta con successo"
+    },
+    "check-in-popup": {
+      "title": "CONFERMA L'ACCETTAZIONE",
+      "text": "Confermi di voler effettuare l'accettazione per questa prenotazione?",
+      "failure-message": "E' avvenuto un errore. Se il problema persiste ti preghiamo di contattare il CUP della struttura."
+    },
+    "check-in-success-popup": {
+      "title": "Operazione eseguita",
+      "text": "L'accettazione è stata confermata"
+    }
+  },
+
   "booking-a4h": {
     "bookingTypeTitle": "Prenota la tua visita presso la struttura di",
     "booking-with-ssn": "Prenotazione con il Servizio Sanitario Nazionale (SSN)",
     "booking-no-doctor-select": "Prenotazione privata senza scelta del medico",
     "booking-with-doctor-select": "Prenotazione privata con scelta del medico",
     "physicians": "Prenotazione medici",
+    "edit-appointment": "Modifica appuntamento",
     "prenotazione": "Prenotazione",
     "stepCounter": "{{current}} di {{total}}: {{name}}",
     "selectedFacility": "Struttura",

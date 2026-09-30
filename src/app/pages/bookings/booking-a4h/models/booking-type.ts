@@ -9,6 +9,8 @@ export enum BookingType {
   NoDocSelect = 'booking-no-doctor-select',
   WithDocSelect = 'booking-with-doctor-select',
   Physicians = 'physicians',
+  /** Spostamento di un appuntamento già prenotato: non è selezionabile dall'URL `:bookingType`. */
+  EditAppointment = 'edit-appointment',
 }
 
 export enum BookingStepKey {
@@ -45,6 +47,7 @@ export const BOOKING_FLOW_STEPS: Record<BookingType, BookingStepKey[]> = {
     BookingStepKey.DateTime,
     BookingStepKey.Review,
   ],
+  [BookingType.EditAppointment]: [BookingStepKey.DateTime, BookingStepKey.Review],
 };
 
 export const BOOKING_FLOW_LABELS: Record<BookingType, string> = {
@@ -52,6 +55,7 @@ export const BOOKING_FLOW_LABELS: Record<BookingType, string> = {
   [BookingType.NoDocSelect]: 'bookingNoDoctorSelect',
   [BookingType.WithDocSelect]: 'bookingWithDoctorSelect',
   [BookingType.Physicians]: 'physicians',
+  [BookingType.EditAppointment]: 'edit-appointment',
 };
 
 /** `bookingFlow` code expected by the `/service` and `/find/check-availability` APIs, per flow. */
@@ -60,10 +64,16 @@ export const BOOKING_FLOW_CODES: Record<BookingType, string> = {
   [BookingType.NoDocSelect]: 'SOLV',
   [BookingType.WithDocSelect]: 'LP',
   [BookingType.Physicians]: 'LP',
+  // il contratto reale arriva dall'appuntamento da spostare
+  [BookingType.EditAppointment]: '',
 };
 
 export function isBookingType(value: string | null): value is BookingType {
-  return !!value && Object.values(BookingType).includes(value as BookingType);
+  return (
+    !!value &&
+    value !== BookingType.EditAppointment &&
+    Object.values(BookingType).includes(value as BookingType)
+  );
 }
 
 export function stepsFor(bookingType: BookingType | null): BookingStepKey[] {

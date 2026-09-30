@@ -198,3 +198,11 @@ export interface FindByNrePayload {
   fiscalCode: string;
   prescriptionId: string;
 }
+
+/** Appuntamento già prenotato di cui si cerca una nuova disponibilità (flusso EditAppointment). */
+export interface AppointmentToMove {
+  id: string;
+  serviceIds: string[];
+  contract: string;
+  location: { id?: string; name: string; address?: string | null };
+}

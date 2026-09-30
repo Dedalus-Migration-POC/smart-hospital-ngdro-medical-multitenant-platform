@@ -12,6 +12,7 @@ import * as fromBookings from '../pages/bookings/bookings-ariannaCup/state/reduc
 import * as fromBookingsHero from '../pages/bookings/bookings-hero/state/reducer';
 import * as fromBookingUnified from '../pages/bookings/booking-a4h/state/reducer';
 import * as fromStruttura from '../pages/bookings/booking-a4h/state/struttura/struttura.reducer';
+import * as fromAppointmentsA4h from '../pages/bookings/booking-a4h/appointments/state/reducer';
 import * as fromConsentsA4H from '../pages/user-profile/a4h-consents/state/reducer';
 export interface SmartHospitalState {
   [fromInitializeApp.featureKey]: fromInitializeApp.State;
@@ -27,6 +28,7 @@ export interface SmartHospitalState {
   [fromBookingsHero.featureKey]: fromBookingsHero.State;
   [fromBookingUnified.featureKey]: fromBookingUnified.State;
   [fromStruttura.featureKey]: fromStruttura.StrutturaState;
+  [fromAppointmentsA4h.featureKey]: fromAppointmentsA4h.State;
   [fromConsentsA4H.featureKey]: fromConsentsA4H.State;
 }
 
@@ -44,6 +46,7 @@ export const reducers: ActionReducerMap<SmartHospitalState> = {
   [fromBookingsHero.featureKey]: fromBookingsHero.reducer,
   [fromBookingUnified.featureKey]: fromBookingUnified.reducer,
   [fromStruttura.featureKey]: fromStruttura.reducer,
+  [fromAppointmentsA4h.featureKey]: fromAppointmentsA4h.reducer,
   [fromConsentsA4H.featureKey]: fromConsentsA4H.reducer,
 };
 

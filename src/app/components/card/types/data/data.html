@@ -55,43 +55,70 @@
 
           @if (card.fields.length) {
             @for (field of card.fields; track field.key ?? i; let i = $index) {
-              <div
-                [ngClass]="[...getFlexLayoutClasses(layout), field.className ?? '']"
-                [ngStyle]="getSpacingStyles(field.margin)"
-              >
-                @if (field.label.text[lang()]; as fieldLabel) {
-                  <div
-                    [ngClass]="getTextClasses(getMergedLabelStyle(field))"
-                    [class.field-label-row]="layout.direction === 'row'"
-                    [ngStyle]="{
-                      ...getFieldRowPartStyles(field, 'key', layout.direction),
-                      ...getTextStyles(getMergedLabelStyle(field)),
-                    }"
-                  >
-                    {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
-                  </div>
-                }
+              @if (shouldRenderField(field)) {
+                <div
+                  [ngClass]="[...getFlexLayoutClasses(layout), field.className ?? '']"
+                  [ngStyle]="getSpacingStyles(field.margin)"
+                >
+                  @if (field.label.text[lang()]; as fieldLabel) {
+                    <div
+                      [ngClass]="getTextClasses(getMergedLabelStyle(field))"
+                      [class.field-label-row]="layout.direction === 'row'"
+                      [ngStyle]="{
+                        ...getFieldRowPartStyles(field, 'key', layout.direction),
+                        ...getTextStyles(getMergedLabelStyle(field)),
+                      }"
+                    >
+                      {{ fieldLabel }}{{ layout.direction === 'row' ? ':' : '' }}
+                    </div>
+                  }
 
-                <div [ngStyle]="getFieldRowPartStyles(field, 'value', layout.direction)">
-                  @switch (field.type) {
-                    @case ('image') {
-                      @if (getImageBlockConfig(field); as imgConfig) {
-                        <app-image-block [config]="imgConfig"></app-image-block>
-                      }
-                    }
-                    @case ('array') {
-                      @if (field.listStyle && field.listStyle !== 'comma') {
-                        @for (value of getArrayValues(field); track $index) {
-                          <div
-                            [ngClass]="[
-                              ...getTextClasses(getMergedValueStyle(field)),
-                              getListItemClass(field.listStyle),
-                            ]"
-                            [ngStyle]="getTextStyles(getMergedValueStyle(field))"
-                            [innerHTML]="value"
-                          ></div>
+                  <div [ngStyle]="getFieldRowPartStyles(field, 'value', layout.direction)">
+                    @switch (field.type) {
+                      @case ('image') {
+                        @if (getImageBlockConfig(field); as imgConfig) {
+                          <app-image-block [config]="imgConfig"></app-image-block>
                         }
-                      } @else {
+                      }
+                      @case ('array') {
+                        @if (field.listStyle && field.listStyle !== 'comma') {
+                          @for (value of getArrayValues(field); track $index) {
+                            <div
+                              [ngClass]="[
+                                ...getTextClasses(getMergedValueStyle(field)),
+                                getListItemClass(field.listStyle),
+                              ]"
+                              [ngStyle]="getTextStyles(getMergedValueStyle(field))"
+                              [innerHTML]="value"
+                            ></div>
+                          }
+                        } @else {
+                          <div
+                            [ngClass]="getTextClasses(getMergedValueStyle(field))"
+                            [ngStyle]="getTextStyles(getMergedValueStyle(field))"
+                          >
+                            {{ getFieldDisplayValue(field) }}
+                          </div>
+                        }
+                      }
+                      @case ('badge') {
+                        @if (getBadgeConfig(field); as badge) {
+                          <span
+                            class="badge"
+                            [ngClass]="[
+                              badge.bgColorHex ? '' : 'text-bg-' + badge.bgColor,
+                              ...getTextClasses(badge.config),
+                            ]"
+                            [ngStyle]="{
+                              ...getTextStyles(badge.config),
+                              'background-color': badge.bgColorHex ?? null,
+                            }"
+                          >
+                            {{ badge.displayText }}
+                          </span>
+                        }
+                      }
+                      @default {
                         <div
                           [ngClass]="getTextClasses(getMergedValueStyle(field))"
                           [ngStyle]="getTextStyles(getMergedValueStyle(field))"
@@ -100,34 +127,9 @@
                         </div>
                       }
                     }
-                    @case ('badge') {
-                      @if (getBadgeConfig(field); as badge) {
-                        <span
-                          class="badge"
-                          [ngClass]="[
-                            badge.bgColorHex ? '' : 'text-bg-' + badge.bgColor,
-                            ...getTextClasses(badge.config),
-                          ]"
-                          [ngStyle]="{
-                            ...getTextStyles(badge.config),
-                            'background-color': badge.bgColorHex ?? null,
-                          }"
-                        >
-                          {{ badge.displayText }}
-                        </span>
-                      }
-                    }
-                    @default {
-                      <div
-                        [ngClass]="getTextClasses(getMergedValueStyle(field))"
-                        [ngStyle]="getTextStyles(getMergedValueStyle(field))"
-                      >
-                        {{ getFieldDisplayValue(field) }}
-                      </div>
-                    }
-                  }
+                  </div>
                 </div>
-              </div>
+              }
             }
           }
         </div>

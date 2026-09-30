@@ -10,6 +10,7 @@ import { BookingsEffects } from '../pages/bookings/bookings-ariannaCup/state/eff
 import { BookingsHeroEffects } from '../pages/bookings/bookings-hero/state/effects';
 import { BookingUnifiedEffects } from '../pages/bookings/booking-a4h/state/effects';
 import { StrutturaEffects } from '../pages/bookings/booking-a4h/state/struttura/struttura.effects';
+import { AppointmentsA4hEffects } from '../pages/bookings/booking-a4h/appointments/state/effects';
 
 export const effects = [
   UserProfileEffects,
@@ -23,5 +24,6 @@ export const effects = [
   BookingsHeroEffects,
   BookingUnifiedEffects,
   StrutturaEffects,
+  AppointmentsA4hEffects,
   ConsentsA4HEffects,
 ];

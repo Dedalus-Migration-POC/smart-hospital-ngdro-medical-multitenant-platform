@@ -1,0 +1,435 @@
+{
+  "id": "/booking-a4h/appointments",
+  "name": {
+    "it": "I miei appuntamenti",
+    "en": "My appointments"
+  },
+  "route": "/booking-a4h/appointments",
+  "backgroundColor": "#ffffff",
+  "breadcrumb": {
+    "background": { "fill": { "hex": "#e6e8ea" } },
+    "itemsStyle": { "color": { "hex": "#333333" } },
+    "title": { "text": { "it": "I miei appuntamenti", "en": "My appointments" } },
+    "subTitle": {
+      "text": {
+        "it": "Effettua l'accettazione degli appuntamenti",
+        "en": "Check in to your appointments"
+      }
+    },
+    "items": [
+      {
+        "name": { "it": "Home", "en": "Home" },
+        "routerLink": "/"
+      },
+      {
+        "name": { "it": "Appuntamenti", "en": "Appointments" },
+        "routerLink": "/booking-a4h/appointments"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "cards-section",
+      "areas": {
+        "center": {
+          "items": [
+            {
+              "id": "appointments-cards",
+              "type": "SERVICE_CARDS",
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-6 col-lg-4",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "satrt",
+                  "gap": "gap-2"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "wrap": "wrap",
+                  "justify": "between",
+                  "gap": "gap-2"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "description",
+                        "fontSize": "lg",
+                        "lineHeight": "sm",
+                        "margin": { "bottom": "1rem" }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "contract",
+                        "type": "text",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "valueMap": {
+                          "SSN": { "text": { "it": "Prestazione SSN", "en": "NHS service" } },
+                          "SOLV": {
+                            "text": { "it": "Prestazione in solvenza", "en": "Private service" }
+                          },
+                          "LP": {
+                            "text": {
+                              "it": "Prestazione in Libera Professione",
+                              "en": "Private practice service"
+                            }
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Regime", "en": "Scheme" }
+                        }
+                      },
+                      {
+                        "key": "scheduledOn",
+                        "type": "date",
+                        "format": "EEEE dd MMM yyyy - HH:mm",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "valueStyle": { "fontWeight": "bold" },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Data", "en": "Date" }
+                        }
+                      },
+                      {
+                        "key": "paymentStatus",
+                        "type": "badge",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Pagamento", "en": "Payment" }
+                        },
+                        "badgeMap": {
+                          "PAID": {
+                            "text": { "it": "Pagata", "en": "Paid" },
+                            "color": { "palette": "success" },
+                            "fontWeight": "semibold"
+                          },
+                          "TO_PAY": {
+                            "text": { "it": "Da pagare", "en": "Unpaid" },
+                            "color": { "palette": "warning" },
+                            "fontWeight": "semibold"
+                          }
+                        }
+                      },
+                      {
+                        "key": "locationDetails.department",
+                        "type": "text",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Ambulatorio", "en": "Clinic" }
+                        }
+                      },
+                      {
+                        "key": "location.name",
+                        "type": "text",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Presidio", "en": "Location" }
+                        }
+                      },
+                      {
+                        "key": "hint",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "margin": { "top": "1rem" },
+                        "valueStyle": {
+                          "fontSize": "sm",
+                          "fontWeight": "semibold",
+                          "color": { "palette": "primary" }
+                        },
+                        "label": { "text": { "it": "", "en": "" } },
+                        "valueMap": {
+                          "TOO-EARLY": {
+                            "text": {
+                              "it": "E' possibile effettuare l'accettazione {{checkInHours}} ore prima dell'appuntamento.",
+                              "en": "Check-in is available {{checkInHours}} hours before your appointment."
+                            }
+                          },
+                          "PRIVACY": {
+                            "text": {
+                              "it": "Per poter continuare è necessario recarsi in accettazione.",
+                              "en": "To continue, please go to the reception desk."
+                            }
+                          },
+                          "TO-PAY": {
+                            "text": {
+                              "it": "Per poter effettuare l'accettazione procedere al pagamento.",
+                              "en": "To check in, please complete payment first."
+                            }
+                          },
+                          "MOBILE-PAYMENT-NOT-ALLOWED": {
+                            "text": {
+                              "it": "Non è possibile eseguire il pagamento in-app.",
+                              "en": "In-app payment is not available."
+                            }
+                          },
+                          "USER-NOT-VERIFIED": {
+                            "text": {
+                              "it": "Per poter continuare è necessario recarsi in accettazione.",
+                              "en": "To continue, please go to the reception desk."
+                            }
+                          },
+                          "UNKNOWN": {
+                            "text": {
+                              "it": "Per poter continuare è necessario recarsi in accettazione.",
+                              "en": "To continue, please go to the reception desk."
+                            }
+                          },
+                          "TOO-LATE": {
+                            "text": {
+                              "it": "Non è più possibile effettuare l'accettazione.",
+                              "en": "Check-in is no longer available."
+                            }
+                          },
+                          "NOT-EDITABLE": {
+                            "text": {
+                              "it": "Non è possibile modificare o eliminare questa prenotazione. Contattare il CUP della struttura per maggiori informazioni.",
+                              "en": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information."
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "details",
+                        "type": "route",
+                        "renderAs": "button",
+                        "outline": true,
+                        "url": "/booking-a4h/appointments/details/:id",
+                        "routeParams": { "id": "id" },
+                        "disabledIf": [{ "key": "busy", "operator": "eq", "value": true }],
+                        "label": {
+                          "text": { "it": "Dettagli", "en": "Details" },
+                          "fontWeight": "semibold"
+                        }
+                      },
+                      {
+                        "key": "checkIn",
+                        "type": "callback",
+                        "renderAs": "button",
+                        "outline": true,
+                        "hideIf": [{ "key": "lockCause", "operator": "eq", "value": "to-pay" }],
+                        "disabledIf": [
+                          { "key": "checkInDisabled", "operator": "eq", "value": true }
+                        ],
+                        "icon": {
+                          "type": "font-awesome",
+                          "name": "fa-solid fa-arrow-right",
+                          "position": "after"
+                        },
+                        "label": {
+                          "text": { "it": "Accettazione", "en": "Check-in" }
+                        },
+                        "callback": {
+                          "nameFunction": "requestCheckIn",
+                          "params": ["id"]
+                        }
+                      },
+                      {
+                        "key": "payment",
+                        "type": "route",
+                        "renderAs": "button",
+                        "outline": true,
+                        "url": "/payments-a4h",
+                        "hideIf": [{ "key": "lockCause", "operator": "neq", "value": "to-pay" }],
+                        "icon": {
+                          "type": "font-awesome",
+                          "name": "fa-solid fa-arrow-right",
+                          "position": "after"
+                        },
+                        "label": {
+                          "text": { "it": "Pagamento", "en": "Payment" }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "accepted-appointments-cards",
+              "type": "SERVICE_CARDS",
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-6 col-lg-4",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "start",
+                  "gap": "gap-2"
+                },
+                "actionsLayout": {
+                  "direction": "row",
+                  "wrap": "wrap",
+                  "justify": "center",
+                  "gap": "gap-2"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "titleSubtitle": {
+                      "title": {
+                        "key": "description",
+                        "fontSize": "lg",
+                        "lineHeight": "sm",
+                        "margin": { "bottom": "1rem" }
+                      }
+                    },
+                    "fields": [
+                      {
+                        "key": "contract",
+                        "type": "text",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "valueMap": {
+                          "SSN": { "text": { "it": "Prestazione SSN", "en": "NHS service" } },
+                          "SOLV": {
+                            "text": { "it": "Prestazione in solvenza", "en": "Private service" }
+                          },
+                          "LP": {
+                            "text": {
+                              "it": "Prestazione in Libera Professione",
+                              "en": "Private practice service"
+                            }
+                          }
+                        },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Regime", "en": "Scheme" }
+                        }
+                      },
+                      {
+                        "key": "scheduledOn",
+                        "type": "date",
+                        "format": "EEEE dd MMM yyyy - HH:mm",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "valueStyle": { "fontWeight": "bold" },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Data", "en": "Date" }
+                        }
+                      },
+                      {
+                        "key": "paymentStatus",
+                        "type": "badge",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Pagamento", "en": "Payment" }
+                        },
+                        "badgeMap": {
+                          "PAID": {
+                            "text": { "it": "Pagata", "en": "Paid" },
+                            "color": { "palette": "success" },
+                            "fontWeight": "semibold"
+                          },
+                          "TO_PAY": {
+                            "text": { "it": "Da pagare", "en": "Unpaid" },
+                            "color": { "palette": "warning" },
+                            "fontWeight": "semibold"
+                          }
+                        }
+                      },
+                      {
+                        "key": "locationDetails.department",
+                        "type": "text",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Ambulatorio", "en": "Clinic" }
+                        }
+                      },
+                      {
+                        "key": "location.name",
+                        "type": "text",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Presidio", "en": "Location" }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "details",
+                        "type": "route",
+                        "renderAs": "button",
+                        "outline": true,
+                        "url": "/booking-a4h/appointments/details/:id",
+                        "routeParams": { "id": "id" },
+                        "disabledIf": [{ "key": "busy", "operator": "eq", "value": true }],
+                        "label": {
+                          "text": { "it": "Dettagli", "en": "Details" },
+                          "fontWeight": "semibold"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "message": {
+    "error": {
+      "id": "appointmentsError",
+      "className": "",
+      "layout": { "direction": "column", "align": "center", "justify": "center", "gap": "gap-2" },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
+        "decorative": true,
+        "alt": { "it": "Errore", "en": "Error" },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": { "it": "Errore", "en": "Error" },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": { "palette": "danger" },
+          "lineHeight": "normal"
+        },
+        "subTitle": {
+          "text": {
+            "it": "Si è verificato un errore durante il recupero degli appuntamenti. Riprova più tardi.",
+            "en": "An error occurred while fetching the appointments. Please try again later."
+          },
+          "fontSize": "md",
+          "fontWeight": "normal",
+          "color": { "palette": "danger" },
+          "lineHeight": "normal"
+        }
+      }
+    },
+    "notFound": {
+      "id": "appointmentsNotFound",
+      "className": "",
+      "layout": { "direction": "column", "align": "center", "justify": "center", "gap": "gap-2" },
+      "clickable": false,
+      "image": {
+        "type": "url",
+        "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
+        "decorative": true,
+        "alt": { "it": "Nessun appuntamento", "en": "No appointments" },
+        "height": "150px"
+      },
+      "text": {
+        "title": {
+          "text": { "it": "Nessun elemento da mostrare", "en": "Nothing to show" },
+          "fontSize": "xl",
+          "fontWeight": "normal",
+          "color": { "palette": "warning" },
+          "lineHeight": "normal"
+        }
+      }
+    }
+  }
+}
