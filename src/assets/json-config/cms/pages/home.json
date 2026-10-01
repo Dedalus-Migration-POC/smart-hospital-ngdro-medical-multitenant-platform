@@ -85,7 +85,7 @@
                 "id": "hero-image",
                 "image": {
                   "type": "url",
-                  "value": "https://prod-cms-marche.s3.eu-south-1.amazonaws.com/67ff81fcbf93ca37d29f5ec1-image-b4e0aa2f-5efc-49ec-afe5-fd02e8a82fdd.jfif",
+                  "value": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU-fcqFuHxyF15klQ0Y_Mi5lSoVhmxNg6rezNE2O8j9I1CKIC-hpRcQZQ&s=10",
                   "decorative": false,
                   "className": "img-fluid rounded",
                   "alt": {
