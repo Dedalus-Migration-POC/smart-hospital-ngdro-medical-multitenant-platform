@@ -45,9 +45,11 @@ import {
   selectActiveStep,
   selectAppointmentToMove,
   selectAvailableListToBook,
+  selectCheckAvailableDaysLoading,
   selectCheckAvailableDaysResponse,
   selectCreateSessionResponse,
   selectExpireOnLockAppointmentResponse,
+  selectFindLoading,
   selectFindPrescriptionByNre,
   selectIsOptimized,
   selectLockAppointmentResponse,
@@ -144,6 +146,13 @@ export class BookingStepperComponent implements OnInit {
   });
   private readonly selectedDoctor = this.store.selectSignal(selectSelectedDoctor);
   protected readonly availableDays = this.store.selectSignal(selectCheckAvailableDaysResponse);
+  private readonly findLoading = this.store.selectSignal(selectFindLoading);
+  private readonly checkAvailableDaysLoading = this.store.selectSignal(
+    selectCheckAvailableDaysLoading,
+  );
+  protected readonly availableDaysLoading = computed(
+    () => this.findLoading() || this.checkAvailableDaysLoading(),
+  );
   protected readonly isOptimized = this.store.selectSignal(selectIsOptimized);
   protected readonly expireOn = this.store.selectSignal(selectExpireOnLockAppointmentResponse);
   protected readonly selectedMedicalServicesId = this.store.selectSignal(

@@ -22,28 +22,30 @@
     </div>
   </ng-template>
 
-  <it-tab-container>
-    <it-tab-item
-      [label]="'appointments.toggleAppointments' | translate"
-      [active]="!showAcceptedFirst"
-    >
-      <ng-container
-        *ngTemplateOutlet="
-          tabContent;
-          context: { appointments: pendingAppointments(), cards: pendingCards() }
-        "
-      ></ng-container>
-    </it-tab-item>
+  @for (acceptedFirst of [showAcceptedFirst()]; track acceptedFirst) {
+    <it-tab-container>
+      <it-tab-item
+        [label]="'appointments.toggleAppointments' | translate"
+        [active]="!acceptedFirst"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            tabContent;
+            context: { appointments: pendingAppointments(), cards: pendingCards() }
+          "
+        ></ng-container>
+      </it-tab-item>
 
-    <it-tab-item [label]="'appointments.toggleOnline' | translate" [active]="showAcceptedFirst">
-      <ng-container
-        *ngTemplateOutlet="
-          tabContent;
-          context: { appointments: acceptedAppointments(), cards: acceptedCards() }
-        "
-      ></ng-container>
-    </it-tab-item>
-  </it-tab-container>
+      <it-tab-item [label]="'appointments.toggleOnline' | translate" [active]="acceptedFirst">
+        <ng-container
+          *ngTemplateOutlet="
+            tabContent;
+            context: { appointments: acceptedAppointments(), cards: acceptedCards() }
+          "
+        ></ng-container>
+      </it-tab-item>
+    </it-tab-container>
+  }
 }
 
 @if (loading()) {

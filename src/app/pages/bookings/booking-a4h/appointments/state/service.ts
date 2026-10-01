@@ -7,7 +7,7 @@ import {
   CheckInTicketDto,
   MoveAppointmentPayload,
 } from './model';
-import { APPOINTMENTS } from './mock';
+import { APPOINTMENTS, CHECK_IN_TICKET_MOCK } from './mock';
 
 @Injectable({ providedIn: 'root' })
 export class AppointmentsService {
@@ -40,6 +40,9 @@ export class AppointmentsService {
   }
 
   requestCheckIn({ id, location }: AppointmentDto): Observable<CheckInTicketDto> {
+    if (this.IS_DEV) {
+      return of(CHECK_IN_TICKET_MOCK as CheckInTicketDto).pipe(delay(500));
+    }
     return this.httpClient.post<CheckInTicketDto>('/checkin/api/checkin', {
       appointmentIds: [id],
       structureCode: location.id,

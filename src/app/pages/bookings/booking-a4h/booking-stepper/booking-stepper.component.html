@@ -59,6 +59,7 @@
             [selectedService]="selectedServiceName()"
             [availableServices]="availableListToBook()"
             [availableDays]="availableDays()"
+            [loading]="availableDaysLoading()"
             (filter)="applyFilter($event)"
             (appointmentSelected)="onAppointmentClick($event)"
             (back)="onBackClick()"

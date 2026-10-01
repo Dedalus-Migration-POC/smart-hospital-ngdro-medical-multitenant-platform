@@ -129,6 +129,9 @@ export class AppointmentsA4hEffects {
           this.modalService.openInfo(
             'commons.error',
             'appointments.check-in-popup.failure-message',
+            undefined,
+            undefined,
+            'commons.close',
           ),
         ),
       ),

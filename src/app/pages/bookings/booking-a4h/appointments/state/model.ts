@@ -72,13 +72,13 @@ export interface MoveAppointmentPayload {
 }
 
 export interface CheckInTicketDto {
-  ticketNumber?: string;
-  ticketMessage?: string;
-  noTicketMessage?: string;
-  peopleQueuing?: number;
-  waitingTime?: number;
-  scheduleTime?: string;
-  base64QrCode?: string;
+  ticketNumber?: string | null;
+  ticketMessage?: string | null;
+  noTicketMessage?: string | null;
+  peopleQueuing?: number | null;
+  waitingTime?: number | null;
+  scheduleTime?: string | null;
+  base64QrCode?: string | null;
 }
 
 /** Stati che compaiono nella tab "Appuntamenti"; `DONE` finisce in "Accettazione online". */

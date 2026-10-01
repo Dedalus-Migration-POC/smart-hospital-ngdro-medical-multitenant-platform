@@ -30,6 +30,223 @@
       }
     ]
   },
+  "sections": [
+    {
+      "id": "cards-section",
+      "areas": {
+        "center": {
+          "items": [
+            {
+              "id": "appointment-details-card",
+              "type": "SERVICE_CARDS",
+              "props": {
+                "itemColBootstrapClasses": "col-12 col-md-10 col-xl-8",
+                "itemsLayout": { "direction": "row", "gap": "gap-2" },
+                "actionsLayout": {
+                  "direction": "row",
+                  "wrap": "wrap",
+                  "justify": "center",
+                  "gap": "gap-4"
+                },
+                "items": [
+                  {
+                    "type": "data",
+                    "background": "white",
+                    "padding": { "x": "2rem", "y": "1.5rem" },
+                    "titleSubtitle": {
+                      "title": { "key": "description", "fontSize": "lg", "margin": "mb-3" }
+                    },
+                    "fields": [
+                      {
+                        "key": "paymentStatusForDisplay",
+                        "type": "badge",
+                        "hideIfEmpty": true,
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Stato del pagamento", "en": "Payment status" }
+                        },
+                        "badgeMap": {
+                          "PAID": {
+                            "text": { "it": "Pagato", "en": "Paid" },
+                            "color": { "palette": "success" }
+                          },
+                          "TO_PAY": {
+                            "text": { "it": "Da pagare", "en": "Unpaid" },
+                            "color": { "palette": "warning" }
+                          }
+                        }
+                      },
+                      {
+                        "key": "code",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Identificativo appuntamento", "en": "Appointment ID" }
+                        }
+                      },
+                      {
+                        "key": "physician",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Medico", "en": "Physician" }
+                        }
+                      },
+                      {
+                        "key": "scheduledOn",
+                        "type": "date",
+                        "format": "dd/MM/yyyy - HH:mm",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Data e ora", "en": "Date and time" }
+                        }
+                      },
+                      {
+                        "key": "address",
+                        "type": "text",
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Presidio", "en": "Location" }
+                        }
+                      },
+                      {
+                        "key": "locationDetails.department",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Ambulatorio", "en": "Clinic" }
+                        }
+                      },
+                      {
+                        "key": "locationDetails.floor",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": { "fontWeight": "bold", "text": { "it": "Piano", "en": "Floor" } }
+                      },
+                      {
+                        "key": "locationDetails.waitingRoom",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Sala d'aspetto", "en": "Waiting room" }
+                        }
+                      },
+                      {
+                        "key": "locationDetails.examinationRoom",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": { "it": "Sala ambulatorio", "en": "Examination room" }
+                        }
+                      },
+
+                      {
+                        "key": "hint",
+                        "type": "text",
+                        "hideIfEmpty": true,
+                        "margin": { "top": "1rem" },
+                        "valueStyle": {
+                          "fontSize": "sm",
+                          "fontWeight": "semibold",
+                          "color": { "palette": "primary" }
+                        },
+                        "label": { "text": { "it": "", "en": "" } },
+                        "valueMap": {
+                          "NOT-EDITABLE": {
+                            "text": {
+                              "it": "Non è possibile modificare o eliminare questa prenotazione. Contattare il CUP della struttura per maggiori informazioni.",
+                              "en": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information."
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "actions": [
+                      {
+                        "key": "preparation",
+                        "type": "callback",
+                        "renderAs": "button",
+                        "outline": true,
+                        "label": {
+                          "text": { "it": "Download Vademecum", "en": "Download Guidelines" }
+                        },
+                        "callback": { "nameFunction": "downloadVademecum" },
+                        "hideIf": [{ "key": "linkNote", "operator": "empty" }],
+                        "hideMessage": {
+                          "text": {
+                            "it": "Documento non disponibile",
+                            "en": "Document unavailable"
+                          }
+                        }
+                      },
+                      {
+                        "key": "edit",
+                        "type": "callback",
+                        "renderAs": "button",
+                        "label": {
+                          "text": {
+                            "it": "Modifica data appuntamento",
+                            "en": "Change appointment date"
+                          }
+                        },
+                        "callback": { "nameFunction": "editAppointment" },
+                        "hideIf": [{ "key": "isDone", "operator": "eq", "value": true }],
+                        "disabledIf": [{ "key": "editDisabled", "operator": "eq", "value": true }]
+                      },
+                      {
+                        "key": "delete",
+                        "type": "callback",
+                        "renderAs": "button",
+                        "palette": "danger",
+                        "outline": true,
+                        "label": {
+                          "text": { "it": "Cancella appuntamento", "en": "Cancel appointment" }
+                        },
+                        "callback": { "nameFunction": "deleteAppointment" },
+                        "hideIf": [{ "key": "isDone", "operator": "eq", "value": true }],
+                        "disabledIf": [{ "key": "editDisabled", "operator": "eq", "value": true }]
+                      },
+                      {
+                        "key": "checkIn",
+                        "type": "callback",
+                        "renderAs": "button",
+                        "outline": true,
+                        "label": {
+                          "text": {
+                            "it": "Procedi con l'accettazione",
+                            "en": "Proceed with check-in"
+                          }
+                        },
+                        "callback": { "nameFunction": "requestCheckIn" },
+                        "hideIf": [{ "key": "isDone", "operator": "eq", "value": true }],
+                        "disabledIf": [
+                          { "key": "checkInDisabled", "operator": "eq", "value": true }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "message": {
     "error": {
       "id": "appointmentError",

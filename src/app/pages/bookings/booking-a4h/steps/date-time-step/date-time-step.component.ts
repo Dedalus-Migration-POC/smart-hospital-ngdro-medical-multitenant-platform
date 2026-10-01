@@ -31,6 +31,7 @@ export class DateTimeStepComponent {
   readonly selectedService = input<DateTimeSelectedService | undefined>();
   readonly availableServices = input<readonly DateTimeServiceToBook[] | undefined>();
   readonly availableDays = input<CheckAvailableDays | null>();
+  readonly loading = input(false);
 
   readonly filter = output<{ start: string | null; end: string | null }>();
   readonly appointmentSelected = output<string>();

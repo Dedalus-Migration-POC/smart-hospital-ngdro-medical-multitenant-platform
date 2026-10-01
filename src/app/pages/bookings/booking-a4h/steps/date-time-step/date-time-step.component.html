@@ -84,7 +84,7 @@
   </div>
 }
 
-@if (availableDays()?.appointments?.length) {
+@if (!loading() && availableDays()?.appointments?.length) {
   <div class="cards-container row g-5">
     @for (appointment of availableDays()?.appointments; track appointment.id) {
       <div class="col-12 col-md-4 col-xl-3">
@@ -118,7 +118,7 @@
       </div>
     }
   </div>
-} @else {
+} @else if (!loading() && availableDays()) {
   <div class="d-flex justify-content-center">
     @if (rangeDate.getRawValue().start || rangeDate.getRawValue().end) {
       <img

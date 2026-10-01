@@ -76,9 +76,12 @@ export class AppointmentsListComponent implements OnInit {
   private readonly checkInHours = this.store.selectSignal(selectCheckInHours);
   protected readonly loading = computed(() => this.fetching() || this.requestingCheckIn());
 
-  /** Tab iniziale da query param: il redirect post-accettazione apre "Accettazione online". */
-  protected readonly showAcceptedFirst =
-    this.activatedRoute.snapshot.queryParamMap.get('acceptance') === 'true';
+  private readonly queryParamMap = toSignal(this.activatedRoute.queryParamMap, {
+    initialValue: this.activatedRoute.snapshot.queryParamMap,
+  });
+  protected readonly showAcceptedFirst = computed(
+    () => this.queryParamMap().get('acceptance') === 'true',
+  );
 
   protected readonly pendingAppointments = computed(() =>
     this.appointments().filter((a) => PENDING_CHECK_IN_STATUSES.includes(a.checkInStatus)),
