@@ -43,7 +43,7 @@ export class UserProfileService {
 
   fetchUserProfile(profileCode?: string) {
     if (this.IS_DEV) {
-      return of(MOCK_PROFILE_A4H).pipe(delay(500));
+      return of(MOCK_PROFILE).pipe(delay(500));
     }
 
     if (profileCode) {

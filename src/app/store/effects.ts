@@ -11,6 +11,7 @@ import { BookingsHeroEffects } from '../pages/bookings/bookings-hero/state/effec
 import { BookingUnifiedEffects } from '../pages/bookings/booking-a4h/state/effects';
 import { StrutturaEffects } from '../pages/bookings/booking-a4h/state/struttura/struttura.effects';
 import { AppointmentsA4hEffects } from '../pages/bookings/booking-a4h/appointments/state/effects';
+import { CredentialsEffects } from '../pages/auth/components/credentials/state/credentials.effects';
 
 export const effects = [
   UserProfileEffects,
@@ -26,4 +27,5 @@ export const effects = [
   StrutturaEffects,
   AppointmentsA4hEffects,
   ConsentsA4HEffects,
+  CredentialsEffects,
 ];

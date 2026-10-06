@@ -11,6 +11,20 @@
     "yes": "Sì",
     "no": "No"
   },
+  "credentials-registration": {
+    "consents": {
+      "requiredConsent": "*Obbligatorio",
+      "optionalConsent": "*Facoltativo"
+    },
+    "errors": {
+      "conflict": "Esiste gia un account con queste credenziali.",
+      "verificationEmail": "Impossibile inviare l'email di verifica. Contatta l'amministratore.",
+      "requiredFields": "Compila tutti i campi obbligatori.",
+      "requiredConsents": "Accetta tutti i consensi obbligatori.",
+      "invalidAttribute": "Controlla il valore del campo indicato.",
+      "generic": "Registrazione non riuscita. Riprova."
+    }
+  },
   "it": {
     "errors": {
       "required-field": "Il campo è obbligatorio",
@@ -18,6 +32,8 @@
     }
   },
   "input": {
+    "show-password": "Mostra password",
+    "hide-password": "Nascondi password",
     "errors": {
       "required-field": "Il campo è obbligatorio",
       "invalid-field": "Il valore inserito non è valido",

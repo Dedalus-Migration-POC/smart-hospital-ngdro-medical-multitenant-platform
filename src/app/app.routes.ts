@@ -30,6 +30,13 @@ export const routes: Routes = [
     component: Auth,
   },
   {
+    path: 'credentials-registration',
+    loadComponent: () =>
+      import('./pages/auth/components/credentials/registration/credentials-registration').then(
+        (module) => module.CredentialsRegistration,
+      ),
+  },
+  {
     path: 'user-profile',
     canActivate: [authenticatedGuard({ allowTemporary: true })],
     loadChildren: () =>

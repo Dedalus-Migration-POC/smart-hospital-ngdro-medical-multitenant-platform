@@ -1,8 +1,9 @@
 @if (hasControl()) {
-  <div [class]="wrapperClass()">
+  <div [class]="wrapperClass()" [class.password-field]="type() === 'password'">
     <input
-      [type]="type()"
+      [type]="effectiveType()"
       [class]="inputClass()"
+      [class.password-input]="type() === 'password'"
       [ngClass]="iconClass() ? 'input-with-icon' : ''"
       [id]="fieldName()"
       [formControl]="control()!"
@@ -23,12 +24,38 @@
         {{ label() }}</label
       >
     }
+    @if (type() === 'password') {
+      <button
+        type="button"
+        class="password-toggle"
+        [attr.aria-label]="
+          (passwordVisible() ? 'input.hide-password' : 'input.show-password') | translate
+        "
+        [title]="(passwordVisible() ? 'input.hide-password' : 'input.show-password') | translate"
+        [attr.aria-controls]="fieldName()"
+        [attr.aria-pressed]="passwordVisible()"
+        [disabled]="isDisabled()"
+        (click)="togglePasswordVisibility()"
+      >
+        <i
+          class="fa-solid"
+          [class.fa-eye]="!passwordVisible()"
+          [class.fa-eye-slash]="passwordVisible()"
+          aria-hidden="true"
+        ></i>
+      </button>
+    }
   </div>
 } @else {
-  <div [class]="wrapperClass()" [formGroup]="formGroup()!">
+  <div
+    [class]="wrapperClass()"
+    [class.password-field]="type() === 'password'"
+    [formGroup]="formGroup()!"
+  >
     <input
-      [type]="type()"
+      [type]="effectiveType()"
       [class]="inputClass()"
+      [class.password-input]="type() === 'password'"
       [ngClass]="iconClass() ? 'input-with-icon' : ''"
       [id]="fieldName()"
       [formControlName]="fieldName()"
@@ -48,6 +75,27 @@
         }
         {{ label() }}</label
       >
+    }
+    @if (type() === 'password') {
+      <button
+        type="button"
+        class="password-toggle"
+        [attr.aria-label]="
+          (passwordVisible() ? 'input.hide-password' : 'input.show-password') | translate
+        "
+        [title]="(passwordVisible() ? 'input.hide-password' : 'input.show-password') | translate"
+        [attr.aria-controls]="fieldName()"
+        [attr.aria-pressed]="passwordVisible()"
+        [disabled]="isDisabled()"
+        (click)="togglePasswordVisibility()"
+      >
+        <i
+          class="fa-regular"
+          [class.fa-eye]="!passwordVisible()"
+          [class.fa-eye-slash]="passwordVisible()"
+          aria-hidden="true"
+        ></i>
+      </button>
     }
     @if (showErrors() && formGroup()) {
       <app-input-error-component

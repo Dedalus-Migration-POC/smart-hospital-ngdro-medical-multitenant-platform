@@ -10,6 +10,13 @@
       @if (control.errors?.['pattern']) {
         {{ errorMessages()?.['pattern'] || ('input.errors.invalid-field' | translate) }}
       }
+      @if (control.errors?.['backend']) {
+        {{ errorMessages()?.['backend'] || ('input.errors.invalid-field' | translate) }}
+      }
+      @let errors = control.errors;
+      @if (errors && errors['validateMatching'] && !errors['required']) {
+        {{ errorMessages()?.['validateMatching'] || ('input.errors.invalid-field' | translate) }}
+      }
       @if (control.errors?.['min'] || control.errors?.['max']) {
         {{
           errorMessages()?.['min'] ||

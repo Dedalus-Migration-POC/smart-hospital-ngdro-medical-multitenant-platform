@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
@@ -40,5 +40,15 @@ export class InputComponent {
   readonly errorMessages = input<Record<string, string> | undefined>(undefined);
   readonly iconClass = input<string | undefined>(undefined);
 
+  protected readonly passwordVisible = signal(false);
+  protected readonly effectiveType = computed(() =>
+    this.type() === 'password' && this.passwordVisible() ? 'text' : this.type(),
+  );
   protected readonly hasControl = () => !!this.control();
+  protected readonly isDisabled = () =>
+    (this.control() ?? this.formGroup()?.get(String(this.fieldName())))?.disabled ?? false;
+
+  protected togglePasswordVisibility(): void {
+    this.passwordVisible.update((visible) => !visible);
+  }
 }

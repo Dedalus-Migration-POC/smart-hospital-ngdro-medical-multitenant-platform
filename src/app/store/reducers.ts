@@ -14,6 +14,7 @@ import * as fromBookingUnified from '../pages/bookings/booking-a4h/state/reducer
 import * as fromStruttura from '../pages/bookings/booking-a4h/state/struttura/struttura.reducer';
 import * as fromAppointmentsA4h from '../pages/bookings/booking-a4h/appointments/state/reducer';
 import * as fromConsentsA4H from '../pages/user-profile/a4h-consents/state/reducer';
+import * as fromCredentials from '../pages/auth/components/credentials/state/credentials.reducer';
 export interface SmartHospitalState {
   [fromInitializeApp.featureKey]: fromInitializeApp.State;
   [fromUserProfile.featureKey]: fromUserProfile.State;
@@ -30,6 +31,7 @@ export interface SmartHospitalState {
   [fromStruttura.featureKey]: fromStruttura.StrutturaState;
   [fromAppointmentsA4h.featureKey]: fromAppointmentsA4h.State;
   [fromConsentsA4H.featureKey]: fromConsentsA4H.State;
+  [fromCredentials.featureKey]: fromCredentials.State;
 }
 
 export const reducers: ActionReducerMap<SmartHospitalState> = {
@@ -48,6 +50,7 @@ export const reducers: ActionReducerMap<SmartHospitalState> = {
   [fromStruttura.featureKey]: fromStruttura.reducer,
   [fromAppointmentsA4h.featureKey]: fromAppointmentsA4h.reducer,
   [fromConsentsA4H.featureKey]: fromConsentsA4H.reducer,
+  [fromCredentials.featureKey]: fromCredentials.reducer,
 };
 
 export const metaReducers: MetaReducer<SmartHospitalState>[] = [];

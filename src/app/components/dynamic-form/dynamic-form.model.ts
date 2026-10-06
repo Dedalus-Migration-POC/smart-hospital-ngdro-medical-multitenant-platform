@@ -19,7 +19,8 @@ export interface ValidatorConfig {
     | 'taxCode'
     | 'phone_number'
     | 'cap'
-    | 'text';
+    | 'text'
+    | 'passwordMatching';
   value?: string | number;
 }
 

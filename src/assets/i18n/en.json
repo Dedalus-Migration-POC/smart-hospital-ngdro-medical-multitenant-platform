@@ -11,6 +11,16 @@
     "yes": "Yes",
     "no": "No"
   },
+  "credentials-registration": {
+    "errors": {
+      "conflict": "An account with these credentials already exists.",
+      "verificationEmail": "The verification email could not be sent. Please contact the administrator.",
+      "requiredFields": "Complete all required fields.",
+      "requiredConsents": "Accept all required consents.",
+      "invalidAttribute": "Check the value of the indicated field.",
+      "generic": "Registration failed. Please try again."
+    }
+  },
   "en": {
     "errors": {
       "required-field": "The field is required",
@@ -24,6 +34,8 @@
     }
   },
   "input": {
+    "show-password": "Show password",
+    "hide-password": "Hide password",
     "errors": {
       "required-field": "The field is required",
       "invalid-field": "The value entered is not valid",

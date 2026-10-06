@@ -37,9 +37,10 @@ export interface PageConfig {
   modals?: Record<string, ModalConfig>;
 
   message?: {
-    notFound: ImageBlockConfig;
-    error: ImageBlockConfig;
+    notFound?: ImageBlockConfig;
+    error?: ImageBlockConfig;
     init?: ImageBlockConfig;
+    success?: ImageBlockConfig;
   };
 }
 
