@@ -43,6 +43,12 @@ export class ConsentPdfService {
       this.viewContainerRef = null;
     }
   }
+  private getSequence(profile: UserProfile | null): string | null {
+    return (
+      profile?.additionalAttributes?.find((attribute) => attribute.key === 'sequence')?.value ??
+      null
+    );
+  }
 
   /**
    * Richiede il PDF dell'informativa privacy tramite gli action A4H quando il consenso
@@ -53,7 +59,7 @@ export class ConsentPdfService {
     if (this.consent()?.consentPrivacyAccepted === true) return;
 
     const profile = this.user() as unknown as UserProfile | null;
-    if (!profile?.sequence) {
+    if (!profile || !this.getSequence(profile)) {
       this.actions$
         .pipe(
           ofType(UserProfileActions.fetchUserProfileSuccess),
@@ -62,7 +68,7 @@ export class ConsentPdfService {
         )
         .subscribe(({ data: fetchedProfile }) => {
           const a4hProfile = fetchedProfile as unknown as UserProfile;
-          if (a4hProfile.sequence) {
+          if (this.getSequence(a4hProfile)) {
             this.fetchPrivacyConsent(a4hProfile);
           }
         });
@@ -75,7 +81,8 @@ export class ConsentPdfService {
   }
 
   fetchPrivacyConsent(profile: UserProfile, openIfAccepted: boolean = false): void {
-    if (!profile.sequence) return;
+    const sequence = this.getSequence(profile);
+    if (!sequence) return;
 
     this.actions$
       .pipe(
@@ -95,8 +102,8 @@ export class ConsentPdfService {
       ConsentsA4HActions.fetchUserA4hPrivacyConsent({
         payload: {
           codiceStruttura: this.selectedStruttura()?.id ?? '',
-          idAnagrafico: profile.sequence,
-          taxCode: profile.identity?.identity!,
+          idAnagrafico: sequence,
+          taxCode: profile.fiscalCode,
         },
       }),
     );
@@ -182,8 +189,8 @@ export class ConsentPdfService {
       ConsentsA4HActions.updateUserA4hPrivacyConsent({
         payload: {
           codiceStruttura: this.selectedStruttura()?.id ?? '',
-          idAnagrafico: profile.sequence ?? '',
-          taxCode: profile.identity?.identity!,
+          idAnagrafico: this.getSequence(profile) ?? '',
+          taxCode: profile.fiscalCode,
         },
       }),
     );

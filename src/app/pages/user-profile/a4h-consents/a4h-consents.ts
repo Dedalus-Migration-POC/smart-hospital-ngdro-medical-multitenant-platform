@@ -149,8 +149,8 @@ export class A4hConsents implements OnInit {
   private buildPrivacyConsentPayload() {
     return {
       codiceStruttura: '',
-      idAnagrafico: this.userProfile()?.sequence ?? '',
-      taxCode: this.userProfile()?.identity?.identity ?? '',
+      idAnagrafico: this.sequence() ?? '',
+      taxCode: this.userProfile()?.fiscalCode ?? '',
     };
   }
 
@@ -165,13 +165,23 @@ export class A4hConsents implements OnInit {
     if (this.userProfile()) {
       this.store.dispatch(fetchConsentsA4h());
     }
-    if (this.userProfile() && this.userProfile()?.sequence) {
+    if (this.sequence()) {
       this.store.dispatch(
         fetchUserA4hPrivacyConsent({ payload: this.buildPrivacyConsentPayload() }),
       );
     }
   }
   private readonly userProfile = this.store.selectSignal(selectUserProfileData);
+  private readonly sequence = computed(
+    () =>
+      this.userProfile()?.additionalAttributes?.find((attribute) => attribute.key === 'sequence')
+        ?.value,
+  );
+  private readonly idMpi = computed(
+    () =>
+      this.userProfile()?.additionalAttributes?.find((attribute) => attribute.key === 'idMpi')
+        ?.value,
+  );
   remoteConsentsA4h = computed(() => this.pageConfig()?.consentsA4h as ConsentsA4H[] | undefined);
 
   userA4hPrivacyConsent = this.store.selectSignal(selectUserA4hPrivacyConsentData);
@@ -224,12 +234,12 @@ export class A4hConsents implements OnInit {
 
     const payload: ConsentsA4hAddPayload | ConsentsA4hRevokePayload = isAgree
       ? {
-          IdMPIPatient: this.userProfile()?.idMpi || '',
+          IdMPIPatient: this.idMpi() ?? '',
           Agreement: consent.Type.Key,
           IsAgree: true,
         }
       : {
-          IdMPIPatient: this.userProfile()?.idMpi || '',
+          IdMPIPatient: this.idMpi() ?? '',
           Agreement: consent.Type.Key,
         };
     this.store.dispatch(updateConsentA4h({ payload }));
