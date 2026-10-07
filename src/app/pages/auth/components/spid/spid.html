@@ -4,7 +4,7 @@
     <div class="d-flex flex-column flex-column">
       <form
         ngNoForm
-        [ngClass]="'align-self-' + spidConfig.button.align"
+        [class]="'d-flex justify-content-' + (spidConfig.button.align || 'start')"
         [action]="baseUrl + formAction()"
         method="get"
         id="spid-scelta-form"

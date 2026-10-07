@@ -2,16 +2,39 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay, of } from 'rxjs';
 import {
+  CredentialsLoginConfirmRequest,
+  CredentialsLoginResponse,
+  CredentialsLoginRequest,
   CredentialsRegistrationRequest,
   RegistrationAttribute,
   RegistrationConsent,
 } from './credentials.model';
-import { MOCK_REGISTRATION_ATTRIBUTES, MOCK_REGISTRATION_CONSENTS } from './credentials.mock';
+import {
+  MOCK_LOGIN_OTP_RESPONSE,
+  MOCK_REGISTRATION_ATTRIBUTES,
+  MOCK_REGISTRATION_CONSENTS,
+} from './credentials.mock';
 
 @Injectable({ providedIn: 'root' })
 export class CredentialsService {
   private http = inject(HttpClient);
   private readonly IS_DEV = true;
+
+  login(data: CredentialsLoginRequest) {
+    if (this.IS_DEV) {
+      return of(MOCK_LOGIN_OTP_RESPONSE).pipe(delay(500));
+    }
+
+    return this.http.post<CredentialsLoginResponse>('/oauth/api/wrapper/login', data);
+  }
+
+  confirmLogin(data: CredentialsLoginConfirmRequest) {
+    if (this.IS_DEV) {
+      return of<void>(undefined).pipe(delay(500));
+    }
+
+    return this.http.post<CredentialsLoginResponse>('/oauth/api/wrapper/login-confirm', data);
+  }
 
   fetchRegistrationAttributes() {
     if (this.IS_DEV) {

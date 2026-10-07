@@ -7,14 +7,119 @@ import { TranslateService } from '@ngx-translate/core';
 import { ItNotificationService, NotificationPosition } from 'design-angular-kit';
 import * as CredentialsActions from './credentials.actions';
 import { CredentialsService } from './credentials.service';
-import { CredentialsRegistrationError } from './credentials.model';
+import { CredentialsLoginResponse, CredentialsRegistrationError } from './credentials.model';
+import { UserProfileService } from 'src/app/pages/user-profile/state/user-profile.service';
+import { Store } from '@ngrx/store';
+import { SmartHospitalState } from 'src/app/store/reducers';
+import * as UserProfileActions from 'src/app/pages/user-profile/state/user-profile.actions';
 
 @Injectable()
 export class CredentialsEffects {
   private actions$ = inject(Actions);
   private credentialsService = inject(CredentialsService);
+  private readonly userProfileService = inject(UserProfileService);
   private readonly notificationService = inject(ItNotificationService);
   private readonly translate = inject(TranslateService);
+  private store = inject(Store<SmartHospitalState>);
+
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CredentialsActions.login),
+      exhaustMap((action) =>
+        this.credentialsService.login(action.data).pipe(
+          map((response) => {
+            const nextStep = this.nextLoginStep(response);
+            if (nextStep) this.store.dispatch(nextStep);
+            else this.store.dispatch(UserProfileActions.fetchUserProfile());
+            return CredentialsActions.loginSuccess();
+          }),
+          catchError((error: unknown) => {
+            this.notifyLoginError(error);
+            return of(CredentialsActions.loginFailure({ error }));
+          }),
+        ),
+      ),
+    );
+  });
+
+  confirmLogin$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(CredentialsActions.confirmLogin),
+      exhaustMap((action) =>
+        this.credentialsService.confirmLogin(action.data).pipe(
+          map((response) => {
+            const nextStep = this.nextLoginStep(response);
+            if (nextStep) return nextStep;
+            this.store.dispatch(UserProfileActions.fetchUserProfile());
+            return CredentialsActions.confirmLoginSuccess();
+          }),
+          catchError((error: unknown) => {
+            const body: unknown = error instanceof HttpErrorResponse ? error.error : null;
+            const invalidOtp =
+              action.data.otpCode !== undefined &&
+              error instanceof HttpErrorResponse &&
+              (error.status === 406 ||
+                (body !== null &&
+                  typeof body === 'object' &&
+                  'errorCode' in body &&
+                  body.errorCode === '406'));
+            this.notifyConfirmLoginError(invalidOtp);
+            return of(
+              invalidOtp
+                ? CredentialsActions.loginOtpInvalid({ error })
+                : CredentialsActions.confirmLoginFailure({ error }),
+            );
+          }),
+        ),
+      ),
+    );
+  });
+
+  fetchLoginProfile$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CredentialsActions.loginProfileRequired),
+      exhaustMap(({ code }) =>
+        this.userProfileService.fetchUserProfile(code).pipe(
+          map((data) => {
+            if (!data.code) throw new Error('Missing profile continuation code');
+            return CredentialsActions.fetchLoginProfileSuccess({ data });
+          }),
+          catchError((error: unknown) =>
+            of(CredentialsActions.fetchLoginProfileFailure({ error })),
+          ),
+        ),
+      ),
+    ),
+  );
+
+  updateLoginProfile$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CredentialsActions.updateLoginProfile),
+      exhaustMap(({ data }) => {
+        if (!data.code) {
+          return of(
+            CredentialsActions.updateLoginProfileFailure({
+              error: this.registrationError(new Error('Missing profile continuation code')),
+            }),
+          );
+        }
+        return this.userProfileService.updateUserProfile(data).pipe(
+          concatMap((profile) => {
+            if (!profile.code) throw new Error('Missing updated profile continuation code');
+            return of(
+              CredentialsActions.updateLoginProfileSuccess({ data: profile }),
+              CredentialsActions.confirmLogin({ data: { code: profile.code } }),
+            );
+          }),
+          catchError((error: unknown) => {
+            const registrationError = this.registrationError(error);
+            this.notifyRegistrationError(registrationError);
+            return of(CredentialsActions.updateLoginProfileFailure({ error: registrationError }));
+          }),
+        );
+      }),
+    ),
+  );
 
   fetchRegistrationAttributes$ = createEffect(() => {
     return this.actions$.pipe(
@@ -59,6 +164,76 @@ export class CredentialsEffects {
       ),
     );
   });
+
+  private nextLoginStep(response: CredentialsLoginResponse) {
+    if (response == null) return null;
+    if (!response.code) throw new Error('Missing login continuation code');
+    if (response.step === 'REQUIRE_PROFILE_DOWNLOAD') {
+      return CredentialsActions.loginProfileRequired({ code: response.code });
+    }
+    if (response.step === 'OTP') {
+      return CredentialsActions.loginOtpRequired({
+        code: response.code,
+        ...(Number.isFinite(response.expires_in) && response.expires_in > 0
+          ? { expiresOn: Date.now() / 1000 + response.expires_in }
+          : {}),
+      });
+    }
+    throw new Error('Unsupported login step');
+  }
+
+  private notifyConfirmLoginError(invalidOtp: boolean): void {
+    const messageKey = invalidOtp ? 'invalidOtp' : 'generic';
+    this.notificationService.error(
+      this.translate.instant('commons.error'),
+      this.translate.instant(`credentials-login.otpErrors.${messageKey}`),
+      true,
+      8000,
+      NotificationPosition.Top,
+    );
+  }
+
+  private notifyLoginError(error: unknown): void {
+    const status = error instanceof HttpErrorResponse ? error.status : 0;
+    const body: unknown = error instanceof HttpErrorResponse ? error.error : null;
+    const details: Record<string, unknown> =
+      body !== null && typeof body === 'object' ? (body as Record<string, unknown>) : {};
+    const errorCode =
+      typeof details['errorCode'] === 'string' ? details['errorCode'] : String(status);
+    let messageKey = 'generic';
+
+    switch (errorCode) {
+      case '404':
+        messageKey = 'userNotFound';
+        break;
+      case '500':
+        if (
+          typeof details['description'] === 'string' &&
+          details['description'].includes('Invalid user credentials')
+        ) {
+          messageKey = 'invalidCredentials';
+        }
+        break;
+      case '403':
+        if (details['errorMessage'] === 'Email is not verified, verification email is sent again') {
+          messageKey = 'emailNotVerified';
+        } else if (
+          details['errorMessage'] ===
+          'Verification email can not be sent. Please contact administrator'
+        ) {
+          messageKey = 'verificationEmail';
+        }
+        break;
+    }
+
+    this.notificationService.error(
+      this.translate.instant('commons.error'),
+      this.translate.instant(`credentials-login.errors.${messageKey}`),
+      true,
+      8000,
+      NotificationPosition.Top,
+    );
+  }
 
   private notifyRegistrationError(error: CredentialsRegistrationError): void {
     let messageKey = 'generic';

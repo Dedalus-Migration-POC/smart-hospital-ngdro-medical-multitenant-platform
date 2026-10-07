@@ -11,6 +11,29 @@
     "yes": "Sì",
     "no": "No"
   },
+  "countdown": {
+    "expired": "Tempo scaduto"
+  },
+  "credentials-login": {
+    "title": "Accedi",
+    "fiscalCode": "Codice fiscale",
+    "password": "Password",
+    "submit": "Accedi",
+    "otpTitle": "Verifica dell'accesso",
+    "otpCode": "Codice OTP",
+    "success": "Accesso effettuato.",
+    "otpErrors": {
+      "invalidOtp": "Codice OTP non valido. Effettua nuovamente l'accesso.",
+      "generic": "Verifica del codice OTP non riuscita. Riprova più tardi."
+    },
+    "errors": {
+      "userNotFound": "Non esiste un utente con questo codice fiscale.",
+      "invalidCredentials": "Password non corretta. Controlla le credenziali e riprova.",
+      "emailNotVerified": "L'email non è stata verificata. Ti abbiamo inviato nuovamente l'email di verifica.",
+      "verificationEmail": "Impossibile inviare l'email di verifica. Contatta l'amministratore.",
+      "generic": "Accesso non riuscito. Riprova più tardi."
+    }
+  },
   "credentials-registration": {
     "consents": {
       "requiredConsent": "*Obbligatorio",

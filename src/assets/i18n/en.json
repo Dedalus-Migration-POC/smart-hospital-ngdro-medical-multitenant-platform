@@ -11,6 +11,29 @@
     "yes": "Yes",
     "no": "No"
   },
+  "countdown": {
+    "expired": "Time expired"
+  },
+  "credentials-login": {
+    "title": "Log in",
+    "fiscalCode": "Tax code",
+    "password": "Password",
+    "submit": "Log in",
+    "otpTitle": "Login verification",
+    "otpCode": "OTP code",
+    "success": "Logged in successfully.",
+    "otpErrors": {
+      "invalidOtp": "Invalid OTP code. Please log in again.",
+      "generic": "OTP verification failed. Please try again later."
+    },
+    "errors": {
+      "userNotFound": "No user exists with this tax code.",
+      "invalidCredentials": "Incorrect password. Check your credentials and try again.",
+      "emailNotVerified": "Your email has not been verified. We have sent the verification email again.",
+      "verificationEmail": "The verification email could not be sent. Please contact the administrator.",
+      "generic": "Login failed. Please try again later."
+    }
+  },
   "credentials-registration": {
     "errors": {
       "conflict": "An account with these credentials already exists.",

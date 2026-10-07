@@ -6,10 +6,18 @@ import { LanguageService } from '../../../../initialize/state/services/language.
 import { Spid } from '../spid/spid';
 import { MyidComponent } from '../myid/myid.component';
 import { CieComponent } from '../cie/cie.component';
+import { CredentialsLogin } from '../credentials/login/credentials-login';
 
 @Component({
   selector: 'app-auth-methods',
-  imports: [CommonModule, DesignAngularKitModule, Spid, MyidComponent, CieComponent],
+  imports: [
+    CommonModule,
+    DesignAngularKitModule,
+    Spid,
+    MyidComponent,
+    CieComponent,
+    CredentialsLogin,
+  ],
   templateUrl: './auth-methods.html',
   styleUrl: './auth-methods.scss',
 })

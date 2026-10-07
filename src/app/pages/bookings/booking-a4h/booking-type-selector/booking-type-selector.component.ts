@@ -64,10 +64,6 @@ export class BookingTypeSelectorComponent {
     };
   });
 
-  // Se false, la struttura viene scelta automaticamente (la prima della
-  // risposta) e la modale non viene mostrata.
-  private readonly SHOW_STRUTTURA_SELECTION = true;
-
   constructor() {
     this.bookingUnifiedModalService.register(this.viewContainerRef);
     this.destroyRef.onDestroy(() => this.bookingUnifiedModalService.clear(this.viewContainerRef));
@@ -80,11 +76,14 @@ export class BookingTypeSelectorComponent {
       this.pendingBookingType.set(null);
 
       if (this.struttureError() || !units.length) {
-        this.goToFlow(bookingType);
         return;
       }
 
-      if (units.length === 1 || !this.SHOW_STRUTTURA_SELECTION) {
+      const selectStructure =
+        (this.pageConfig() as { content?: { selectStructure?: boolean } } | null)?.content
+          ?.selectStructure ?? true;
+
+      if (units.length === 1 || !selectStructure) {
         this.store.dispatch(setSelectedStruttura({ struttura: units[0] }));
         this.goToFlow(bookingType);
         return;

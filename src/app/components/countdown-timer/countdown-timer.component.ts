@@ -2,7 +2,7 @@ import { Component, computed, effect, input, output, signal } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
-import { takeWhile, timer } from 'rxjs';
+import { Subscription, takeWhile, timer } from 'rxjs';
 
 interface TimerData {
   timeRemaining: number;
@@ -22,6 +22,7 @@ export class CountdownTimerComponent {
 
   // Output signal
   onExpiration = output<void>();
+  readonly expired = signal(false);
 
   // Internal signals
   private timeRemaining = signal<number>(0);
@@ -38,25 +39,29 @@ export class CountdownTimerComponent {
   });
 
   constructor() {
-    effect(() => {
+    effect((onCleanup) => {
       const expireOnValue = this.expireOn();
       if (expireOnValue) {
-        this.startTimer(expireOnValue);
+        const subscription = this.startTimer(expireOnValue);
+        onCleanup(() => subscription.unsubscribe());
       }
     });
   }
 
-  private startTimer(expireOn: number): void {
+  private startTimer(expireOn: number): Subscription {
     const time = expireOn * 1000 - Date.now();
+    this.expired.set(time <= 1);
+    this.timeRemaining.set(time);
     this.totalTime.set(time);
 
-    timer(0, 1000)
+    return timer(0, 1000)
       .pipe(
         takeWhile((n) => {
           const remaining = time - n * 1000;
           this.timeRemaining.set(remaining);
 
           if (remaining <= 1) {
+            this.expired.set(true);
             this.onExpiration.emit();
             return false;
           }

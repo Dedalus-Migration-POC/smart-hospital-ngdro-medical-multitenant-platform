@@ -3,7 +3,7 @@
     <p class="p-0 mb-4 fs-6 lh-base cursor-default" [innerHTML]="cieConfig.description[lang()]"></p>
     <form
       ngNoForm
-      [ngClass]="'text-' + cieConfig.button.align"
+      [class]="'d-flex justify-content-' + (cieConfig.button.align || 'start')"
       [action]="baseUrl + 'oauth/auth'"
       method="get"
       id="cie-form"

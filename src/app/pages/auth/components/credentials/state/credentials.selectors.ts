@@ -5,6 +5,61 @@ export const selectCredentialsState = createFeatureSelector<fromCredentials.Stat
   fromCredentials.featureKey,
 );
 
+export const selectLoginLoading = createSelector(
+  selectCredentialsState,
+  (state) => state.loginLoading,
+);
+
+export const selectLoginSuccess = createSelector(
+  selectCredentialsState,
+  (state) => state.loginSuccess,
+);
+
+export const selectLoginError = createSelector(selectCredentialsState, (state) => state.loginError);
+
+export const selectLoginStep = createSelector(selectCredentialsState, (state) => state.loginStep);
+
+export const selectLoginOtpCode = createSelector(
+  selectCredentialsState,
+  (state) => state.loginOtpCode,
+);
+
+export const selectLoginOtpExpiresOn = createSelector(
+  selectCredentialsState,
+  (state) => state.loginOtpExpiresOn,
+);
+
+export const selectLoginOtpRequired = createSelector(selectLoginStep, (step) => step === 'OTP');
+
+export const selectLogin = createSelector(
+  selectLoginLoading,
+  selectLoginSuccess,
+  selectLoginError,
+  (loading, success, error) => ({ loading, success, error }),
+);
+
+export const selectConfirmLoginLoading = createSelector(
+  selectCredentialsState,
+  (state) => state.confirmLoginLoading,
+);
+
+export const selectConfirmLoginSuccess = createSelector(
+  selectCredentialsState,
+  (state) => state.confirmLoginSuccess,
+);
+
+export const selectConfirmLoginError = createSelector(
+  selectCredentialsState,
+  (state) => state.confirmLoginError,
+);
+
+export const selectConfirmLogin = createSelector(
+  selectConfirmLoginLoading,
+  selectConfirmLoginSuccess,
+  selectConfirmLoginError,
+  (loading, success, error) => ({ loading, success, error }),
+);
+
 export const selectRegistrationAttributesData = createSelector(
   selectCredentialsState,
   (state) => state.registrationAttributes,
@@ -80,3 +135,12 @@ export const selectRegistration = createSelector(
   selectRegistrationError,
   (loading, success, error) => ({ loading, success, error }),
 );
+
+export const selectLoginProfile = createSelector(selectCredentialsState, (state) => ({
+  data: state.loginProfile,
+  code: state.loginProfileCode,
+  loading: state.loginProfileLoading,
+  error: state.loginProfileError,
+  updateLoading: state.loginProfileUpdateLoading,
+  updateError: state.loginProfileUpdateError,
+}));

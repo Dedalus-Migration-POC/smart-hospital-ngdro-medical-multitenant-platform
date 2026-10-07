@@ -28,5 +28,8 @@
         "routerLink": "/booking-a4h"
       }
     ]
+  },
+  "content": {
+    "selectStructure": true
   }
 }

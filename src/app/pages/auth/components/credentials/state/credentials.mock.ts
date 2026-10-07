@@ -1,8 +1,19 @@
 import {
+  CredentialsLoginOtpResponse,
   CredentialsRegistrationRequest,
   RegistrationAttribute,
   RegistrationConsent,
 } from './credentials.model';
+import { UserProfile } from 'src/app/pages/user-profile/user-profile.model';
+
+export const MOCK_LOGIN_OTP_RESPONSE: CredentialsLoginOtpResponse = {
+  code: 'mock-login-otp-challenge',
+  step: 'OTP',
+  access_token: null,
+  refresh_token: null,
+  id_token: null,
+  expires_in: 30, //seconds
+};
 
 export const MOCK_REGISTRATION_ATTRIBUTES: RegistrationAttribute[] = [
   {
@@ -112,6 +123,23 @@ export const MOCK_REGISTRATION_CONSENTS: RegistrationConsent[] = [
     contractCode: '0',
   },
 ];
+
+export const MOCK_LOGIN_PROFILE: UserProfile = {
+  code: 'mock-downloaded-profile-code',
+  firstName: 'Mario',
+  lastName: 'Rossi',
+  fiscalCode: 'RSSMRA80A01H501U',
+  email: 'profile@example.com',
+  additionalAttributes: [
+    { key: 'phone_number', displayName: 'Phone', value: null, required: true },
+    { key: 'server_only', displayName: 'Server value', value: 'retained', required: false },
+  ],
+  consents: MOCK_REGISTRATION_CONSENTS.map((consent) => ({
+    ...consent,
+    accepted: !consent.required,
+    acceptedDate: consent.acceptedDate ?? undefined,
+  })),
+};
 
 export const MOCK_REGISTRATION_REQUEST: CredentialsRegistrationRequest = {
   user: {

@@ -1,3 +1,41 @@
+export interface CredentialsLoginRequest {
+  fiscalCode: string;
+  password: string;
+}
+
+export interface CredentialsLoginOtpResponse {
+  code: string;
+  step: 'OTP';
+  access_token: null;
+  refresh_token: null;
+  id_token: null;
+  expires_in: number;
+}
+
+export interface CredentialsLoginConfirmRequest {
+  code: string;
+  otpCode?: string;
+}
+
+export interface CredentialsProfileDownloadResponse extends Omit<
+  CredentialsLoginOtpResponse,
+  'step'
+> {
+  step: 'REQUIRE_PROFILE_DOWNLOAD';
+}
+
+export type CredentialsLoginResponse =
+  | CredentialsLoginOtpResponse
+  | CredentialsProfileDownloadResponse
+  | void
+  | null;
+
+export type CredentialsLoginStep =
+  | 'CREDENTIALS'
+  | 'REQUIRE_PROFILE_DOWNLOAD'
+  | 'OTP'
+  | 'AUTHENTICATED';
+
 export interface RegistrationAttribute {
   key: string;
   displayName?: string;

@@ -201,17 +201,59 @@
                       "en": "Login"
                     },
                     "description": {
-                      "it": "Inserisci login e password",
-                      "en": "Enter with your login and password"
+                      "it": "<strong>Inserisci login e password</strong>",
+                      "en": "<strong>Enter with your login and password</strong>"
                     },
                     "button": {
                       "text": {
-                        "it": "Entra",
+                        "it": "Accedi",
                         "en": "Login"
                       },
-                      "showIcon": true
+                      "showIcon": false,
+                      "align": "center"
                     },
-                    "config": {}
+                    "config": {
+                      "otp": {
+                        "buttons": {
+                          "align": "center",
+                          "confirm": {
+                            "text": {
+                              "it": "Conferma",
+                              "en": "Confirm"
+                            }
+                          },
+                          "back": {
+                            "text": {
+                              "it": "Indietro",
+                              "en": "Back"
+                            },
+                            "showIcon": true
+                          }
+                        }
+                      },
+                      "registration": {
+                        "text": {
+                          "it": "Non hai ancora l'account? ",
+                          "en": "Don't have an account yet?"
+                        },
+                        "link": {
+                          "text": {
+                            "it": "Registrati",
+                            "en": "Register"
+                          },
+                          "url": "/credentials-registration",
+                          "external": false,
+                          "style": {
+                            "mode": "bootstrap",
+                            "palette": "primary",
+                            "textStyle": {
+                              "fontWeight": "semibold",
+                              "textDecoration": "underline"
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 ]
               }

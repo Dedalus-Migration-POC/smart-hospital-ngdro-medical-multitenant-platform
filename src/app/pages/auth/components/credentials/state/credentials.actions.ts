@@ -1,5 +1,8 @@
 import { createAction, props } from '@ngrx/store';
+import { UserProfile } from 'src/app/pages/user-profile/user-profile.model';
 import {
+  CredentialsLoginConfirmRequest,
+  CredentialsLoginRequest,
   CredentialsRegistrationError,
   CredentialsRegistrationRequest,
   RegistrationAttribute,
@@ -45,3 +48,69 @@ export const registerFailure = createAction(
 );
 
 export const resetRegistration = createAction('[Credentials] Reset Registration');
+
+export const login = createAction(
+  '[Credentials] Login',
+  props<{ data: CredentialsLoginRequest }>(),
+);
+
+export const loginSuccess = createAction('[Credentials] Login Success');
+
+export const loginOtpRequired = createAction(
+  '[Credentials] Login OTP Required',
+  props<{ code: string; expiresOn?: number }>(),
+);
+
+export const loginFailure = createAction(
+  '[Credentials] Login Failure',
+  props<{ error: unknown }>(),
+);
+
+export const resetLogin = createAction('[Credentials] Reset Login');
+
+export const confirmLogin = createAction(
+  '[Credentials] Confirm Login',
+  props<{ data: CredentialsLoginConfirmRequest }>(),
+);
+
+export const confirmLoginSuccess = createAction('[Credentials] Confirm Login Success');
+
+export const confirmLoginFailure = createAction(
+  '[Credentials] Confirm Login Failure',
+  props<{ error: unknown }>(),
+);
+
+export const loginOtpInvalid = createAction(
+  '[Credentials] Login OTP Invalid',
+  props<{ error: unknown }>(),
+);
+
+export const loginProfileRequired = createAction(
+  '[Credentials] Login Profile Required',
+  props<{ code: string }>(),
+);
+
+export const fetchLoginProfileSuccess = createAction(
+  '[Credentials] Fetch Login Profile Success',
+  props<{ data: UserProfile }>(),
+);
+
+export const fetchLoginProfileFailure = createAction(
+  '[Credentials] Fetch Login Profile Failure',
+  props<{ error: unknown }>(),
+);
+
+export const updateLoginProfile = createAction(
+  '[Credentials] Update Login Profile',
+  props<{ data: UserProfile }>(),
+);
+
+export const updateLoginProfileSuccess = createAction(
+  '[Credentials] Update Login Profile Success',
+  props<{ data: UserProfile }>(),
+);
+
+export const updateLoginProfileFailure = createAction(
+  '[Credentials] Update Login Profile Failure',
+  props<{ error: CredentialsRegistrationError }>(),
+);

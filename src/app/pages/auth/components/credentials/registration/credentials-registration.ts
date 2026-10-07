@@ -17,7 +17,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Observable, Subject, catchError, of, startWith, switchMap } from 'rxjs';
@@ -28,7 +28,7 @@ import { Spinner } from '../../../../../components/spinner/spinner';
 import { LanguageService } from '../../../../../initialize/state/services/language.service';
 import { PageConfigService } from '../../../../page-config.service';
 import { PageConfig } from '../../../../page.model';
-import { UserConfig } from '../../../../user-profile/user-profile.model';
+import { UserConfig, UserProfile } from '../../../../user-profile/user-profile.model';
 import { LocalizedText } from '../../../../../shared/models/shared_model';
 import { SmartHospitalState } from '../../../../../store/reducers';
 import { NgxFormValidators } from '../../../../../../validators';
@@ -42,6 +42,9 @@ import {
   selectRegistration,
   selectRegistrationAttributes,
   selectRegistrationConsents,
+  selectConfirmLogin,
+  selectLoginProfile,
+  selectLoginStep,
 } from '../state/credentials.selectors';
 import { ImageBlock } from 'src/app/components/image-block/image-block';
 
@@ -67,6 +70,15 @@ type RegistrationPageConfig = Omit<PageConfig, 'sections'> &
 })
 export class CredentialsRegistration {
   private readonly store = inject(Store<SmartHospitalState>);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  readonly loginStep = this.store.selectSignal(selectLoginStep);
+  readonly loginProfile = this.store.selectSignal(selectLoginProfile);
+  readonly confirmation = this.store.selectSignal(selectConfirmLogin);
+  readonly completingProfile = this.loginStep() === 'REQUIRE_PROFILE_DOWNLOAD';
+  private readonly requiredFields = this.completingProfile
+    ? REQUIRED_REGISTRATION_FIELDS.filter((field) => field !== 'password')
+    : REQUIRED_REGISTRATION_FIELDS;
   private readonly pageConfigService = inject(PageConfigService);
   private readonly translate = inject(TranslateService);
   private readonly destroyRef = inject(DestroyRef);
@@ -99,21 +111,64 @@ export class CredentialsRegistration {
     { initialValue: null },
   );
 
-  readonly attributes = toSignal(this.store.select(selectRegistrationAttributes), {
+  private readonly registrationAttributes = toSignal(
+    this.store.select(selectRegistrationAttributes),
+    {
+      initialValue: { data: [], loading: true, error: false },
+    },
+  );
+  private readonly registrationConsents = toSignal(this.store.select(selectRegistrationConsents), {
     initialValue: { data: [], loading: true, error: false },
   });
-  readonly consents = toSignal(this.store.select(selectRegistrationConsents), {
-    initialValue: { data: [], loading: true, error: false },
-  });
-  readonly registration = toSignal(this.store.select(selectRegistration), {
+  private readonly registrationRequest = toSignal(this.store.select(selectRegistration), {
     initialValue: { loading: false, success: false, error: null },
   });
+
+  readonly attributes = computed(() =>
+    this.completingProfile
+      ? {
+          data: this.loginProfile().data?.additionalAttributes ?? [],
+          loading: this.loginProfile().loading,
+          error:
+            !!this.loginProfile().error ||
+            (!this.loginProfile().loading && !this.loginProfile().data),
+        }
+      : this.registrationAttributes(),
+  );
+  readonly consents = computed(() =>
+    this.completingProfile
+      ? {
+          data: (this.loginProfile().data?.consents ?? []).map((consent) => ({
+            ...consent,
+            accepted: consent.accepted === true,
+            summary: consent.summary ?? '',
+            description: consent.description ?? '',
+            url: consent.url ?? '',
+            required: consent.required === true,
+            lang: consent.lang ?? this.lang(),
+            requireLogin: consent.requireLogin === true,
+            acceptedDate: consent.acceptedDate ?? null,
+          })),
+          loading: this.loginProfile().loading,
+          error: !!this.loginProfile().error,
+        }
+      : this.registrationConsents(),
+  );
+  readonly registration = computed(() =>
+    this.completingProfile
+      ? {
+          loading: this.loginProfile().updateLoading || this.confirmation().loading,
+          success: false,
+          error: this.loginProfile().updateError,
+        }
+      : this.registrationRequest(),
+  );
 
   readonly sections = computed(() => {
     const config = this.pageConfig();
     if (!config) return [];
     const attributes = this.attributes().data;
-    const fixedFields: readonly string[] = REQUIRED_REGISTRATION_FIELDS;
+    const fixedFields: readonly string[] = this.requiredFields;
     return config.sections.map((section) => ({
       title: section.title,
       forms: (section.areas?.center?.items ?? [])
@@ -125,7 +180,7 @@ export class CredentialsRegistration {
             .filter(
               (field) =>
                 fixedFields.includes(field.id) ||
-                field.id === 'repeatPassword' ||
+                (!this.completingProfile && field.id === 'repeatPassword') ||
                 attributes.some((attribute) => attribute.key === field.id),
             )
             .map((field) => this.configureField(field)),
@@ -139,7 +194,7 @@ export class CredentialsRegistration {
   readonly missingFixedFields = computed(
     () =>
       !!this.pageConfig() &&
-      REQUIRED_REGISTRATION_FIELDS.some((key) => !this.fields().some((field) => field.id === key)),
+      this.requiredFields.some((key) => !this.fields().some((field) => field.id === key)),
   );
   readonly missingRequiredAttributes = computed(
     () =>
@@ -170,6 +225,10 @@ export class CredentialsRegistration {
       !this.loadError() &&
       !this.registration().loading &&
       !this.registration().success &&
+      (!this.completingProfile ||
+        (this.loginStep() === 'REQUIRE_PROFILE_DOWNLOAD' &&
+          !!this.loginProfile().data?.code &&
+          !this.confirmation().error)) &&
       this.formStatus() === 'VALID' &&
       this.consentSelections().every((consent) => !consent.required || consent.accepted),
   );
@@ -188,7 +247,23 @@ export class CredentialsRegistration {
 
   constructor() {
     this.store.dispatch(CredentialsActions.resetRegistration());
-    this.store.dispatch(CredentialsActions.fetchRegistrationAttributes());
+    if (!this.completingProfile) {
+      this.store.dispatch(CredentialsActions.fetchRegistrationAttributes());
+    }
+
+    effect(() => {
+      if (!this.completingProfile) return;
+      const returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl') || '/';
+      const step = this.loginStep();
+      if (step === 'AUTHENTICATED') {
+        this.router.navigateByUrl(returnUrl, { replaceUrl: true });
+      } else if (step === 'OTP' || step === 'CREDENTIALS') {
+        this.router.navigate(['/login'], {
+          queryParams: { returnUrl, ...(step === 'OTP' ? { continueLogin: true } : {}) },
+          replaceUrl: true,
+        });
+      }
+    });
 
     this.form.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
       this.fields()
@@ -206,12 +281,24 @@ export class CredentialsRegistration {
 
     effect(() => {
       this.lang();
-      this.store.dispatch(CredentialsActions.fetchRegistrationConsents());
+      if (!this.completingProfile) {
+        this.store.dispatch(CredentialsActions.fetchRegistrationConsents());
+      }
     });
 
+    let populatedProfile: UserProfile | null = null;
     effect(() => {
       const fields = this.fields();
       if (this.loading() || this.loadError()) return;
+      const profile = this.completingProfile ? this.loginProfile().data : null;
+      const profileValues: Record<string, string> = profile
+        ? {
+            firstName: profile.firstName,
+            lastName: profile.lastName,
+            fiscalCode: profile.fiscalCode,
+            email: profile.email,
+          }
+        : {};
       const keys = new Set(fields.map((field) => field.id));
       Object.keys(this.form.controls)
         .filter((key) => !keys.has(key))
@@ -219,23 +306,30 @@ export class CredentialsRegistration {
       fields.forEach((field) => {
         const validators = this.validators(field);
         const control = this.form.controls[field.id];
+        const attribute = this.attributes().data.find((attribute) => attribute.key === field.id);
+        const value = profileValues[field.id] ?? attribute?.value ?? String(field.value ?? '');
         if (control) {
           control.setValidators(validators);
+          if (profile && profile !== populatedProfile) control.setValue(value);
           control.updateValueAndValidity();
         } else {
-          const attribute = this.attributes().data.find((attribute) => attribute.key === field.id);
           this.form.addControl(
             field.id,
-            new FormControl(attribute?.value ?? String(field.value ?? ''), {
+            new FormControl(value, {
               nonNullable: true,
               validators,
             }),
           );
         }
       });
+      populatedProfile = profile;
     });
 
+    let populatedConsents: UserProfile['consents'];
     effect(() => {
+      const profile = this.completingProfile ? this.loginProfile().data : null;
+      if (profile && profile.consents === populatedConsents) return;
+      populatedConsents = profile?.consents;
       this.consentSelections.set(
         this.consents().data.map((consent) => ({
           ...consent,
@@ -261,7 +355,7 @@ export class CredentialsRegistration {
 
   private configureField(field: FormFieldConfig): FormFieldConfig {
     const attribute = this.attributes().data.find((attribute) => attribute.key === field.id);
-    const fixedFields: readonly string[] = REQUIRED_REGISTRATION_FIELDS;
+    const fixedFields: readonly string[] = this.requiredFields;
     const required = fixedFields.includes(field.id) || !!attribute?.required || !!field.required;
     const validators = [...(field.validators ?? [])];
     if (required && !validators.some((validator) => validator.type === 'required'))
@@ -359,8 +453,19 @@ export class CredentialsRegistration {
       this.configError.set(false);
       this.reloadConfig$.next();
     }
-    this.store.dispatch(CredentialsActions.fetchRegistrationAttributes());
-    this.store.dispatch(CredentialsActions.fetchRegistrationConsents());
+    if (this.completingProfile) {
+      const code = this.loginProfile().code;
+      if (code) this.store.dispatch(CredentialsActions.loginProfileRequired({ code }));
+    } else {
+      this.store.dispatch(CredentialsActions.fetchRegistrationAttributes());
+      this.store.dispatch(CredentialsActions.fetchRegistrationConsents());
+    }
+  }
+
+  retryConfirmation() {
+    const code = this.loginProfile().data?.code;
+    if (!this.completingProfile || this.registration().loading || !code) return;
+    this.store.dispatch(CredentialsActions.confirmLogin({ data: { code } }));
   }
 
   submit() {
@@ -369,6 +474,34 @@ export class CredentialsRegistration {
       return;
     }
     const values = this.form.getRawValue();
+    if (this.completingProfile) {
+      const profile = this.loginProfile().data;
+      if (!profile?.code) return;
+      this.store.dispatch(
+        CredentialsActions.updateLoginProfile({
+          data: {
+            ...profile,
+            firstName: values['firstName'].trim(),
+            lastName: values['lastName'].trim(),
+            fiscalCode: values['fiscalCode'].trim().toUpperCase(),
+            email: values['email'].trim(),
+            additionalAttributes: profile.additionalAttributes.map((attribute) => ({
+              ...attribute,
+              value: this.form.controls[attribute.key]
+                ? values[attribute.key]?.trim() || null
+                : attribute.value,
+            })),
+            consents: profile.consents?.map((consent) => ({
+              ...consent,
+              accepted:
+                this.consentSelections().find((selection) => selection.id === consent.id)
+                  ?.accepted ?? consent.accepted,
+            })),
+          },
+        }),
+      );
+      return;
+    }
     const data: CredentialsRegistrationRequest = {
       user: {
         firstName: values['firstName'].trim(),

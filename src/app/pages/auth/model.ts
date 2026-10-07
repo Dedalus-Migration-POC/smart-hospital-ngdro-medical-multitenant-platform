@@ -1,4 +1,4 @@
-import { Align, LocalizedText } from '../../shared/models/shared_model';
+import { Align, LinkConfig, LocalizedText } from '../../shared/models/shared_model';
 
 export interface AuthMethodTabsProps {
   id: string;
@@ -88,6 +88,17 @@ export interface CieConfig {
 export interface LocalConfig {
   loginLabel: LocalizedText;
   passwordLabel: LocalizedText;
+  registration?: {
+    text?: LocalizedText;
+    link: LinkConfig;
+  };
+  otp?: {
+    buttons?: {
+      align?: Align;
+      confirm?: { text?: LocalizedText };
+      back?: { text?: LocalizedText; showIcon?: boolean };
+    };
+  };
 }
 
 export type AuthMethod = SpidAuthMethod | MyIdAuthMethod | CieAuthMethod | LocalAuthMethod;

@@ -1,4 +1,6 @@
-@if (timer(); as timerData) {
+@if (expired()) {
+  <div class="text-end mb-2" role="status">{{ 'countdown.expired' | translate }}</div>
+} @else if (timer(); as timerData) {
   <div class="text-end mb-2">
     {{ timerData.timeRemaining | date: 'mm:ss' }}
 

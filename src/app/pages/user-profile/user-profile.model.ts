@@ -92,6 +92,7 @@ export interface AdditionalAttribute {
   displayName: string;
   value: string | null;
   required: boolean;
+  validation?: string | null;
 }
 export interface UserProfile {
   fiscalCode: string;

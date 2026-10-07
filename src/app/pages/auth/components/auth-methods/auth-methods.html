@@ -19,7 +19,7 @@
               <app-myid [myIdConfig]="tab"></app-myid>
             }
             @case ('LOCAL') {
-              <p>Login con LOCAL</p>
+              <app-credentials-login [credentialsConfig]="tab" />
             }
             @default {
               <p>Unknown state</p>
