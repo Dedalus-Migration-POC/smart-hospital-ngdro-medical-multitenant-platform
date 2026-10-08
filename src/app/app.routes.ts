@@ -37,6 +37,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'reset-password',
+    loadComponent: () =>
+      import('./pages/auth/components/credentials/reset-password/reset-password').then(
+        (module) => module.ResetPassword,
+      ),
+  },
+  {
     path: 'user-profile',
     canActivate: [authenticatedGuard({ allowTemporary: true })],
     loadChildren: () =>

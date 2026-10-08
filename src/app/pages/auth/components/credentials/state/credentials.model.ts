@@ -3,6 +3,10 @@ export interface CredentialsLoginRequest {
   password: string;
 }
 
+export interface CredentialsResetPasswordRequest {
+  fiscalCode: string;
+}
+
 export interface CredentialsLoginOtpResponse {
   code: string;
   step: 'OTP';

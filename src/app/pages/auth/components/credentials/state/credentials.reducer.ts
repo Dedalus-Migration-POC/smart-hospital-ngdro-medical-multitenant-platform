@@ -29,6 +29,10 @@ const initialLoginProfileState: LoginProfileState = {
 };
 
 export interface State extends LoginProfileState {
+  resetPasswordLoading: boolean;
+  resetPasswordSuccess: boolean;
+  resetPasswordError: unknown | null;
+
   registrationAttributes: RegistrationAttribute[];
   registrationAttributesLoading: boolean;
   registrationAttributesError: boolean;
@@ -56,6 +60,9 @@ export interface State extends LoginProfileState {
 
 export const initialState: State = {
   ...initialLoginProfileState,
+  resetPasswordLoading: false,
+  resetPasswordSuccess: false,
+  resetPasswordError: null,
   registrationAttributes: [],
   registrationAttributesLoading: false,
   registrationAttributesError: false,
@@ -83,6 +90,30 @@ export const initialState: State = {
 
 export const reducer = createReducer(
   initialState,
+  on(CredentialsActions.resetPassword, (state) => ({
+    ...state,
+    resetPasswordLoading: true,
+    resetPasswordSuccess: false,
+    resetPasswordError: null,
+  })),
+  on(CredentialsActions.resetPasswordSuccess, (state) => ({
+    ...state,
+    resetPasswordLoading: false,
+    resetPasswordSuccess: true,
+    resetPasswordError: null,
+  })),
+  on(CredentialsActions.resetPasswordFailure, (state, { error }) => ({
+    ...state,
+    resetPasswordLoading: false,
+    resetPasswordSuccess: false,
+    resetPasswordError: error,
+  })),
+  on(CredentialsActions.clearResetPassword, (state) => ({
+    ...state,
+    resetPasswordLoading: false,
+    resetPasswordSuccess: false,
+    resetPasswordError: null,
+  })),
   on(CredentialsActions.login, (state) => ({
     ...state,
     ...initialLoginProfileState,

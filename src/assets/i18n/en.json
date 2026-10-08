@@ -34,6 +34,13 @@
       "generic": "Login failed. Please try again later."
     }
   },
+  "credentials-reset-password": {
+    "retry": "Try again",
+    "errors": {
+      "userNotFound": "No user exists with this fiscal code.",
+      "generic": "The password recovery email could not be sent. Please try again later."
+    }
+  },
   "credentials-registration": {
     "errors": {
       "conflict": "An account with these credentials already exists.",

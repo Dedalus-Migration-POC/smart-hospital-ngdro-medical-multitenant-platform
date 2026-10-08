@@ -40,6 +40,7 @@ import {
   selectRegistrationConsents,
   selectRequiredRegistrationAttributes,
   selectRequiredRegistrationConsents,
+  selectResetPassword,
 } from './credentials.selectors';
 import { CredentialsService } from './credentials.service';
 import * as UserProfileActions from 'src/app/pages/user-profile/state/user-profile.actions';
@@ -1276,6 +1277,145 @@ describe('Credentials profile completion HTTP flow', () => {
     expect(state.loginError).toBeTruthy();
     expect(dispatched).not.toContainEqual(UserProfileActions.fetchUserProfile());
   });
+});
+
+describe('Credentials reset password', () => {
+  let actions$: Subject<Action>;
+  let effects: CredentialsEffects;
+  let httpTesting: HttpTestingController;
+  let notification: { error: ReturnType<typeof vi.fn> };
+  let previousLocaleId: string | null;
+  const data = { fiscalCode: 'RSSMRA80A01H501U' };
+
+  beforeEach(() => {
+    previousLocaleId = localStorage.getItem('localeId');
+    localStorage.setItem('localeId', 'en');
+    actions$ = new Subject<Action>();
+    notification = { error: vi.fn() };
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
+        provideMockActions(() => actions$),
+        provideMockStore(),
+        CredentialsEffects,
+        { provide: ItNotificationService, useValue: notification },
+        { provide: TranslateService, useValue: { instant: (key: string) => key } },
+      ],
+    });
+    effects = TestBed.inject(CredentialsEffects);
+    httpTesting = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpTesting.verify();
+    actions$.complete();
+    if (previousLocaleId === null) localStorage.removeItem('localeId');
+    else localStorage.setItem('localeId', previousLocaleId);
+  });
+
+  it('should keep request state separate from login and clear stale results', () => {
+    const previous = {
+      ...initialState,
+      loginStep: 'OTP' as const,
+      loginOtpCode: 'pending-challenge',
+      resetPasswordSuccess: true,
+      resetPasswordError: new Error('Previous error'),
+    };
+    const loading = reducer(previous, CredentialsActions.resetPassword({ data }));
+    expect(selectResetPassword({ [featureKey]: loading })).toEqual({
+      loading: true,
+      success: false,
+      error: null,
+    });
+    expect(loading.loginStep).toBe('OTP');
+    expect(loading.loginOtpCode).toBe('pending-challenge');
+    expect('fiscalCode' in loading).toBe(false);
+    const success = reducer(loading, CredentialsActions.resetPasswordSuccess());
+    expect(selectResetPassword({ [featureKey]: success })).toEqual({
+      loading: false,
+      success: true,
+      error: null,
+    });
+    const cleared = reducer(success, CredentialsActions.clearResetPassword());
+    expect(selectResetPassword({ [featureKey]: cleared })).toEqual({
+      loading: false,
+      success: false,
+      error: null,
+    });
+    expect(cleared.loginOtpCode).toBe('pending-challenge');
+  });
+
+  it('should POST only fiscalCode with language and complete on an empty 200', async () => {
+    const result = firstValueFrom(effects.resetPassword$);
+    actions$.next(CredentialsActions.resetPassword({ data }));
+    actions$.next(CredentialsActions.resetPassword({ data }));
+    const requests = httpTesting.match('/oauth/api/wrapper/reset-password');
+    expect(requests).toHaveLength(1);
+    expect(requests[0].request.method).toBe('POST');
+    expect(requests[0].request.body).toEqual(data);
+    expect(requests[0].request.withCredentials).toBe(false);
+    expect(requests[0].request.headers.get('Accept-Language')).toBe('en');
+    requests[0].flush(null, { status: 200, statusText: 'OK' });
+    expect(await result).toEqual(CredentialsActions.resetPasswordSuccess());
+    expect(notification.error).not.toHaveBeenCalled();
+  });
+
+  for (const status of [404, 400]) {
+    it(`should notify user-not-found for status ${status} and body code 404`, async () => {
+      const result = firstValueFrom(effects.resetPassword$);
+      actions$.next(CredentialsActions.resetPassword({ data }));
+      httpTesting
+        .expectOne('/oauth/api/wrapper/reset-password')
+        .flush(
+          { errorCode: '404', errorMessage: 'User not found' },
+          { status, statusText: 'Not Found' },
+        );
+      const action = await result;
+      expect(action).toMatchObject({
+        type: CredentialsActions.resetPasswordFailure.type,
+        error: { status },
+      });
+      expect(notification.error).toHaveBeenCalledExactlyOnceWith(
+        'commons.error',
+        'credentials-reset-password.errors.userNotFound',
+        true,
+        8000,
+        NotificationPosition.Top,
+      );
+      const failed = reducer(
+        reducer(initialState, CredentialsActions.resetPassword({ data })),
+        action,
+      );
+      expect(failed.resetPasswordLoading).toBe(false);
+      expect(failed.resetPasswordSuccess).toBe(false);
+      expect(failed.resetPasswordError).toBeTruthy();
+    });
+  }
+
+  for (const status of [0, 500]) {
+    it(`should show a generic error for ${status} and allow retry`, () => {
+      const results: Action[] = [];
+      const subscription = effects.resetPassword$.subscribe((action) => results.push(action));
+      actions$.next(CredentialsActions.resetPassword({ data }));
+      const request = httpTesting.expectOne('/oauth/api/wrapper/reset-password');
+      if (status === 0) request.error(new ProgressEvent('error'));
+      else request.flush(null, { status, statusText: 'Server Error' });
+      expect(results[0].type).toBe(CredentialsActions.resetPasswordFailure.type);
+      expect(notification.error).toHaveBeenCalledExactlyOnceWith(
+        'commons.error',
+        'credentials-reset-password.errors.generic',
+        true,
+        8000,
+        NotificationPosition.Top,
+      );
+      actions$.next(CredentialsActions.resetPassword({ data }));
+      httpTesting.expectOne('/oauth/api/wrapper/reset-password').flush(null);
+      expect(results[1]).toEqual(CredentialsActions.resetPasswordSuccess());
+      subscription.unsubscribe();
+    });
+  }
 });
 
 describe('Credentials login notifications', () => {

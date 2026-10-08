@@ -22,6 +22,37 @@ export class CredentialsEffects {
   private readonly translate = inject(TranslateService);
   private store = inject(Store<SmartHospitalState>);
 
+  resetPassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CredentialsActions.resetPassword),
+      exhaustMap(({ data }) =>
+        this.credentialsService.resetPassword(data).pipe(
+          map(() => CredentialsActions.resetPasswordSuccess()),
+          catchError((error: unknown) => {
+            const body: unknown = error instanceof HttpErrorResponse ? error.error : null;
+            const userNotFound =
+              error instanceof HttpErrorResponse &&
+              ((error.status === 404 && error.error.errorMessage === 'User not found') ||
+                (body !== null &&
+                  typeof body === 'object' &&
+                  'errorCode' in body &&
+                  String(body.errorCode) === '404'));
+            this.notificationService.error(
+              this.translate.instant('commons.error'),
+              this.translate.instant(
+                `credentials-reset-password.errors.${userNotFound ? 'userNotFound' : 'generic'}`,
+              ),
+              true,
+              8000,
+              NotificationPosition.Top,
+            );
+            return of(CredentialsActions.resetPasswordFailure({ error }));
+          }),
+        ),
+      ),
+    ),
+  );
+
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CredentialsActions.login),

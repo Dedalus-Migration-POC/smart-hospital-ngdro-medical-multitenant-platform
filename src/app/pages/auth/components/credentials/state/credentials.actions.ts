@@ -5,6 +5,7 @@ import {
   CredentialsLoginRequest,
   CredentialsRegistrationError,
   CredentialsRegistrationRequest,
+  CredentialsResetPasswordRequest,
   RegistrationAttribute,
   RegistrationConsent,
 } from './credentials.model';
@@ -48,6 +49,20 @@ export const registerFailure = createAction(
 );
 
 export const resetRegistration = createAction('[Credentials] Reset Registration');
+
+export const resetPassword = createAction(
+  '[Credentials] Reset Password',
+  props<{ data: CredentialsResetPasswordRequest }>(),
+);
+
+export const resetPasswordSuccess = createAction('[Credentials] Reset Password Success');
+
+export const resetPasswordFailure = createAction(
+  '[Credentials] Reset Password Failure',
+  props<{ error: unknown }>(),
+);
+
+export const clearResetPassword = createAction('[Credentials] Clear Reset Password');
 
 export const login = createAction(
   '[Credentials] Login',

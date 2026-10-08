@@ -5,6 +5,12 @@ export const selectCredentialsState = createFeatureSelector<fromCredentials.Stat
   fromCredentials.featureKey,
 );
 
+export const selectResetPassword = createSelector(selectCredentialsState, (state) => ({
+  loading: state.resetPasswordLoading,
+  success: state.resetPasswordSuccess,
+  error: state.resetPasswordError,
+}));
+
 export const selectLoginLoading = createSelector(
   selectCredentialsState,
   (state) => state.loginLoading,

@@ -88,6 +88,10 @@ export interface CieConfig {
 export interface LocalConfig {
   loginLabel: LocalizedText;
   passwordLabel: LocalizedText;
+  resetPassword?: {
+    text?: LocalizedText;
+    link: LinkConfig;
+  };
   registration?: {
     text?: LocalizedText;
     link: LinkConfig;

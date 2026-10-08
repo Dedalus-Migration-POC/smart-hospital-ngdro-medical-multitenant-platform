@@ -231,6 +231,25 @@
                           }
                         }
                       },
+                      "resetPassword": {
+                        "text": { "it": "Password dimenticata?", "en": "Forgot password?" },
+                        "link": {
+                          "text": {
+                            "it": "Recupera password",
+                            "en": "Recover password"
+                          },
+                          "url": "/reset-password",
+                          "external": false,
+                          "style": {
+                            "mode": "bootstrap",
+                            "palette": "primary",
+                            "textStyle": {
+                              "fontWeight": "semibold",
+                              "textDecoration": "underline"
+                            }
+                          }
+                        }
+                      },
                       "registration": {
                         "text": {
                           "it": "Non hai ancora l'account? ",

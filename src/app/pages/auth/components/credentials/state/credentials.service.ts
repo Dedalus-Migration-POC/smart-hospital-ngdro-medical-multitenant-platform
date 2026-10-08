@@ -6,6 +6,7 @@ import {
   CredentialsLoginResponse,
   CredentialsLoginRequest,
   CredentialsRegistrationRequest,
+  CredentialsResetPasswordRequest,
   RegistrationAttribute,
   RegistrationConsent,
 } from './credentials.model';
@@ -19,6 +20,13 @@ import {
 export class CredentialsService {
   private http = inject(HttpClient);
   private readonly IS_DEV = true;
+
+  resetPassword(data: CredentialsResetPasswordRequest) {
+    if (this.IS_DEV) {
+      return of<void>(undefined).pipe(delay(500));
+    }
+    return this.http.post<void>('/oauth/api/wrapper/reset-password', data);
+  }
 
   login(data: CredentialsLoginRequest) {
     if (this.IS_DEV) {

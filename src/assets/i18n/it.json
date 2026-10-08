@@ -34,6 +34,13 @@
       "generic": "Accesso non riuscito. Riprova più tardi."
     }
   },
+  "credentials-reset-password": {
+    "retry": "Riprova",
+    "errors": {
+      "userNotFound": "Non esiste un utente con questo codice fiscale.",
+      "generic": "Impossibile inviare l'email di recupero password. Riprova piu tardi."
+    }
+  },
   "credentials-registration": {
     "consents": {
       "requiredConsent": "*Obbligatorio",
