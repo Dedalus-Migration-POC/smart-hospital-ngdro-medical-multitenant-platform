@@ -1,0 +1,145 @@
+import { signal } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideTranslateService } from '@ngx-translate/core';
+import { of, throwError } from 'rxjs';
+import config from 'src/assets/json-config/default/pages/change-password.json';
+import { LanguageService } from 'src/app/initialize/state/services/language.service';
+import { PageConfigService } from 'src/app/pages/page-config.service';
+import * as CredentialsActions from '../state/credentials.actions';
+import { selectChangePassword } from '../state/credentials.selectors';
+import { ChangePassword } from './change-password';
+
+vi.mock('design-angular-kit', () => {
+  class DesignKitStub {}
+  return {
+    DesignAngularKitModule: DesignKitStub,
+    ItIconComponent: DesignKitStub,
+    ItSpinnerComponent: DesignKitStub,
+    ItButtonDirective: DesignKitStub,
+    ItBreadcrumbComponent: DesignKitStub,
+    ItBreadcrumbItemComponent: DesignKitStub,
+    ItInputDirective: DesignKitStub,
+    ItSelectDirective: DesignKitStub,
+  };
+});
+
+describe('ChangePassword', () => {
+  let getConfig: ReturnType<typeof vi.fn>;
+  const data = { currentPassword: 'old-password', newPassword: 'new-password' };
+
+  beforeEach(() => {
+    getConfig = vi.fn(() => of(config));
+    TestBed.configureTestingModule({
+      imports: [ChangePassword],
+      providers: [
+        provideRouter([]),
+        provideTranslateService(),
+        provideMockStore({
+          selectors: [
+            {
+              selector: selectChangePassword,
+              value: { loading: false, success: false, error: null },
+            },
+          ],
+        }),
+        { provide: PageConfigService, useValue: { get: getConfig } },
+        { provide: LanguageService, useValue: { lang: signal<'it' | 'en'>('it') } },
+      ],
+    });
+    TestBed.overrideComponent(ChangePassword, { set: { template: '', imports: [] } });
+  });
+
+  async function createPage() {
+    const store = TestBed.inject(MockStore);
+    const dispatch = vi.spyOn(store, 'dispatch');
+    const fixture = TestBed.createComponent(ChangePassword);
+    await fixture.whenStable();
+    return { store, dispatch, fixture, component: fixture.componentInstance };
+  }
+
+  function fill(component: ChangePassword, repeat = data.newPassword) {
+    component.form.setValue({ ...data, repeatNewPassword: repeat });
+  }
+
+  it('should load its JSON form and clear change-password state on entry', async () => {
+    const { component, dispatch } = await createPage();
+    expect(getConfig).toHaveBeenCalledWith('/change-password');
+    expect(component.formConfigs()[0].fields.map((field) => field.id)).toEqual([
+      'currentPassword',
+      'newPassword',
+      'repeatNewPassword',
+    ]);
+    expect(dispatch).toHaveBeenCalledExactlyOnceWith(CredentialsActions.clearChangePassword());
+    expect(component.canSubmit()).toBe(false);
+  });
+
+  it('should reject mismatching passwords and submit only current and new password', async () => {
+    const { component, dispatch, fixture } = await createPage();
+    dispatch.mockClear();
+    component.submit();
+    expect(dispatch).not.toHaveBeenCalled();
+    fill(component, 'different');
+    await fixture.whenStable();
+    expect(component.form.controls.repeatNewPassword.hasError('validateMatching')).toBe(true);
+    component.submit();
+    expect(dispatch).not.toHaveBeenCalled();
+    component.form.controls.newPassword.setValue('different');
+    expect(component.form.controls.repeatNewPassword.valid).toBe(true);
+    fill(component);
+    await fixture.whenStable();
+    component.submit();
+    expect(dispatch).toHaveBeenCalledExactlyOnceWith(CredentialsActions.changePassword({ data }));
+  });
+
+  it('should block duplicate requests while loading and clear passwords on success', async () => {
+    const { component, dispatch, fixture, store } = await createPage();
+    fill(component);
+    const request = store.overrideSelector(selectChangePassword, {
+      loading: true,
+      success: false,
+      error: null,
+    });
+    store.refreshState();
+    await fixture.whenStable();
+    dispatch.mockClear();
+    component.submit();
+    expect(dispatch).not.toHaveBeenCalled();
+    request.setResult({ loading: false, success: true, error: null });
+    store.refreshState();
+    await fixture.whenStable();
+    expect(component.form.getRawValue()).toEqual({
+      currentPassword: '',
+      newPassword: '',
+      repeatNewPassword: '',
+    });
+    component.submit();
+    expect(dispatch).not.toHaveBeenCalled();
+  });
+
+  it('should allow retry after failure keeping the entered values', async () => {
+    const { component, dispatch, fixture, store } = await createPage();
+    fill(component);
+    store.overrideSelector(selectChangePassword, {
+      loading: false,
+      success: false,
+      error: new Error('Invalid credentials'),
+    });
+    store.refreshState();
+    await fixture.whenStable();
+    dispatch.mockClear();
+    component.submit();
+    expect(dispatch).toHaveBeenCalledExactlyOnceWith(CredentialsActions.changePassword({ data }));
+  });
+
+  it('should expose a configuration error and reload on retry', async () => {
+    getConfig.mockReturnValueOnce(throwError(() => new Error('Config unavailable')));
+    const { component, fixture } = await createPage();
+    expect(component.configError()).toBe(true);
+    component.retryConfig();
+    await fixture.whenStable();
+    expect(component.configError()).toBe(false);
+    expect(component.pageConfig()?.id).toBe('/change-password');
+  });
+});

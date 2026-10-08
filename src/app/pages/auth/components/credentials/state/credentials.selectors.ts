@@ -11,6 +11,12 @@ export const selectResetPassword = createSelector(selectCredentialsState, (state
   error: state.resetPasswordError,
 }));
 
+export const selectChangePassword = createSelector(selectCredentialsState, (state) => ({
+  loading: state.changePasswordLoading,
+  success: state.changePasswordSuccess,
+  error: state.changePasswordError,
+}));
+
 export const selectLoginLoading = createSelector(
   selectCredentialsState,
   (state) => state.loginLoading,

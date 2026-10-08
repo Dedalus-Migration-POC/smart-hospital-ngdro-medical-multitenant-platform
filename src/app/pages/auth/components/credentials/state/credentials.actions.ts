@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { UserProfile } from 'src/app/pages/user-profile/user-profile.model';
 import {
+  CredentialsChangePasswordRequest,
   CredentialsLoginConfirmRequest,
   CredentialsLoginRequest,
   CredentialsRegistrationError,
@@ -63,6 +64,20 @@ export const resetPasswordFailure = createAction(
 );
 
 export const clearResetPassword = createAction('[Credentials] Clear Reset Password');
+
+export const changePassword = createAction(
+  '[Credentials] Change Password',
+  props<{ data: CredentialsChangePasswordRequest }>(),
+);
+
+export const changePasswordSuccess = createAction('[Credentials] Change Password Success');
+
+export const changePasswordFailure = createAction(
+  '[Credentials] Change Password Failure',
+  props<{ error: unknown }>(),
+);
+
+export const clearChangePassword = createAction('[Credentials] Clear Change Password');
 
 export const login = createAction(
   '[Credentials] Login',

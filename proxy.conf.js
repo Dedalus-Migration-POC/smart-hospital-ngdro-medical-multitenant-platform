@@ -1,9 +1,10 @@
-const staging = "https://digitalservices-test.mondino.it";
+const staging = "https://smarthospital-test.polime.it";
 
 const target = staging;
 
 const proxyRoutes = [
   "/api",
+  "/oauth",
   "/uaa",
   "/sso",
   "/profile-manager",

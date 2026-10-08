@@ -104,7 +104,9 @@ describe('ResetPassword', () => {
     component.submit();
     expect(component.canSubmit()).toBe(false);
     expect(dispatch).not.toHaveBeenCalled();
-    expect(component.pageConfig()?.messages['success'].it).toContain("Riceverai un'email");
+    expect(component.pageConfig()?.message?.success?.text?.subTitle?.text?.it).toContain(
+      'Verifica la tua email',
+    );
   });
 
   it('should allow retry after request failure without clearing the entered fiscal code', async () => {

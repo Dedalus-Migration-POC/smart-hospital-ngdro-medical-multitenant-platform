@@ -53,6 +53,36 @@ export class CredentialsEffects {
     ),
   );
 
+  changePassword$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CredentialsActions.changePassword),
+      exhaustMap(({ data }) =>
+        this.credentialsService.changePassword(data).pipe(
+          map(() => CredentialsActions.changePasswordSuccess()),
+          catchError((error: unknown) => {
+            const body: unknown = error instanceof HttpErrorResponse ? error.error : null;
+            const invalidCurrentPassword =
+              body !== null &&
+              typeof body === 'object' &&
+              'description' in body &&
+              typeof body.description === 'string' &&
+              body.description.includes('Invalid user credentials');
+            this.notificationService.error(
+              this.translate.instant('commons.error'),
+              this.translate.instant(
+                `credentials-change-password.errors.${invalidCurrentPassword ? 'invalidCurrentPassword' : 'generic'}`,
+              ),
+              true,
+              8000,
+              NotificationPosition.Top,
+            );
+            return of(CredentialsActions.changePasswordFailure({ error }));
+          }),
+        ),
+      ),
+    ),
+  );
+
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(CredentialsActions.login),

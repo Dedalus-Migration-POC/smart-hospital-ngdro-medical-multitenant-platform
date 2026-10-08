@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { catchError, Observable, of, startWith, Subject, switchMap } from 'rxjs';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
 import { DynamicFormComponent } from 'src/app/components/dynamic-form/dynamic-form.component';
+import { ImageBlock } from 'src/app/components/image-block/image-block';
 import { Spinner } from 'src/app/components/spinner/spinner';
 import { LanguageService } from 'src/app/initialize/state/services/language.service';
 import { PageConfigService } from 'src/app/pages/page-config.service';
@@ -37,6 +38,7 @@ type ResetPasswordPageConfig = Omit<PageConfig, 'sections'> &
   imports: [
     Breadcrumb,
     DynamicFormComponent,
+    ImageBlock,
     Spinner,
     ReactiveFormsModule,
     RouterLink,
@@ -50,7 +52,7 @@ export class ResetPassword {
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly pageConfigService = inject(PageConfigService);
   private readonly reloadConfig$ = new Subject<void>();
-  private readonly successHeading = viewChild<ElementRef<HTMLElement>>('successHeading');
+  private readonly successMessage = viewChild<ElementRef<HTMLElement>>('successMessage');
   readonly lang = inject(LanguageService).lang;
   readonly configError = signal(false);
   readonly request = this.store.selectSignal(selectResetPassword);
@@ -104,7 +106,7 @@ export class ResetPassword {
   constructor() {
     this.store.dispatch(CredentialsActions.clearResetPassword());
     afterRenderEffect(() => {
-      if (this.request().success) this.successHeading()?.nativeElement.focus();
+      if (this.request().success) this.successMessage()?.nativeElement.focus();
     });
   }
 

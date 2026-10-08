@@ -33,6 +33,10 @@ export interface State extends LoginProfileState {
   resetPasswordSuccess: boolean;
   resetPasswordError: unknown | null;
 
+  changePasswordLoading: boolean;
+  changePasswordSuccess: boolean;
+  changePasswordError: unknown | null;
+
   registrationAttributes: RegistrationAttribute[];
   registrationAttributesLoading: boolean;
   registrationAttributesError: boolean;
@@ -63,6 +67,9 @@ export const initialState: State = {
   resetPasswordLoading: false,
   resetPasswordSuccess: false,
   resetPasswordError: null,
+  changePasswordLoading: false,
+  changePasswordSuccess: false,
+  changePasswordError: null,
   registrationAttributes: [],
   registrationAttributesLoading: false,
   registrationAttributesError: false,
@@ -113,6 +120,30 @@ export const reducer = createReducer(
     resetPasswordLoading: false,
     resetPasswordSuccess: false,
     resetPasswordError: null,
+  })),
+  on(CredentialsActions.changePassword, (state) => ({
+    ...state,
+    changePasswordLoading: true,
+    changePasswordSuccess: false,
+    changePasswordError: null,
+  })),
+  on(CredentialsActions.changePasswordSuccess, (state) => ({
+    ...state,
+    changePasswordLoading: false,
+    changePasswordSuccess: true,
+    changePasswordError: null,
+  })),
+  on(CredentialsActions.changePasswordFailure, (state, { error }) => ({
+    ...state,
+    changePasswordLoading: false,
+    changePasswordSuccess: false,
+    changePasswordError: error,
+  })),
+  on(CredentialsActions.clearChangePassword, (state) => ({
+    ...state,
+    changePasswordLoading: false,
+    changePasswordSuccess: false,
+    changePasswordError: null,
   })),
   on(CredentialsActions.login, (state) => ({
     ...state,

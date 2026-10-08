@@ -41,6 +41,13 @@
       "generic": "Impossibile inviare l'email di recupero password. Riprova piu tardi."
     }
   },
+  "credentials-change-password": {
+    "retry": "Riprova",
+    "errors": {
+      "invalidCurrentPassword": "La password attuale non è corretta.",
+      "generic": "Impossibile modificare la password. Riprova più tardi."
+    }
+  },
   "credentials-registration": {
     "consents": {
       "requiredConsent": "*Obbligatorio",

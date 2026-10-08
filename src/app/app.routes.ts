@@ -44,6 +44,14 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'change-password',
+    canActivate: [authenticatedGuard()],
+    loadComponent: () =>
+      import('./pages/auth/components/credentials/change-password/change-password').then(
+        (module) => module.ChangePassword,
+      ),
+  },
+  {
     path: 'user-profile',
     canActivate: [authenticatedGuard({ allowTemporary: true })],
     loadChildren: () =>

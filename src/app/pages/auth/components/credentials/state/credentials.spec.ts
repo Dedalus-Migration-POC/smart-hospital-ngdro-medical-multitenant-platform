@@ -29,6 +29,7 @@ import {
 } from './credentials.model';
 import { featureKey, initialState, reducer } from './credentials.reducer';
 import {
+  selectChangePassword,
   selectConfirmLogin,
   selectLogin,
   selectLoginOtpCode,
@@ -1413,6 +1414,125 @@ describe('Credentials reset password', () => {
       actions$.next(CredentialsActions.resetPassword({ data }));
       httpTesting.expectOne('/oauth/api/wrapper/reset-password').flush(null);
       expect(results[1]).toEqual(CredentialsActions.resetPasswordSuccess());
+      subscription.unsubscribe();
+    });
+  }
+});
+
+describe('Credentials change password', () => {
+  let actions$: Subject<Action>;
+  let effects: CredentialsEffects;
+  let httpTesting: HttpTestingController;
+  let notification: { error: ReturnType<typeof vi.fn> };
+  const data = { currentPassword: 'old-password', newPassword: 'new-password' };
+
+  beforeEach(() => {
+    actions$ = new Subject<Action>();
+    notification = { error: vi.fn() };
+    TestBed.configureTestingModule({
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
+        provideMockActions(() => actions$),
+        provideMockStore(),
+        CredentialsEffects,
+        { provide: ItNotificationService, useValue: notification },
+        { provide: TranslateService, useValue: { instant: (key: string) => key } },
+      ],
+    });
+    Object.defineProperty(TestBed.inject(CredentialsService), 'IS_DEV', { value: false });
+    effects = TestBed.inject(CredentialsEffects);
+    httpTesting = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpTesting.verify();
+    actions$.complete();
+  });
+
+  it('should track request state without storing passwords', () => {
+    const loading = reducer(
+      { ...initialState, changePasswordError: new Error('Previous') },
+      CredentialsActions.changePassword({ data }),
+    );
+    expect(selectChangePassword({ [featureKey]: loading })).toEqual({
+      loading: true,
+      success: false,
+      error: null,
+    });
+    expect(JSON.stringify(loading)).not.toContain(data.currentPassword);
+    expect(JSON.stringify(loading)).not.toContain(data.newPassword);
+    const success = reducer(loading, CredentialsActions.changePasswordSuccess());
+    expect(selectChangePassword({ [featureKey]: success })).toEqual({
+      loading: false,
+      success: true,
+      error: null,
+    });
+    const cleared = reducer(success, CredentialsActions.clearChangePassword());
+    expect(selectChangePassword({ [featureKey]: cleared })).toEqual({
+      loading: false,
+      success: false,
+      error: null,
+    });
+  });
+
+  it('should POST current and new password and complete on 200', async () => {
+    const result = firstValueFrom(effects.changePassword$);
+    actions$.next(CredentialsActions.changePassword({ data }));
+    actions$.next(CredentialsActions.changePassword({ data }));
+    const requests = httpTesting.match('/oauth/api/wrapper/change-password');
+    expect(requests).toHaveLength(1);
+    expect(requests[0].request.method).toBe('POST');
+    expect(requests[0].request.body).toEqual(data);
+    requests[0].flush(null, { status: 200, statusText: 'OK' });
+    expect(await result).toEqual(CredentialsActions.changePasswordSuccess());
+    expect(notification.error).not.toHaveBeenCalled();
+  });
+
+  it('should notify an incorrect current password', async () => {
+    const result = firstValueFrom(effects.changePassword$);
+    actions$.next(CredentialsActions.changePassword({ data }));
+    httpTesting.expectOne('/oauth/api/wrapper/change-password').flush(
+      {
+        correlationId: '66977e6ef05cfc8528d843ba8b00c189',
+        errorCode: '500',
+        errorMessage: 'Internal error',
+        description:
+          '401 : "{"error":"invalid_grant","error_description":"Invalid user credentials"}"',
+        datetime: '2024-07-17 10:18:54',
+      },
+      { status: 500, statusText: 'Internal Server Error' },
+    );
+    expect((await result).type).toBe(CredentialsActions.changePasswordFailure.type);
+    expect(notification.error).toHaveBeenCalledExactlyOnceWith(
+      'commons.error',
+      'credentials-change-password.errors.invalidCurrentPassword',
+      true,
+      8000,
+      NotificationPosition.Top,
+    );
+  });
+
+  for (const status of [0, 500]) {
+    it(`should show a generic error for ${status} and allow retry`, () => {
+      const results: Action[] = [];
+      const subscription = effects.changePassword$.subscribe((action) => results.push(action));
+      actions$.next(CredentialsActions.changePassword({ data }));
+      const request = httpTesting.expectOne('/oauth/api/wrapper/change-password');
+      if (status === 0) request.error(new ProgressEvent('error'));
+      else request.flush(null, { status, statusText: 'Server Error' });
+      expect(results[0].type).toBe(CredentialsActions.changePasswordFailure.type);
+      expect(notification.error).toHaveBeenCalledExactlyOnceWith(
+        'commons.error',
+        'credentials-change-password.errors.generic',
+        true,
+        8000,
+        NotificationPosition.Top,
+      );
+      actions$.next(CredentialsActions.changePassword({ data }));
+      httpTesting.expectOne('/oauth/api/wrapper/change-password').flush(null);
+      expect(results[1]).toEqual(CredentialsActions.changePasswordSuccess());
       subscription.unsubscribe();
     });
   }

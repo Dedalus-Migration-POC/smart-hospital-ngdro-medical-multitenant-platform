@@ -7,6 +7,11 @@ export interface CredentialsResetPasswordRequest {
   fiscalCode: string;
 }
 
+export interface CredentialsChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export interface CredentialsLoginOtpResponse {
   code: string;
   step: 'OTP';

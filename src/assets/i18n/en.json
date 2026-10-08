@@ -41,6 +41,13 @@
       "generic": "The password recovery email could not be sent. Please try again later."
     }
   },
+  "credentials-change-password": {
+    "retry": "Try again",
+    "errors": {
+      "invalidCurrentPassword": "The current password is incorrect.",
+      "generic": "The password could not be changed. Please try again later."
+    }
+  },
   "credentials-registration": {
     "errors": {
       "conflict": "An account with these credentials already exists.",

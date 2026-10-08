@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { delay, of } from 'rxjs';
 import {
+  CredentialsChangePasswordRequest,
   CredentialsLoginConfirmRequest,
   CredentialsLoginResponse,
   CredentialsLoginRequest,
@@ -19,13 +20,20 @@ import {
 @Injectable({ providedIn: 'root' })
 export class CredentialsService {
   private http = inject(HttpClient);
-  private readonly IS_DEV = true;
+  private readonly IS_DEV = false;
 
   resetPassword(data: CredentialsResetPasswordRequest) {
     if (this.IS_DEV) {
       return of<void>(undefined).pipe(delay(500));
     }
     return this.http.post<void>('/oauth/api/wrapper/reset-password', data);
+  }
+
+  changePassword(data: CredentialsChangePasswordRequest) {
+    if (this.IS_DEV) {
+      return of<void>(undefined).pipe(delay(500));
+    }
+    return this.http.post<void>('/oauth/api/wrapper/change-password', data);
   }
 
   login(data: CredentialsLoginRequest) {
