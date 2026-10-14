@@ -70,7 +70,7 @@ export class CredentialsService {
       return of(MOCK_REGISTRATION_CONSENTS).pipe(delay(500));
     }
 
-    return this.http.get<RegistrationConsent[]>('/oauth/api/wrapper/consents');
+    return this.http.get<RegistrationConsent[] | null>('/oauth/api/wrapper/consents');
   }
 
   register(data: CredentialsRegistrationRequest) {

@@ -609,6 +609,14 @@ describe('Credentials HTTP flow', () => {
     );
   });
 
+  it('should normalize a null consents response to an empty list', async () => {
+    const result = firstValueFrom(effects.fetchRegistrationConsents$);
+    actions$.next(CredentialsActions.fetchRegistrationConsents());
+    httpTesting.expectOne('/oauth/api/wrapper/consents').flush(null);
+
+    expect(await result).toEqual(CredentialsActions.fetchRegistrationConsentsSuccess({ data: [] }));
+  });
+
   it('should dispatch consents failure and keep listening for subsequent requests', () => {
     const results: Action[] = [];
     const subscription = effects.fetchRegistrationConsents$.subscribe((action) =>

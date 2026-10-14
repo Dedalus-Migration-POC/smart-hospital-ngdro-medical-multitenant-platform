@@ -230,7 +230,7 @@ export class CredentialsEffects {
       ofType(CredentialsActions.fetchRegistrationConsents),
       concatMap(() =>
         this.credentialsService.fetchRegistrationConsents().pipe(
-          map((data) => CredentialsActions.fetchRegistrationConsentsSuccess({ data })),
+          map((data) => CredentialsActions.fetchRegistrationConsentsSuccess({ data: data ?? [] })),
           catchError((error: unknown) =>
             of(CredentialsActions.fetchRegistrationConsentsFailure({ error })),
           ),
