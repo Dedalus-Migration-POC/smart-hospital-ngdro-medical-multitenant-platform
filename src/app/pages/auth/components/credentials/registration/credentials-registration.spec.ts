@@ -2,11 +2,14 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter, Router } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { of } from 'rxjs';
-import config from '../../../../../../assets/json-config/default/pages/credentials-registration.json';
+import rawConfig from '../../../../../../assets/json-config/default/pages/credentials-registration.json';
+import englishCatalog from '../../../../../../assets/i18n/en.json';
+import italianCatalog from '../../../../../../assets/i18n/it.json';
 import { LanguageService } from '../../../../../initialize/state/services/language.service';
 import { PageConfigService } from '../../../../page-config.service';
+import { PageConfig } from '../../../../page.model';
 import * as CredentialsActions from '../state/credentials.actions';
 import {
   MOCK_REGISTRATION_ATTRIBUTES,
@@ -22,6 +25,8 @@ import {
   selectLoginStep,
 } from '../state/credentials.selectors';
 import { CredentialsRegistration } from './credentials-registration';
+
+const config = rawConfig as unknown as PageConfig;
 
 vi.mock('design-angular-kit', () => {
   class DesignAngularKitModuleStub {}
@@ -83,8 +88,16 @@ describe('CredentialsRegistration', () => {
     TestBed.overrideComponent(CredentialsRegistration, { set: { template: '', imports: [] } });
   });
 
+  function createRegistration() {
+    const translate = TestBed.inject(TranslateService);
+    translate.setTranslation('it', italianCatalog);
+    translate.setTranslation('en', englishCatalog);
+    translate.use('it');
+    return TestBed.createComponent(CredentialsRegistration);
+  }
+
   it('should create JSON dynamic forms and enforce required attributes and consents', async () => {
-    const fixture = TestBed.createComponent(CredentialsRegistration);
+    const fixture = createRegistration();
     await fixture.whenStable();
     const component = fixture.componentInstance;
 
@@ -95,7 +108,7 @@ describe('CredentialsRegistration', () => {
   });
 
   it('should submit the registration payload with boolean consents', async () => {
-    const fixture = TestBed.createComponent(CredentialsRegistration);
+    const fixture = createRegistration();
     await fixture.whenStable();
     const component = fixture.componentInstance;
     const store = TestBed.inject(MockStore);
@@ -164,7 +177,7 @@ describe('CredentialsRegistration', () => {
       updateError: null,
     });
     const dispatch = vi.spyOn(store, 'dispatch');
-    const fixture = TestBed.createComponent(CredentialsRegistration);
+    const fixture = createRegistration();
     await fixture.whenStable();
     return { store, fixture, dispatch, profileSelector, component: fixture.componentInstance };
   }

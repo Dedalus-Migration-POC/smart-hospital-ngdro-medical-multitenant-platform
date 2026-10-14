@@ -1,6 +1,6 @@
 @if (myIdConfig(); as myIdConfig) {
   <div>
-    <div class="p-0 mb-4 cursor-default" [innerHTML]="myIdConfig.description[lang()]"></div>
+    <div class="p-0 mb-4 cursor-default" [innerHTML]="myIdConfig.description | translate"></div>
 
     <form
       ngNoForm
@@ -22,7 +22,7 @@
           </span>
         }
 
-        <span class="ps-2">{{ myIdConfig.button.text[lang()] }}</span>
+        <span class="ps-2">{{ myIdConfig.button.text | translate }}</span>
       </button>
     </form>
   </div>

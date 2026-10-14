@@ -1,6 +1,9 @@
 @if (cieConfig(); as cieConfig) {
   <div class="container">
-    <p class="p-0 mb-4 fs-6 lh-base cursor-default" [innerHTML]="cieConfig.description[lang()]"></p>
+    <p
+      class="p-0 mb-4 fs-6 lh-base cursor-default"
+      [innerHTML]="cieConfig.description | translate"
+    ></p>
     <form
       ngNoForm
       [class]="'d-flex justify-content-' + (cieConfig.button.align || 'start')"
@@ -21,7 +24,7 @@
         <span class="cie-btn-icon d-inline-block">
           <img src="assets/images/cielogo.png" alt="" aria-hidden="true" />
         </span>
-        <span class="cie-btn-text">{{ cieConfig.button.text[lang()] }}</span>
+        <span class="cie-btn-text">{{ cieConfig.button.text | translate }}</span>
       </button>
     </form>
     <div class="d-flex flex-column cie-info mt-4 mb-4">

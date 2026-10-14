@@ -1,31 +1,25 @@
 {
   "id": "/booking-a4h/appointments/details",
-  "name": {
-    "it": "Dettaglio appuntamento",
-    "en": "Appointment details"
-  },
+  "name": "pages.booking-a4h-appointments-details.name",
   "route": "/booking-a4h/appointments/details",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
     "title": {
-      "text": {
-        "it": "Dettaglio prenotazione {{service}}",
-        "en": "Appointment details – {{service}}"
-      }
+      "text": "pages.booking-a4h-appointments-details.breadcrumb.title"
     },
     "items": [
       {
-        "name": { "it": "Home", "en": "Home" },
+        "name": "pages.booking-a4h-appointments-details.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": { "it": "Appuntamenti", "en": "Appointments" },
+        "name": "pages.booking-a4h-appointments-details.breadcrumb.items.appointments",
         "routerLink": "/booking-a4h/appointments"
       },
       {
-        "name": { "it": "Dettaglio", "en": "Details" },
+        "name": "pages.booking-a4h-appointments-details.breadcrumb.items.details",
         "routerLink": "/booking-a4h/appointments"
       }
     ]
@@ -64,15 +58,15 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Stato del pagamento", "en": "Payment status" }
+                          "text": "pages.booking-a4h-appointments-details.payment-status.label"
                         },
                         "badgeMap": {
                           "PAID": {
-                            "text": { "it": "Pagato", "en": "Paid" },
+                            "text": "pages.booking-a4h-appointments-details.payment-status.badgeMap.PAID",
                             "color": { "palette": "success" }
                           },
                           "TO_PAY": {
-                            "text": { "it": "Da pagare", "en": "Unpaid" },
+                            "text": "pages.booking-a4h-appointments-details.payment-status.badgeMap.TO_PAY",
                             "color": { "palette": "warning" }
                           }
                         }
@@ -84,7 +78,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Identificativo appuntamento", "en": "Appointment ID" }
+                          "text": "pages.booking-a4h-appointments-details.code-label"
                         }
                       },
                       {
@@ -94,7 +88,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Medico", "en": "Physician" }
+                          "text": "pages.booking-a4h-appointments-details.physician-label"
                         }
                       },
                       {
@@ -104,7 +98,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Data e ora", "en": "Date and time" }
+                          "text": "pages.booking-a4h-appointments-details.scheduled-on-label"
                         }
                       },
                       {
@@ -113,7 +107,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Presidio", "en": "Location" }
+                          "text": "pages.booking-a4h-appointments-details.address-label"
                         }
                       },
                       {
@@ -123,7 +117,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Ambulatorio", "en": "Clinic" }
+                          "text": "pages.booking-a4h-appointments-details.department-label"
                         }
                       },
                       {
@@ -131,7 +125,10 @@
                         "type": "text",
                         "hideIfEmpty": true,
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
-                        "label": { "fontWeight": "bold", "text": { "it": "Piano", "en": "Floor" } }
+                        "label": {
+                          "fontWeight": "bold",
+                          "text": "pages.booking-a4h-appointments-details.floor-label"
+                        }
                       },
                       {
                         "key": "locationDetails.waitingRoom",
@@ -140,7 +137,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Sala d'aspetto", "en": "Waiting room" }
+                          "text": "pages.booking-a4h-appointments-details.waiting-room-label"
                         }
                       },
                       {
@@ -150,7 +147,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Sala ambulatorio", "en": "Examination room" }
+                          "text": "pages.booking-a4h-appointments-details.examination-room-label"
                         }
                       },
 
@@ -164,13 +161,10 @@
                           "fontWeight": "semibold",
                           "color": { "palette": "primary" }
                         },
-                        "label": { "text": { "it": "", "en": "" } },
+                        "label": { "text": "pages.booking-a4h-appointments-details.hint-label" },
                         "valueMap": {
                           "NOT-EDITABLE": {
-                            "text": {
-                              "it": "Non è possibile modificare o eliminare questa prenotazione. Contattare il CUP della struttura per maggiori informazioni.",
-                              "en": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information."
-                            }
+                            "text": "pages.booking-a4h-appointments-details.hint-value"
                           }
                         }
                       }
@@ -182,15 +176,12 @@
                         "renderAs": "button",
                         "outline": true,
                         "label": {
-                          "text": { "it": "Download Vademecum", "en": "Download Guidelines" }
+                          "text": "pages.booking-a4h-appointments-details.preparation-label"
                         },
                         "callback": { "nameFunction": "downloadVademecum" },
                         "hideIf": [{ "key": "linkNote", "operator": "empty" }],
                         "hideMessage": {
-                          "text": {
-                            "it": "Documento non disponibile",
-                            "en": "Document unavailable"
-                          }
+                          "text": "pages.booking-a4h-appointments-details.preparation-hide-message"
                         }
                       },
                       {
@@ -198,10 +189,7 @@
                         "type": "callback",
                         "renderAs": "button",
                         "label": {
-                          "text": {
-                            "it": "Modifica data appuntamento",
-                            "en": "Change appointment date"
-                          }
+                          "text": "pages.booking-a4h-appointments-details.actions.edit"
                         },
                         "callback": { "nameFunction": "editAppointment" },
                         "hideIf": [{ "key": "isDone", "operator": "eq", "value": true }],
@@ -214,7 +202,7 @@
                         "palette": "danger",
                         "outline": true,
                         "label": {
-                          "text": { "it": "Cancella appuntamento", "en": "Cancel appointment" }
+                          "text": "pages.booking-a4h-appointments-details.actions.delete"
                         },
                         "callback": { "nameFunction": "deleteAppointment" },
                         "hideIf": [{ "key": "isDone", "operator": "eq", "value": true }],
@@ -226,10 +214,7 @@
                         "renderAs": "button",
                         "outline": true,
                         "label": {
-                          "text": {
-                            "it": "Procedi con l'accettazione",
-                            "en": "Proceed with check-in"
-                          }
+                          "text": "pages.booking-a4h-appointments-details.actions.check-in"
                         },
                         "callback": { "nameFunction": "requestCheckIn" },
                         "hideIf": [{ "key": "isDone", "operator": "eq", "value": true }],
@@ -257,22 +242,19 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": { "it": "Errore", "en": "Error" },
+        "alt": "jsonConfig.default.pages.booking-a4h-appointments-details.message.error.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": { "it": "Errore", "en": "Error" },
+          "text": "jsonConfig.default.pages.booking-a4h-appointments-details.message.error.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": { "palette": "danger" },
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Si è verificato un errore durante il recupero dell'appuntamento. Riprova più tardi.",
-            "en": "An error occurred while fetching the appointment. Please try again later."
-          },
+          "text": "jsonConfig.default.pages.booking-a4h-appointments-details.message.error.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": { "palette": "danger" },
@@ -289,12 +271,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": { "it": "Appuntamento non trovato", "en": "Appointment not found" },
+        "alt": "jsonConfig.default.pages.booking-a4h-appointments-details.message.notFound.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": { "it": "Appuntamento non trovato", "en": "Appointment not found" },
+          "text": "jsonConfig.default.pages.booking-a4h-appointments-details.message.notFound.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": { "palette": "warning" },

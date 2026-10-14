@@ -1,26 +1,23 @@
 {
   "id": "/consents-a4h",
-  "name": {
-    "it": "Consensi",
-    "en": "Consents"
-  },
+  "name": "jsonConfig.default.pages.consents-a4h.name",
   "route": "/consents-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
-    "title": { "text": { "it": "Consensi", "en": "Consents" } },
+    "title": { "text": "jsonConfig.default.pages.consents-a4h.breadcrumb.title.text" },
     "subTitle": {
-      "text": { "it": "Gestisci i tuoi consensi", "en": "Manage your consents" }
+      "text": "jsonConfig.default.pages.consents-a4h.breadcrumb.subTitle.text"
     },
 
     "items": [
       {
-        "name": { "it": "Home", "en": "Home" },
+        "name": "jsonConfig.default.pages.consents-a4h.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": { "it": "Consensi", "en": "Consents" },
+        "name": "jsonConfig.default.pages.consents-a4h.breadcrumb.items.item1.name",
         "routerLink": "/consents-a4h"
       }
     ]
@@ -146,18 +143,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Errore",
-          "en": "Error"
-        },
+        "alt": "jsonConfig.default.pages.consents-a4h.message.error.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Errore",
-            "en": "Error"
-          },
+          "text": "jsonConfig.default.pages.consents-a4h.message.error.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -166,10 +157,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Si è verificato un errore durante il recupero dei consensi. Riprova più tardi.",
-            "en": "An error occurred while fetching the consents. Please try again later."
-          },
+          "text": "jsonConfig.default.pages.consents-a4h.message.error.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -193,18 +181,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Consensi non trovati",
-          "en": "Consents not found"
-        },
+        "alt": "jsonConfig.default.pages.consents-a4h.message.notFound.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Consensi non trovati",
-            "en": "Consents not found"
-          },
+          "text": "jsonConfig.default.pages.consents-a4h.message.notFound.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -213,10 +195,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "La tua richiesta non ha prodotto risultati.",
-            "en": "Your request did not produce any results."
-          },
+          "text": "jsonConfig.default.pages.consents-a4h.message.notFound.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

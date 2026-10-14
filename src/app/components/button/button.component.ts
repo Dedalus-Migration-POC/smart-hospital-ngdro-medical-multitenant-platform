@@ -1,5 +1,6 @@
 import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { ButtonConfig, ButtonStyle } from '../../shared/models/shared_model';
 import {
@@ -14,7 +15,7 @@ import { LanguageService } from '../../initialize/state/services/language.servic
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule, DesignAngularKitModule, IconComponent],
+  imports: [CommonModule, TranslateModule, DesignAngularKitModule, IconComponent],
   templateUrl: './button.component.html',
 })
 export class ButtonComponent {

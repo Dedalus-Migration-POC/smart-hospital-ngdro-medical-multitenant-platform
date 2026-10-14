@@ -1,9 +1,6 @@
 {
   "id": "/departments/units",
-  "name": {
-    "it": "Reparti",
-    "en": "Units"
-  },
+  "name": "jsonConfig.default.pages.departments-units.name",
   "route": "/departments/units",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -13,37 +10,22 @@
       }
     },
     "title": {
-      "text": {
-        "it": "{{department}}",
-        "en": "{{department}}"
-      }
+      "text": "jsonConfig.default.pages.departments-units.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Visualizza i reparti del dipartimento o ricerca una prestazione.",
-        "en": "View the units of the department or search for a service."
-      }
+      "text": "jsonConfig.default.pages.departments-units.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.departments-units.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "Dipartimenti",
-          "en": "Departments"
-        },
+        "name": "jsonConfig.default.pages.departments-units.breadcrumb.items.item1.name",
         "routerLink": "/departments"
       },
       {
-        "name": {
-          "it": "{{department}}",
-          "en": "{{department}}"
-        },
+        "name": "jsonConfig.default.pages.departments-units.breadcrumb.items.item2.name",
         "routerLink": ""
       }
     ]
@@ -108,10 +90,7 @@
                           "type": "url",
                           "value": "assets/images/doctor.png",
                           "decorative": true,
-                          "alt": {
-                            "it": "Dipartimento",
-                            "en": "Department"
-                          }
+                          "alt": "jsonConfig.default.pages.departments-units.sections.item0.areas.center.items.item0.props.items.item0.titleSubtitle.imageBlockConfig.image.alt"
                         }
                       }
                     },
@@ -129,10 +108,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Padiglione",
-                            "en": "Pavilion"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -148,10 +124,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Responsabile",
-                            "en": "Manager"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
                         }
                       }
                     ],
@@ -159,10 +132,7 @@
                       {
                         "key": "viewUnit",
                         "label": {
-                          "text": {
-                            "it": "VEDI DETTAGLI",
-                            "en": "VIEW DETAILS"
-                          },
+                          "text": "jsonConfig.default.pages.departments-units.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text",
                           "fontWeight": "bold"
                         },
                         "type": "callback",

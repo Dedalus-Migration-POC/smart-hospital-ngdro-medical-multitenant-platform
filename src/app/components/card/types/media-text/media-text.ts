@@ -1,7 +1,9 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { MediaTextCard } from '../../model';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
+import { TranslateService } from '@ngx-translate/core';
 import { ActionConfig, FlexLayoutConfig } from '../../../../shared/models/shared_model';
 import { Router } from '@angular/router';
 import {
@@ -23,7 +25,7 @@ import { getCardStyles } from '../../../../shared/utility/cards.utils';
 
 @Component({
   selector: 'app-media-text-card',
-  imports: [CommonModule, DesignAngularKitModule, ImageBlock],
+  imports: [CommonModule, TranslateModule, DesignAngularKitModule, ImageBlock],
   templateUrl: './media-text.html',
   styleUrl: './media-text.scss',
 })
@@ -41,6 +43,7 @@ export class MediaText {
   private readonly router = inject(Router);
   private readonly notificationService = inject(ItNotificationService);
   private readonly langService = inject(LanguageService);
+  private readonly translate = inject(TranslateService);
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextClasses = getTextClasses;
@@ -98,8 +101,10 @@ export class MediaText {
   }
 
   showComingSoon(action: ActionConfig): void {
-    const title = action.comingSoonMessage?.title?.text[this.lang()];
-    const message = action.comingSoonMessage?.subTitle?.text[this.lang()];
+    const titleKey = action.comingSoonMessage?.title?.text;
+    const messageKey = action.comingSoonMessage?.subTitle?.text;
+    const title = titleKey ? this.translate.instant(titleKey) : '';
+    const message = messageKey ? this.translate.instant(messageKey) : '';
 
     this.notificationService.info(
       title ?? '',

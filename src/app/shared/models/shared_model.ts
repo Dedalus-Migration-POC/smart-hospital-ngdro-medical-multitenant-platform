@@ -149,10 +149,14 @@ export interface ActionConfig {
   comingSoonMessage?: TextSection;
 }
 
-export interface LocalizedText {
+export type LocalizedTextLocale = string;
+
+export interface LocalizedTextMap {
   it: string;
   en: string;
 }
+
+export type LocalizedText = string;
 
 export interface FlexLayoutConfig {
   direction?: Array<Direction> | Direction;

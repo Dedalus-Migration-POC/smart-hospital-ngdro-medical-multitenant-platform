@@ -25,6 +25,7 @@ export function provideInitializeApp(): EnvironmentProviders {
 
       try {
         const config: AppConfig = await firstValueFrom(api.loadAppConfig());
+        await firstValueFrom(languageService.init(config.translate?.i18n));
 
         if (config.firebaseConfig && getApps().length === 0) {
           initializeApp(config.firebaseConfig.firebaseOptions);
@@ -36,7 +37,6 @@ export function provideInitializeApp(): EnvironmentProviders {
 
         themeService.apply(config);
         store.dispatch(InitializeAppActions.setAppConfig({ data: config }));
-        languageService.init();
         if (config.translate?.googleTranslate) {
           languageService.loadGoogleTranslate(config.translate.googleTranslate!.supportedLanguages);
         }

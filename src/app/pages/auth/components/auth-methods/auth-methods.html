@@ -7,7 +7,7 @@
       [vertical]="authConfig.isVertical"
     >
       @for (tab of authConfig.authMethods; track tab; let i = $index) {
-        <it-tab-item [label]="tab.title[lang()]" [active]="i === 0">
+        <it-tab-item [label]="tab.title | translate" [active]="i === 0">
           @switch (tab.type) {
             @case ('SPID') {
               <app-spid [spidConfig]="tab"></app-spid>

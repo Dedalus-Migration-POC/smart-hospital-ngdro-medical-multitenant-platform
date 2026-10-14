@@ -1,7 +1,7 @@
 @if (config(); as config) {
   @if (!config.headingTag) {
     <div
-      [innerHTML]="config.text[lang()]"
+      [innerHTML]="config.text | translate"
       class="cursor-default"
       [ngClass]="classes(config)"
       [ngStyle]="getTextStyles(config)"
@@ -10,42 +10,42 @@
     @switch (config.headingTag) {
       @case ('h1') {
         <h1
-          [innerHTML]="config.text[lang()]"
+          [innerHTML]="config.text | translate"
           [ngClass]="classes(config)"
           [ngStyle]="getTextStyles(config)"
         ></h1>
       }
       @case ('h2') {
         <h2
-          [innerHTML]="config.text[lang()]"
+          [innerHTML]="config.text | translate"
           [ngClass]="classes(config)"
           [ngStyle]="getTextStyles(config)"
         ></h2>
       }
       @case ('h3') {
         <h3
-          [innerHTML]="config.text[lang()]"
+          [innerHTML]="config.text | translate"
           [ngClass]="classes(config)"
           [ngStyle]="getTextStyles(config)"
         ></h3>
       }
       @case ('h4') {
         <h4
-          [innerHTML]="config.text[lang()]"
+          [innerHTML]="config.text | translate"
           [ngClass]="classes(config)"
           [ngStyle]="getTextStyles(config)"
         ></h4>
       }
       @case ('h5') {
         <h5
-          [innerHTML]="config.text[lang()]"
+          [innerHTML]="config.text | translate"
           [ngClass]="classes(config)"
           [ngStyle]="getTextStyles(config)"
         ></h5>
       }
       @case ('h6') {
         <h6
-          [innerHTML]="config.text[lang()]"
+          [innerHTML]="config.text | translate"
           [ngClass]="classes(config)"
           [ngStyle]="getTextStyles(config)"
         ></h6>

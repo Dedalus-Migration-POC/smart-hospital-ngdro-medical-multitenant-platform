@@ -1,9 +1,6 @@
 {
   "id": "/medical-reports",
-  "name": {
-    "it": "Referti",
-    "en": "Medical Reports"
-  },
+  "name": "jsonConfig.default.pages.medical-reports.name",
   "route": "/medical-reports",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -13,43 +10,25 @@
       }
     },
     "title": {
-      "text": {
-        "it": "Referti e documenti",
-        "en": "Medical Reports and Documents"
-      }
+      "text": "jsonConfig.default.pages.medical-reports.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Sottotitolo",
-        "en": "Subtitle"
-      }
+      "text": "jsonConfig.default.pages.medical-reports.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.medical-reports.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "Referti e documenti",
-          "en": "Medical Reports and Documents"
-        },
+        "name": "jsonConfig.default.pages.medical-reports.breadcrumb.items.item1.name",
         "routerLink": "/medical-reports"
       }
     ]
   },
   "infoPopup": {
-    "title": {
-      "it": "Attenzione",
-      "en": "Attention"
-    },
-    "text": {
-      "it": "I referti non saranno più disponibili dopo 45 gg dalla data di caricamento indicata nel referto.",
-      "en": "Reports will no longer be available 45 days after the upload date indicated in the report."
-    },
+    "title": "jsonConfig.default.pages.medical-reports.infoPopup.title",
+    "text": "jsonConfig.default.pages.medical-reports.infoPopup.text",
     "type": "warning"
   },
   "sections": [
@@ -78,10 +57,7 @@
                   "gap": "gap-3"
                 },
                 "submitButton": {
-                  "label": {
-                    "it": "Cerca",
-                    "en": "Search"
-                  },
+                  "label": "jsonConfig.default.pages.medical-reports.sections.item0.areas.center.items.item0.props.submitButton.label",
                   "layout": {
                     "align": "self-end"
                   }
@@ -94,10 +70,7 @@
                       "direction": "column",
                       "gap": "gap-2"
                     },
-                    "label": {
-                      "it": "Tipo Documento",
-                      "en": "Document Type"
-                    },
+                    "label": "jsonConfig.default.pages.medical-reports.sections.item0.areas.center.items.item0.props.fields.item0.label",
                     "required": false
                   }
                 ]
@@ -183,10 +156,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Data",
-                            "en": "Date"
-                          }
+                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -202,10 +172,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Unità operativa",
-                            "en": "Operating unit"
-                          }
+                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item1.label.text"
                         }
                       },
                       {
@@ -222,10 +189,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Data scadenza",
-                            "en": "Expiration date"
-                          }
+                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item2.label.text"
                         }
                       },
                       {
@@ -241,27 +205,18 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Stato",
-                            "en": "Status"
-                          }
+                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.label.text"
                         },
                         "badgeMap": {
                           "0": {
-                            "text": {
-                              "it": "Non pagato",
-                              "en": "Pending"
-                            },
+                            "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.badgeMap.0.text",
                             "lineHeight": "md",
                             "color": {
                               "palette": "danger"
                             }
                           },
                           "1": {
-                            "text": {
-                              "it": "Pagato",
-                              "en": "Paid"
-                            },
+                            "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.badgeMap.1.text",
                             "lineHeight": "md",
                             "color": {
                               "palette": "success"
@@ -269,10 +224,7 @@
                           }
                         },
                         "fallbackBadge": {
-                          "text": {
-                            "it": "Sconosciuto",
-                            "en": "Unknown"
-                          },
+                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.fallbackBadge.text",
                           "fontSize": "sm",
                           "color": {
                             "palette": "secondary"
@@ -284,10 +236,7 @@
                       {
                         "key": "downloadPdf",
                         "label": {
-                          "text": {
-                            "it": "Scarica PDF ({{additionalInfo.size}})",
-                            "en": "Download PDF"
-                          }
+                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.actions.item0.label.text"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -301,10 +250,7 @@
                       {
                         "key": "openPdf",
                         "label": {
-                          "text": {
-                            "it": "Apri PDF",
-                            "en": "Open PDF"
-                          }
+                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.actions.item1.label.text"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -340,18 +286,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Referti non trovati",
-          "en": "Reports not found"
-        },
+        "alt": "jsonConfig.default.pages.medical-reports.message.notFound.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Referti non trovati",
-            "en": "Reports not found"
-          },
+          "text": "jsonConfig.default.pages.medical-reports.message.notFound.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -360,10 +300,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "La tua richiesta non ha prodotto risultati.",
-            "en": "Your request did not produce any results."
-          },
+          "text": "jsonConfig.default.pages.medical-reports.message.notFound.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -387,18 +324,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Errore",
-          "en": "Error"
-        },
+        "alt": "jsonConfig.default.pages.medical-reports.message.error.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Errore",
-            "en": "Error"
-          },
+          "text": "jsonConfig.default.pages.medical-reports.message.error.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -407,10 +338,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Si è verificato un errore durante il recupero del referto. Riprova più tardi.",
-            "en": "An error occurred while fetching the report. Please try again later."
-          },
+          "text": "jsonConfig.default.pages.medical-reports.message.error.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

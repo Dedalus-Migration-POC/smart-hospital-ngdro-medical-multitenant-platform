@@ -32,6 +32,7 @@ import {
   TextStyle,
 } from '../../../../shared/models/shared_model';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -61,7 +62,14 @@ import {
 
 @Component({
   selector: 'app-data-card',
-  imports: [CommonModule, ImageBlock, DesignAngularKitModule, ButtonComponent, Link],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    ImageBlock,
+    DesignAngularKitModule,
+    ButtonComponent,
+    Link,
+  ],
   templateUrl: './data.html',
   styleUrl: './data.scss',
 })
@@ -215,10 +223,7 @@ export class Data {
       disabled: action.disabled ?? false,
       text: {
         ...action.label,
-        text: {
-          it: this.resolveLabel(action.label.text.it, this.card()),
-          en: this.resolveLabel(action.label.text.en, this.card()),
-        },
+        text: this.resolveLabel(this.translate.instant(action.label.text), this.card()),
       },
     } as ButtonConfig;
   }
@@ -228,10 +233,7 @@ export class Data {
 
     const style = this.mergeLinkConfig(this.linksTheme(), action);
     return {
-      text: {
-        it: this.resolveLabel(action.label.text.it, this.card()),
-        en: this.resolveLabel(action.label.text.en, this.card()),
-      },
+      text: this.resolveLabel(this.translate.instant(action.label.text), this.card()),
       url: action.type === 'route' || action.type === 'externalLink' ? action.url : undefined,
       external: action.type === 'externalLink',
       target: action.type === 'externalLink' ? action.target : undefined,
@@ -308,7 +310,11 @@ export class Data {
       return joinedValue || undefined;
     }
 
-    return value == null || value === '' ? binding.fallbackText?.[this.lang()] : String(value);
+    return value == null || value === ''
+      ? binding.fallbackText
+        ? this.translate.instant(binding.fallbackText)
+        : undefined
+      : String(value);
   }
 
   getImageBlockConfig(field: CardField): ImageBlockConfig | null {
@@ -345,7 +351,7 @@ export class Data {
 
     if (!config) return null;
 
-    const text = config.text?.[this.lang()] ?? this.toPlainValue(rawValue);
+    const text = config.text ? this.translate.instant(config.text) : this.toPlainValue(rawValue);
 
     // Crea un config senza la proprietà color per getTextClasses
     const configWithoutColor = { ...config, color: undefined };
@@ -536,9 +542,9 @@ export class Data {
     switch (field.type) {
       case 'text': {
         const mapped = rawValue != null ? field.valueMap?.[String(rawValue)] : undefined;
-        const mappedText = mapped?.text?.[this.lang()];
+        const mappedText = mapped?.text;
         const textValue = mappedText
-          ? this.resolveLabel(mappedText, this.card())
+          ? this.resolveLabel(this.translate.instant(mappedText), this.card())
           : this.toPlainValue(rawValue);
         return this.withAffixes(textValue, field.prefix, field.suffix);
       }
@@ -595,10 +601,10 @@ export class Data {
 
       case 'badge': {
         const mapped = rawValue != null ? field.badgeMap?.[String(rawValue)] : undefined;
-        const badgeValue =
-          mapped?.text?.[this.lang()] ??
-          field.fallbackBadge?.text?.[this.lang()] ??
-          this.toPlainValue(rawValue);
+        const badgeText = mapped?.text ?? field.fallbackBadge?.text;
+        const badgeValue = badgeText
+          ? this.translate.instant(badgeText)
+          : this.toPlainValue(rawValue);
         return this.withAffixes(badgeValue, field.prefix, field.suffix);
       }
 
@@ -654,7 +660,7 @@ export class Data {
       .filter((value) => value !== this.emptyValue);
 
     if (!values.length) {
-      return binding.fallbackText?.[this.lang()] ?? this.emptyValue;
+      return binding.fallbackText ? this.translate.instant(binding.fallbackText) : this.emptyValue;
     }
 
     return values.join(binding.separator ?? ' ');

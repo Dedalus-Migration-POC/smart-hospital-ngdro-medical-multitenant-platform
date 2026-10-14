@@ -91,7 +91,8 @@ export class App implements OnInit {
     if (!config) return null;
     if (url === '/') return config.name;
 
-    return this.currentPageConfig()?.name?.[lang] ?? config.name;
+    const pageName = this.currentPageConfig()?.name;
+    return pageName ? this.langService.translate.instant(pageName) : config.name;
   });
 
   readonly pageInfoPopUp = computed(() => this.currentPageConfig()?.infoPopup);

@@ -2,14 +2,19 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
-import config from 'src/assets/json-config/default/pages/change-password.json';
+import rawConfig from 'src/assets/json-config/default/pages/change-password.json';
+import englishCatalog from 'src/assets/i18n/en.json';
+import italianCatalog from 'src/assets/i18n/it.json';
 import { LanguageService } from 'src/app/initialize/state/services/language.service';
 import { PageConfigService } from 'src/app/pages/page-config.service';
+import { PageConfig } from 'src/app/pages/page.model';
 import * as CredentialsActions from '../state/credentials.actions';
 import { selectChangePassword } from '../state/credentials.selectors';
 import { ChangePassword } from './change-password';
+
+const config = rawConfig as unknown as PageConfig;
 
 vi.mock('design-angular-kit', () => {
   class DesignKitStub {}
@@ -49,6 +54,10 @@ describe('ChangePassword', () => {
       ],
     });
     TestBed.overrideComponent(ChangePassword, { set: { template: '', imports: [] } });
+    const translate = TestBed.inject(TranslateService);
+    translate.setTranslation('it', italianCatalog);
+    translate.setTranslation('en', englishCatalog);
+    translate.use('it');
   });
 
   async function createPage() {

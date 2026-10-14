@@ -25,7 +25,7 @@
               id="modalTitle"
               [ngClass]="getTextClasses(config.header.title)"
               [ngStyle]="getTextStyles(config.header.title)"
-              [innerHTML]="config.header.title.text[lang()]"
+              [innerHTML]="config.header.title.text | translate"
             ></h4>
           </div>
           @if (config.header.closeButton !== false) {
@@ -56,7 +56,7 @@
             class="cursor-default mb-0"
             [ngClass]="getTextClasses(config.body.text)"
             [ngStyle]="getTextStyles(config.body.text)"
-            [innerHTML]="config.body.text.text[lang()]"
+            [innerHTML]="config.body.text.text | translate"
           ></p>
         </div>
         @if (config.footer; as footer) {
@@ -70,7 +70,7 @@
                 class="cursor-default mb-0"
                 [ngClass]="getTextClasses(footerText)"
                 [ngStyle]="getTextStyles(footerText)"
-                [innerHTML]="footerText.text[lang()]"
+                [innerHTML]="footerText.text | translate"
               ></p>
             }
             @for (action of footer.actions; track $index) {

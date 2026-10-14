@@ -1,9 +1,6 @@
 {
   "id": "/bookings-hero/details",
-  "name": {
-    "it": "Prenotazione",
-    "en": "Booking"
-  },
+  "name": "jsonConfig.default.pages.bookings-hero-details.name",
   "route": "/bookings-hero/details",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -18,37 +15,22 @@
       }
     },
     "title": {
-      "text": {
-        "it": "Dettagli della Prenotazione {{bookingId}}",
-        "en": "Booking {{bookingId}}"
-      }
+      "text": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Visualizza le prenotazioni Hero.",
-        "en": "View the Hero bookings."
-      }
+      "text": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "Prenotazioni",
-          "en": "Bookings"
-        },
+        "name": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.items.item1.name",
         "routerLink": "/bookings-hero"
       },
       {
-        "name": {
-          "it": "Dettagli",
-          "en": "Details"
-        },
+        "name": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.items.item2.name",
         "routerLink": "/bookings-hero/details"
       }
     ]
@@ -122,10 +104,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Medico",
-                            "en": "Physician"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -142,10 +121,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Nome agenda",
-                            "en": "Schedule name"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
                         }
                       },
                       {
@@ -162,10 +138,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Indirizzo",
-                            "en": "Address"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text"
                         }
                       },
                       {
@@ -191,10 +164,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Data",
-                            "en": "Date"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item3.label.text"
                         }
                       },
                       {
@@ -211,10 +181,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Presidio",
-                            "en": "Location"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item4.label.text"
                         }
                       },
                       {
@@ -231,10 +198,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Prenotato per",
-                            "en": "Booked for"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.label.text"
                         }
                       },
                       {
@@ -251,10 +215,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Tariffa",
-                            "en": "Rate"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item6.label.text"
                         }
                       },
                       {
@@ -271,10 +232,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": {
-                            "it": "Condizioni e Prescrizioni",
-                            "en": "Conditions and Prescriptions"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item7.label.text"
                         }
                       }
                     ],
@@ -282,10 +240,7 @@
                       {
                         "key": "print",
                         "label": {
-                          "text": {
-                            "it": "Stampa",
-                            "en": "Print"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -298,10 +253,7 @@
                       {
                         "key": "email",
                         "label": {
-                          "text": {
-                            "it": "Invia info via Email",
-                            "en": "Send info via Email"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.label.text"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -321,10 +273,7 @@
                       {
                         "key": "reschedule",
                         "label": {
-                          "text": {
-                            "it": "Sposta",
-                            "en": "Reschedule"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item2.label.text"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -343,10 +292,7 @@
                       {
                         "key": "cancel",
                         "label": {
-                          "text": {
-                            "it": "Cancella",
-                            "en": "Cancel"
-                          }
+                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item3.label.text"
                         },
                         "type": "callback",
                         "mode": "bootstrap",
@@ -389,18 +335,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Errore",
-          "en": "Error"
-        },
+        "alt": "jsonConfig.default.pages.bookings-hero-details.message.error.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Errore",
-            "en": "Error"
-          },
+          "text": "jsonConfig.default.pages.bookings-hero-details.message.error.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -409,10 +349,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Si è verificato un errore durante il recupero dei referti. Riprova più tardi.",
-            "en": "An error occurred while fetching the reports. Please try again later."
-          },
+          "text": "jsonConfig.default.pages.bookings-hero-details.message.error.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -436,18 +373,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Prenotazioni non trovate",
-          "en": "Bookings not found"
-        },
+        "alt": "jsonConfig.default.pages.bookings-hero-details.message.notFound.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Prenotazioni non trovate",
-            "en": "Bookings not found"
-          },
+          "text": "jsonConfig.default.pages.bookings-hero-details.message.notFound.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -456,10 +387,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "La tua richiesta non ha prodotto risultati.",
-            "en": "Your request did not produce any results."
-          },
+          "text": "jsonConfig.default.pages.bookings-hero-details.message.notFound.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

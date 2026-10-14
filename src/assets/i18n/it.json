@@ -250,6 +250,17 @@
       "confirm-appointment": {
         "summary": "Riepilogo",
         "title": "Conferma l'appuntamento",
+        "fields": {
+          "service": "Prestazione",
+          "physician": "Medico",
+          "agenda": "Nome agenda",
+          "address": "Indirizzo",
+          "date": "Data",
+          "facility": "Presidio",
+          "booked-for": "Prenotato per",
+          "fee": "Tariffa",
+          "conditions-prescriptions": "Condizioni e Prescrizioni"
+        },
         "informative-disclaimer": "Dichiaro di essere consapevole che il mancato rispetto delle Condizioni e Prescrizioni indicate in agenda comporterà la mancata erogazione delle prestazioni e la perdita del diritto al rimborso economico.",
         "confirm-button": "Conferma la prenotazione",
         "cancel-button": "Annulla"
@@ -739,5 +750,2858 @@
     "alreadyAcceptedInformative": "Ho già accettato l'informativa",
     "readAndAcceptInformative": "Ho letto ed accetto l'informativa",
     "closeInformative": "Chiudi"
+  },
+  "jsonConfig": {
+    "default": {
+      "pages": {
+        "booking-a4h-appointments": {
+          "name": "I miei appuntamenti",
+          "breadcrumb": {
+            "title": {
+              "text": "I miei appuntamenti"
+            },
+            "subTitle": {
+              "text": "Effettua l'accettazione degli appuntamenti"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Appuntamenti"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "valueMap": {
+                                  "SSN": {
+                                    "text": "Prestazione SSN"
+                                  },
+                                  "SOLV": {
+                                    "text": "Prestazione in solvenza"
+                                  },
+                                  "LP": {
+                                    "text": "Prestazione in Libera Professione"
+                                  }
+                                },
+                                "label": {
+                                  "text": "Regime"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Data"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Pagamento"
+                                },
+                                "badgeMap": {
+                                  "PAID": {
+                                    "text": "Pagata"
+                                  },
+                                  "TO_PAY": {
+                                    "text": "Da pagare"
+                                  }
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Ambulatorio"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Presidio"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": ""
+                                },
+                                "valueMap": {
+                                  "TOO-EARLY": {
+                                    "text": "E' possibile effettuare l'accettazione {{checkInHours}} ore prima dell'appuntamento."
+                                  },
+                                  "PRIVACY": {
+                                    "text": "Per poter continuare è necessario recarsi in accettazione."
+                                  },
+                                  "TO-PAY": {
+                                    "text": "Per poter effettuare l'accettazione procedere al pagamento."
+                                  },
+                                  "MOBILE-PAYMENT-NOT-ALLOWED": {
+                                    "text": "Non è possibile eseguire il pagamento in-app."
+                                  },
+                                  "USER-NOT-VERIFIED": {
+                                    "text": "Per poter continuare è necessario recarsi in accettazione."
+                                  },
+                                  "UNKNOWN": {
+                                    "text": "Per poter continuare è necessario recarsi in accettazione."
+                                  },
+                                  "TOO-LATE": {
+                                    "text": "Non è più possibile effettuare l'accettazione."
+                                  },
+                                  "NOT-EDITABLE": {
+                                    "text": "Non è possibile modificare o eliminare questa prenotazione. Contattare il CUP della struttura per maggiori informazioni."
+                                  }
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Dettagli"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Accettazione"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Pagamento"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "valueMap": {
+                                  "SSN": {
+                                    "text": "Prestazione SSN"
+                                  },
+                                  "SOLV": {
+                                    "text": "Prestazione in solvenza"
+                                  },
+                                  "LP": {
+                                    "text": "Prestazione in Libera Professione"
+                                  }
+                                },
+                                "label": {
+                                  "text": "Regime"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Data"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Pagamento"
+                                },
+                                "badgeMap": {
+                                  "PAID": {
+                                    "text": "Pagata"
+                                  },
+                                  "TO_PAY": {
+                                    "text": "Da pagare"
+                                  }
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Ambulatorio"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Presidio"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Dettagli"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero degli appuntamenti. Riprova più tardi."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Nessun appuntamento"
+              },
+              "text": {
+                "title": {
+                  "text": "Nessun elemento da mostrare"
+                }
+              }
+            }
+          }
+        },
+        "booking-a4h": {
+          "name": "Nuova Prenotazione",
+          "breadcrumb": {
+            "title": {
+              "text": "Nuova prenotazione"
+            },
+            "subTitle": {
+              "text": "Crea una nuova prenotazione A4H"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Prenotazione A4H"
+              },
+              "item2": {
+                "name": "{{bookingType}}"
+              }
+            }
+          }
+        },
+        "bookings-hero-details": {
+          "name": "Prenotazione",
+          "breadcrumb": {
+            "title": {
+              "text": "Dettagli della Prenotazione {{bookingId}}"
+            },
+            "subTitle": {
+              "text": "Visualizza le prenotazioni Hero."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Prenotazioni"
+              },
+              "item2": {
+                "name": "Dettagli"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Medico"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Nome agenda"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Indirizzo"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Data"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Presidio"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Prenotato per"
+                                }
+                              },
+                              "item6": {
+                                "label": {
+                                  "text": "Tariffa"
+                                }
+                              },
+                              "item7": {
+                                "label": {
+                                  "text": "Condizioni e Prescrizioni"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Stampa"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Invia info via Email"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Sposta"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Cancella"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero dei referti. Riprova più tardi."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Prenotazioni non trovate"
+              },
+              "text": {
+                "title": {
+                  "text": "Prenotazioni non trovate"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            }
+          }
+        },
+        "bookings-hero-new": {
+          "name": "Nuova Prenotazione",
+          "breadcrumb": {
+            "title": {
+              "text": "Nuova prenotazione"
+            },
+            "subTitle": {
+              "text": "Crea una nuova prenotazione Hero."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Prenotazioni"
+              },
+              "item2": {
+                "name": "Nuova Prenotazione"
+              }
+            }
+          }
+        },
+        "bookings-hero-reschedule": {
+          "name": "Sposta Prenotazione",
+          "breadcrumb": {
+            "title": {
+              "text": "Sposta prenotazione"
+            },
+            "subTitle": {
+              "text": "Modifica una prenotazione esistente Hero."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Prenotazioni"
+              },
+              "item2": {
+                "name": "Sposta Prenotazione"
+              }
+            }
+          }
+        },
+        "bookings-hero": {
+          "name": "Prenotazioni",
+          "breadcrumb": {
+            "title": {
+              "text": "Prenotazioni"
+            },
+            "subTitle": {
+              "text": "Visualizza le prenotazioni Hero"
+            },
+            "button": {
+              "text": {
+                "text": "Nuova prenotazione"
+              }
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Prenotazioni"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Data"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Location"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Codice fiscale delegato"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Vedi dettagli"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero dei referti. Riprova più tardi."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Prenotazioni non trovate"
+              },
+              "text": {
+                "title": {
+                  "text": "Prenotazioni non trovate"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            }
+          }
+        },
+        "bookings-new": {
+          "name": "Nuova Prenotazione",
+          "breadcrumb": {
+            "title": {
+              "text": "Nuova prenotazione"
+            },
+            "subTitle": {
+              "text": "Crea una nuova prenotazione Arianna-CUP"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Prenotazioni"
+              },
+              "item2": {
+                "name": "Nuova prenotazione"
+              }
+            }
+          },
+          "modals": {
+            "confirmAvailability": {
+              "header": {
+                "title": {
+                  "text": "Conferma prenotazione"
+                }
+              },
+              "body": {
+                "text": {
+                  "text": "Vuoi confermare la prenotazione per la data selezionata?"
+                }
+              },
+              "footer": {
+                "actions": {
+                  "item0": {
+                    "button": {
+                      "text": {
+                        "text": "Annulla"
+                      }
+                    }
+                  },
+                  "item1": {
+                    "button": {
+                      "text": {
+                        "text": "Conferma"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "bookings": {
+          "name": "Prenotazioni",
+          "breadcrumb": {
+            "title": {
+              "text": "Prenotazioni"
+            },
+            "subTitle": {
+              "text": "Visualizza le prenotazioni AriannaCUP"
+            },
+            "button": {
+              "text": {
+                "text": "Nuova prenotazione"
+              }
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Prenotazioni"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Data e ora"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Prestazioni"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Cancella prenotazione"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero delle prenotazioni. Riprova più tardi."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Prenotazioni non trovate"
+              },
+              "text": {
+                "title": {
+                  "text": "Prenotazioni non trovate"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            }
+          }
+        },
+        "change-password": {
+          "name": "Cambio password",
+          "meta": {
+            "title": "Cambio password"
+          },
+          "breadcrumb": {
+            "title": {
+              "text": "Cambio password"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Profilo utente"
+              },
+              "item2": {
+                "name": "Cambio password"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Cambio password",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Password attuale",
+                            "errorMessages": {
+                              "required": "La password attuale è obbligatoria"
+                            }
+                          },
+                          "item1": {
+                            "label": "Nuova password",
+                            "errorMessages": {
+                              "required": "La nuova password è obbligatoria"
+                            }
+                          },
+                          "item2": {
+                            "label": "Ripeti nuova password",
+                            "errorMessages": {
+                              "required": "Ripeti la nuova password",
+                              "validateMatching": "Le password non coincidono"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "submitButton": {
+            "label": "Cambia password"
+          },
+          "messages": {
+            "intro": "Inserisci la password attuale e scegli una nuova password.",
+            "back": "Torna alla Home"
+          },
+          "message": {
+            "success": {
+              "image": {
+                "alt": "Cambio password completato"
+              },
+              "text": {
+                "title": {
+                  "text": "Cambio password completato"
+                },
+                "subTitle": {
+                  "text": "La tua password è stata cambiata con successo."
+                }
+              }
+            }
+          }
+        },
+        "consents-a4h": {
+          "name": "Consensi",
+          "breadcrumb": {
+            "title": {
+              "text": "Consensi"
+            },
+            "subTitle": {
+              "text": "Gestisci i tuoi consensi"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Consensi"
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero dei consensi. Riprova più tardi."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Consensi non trovati"
+              },
+              "text": {
+                "title": {
+                  "text": "Consensi non trovati"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            }
+          }
+        },
+        "credentials-registration": {
+          "name": "Registrazione",
+          "meta": {
+            "title": "Registrazione"
+          },
+          "breadcrumb": {
+            "title": {
+              "text": "Registrazione"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Registrazione"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Dati account",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Nome",
+                            "errorMessages": {
+                              "required": "Il nome e obbligatorio",
+                              "backend": "Nome non valido"
+                            }
+                          },
+                          "item1": {
+                            "label": "Cognome",
+                            "errorMessages": {
+                              "required": "Il cognome e obbligatorio",
+                              "backend": "Cognome non valido"
+                            }
+                          },
+                          "item2": {
+                            "label": "Codice fiscale",
+                            "errorMessages": {
+                              "required": "Il codice fiscale e obbligatorio",
+                              "validateFiscalCode": "Codice fiscale non valido",
+                              "backend": "Codice fiscale non valido"
+                            }
+                          },
+                          "item3": {
+                            "label": "Email",
+                            "errorMessages": {
+                              "required": "L'email e obbligatoria",
+                              "email": "Email non valida",
+                              "backend": "Email non valida"
+                            }
+                          },
+                          "item4": {
+                            "label": "Password",
+                            "errorMessages": {
+                              "required": "La password e obbligatoria",
+                              "backend": "Password non valida"
+                            }
+                          },
+                          "item5": {
+                            "label": "Ripeti password",
+                            "errorMessages": {
+                              "required": "Ripeti la password",
+                              "validateMatching": "Le password non coincidono"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "title": "Dati personali e contatti",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Indirizzo",
+                            "errorMessages": {
+                              "required": "L'indirizzo e obbligatorio",
+                              "pattern": "Indirizzo non valido",
+                              "backend": "Indirizzo non valido"
+                            }
+                          },
+                          "item1": {
+                            "label": "Provincia",
+                            "errorMessages": {
+                              "required": "La provincia e obbligatoria",
+                              "pattern": "Provincia non valida",
+                              "backend": "Provincia non valida"
+                            }
+                          },
+                          "item2": {
+                            "label": "Comune",
+                            "errorMessages": {
+                              "required": "Il comune e obbligatorio",
+                              "pattern": "Comune non valido",
+                              "backend": "Comune non valido"
+                            }
+                          },
+                          "item3": {
+                            "label": "Data di nascita",
+                            "errorMessages": {
+                              "required": "La data di nascita e obbligatoria",
+                              "pattern": "Data di nascita non valida",
+                              "backend": "Data di nascita non valida"
+                            }
+                          },
+                          "item4": {
+                            "label": "Telefono",
+                            "errorMessages": {
+                              "required": "Il telefono e obbligatorio",
+                              "pattern": "Numero di telefono non valido",
+                              "backend": "Numero di telefono non valido"
+                            }
+                          },
+                          "item5": {
+                            "label": "CAP",
+                            "errorMessages": {
+                              "required": "Il CAP e obbligatorio",
+                              "pattern": "Il CAP deve contenere 5 cifre",
+                              "backend": "CAP non valido"
+                            }
+                          },
+                          "item6": {
+                            "label": "Comune di domicilio",
+                            "errorMessages": {
+                              "required": "Il comune di domicilio e obbligatorio",
+                              "pattern": "Comune di domicilio non valido",
+                              "backend": "Comune di domicilio non valido"
+                            }
+                          },
+                          "item7": {
+                            "label": "Provincia di domicilio",
+                            "errorMessages": {
+                              "required": "La provincia di domicilio e obbligatoria",
+                              "pattern": "Provincia di domicilio non valida",
+                              "backend": "Provincia di domicilio non valida"
+                            }
+                          },
+                          "item8": {
+                            "label": "Nazione di domicilio",
+                            "errorMessages": {
+                              "required": "La nazione di domicilio e obbligatoria",
+                              "pattern": "Nazione di domicilio non valida",
+                              "backend": "Nazione di domicilio non valida"
+                            }
+                          },
+                          "item9": {
+                            "label": "Provincia di nascita",
+                            "errorMessages": {
+                              "required": "La provincia di nascita e obbligatoria",
+                              "pattern": "Provincia di nascita non valida",
+                              "backend": "Provincia di nascita non valida"
+                            }
+                          },
+                          "item10": {
+                            "label": "Luogo di nascita",
+                            "errorMessages": {
+                              "required": "Il luogo di nascita e obbligatorio",
+                              "pattern": "Luogo di nascita non valido",
+                              "backend": "Luogo di nascita non valido"
+                            }
+                          },
+                          "item11": {
+                            "label": "Sesso",
+                            "errorMessages": {
+                              "required": "Il sesso e obbligatorio",
+                              "pattern": "Sesso non valido",
+                              "backend": "Sesso non valido"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "consents": {
+            "title": "Consensi",
+            "subtitle": ""
+          },
+          "submitButton": {
+            "label": "Registrati"
+          },
+          "messages": {
+            "loading": "Caricamento",
+            "loadError": "Impossibile caricare i dati di registrazione.",
+            "retry": "Riprova",
+            "login": "Accedi"
+          },
+          "message": {
+            "success": {
+              "image": {
+                "alt": "Registrazione completata"
+              },
+              "text": {
+                "title": {
+                  "text": "Registrazione completata"
+                },
+                "subTitle": {
+                  "text": "La registrazione è avvenuta con successo. Verifica la tua email per completare il processo."
+                }
+              }
+            }
+          }
+        },
+        "departments-units-details": {
+          "name": "Reparto",
+          "breadcrumb": {
+            "title": {
+              "text": "{{unit}}"
+            },
+            "subTitle": {
+              "text": "Visualizza i reparti del dipartimento o ricerca una prestazione."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Dipartimenti"
+              },
+              "item2": {
+                "name": "{{department}}"
+              },
+              "item3": {
+                "name": "{{unit}}"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "start": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Padiglione"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Piano"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Responsabile"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": ""
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Telefono"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Email"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "title": {
+                                "fallbackText": "Orario di apertura"
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Lunedì"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Martedì"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Mercoledì"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Giovedì"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Venerdì"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Sabato"
+                                }
+                              },
+                              "item6": {
+                                "label": {
+                                  "text": "Domenica"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "end": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Servizi"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "departments-units": {
+          "name": "Reparti",
+          "breadcrumb": {
+            "title": {
+              "text": "{{department}}"
+            },
+            "subTitle": {
+              "text": "Visualizza i reparti del dipartimento o ricerca una prestazione."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Dipartimenti"
+              },
+              "item2": {
+                "name": "{{department}}"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "imageBlockConfig": {
+                                "image": {
+                                  "alt": "Dipartimento"
+                                }
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Padiglione"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Responsabile"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "VEDI DETTAGLI"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "departments": {
+          "name": "Dipartimenti",
+          "breadcrumb": {
+            "title": {
+              "text": "Dipartimenti"
+            },
+            "subTitle": {
+              "text": "Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Dipartimenti"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "imageBlockConfig": {
+                                "image": {
+                                  "alt": "Dipartimento"
+                                }
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Padiglione"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Responsabile"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "VEDI REPARTI"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "login": {
+          "name": "Accesso",
+          "sections": {
+            "item0": {
+              "areas": {
+                "start": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "text": "I servizi online dell’ASL di Demo"
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "text": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Demo, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>"
+                      }
+                    }
+                  }
+                },
+                "end": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "authMethods": {
+                          "item0": {
+                            "title": "SPID",
+                            "description": "SPID, il <strong> Sistema Pubblico di Identità Digitale</strong> è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati. Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.",
+                            "button": {
+                              "text": "Entra con SPID"
+                            }
+                          },
+                          "item1": {
+                            "title": "CIE",
+                            "description": "La <strong>Carta di Identità Elettronica (CIE)</strong> è il documento personale che attesta l'identità del cittadino. Dotata di microprocessore, oltre a comprovare l'identità personale, permette l'accesso ai servizi digitali della Pubblica Amministrazione.",
+                            "button": {
+                              "text": "Entra con CIE"
+                            }
+                          },
+                          "item2": {
+                            "title": "MyId",
+                            "description": "<p>SPID, il <strong>Sistema Pubblico di Identità Digitale</strong> è il sistema di accesso che consente di utilizzare, con un'identità digitale unica, i servizi online della Pubblica Amministrazione e dei privati accreditati.</p><p> Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.</p><p>La <strong>Carta di Identità Elettronica (CIE)</strong> è il documento personale che attesta l'identità del cittadino.</p><p> Dotata di microprocessore, oltre a comprovare l'identità personale, permette l'accesso ai servizi digitali della Pubblica Amministrazione.</p>",
+                            "button": {
+                              "text": "Entra con myId"
+                            }
+                          },
+                          "item3": {
+                            "title": "Login",
+                            "description": "<strong>Inserisci login e password</strong>",
+                            "button": {
+                              "text": "Accedi"
+                            },
+                            "config": {
+                              "otp": {
+                                "buttons": {
+                                  "confirm": {
+                                    "text": "Conferma"
+                                  },
+                                  "back": {
+                                    "text": "Indietro"
+                                  }
+                                }
+                              },
+                              "resetPassword": {
+                                "text": "Password dimenticata?",
+                                "link": {
+                                  "text": "Recupera password"
+                                }
+                              },
+                              "registration": {
+                                "text": "Non hai ancora l'account? ",
+                                "link": {
+                                  "text": "Registrati"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "medical-reports": {
+          "name": "Referti",
+          "breadcrumb": {
+            "title": {
+              "text": "Referti e documenti"
+            },
+            "subTitle": {
+              "text": "Sottotitolo"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Referti e documenti"
+              }
+            }
+          },
+          "infoPopup": {
+            "title": "Attenzione",
+            "text": "I referti non saranno più disponibili dopo 45 gg dalla data di caricamento indicata nel referto."
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "submitButton": {
+                          "label": "Cerca"
+                        },
+                        "fields": {
+                          "item0": {
+                            "label": "Tipo Documento"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Data"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Unità operativa"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Data scadenza"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Stato"
+                                },
+                                "badgeMap": {
+                                  "0": {
+                                    "text": "Non pagato"
+                                  },
+                                  "1": {
+                                    "text": "Pagato"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Sconosciuto"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Scarica PDF ({{additionalInfo.size}})"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Apri PDF"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Referti non trovati"
+              },
+              "text": {
+                "title": {
+                  "text": "Referti non trovati"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero del referto. Riprova più tardi."
+                }
+              }
+            }
+          }
+        },
+        "payments-a4h": {
+          "name": "Pagamenti",
+          "breadcrumb": {
+            "title": {
+              "text": "Pagamenti"
+            },
+            "subTitle": {
+              "text": "Visualizza e gestisci i tuoi pagamenti."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Pagamenti"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Prestazioni prenotate"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Data prenotazione effettuata"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Importo"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Paga"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "subTitle": {
+                                "fallbackText": "Pagato"
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Prestazioni"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Data prenotazione effettuata"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Importo"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Visualizza la fattura"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Pagamenti non trovati"
+              },
+              "text": {
+                "title": {
+                  "text": "Pagamenti non trovati"
+                },
+                "subTitle": {
+                  "text": "Nessun pagamento disponibile."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero dei pagamenti. Riprova più tardi."
+                }
+              }
+            }
+          }
+        },
+        "payments-jcash-details": {
+          "name": "Dettaglio Pagamenti",
+          "breadcrumb": {
+            "title": {
+              "text": "Dettaglio Pagamenti"
+            },
+            "subTitle": {
+              "text": "Visualizza i dettagli del pagamento."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Pagamenti"
+              },
+              "item2": {
+                "name": "Dettaglio Pagamenti"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Importo"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Stato"
+                                },
+                                "badgeMap": {
+                                  "PAGATA": {
+                                    "text": "Pagato"
+                                  },
+                                  "DA_PAGARE": {
+                                    "text": "Da pagare"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Sconosciuto"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "IUV"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Causale"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Debitore"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Codice fiscale"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Paga  € {{importo}}"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Scarica ricevuta"
+                                },
+                                "hideMessage": {
+                                  "text": "Per il pagamento verrai reindirizzato sul sito pagoPA. Dopo il pagamento eseguito lo stato si aggiornerà entro circa 24 ore"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero dei pagamenti. Riprova più tardi."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Pagamenti non trovati"
+              },
+              "text": {
+                "title": {
+                  "text": "Pagamenti non trovati"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            }
+          }
+        },
+        "payments-jcash": {
+          "name": "Pagamenti",
+          "breadcrumb": {
+            "title": {
+              "text": "Pagamenti"
+            },
+            "subTitle": {
+              "text": "Visualizza i pagamenti."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Pagamenti"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Importo"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Sistema"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Vedi dettaglio"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Pagamenti non trovati"
+              },
+              "text": {
+                "title": {
+                  "text": "Pagamenti non trovati"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero del pagamento. Riprova più tardi."
+                }
+              }
+            }
+          }
+        },
+        "payments-pa-details": {
+          "name": "Dettaglio Pagamenti",
+          "breadcrumb": {
+            "title": {
+              "text": "Dettaglio Pagamenti"
+            },
+            "subTitle": {
+              "text": "Visualizza i dettagli del pagamento."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Pagamenti"
+              },
+              "item2": {
+                "name": "Dettaglio Pagamenti"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Importo"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Stato"
+                                },
+                                "badgeMap": {
+                                  "PAYED": {
+                                    "text": "Pagato"
+                                  },
+                                  "NOT_PAYED": {
+                                    "text": "Da pagare"
+                                  },
+                                  "VERIFICATION": {
+                                    "text": "In attesa di verifica"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Sconosciuto"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "IUV"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Creditore"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Codice fiscale"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Paga  € {{amount}}"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Scarica PDF"
+                                },
+                                "hideMessage": {
+                                  "text": "Per il pagamento verrai reindirizzato sul sito pagoPA. Dopo il pagamento eseguito lo stato si aggiornerà entro circa 24 ore"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Pagamenti non trovati"
+              },
+              "text": {
+                "title": {
+                  "text": "Pagamenti non trovati"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero del pagamento. Riprova più tardi."
+                }
+              }
+            }
+          }
+        },
+        "payments-pa": {
+          "name": "Pagamenti",
+          "breadcrumb": {
+            "title": {
+              "text": "Pagamenti"
+            },
+            "subTitle": {
+              "text": "Visualizza i pagamenti."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Pagamenti"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Data appuntamento"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Importo"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Sistema di pagamento"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Vedi dettaglio"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Data appuntamento"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Importo"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Sistema di pagamento"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Stato"
+                                },
+                                "badgeMap": {
+                                  "NOT_PAYED": {
+                                    "text": "Da pagare"
+                                  },
+                                  "PAYED": {
+                                    "text": "Pagato"
+                                  },
+                                  "VERIFICATION": {
+                                    "text": "In verifica"
+                                  }
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Dettagli"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Pagamenti non trovati"
+              },
+              "text": {
+                "title": {
+                  "text": "Pagamenti non trovati"
+                },
+                "subTitle": {
+                  "text": "La tua richiesta non ha prodotto risultati."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero del pagamento. Riprova più tardi."
+                }
+              }
+            }
+          }
+        },
+        "reports-by-triplet": {
+          "name": "Referto",
+          "breadcrumb": {
+            "title": {
+              "text": "Referto"
+            },
+            "subTitle": {
+              "text": "Sottotitolo"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Referto"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "submitButton": {
+                          "label": "Cerca Referto"
+                        },
+                        "fields": {
+                          "item0": {
+                            "label": "Seleziona Struttura",
+                            "errorMessages": {
+                              "required": "L’ASL o l’Ospedale è obbligatorio"
+                            }
+                          },
+                          "item1": {
+                            "label": "Codice utente",
+                            "errorMessages": {
+                              "required": "Il codice utente è obbligatorio",
+                              "minlength": "Il codice utente deve essere tra 4 e 6 caratteri",
+                              "maxlength": "Il codice utente deve essere tra 4 e 6 caratteri"
+                            }
+                          },
+                          "item2": {
+                            "label": "Password",
+                            "errorMessages": {
+                              "required": "La password è obbligatoria",
+                              "minlength": "La password deve essere tra 3 e 12 caratteri",
+                              "maxlength": "La password deve essere tra 3 e 12 caratteri"
+                            }
+                          },
+                          "item3": {
+                            "label": "PIN",
+                            "errorMessages": {
+                              "required": "Il PIN è obbligatorio",
+                              "minlength": "Il PIN deve essere tra 3 e 12 caratteri",
+                              "maxlength": "Il PIN deve essere tra 3 e 12 caratteri"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "title": {
+                                "fallbackText": "Referto di laboratorio"
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Data"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Stato"
+                                },
+                                "badgeMap": {
+                                  "0": {
+                                    "text": "Non pagato"
+                                  },
+                                  "1": {
+                                    "text": "Pagato"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Sconosciuto"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Scarica PDF"
+                                },
+                                "hideMessage": {
+                                  "text": "Per visualizzare il referto devi effettuare prima il pagamento. Recati presso il CUP o il totem più vicino per finalizzare la procedura."
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Apri PDF"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Referto non trovato"
+              },
+              "text": {
+                "title": {
+                  "text": "Referto non trovato"
+                },
+                "subTitle": {
+                  "text": "Controlla che il codice fiscale e l'ID del referto siano corretti e riprova."
+                }
+              }
+            },
+            "init": {
+              "image": {
+                "alt": "Benvenuto"
+              },
+              "text": {
+                "title": {
+                  "text": "Benvenuto"
+                },
+                "subTitle": {
+                  "text": "Cerca il tuo referto"
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero del referto. Riprova più tardi."
+                }
+              }
+            }
+          }
+        },
+        "reset-password": {
+          "name": "Recupero password",
+          "meta": {
+            "title": "Recupero password"
+          },
+          "breadcrumb": {
+            "title": {
+              "text": "Recupero password"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Accesso"
+              },
+              "item2": {
+                "name": "Recupero password"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Recupero password",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Codice fiscale",
+                            "errorMessages": {
+                              "required": "Il codice fiscale e obbligatorio",
+                              "validateFiscalCode": "Codice fiscale non valido"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "submitButton": {
+            "label": "Invia email"
+          },
+          "messages": {
+            "intro": "Inserisci il codice fiscale associato al tuo account per ricevere il link di recupero password.",
+            "login": "Torna al login"
+          },
+          "message": {
+            "success": {
+              "image": {
+                "alt": "Reimpostazione password completata"
+              },
+              "text": {
+                "title": {
+                  "text": "Reimpostazione password completata"
+                },
+                "subTitle": {
+                  "text": "La password è stata reimpostata con successo. Verifica la tua email per completare il processo."
+                }
+              }
+            }
+          }
+        },
+        "single-report": {
+          "name": "Referto",
+          "breadcrumb": {
+            "title": {
+              "text": "Referto"
+            },
+            "subTitle": {
+              "text": "Sottotitolo"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Referto"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "submitButton": {
+                          "label": "Cerca"
+                        },
+                        "fields": {
+                          "item0": {
+                            "label": "ID Referto",
+                            "errorMessages": {
+                              "required": "L'ID del referto è obbligatorio",
+                              "minlength": "L'ID del referto deve essere tra 8 e 12 caratteri",
+                              "maxlength": "L'ID del referto deve essere tra 8 e 12 caratteri"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Oggetto"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Data"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Servizi"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Referto"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Tipo di referto"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Stato"
+                                },
+                                "badgeMap": {
+                                  "PAYED": {
+                                    "text": "Pagato"
+                                  },
+                                  "PENDING": {
+                                    "text": "In attesa"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Sconosciuto"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Scarica PDF"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Apri PDF"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Apri Link"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Referto non trovato"
+              },
+              "text": {
+                "title": {
+                  "text": "Referto non trovato"
+                },
+                "subTitle": {
+                  "text": "Controlla che il codice fiscale e l'ID del referto siano corretti e riprova."
+                }
+              }
+            },
+            "init": {
+              "image": {
+                "alt": "Benvenuto"
+              },
+              "text": {
+                "title": {
+                  "text": "Benvenuto"
+                },
+                "subTitle": {
+                  "text": "Inserisci il codice fiscale e l'ID del referto per visualizzare i dettagli."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Errore"
+              },
+              "text": {
+                "title": {
+                  "text": "Errore"
+                },
+                "subTitle": {
+                  "text": "Si è verificato un errore durante il recupero del referto. Riprova più tardi."
+                }
+              }
+            }
+          }
+        },
+        "user-profile": {
+          "name": "Profilo utente",
+          "breadcrumb": {
+            "title": {
+              "text": "Il tuo profilo"
+            },
+            "subTitle": {
+              "text": "Sottotitolo"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "User Profile"
+              }
+            }
+          },
+          "breadcrumbRegistration": {
+            "title": {
+              "text": "Registrazione"
+            },
+            "subTitle": {
+              "text": "Per prosegure devi registrarti"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "User Profile"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Dati account",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Codice Fiscale"
+                          },
+                          "item1": {
+                            "label": "Nome"
+                          },
+                          "item2": {
+                            "label": "Cognome"
+                          },
+                          "item3": {
+                            "label": "Data di nascita"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "title": "Domicilio",
+              "subTitle": "Campi obbligatori",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Indirizzo"
+                          },
+                          "item1": {
+                            "label": "Città"
+                          },
+                          "item2": {
+                            "label": "CAP"
+                          },
+                          "item3": {
+                            "label": "Provincia"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item2": {
+              "title": "Contatti",
+              "subTitle": "Campi obbligatori",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Email"
+                          },
+                          "item1": {
+                            "label": "Numero di telefono"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "consents": {
+            "title": "Consensi",
+            "subTitle": "Gestisci i tuoi consensi"
+          },
+          "submitButton": {
+            "label": "Salva"
+          }
+        }
+      }
+    }
+  },
+  "cookie-consent": {
+    "customContent": {
+      "header": "Usiamo i cookie",
+      "message": "Utilizzando il nostro sito, riconosci di aver letto e compreso la nostra ",
+      "dismiss": "Chiudi",
+      "cookiePolicyLink": "Cookie Policy IT",
+      "privacyPolicyLink": "Privacy Policy IT",
+      "tosLink": "Terms of Service IT"
+    },
+    "cookieConsentModal": {
+      "header": {
+        "title": "Titolo IT"
+      },
+      "body": "Il nostro sito utilizza esclusivamente cookie tecnici obbligatori, necessari per garantire il corretto funzionamento del sito e fornire i servizi richiesti dagli utenti. <br /><br /> Questi cookie non richiedono il consenso dell'utente, in quanto essenziali per: <br /> La navigazione e la fruizione del sito web<br /> La gestione della sessione e l’autenticazione (se prevista)<br /> La memorizzazione delle preferenze dell'utente (ad esempio, lingua o impostazioni di accessibilità)<br />La sicurezza del sito e la prevenzione di frodi<br /><br />Questi cookie non raccolgono informazioni personali né vengono utilizzati per finalità di marketing. Se disabilitati, il sito potrebbe non funzionare correttamente.",
+      "footer": {
+        "actions": {
+          "close": "Chiudi"
+        }
+      }
+    }
+  },
+  "footer": {
+    "in-collaboration": "In collaborazione con",
+    "logo-img": {
+      "alt": "Healthcare"
+    },
+    "logo-eu": {
+      "alt": "Logo dell'Unione europea"
+    },
+    "logo-ministero-salute": {
+      "alt": "Logo del Ministero della Salute"
+    },
+    "logo-italia-domani": {
+      "alt": "Logo Italia Domani"
+    },
+    "socials": {
+      "title": "Seguici su",
+      "facebook": {
+        "label": "Facebook",
+        "ariaLabel": "Facebook (si apre in una nuova scheda)"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "ariaLabel": "Instagram (si apre in una nuova scheda)"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "ariaLabel": "LinkedIn (si apre in una nuova scheda)"
+      }
+    },
+    "link1": {
+      "text": "Link Esterno",
+      "description": "Apri link esterno"
+    },
+    "link2": {
+      "text": "Link Esterno",
+      "description": "Apri link esterno"
+    }
+  },
+  "header": {
+    "topbar": {
+      "link1": {
+        "text": "Servizio sanitario digitale",
+        "description": "Apri link esterno"
+      },
+      "login-button": "Accedi",
+      "profile": "Profilo",
+      "logout": "Esci",
+      "dropdownMenu": {
+        "profile": "Profilo",
+        "logout": "Esci"
+      }
+    },
+    "main-areas": {
+      "image-logo": {
+        "alt": "Logo",
+        "ariaLabel": "Logo"
+      },
+      "image-tooltip": {
+        "tooltipLabel": "Apri sito"
+      }
+    },
+    "socials": {
+      "title": "Seguici su",
+      "facebook": {
+        "label": "Facebook",
+        "ariaLabel": "Facebook (si apre in una nuova scheda)"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "ariaLabel": "Instagram (si apre in una nuova scheda)"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "ariaLabel": "LinkedIn (si apre in una nuova scheda)"
+      }
+    },
+    "bottombar": {
+      "link1": "Home",
+      "link2": "Accedi"
+    }
+  },
+  "pages": {
+    "home": {
+      "name": "Home",
+      "meta": {
+        "title": "Home"
+      },
+      "page-title": "I servizi online dell'ASL di Demo",
+      "info-text": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Demo, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>",
+      "external-image-alt": "Immagine esempio",
+      "services-section": {
+        "aria-label": "Sezione servizi",
+        "title": "Servizi",
+        "sub-title": "Accedi rapidamente ai servizi disponibili",
+        "vaccination-history": {
+          "aria-label": "Apri storico vaccinale",
+          "coming-soon": {
+            "title": "Prossimamente",
+            "sub-title": "Il servizio non è ancora disponibile"
+          },
+          "title": "Storico vaccinale",
+          "sub-title": "Non sviluppato"
+        },
+        "payments": {
+          "aria-label": "Apri pagamenti",
+          "title": "Pagamenti",
+          "sub-title": "PagoPA"
+        },
+        "payments-jcash": {
+          "aria-label": "Apri pagamenti",
+          "title": "Pagamenti",
+          "sub-title": "J-Cash"
+        },
+        "reports": {
+          "aria-label": "Apri referti",
+          "title": "I tuoi referti con un click",
+          "sub-title": "Vedi i tuoi referti"
+        },
+        "single-reports": {
+          "aria-label": "Apri referti",
+          "title": "Single report",
+          "sub-title": "Cerca il tuo referto"
+        },
+        "reports-by-triplet": {
+          "aria-label": "Apri referti",
+          "title": "Referti per triplette",
+          "sub-title": "Cerca il tuo referto"
+        },
+        "departments": {
+          "aria-label": "Apri dipartimenti",
+          "title": "Dipartimenti e reparti"
+        },
+        "booking-arianna": {
+          "aria-label": "Apri prenotazioni",
+          "title": "Prenotazioni",
+          "sub-title": "Arianna-CUP"
+        },
+        "booking-hero": {
+          "aria-label": "Apri prenotazioni",
+          "title": "Prenotazioni",
+          "sub-title": "Hero"
+        }
+      },
+      "feed-rss": {
+        "title": "Notizie FeedRss",
+        "readMore-button": "LEGGI TUTTO",
+        "not-found-image": {
+          "alt": "FeedRss non trovati"
+        },
+        "not-found-message": {
+          "title": "FeedRss non trovati",
+          "sub-title": "Riprova più tardi"
+        }
+      },
+      "external-services-section": {
+        "aria-label": "Sezione servizi",
+        "header": {
+          "title": "Servizi esterni",
+          "sub-title": "Servizio si aprirà sul sito esterno"
+        },
+        "news": {
+          "ariaLabel": "Apri link esterno",
+          "title": "News",
+          "sub-title": "Apri link esterno per leggere le news"
+        },
+        "clinical-records": {
+          "ariaLabel": "Apri link esterno",
+          "title": "Cartella clinica",
+          "sub-title": "Apri link esterno per vedere la tua cartella clinica"
+        }
+      }
+    },
+    "booking-a4h-appointments-details": {
+      "name": "Dettaglio appuntamento",
+      "breadcrumb": {
+        "title": "Dettaglio prenotazione {{service}}",
+        "items": {
+          "home": "Home",
+          "appointments": "Appuntamenti",
+          "details": "Dettaglio"
+        }
+      },
+      "payment-status": {
+        "label": "Stato del pagamento",
+        "badgeMap": {
+          "PAID": "Pagato",
+          "TO_PAY": "Da pagare"
+        }
+      },
+      "code-label": "Identificativo appuntamento",
+      "physician-label": "Medico",
+      "scheduled-on-label": "Data e ora",
+      "address-label": "Presidio",
+      "department-label": "Ambulatorio",
+      "floor-label": "Piano",
+      "waiting-room-label": "Sala d'aspetto",
+      "examination-room-label": "Sala ambulatorio",
+      "hint-label": "",
+      "hint-value": "Non è possibile modificare o eliminare questa prenotazione. Contattare il CUP della struttura per maggiori informazioni.",
+      "preparation-label": "Download Vademecum",
+      "preparation-hide-message": "Documento non disponibile",
+      "actions": {
+        "edit": "Modifica data appuntamento",
+        "delete": "Cancella appuntamento",
+        "check-in": "Procedi con l'accettazione"
+      }
+    },
+    "booking-a4h-appointments-edit": {
+      "name": "Modifica appuntamento",
+      "breadcrumb": {
+        "title": "Modifica appuntamento",
+        "items": {
+          "home": "Home",
+          "appointments": "Appuntamenti",
+          "edit": "Modifica appuntamento"
+        }
+      }
+    }
   }
 }

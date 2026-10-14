@@ -1,28 +1,22 @@
 {
   "id": "/booking-a4h/appointments",
-  "name": {
-    "it": "I miei appuntamenti",
-    "en": "My appointments"
-  },
+  "name": "jsonConfig.default.pages.booking-a4h-appointments.name",
   "route": "/booking-a4h/appointments",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
-    "title": { "text": { "it": "I miei appuntamenti", "en": "My appointments" } },
+    "title": { "text": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.title.text" },
     "subTitle": {
-      "text": {
-        "it": "Effettua l'accettazione degli appuntamenti",
-        "en": "Check in to your appointments"
-      }
+      "text": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": { "it": "Home", "en": "Home" },
+        "name": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": { "it": "Appuntamenti", "en": "Appointments" },
+        "name": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.items.item1.name",
         "routerLink": "/booking-a4h/appointments"
       }
     ]
@@ -66,20 +60,17 @@
                         "type": "text",
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "valueMap": {
-                          "SSN": { "text": { "it": "Prestazione SSN", "en": "NHS service" } },
+                          "SSN": { "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.valueMap.SSN.text" },
                           "SOLV": {
-                            "text": { "it": "Prestazione in solvenza", "en": "Private service" }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.valueMap.SOLV.text"
                           },
                           "LP": {
-                            "text": {
-                              "it": "Prestazione in Libera Professione",
-                              "en": "Private practice service"
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.valueMap.LP.text"
                           }
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Regime", "en": "Scheme" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -90,7 +81,7 @@
                         "valueStyle": { "fontWeight": "bold" },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Data", "en": "Date" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
                         }
                       },
                       {
@@ -99,16 +90,16 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Pagamento", "en": "Payment" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text"
                         },
                         "badgeMap": {
                           "PAID": {
-                            "text": { "it": "Pagata", "en": "Paid" },
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.badgeMap.PAID.text",
                             "color": { "palette": "success" },
                             "fontWeight": "semibold"
                           },
                           "TO_PAY": {
-                            "text": { "it": "Da pagare", "en": "Unpaid" },
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.badgeMap.TO_PAY.text",
                             "color": { "palette": "warning" },
                             "fontWeight": "semibold"
                           }
@@ -120,7 +111,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Ambulatorio", "en": "Clinic" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item3.label.text"
                         }
                       },
                       {
@@ -129,7 +120,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Presidio", "en": "Location" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item4.label.text"
                         }
                       },
                       {
@@ -142,55 +133,31 @@
                           "fontWeight": "semibold",
                           "color": { "palette": "primary" }
                         },
-                        "label": { "text": { "it": "", "en": "" } },
+                        "label": { "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.label.text" },
                         "valueMap": {
                           "TOO-EARLY": {
-                            "text": {
-                              "it": "E' possibile effettuare l'accettazione {{checkInHours}} ore prima dell'appuntamento.",
-                              "en": "Check-in is available {{checkInHours}} hours before your appointment."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.TOO-EARLY.text"
                           },
                           "PRIVACY": {
-                            "text": {
-                              "it": "Per poter continuare è necessario recarsi in accettazione.",
-                              "en": "To continue, please go to the reception desk."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.PRIVACY.text"
                           },
                           "TO-PAY": {
-                            "text": {
-                              "it": "Per poter effettuare l'accettazione procedere al pagamento.",
-                              "en": "To check in, please complete payment first."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.TO-PAY.text"
                           },
                           "MOBILE-PAYMENT-NOT-ALLOWED": {
-                            "text": {
-                              "it": "Non è possibile eseguire il pagamento in-app.",
-                              "en": "In-app payment is not available."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.MOBILE-PAYMENT-NOT-ALLOWED.text"
                           },
                           "USER-NOT-VERIFIED": {
-                            "text": {
-                              "it": "Per poter continuare è necessario recarsi in accettazione.",
-                              "en": "To continue, please go to the reception desk."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.USER-NOT-VERIFIED.text"
                           },
                           "UNKNOWN": {
-                            "text": {
-                              "it": "Per poter continuare è necessario recarsi in accettazione.",
-                              "en": "To continue, please go to the reception desk."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.UNKNOWN.text"
                           },
                           "TOO-LATE": {
-                            "text": {
-                              "it": "Non è più possibile effettuare l'accettazione.",
-                              "en": "Check-in is no longer available."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.TOO-LATE.text"
                           },
                           "NOT-EDITABLE": {
-                            "text": {
-                              "it": "Non è possibile modificare o eliminare questa prenotazione. Contattare il CUP della struttura per maggiori informazioni.",
-                              "en": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information."
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.NOT-EDITABLE.text"
                           }
                         }
                       }
@@ -205,7 +172,7 @@
                         "routeParams": { "id": "id" },
                         "disabledIf": [{ "key": "busy", "operator": "eq", "value": true }],
                         "label": {
-                          "text": { "it": "Dettagli", "en": "Details" },
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text",
                           "fontWeight": "semibold"
                         }
                       },
@@ -224,7 +191,7 @@
                           "position": "after"
                         },
                         "label": {
-                          "text": { "it": "Accettazione", "en": "Check-in" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.label.text"
                         },
                         "callback": {
                           "nameFunction": "requestCheckIn",
@@ -244,7 +211,7 @@
                           "position": "after"
                         },
                         "label": {
-                          "text": { "it": "Pagamento", "en": "Payment" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.actions.item2.label.text"
                         }
                       }
                     ]
@@ -285,20 +252,17 @@
                         "type": "text",
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "valueMap": {
-                          "SSN": { "text": { "it": "Prestazione SSN", "en": "NHS service" } },
+                          "SSN": { "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.valueMap.SSN.text" },
                           "SOLV": {
-                            "text": { "it": "Prestazione in solvenza", "en": "Private service" }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.valueMap.SOLV.text"
                           },
                           "LP": {
-                            "text": {
-                              "it": "Prestazione in Libera Professione",
-                              "en": "Private practice service"
-                            }
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.valueMap.LP.text"
                           }
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Regime", "en": "Scheme" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -309,7 +273,7 @@
                         "valueStyle": { "fontWeight": "bold" },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Data", "en": "Date" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item1.label.text"
                         }
                       },
                       {
@@ -318,16 +282,16 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Pagamento", "en": "Payment" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.label.text"
                         },
                         "badgeMap": {
                           "PAID": {
-                            "text": { "it": "Pagata", "en": "Paid" },
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.badgeMap.PAID.text",
                             "color": { "palette": "success" },
                             "fontWeight": "semibold"
                           },
                           "TO_PAY": {
-                            "text": { "it": "Da pagare", "en": "Unpaid" },
+                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.badgeMap.TO_PAY.text",
                             "color": { "palette": "warning" },
                             "fontWeight": "semibold"
                           }
@@ -339,7 +303,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Ambulatorio", "en": "Clinic" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item3.label.text"
                         }
                       },
                       {
@@ -348,7 +312,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": { "it": "Presidio", "en": "Location" }
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item4.label.text"
                         }
                       }
                     ],
@@ -362,7 +326,7 @@
                         "routeParams": { "id": "id" },
                         "disabledIf": [{ "key": "busy", "operator": "eq", "value": true }],
                         "label": {
-                          "text": { "it": "Dettagli", "en": "Details" },
+                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.actions.item0.label.text",
                           "fontWeight": "semibold"
                         }
                       }
@@ -386,22 +350,19 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": { "it": "Errore", "en": "Error" },
+        "alt": "jsonConfig.default.pages.booking-a4h-appointments.message.error.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": { "it": "Errore", "en": "Error" },
+          "text": "jsonConfig.default.pages.booking-a4h-appointments.message.error.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": { "palette": "danger" },
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Si è verificato un errore durante il recupero degli appuntamenti. Riprova più tardi.",
-            "en": "An error occurred while fetching the appointments. Please try again later."
-          },
+          "text": "jsonConfig.default.pages.booking-a4h-appointments.message.error.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": { "palette": "danger" },
@@ -418,12 +379,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": { "it": "Nessun appuntamento", "en": "No appointments" },
+        "alt": "jsonConfig.default.pages.booking-a4h-appointments.message.notFound.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": { "it": "Nessun elemento da mostrare", "en": "Nothing to show" },
+          "text": "jsonConfig.default.pages.booking-a4h-appointments.message.notFound.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": { "palette": "warning" },

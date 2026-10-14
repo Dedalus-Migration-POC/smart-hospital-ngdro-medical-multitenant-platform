@@ -22,8 +22,8 @@
 
   @if (pageInfoPopUp(); as popup) {
     <app-alert-fixed
-      [title]="popup.title[lang()]"
-      [text]="popup.text[lang()]"
+      [title]="popup.title | translate"
+      [text]="popup.text | translate"
       [type]="popup.type"
     ></app-alert-fixed>
   }

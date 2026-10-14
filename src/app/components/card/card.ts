@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, computed, inject, input } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
@@ -14,7 +15,7 @@ import { getSpacingStyles, getTextStyles } from 'src/app/shared/utility/style.ut
 
 @Component({
   selector: 'app-card',
-  imports: [CommonModule, MediaText, Data],
+  imports: [CommonModule, TranslateModule, MediaText, Data],
   templateUrl: './card.html',
   styleUrl: './card.scss',
 })

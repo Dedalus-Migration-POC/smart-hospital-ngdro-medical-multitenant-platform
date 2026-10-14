@@ -4,7 +4,7 @@ import { signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { InputComponent } from '../../../../../components/input/input.component';
 import { InputErrorComponent } from '../../../../../components/input-error/input-error.component';
@@ -28,6 +28,7 @@ vi.mock('design-angular-kit', () => {
 
 describe('CredentialsLogin', () => {
   let lang = signal<Lang>('it');
+  let translate: TranslateService;
 
   beforeEach(() => {
     lang = signal<Lang>('it');
@@ -62,6 +63,34 @@ describe('CredentialsLogin', () => {
 
   async function createLogin() {
     const store = TestBed.inject(MockStore);
+    translate = TestBed.inject(TranslateService);
+    translate.setTranslation('it', {
+      test: {
+        login: {
+          title: 'Login',
+          description: 'Inserisci <strong>credenziali</strong>',
+          submit: 'Accedi',
+          fiscalCode: 'Codice fiscale',
+          password: 'Password',
+          otpDescription: 'Accesso',
+        },
+        otp: { confirm: 'Verifica', back: 'Torna' },
+      },
+    });
+    translate.setTranslation('en', {
+      test: {
+        login: {
+          title: 'Login',
+          description: 'Enter <strong>credentials</strong>',
+          submit: 'Log in',
+          fiscalCode: 'Fiscal code',
+          password: 'Password',
+          otpDescription: 'Login',
+        },
+        otp: { confirm: 'Verify', back: 'Go back' },
+      },
+    });
+    translate.use('it').subscribe();
     const dispatch = vi.spyOn(store, 'dispatch');
     const fixture = TestBed.createComponent(CredentialsLogin);
     await fixture.whenStable();
@@ -76,18 +105,20 @@ describe('CredentialsLogin', () => {
     );
   }
 
+  function setLanguage(language: Lang): void {
+    lang.set(language);
+    translate.use(language).subscribe();
+  }
+
   it('should render the configured description and login button in the current language', async () => {
     const config: LocalAuthMethod = {
       type: 'LOCAL',
-      title: { it: 'Login', en: 'Login' },
-      description: {
-        it: 'Inserisci <strong>credenziali</strong>',
-        en: 'Enter <strong>credentials</strong>',
-      },
-      button: { text: { it: 'Accedi', en: 'Log in' }, showIcon: false, align: 'start' },
+      title: 'test.login.title',
+      description: 'test.login.description',
+      button: { text: 'test.login.submit', showIcon: false, align: 'start' },
       config: {
-        loginLabel: { it: 'Codice fiscale', en: 'Fiscal code' },
-        passwordLabel: { it: 'Password', en: 'Password' },
+        loginLabel: 'test.login.fiscalCode',
+        passwordLabel: 'test.login.password',
       },
     };
     const { fixture, element } = await createLogin();
@@ -96,7 +127,7 @@ describe('CredentialsLogin', () => {
     expect(element.querySelector('strong')?.textContent).toBe('credenziali');
     expect(element.querySelector('button[type="submit"]')?.textContent?.trim()).toBe('Accedi');
 
-    lang.set('en');
+    setLanguage('en');
     await fixture.whenStable();
     expect(element.querySelector('strong')?.textContent).toBe('credentials');
     expect(element.querySelector('button[type="submit"]')?.textContent?.trim()).toBe('Log in');
@@ -106,17 +137,17 @@ describe('CredentialsLogin', () => {
     it(`should apply configured OTP buttons with ${align} alignment`, async () => {
       const config: LocalAuthMethod = {
         type: 'LOCAL',
-        title: { it: 'Login', en: 'Login' },
-        description: { it: 'Accesso', en: 'Login' },
-        button: { text: { it: 'Accedi', en: 'Log in' }, showIcon: false, align: 'start' },
+        title: 'test.login.title',
+        description: 'test.login.otpDescription',
+        button: { text: 'test.login.submit', showIcon: false, align: 'start' },
         config: {
-          loginLabel: { it: 'Codice fiscale', en: 'Fiscal code' },
-          passwordLabel: { it: 'Password', en: 'Password' },
+          loginLabel: 'test.login.fiscalCode',
+          passwordLabel: 'test.login.password',
           otp: {
             buttons: {
               align,
-              confirm: { text: { it: 'Verifica', en: 'Verify' } },
-              back: { text: { it: 'Torna', en: 'Go back' }, showIcon: true },
+              confirm: { text: 'test.otp.confirm' },
+              back: { text: 'test.otp.back', showIcon: true },
             },
           },
         },
@@ -132,7 +163,7 @@ describe('CredentialsLogin', () => {
       expect(confirm.textContent?.trim()).toBe('Verifica');
       expect(back.querySelector('.fa-arrow-left')).not.toBeNull();
 
-      lang.set('en');
+      setLanguage('en');
       fixture.componentRef.setInput('credentialsConfig', {
         ...config,
         config: {
@@ -140,7 +171,7 @@ describe('CredentialsLogin', () => {
           otp: {
             buttons: {
               ...config.config.otp?.buttons,
-              back: { text: { it: 'Torna', en: 'Go back' }, showIcon: false },
+              back: { text: 'test.otp.back', showIcon: false },
             },
           },
         },

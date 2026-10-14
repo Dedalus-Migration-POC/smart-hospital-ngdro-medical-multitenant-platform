@@ -4,7 +4,7 @@ export type FieldType = 'text' | 'email' | 'number' | 'password' | 'select' | 'h
 
 export interface SelectOptionConfig {
   value: string;
-  label: LocalizedText | string;
+  label: LocalizedText;
 }
 
 export interface ValidatorConfig {

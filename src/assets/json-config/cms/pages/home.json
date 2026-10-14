@@ -1,15 +1,9 @@
 {
   "id": "/",
-  "name": {
-    "it": "Home",
-    "en": "Home"
-  },
+  "name": "pages.home.name",
   "route": "/",
   "meta": {
-    "title": {
-      "it": "Home",
-      "en": "Home"
-    }
+    "title": "pages.home.meta.title"
   },
   "sections": [
     {
@@ -39,10 +33,7 @@
               "enabled": true,
               "props": {
                 "id": "home-title",
-                "text": {
-                  "it": "I servizi online dell'ASL di Demo",
-                  "en": "Online services from the ASL Demo"
-                },
+                "text": "pages.home.page-title",
                 "headingTag": "h1",
                 "fontSize": "xxl",
                 "lineHeight": "sm",
@@ -62,10 +53,7 @@
               "enabled": true,
               "props": {
                 "id": "home-info",
-                "text": {
-                  "it": "Da questa sezione puoi accedere ai principali servizi digitali dell’ASL di Demo, <strong>pensati per semplificare l’interazione con il sistema sanitario.</strong>",
-                  "en": "From this section you can access the main digital services of the ASL Demo, <strong>designed to simplify interaction with the healthcare system.</strong>"
-                },
+                "text": "pages.home.info-text",
                 "fontSize": "md",
                 "fontWeight": "normal",
                 "textDecoration": "none",
@@ -88,10 +76,7 @@
                   "value": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU-fcqFuHxyF15klQ0Y_Mi5lSoVhmxNg6rezNE2O8j9I1CKIC-hpRcQZQ&s=10",
                   "decorative": false,
                   "className": "img-fluid rounded",
-                  "alt": {
-                    "it": "Immagine esempio",
-                    "en": "Example image"
-                  }
+                  "alt": "pages.home.external-image-alt"
                 },
                 "clickable": true,
                 "action": {
@@ -131,22 +116,13 @@
                 "padding": {
                   "all": "1rem"
                 },
-                "ariaLabel": {
-                  "it": "Sezione servizi",
-                  "en": "Services section"
-                },
+                "ariaLabel": "pages.home.services-section.aria-label",
                 "header": {
                   "title": {
-                    "text": {
-                      "it": "Servizi",
-                      "en": "Services"
-                    }
+                    "text": "pages.home.services-section.title"
                   },
                   "subTitle": {
-                    "text": {
-                      "it": "Accedi rapidamente ai servizi disponibili",
-                      "en": "Quick access to available services"
-                    }
+                    "text": "pages.home.services-section.sub-title"
                   }
                 },
                 "itemsLayout": {
@@ -160,34 +136,24 @@
                   {
                     "id": "vaccination-history",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri storico vaccinale",
-                      "en": "Open vaccination history"
-                    },
+                    "ariaLabel": "pages.home.services-section.vaccination-history.aria-label",
                     "action": {
                       "type": "comingSoon",
                       "comingSoonMessage": {
-                        "title": { "text": { "it": "Prossimamente", "en": "Coming soon" } },
+                        "title": {
+                          "text": "pages.home.services-section.vaccination-history.coming-soon.title"
+                        },
                         "subTitle": {
-                          "text": {
-                            "it": "Il servizio non è ancora disponibile",
-                            "en": "The service is not yet available"
-                          }
+                          "text": "pages.home.services-section.vaccination-history.coming-soon.sub-title"
                         }
                       }
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Storico vaccinale",
-                          "en": "Vaccination history"
-                        }
+                        "text": "pages.home.services-section.vaccination-history.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Non sviluppato",
-                          "en": "Not developed"
-                        }
+                        "text": "pages.home.services-section.vaccination-history.sub-title"
                       }
                     },
                     "blocked": false,
@@ -200,26 +166,17 @@
                   {
                     "id": "payments",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri pagamenti",
-                      "en": "Open payments"
-                    },
+                    "ariaLabel": "pages.home.services-section.payments.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/payments-pa"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Pagamenti",
-                          "en": "Payments"
-                        }
+                        "text": "pages.home.services-section.payments.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "PagoPA",
-                          "en": "PagoPA"
-                        }
+                        "text": "pages.home.services-section.payments.sub-title"
                       }
                     },
                     "blocked": true,
@@ -232,26 +189,17 @@
                   {
                     "id": "payments-jcash",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri pagamenti",
-                      "en": "Open payments"
-                    },
+                    "ariaLabel": "pages.home.services-section.payments-jcash.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/payments-jcash"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Pagamenti",
-                          "en": "Payments"
-                        }
+                        "text": "pages.home.services-section.payments-jcash.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "J-Cash",
-                          "en": "J-Cash"
-                        }
+                        "text": "pages.home.services-section.payments-jcash.sub-title"
                       }
                     },
                     "blocked": true,
@@ -264,26 +212,17 @@
                   {
                     "id": "reports",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri referti",
-                      "en": "Open reports"
-                    },
+                    "ariaLabel": "pages.home.services-section.reports.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/medical-reports"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "I tuoi referti con un click",
-                          "en": "Your reports with one click"
-                        }
+                        "text": "pages.home.services-section.reports.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Vedi i tuoi referti",
-                          "en": "View your medical reports"
-                        }
+                        "text": "pages.home.services-section.reports.sub-title"
                       }
                     },
                     "blocked": true,
@@ -296,26 +235,17 @@
                   {
                     "id": "single-reports",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri referti",
-                      "en": "Open reports"
-                    },
+                    "ariaLabel": "pages.home.services-section.single-reports.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/single-report"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Single report",
-                          "en": "Single report"
-                        }
+                        "text": "pages.home.services-section.single-reports.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Cerca il tuo referto",
-                          "en": "Search your report"
-                        }
+                        "text": "pages.home.services-section.single-reports.sub-title"
                       }
                     },
                     "blocked": false,
@@ -328,26 +258,17 @@
                   {
                     "id": "reports-by-triplet",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri referti",
-                      "en": "Open reports"
-                    },
+                    "ariaLabel": "pages.home.services-section.reports-by-triplet.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/reports-by-triplet"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Referti per triplette",
-                          "en": "Triplet reports"
-                        }
+                        "text": "pages.home.services-section.reports-by-triplet.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Cerca il tuo referto",
-                          "en": "Search your report"
-                        }
+                        "text": "pages.home.services-section.reports-by-triplet.sub-title"
                       }
                     },
                     "blocked": false,
@@ -360,20 +281,14 @@
                   {
                     "id": "departments",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri dipartimenti",
-                      "en": "Open departments"
-                    },
+                    "ariaLabel": "pages.home.services-section.departments.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/departments"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Dipartimenti e reparti",
-                          "en": "Departments and units"
-                        }
+                        "text": "pages.home.services-section.departments.title"
                       }
                     },
                     "blocked": false,
@@ -386,26 +301,17 @@
                   {
                     "id": "booking-arianna",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri prenotazioni",
-                      "en": "Open bookings"
-                    },
+                    "ariaLabel": "pages.home.services-section.booking-arianna.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/bookings"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Prenotazioni",
-                          "en": "Bookings"
-                        }
+                        "text": "pages.home.services-section.booking-arianna.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Arianna-CUP",
-                          "en": "Arianna-CUP"
-                        }
+                        "text": "pages.home.services-section.booking-arianna.sub-title"
                       }
                     },
                     "blocked": true,
@@ -418,26 +324,17 @@
                   {
                     "id": "booking-hero",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri prenotazioni",
-                      "en": "Open bookings"
-                    },
+                    "ariaLabel": "pages.home.services-section.booking-hero.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/bookings-hero"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Prenotazioni",
-                          "en": "Bookings"
-                        }
+                        "text": "pages.home.services-section.booking-hero.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Hero",
-                          "en": "Hero"
-                        }
+                        "text": "pages.home.services-section.booking-hero.sub-title"
                       }
                     },
                     "blocked": true,
@@ -490,10 +387,7 @@
                 "id": "feed_rss",
                 "container": {
                   "title": {
-                    "text": {
-                      "it": "Notizie FeedRss",
-                      "en": "FeedRss News"
-                    },
+                    "text": "pages.home.feed-rss.title",
                     "fontSize": "xl",
                     "fontWeight": "semibold",
                     "color": {
@@ -515,10 +409,7 @@
                 },
                 "itemConfig": {
                   "readMore": {
-                    "text": {
-                      "it": "LEGGI TUTTO",
-                      "en": "READ ALL"
-                    },
+                    "text": "pages.home.feed-rss.readMore-button",
                     "style": {
                       "textStyle": {
                         "fontWeight": "semibold"
@@ -572,28 +463,19 @@
                     "type": "url",
                     "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
                     "decorative": true,
-                    "alt": {
-                      "it": "FeedRss non trovati",
-                      "en": "FeedRss not found"
-                    },
+                    "alt": "pages.home.feed-rss.not-found-image.alt",
                     "height": "150px"
                   },
                   "text": {
                     "title": {
-                      "text": {
-                        "it": "FeedRss non trovati",
-                        "en": "FeedRss not found"
-                      },
+                      "text": "pages.home.feed-rss.not-found-message.title",
                       "fontSize": "xl",
                       "fontWeight": "normal",
                       "color": "warning",
                       "lineHeight": "normal"
                     },
                     "subTitle": {
-                      "text": {
-                        "it": "Riprova più tardi",
-                        "en": "Please try again later."
-                      },
+                      "text": "pages.home.feed-rss.not-found-message.sub-title",
                       "fontSize": "md",
                       "fontWeight": "normal",
                       "color": "warning",
@@ -629,16 +511,10 @@
                   "top": "1rem",
                   "bottom": "2rem"
                 },
-                "ariaLabel": {
-                  "it": "Sezione servizi",
-                  "en": "Services section"
-                },
+                "ariaLabel": "pages.home.external-services-section.aria-label",
                 "header": {
                   "title": {
-                    "text": {
-                      "it": "Servizi esterni",
-                      "en": "Services"
-                    },
+                    "text": "pages.home.external-services-section.header.title",
                     "fontSize": "xl",
                     "fontWeight": "semibold",
                     "color": {
@@ -648,10 +524,7 @@
                     "lineHeight": "xl"
                   },
                   "subTitle": {
-                    "text": {
-                      "it": "Servizio si aprirà sul sito esterno",
-                      "en": "Will open on external website"
-                    },
+                    "text": "pages.home.external-services-section.header.sub-title",
                     "fontSize": "md",
                     "fontWeight": "normal",
                     "color": {
@@ -671,26 +544,17 @@
                   {
                     "id": "news",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri link esterno",
-                      "en": "Open external link"
-                    },
+                    "ariaLabel": "pages.home.external-services-section.news.ariaLabel",
                     "action": {
                       "type": "externalLink",
                       "url": "https://www.salute.gov.it/new/it/sezione/notizie/"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "News",
-                          "en": "News"
-                        }
+                        "text": "pages.home.external-services-section.news.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Apri link esterno per leggere le news",
-                          "en": "Open external link for news"
-                        }
+                        "text": "pages.home.external-services-section.news.sub-title"
                       }
                     },
                     "blocked": false,
@@ -703,26 +567,17 @@
                   {
                     "id": "clinical-records",
                     "type": "mediaText",
-                    "ariaLabel": {
-                      "it": "Apri link esterno",
-                      "en": "Open external link"
-                    },
+                    "ariaLabel": "pages.home.external-services-section.clinical-records.ariaLabel",
                     "action": {
                       "type": "externalLink",
                       "url": "https://cds.asl.rieti.it/"
                     },
                     "text": {
                       "title": {
-                        "text": {
-                          "it": "Cartella clinica",
-                          "en": "Clinical records"
-                        }
+                        "text": "pages.home.external-services-section.clinical-records.title"
                       },
                       "subTitle": {
-                        "text": {
-                          "it": "Apri link esterno per vedere la tua cartella clinica",
-                          "en": "Open external link"
-                        }
+                        "text": "pages.home.external-services-section.clinical-records.sub-title"
                       }
                     },
                     "blocked": false,

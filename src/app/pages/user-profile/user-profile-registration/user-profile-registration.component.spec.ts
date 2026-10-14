@@ -13,7 +13,7 @@ describe('UserProfileRegistrationComponent', () => {
   const userConfig: UserConfig = {
     sections: [
       {
-        title: { it: 'Contatti', en: 'Contacts' },
+        title: 'test.user-profile.contacts',
         areas: {
           center: {
             items: [
@@ -36,7 +36,7 @@ describe('UserProfileRegistrationComponent', () => {
         },
       },
       {
-        title: { it: 'Dati account', en: 'Account details' },
+        title: 'test.user-profile.accountDetails',
         readOnly: true,
         areas: {
           center: {
@@ -59,7 +59,7 @@ describe('UserProfileRegistrationComponent', () => {
         },
       },
     ],
-    submitButton: { label: { it: 'Salva', en: 'Save' } },
+    submitButton: { label: 'test.user-profile.save' },
   };
 
   beforeEach(async () => {

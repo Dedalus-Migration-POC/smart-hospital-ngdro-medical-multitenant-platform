@@ -1,9 +1,6 @@
 {
   "id": "/bookings-hero/reschedule",
-  "name": {
-    "it": "Sposta Prenotazione",
-    "en": "Reschedule Booking"
-  },
+  "name": "jsonConfig.default.pages.bookings-hero-reschedule.name",
   "route": "/bookings-hero/reschedule",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -18,37 +15,22 @@
         }
       },
       "title": {
-        "text": {
-          "it": "Sposta prenotazione",
-          "en": "Reschedule Booking"
-        }
+        "text": "jsonConfig.default.pages.bookings-hero-reschedule.breadcrumb.title.text"
       },
       "subTitle": {
-        "text": {
-          "it": "Modifica una prenotazione esistente Hero.",
-          "en": "Modify an existing Hero booking."
-        }
+        "text": "jsonConfig.default.pages.bookings-hero-reschedule.breadcrumb.subTitle.text"
       },
       "items": [
         {
-          "name": {
-            "it": "Home",
-            "en": "Home"
-          },
+          "name": "jsonConfig.default.pages.bookings-hero-reschedule.breadcrumb.items.item0.name",
           "routerLink": "/"
         },
         {
-          "name": {
-            "it": "Prenotazioni",
-            "en": "Bookings"
-          },
+          "name": "jsonConfig.default.pages.bookings-hero-reschedule.breadcrumb.items.item1.name",
           "routerLink": "/bookings-hero"
         },
         {
-          "name": {
-            "it": "Sposta Prenotazione",
-            "en": "Reschedule Booking"
-          },
+          "name": "jsonConfig.default.pages.bookings-hero-reschedule.breadcrumb.items.item2.name",
           "routerLink": "/bookings-hero/reschedule"
         }
       ]

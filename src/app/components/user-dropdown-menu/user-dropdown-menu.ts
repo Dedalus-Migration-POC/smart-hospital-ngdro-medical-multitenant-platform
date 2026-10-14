@@ -1,6 +1,7 @@
 import { Component, inject, input, signal, Signal } from '@angular/core';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import {
   CaretConfig,
   DropdownMenuAction,
@@ -32,7 +33,7 @@ import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-user-dropdown-menu',
-  imports: [CommonModule, IconComponent],
+  imports: [CommonModule, TranslateModule, IconComponent],
   templateUrl: './user-dropdown-menu.html',
   styleUrl: './user-dropdown-menu.scss',
 })

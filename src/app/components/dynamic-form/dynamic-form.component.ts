@@ -1,7 +1,8 @@
 import { Component, input, output, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { inject } from '@angular/core';
 import {
   DynamicFormConfig,
   FormFieldConfig,
@@ -11,7 +12,7 @@ import {
 import { NgxFormValidators } from '../../../validators';
 import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
 import { getLocalizedText } from '../../shared/utility/text.utils';
-import { LocalizedText } from '../../shared/models/shared_model';
+import { LocalizedTextLocale } from '../../shared/models/shared_model';
 import { InputComponent } from '../input/input.component';
 import { SelectComponent } from '../select/select.component';
 
@@ -22,10 +23,11 @@ import { SelectComponent } from '../select/select.component';
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent {
+  private readonly translate = inject(TranslateService);
   formConfig = input<DynamicFormConfig>();
   formGroupInput = input<FormGroup | null>(null);
   formSubmit = output<any>();
-  lang = input<keyof LocalizedText>('it' as keyof LocalizedText);
+  lang = input<LocalizedTextLocale>('it');
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
 
@@ -144,7 +146,7 @@ export class DynamicFormComponent {
 
   getErrorMessage(field: any, errorKey: string): string {
     if (field.errorMessages?.[errorKey]) {
-      return getLocalizedText(field.errorMessages[errorKey], this.lang());
+      return getLocalizedText(field.errorMessages[errorKey], (key) => this.translate.instant(key));
     }
     return `Error: ${errorKey}`;
   }
@@ -155,12 +157,14 @@ export class DynamicFormComponent {
     }
     const resolved: Record<string, string> = {};
     for (const key of Object.keys(field.errorMessages)) {
-      resolved[key] = getLocalizedText(field.errorMessages[key], this.lang());
+      resolved[key] = getLocalizedText(field.errorMessages[key], (translationKey) =>
+        this.translate.instant(translationKey),
+      );
     }
     return resolved;
   }
 
-  private getLocalizedLabel(value?: LocalizedText | string): string {
+  private getLocalizedLabel(value?: string): string {
     if (!value) {
       return '';
     }
@@ -169,13 +173,13 @@ export class DynamicFormComponent {
       return value;
     }
 
-    return getLocalizedText(value, this.lang());
+    return getLocalizedText(value, (key) => this.translate.instant(key));
   }
 
   getButtonLabel(): string {
     const buttonConfig = this.formConfig()?.submitButton;
     if (buttonConfig?.label) {
-      return getLocalizedText(buttonConfig.label, this.lang());
+      return getLocalizedText(buttonConfig.label, (key) => this.translate.instant(key));
     }
     return 'Submit';
   }

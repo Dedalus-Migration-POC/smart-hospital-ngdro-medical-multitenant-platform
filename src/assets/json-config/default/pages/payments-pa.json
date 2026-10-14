@@ -1,37 +1,22 @@
 {
   "id": "/payments-pa",
-  "name": {
-    "it": "Pagamenti",
-    "en": "Payments"
-  },
+  "name": "jsonConfig.default.pages.payments-pa.name",
   "route": "/payments-pa",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {
-      "text": {
-        "it": "Pagamenti",
-        "en": "Payments"
-      }
+      "text": "jsonConfig.default.pages.payments-pa.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Visualizza i pagamenti.",
-        "en": "View the payments."
-      }
+      "text": "jsonConfig.default.pages.payments-pa.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.payments-pa.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "Pagamenti",
-          "en": "Payments"
-        },
+        "name": "jsonConfig.default.pages.payments-pa.breadcrumb.items.item1.name",
         "routerLink": ""
       }
     ]
@@ -105,10 +90,7 @@
                           }
                         },
                         "label": {
-                          "text": {
-                            "it": "Data appuntamento",
-                            "en": "Appointment date"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text",
                           "fontSize": "md",
                           "fontWeight": "normal",
                           "lineHeight": "md",
@@ -131,10 +113,7 @@
                           }
                         },
                         "label": {
-                          "text": {
-                            "it": "Importo",
-                            "en": "Amount"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text",
                           "fontSize": "md",
                           "fontWeight": "normal",
                           "lineHeight": "md",
@@ -156,10 +135,7 @@
                           }
                         },
                         "label": {
-                          "text": {
-                            "it": "Sistema di pagamento",
-                            "en": "Payment system"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text",
                           "fontSize": "md",
                           "fontWeight": "normal",
                           "lineHeight": "md",
@@ -187,10 +163,7 @@
                           "position": "after"
                         },
                         "label": {
-                          "text": {
-                            "it": "Vedi dettaglio",
-                            "en": "Show Details"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text",
                           "textTransform": "uppercase",
                           "color": {
                             "hex": "#123c73"
@@ -254,10 +227,7 @@
                         "type": "date",
                         "format": "dd/MM/yyyy",
                         "label": {
-                          "text": {
-                            "it": "Data appuntamento",
-                            "en": "Appointment date"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.label.text",
                           "fontSize": "sm",
                           "fontWeight": "normal",
                           "color": {
@@ -270,10 +240,7 @@
                         "type": "text",
                         "suffix": " €",
                         "label": {
-                          "text": {
-                            "it": "Importo",
-                            "en": "Amount"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.fields.item1.label.text",
                           "fontSize": "sm",
                           "fontWeight": "normal",
                           "color": {
@@ -285,10 +252,7 @@
                         "key": "paymentSystem",
                         "type": "image",
                         "label": {
-                          "text": {
-                            "it": "Sistema di pagamento",
-                            "en": "Payment system"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.label.text",
                           "fontSize": "sm",
                           "fontWeight": "normal",
                           "color": {
@@ -309,10 +273,7 @@
                         "key": "state",
                         "type": "badge",
                         "label": {
-                          "text": {
-                            "it": "Stato",
-                            "en": "Status"
-                          },
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.fields.item3.label.text",
                           "fontSize": "sm",
                           "fontWeight": "normal",
                           "color": {
@@ -321,30 +282,21 @@
                         },
                         "badgeMap": {
                           "NOT_PAYED": {
-                            "text": {
-                              "it": "Da pagare",
-                              "en": "To pay"
-                            },
+                            "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.fields.item3.badgeMap.NOT_PAYED.text",
                             "color": {
                               "palette": "warning"
                             },
                             "fontWeight": "semibold"
                           },
                           "PAYED": {
-                            "text": {
-                              "it": "Pagato",
-                              "en": "Paid"
-                            },
+                            "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.fields.item3.badgeMap.PAYED.text",
                             "color": {
                               "palette": "success"
                             },
                             "fontWeight": "semibold"
                           },
                           "VERIFICATION": {
-                            "text": {
-                              "it": "In verifica",
-                              "en": "Under verification"
-                            },
+                            "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.fields.item3.badgeMap.VERIFICATION.text",
                             "color": {
                               "palette": "info"
                             },
@@ -359,10 +311,7 @@
                         "type": "callback",
                         "renderAs": "button",
                         "label": {
-                          "text": {
-                            "it": "Dettagli",
-                            "en": "Details"
-                          }
+                          "text": "jsonConfig.default.pages.payments-pa.sections.item0.areas.center.items.item1.props.items.item0.actions.item0.label.text"
                         },
                         "callback": {
                           "nameFunction": "goDetail",
@@ -396,18 +345,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Pagamenti non trovati",
-          "en": "Payments not found"
-        },
+        "alt": "jsonConfig.default.pages.payments-pa.message.notFound.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Pagamenti non trovati",
-            "en": "Payments not found"
-          },
+          "text": "jsonConfig.default.pages.payments-pa.message.notFound.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -416,10 +359,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "La tua richiesta non ha prodotto risultati.",
-            "en": "Your request did not produce any results."
-          },
+          "text": "jsonConfig.default.pages.payments-pa.message.notFound.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -443,18 +383,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Errore",
-          "en": "Error"
-        },
+        "alt": "jsonConfig.default.pages.payments-pa.message.error.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Errore",
-            "en": "Error"
-          },
+          "text": "jsonConfig.default.pages.payments-pa.message.error.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -463,10 +397,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Si è verificato un errore durante il recupero del pagamento. Riprova più tardi.",
-            "en": "An error occurred while fetching the payment. Please try again later."
-          },
+          "text": "jsonConfig.default.pages.payments-pa.message.error.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

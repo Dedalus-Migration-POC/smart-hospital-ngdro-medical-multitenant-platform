@@ -22,41 +22,14 @@ export class CookieConsentService {
     this.ccService.init(cookieConsentConfig);
 
     const ccConfig = this.ccService.getConfig();
-    const currentLang = this.languageService.lang();
     const customContent = cookieConsentConfig.customContent;
 
     ccConfig.content = ccConfig.content || {};
-    // Override default messages
-    if (customContent.header?.[currentLang]) {
-      ccConfig.content.header = customContent.header?.[currentLang];
-    }
-    if (customContent.message?.[currentLang]) {
-      ccConfig.content.message = customContent.message?.[currentLang];
-    }
-
-    if (customContent.dismiss?.[currentLang]) {
-      ccConfig.content.dismiss = customContent.dismiss?.[currentLang];
-    }
-    if (customContent.allow?.[currentLang]) {
-      ccConfig.content.allow = customContent.allow?.[currentLang];
-    }
-    if (customContent.deny?.[currentLang]) {
-      ccConfig.content.deny = customContent.deny?.[currentLang];
-    }
-    if (customContent.link?.[currentLang]) {
-      ccConfig.content.link = customContent.link?.[currentLang];
-    }
-    if (customContent.policy?.[currentLang]) {
-      ccConfig.content.policy = customContent.policy?.[currentLang];
-    }
-    if (customContent.cookiePolicyLink?.[currentLang]) {
-      ccConfig.content['cookiePolicyLink'] = customContent.cookiePolicyLink?.[currentLang];
-    }
-    if (customContent.privacyPolicyLink?.[currentLang]) {
-      ccConfig.content['privacyPolicyLink'] = customContent.privacyPolicyLink?.[currentLang];
-    }
-    if (customContent.tosLink?.[currentLang]) {
-      ccConfig.content['tosLink'] = customContent.tosLink?.[currentLang];
+    for (const [key, translationKey] of Object.entries(customContent)) {
+      if (translationKey) {
+        (ccConfig.content as Record<string, string>)[key] =
+          this.languageService.translate.instant(translationKey);
+      }
     }
     this.ccService.destroy(); // remove previous cookie bar (with default messages)
     this.ccService.init(this.ccService.getConfig()); // update config with translated messages

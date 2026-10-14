@@ -5,7 +5,7 @@ import { BreadcrumbStyle } from '../../components/breadcrumb/model';
 import { ModalThemeStyle } from '../../components/modal/model';
 import { CookieConsentModalProps } from '../../components/cookie-consent-modal/model';
 import { NgcCookieConsentConfig } from 'ngx-cookieconsent';
-import { LocalizedText } from 'src/app/shared/layout-system/models/localized.model';
+import { LocalizedText } from 'src/app/shared/models/shared_model';
 import {
   BackgroundConfig,
   BorderConfig,

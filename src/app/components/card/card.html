@@ -2,7 +2,7 @@
   @if (config.items.length) {
     <div
       [attr.id]="config.id ?? null"
-      [attr.aria-label]="config.ariaLabel?.[lang()] ?? null"
+      [attr.aria-label]="config.ariaLabel | translate"
       [ngClass]="containerClasses()"
       [ngStyle]="{
         ...getSpacingStyles(config.margin),
@@ -16,7 +16,7 @@
             [ngClass]="getTextClasses(headerTitleStyle())"
             [ngStyle]="getTextStyles(headerTitleStyle())"
           >
-            {{ config.header.title.text[lang()] }}
+            {{ config.header.title.text | translate }}
           </h2>
 
           @if (config.header.subTitle) {
@@ -25,7 +25,7 @@
               [ngClass]="getTextClasses(headerSubtitleStyle())"
               [ngStyle]="getTextStyles(headerSubtitleStyle())"
             >
-              {{ config.header.subTitle.text[lang()] }}
+              {{ config.header.subTitle.text | translate }}
             </p>
           }
         </div>

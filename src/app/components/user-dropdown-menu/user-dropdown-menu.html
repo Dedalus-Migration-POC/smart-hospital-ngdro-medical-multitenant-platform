@@ -4,12 +4,12 @@
       type="button"
       class="mh-100 btn d-inline-flex align-items-center justify-content-center"
       [class.dropdown-toggle]="userProfile()"
-      [ngClass]="
-        [
-          ...toggleButtonClasses(userProfile() ? config.button.loggedInUser : config.button.login),
-          getHoverTextDecorationClass(userProfile() ? config.button.loggedInUser : config.button.login),
-        ]
-      "
+      [ngClass]="[
+        ...toggleButtonClasses(userProfile() ? config.button.loggedInUser : config.button.login),
+        getHoverTextDecorationClass(
+          userProfile() ? config.button.loggedInUser : config.button.login
+        ),
+      ]"
       [ngStyle]="{
         ...getButtonStyles(userProfile() ? config.button.loggedInUser : config.button.login),
         ...getHoverTextDecorationStyles(
@@ -51,7 +51,7 @@
           [ngClass]="getTextClasses(config.button.login.text)"
           [ngStyle]="getTextStyles(config.button.login.text)"
         >
-          {{ config.button.login.text.text[lang()] }}
+          {{ config.button.login.text.text | translate }}
         </span>
       }
     </button>
@@ -87,7 +87,7 @@
                     <app-icon [config]="icon" defaultMarginClass="me-2" />
                   }
                   <span [ngClass]="getTextClasses(item.text)" [ngStyle]="getTextStyles(item.text)">
-                    {{ item.text.text[lang()] }}
+                    {{ item.text.text | translate }}
                   </span>
                 </a>
               </li>

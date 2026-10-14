@@ -302,6 +302,17 @@
       "confirm-appointment": {
         "summary": "Summary",
         "title": "Confirm the appointment",
+        "fields": {
+          "service": "Service",
+          "physician": "Physician",
+          "agenda": "Agenda name",
+          "address": "Address",
+          "date": "Date",
+          "facility": "Location",
+          "booked-for": "Booked for",
+          "fee": "Fee",
+          "conditions-prescriptions": "Conditions and Prescriptions"
+        },
         "informative-disclaimer": "I declare that I am aware that failure to comply with the Conditions and Prescriptions indicated in the schedule will result in the non-delivery of the services and the loss of the right to a refund.",
         "confirm-button": "Confirm booking",
         "cancel-button": "Cancel"
@@ -749,5 +760,3010 @@
     "alreadyAcceptedInformative": "I have already accepted the privacy notice",
     "readAndAcceptInformative": "I have read and accept the privacy notice",
     "closeInformative": "Close"
+  },
+  "jsonConfig": {
+    "default": {
+      "pages": {
+        "booking-a4h-appointments-details": {
+          "name": "Appointment details",
+          "breadcrumb": {
+            "title": {
+              "text": "Appointment details – {{service}}"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Appointments"
+              },
+              "item2": {
+                "name": "Details"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Payment status"
+                                },
+                                "badgeMap": {
+                                  "PAID": {
+                                    "text": "Paid"
+                                  },
+                                  "TO_PAY": {
+                                    "text": "Unpaid"
+                                  }
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Appointment ID"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Physician"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Date and time"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Location"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Clinic"
+                                }
+                              },
+                              "item6": {
+                                "label": {
+                                  "text": "Floor"
+                                }
+                              },
+                              "item7": {
+                                "label": {
+                                  "text": "Waiting room"
+                                }
+                              },
+                              "item8": {
+                                "label": {
+                                  "text": "Examination room"
+                                }
+                              },
+                              "item9": {
+                                "label": {
+                                  "text": ""
+                                },
+                                "valueMap": {
+                                  "NOT-EDITABLE": {
+                                    "text": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information."
+                                  }
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Download Guidelines"
+                                },
+                                "hideMessage": {
+                                  "text": "Document unavailable"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Change appointment date"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Cancel appointment"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Proceed with check-in"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the appointment. Please try again later."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Appointment not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Appointment not found"
+                }
+              }
+            }
+          }
+        },
+        "booking-a4h-appointments": {
+          "name": "My appointments",
+          "breadcrumb": {
+            "title": {
+              "text": "My appointments"
+            },
+            "subTitle": {
+              "text": "Check in to your appointments"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Appointments"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "valueMap": {
+                                  "SSN": {
+                                    "text": "NHS service"
+                                  },
+                                  "SOLV": {
+                                    "text": "Private service"
+                                  },
+                                  "LP": {
+                                    "text": "Private practice service"
+                                  }
+                                },
+                                "label": {
+                                  "text": "Scheme"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Date"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Payment"
+                                },
+                                "badgeMap": {
+                                  "PAID": {
+                                    "text": "Paid"
+                                  },
+                                  "TO_PAY": {
+                                    "text": "Unpaid"
+                                  }
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Clinic"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Location"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": ""
+                                },
+                                "valueMap": {
+                                  "TOO-EARLY": {
+                                    "text": "Check-in is available {{checkInHours}} hours before your appointment."
+                                  },
+                                  "PRIVACY": {
+                                    "text": "To continue, please go to the reception desk."
+                                  },
+                                  "TO-PAY": {
+                                    "text": "To check in, please complete payment first."
+                                  },
+                                  "MOBILE-PAYMENT-NOT-ALLOWED": {
+                                    "text": "In-app payment is not available."
+                                  },
+                                  "USER-NOT-VERIFIED": {
+                                    "text": "To continue, please go to the reception desk."
+                                  },
+                                  "UNKNOWN": {
+                                    "text": "To continue, please go to the reception desk."
+                                  },
+                                  "TOO-LATE": {
+                                    "text": "Check-in is no longer available."
+                                  },
+                                  "NOT-EDITABLE": {
+                                    "text": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information."
+                                  }
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Details"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Check-in"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Payment"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "valueMap": {
+                                  "SSN": {
+                                    "text": "NHS service"
+                                  },
+                                  "SOLV": {
+                                    "text": "Private service"
+                                  },
+                                  "LP": {
+                                    "text": "Private practice service"
+                                  }
+                                },
+                                "label": {
+                                  "text": "Scheme"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Date"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Payment"
+                                },
+                                "badgeMap": {
+                                  "PAID": {
+                                    "text": "Paid"
+                                  },
+                                  "TO_PAY": {
+                                    "text": "Unpaid"
+                                  }
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Clinic"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Location"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Details"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the appointments. Please try again later."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "No appointments"
+              },
+              "text": {
+                "title": {
+                  "text": "Nothing to show"
+                }
+              }
+            }
+          }
+        },
+        "booking-a4h": {
+          "name": "New Booking A4H",
+          "breadcrumb": {
+            "title": {
+              "text": "New Booking"
+            },
+            "subTitle": {
+              "text": "Create a new A4H booking"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "A4H Bookings"
+              },
+              "item2": {
+                "name": "{{bookingType}}"
+              }
+            }
+          }
+        },
+        "bookings-hero-details": {
+          "name": "Booking",
+          "breadcrumb": {
+            "title": {
+              "text": "Booking {{bookingId}}"
+            },
+            "subTitle": {
+              "text": "View the Hero bookings."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Bookings"
+              },
+              "item2": {
+                "name": "Details"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Physician"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Schedule name"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Address"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Date"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Location"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Booked for"
+                                }
+                              },
+                              "item6": {
+                                "label": {
+                                  "text": "Rate"
+                                }
+                              },
+                              "item7": {
+                                "label": {
+                                  "text": "Conditions and Prescriptions"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Print"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Send info via Email"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Reschedule"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Cancel"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the reports. Please try again later."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Bookings not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Bookings not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            }
+          }
+        },
+        "bookings-hero-new": {
+          "name": "New Booking",
+          "breadcrumb": {
+            "title": {
+              "text": "New Booking"
+            },
+            "subTitle": {
+              "text": "Create a new Hero booking."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Bookings"
+              },
+              "item2": {
+                "name": "New Booking"
+              }
+            }
+          }
+        },
+        "bookings-hero-reschedule": {
+          "name": "Reschedule Booking",
+          "breadcrumb": {
+            "title": {
+              "text": "Reschedule Booking"
+            },
+            "subTitle": {
+              "text": "Modify an existing Hero booking."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Bookings"
+              },
+              "item2": {
+                "name": "Reschedule Booking"
+              }
+            }
+          }
+        },
+        "bookings-hero": {
+          "name": "Bookings",
+          "breadcrumb": {
+            "title": {
+              "text": "Bookings"
+            },
+            "subTitle": {
+              "text": "View the Hero bookings"
+            },
+            "button": {
+              "text": {
+                "text": "New booking"
+              }
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Bookings"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Date"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Location"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Delegate fiscal code"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "View details"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the reports. Please try again later."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Bookings not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Bookings not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            }
+          }
+        },
+        "bookings-new": {
+          "name": "New Booking",
+          "breadcrumb": {
+            "title": {
+              "text": "New booking"
+            },
+            "subTitle": {
+              "text": "Create a new Arianna-CUP booking"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Bookings"
+              },
+              "item2": {
+                "name": "New booking"
+              }
+            }
+          },
+          "modals": {
+            "confirmAvailability": {
+              "header": {
+                "title": {
+                  "text": "Confirm booking"
+                }
+              },
+              "body": {
+                "text": {
+                  "text": "Do you want to confirm the booking for the selected date?"
+                }
+              },
+              "footer": {
+                "actions": {
+                  "item0": {
+                    "button": {
+                      "text": {
+                        "text": "Cancel"
+                      }
+                    }
+                  },
+                  "item1": {
+                    "button": {
+                      "text": {
+                        "text": "Confirm"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "bookings": {
+          "name": "Bookings",
+          "breadcrumb": {
+            "title": {
+              "text": "Bookings"
+            },
+            "subTitle": {
+              "text": "View the AriannaCUP bookings"
+            },
+            "button": {
+              "text": {
+                "text": "New booking"
+              }
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Bookings"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Date and time"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Services"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Delete booking"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the bookings. Please try again later."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Bookings not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Bookings not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            }
+          }
+        },
+        "change-password": {
+          "name": "Change password",
+          "meta": {
+            "title": "Change password"
+          },
+          "breadcrumb": {
+            "title": {
+              "text": "Change password"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "User profile"
+              },
+              "item2": {
+                "name": "Change password"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Change password",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Current password",
+                            "errorMessages": {
+                              "required": "Current password is required"
+                            }
+                          },
+                          "item1": {
+                            "label": "New password",
+                            "errorMessages": {
+                              "required": "New password is required"
+                            }
+                          },
+                          "item2": {
+                            "label": "Repeat new password",
+                            "errorMessages": {
+                              "required": "Repeat the new password",
+                              "validateMatching": "Passwords do not match"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "submitButton": {
+            "label": "Change password"
+          },
+          "messages": {
+            "intro": "Enter your current password and choose a new one.",
+            "back": "Back to Home"
+          },
+          "message": {
+            "success": {
+              "image": {
+                "alt": "Password change complete"
+              },
+              "text": {
+                "title": {
+                  "text": "Password change complete"
+                },
+                "subTitle": {
+                  "text": "Your password has been changed successfully."
+                }
+              }
+            }
+          }
+        },
+        "consents-a4h": {
+          "name": "Consents",
+          "breadcrumb": {
+            "title": {
+              "text": "Consents"
+            },
+            "subTitle": {
+              "text": "Manage your consents"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Consents"
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the consents. Please try again later."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Consents not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Consents not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            }
+          }
+        },
+        "credentials-registration": {
+          "name": "Registration",
+          "meta": {
+            "title": "Registration"
+          },
+          "breadcrumb": {
+            "title": {
+              "text": "Registration"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Registration"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Account details",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "First name",
+                            "errorMessages": {
+                              "required": "First name is required",
+                              "backend": "Invalid first name"
+                            }
+                          },
+                          "item1": {
+                            "label": "Last name",
+                            "errorMessages": {
+                              "required": "Last name is required",
+                              "backend": "Invalid last name"
+                            }
+                          },
+                          "item2": {
+                            "label": "Fiscal code",
+                            "errorMessages": {
+                              "required": "Fiscal code is required",
+                              "validateFiscalCode": "Invalid fiscal code",
+                              "backend": "Invalid fiscal code"
+                            }
+                          },
+                          "item3": {
+                            "label": "Email",
+                            "errorMessages": {
+                              "required": "Email is required",
+                              "email": "Invalid email",
+                              "backend": "Invalid email"
+                            }
+                          },
+                          "item4": {
+                            "label": "Password",
+                            "errorMessages": {
+                              "required": "Password is required",
+                              "backend": "Invalid password"
+                            }
+                          },
+                          "item5": {
+                            "label": "Repeat password",
+                            "errorMessages": {
+                              "required": "Repeat your password",
+                              "validateMatching": "Passwords do not match"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "title": "Personal details and contacts",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Address",
+                            "errorMessages": {
+                              "required": "Address is required",
+                              "pattern": "Invalid address",
+                              "backend": "Invalid address"
+                            }
+                          },
+                          "item1": {
+                            "label": "Province",
+                            "errorMessages": {
+                              "required": "Province is required",
+                              "pattern": "Invalid province",
+                              "backend": "Invalid province"
+                            }
+                          },
+                          "item2": {
+                            "label": "City",
+                            "errorMessages": {
+                              "required": "City is required",
+                              "pattern": "Invalid city",
+                              "backend": "Invalid city"
+                            }
+                          },
+                          "item3": {
+                            "label": "Date of birth",
+                            "errorMessages": {
+                              "required": "Date of birth is required",
+                              "pattern": "Invalid date of birth",
+                              "backend": "Invalid date of birth"
+                            }
+                          },
+                          "item4": {
+                            "label": "Phone number",
+                            "errorMessages": {
+                              "required": "Phone number is required",
+                              "pattern": "Invalid phone number",
+                              "backend": "Invalid phone number"
+                            }
+                          },
+                          "item5": {
+                            "label": "Postal code",
+                            "errorMessages": {
+                              "required": "Postal code is required",
+                              "pattern": "Postal code must contain 5 digits",
+                              "backend": "Invalid postal code"
+                            }
+                          },
+                          "item6": {
+                            "label": "Domicile municipality",
+                            "errorMessages": {
+                              "required": "Domicile municipality is required",
+                              "pattern": "Invalid domicile municipality",
+                              "backend": "Invalid domicile municipality"
+                            }
+                          },
+                          "item7": {
+                            "label": "Domicile province",
+                            "errorMessages": {
+                              "required": "Domicile province is required",
+                              "pattern": "Invalid domicile province",
+                              "backend": "Invalid domicile province"
+                            }
+                          },
+                          "item8": {
+                            "label": "Domicile nation",
+                            "errorMessages": {
+                              "required": "Domicile nation is required",
+                              "pattern": "Invalid domicile nation",
+                              "backend": "Invalid domicile nation"
+                            }
+                          },
+                          "item9": {
+                            "label": "County of birth",
+                            "errorMessages": {
+                              "required": "County of birth is required",
+                              "pattern": "Invalid county of birth",
+                              "backend": "Invalid county of birth"
+                            }
+                          },
+                          "item10": {
+                            "label": "Place of birth",
+                            "errorMessages": {
+                              "required": "Place of birth is required",
+                              "pattern": "Invalid place of birth",
+                              "backend": "Invalid place of birth"
+                            }
+                          },
+                          "item11": {
+                            "label": "Gender",
+                            "errorMessages": {
+                              "required": "Gender is required",
+                              "pattern": "Invalid gender",
+                              "backend": "Invalid gender"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "consents": {
+            "title": "Consents",
+            "subtitle": ""
+          },
+          "submitButton": {
+            "label": "Register"
+          },
+          "messages": {
+            "loading": "Loading",
+            "loadError": "Registration details could not be loaded.",
+            "retry": "Retry",
+            "login": "Log in"
+          },
+          "message": {
+            "success": {
+              "image": {
+                "alt": "Registration complete"
+              },
+              "text": {
+                "title": {
+                  "text": "Registration complete"
+                },
+                "subTitle": {
+                  "text": "Registration was successful. Check your email to complete the process."
+                }
+              }
+            }
+          }
+        },
+        "departments-units-details": {
+          "name": "Unit",
+          "breadcrumb": {
+            "title": {
+              "text": "{{unit}}"
+            },
+            "subTitle": {
+              "text": "View the units of the department or search for a service."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Departments"
+              },
+              "item2": {
+                "name": "{{department}}"
+              },
+              "item3": {
+                "name": "{{unit}}"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "start": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Pavilion"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Floor"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Manager"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": ""
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Phone Number"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Email"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "title": {
+                                "fallbackText": "Opening hours"
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Monday"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Tuesday"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Wednesday"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Thursday"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Friday"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Saturday"
+                                }
+                              },
+                              "item6": {
+                                "label": {
+                                  "text": "Sunday"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "end": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Services"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "departments-units": {
+          "name": "Units",
+          "breadcrumb": {
+            "title": {
+              "text": "{{department}}"
+            },
+            "subTitle": {
+              "text": "View the units of the department or search for a service."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Departments"
+              },
+              "item2": {
+                "name": "{{department}}"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "imageBlockConfig": {
+                                "image": {
+                                  "alt": "Department"
+                                }
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Pavilion"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Manager"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "VIEW DETAILS"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "departments": {
+          "name": "Departments",
+          "breadcrumb": {
+            "title": {
+              "text": "Departments"
+            },
+            "subTitle": {
+              "text": "View the contacts, departments, and healthcare services of the Hospital."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Departments"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "imageBlockConfig": {
+                                "image": {
+                                  "alt": "Department"
+                                }
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Pavilion"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Manager"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "VIEW UNITS"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "login": {
+          "name": "Login",
+          "sections": {
+            "item0": {
+              "areas": {
+                "start": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "text": "Online services from the ASL Demo"
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "text": "From this section you can access the main digital services of the ASL Demo, <strong>designed to simplify interaction with the healthcare system.</strong>"
+                      }
+                    }
+                  }
+                },
+                "end": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "authMethods": {
+                          "item0": {
+                            "title": "SPID",
+                            "description": "SPID, the <strong>Public Digital Identity System</strong>, is the access system that allows you to use online services offered by the Public Administration and accredited private entities with a single digital identity. If you already have a digital identity, log in with your provider's credentials. If you don't yet have a digital identity, request one from one of the providers.",
+                            "button": {
+                              "text": "Log in with SPID"
+                            }
+                          },
+                          "item1": {
+                            "title": "CIE",
+                            "description": "The <strong>Electronic Identity Card (CIE)</strong> is the personal document that certifies the citizen's identity. Equipped with a microprocessor, in addition to proving personal identity, it allows access to the digital services of the Public Administration.",
+                            "button": {
+                              "text": "Log in with CIE"
+                            }
+                          },
+                          "item2": {
+                            "title": "MyId",
+                            "description": "<p>SPID, the <strong>Public Digital Identity System</strong> is the access system that allows you to use, with a single digital identity, the online services of the Public Administration and accredited private entities.</p><p> If you already have a digital identity, log in with your provider's credentials. If you don't yet have a digital identity, request one from one of the providers.</p><p>The <strong>Electronic Identity Card (CIE)</strong> is the personal document that certifies the citizen's identity.</p><p> Equipped with a microprocessor, in addition to proving personal identity, it allows access to the digital services of the Public Administration.</p>",
+                            "button": {
+                              "text": "Log in with MyId"
+                            }
+                          },
+                          "item3": {
+                            "title": "Login",
+                            "description": "<strong>Enter with your login and password</strong>",
+                            "button": {
+                              "text": "Login"
+                            },
+                            "config": {
+                              "otp": {
+                                "buttons": {
+                                  "confirm": {
+                                    "text": "Confirm"
+                                  },
+                                  "back": {
+                                    "text": "Back"
+                                  }
+                                }
+                              },
+                              "resetPassword": {
+                                "text": "Forgot password?",
+                                "link": {
+                                  "text": "Recover password"
+                                }
+                              },
+                              "registration": {
+                                "text": "Don't have an account yet?",
+                                "link": {
+                                  "text": "Register"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "medical-reports": {
+          "name": "Medical Reports",
+          "breadcrumb": {
+            "title": {
+              "text": "Medical Reports and Documents"
+            },
+            "subTitle": {
+              "text": "Subtitle"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Medical Reports and Documents"
+              }
+            }
+          },
+          "infoPopup": {
+            "title": "Attention",
+            "text": "Reports will no longer be available 45 days after the upload date indicated in the report."
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "submitButton": {
+                          "label": "Search"
+                        },
+                        "fields": {
+                          "item0": {
+                            "label": "Document Type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Date"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Operating unit"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Expiration date"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Status"
+                                },
+                                "badgeMap": {
+                                  "0": {
+                                    "text": "Pending"
+                                  },
+                                  "1": {
+                                    "text": "Paid"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Unknown"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Download PDF"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Open PDF"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Reports not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Reports not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the report. Please try again later."
+                }
+              }
+            }
+          }
+        },
+        "payments-a4h": {
+          "name": "Payments",
+          "breadcrumb": {
+            "title": {
+              "text": "Payments"
+            },
+            "subTitle": {
+              "text": "View and manage your payments."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Payments"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Booked services"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Booking date"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Amount"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Pay"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "subTitle": {
+                                "fallbackText": "Paid"
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Services"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Booking date"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Amount"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "View invoice"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Payments not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Payments not found"
+                },
+                "subTitle": {
+                  "text": "No payments available."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the payments. Please try again later."
+                }
+              }
+            }
+          }
+        },
+        "payments-jcash-details": {
+          "name": "Payment Details",
+          "breadcrumb": {
+            "title": {
+              "text": "Payment Details"
+            },
+            "subTitle": {
+              "text": "View the payment details."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Payments"
+              },
+              "item2": {
+                "name": "Payment Details"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Amount"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "State"
+                                },
+                                "badgeMap": {
+                                  "PAGATA": {
+                                    "text": "Paid"
+                                  },
+                                  "DA_PAGARE": {
+                                    "text": "To pay"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Unknown"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "IUV"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Services"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Debtor"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Tax code"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Pay € {{importo}}"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Download receipt"
+                                },
+                                "hideMessage": {
+                                  "text": "For the payment, you will be redirected to the pagoPA website. After the payment is completed, the status will be updated within approximately 24 hours"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the payments. Please try again later."
+                }
+              }
+            },
+            "notFound": {
+              "image": {
+                "alt": "Payments not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Payments not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            }
+          }
+        },
+        "payments-jcash": {
+          "name": "Payments",
+          "breadcrumb": {
+            "title": {
+              "text": "Payments"
+            },
+            "subTitle": {
+              "text": "View the payments."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Payments"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Amount"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Payment system"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Show Details"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Payments not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Payments not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the payment. Please try again later."
+                }
+              }
+            }
+          }
+        },
+        "payments-pa-details": {
+          "name": "Payment Details",
+          "breadcrumb": {
+            "title": {
+              "text": "Payment Details"
+            },
+            "subTitle": {
+              "text": "View the payment details."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Payments"
+              },
+              "item2": {
+                "name": "Payment Details"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Amount"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "State"
+                                },
+                                "badgeMap": {
+                                  "PAYED": {
+                                    "text": "Paid"
+                                  },
+                                  "NOT_PAYED": {
+                                    "text": "To pay"
+                                  },
+                                  "VERIFICATION": {
+                                    "text": "Pending verification"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Unknown"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "IUV"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Creditor"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Tax code"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Pay € {{amount}}"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Download PDF"
+                                },
+                                "hideMessage": {
+                                  "text": "For the payment, you will be redirected to the pagoPA website. After the payment is completed, the status will be updated within approximately 24 hours"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Payments not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Payments not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the payment. Please try again later."
+                }
+              }
+            }
+          }
+        },
+        "payments-pa": {
+          "name": "Payments",
+          "breadcrumb": {
+            "title": {
+              "text": "Payments"
+            },
+            "subTitle": {
+              "text": "View the payments."
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Payments"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Appointment date"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Amount"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Payment system"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Show Details"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "item1": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Appointment date"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Amount"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Payment system"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Status"
+                                },
+                                "badgeMap": {
+                                  "NOT_PAYED": {
+                                    "text": "To pay"
+                                  },
+                                  "PAYED": {
+                                    "text": "Paid"
+                                  },
+                                  "VERIFICATION": {
+                                    "text": "Under verification"
+                                  }
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Details"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Payments not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Payments not found"
+                },
+                "subTitle": {
+                  "text": "Your request did not produce any results."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the payment. Please try again later."
+                }
+              }
+            }
+          }
+        },
+        "reports-by-triplet": {
+          "name": "Medical Report",
+          "breadcrumb": {
+            "title": {
+              "text": "Medical Report"
+            },
+            "subTitle": {
+              "text": "Subtitle"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Medical Report"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "submitButton": {
+                          "label": "Search Report"
+                        },
+                        "fields": {
+                          "item0": {
+                            "label": "Select the Structure",
+                            "errorMessages": {
+                              "required": "The ASL or Hospital is required"
+                            }
+                          },
+                          "item1": {
+                            "label": "User Code",
+                            "errorMessages": {
+                              "required": "User Code is required",
+                              "minlength": "User Code must be between 4 and 6 characters",
+                              "maxlength": "User Code must be between 4 and 6 characters"
+                            }
+                          },
+                          "item2": {
+                            "label": "Password",
+                            "errorMessages": {
+                              "required": "Password is required",
+                              "minlength": "Password must be between 3 and 12 characters",
+                              "maxlength": "Password must be between 3 and 12 characters"
+                            }
+                          },
+                          "item3": {
+                            "label": "PIN",
+                            "errorMessages": {
+                              "required": "PIN is required",
+                              "minlength": "PIN must be between 3 and 12 characters",
+                              "maxlength": "PIN must be between 3 and 12 characters"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "titleSubtitle": {
+                              "title": {
+                                "fallbackText": "Laboratory report"
+                              }
+                            },
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Date"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Status"
+                                },
+                                "badgeMap": {
+                                  "0": {
+                                    "text": "Pending"
+                                  },
+                                  "1": {
+                                    "text": "Paid"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Unknown"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Download PDF"
+                                },
+                                "hideMessage": {
+                                  "text": "To view the report, you must first make the payment. Go to the CUP or the nearest kiosk to complete the procedure."
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Open PDF"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Report not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Report not found"
+                },
+                "subTitle": {
+                  "text": "Check that the fiscal code and report ID are correct and try again."
+                }
+              }
+            },
+            "init": {
+              "image": {
+                "alt": "Welcome"
+              },
+              "text": {
+                "title": {
+                  "text": "Welcome"
+                },
+                "subTitle": {
+                  "text": "Search for your report"
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the report. Please try again later."
+                }
+              }
+            }
+          }
+        },
+        "reset-password": {
+          "name": "Password recovery",
+          "meta": {
+            "title": "Password recovery"
+          },
+          "breadcrumb": {
+            "title": {
+              "text": "Password recovery"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Login"
+              },
+              "item2": {
+                "name": "Password recovery"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Password recovery",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Fiscal code",
+                            "errorMessages": {
+                              "required": "Fiscal code is required",
+                              "validateFiscalCode": "Invalid fiscal code"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "submitButton": {
+            "label": "Send email"
+          },
+          "messages": {
+            "intro": "Enter the fiscal code associated with your account to receive a password recovery link.",
+            "login": "Back to login"
+          },
+          "message": {
+            "success": {
+              "image": {
+                "alt": "Password reset complete"
+              },
+              "text": {
+                "title": {
+                  "text": "Password reset complete"
+                },
+                "subTitle": {
+                  "text": "Password was successfully reset. Check your email to complete the process."
+                }
+              }
+            }
+          }
+        },
+        "single-report": {
+          "name": "Medical Report",
+          "breadcrumb": {
+            "title": {
+              "text": "Medical Report"
+            },
+            "subTitle": {
+              "text": "Subtitle"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "Medical Report"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "submitButton": {
+                          "label": "Search"
+                        },
+                        "fields": {
+                          "item0": {
+                            "label": "Report ID",
+                            "errorMessages": {
+                              "required": "Report ID is required",
+                              "minlength": "Report ID must be between 8 and 12 characters",
+                              "maxlength": "Report ID must be between 8 and 12 characters"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "items": {
+                          "item0": {
+                            "fields": {
+                              "item0": {
+                                "label": {
+                                  "text": "Subject"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Date"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Services"
+                                }
+                              },
+                              "item3": {
+                                "label": {
+                                  "text": "Report"
+                                }
+                              },
+                              "item4": {
+                                "label": {
+                                  "text": "Report type"
+                                }
+                              },
+                              "item5": {
+                                "label": {
+                                  "text": "Status"
+                                },
+                                "badgeMap": {
+                                  "PAYED": {
+                                    "text": "Paid"
+                                  },
+                                  "PENDING": {
+                                    "text": "Pending"
+                                  }
+                                },
+                                "fallbackBadge": {
+                                  "text": "Unknown"
+                                }
+                              }
+                            },
+                            "actions": {
+                              "item0": {
+                                "label": {
+                                  "text": "Download PDF"
+                                }
+                              },
+                              "item1": {
+                                "label": {
+                                  "text": "Open PDF"
+                                }
+                              },
+                              "item2": {
+                                "label": {
+                                  "text": "Open Link"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "message": {
+            "notFound": {
+              "image": {
+                "alt": "Report not found"
+              },
+              "text": {
+                "title": {
+                  "text": "Report not found"
+                },
+                "subTitle": {
+                  "text": "Check that the fiscal code and report ID are correct and try again."
+                }
+              }
+            },
+            "init": {
+              "image": {
+                "alt": "Welcome"
+              },
+              "text": {
+                "title": {
+                  "text": "Welcome"
+                },
+                "subTitle": {
+                  "text": "Enter the fiscal code and report ID to view the details."
+                }
+              }
+            },
+            "error": {
+              "image": {
+                "alt": "Error"
+              },
+              "text": {
+                "title": {
+                  "text": "Error"
+                },
+                "subTitle": {
+                  "text": "An error occurred while fetching the report. Please try again later."
+                }
+              }
+            }
+          }
+        },
+        "user-profile": {
+          "name": "User Profile",
+          "breadcrumb": {
+            "title": {
+              "text": "Your profile"
+            },
+            "subTitle": {
+              "text": "Subtitle"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "User Profile"
+              }
+            }
+          },
+          "breadcrumbRegistration": {
+            "title": {
+              "text": "Registration"
+            },
+            "subTitle": {
+              "text": "You need to register to proceed"
+            },
+            "items": {
+              "item0": {
+                "name": "Home"
+              },
+              "item1": {
+                "name": "User Profile"
+              }
+            }
+          },
+          "sections": {
+            "item0": {
+              "title": "Account details",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Fiscal Code"
+                          },
+                          "item1": {
+                            "label": "First Name"
+                          },
+                          "item2": {
+                            "label": "Last Name"
+                          },
+                          "item3": {
+                            "label": "Date of Birth"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item1": {
+              "title": "Domicile",
+              "subTitle": "Fields required",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Address"
+                          },
+                          "item1": {
+                            "label": "City"
+                          },
+                          "item2": {
+                            "label": "Postal Code"
+                          },
+                          "item3": {
+                            "label": "Province"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "item2": {
+              "title": "Contacts",
+              "subTitle": "Fields required",
+              "areas": {
+                "center": {
+                  "items": {
+                    "item0": {
+                      "props": {
+                        "fields": {
+                          "item0": {
+                            "label": "Email"
+                          },
+                          "item1": {
+                            "label": "Phone Number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "consents": {
+            "title": "Consents",
+            "subTitle": "Manage your consents"
+          },
+          "submitButton": {
+            "label": "Save"
+          }
+        }
+      }
+    }
+  },
+  "cookie-consent": {
+    "customContent": {
+      "header": "We use cookies",
+      "message": "By using our site, you acknowledge that you have read and understand our ",
+      "dismiss": "Dismiss",
+      "cookiePolicyLink": "Cookie Policy EN",
+      "privacyPolicyLink": "Privacy Policy EN",
+      "tosLink": "Terms of Service EN"
+    },
+    "cookieConsentModal": {
+      "header": {
+        "title": "Title EN"
+      },
+      "body": "Our site uses only strictly necessary technical cookies, required to ensure the proper functioning of the site and to provide the services requested by users. <br /><br /> These cookies do not require user consent, as they are essential for: <br /> Browsing and using the website<br /> Session management and authentication (if applicable)<br /> Storing user preferences (e.g., language or accessibility settings)<br /> Website security and fraud prevention<br /><br /> These cookies do not collect personal information nor are they used for marketing purposes. If disabled, the site may not function correctly.",
+      "footer": {
+        "actions": {
+          "close": "Close"
+        }
+      }
+    }
+  },
+  "footer": {
+    "in-collaboration": "In collaboration with",
+    "logo-img": {
+      "alt": "Healthcare"
+    },
+    "logo-eu": {
+      "alt": "European Union logo"
+    },
+    "logo-ministero-salute": {
+      "alt": "Ministry of Health logo"
+    },
+    "logo-italia-domani": {
+      "alt": "Italia Domani logo"
+    },
+    "socials": {
+      "title": "Follow us",
+      "facebook": {
+        "label": "Facebook",
+        "ariaLabel": "Facebook (open in a new tab)"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "ariaLabel": "Instagram (open in a new tab)"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "ariaLabel": "LinkedIn (open in a new tab)"
+      }
+    },
+    "link1": {
+      "text": "External link",
+      "description": "Open external link"
+    },
+    "link2": {
+      "text": "External link",
+      "description": "Open external link"
+    }
+  },
+  "header": {
+    "topbar": {
+      "link1": {
+        "text": "Digital Services",
+        "description": "Open external link"
+      },
+      "login-button": "Login",
+      "profile": "Profile",
+      "logout": "Logout",
+      "dropdownMenu": {
+        "profile": "Profile",
+        "logout": "Logout"
+      }
+    },
+    "main-areas": {
+      "image-logo": {
+        "alt": "Logo",
+        "ariaLabel": "Logo"
+      },
+      "image-tooltip": {
+        "tooltipLabel": "Open website"
+      }
+    },
+    "socials": {
+      "title": "Follow us",
+      "facebook": {
+        "label": "Facebook",
+        "ariaLabel": "Facebook (open in a new tab)"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "ariaLabel": "Instagram (open in a new tab)"
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "ariaLabel": "LinkedIn (open in a new tab)"
+      }
+    },
+    "bottombar": {
+      "link1": "Home",
+      "link2": "Login"
+    }
+  },
+  "pages": {
+    "home": {
+      "name": "Home",
+      "meta": {
+        "title": "Home"
+      },
+      "page-title": "Online services from the ASL Demo",
+      "info-text": "From this section you can access the main digital services of the ASL Demo, <strong>designed to simplify interaction with the healthcare system.</strong>",
+      "external-image-alt": "Example image",
+      "services-section": {
+        "aria-label": "Services section",
+        "title": "Services",
+        "sub-title": "Quick access to available services",
+        "vaccination-history": {
+          "aria-label": "Open vaccination history",
+          "coming-soon": {
+            "title": "Coming soon",
+            "sub-title": "The service is not yet available"
+          },
+          "title": "Vaccination history",
+          "sub-title": "Not developed"
+        },
+        "payments": {
+          "aria-label": "Open payments",
+          "title": "Payments",
+          "sub-title": "PagoPA"
+        },
+        "payments-jcash": {
+          "aria-label": "Open payments",
+          "title": "Payments",
+          "sub-title": "J-Cash"
+        },
+        "reports": {
+          "aria-label": "Open reports",
+          "title": "Your reports with one click",
+          "sub-title": "View your medical reports"
+        },
+        "single-reports": {
+          "aria-label": "Open reports",
+          "title": "Single report",
+          "sub-title": "Search your report"
+        },
+        "reports-by-triplet": {
+          "aria-label": "Open reports",
+          "title": "Triplet reports",
+          "sub-title": "Search your report"
+        },
+        "departments": {
+          "aria-label": "Open departments",
+          "title": "Departments and units"
+        },
+        "booking-arianna": {
+          "aria-label": "Open bookings",
+          "title": "Bookings",
+          "sub-title": "Arianna-CUP"
+        },
+        "booking-hero": {
+          "aria-label": "Open bookings",
+          "title": "Bookings",
+          "sub-title": "Hero"
+        }
+      },
+      "feed-rss": {
+        "title": "FeedRss News",
+        "readMore-button": "READ ALL",
+        "not-found-image": {
+          "alt": "FeedRss not found"
+        },
+        "not-found-message": {
+          "title": "FeedRss not found",
+          "sub-title": "Please try again later."
+        }
+      },
+      "external-services-section": {
+        "aria-label": "Services section",
+        "header": {
+          "title": "Services",
+          "sub-title": "Will open on external website"
+        },
+        "news": {
+          "ariaLabel": "Open external link",
+          "title": "News",
+          "sub-title": "Open external link for news"
+        },
+        "clinical-records": {
+          "ariaLabel": "Open external link",
+          "title": "Clinical records",
+          "sub-title": "Open external link"
+        }
+      }
+    },
+    "booking-a4h-appointments-details": {
+      "name": "Appointment details",
+      "breadcrumb": {
+        "title": "Appointment details – {{service}}",
+        "items": {
+          "home": "Home",
+          "appointments": "Appointments",
+          "details": "Details"
+        }
+      },
+      "payment-status": {
+        "label": "Payment status",
+        "badgeMap": {
+          "PAID": "Paid",
+          "TO_PAY": "Unpaid"
+        }
+      },
+      "code-label": "Appointment ID",
+      "physician-label": "Physician",
+      "scheduled-on-label": "Date and time",
+      "address-label": "Location",
+      "department-label": "Clinic",
+      "floor-label": "Floor",
+      "waiting-room-label": "Waiting room",
+      "examination-room-label": "Examination room",
+      "hint-label": "",
+      "hint-value": "This booking cannot be modified or cancelled. Please contact the facility's CUP for more information.",
+      "preparation-label": "Download Guidelines",
+      "preparation-hide-message": "Document unavailable",
+      "actions": {
+        "edit": "Change appointment date",
+        "delete": "Cancel appointment",
+        "check-in": "Proceed with check-in"
+      }
+    },
+    "booking-a4h-appointments-edit": {
+      "name": "Edit appointment",
+      "breadcrumb": {
+        "title": "Edit appointment",
+        "items": {
+          "home": "Home",
+          "appointments": "Appointments",
+          "edit": "Edit appointment"
+        }
+      }
+    }
   }
 }

@@ -1,39 +1,24 @@
 {
   "id": "/user-profile",
-  "name": {
-    "it": "Profilo utente",
-    "en": "User Profile"
-  },
+  "name": "jsonConfig.default.pages.user-profile.name",
   "route": "/user-profile",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "backgroundColor": "#e6e8ea",
     "color": "#333333",
     "title": {
-      "text": {
-        "it": "Il tuo profilo",
-        "en": "Your profile"
-      }
+      "text": "jsonConfig.default.pages.user-profile.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Sottotitolo",
-        "en": "Subtitle"
-      }
+      "text": "jsonConfig.default.pages.user-profile.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.user-profile.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "User Profile",
-          "en": "User Profile"
-        },
+        "name": "jsonConfig.default.pages.user-profile.breadcrumb.items.item1.name",
         "routerLink": "/user-profile"
       }
     ]
@@ -42,40 +27,25 @@
     "backgroundColor": "#e6e8ea",
     "color": "#333333",
     "title": {
-      "text": {
-        "it": "Registrazione",
-        "en": "Registration"
-      }
+      "text": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Per prosegure devi registrarti",
-        "en": "You need to register to proceed"
-      }
+      "text": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "User Profile",
-          "en": "User Profile"
-        },
+        "name": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.items.item1.name",
         "routerLink": "/user-profile"
       }
     ]
   },
   "sections": [
     {
-      "title": {
-        "it": "Dati account",
-        "en": "Account details"
-      },
+      "title": "jsonConfig.default.pages.user-profile.sections.item0.title",
       "readOnly": true,
       "areas": {
         "center": {
@@ -107,10 +77,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": {
-                      "it": "Codice Fiscale",
-                      "en": "Fiscal Code"
-                    }
+                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item0.label"
                   },
                   {
                     "id": "firstName",
@@ -121,10 +88,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": {
-                      "it": "Nome",
-                      "en": "First Name"
-                    }
+                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item1.label"
                   },
                   {
                     "id": "lastName",
@@ -135,10 +99,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": {
-                      "it": "Cognome",
-                      "en": "Last Name"
-                    }
+                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item2.label"
                   },
                   {
                     "id": "date_of_birth",
@@ -149,10 +110,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": {
-                      "it": "Data di nascita",
-                      "en": "Date of Birth"
-                    }
+                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item3.label"
                   }
                 ]
               }
@@ -162,14 +120,8 @@
       }
     },
     {
-      "title": {
-        "it": "Domicilio",
-        "en": "Domicile"
-      },
-      "subTitle": {
-        "it": "Campi obbligatori",
-        "en": "Fields required"
-      },
+      "title": "jsonConfig.default.pages.user-profile.sections.item1.title",
+      "subTitle": "jsonConfig.default.pages.user-profile.sections.item1.subTitle",
       "areas": {
         "center": {
           "items": [
@@ -203,10 +155,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": {
-                      "it": "Indirizzo",
-                      "en": "Address"
-                    },
+                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item0.label",
                     "validators": [
                       {
                         "type": "text"
@@ -225,10 +174,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": {
-                      "it": "Città",
-                      "en": "City"
-                    },
+                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item1.label",
                     "validators": [
                       {
                         "type": "text"
@@ -247,10 +193,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": {
-                      "it": "CAP",
-                      "en": "Postal Code"
-                    },
+                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item2.label",
                     "validators": [
                       {
                         "type": "cap"
@@ -269,10 +212,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": {
-                      "it": "Provincia",
-                      "en": "Province"
-                    },
+                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item3.label",
                     "validators": [
                       {
                         "type": "text"
@@ -287,14 +227,8 @@
       }
     },
     {
-      "title": {
-        "it": "Contatti",
-        "en": "Contacts"
-      },
-      "subTitle": {
-        "it": "Campi obbligatori",
-        "en": "Fields required"
-      },
+      "title": "jsonConfig.default.pages.user-profile.sections.item2.title",
+      "subTitle": "jsonConfig.default.pages.user-profile.sections.item2.subTitle",
       "areas": {
         "center": {
           "items": [
@@ -324,10 +258,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": {
-                      "it": "Email",
-                      "en": "Email"
-                    },
+                    "label": "jsonConfig.default.pages.user-profile.sections.item2.areas.center.items.item0.props.fields.item0.label",
                     "validators": [
                       {
                         "type": "required"
@@ -345,10 +276,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": {
-                      "it": "Numero di telefono",
-                      "en": "Phone Number"
-                    },
+                    "label": "jsonConfig.default.pages.user-profile.sections.item2.areas.center.items.item0.props.fields.item1.label",
                     "validators": [
                       {
                         "type": "phone_number"
@@ -364,19 +292,10 @@
     }
   ],
   "consents": {
-    "title": {
-      "it": "Consensi",
-      "en": "Consents"
-    },
-    "subTitle": {
-      "it": "Gestisci i tuoi consensi",
-      "en": "Manage your consents"
-    }
+    "title": "jsonConfig.default.pages.user-profile.consents.title",
+    "subTitle": "jsonConfig.default.pages.user-profile.consents.subTitle"
   },
   "submitButton": {
-    "label": {
-      "it": "Salva",
-      "en": "Save"
-    }
+    "label": "jsonConfig.default.pages.user-profile.submitButton.label"
   }
 }

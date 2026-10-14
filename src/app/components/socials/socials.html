@@ -4,7 +4,7 @@
     [ngClass]="[...getFlexLayoutClasses(socials.layout), socials.className ?? '']"
   >
     <div [ngClass]="getTextClasses(socials.title)" [ngStyle]="getTextStyles(socials.title)">
-      {{ socials.title.text[lang()] || 'socials.title.text' }}
+      {{ socials.title.text | translate }}
     </div>
     <ul class="list-inline it-socials" aria-label="Social">
       @for (social of socials.socials; track social.id; let last = $last) {
@@ -12,7 +12,7 @@
           <a
             [attr.href]="social.url"
             [target]="social.target"
-            [attr.aria-label]="social.ariaLabel[lang()]"
+            [attr.aria-label]="social.ariaLabel | translate"
             [ngClass]="socials.labelStyle ? getTextClasses(socials.labelStyle) : []"
             [ngStyle]="{
               ...getSpacingStyles(social.margin),
@@ -34,7 +34,7 @@
                 <img
                   [src]="getImageSource(image)"
                   [ngStyle]="getImageStyles(image)"
-                  [attr.alt]="social.ariaLabel[lang()] || 'social.ariaLabel'"
+                  [attr.alt]="social.ariaLabel | translate"
                   class="icon-img"
                 />
               }
@@ -45,7 +45,7 @@
                 [ngClass]="socials.labelStyle ? getTextClasses(socials.labelStyle) : ''"
                 [ngStyle]="socials.labelStyle ? getTextStyles(socials.labelStyle) : null"
               >
-                {{ social.label[lang()] || 'social.label' }}
+                {{ social.label | translate }}
               </span>
             }
           </a>

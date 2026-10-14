@@ -11,6 +11,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { BreadcrumbConfig, BreadcrumbContainerStyle } from './model';
 import { LanguageService } from '../../initialize/state/services/language.service';
@@ -29,7 +30,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-breadcrumb',
-  imports: [CommonModule, RouterModule, DesignAngularKitModule, ButtonComponent],
+  imports: [CommonModule, RouterModule, TranslateModule, DesignAngularKitModule, ButtonComponent],
   templateUrl: './breadcrumb.html',
   styleUrl: './breadcrumb.scss',
   host: { '[style.--breadcrumb-scrollbar-w]': 'scrollbarWidth()' },

@@ -1,9 +1,6 @@
 {
   "id": "/bookings-hero/new",
-  "name": {
-    "it": "Nuova Prenotazione",
-    "en": "New Booking"
-  },
+  "name": "jsonConfig.default.pages.bookings-hero-new.name",
   "route": "/bookings-hero/new",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -18,37 +15,22 @@
         }
       },
       "title": {
-        "text": {
-          "it": "Nuova prenotazione",
-          "en": "New Booking"
-        }
+        "text": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.title.text"
       },
       "subTitle": {
-        "text": {
-          "it": "Crea una nuova prenotazione Hero.",
-          "en": "Create a new Hero booking."
-        }
+        "text": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.subTitle.text"
       },
       "items": [
         {
-          "name": {
-            "it": "Home",
-            "en": "Home"
-          },
+          "name": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.items.item0.name",
           "routerLink": "/"
         },
         {
-          "name": {
-            "it": "Prenotazioni",
-            "en": "Bookings"
-          },
+          "name": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.items.item1.name",
           "routerLink": "/bookings-hero"
         },
         {
-          "name": {
-            "it": "Nuova Prenotazione",
-            "en": "New Booking"
-          },
+          "name": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.items.item2.name",
           "routerLink": "/bookings-hero/new"
         }
       ]

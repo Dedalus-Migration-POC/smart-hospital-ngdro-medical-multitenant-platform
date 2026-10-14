@@ -4,7 +4,7 @@
       class="it-card h-100"
       [ngClass]="getCardBackgroundClass(card)"
       [ngStyle]="getCardStyles(card)"
-      [attr.aria-label]="card.ariaLabel?.[lang()] ?? null"
+      [attr.aria-label]="card.ariaLabel | translate"
     >
       <div class="h-100 w-100 cursor-default" [ngClass]="getFlexLayoutClasses(layout)">
         <div class="card-text w-100">
@@ -60,7 +60,7 @@
                   [ngClass]="[...getFlexLayoutClasses(layout), field.className ?? '']"
                   [ngStyle]="getSpacingStyles(field.margin)"
                 >
-                  @if (field.label.text[lang()]; as fieldLabel) {
+                  @if (field.label.text | translate; as fieldLabel) {
                     <div
                       [ngClass]="getTextClasses(getMergedLabelStyle(field))"
                       [class.field-label-row]="layout.direction === 'row'"
@@ -138,7 +138,7 @@
       @if (card.actions && card.actions.length) {
         @for (action of card.actions; track action.key) {
           @if (action.renderAs === 'message') {
-            @if (action.message.text[lang()]; as msg) {
+            @if (action.message.text | translate; as msg) {
               <span
                 class="cursor-default"
                 [ngClass]="getTextClasses(action.message)"

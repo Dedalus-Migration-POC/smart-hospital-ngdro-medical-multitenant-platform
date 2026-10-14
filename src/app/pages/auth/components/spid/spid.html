@@ -1,6 +1,6 @@
 @if (spidConfig(); as spidConfig) {
   <div class="d-flex flex-column">
-    <div [innerHTML]="spidConfig.description[lang()]" class="pb-4"></div>
+    <div [innerHTML]="spidConfig.description | translate" class="pb-4"></div>
     <div class="d-flex flex-column flex-column">
       <form
         ngNoForm
@@ -31,7 +31,7 @@
             />
           </span>
           <span class="italia-it-button-text" id="spid-idp">{{
-            spidConfig.button.text[lang()]
+            spidConfig.button.text | translate
           }}</span>
         </button>
 
@@ -49,7 +49,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h2 class="modal-title h5 mb-0" id="spid-idp-modal-title">
-                  {{ spidConfig.button.text[lang()] }}
+                  {{ spidConfig.button.text | translate }}
                 </h2>
                 <button
                   type="button"

@@ -1,6 +1,7 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { getTextClasses } from '../../shared/utility/text.utils';
 import { Store } from '@ngrx/store';
@@ -13,7 +14,7 @@ import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-link',
-  imports: [CommonModule, RouterModule, IconComponent],
+  imports: [CommonModule, RouterModule, TranslateModule, IconComponent],
   templateUrl: './link.html',
   styleUrl: './link.scss',
 })

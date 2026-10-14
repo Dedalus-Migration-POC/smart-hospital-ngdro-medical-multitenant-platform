@@ -1,30 +1,27 @@
 {
   "id": "/booking-a4h",
-  "name": {
-    "it": "Nuova Prenotazione",
-    "en": "New Booking A4H"
-  },
+  "name": "jsonConfig.default.pages.booking-a4h.name",
   "route": "/booking-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
-    "title": { "text": { "it": "Nuova prenotazione", "en": "New Booking" } },
+    "title": { "text": "jsonConfig.default.pages.booking-a4h.breadcrumb.title.text" },
     "subTitle": {
-      "text": { "it": "Crea una nuova prenotazione A4H", "en": "Create a new A4H booking" }
+      "text": "jsonConfig.default.pages.booking-a4h.breadcrumb.subTitle.text"
     },
 
     "items": [
       {
-        "name": { "it": "Home", "en": "Home" },
+        "name": "jsonConfig.default.pages.booking-a4h.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": { "it": "Prenotazione A4H", "en": "A4H Bookings" },
+        "name": "jsonConfig.default.pages.booking-a4h.breadcrumb.items.item1.name",
         "routerLink": "/booking-a4h"
       },
       {
-        "name": { "it": "{{bookingType}}", "en": "{{bookingType}}" },
+        "name": "jsonConfig.default.pages.booking-a4h.breadcrumb.items.item2.name",
         "routerLink": "/booking-a4h"
       }
     ]

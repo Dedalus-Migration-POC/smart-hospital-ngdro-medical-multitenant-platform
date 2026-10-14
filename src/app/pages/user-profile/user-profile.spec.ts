@@ -51,7 +51,7 @@ describe('UserProfile', () => {
   const userConfig: UserConfig = {
     sections: [
       {
-        title: { it: 'Anagrafica', en: 'Registry' },
+        title: 'test.user-profile.registry',
         fields: [
           {
             key: 'email',

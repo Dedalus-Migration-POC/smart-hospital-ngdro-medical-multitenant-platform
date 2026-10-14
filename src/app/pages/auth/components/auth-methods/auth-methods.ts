@@ -2,6 +2,7 @@ import { Component, inject, input } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { AuthMethodTabsProps } from '../../model';
 import { DesignAngularKitModule } from 'design-angular-kit';
+import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { Spid } from '../spid/spid';
 import { MyidComponent } from '../myid/myid.component';
@@ -12,6 +13,7 @@ import { CredentialsLogin } from '../credentials/login/credentials-login';
   selector: 'app-auth-methods',
   imports: [
     CommonModule,
+    TranslateModule,
     DesignAngularKitModule,
     Spid,
     MyidComponent,

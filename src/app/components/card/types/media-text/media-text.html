@@ -7,7 +7,7 @@
     >
       <button
         [attr.id]="card.id"
-        [attr.aria-label]="card.ariaLabel?.[lang()] ?? null"
+        [attr.aria-label]="card.ariaLabel | translate"
         type="button"
         class="btn p-0 w-100 h-100 text-start"
         [ngClass]="card.className"
@@ -27,7 +27,7 @@
           </div>
 
           <div class="card-text w-100">
-            @if (card.text.title.text[lang()]; as titleText) {
+            @if (card.text.title.text | translate; as titleText) {
               <div
                 [ngClass]="
                   getTextClasses(mergeTextStyles(mediaTextTheme()?.titleStyle, card.text.title))
@@ -40,7 +40,7 @@
               </div>
             }
 
-            @if (card.text.subTitle?.text?.[lang()]; as subTitleText) {
+            @if (card.text.subTitle?.text | translate; as subTitleText) {
               <div
                 [ngClass]="
                   getTextClasses(

@@ -1,44 +1,26 @@
 {
   "id": "/bookings/new",
-  "name": {
-    "it": "Nuova Prenotazione",
-    "en": "New Booking"
-  },
+  "name": "jsonConfig.default.pages.bookings-new.name",
   "route": "/bookings/new",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
       "title": {
-        "text": {
-          "it": "Nuova prenotazione",
-          "en": "New booking"
-        }
+        "text": "jsonConfig.default.pages.bookings-new.breadcrumb.title.text"
       },
       "subTitle": {
-        "text": {
-          "it": "Crea una nuova prenotazione Arianna-CUP",
-          "en": "Create a new Arianna-CUP booking"
-        }
+        "text": "jsonConfig.default.pages.bookings-new.breadcrumb.subTitle.text"
       },
       "items": [
         {
-          "name": {
-            "it": "Home",
-            "en": "Home"
-          },
+          "name": "jsonConfig.default.pages.bookings-new.breadcrumb.items.item0.name",
           "routerLink": "/"
         },
         {
-          "name": {
-            "it": "Prenotazioni",
-            "en": "Bookings"
-          },
+          "name": "jsonConfig.default.pages.bookings-new.breadcrumb.items.item1.name",
           "routerLink": "/bookings"
         },
         {
-          "name": {
-            "it": "Nuova prenotazione",
-            "en": "New booking"
-          },
+          "name": "jsonConfig.default.pages.bookings-new.breadcrumb.items.item2.name",
           "routerLink": "/bookings/new"
         }
       ]
@@ -47,18 +29,12 @@
     "confirmAvailability": {
         "header": {
           "title": {
-            "text": {
-              "it": "Conferma prenotazione",
-              "en": "Confirm booking"
-            }
+            "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.header.title.text"
           }
         },
         "body": {
           "text": {
-            "text": {
-              "it": "Vuoi confermare la prenotazione per la data selezionata?",
-              "en": "Do you want to confirm the booking for the selected date?"
-            }
+            "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.body.text.text"
           }
         },
         "footer": {
@@ -67,20 +43,14 @@
               "button": {
                 "outline": true,
                 "text": {
-                  "text": {
-                    "it": "Annulla",
-                    "en": "Cancel"
-                  }
+                  "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.footer.actions.item0.button.text.text"
                 }
               }
             },
             {
               "button": {
                 "text": {
-                  "text": {
-                    "it": "Conferma",
-                    "en": "Confirm"
-                  }
+                  "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.footer.actions.item1.button.text.text"
                 }
               }
             }

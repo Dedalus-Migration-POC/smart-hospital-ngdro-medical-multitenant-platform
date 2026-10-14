@@ -433,7 +433,7 @@ export class CredentialsRegistration {
 
   message(key: string): string {
     const text = this.pageConfig()?.messages[key];
-    if (text) return text[this.lang()] ?? text['it'];
+    if (text) return this.translate.instant(text);
     if (key === 'loading') return this.translate.instant('commons.loading');
     if (key === 'loadError') return this.translate.instant('commons.generic-error');
     if (key === 'retry') return this.translate.instant('appointments.retry');
@@ -514,7 +514,10 @@ export class CredentialsRegistration {
             const field = this.fields().find((field) => field.id === attribute.key);
             return {
               key: attribute.key,
-              displayName: attribute.displayName ?? field?.label?.[this.lang()] ?? attribute.key,
+              displayName:
+                attribute.displayName ??
+                (field?.label ? this.translate.instant(field.label) : undefined) ??
+                attribute.key,
               value: values[attribute.key]?.trim() || null,
               required: attribute.required,
             };

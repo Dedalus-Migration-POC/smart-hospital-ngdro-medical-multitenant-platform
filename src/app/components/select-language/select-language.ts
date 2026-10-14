@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { Lang, LanguageService } from '../../initialize/state/services/language.service';
+import { LanguageService } from '../../initialize/state/services/language.service';
 import { SelectLanguageProps } from './model';
 import { CommonModule } from '@angular/common';
 
@@ -16,10 +16,11 @@ export class SelectLanguage {
   private langService = inject(LanguageService);
 
   lang = this.langService.lang;
+  supportedLanguages = this.langService.supportedLanguages;
 
-  switchLanguage(lang: Lang) {
+  switchLanguage(lang: string) {
     this.langService.setLang(lang);
-    this.langService.select(lang);
+    this.langService.select(lang).subscribe();
   }
 
   toggleDropdown() {

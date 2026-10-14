@@ -14,11 +14,11 @@
               }"
               class="fs-2 cursor-default"
             >
-              {{ section.title[lang()] }}
+              {{ section.title | translate }}
             </h2>
             @if (section.subTitle) {
               <div class="pb-4 text-600 cursor-default">
-                {{ section.subTitle[lang()] }}
+                {{ section.subTitle | translate }}
               </div>
             }
 
@@ -40,7 +40,7 @@
         ></app-consents-form>
 
         <button type="submit" [ngClass]="getSubmitButtonClasses()">
-          {{ config.submitButton?.label?.[lang()] }}
+          {{ config.submitButton?.label | translate }}
         </button>
       </form>
     }

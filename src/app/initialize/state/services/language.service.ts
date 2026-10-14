@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { defaultLanguage, Language, languages } from './i18n/language.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, tap } from 'rxjs';
 
-export type Lang = 'it' | 'en';
+export type Lang = string;
 
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
@@ -12,11 +12,16 @@ export class LanguageService {
   readonly http = inject(HttpClient);
 
   private _lang = signal<Lang>(this.detectInitialLang());
+  private readonly _supportedLanguages = signal<string[]>(
+    languages.map(({ localeId }) => localeId),
+  );
+  private defaultLanguageId = defaultLanguage.localeId;
 
   lang = this._lang.asReadonly();
+  supportedLanguages = this._supportedLanguages.asReadonly();
 
   setLang(lang: Lang) {
-    this._lang.set(lang);
+    if (!this._supportedLanguages().includes(lang)) return;
     localStorage.setItem('selectedLanguage', lang);
     localStorage.setItem('localeId', lang);
   }
@@ -35,7 +40,7 @@ export class LanguageService {
     (window as any).googleTranslateElementInit = () => {
       new google.translate.TranslateElement(
         {
-          pageLanguage: 'it',
+          pageLanguage: this.defaultLanguageId,
           includedLanguages: supportedLanguages,
           layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
         },
@@ -53,22 +58,42 @@ export class LanguageService {
     return this.current;
   }
 
-  init() {
+  init(config?: { defaultLanguage?: string; supportedLanguages?: string[] }) {
+    const supportedLanguages = [...new Set(config?.supportedLanguages?.filter(Boolean) ?? [])];
+    const availableLanguages = supportedLanguages.length
+      ? supportedLanguages
+      : languages.map(({ localeId }) => localeId);
+    this._supportedLanguages.set(availableLanguages);
+
+    this.defaultLanguageId = availableLanguages.includes(config?.defaultLanguage ?? '')
+      ? config!.defaultLanguage!
+      : (availableLanguages[0] ?? defaultLanguage.localeId);
+
     const storedLocaleId = localStorage.getItem('selectedLanguage');
-    const storedLanguage = languages.find((lang) => lang.localeId === storedLocaleId);
-    if (storedLanguage) {
-      this.select(storedLanguage.localeId);
-    } else {
-      this.select(defaultLanguage.localeId);
-    }
+    const selectedLanguage =
+      storedLocaleId && availableLanguages.includes(storedLocaleId)
+        ? storedLocaleId
+        : this.defaultLanguageId;
+    return this.select(selectedLanguage);
   }
 
-  select(updateLocaleId: string): void {
-    this.current = languages.find((lang) => lang.localeId === updateLocaleId) || languages[0];
-    localStorage.setItem('localeId', this.current.localeId);
-    this.translate.setDefaultLang(this.current.localeId);
-    this.translate.use(this.lang());
-    this.language.next(this.current);
+  select(updateLocaleId: string) {
+    const localeId = this._supportedLanguages().includes(updateLocaleId)
+      ? updateLocaleId
+      : this.defaultLanguageId;
+    this.current = languages.find((lang) => lang.localeId === localeId) ?? {
+      ...defaultLanguage,
+      name: localeId,
+      localeId,
+    };
+    localStorage.setItem('localeId', localeId);
+    this.translate.setDefaultLang(this.defaultLanguageId);
+    return this.translate.use(localeId).pipe(
+      tap(() => {
+        this._lang.set(localeId);
+        this.language.next(this.current);
+      }),
+    );
   }
 }
 declare var google: any;

@@ -4,6 +4,7 @@ import { ImageBlockConfig } from './model';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { LanguageService } from '../../initialize/state/services/language.service';
+import { TranslateService } from '@ngx-translate/core';
 import {
   getAlignClass,
   getFlexLayoutClasses,
@@ -29,7 +30,9 @@ export class ImageBlock {
   readonly config = input<ImageBlockConfig | null | undefined>(null);
 
   private readonly sanitizer = inject(DomSanitizer);
-  private langService = inject(LanguageService);
+  private readonly translate = inject(TranslateService);
+  private readonly languageService = inject(LanguageService);
+  lang = this.languageService.lang;
 
   protected readonly getFlexLayoutClasses = getFlexLayoutClasses;
   protected readonly getTextClasses = getTextClasses;
@@ -37,16 +40,31 @@ export class ImageBlock {
   protected readonly getAlignClass = getAlignClass;
   protected readonly getJustifyClass = getJustifyClass;
 
-  lang = this.langService.lang;
-
-  altText = computed(() => getImageAltText(this.config()?.image, this.lang()));
-  ariaLabel = computed(() => getImageAriaLabel(this.config()?.image, this.lang()));
+  altText = computed(() => {
+    this.lang();
+    return getImageAltText(this.config()?.image, (key) => this.translate.instant(key));
+  });
+  ariaLabel = computed(() => {
+    this.lang();
+    return getImageAriaLabel(this.config()?.image, (key) => this.translate.instant(key));
+  });
   ariaHidden = computed(() => getImageAriaHidden(this.config()?.image));
 
-  titleText = computed(() => getLocalizedText(this.config()?.text?.title.text, this.lang()));
-  subTitleText = computed(() => getLocalizedText(this.config()?.text?.subTitle?.text, this.lang()));
+  titleText = computed(() => {
+    this.lang();
+    return getLocalizedText(this.config()?.text?.title.text, (key) => this.translate.instant(key));
+  });
+  subTitleText = computed(() => {
+    this.lang();
+    return getLocalizedText(this.config()?.text?.subTitle?.text, (key) =>
+      this.translate.instant(key),
+    );
+  });
 
-  tooltipLabel = computed(() => getTooltipLabel(this.config()?.image?.tooltip, this.lang()));
+  tooltipLabel = computed(() => {
+    this.lang();
+    return getTooltipLabel(this.config()?.image?.tooltip, (key) => this.translate.instant(key));
+  });
   tooltipClassName = computed(() => getTooltipClassName(this.config()?.image?.tooltip));
 
   getBlockStyles(config: ImageBlockConfig): Record<string, string> {

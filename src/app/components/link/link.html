@@ -4,13 +4,13 @@
       @if (link.icon && link.icon.position !== 'after') {
         <app-icon [config]="link.icon" defaultMarginClass="me-1" />
       }
-      {{ link.text[lang()] || 'link.text' }}
+      {{ link.text | translate }}
       @if (link.icon?.position === 'after') {
         <app-icon [config]="link.icon!" defaultMarginClass="ms-1" />
       }
       @if (link.description) {
         <span class="visually-hidden">
-          {{ link.description[lang()] || 'link.description' }}
+          {{ link.description | translate }}
         </span>
       }
     </ng-template>
@@ -48,7 +48,7 @@
         [ngClass]="getLinkClasses(style)"
         [ngStyle]="getLinkStyles(style)"
         [disabled]="link.disabled"
-        [attr.aria-label]="link.ariaLabel?.[lang()]"
+        [attr.aria-label]="link.ariaLabel | translate"
       >
         <ng-container *ngTemplateOutlet="linkContent"></ng-container>
       </button>

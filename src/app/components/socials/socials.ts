@@ -1,6 +1,8 @@
 import { Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../initialize/state/services/language.service';
+import { TranslateService } from '@ngx-translate/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { getSpacingStyles, getTextStyles } from '../../shared/utility/style.utils';
 import { getTextClasses } from '../../shared/utility/text.utils';
@@ -11,7 +13,7 @@ import { IconComponent } from '../icon/icon.component';
 
 @Component({
   selector: 'app-socials',
-  imports: [CommonModule, IconComponent],
+  imports: [CommonModule, TranslateModule, IconComponent],
   templateUrl: './socials.html',
   styleUrl: './socials.scss',
 })
@@ -19,6 +21,7 @@ export class Socials {
   readonly socials = input<SocialsProps | null>(null);
 
   private langService = inject(LanguageService);
+  private translate = inject(TranslateService);
   private sanitizer = inject(DomSanitizer);
 
   lang = this.langService.lang;
@@ -47,7 +50,7 @@ export class Socials {
   }
 
   sanitizeSvg(social: SocialItem, svg: string): SafeHtml {
-    const label = social.ariaLabel[this.lang()];
+    const label = this.translate.instant(social.ariaLabel);
     return this.sanitizer.bypassSecurityTrustHtml(
       svg.replace('<svg', `<svg role="img" aria-label="${label}" focusable="false"`),
     );

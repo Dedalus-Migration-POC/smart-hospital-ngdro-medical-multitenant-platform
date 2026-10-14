@@ -35,30 +35,12 @@
     "tosHref": "https://tos.com"
   },
   "customContent": {
-    "header": {
-      "it": "Cookie header prova ",
-      "en": "Cookie header test"
-    },
-    "message": {
-      "it": "Utilizzando il nostro sito, riconosci di aver letto e compreso la nostra ",
-      "en": "By using our site, you acknowledge that you have read and understand our "
-    },
-    "dismiss": {
-      "it": "Chiudi",
-      "en": "Dismiss"
-    },
-    "cookiePolicyLink": {
-      "it": "Cookie Policy IT",
-      "en": "Cookie Policy EN"
-    },
-    "privacyPolicyLink": {
-      "it": "Privacy Policy IT",
-      "en": "Privacy Policy EN"
-    },
-    "tosLink": {
-      "it": "Terms of Service IT",
-      "en": "Terms of Service EN"
-    }
+    "header": "cookie-consent.customContent.header",
+    "message": "cookie-consent.customContent.message",
+    "dismiss": "cookie-consent.customContent.dismiss",
+    "cookiePolicyLink": "cookie-consent.customContent.cookiePolicyLink",
+    "privacyPolicyLink": "cookie-consent.customContent.privacyPolicyLink",
+    "tosLink": "cookie-consent.customContent.tosLink"
   },
   "cookieConsentModal": {
     "openerId": "show_cookie_policy_info",
@@ -72,10 +54,7 @@
         "all": "8px"
       },
       "title": {
-        "text": {
-          "it": "Titolo IT",
-          "en": "Title EN"
-        }
+        "text": "cookie-consent.cookieConsentModal.header.title"
       }
     },
     "body": {
@@ -85,10 +64,7 @@
         }
       },
       "text": {
-        "text": {
-          "it": "Il nostro sito utilizza esclusivamente cookie tecnici obbligatori, necessari per garantire il corretto funzionamento del sito e fornire i servizi richiesti dagli utenti. <br /><br /> Questi cookie non richiedono il consenso dell'utente, in quanto essenziali per: <br /> La navigazione e la fruizione del sito web<br /> La gestione della sessione e l’autenticazione (se prevista)<br /> La memorizzazione delle preferenze dell'utente (ad esempio, lingua o impostazioni di accessibilità)<br />La sicurezza del sito e la prevenzione di frodi<br /><br />Questi cookie non raccolgono informazioni personali né vengono utilizzati per finalità di marketing. Se disabilitati, il sito potrebbe non funzionare correttamente.",
-          "en": "Our site uses only strictly necessary technical cookies, required to ensure the proper functioning of the site and to provide the services requested by users. <br /><br /> These cookies do not require user consent, as they are essential for: <br /> Browsing and using the website<br /> Session management and authentication (if applicable)<br /> Storing user preferences (e.g., language or accessibility settings)<br /> Website security and fraud prevention<br /><br /> These cookies do not collect personal information nor are they used for marketing purposes. If disabled, the site may not function correctly."
-        }
+        "text": "cookie-consent.cookieConsentModal.body"
       }
     },
     "footer": {
@@ -99,10 +75,7 @@
             "palette": "info",
             "outline": true,
             "text": {
-              "text": {
-                "it": "Chiudi",
-                "en": "Close"
-              }
+              "text": "cookie-consent.cookieConsentModal.footer.actions.close"
             }
           }
         }

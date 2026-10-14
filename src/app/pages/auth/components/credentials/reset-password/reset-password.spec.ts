@@ -2,14 +2,19 @@ import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateService, TranslateService } from '@ngx-translate/core';
 import { of, Subject, throwError } from 'rxjs';
-import config from 'src/assets/json-config/default/pages/reset-password.json';
+import rawConfig from 'src/assets/json-config/default/pages/reset-password.json';
+import englishCatalog from 'src/assets/i18n/en.json';
+import italianCatalog from 'src/assets/i18n/it.json';
 import { LanguageService } from 'src/app/initialize/state/services/language.service';
 import { PageConfigService } from 'src/app/pages/page-config.service';
+import { PageConfig } from 'src/app/pages/page.model';
 import * as CredentialsActions from '../state/credentials.actions';
 import { selectResetPassword } from '../state/credentials.selectors';
 import { ResetPassword } from './reset-password';
+
+const config = rawConfig as unknown as PageConfig;
 
 vi.mock('design-angular-kit', () => {
   class DesignKitStub {}
@@ -48,6 +53,10 @@ describe('ResetPassword', () => {
       ],
     });
     TestBed.overrideComponent(ResetPassword, { set: { template: '', imports: [] } });
+    const translate = TestBed.inject(TranslateService);
+    translate.setTranslation('it', italianCatalog);
+    translate.setTranslation('en', englishCatalog);
+    translate.use('it');
   });
 
   async function createPage() {
@@ -104,7 +113,8 @@ describe('ResetPassword', () => {
     component.submit();
     expect(component.canSubmit()).toBe(false);
     expect(dispatch).not.toHaveBeenCalled();
-    expect(component.pageConfig()?.message?.success?.text?.subTitle?.text?.it).toContain(
+    const messageKey = component.pageConfig()?.message?.success?.text?.subTitle?.text;
+    expect(messageKey && TestBed.inject(TranslateService).instant(messageKey)).toContain(
       'Verifica la tua email',
     );
   });

@@ -8,11 +8,11 @@ export interface TooltipConfig {
 
 export function getTooltipLabel(
   tooltip?: TooltipConfig,
-  lang?: keyof LocalizedText,
+  translate: (key: string) => string = (key) => key,
 ): string | null {
-  if (!tooltip?.enabled || !lang) return null;
+  if (!tooltip?.enabled || !tooltip.tooltipLabel) return null;
 
-  return tooltip.tooltipLabel?.[lang] ?? null;
+  return translate(tooltip.tooltipLabel);
 }
 
 export function getTooltipClassName(tooltip?: TooltipConfig): string | null {

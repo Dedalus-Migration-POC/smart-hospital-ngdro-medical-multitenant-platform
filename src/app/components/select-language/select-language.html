@@ -23,7 +23,7 @@
 
     <div class="dropdown-menu" role="menu">
       <ul class="link-list">
-        @for (lang of config.supportedLanguages; track lang) {
+        @for (lang of supportedLanguages(); track lang) {
           <li role="menuitem">
             <button class="dropdown-item list-item" type="button" (click)="switchLanguage(lang)">
               {{ lang.toUpperCase() }}

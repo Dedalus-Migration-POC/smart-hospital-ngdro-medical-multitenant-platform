@@ -20,7 +20,7 @@
               [ngClass]="getTextClasses(getItemsStyle(config))"
               [ngStyle]="getTextStyles(getItemsStyle(config))"
             >
-              {{ item.name?.[lang()] || '' }}
+              {{ item.name | translate }}
             </a>
             <span class="separator">/</span>
           }
@@ -30,7 +30,7 @@
               [ngClass]="getTextClasses(getActiveItemStyle(config))"
               [ngStyle]="getTextStyles(getActiveItemStyle(config))"
             >
-              {{ item.name?.[lang()] || '' }}
+              {{ item.name | translate }}
             </span>
           }
         </li>
@@ -43,23 +43,20 @@
           [ngClass]="getTextClasses(getTitleStyle(config))"
           [ngStyle]="getTextStyles(getTitleStyle(config))"
         >
-          {{ config.title.text[lang()] }}
+          {{ config.title.text | translate }}
         </h1>
-        @if (config.subTitle?.text?.[lang()]) {
+        @if (config.subTitle?.text | translate; as subTitle) {
           <p
             class="col-xl-5 col-lg-6 cursor-default"
             [ngClass]="getTextClasses(getSubTitleStyle(config))"
             [ngStyle]="getTextStyles(getSubTitleStyle(config))"
           >
-            {{ config.subTitle!.text[lang()] }}
+            {{ subTitle }}
           </p>
         }
       </div>
       @if (config.button) {
-        <app-button
-          [config]="getButtonStyle(config)"
-          (clicked)="buttonAction.emit()"
-        />
+        <app-button [config]="getButtonStyle(config)" (clicked)="buttonAction.emit()" />
       }
     </div>
   </nav>

@@ -14,7 +14,7 @@
       [ngClass]="getTextClasses(config.container.title)"
       [ngStyle]="getTextStyles(config.container.title)"
     >
-      {{ config.container.title.text[lang()] }}
+      {{ config.container.title.text | translate }}
     </h3>
     @if (hasFeeds()) {
       @if (config.orientation === 'vertical') {

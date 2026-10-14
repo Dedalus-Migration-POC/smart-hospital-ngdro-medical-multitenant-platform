@@ -1,22 +1,19 @@
 import { Component, inject, input } from '@angular/core';
 import { TextProps } from './model';
-import { LanguageService } from '../../initialize/state/services/language.service';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { getTextStyles } from '../../shared/utility/style.utils';
 import { getTextClasses } from '../../shared/utility/text.utils';
 
 @Component({
   selector: 'app-text-component',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './text-component.html',
   styleUrl: './text-component.scss',
 })
 export class TextComponent {
   readonly config = input<TextProps | null>(null);
 
-  private langService = inject(LanguageService);
-
-  lang = this.langService.lang;
   protected readonly getTextStyles = getTextStyles;
   protected readonly getTextClasses = getTextClasses;
 

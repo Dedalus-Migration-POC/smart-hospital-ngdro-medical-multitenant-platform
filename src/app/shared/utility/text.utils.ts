@@ -1,10 +1,5 @@
 // Crea classi testuali, ad esempio fs-xl e text-decoration-none.
-import {
-  FontSize,
-  LineHeight,
-  LocalizedText,
-  TextStyle,
-} from '../models/shared_model';
+import { FontSize, LineHeight, LocalizedText, TextStyle } from '../models/shared_model';
 
 const fontSizeTokens: FontSize[] = ['sm', 'md', 'lg', 'xl', 'xxl'];
 const lineHeightTokens: LineHeight[] = ['sm', 'md', 'lg', 'xl', 'xxl'];
@@ -18,14 +13,17 @@ function isLineHeightToken(value: string): value is LineHeight {
 }
 
 // Get localized text
-export function getLocalizedText(text?: LocalizedText, lang?: keyof LocalizedText): string {
-  if (!text || !lang) return '';
-  return text[lang] ?? '';
+export function getLocalizedText(
+  text?: LocalizedText,
+  translate?: (key: string) => string,
+): string {
+  if (!text) return '';
+  if (typeof text === 'string') return translate ? translate(text) : text;
+  return '';
 }
 
-// Usato per valori già tradotti (es. TranslateService.instant) da adattare a LocalizedText
 export function toLocalizedText(value: string): LocalizedText {
-  return { it: value, en: value };
+  return value;
 }
 
 export function mergeTextStyles(themeStyle?: TextStyle, specificStyle?: TextStyle): TextStyle {

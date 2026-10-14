@@ -10,7 +10,7 @@
     <app-icon [config]="config().icon!" defaultMarginClass="me-1" />
   }
 
-  {{ config().text.text[lang()] }}
+  {{ config().text.text | translate }}
 
   @if (config().icon?.position === 'after') {
     <app-icon [config]="config().icon!" defaultMarginClass="ms-1" />

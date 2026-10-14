@@ -1,54 +1,33 @@
 {
   "id": "/departments/units/details",
-  "name": {
-    "it": "Reparto",
-    "en": "Unit"
-  },
+  "name": "jsonConfig.default.pages.departments-units-details.name",
   "route": "/departments/units/details",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {
-      "text": {
-        "it": "{{unit}}",
-        "en": "{{unit}}"
-      }
+      "text": "jsonConfig.default.pages.departments-units-details.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Visualizza i reparti del dipartimento o ricerca una prestazione.",
-        "en": "View the units of the department or search for a service."
-      }
+      "text": "jsonConfig.default.pages.departments-units-details.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.departments-units-details.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "Dipartimenti",
-          "en": "Departments"
-        },
+        "name": "jsonConfig.default.pages.departments-units-details.breadcrumb.items.item1.name",
         "routerLink": "/departments"
       },
       {
-        "name": {
-          "it": "{{department}}",
-          "en": "{{department}}"
-        },
+        "name": "jsonConfig.default.pages.departments-units-details.breadcrumb.items.item2.name",
         "routerLink": "/departments/units",
         "queryParams": {
           "department": "{{department}}"
         }
       },
       {
-        "name": {
-          "it": "{{unit}}",
-          "en": "{{unit}}"
-        },
+        "name": "jsonConfig.default.pages.departments-units-details.breadcrumb.items.item3.name",
         "routerLink": ""
       }
     ]
@@ -123,10 +102,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Padiglione",
-                            "en": "Pavilion"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item0.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -142,10 +118,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Piano",
-                            "en": "Floor"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item0.props.items.item0.fields.item1.label.text"
                         }
                       },
                       {
@@ -161,10 +134,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Responsabile",
-                            "en": "Manager"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item0.props.items.item0.fields.item2.label.text"
                         }
                       },
                       {
@@ -188,10 +158,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "",
-                            "en": ""
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item0.props.items.item0.fields.item3.label.text"
                         }
                       },
                       {
@@ -207,10 +174,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Telefono",
-                            "en": "Phone Number"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item0.props.items.item0.fields.item4.label.text"
                         }
                       },
                       {
@@ -226,10 +190,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Email",
-                            "en": "Email"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item0.props.items.item0.fields.item5.label.text"
                         }
                       }
                     ]
@@ -255,10 +216,7 @@
                     "titleSubtitle": {
                       "title": {
                         "key": "Orario di apertura",
-                        "fallbackText": {
-                          "it": "Orario di apertura",
-                          "en": "Opening hours"
-                        },
+                        "fallbackText": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.titleSubtitle.title.fallbackText",
                         "fontSize": "lg",
                         "fontWeight": "bold",
                         "color": {
@@ -281,10 +239,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Lunedì",
-                            "en": "Monday"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -300,10 +255,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Martedì",
-                            "en": "Tuesday"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.fields.item1.label.text"
                         }
                       },
                       {
@@ -319,10 +271,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Mercoledì",
-                            "en": "Wednesday"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.fields.item2.label.text"
                         }
                       },
                       {
@@ -338,10 +287,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Giovedì",
-                            "en": "Thursday"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.fields.item3.label.text"
                         }
                       },
                       {
@@ -357,10 +303,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Venerdì",
-                            "en": "Friday"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.fields.item4.label.text"
                         }
                       },
                       {
@@ -376,10 +319,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Sabato",
-                            "en": "Saturday"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.fields.item5.label.text"
                         }
                       },
                       {
@@ -395,10 +335,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Domenica",
-                            "en": "Sunday"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.start.items.item1.props.items.item0.fields.item6.label.text"
                         }
                       }
                     ]
@@ -470,10 +407,7 @@
                           "color": {
                             "palette": "black"
                           },
-                          "text": {
-                            "it": "Servizi",
-                            "en": "Services"
-                          }
+                          "text": "jsonConfig.default.pages.departments-units-details.sections.item0.areas.end.items.item0.props.items.item0.fields.item0.label.text"
                         }
                       }
                     ]

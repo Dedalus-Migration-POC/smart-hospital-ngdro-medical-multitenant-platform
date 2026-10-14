@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BreadcrumbConfig, BreadcrumbItem } from './model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BreadcrumbService {
+  private readonly translate = inject(TranslateService);
   /**
    * Interpola i placeholder in una BreadcrumbConfig con valori forniti
    * @param config - La configurazione base del breadcrumb
@@ -28,28 +30,17 @@ export class BreadcrumbService {
       ...config,
       title: {
         ...config.title,
-        text: {
-          it: interpolate(config.title?.text?.it ?? ''),
-          en: interpolate(config.title?.text?.en ?? ''),
-        },
+        text: this.translate.instant(config.title.text, variables),
       },
       subTitle: config.subTitle
         ? {
             ...config.subTitle,
-            text: {
-              it: interpolate(config.subTitle?.text?.it ?? ''),
-              en: interpolate(config.subTitle?.text?.en ?? ''),
-            },
+            text: this.translate.instant(config.subTitle.text, variables),
           }
         : undefined,
       items: config.items?.map((item: BreadcrumbItem) => ({
         ...item,
-        name: item.name
-          ? {
-              it: interpolate(item.name?.it ?? ''),
-              en: interpolate(item.name?.en ?? ''),
-            }
-          : undefined,
+        name: item.name ? this.translate.instant(item.name, variables) : undefined,
         ...(item.queryParams && {
           queryParams: Object.fromEntries(
             Object.entries(item.queryParams).map(([key, value]) => [

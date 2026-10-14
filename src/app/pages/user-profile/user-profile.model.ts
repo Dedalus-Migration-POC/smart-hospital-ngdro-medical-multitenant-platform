@@ -81,8 +81,8 @@ export interface UserConfigSectionItem {
 export interface UserConfig {
   sections: Section[];
   consents?: {
-    title: { [key: string]: string };
-    subtitle: { [key: string]: string };
+    title: LocalizedText;
+    subtitle: LocalizedText;
   } | null;
   submitButton?: SubmitButtonConfig;
 }

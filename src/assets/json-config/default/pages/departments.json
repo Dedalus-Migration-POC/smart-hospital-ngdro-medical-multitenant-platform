@@ -1,36 +1,21 @@
 {
   "id": "/departments",
-  "name": {
-    "it": "Dipartimenti",
-    "en": "Departments"
-  },
+  "name": "jsonConfig.default.pages.departments.name",
   "route": "/departments",
   "breadcrumb": {
     "title": {
-      "text": {
-        "it": "Dipartimenti",
-        "en": "Departments"
-      }
+      "text": "jsonConfig.default.pages.departments.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Visualizza i contatti, i reparti e i servizi sanitari dell’Ospedale.",
-        "en": "View the contacts, departments, and healthcare services of the Hospital."
-      }
+      "text": "jsonConfig.default.pages.departments.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.departments.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "Dipartimenti",
-          "en": "Departments"
-        },
+        "name": "jsonConfig.default.pages.departments.breadcrumb.items.item1.name",
         "routerLink": "/departments"
       }
     ]
@@ -95,10 +80,7 @@
                           "type": "url",
                           "value": "assets/images/doctor.png",
                           "decorative": true,
-                          "alt": {
-                            "it": "Dipartimento",
-                            "en": "Department"
-                          },
+                          "alt": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.titleSubtitle.imageBlockConfig.image.alt",
                           "height": "60px"
                         }
                       }
@@ -117,10 +99,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Padiglione",
-                            "en": "Pavilion"
-                          }
+                          "text": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
                         }
                       },
                       {
@@ -136,10 +115,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": {
-                            "it": "Responsabile",
-                            "en": "Manager"
-                          }
+                          "text": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
                         }
                       }
                     ],
@@ -147,10 +123,7 @@
                       {
                         "key": "viewUnits",
                         "label": {
-                          "text": {
-                            "it": "VEDI REPARTI",
-                            "en": "VIEW UNITS"
-                          },
+                          "text": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text",
                           "fontWeight": "bold"
                         },
                         "type": "callback",

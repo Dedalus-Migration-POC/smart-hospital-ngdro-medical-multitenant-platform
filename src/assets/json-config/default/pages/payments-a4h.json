@@ -1,37 +1,22 @@
 {
   "id": "/payments-a4h",
-  "name": {
-    "it": "Pagamenti",
-    "en": "Payments"
-  },
+  "name": "jsonConfig.default.pages.payments-a4h.name",
   "route": "/payments-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {
-      "text": {
-        "it": "Pagamenti",
-        "en": "Payments"
-      }
+      "text": "jsonConfig.default.pages.payments-a4h.breadcrumb.title.text"
     },
     "subTitle": {
-      "text": {
-        "it": "Visualizza e gestisci i tuoi pagamenti.",
-        "en": "View and manage your payments."
-      }
+      "text": "jsonConfig.default.pages.payments-a4h.breadcrumb.subTitle.text"
     },
     "items": [
       {
-        "name": {
-          "it": "Home",
-          "en": "Home"
-        },
+        "name": "jsonConfig.default.pages.payments-a4h.breadcrumb.items.item0.name",
         "routerLink": "/"
       },
       {
-        "name": {
-          "it": "Pagamenti",
-          "en": "Payments"
-        },
+        "name": "jsonConfig.default.pages.payments-a4h.breadcrumb.items.item1.name",
         "routerLink": ""
       }
     ]
@@ -99,10 +84,7 @@
                           "bottom": "0"
                         },
                         "label": {
-                          "text": {
-                            "it": "Prestazioni prenotate",
-                            "en": "Booked services"
-                          },
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text",
                           "fontSize": "md",
                           "fontWeight": "semibold",
                           "lineHeight": "sm",
@@ -127,10 +109,7 @@
                           }
                         },
                         "label": {
-                          "text": {
-                            "it": "Data prenotazione effettuata",
-                            "en": "Booking date"
-                          },
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text",
                           "fontSize": "md",
                           "fontWeight": "semibold",
                           "lineHeight": "md",
@@ -162,10 +141,7 @@
                         },
 
                         "label": {
-                          "text": {
-                            "it": "Importo",
-                            "en": "Amount"
-                          },
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text",
                           "fontSize": "md",
                           "fontWeight": "semibold",
                           "lineHeight": "sm",
@@ -181,10 +157,7 @@
                         "type": "callback",
                         "renderAs": "button",
                         "label": {
-                          "text": {
-                            "it": "Paga",
-                            "en": "Pay"
-                          }
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text"
                         },
                         "callback": {
                           "nameFunction": "payNexiFromCard",
@@ -226,10 +199,7 @@
                       },
                       "subTitle": {
                         "key": "status",
-                        "fallbackText": {
-                          "it": "Pagato",
-                          "en": "Paid"
-                        },
+                        "fallbackText": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item1.props.items.item0.titleSubtitle.subTitle.fallbackText",
                         "fontSize": "md",
                         "fontWeight": "bold",
                         "color": {
@@ -254,10 +224,7 @@
                           "bottom": ".5rem"
                         },
                         "label": {
-                          "text": {
-                            "it": "Prestazioni",
-                            "en": "Services"
-                          },
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.label.text",
                           "fontSize": "md",
                           "fontWeight": "semibold",
                           "lineHeight": "md",
@@ -282,10 +249,7 @@
                           }
                         },
                         "label": {
-                          "text": {
-                            "it": "Data prenotazione effettuata",
-                            "en": "Booking date"
-                          },
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item1.props.items.item0.fields.item1.label.text",
                           "fontSize": "md",
                           "fontWeight": "semibold",
                           "lineHeight": "md",
@@ -308,10 +272,7 @@
                           }
                         },
                         "label": {
-                          "text": {
-                            "it": "Importo",
-                            "en": "Amount"
-                          },
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.label.text",
                           "fontSize": "md",
                           "fontWeight": "semibold",
                           "lineHeight": "md",
@@ -332,10 +293,7 @@
                           "position": "after"
                         },
                         "label": {
-                          "text": {
-                            "it": "Visualizza la fattura",
-                            "en": "View invoice"
-                          },
+                          "text": "jsonConfig.default.pages.payments-a4h.sections.item0.areas.center.items.item1.props.items.item0.actions.item0.label.text",
                           "textTransform": "uppercase",
                           "color": {
                             "hex": "#123c73"
@@ -372,18 +330,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Pagamenti non trovati",
-          "en": "Payments not found"
-        },
+        "alt": "jsonConfig.default.pages.payments-a4h.message.notFound.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Pagamenti non trovati",
-            "en": "Payments not found"
-          },
+          "text": "jsonConfig.default.pages.payments-a4h.message.notFound.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -392,10 +344,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Nessun pagamento disponibile.",
-            "en": "No payments available."
-          },
+          "text": "jsonConfig.default.pages.payments-a4h.message.notFound.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -419,18 +368,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": {
-          "it": "Errore",
-          "en": "Error"
-        },
+        "alt": "jsonConfig.default.pages.payments-a4h.message.error.image.alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": {
-            "it": "Errore",
-            "en": "Error"
-          },
+          "text": "jsonConfig.default.pages.payments-a4h.message.error.text.title.text",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -439,10 +382,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": {
-            "it": "Si è verificato un errore durante il recupero dei pagamenti. Riprova più tardi.",
-            "en": "An error occurred while fetching the payments. Please try again later."
-          },
+          "text": "jsonConfig.default.pages.payments-a4h.message.error.text.subTitle.text",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
