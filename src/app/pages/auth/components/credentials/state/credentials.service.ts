@@ -4,6 +4,7 @@ import { delay, of } from 'rxjs';
 import {
   CredentialsChangePasswordRequest,
   CredentialsLoginConfirmRequest,
+  CredentialsLoginOtpResponse,
   CredentialsLoginResponse,
   CredentialsLoginRequest,
   CredentialsRegistrationRequest,
@@ -50,6 +51,10 @@ export class CredentialsService {
     }
 
     return this.http.post<CredentialsLoginResponse>('/oauth/api/wrapper/login-confirm', data);
+  }
+
+  resendOtp(code: string) {
+    return this.http.post<CredentialsLoginOtpResponse>('/oauth/api/wrapper/resend-otp', { code });
   }
 
   fetchRegistrationAttributes() {

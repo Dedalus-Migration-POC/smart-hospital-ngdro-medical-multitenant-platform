@@ -362,6 +362,20 @@ describe('Credentials OTP state', () => {
     expect(selectLoginOtpRequired({ [featureKey]: state })).toBe(true);
   });
 
+  it('should replace the OTP challenge and deadline after resend', () => {
+    const state = reducer(
+      otpState,
+      CredentialsActions.resendOtpSuccess({
+        code: 'new-challenge-code',
+        expiresOn: 1900000300,
+      }),
+    );
+
+    expect(selectLoginOtpCode({ [featureKey]: state })).toBe('new-challenge-code');
+    expect(selectLoginOtpExpiresOn({ [featureKey]: state })).toBe(1900000300);
+    expect(selectLoginStep({ [featureKey]: state })).toBe('OTP');
+  });
+
   it('should retain the original OTP deadline through success and retries and clear it when leaving OTP', () => {
     const expiresOn = 1900000300;
     const pendingState = reducer(
@@ -918,14 +932,17 @@ describe('Credentials OTP HTTP flow', () => {
   let actions$: Subject<Action>;
   let effects: CredentialsEffects;
   let httpTesting: HttpTestingController;
-  let notification: { error: ReturnType<typeof vi.fn> };
+  let notification: {
+    error: ReturnType<typeof vi.fn>;
+    success: ReturnType<typeof vi.fn>;
+  };
   let previousLocaleId: string | null;
   const data = { code: 'test-challenge-code', otpCode: '012345' };
 
   beforeEach(() => {
     previousLocaleId = localStorage.getItem('localeId');
     actions$ = new Subject<Action>();
-    notification = { error: vi.fn() };
+    notification = { error: vi.fn(), success: vi.fn() };
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
@@ -972,6 +989,67 @@ describe('Credentials OTP HTTP flow', () => {
     expect(notification.error).not.toHaveBeenCalled();
   });
 
+  it('should resend the OTP and update the challenge deadline', async () => {
+    const now = Date.now();
+    const clock = vi.spyOn(Date, 'now').mockReturnValue(now);
+    try {
+      const result = firstValueFrom(effects.resendOtp$);
+      actions$.next(CredentialsActions.resendOtp({ code: data.code }));
+      const request = httpTesting.expectOne('/oauth/api/wrapper/resend-otp');
+      expect(request.request.method).toBe('POST');
+      expect(request.request.body).toEqual({ code: data.code });
+      request.flush({
+        code: 'rotated-challenge',
+        step: 'OTP',
+        access_token: null,
+        refresh_token: null,
+        id_token: null,
+        expires_in: 300,
+      });
+
+      expect(await result).toEqual(
+        CredentialsActions.resendOtpSuccess({
+          code: 'rotated-challenge',
+          expiresOn: now / 1000 + 300,
+        }),
+      );
+      expect(notification.success).toHaveBeenCalledExactlyOnceWith(
+        'commons.success',
+        'credentials-login.otpSent',
+        true,
+        8000,
+        NotificationPosition.Top,
+      );
+    } finally {
+      clock.mockRestore();
+    }
+  });
+
+  it('should report resend failures and preserve the existing challenge', async () => {
+    const otp = reducer(
+      initialState,
+      CredentialsActions.loginOtpRequired({ code: data.code, expiresOn: 1900000000 }),
+    );
+    const result = firstValueFrom(effects.resendOtp$);
+    actions$.next(CredentialsActions.resendOtp({ code: data.code }));
+    httpTesting
+      .expectOne('/oauth/api/wrapper/resend-otp')
+      .flush({ errorCode: '500' }, { status: 500, statusText: 'Server Error' });
+
+    const action = await result;
+    const state = reducer(otp, action);
+    expect(action.type).toBe(CredentialsActions.resendOtpFailure.type);
+    expect(state.loginOtpCode).toBe(data.code);
+    expect(state.loginOtpExpiresOn).toBe(1900000000);
+    expect(notification.error).toHaveBeenCalledExactlyOnceWith(
+      'commons.error',
+      'credentials-login.otpErrors.generic',
+      true,
+      8000,
+      NotificationPosition.Top,
+    );
+  });
+
   for (const status of [406, 400]) {
     it(`should return to login for invalid OTP with HTTP ${status} and body code 406`, async () => {
       const body = {
@@ -993,11 +1071,12 @@ describe('Credentials OTP HTTP flow', () => {
       });
       const otpState = reducer(
         initialState,
-        CredentialsActions.loginOtpRequired({ code: data.code }),
+        CredentialsActions.loginOtpRequired({ code: data.code, expiresOn: 1900000000 }),
       );
       const state = reducer(otpState, action);
       expect(state.loginStep).toBe('CREDENTIALS');
       expect(state.loginOtpCode).toBeNull();
+      expect(state.loginOtpExpiresOn).toBeNull();
       expect(notification.error).toHaveBeenCalledExactlyOnceWith(
         'commons.error',
         'credentials-login.otpErrors.invalidOtp',

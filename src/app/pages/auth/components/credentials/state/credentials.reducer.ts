@@ -171,6 +171,11 @@ export const reducer = createReducer(
     loginOtpCode: action.code,
     loginOtpExpiresOn: action.expiresOn ?? null,
   })),
+  on(CredentialsActions.resendOtpSuccess, (state, action) => ({
+    ...state,
+    loginOtpCode: action.code,
+    loginOtpExpiresOn: action.expiresOn ?? null,
+  })),
   on(CredentialsActions.confirmLogin, (state) => ({
     ...state,
     confirmLoginLoading: true,

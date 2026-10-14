@@ -1,4 +1,4 @@
-const staging = "https://smarthospital-test.polime.it";
+const staging = "https://polimess-test.smarthospital.cloud";
 
 const target = staging;
 

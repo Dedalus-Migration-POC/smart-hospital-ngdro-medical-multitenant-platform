@@ -103,6 +103,18 @@ export const confirmLogin = createAction(
   props<{ data: CredentialsLoginConfirmRequest }>(),
 );
 
+export const resendOtp = createAction('[Credentials] Resend OTP', props<{ code: string }>());
+
+export const resendOtpSuccess = createAction(
+  '[Credentials] Resend OTP Success',
+  props<{ code: string; expiresOn?: number }>(),
+);
+
+export const resendOtpFailure = createAction(
+  '[Credentials] Resend OTP Failure',
+  props<{ error: unknown }>(),
+);
+
 export const confirmLoginSuccess = createAction('[Credentials] Confirm Login Success');
 
 export const confirmLoginFailure = createAction(

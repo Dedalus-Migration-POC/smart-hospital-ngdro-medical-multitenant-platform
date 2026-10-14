@@ -139,6 +139,12 @@ export class CredentialsLogin {
     );
   }
 
+  resendOtp(): void {
+    const code = this.code();
+    if (!code || this.confirmation().loading) return;
+    this.store.dispatch(CredentialsActions.resendOtp({ code }));
+  }
+
   backToLogin(): void {
     if (this.confirmation().loading) return;
     this.store.dispatch(CredentialsActions.resetLogin());

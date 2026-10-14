@@ -136,6 +136,35 @@ export class CredentialsEffects {
     );
   });
 
+  resendOtp$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CredentialsActions.resendOtp),
+      exhaustMap(({ code }) =>
+        this.credentialsService.resendOtp(code).pipe(
+          map((response) => {
+            this.notificationService.success(
+              this.translate.instant('commons.success'),
+              this.translate.instant('credentials-login.otpSent'),
+              true,
+              8000,
+              NotificationPosition.Top,
+            );
+            return CredentialsActions.resendOtpSuccess({
+              code: response.code,
+              ...(Number.isFinite(response.expires_in) && response.expires_in > 0
+                ? { expiresOn: Date.now() / 1000 + response.expires_in }
+                : {}),
+            });
+          }),
+          catchError((error: unknown) => {
+            this.notifyConfirmLoginError(false);
+            return of(CredentialsActions.resendOtpFailure({ error }));
+          }),
+        ),
+      ),
+    ),
+  );
+
   fetchLoginProfile$ = createEffect(() =>
     this.actions$.pipe(
       ofType(CredentialsActions.loginProfileRequired),
@@ -268,6 +297,14 @@ export class CredentialsEffects {
         messageKey = 'userNotFound';
         break;
       case '500':
+        if (
+          typeof details['description'] === 'string' &&
+          details['description'].includes('Invalid user credentials')
+        ) {
+          messageKey = 'invalidCredentials';
+        }
+        break;
+      case '401':
         if (
           typeof details['description'] === 'string' &&
           details['description'].includes('Invalid user credentials')

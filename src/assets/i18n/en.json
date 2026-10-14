@@ -2,6 +2,7 @@
   "commons": {
     "loading": "Loading...",
     "error": "Error",
+    "success": "Success",
     "generic-error": "An error occurred, please try again later",
     "back": "Back",
     "forward": "Forward",
@@ -21,6 +22,9 @@
     "submit": "Log in",
     "otpTitle": "Login verification",
     "otpCode": "OTP code",
+    "otpNotReceived": "Didn't receive the code?",
+    "resendOtp": "Resend code",
+    "otpSent": "A new OTP code has been sent.",
     "success": "Logged in successfully.",
     "otpErrors": {
       "invalidOtp": "Invalid OTP code. Please log in again.",

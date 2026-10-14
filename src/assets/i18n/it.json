@@ -2,6 +2,7 @@
   "commons": {
     "loading": "Caricamento in corso...",
     "error": "Errore",
+    "success": "Operazione completata",
     "generic-error": "Si è verificato un errore, riprova più tardi",
     "back": "Indietro",
     "forward": "Avanti",
@@ -21,6 +22,9 @@
     "submit": "Accedi",
     "otpTitle": "Verifica dell'accesso",
     "otpCode": "Codice OTP",
+    "otpNotReceived": "Non hai ricevuto il codice?",
+    "resendOtp": "Invia di nuovo il codice",
+    "otpSent": "Ti abbiamo inviato un nuovo codice OTP.",
     "success": "Accesso effettuato.",
     "otpErrors": {
       "invalidOtp": "Codice OTP non valido. Effettua nuovamente l'accesso.",

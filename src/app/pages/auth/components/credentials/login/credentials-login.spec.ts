@@ -125,7 +125,7 @@ describe('CredentialsLogin', () => {
       fixture.componentRef.setInput('credentialsConfig', config);
       store.setState({ [featureKey]: otpState() });
       await fixture.whenStable();
-      const back = element.querySelector<HTMLButtonElement>('button[type="button"]')!;
+      const back = element.querySelector<HTMLButtonElement>('button.btn-outline-primary')!;
       const confirm = element.querySelector<HTMLButtonElement>('button[type="submit"]')!;
       expect(back.parentElement?.classList.contains(`justify-content-${align}`)).toBe(true);
       expect(back.textContent?.trim()).toBe('Torna');
@@ -156,12 +156,29 @@ describe('CredentialsLogin', () => {
     const { store, fixture, element } = await createLogin();
     store.setState({ [featureKey]: otpState() });
     await fixture.whenStable();
-    const back = element.querySelector<HTMLButtonElement>('button[type="button"]')!;
+    const back = element.querySelector<HTMLButtonElement>('button.btn-outline-primary')!;
     expect(back.parentElement?.classList.contains('justify-content-start')).toBe(true);
     expect(back.textContent?.trim()).toBe('commons.back');
     expect(back.querySelector('.fa-arrow-left')).not.toBeNull();
     expect(element.querySelector('button[type="submit"]')?.textContent?.trim()).toBe(
       'commons.confirm',
+    );
+  });
+
+  it('should dispatch resendOtp with the current challenge code', async () => {
+    const { component, store, fixture, element, dispatch } = await createLogin();
+    store.setState({ [featureKey]: otpState() });
+    await fixture.whenStable();
+    dispatch.mockClear();
+
+    const resendButton = Array.from(element.querySelectorAll('button')).find((button) =>
+      button.textContent?.includes('credentials-login.resendOtp'),
+    );
+    expect(resendButton).toBeDefined();
+    resendButton!.click();
+
+    expect(dispatch).toHaveBeenCalledExactlyOnceWith(
+      CredentialsActions.resendOtp({ code: 'challenge-code' }),
     );
   });
 
