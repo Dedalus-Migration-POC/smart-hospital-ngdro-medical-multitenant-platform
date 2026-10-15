@@ -1,6 +1,6 @@
 {
   "id": "/bookings",
-  "name": "jsonConfig.default.pages.bookings.name",
+  "name": "bookings.bookings-list.name",
   "route": "/bookings",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -10,24 +10,24 @@
       }
     },
     "title": {
-      "text": "jsonConfig.default.pages.bookings.breadcrumb.title.text"
+      "text": "bookings.bookings-list.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.bookings.breadcrumb.subTitle.text"
+      "text": "bookings.bookings-list.breadcrumb.subTitle"
     },
     "button": {
       "text": {
-        "text": "jsonConfig.default.pages.bookings.breadcrumb.button.text.text"
+        "text": "bookings.bookings-list.breadcrumb.button"
       },
       "whiteSpace": "nowrap"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.bookings.breadcrumb.items.item0.name",
+        "name": "bookings.bookings-list.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.bookings.breadcrumb.items.item1.name",
+        "name": "bookings.bookings-list.breadcrumb.items.bookings",
         "routerLink": "/bookings"
       }
     ]
@@ -109,7 +109,7 @@
                         },
                         "label": {
                           "fontWeight": "semibold",
-                          "text": "jsonConfig.default.pages.bookings.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "bookings.bookings-list.fields.date.label"
                         }
                       },
                       {
@@ -134,7 +134,7 @@
                         "listStyle": "comma",
                         "label": {
                           "fontWeight": "semibold",
-                          "text": "jsonConfig.default.pages.bookings.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "bookings.bookings-list.fields.prescription.label"
                         }
                       }
                     ],
@@ -142,7 +142,7 @@
                       {
                         "key": "delete",
                         "label": {
-                          "text": "jsonConfig.default.pages.bookings.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text"
+                          "text": "bookings.bookings-list.actions.delete.label"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -185,12 +185,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.bookings.message.error.image.alt",
+        "alt": "bookings.bookings-list.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.bookings.message.error.text.title.text",
+          "text": "bookings.bookings-list.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -199,7 +199,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.bookings.message.error.text.subTitle.text",
+          "text": "bookings.bookings-list.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -223,12 +223,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.bookings.message.notFound.image.alt",
+        "alt": "bookings.bookings-list.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.bookings.message.notFound.text.title.text",
+          "text": "bookings.bookings-list.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -237,7 +237,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.bookings.message.notFound.text.subTitle.text",
+          "text": "bookings.bookings-list.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

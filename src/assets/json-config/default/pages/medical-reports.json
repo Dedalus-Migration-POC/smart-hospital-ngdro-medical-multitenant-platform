@@ -1,6 +1,6 @@
 {
   "id": "/medical-reports",
-  "name": "jsonConfig.default.pages.medical-reports.name",
+  "name": "medical-reports.name",
   "route": "/medical-reports",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -10,25 +10,25 @@
       }
     },
     "title": {
-      "text": "jsonConfig.default.pages.medical-reports.breadcrumb.title.text"
+      "text": "medical-reports.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.medical-reports.breadcrumb.subTitle.text"
+      "text": "medical-reports.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.medical-reports.breadcrumb.items.item0.name",
+        "name": "medical-reports.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.medical-reports.breadcrumb.items.item1.name",
+        "name": "medical-reports.breadcrumb.items.reports",
         "routerLink": "/medical-reports"
       }
     ]
   },
   "infoPopup": {
-    "title": "jsonConfig.default.pages.medical-reports.infoPopup.title",
-    "text": "jsonConfig.default.pages.medical-reports.infoPopup.text",
+    "title": "medical-reports.infoPopup.title",
+    "text": "medical-reports.infoPopup.text",
     "type": "warning"
   },
   "sections": [
@@ -57,7 +57,7 @@
                   "gap": "gap-3"
                 },
                 "submitButton": {
-                  "label": "jsonConfig.default.pages.medical-reports.sections.item0.areas.center.items.item0.props.submitButton.label",
+                  "label": "medical-reports.search.submitButton",
                   "layout": {
                     "align": "self-end"
                   }
@@ -70,7 +70,7 @@
                       "direction": "column",
                       "gap": "gap-2"
                     },
-                    "label": "jsonConfig.default.pages.medical-reports.sections.item0.areas.center.items.item0.props.fields.item0.label",
+                    "label": "medical-reports.search.fields.typeCode",
                     "required": false
                   }
                 ]
@@ -156,7 +156,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "medical-reports.fields.releaseDate"
                         }
                       },
                       {
@@ -172,7 +172,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "medical-reports.fields.operatingUnit"
                         }
                       },
                       {
@@ -189,7 +189,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item2.label.text"
+                          "text": "medical-reports.fields.expirationDate"
                         }
                       },
                       {
@@ -205,18 +205,18 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.label.text"
+                          "text": "medical-reports.fields.paymentStatus.label"
                         },
                         "badgeMap": {
                           "0": {
-                            "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.badgeMap.0.text",
+                            "text": "medical-reports.fields.paymentStatus.badgeMap.0",
                             "lineHeight": "md",
                             "color": {
                               "palette": "danger"
                             }
                           },
                           "1": {
-                            "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.badgeMap.1.text",
+                            "text": "medical-reports.fields.paymentStatus.badgeMap.1",
                             "lineHeight": "md",
                             "color": {
                               "palette": "success"
@@ -224,7 +224,7 @@
                           }
                         },
                         "fallbackBadge": {
-                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.fields.item3.fallbackBadge.text",
+                          "text": "medical-reports.fields.paymentStatus.fallbackBadge",
                           "fontSize": "sm",
                           "color": {
                             "palette": "secondary"
@@ -236,29 +236,25 @@
                       {
                         "key": "downloadPdf",
                         "label": {
-                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.actions.item0.label.text"
+                          "text": "medical-reports.actions.downloadPdf"
                         },
                         "type": "callback",
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadPdf",
-                          "params": [
-                            true
-                          ]
+                          "params": [true]
                         }
                       },
                       {
                         "key": "openPdf",
                         "label": {
-                          "text": "jsonConfig.default.pages.medical-reports.sections.item1.areas.center.items.item0.props.items.item0.actions.item1.label.text"
+                          "text": "medical-reports.actions.openPdf"
                         },
                         "type": "callback",
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadPdf",
-                          "params": [
-                            false
-                          ]
+                          "params": [false]
                         }
                       }
                     ]
@@ -286,12 +282,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.medical-reports.message.notFound.image.alt",
+        "alt": "medical-reports.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.medical-reports.message.notFound.text.title.text",
+          "text": "medical-reports.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -300,7 +296,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.medical-reports.message.notFound.text.subTitle.text",
+          "text": "medical-reports.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -324,12 +320,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.medical-reports.message.error.image.alt",
+        "alt": "medical-reports.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.medical-reports.message.error.text.title.text",
+          "text": "medical-reports.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -338,7 +334,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.medical-reports.message.error.text.subTitle.text",
+          "text": "medical-reports.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

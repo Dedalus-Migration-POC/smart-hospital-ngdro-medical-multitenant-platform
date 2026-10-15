@@ -1,22 +1,22 @@
 {
   "id": "/booking-a4h/appointments",
-  "name": "jsonConfig.default.pages.booking-a4h-appointments.name",
+  "name": "booking-a4h-appointments.name",
   "route": "/booking-a4h/appointments",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
-    "title": { "text": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.title.text" },
+    "title": { "text": "booking-a4h-appointments.breadcrumb.title" },
     "subTitle": {
-      "text": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.subTitle.text"
+      "text": "booking-a4h-appointments.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.items.item0.name",
+        "name": "booking-a4h-appointments.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.booking-a4h-appointments.breadcrumb.items.item1.name",
+        "name": "booking-a4h-appointments.breadcrumb.items.appointments",
         "routerLink": "/booking-a4h/appointments"
       }
     ]
@@ -60,17 +60,17 @@
                         "type": "text",
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "valueMap": {
-                          "SSN": { "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.valueMap.SSN.text" },
+                          "SSN": { "text": "booking-a4h-appointments.fields.contract.SSN" },
                           "SOLV": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.valueMap.SOLV.text"
+                            "text": "booking-a4h-appointments.fields.contract.SOLV"
                           },
                           "LP": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.valueMap.LP.text"
+                            "text": "booking-a4h-appointments.fields.contract.LP"
                           }
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "booking-a4h-appointments.fields.contract.label"
                         }
                       },
                       {
@@ -81,7 +81,7 @@
                         "valueStyle": { "fontWeight": "bold" },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "booking-a4h-appointments.fields.scheduledOn.label"
                         }
                       },
                       {
@@ -90,16 +90,16 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text"
+                          "text": "booking-a4h-appointments.fields.paymentStatus.label"
                         },
                         "badgeMap": {
                           "PAID": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.badgeMap.PAID.text",
+                            "text": "booking-a4h-appointments.fields.paymentStatus.PAID",
                             "color": { "palette": "success" },
                             "fontWeight": "semibold"
                           },
                           "TO_PAY": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.badgeMap.TO_PAY.text",
+                            "text": "booking-a4h-appointments.fields.paymentStatus.TO_PAY",
                             "color": { "palette": "warning" },
                             "fontWeight": "semibold"
                           }
@@ -111,7 +111,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item3.label.text"
+                          "text": "booking-a4h-appointments.fields.department.label"
                         }
                       },
                       {
@@ -120,7 +120,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item4.label.text"
+                          "text": "booking-a4h-appointments.fields.location.label"
                         }
                       },
                       {
@@ -133,31 +133,31 @@
                           "fontWeight": "semibold",
                           "color": { "palette": "primary" }
                         },
-                        "label": { "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.label.text" },
+                        "label": { "text": "booking-a4h-appointments.fields.hint.label" },
                         "valueMap": {
                           "TOO-EARLY": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.TOO-EARLY.text"
+                            "text": "booking-a4h-appointments.fields.hint.TOO-EARLY"
                           },
                           "PRIVACY": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.PRIVACY.text"
+                            "text": "booking-a4h-appointments.fields.hint.PRIVACY"
                           },
                           "TO-PAY": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.TO-PAY.text"
+                            "text": "booking-a4h-appointments.fields.hint.TO-PAY"
                           },
                           "MOBILE-PAYMENT-NOT-ALLOWED": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.MOBILE-PAYMENT-NOT-ALLOWED.text"
+                            "text": "booking-a4h-appointments.fields.hint.MOBILE-PAYMENT-NOT-ALLOWED"
                           },
                           "USER-NOT-VERIFIED": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.USER-NOT-VERIFIED.text"
+                            "text": "booking-a4h-appointments.fields.hint.USER-NOT-VERIFIED"
                           },
                           "UNKNOWN": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.UNKNOWN.text"
+                            "text": "booking-a4h-appointments.fields.hint.UNKNOWN"
                           },
                           "TOO-LATE": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.TOO-LATE.text"
+                            "text": "booking-a4h-appointments.fields.hint.TOO-LATE"
                           },
                           "NOT-EDITABLE": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.valueMap.NOT-EDITABLE.text"
+                            "text": "booking-a4h-appointments.fields.hint.NOT-EDITABLE"
                           }
                         }
                       }
@@ -172,7 +172,7 @@
                         "routeParams": { "id": "id" },
                         "disabledIf": [{ "key": "busy", "operator": "eq", "value": true }],
                         "label": {
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text",
+                          "text": "booking-a4h-appointments.actions.details",
                           "fontWeight": "semibold"
                         }
                       },
@@ -191,7 +191,7 @@
                           "position": "after"
                         },
                         "label": {
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.label.text"
+                          "text": "booking-a4h-appointments.actions.checkIn"
                         },
                         "callback": {
                           "nameFunction": "requestCheckIn",
@@ -211,7 +211,7 @@
                           "position": "after"
                         },
                         "label": {
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item0.props.items.item0.actions.item2.label.text"
+                          "text": "booking-a4h-appointments.actions.payment"
                         }
                       }
                     ]
@@ -252,17 +252,17 @@
                         "type": "text",
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "valueMap": {
-                          "SSN": { "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.valueMap.SSN.text" },
+                          "SSN": { "text": "booking-a4h-appointments.fields.contract.SSN" },
                           "SOLV": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.valueMap.SOLV.text"
+                            "text": "booking-a4h-appointments.fields.contract.SOLV"
                           },
                           "LP": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.valueMap.LP.text"
+                            "text": "booking-a4h-appointments.fields.contract.LP"
                           }
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item0.label.text"
+                          "text": "booking-a4h-appointments.fields.contract.label"
                         }
                       },
                       {
@@ -273,7 +273,7 @@
                         "valueStyle": { "fontWeight": "bold" },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item1.label.text"
+                          "text": "booking-a4h-appointments.fields.scheduledOn.label"
                         }
                       },
                       {
@@ -282,16 +282,16 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.label.text"
+                          "text": "booking-a4h-appointments.fields.paymentStatus.label"
                         },
                         "badgeMap": {
                           "PAID": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.badgeMap.PAID.text",
+                            "text": "booking-a4h-appointments.fields.paymentStatus.PAID",
                             "color": { "palette": "success" },
                             "fontWeight": "semibold"
                           },
                           "TO_PAY": {
-                            "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item2.badgeMap.TO_PAY.text",
+                            "text": "booking-a4h-appointments.fields.paymentStatus.TO_PAY",
                             "color": { "palette": "warning" },
                             "fontWeight": "semibold"
                           }
@@ -303,7 +303,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item3.label.text"
+                          "text": "booking-a4h-appointments.fields.department.label"
                         }
                       },
                       {
@@ -312,7 +312,7 @@
                         "rowSize": { "key": { "basis": "40%" }, "value": { "basis": "60%" } },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.fields.item4.label.text"
+                          "text": "booking-a4h-appointments.fields.location.label"
                         }
                       }
                     ],
@@ -326,7 +326,7 @@
                         "routeParams": { "id": "id" },
                         "disabledIf": [{ "key": "busy", "operator": "eq", "value": true }],
                         "label": {
-                          "text": "jsonConfig.default.pages.booking-a4h-appointments.sections.item0.areas.center.items.item1.props.items.item0.actions.item0.label.text",
+                          "text": "booking-a4h-appointments.actions.details",
                           "fontWeight": "semibold"
                         }
                       }
@@ -350,19 +350,19 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.booking-a4h-appointments.message.error.image.alt",
+        "alt": "booking-a4h-appointments.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.booking-a4h-appointments.message.error.text.title.text",
+          "text": "booking-a4h-appointments.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": { "palette": "danger" },
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.booking-a4h-appointments.message.error.text.subTitle.text",
+          "text": "booking-a4h-appointments.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": { "palette": "danger" },
@@ -379,12 +379,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.booking-a4h-appointments.message.notFound.image.alt",
+        "alt": "booking-a4h-appointments.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.booking-a4h-appointments.message.notFound.text.title.text",
+          "text": "booking-a4h-appointments.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": { "palette": "warning" },

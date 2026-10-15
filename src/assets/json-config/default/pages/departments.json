@@ -1,21 +1,21 @@
 {
   "id": "/departments",
-  "name": "jsonConfig.default.pages.departments.name",
+  "name": "departments.name",
   "route": "/departments",
   "breadcrumb": {
     "title": {
-      "text": "jsonConfig.default.pages.departments.breadcrumb.title.text"
+      "text": "departments.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.departments.breadcrumb.subTitle.text"
+      "text": "departments.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.departments.breadcrumb.items.item0.name",
+        "name": "departments.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.departments.breadcrumb.items.item1.name",
+        "name": "departments.breadcrumb.items.departments",
         "routerLink": "/departments"
       }
     ]
@@ -80,7 +80,7 @@
                           "type": "url",
                           "value": "assets/images/doctor.png",
                           "decorative": true,
-                          "alt": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.titleSubtitle.imageBlockConfig.image.alt",
+                          "alt": "departments.image.alt",
                           "height": "60px"
                         }
                       }
@@ -99,7 +99,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "departments.fields.pavilion"
                         }
                       },
                       {
@@ -115,7 +115,7 @@
                         },
                         "label": {
                           "fontWeight": "normal",
-                          "text": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "departments.fields.manager"
                         }
                       }
                     ],
@@ -123,7 +123,7 @@
                       {
                         "key": "viewUnits",
                         "label": {
-                          "text": "jsonConfig.default.pages.departments.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text",
+                          "text": "departments.actions.viewUnits.label",
                           "fontWeight": "bold"
                         },
                         "type": "callback",
@@ -135,9 +135,7 @@
                         },
                         "callback": {
                           "nameFunction": "viewUnits",
-                          "params": [
-                            "title"
-                          ]
+                          "params": ["title"]
                         }
                       }
                     ]

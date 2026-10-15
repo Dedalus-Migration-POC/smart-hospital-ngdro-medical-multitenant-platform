@@ -1467,7 +1467,7 @@ describe('Credentials reset password', () => {
       });
       expect(notification.error).toHaveBeenCalledExactlyOnceWith(
         'commons.error',
-        'credentials-reset-password.errors.userNotFound',
+        'reset-password.messages.errors.userNotFound',
         true,
         8000,
         NotificationPosition.Top,
@@ -1493,7 +1493,7 @@ describe('Credentials reset password', () => {
       expect(results[0].type).toBe(CredentialsActions.resetPasswordFailure.type);
       expect(notification.error).toHaveBeenCalledExactlyOnceWith(
         'commons.error',
-        'credentials-reset-password.errors.generic',
+        'reset-password.messages.errors.generic',
         true,
         8000,
         NotificationPosition.Top,

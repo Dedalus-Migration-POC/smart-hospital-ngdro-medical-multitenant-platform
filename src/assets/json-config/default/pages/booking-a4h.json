@@ -1,27 +1,27 @@
 {
   "id": "/booking-a4h",
-  "name": "jsonConfig.default.pages.booking-a4h.name",
+  "name": "booking-a4h.name",
   "route": "/booking-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
-    "title": { "text": "jsonConfig.default.pages.booking-a4h.breadcrumb.title.text" },
+    "title": { "text": "booking-a4h.breadcrumb.title" },
     "subTitle": {
-      "text": "jsonConfig.default.pages.booking-a4h.breadcrumb.subTitle.text"
+      "text": "booking-a4h.breadcrumb.subTitle"
     },
 
     "items": [
       {
-        "name": "jsonConfig.default.pages.booking-a4h.breadcrumb.items.item0.name",
+        "name": "booking-a4h.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.booking-a4h.breadcrumb.items.item1.name",
+        "name": "booking-a4h.breadcrumb.items.bookings",
         "routerLink": "/booking-a4h"
       },
       {
-        "name": "jsonConfig.default.pages.booking-a4h.breadcrumb.items.item2.name",
+        "name": "booking-a4h.breadcrumb.items.booking-type",
         "routerLink": "/booking-a4h"
       }
     ]

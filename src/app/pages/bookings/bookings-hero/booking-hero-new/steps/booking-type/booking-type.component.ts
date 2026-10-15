@@ -56,8 +56,8 @@ export class BookingTypeComponent implements OnInit {
     bookingType.forEach((value) => {
       cardTextLink.push({
         id: value.id.toString(),
-        title: this.translate.instant(value.titleI18n),
-        description: this.translate.instant(value.descriptionI18n),
+        title: value.titleI18n,
+        description: value.descriptionI18n,
         showArrow: true,
         styleClass: 'shadow-sm border-light w-min-50',
         // type: CardType.TEXT_LINK,

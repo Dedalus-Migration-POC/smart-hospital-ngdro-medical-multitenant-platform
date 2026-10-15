@@ -1,6 +1,6 @@
 {
   "id": "/bookings-hero",
-  "name": "jsonConfig.default.pages.bookings-hero.name",
+  "name": "bookings-hero.bookings-list.name",
   "route": "/bookings-hero",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -15,24 +15,24 @@
       }
     },
     "title": {
-      "text": "jsonConfig.default.pages.bookings-hero.breadcrumb.title.text"
+      "text": "bookings-hero.bookings-list.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.bookings-hero.breadcrumb.subTitle.text"
+      "text": "bookings-hero.bookings-list.breadcrumb.subTitle"
     },
     "button": {
       "text": {
-        "text": "jsonConfig.default.pages.bookings-hero.breadcrumb.button.text.text"
+        "text": "bookings-hero.bookings-list.breadcrumb.button"
       },
       "whiteSpace": "nowrap"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.bookings-hero.breadcrumb.items.item0.name",
+        "name": "bookings-hero.bookings-list.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.bookings-hero.breadcrumb.items.item1.name",
+        "name": "bookings-hero.bookings-list.breadcrumb.items.bookings",
         "routerLink": "/bookings-hero"
       }
     ]
@@ -105,7 +105,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "bookings-hero.bookings-list.fields.dateTime.label"
                         }
                       },
                       {
@@ -121,7 +121,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "bookings-hero.bookings-list.fields.location.label"
                         }
                       },
                       {
@@ -137,7 +137,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text"
+                          "text": "bookings-hero.bookings-list.fields.delegateFiscalCode.label"
                         }
                       }
                     ],
@@ -145,7 +145,7 @@
                       {
                         "key": "goToDetails",
                         "label": {
-                          "text": "jsonConfig.default.pages.bookings-hero.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text"
+                          "text": "bookings-hero.bookings-list.actions.goToDetails.label"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -179,12 +179,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.bookings-hero.message.error.image.alt",
+        "alt": "bookings-hero.bookings-list.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.bookings-hero.message.error.text.title.text",
+          "text": "bookings-hero.bookings-list.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -193,7 +193,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.bookings-hero.message.error.text.subTitle.text",
+          "text": "bookings-hero.bookings-list.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -217,12 +217,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.bookings-hero.message.notFound.image.alt",
+        "alt": "bookings-hero.bookings-list.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.bookings-hero.message.notFound.text.title.text",
+          "text": "bookings-hero.bookings-list.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -231,7 +231,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.bookings-hero.message.notFound.text.subTitle.text",
+          "text": "bookings-hero.bookings-list.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

@@ -6,8 +6,8 @@
   <app-input-component
     [control]="searchUnitText"
     [fieldName]="'searchUnitText'"
-    [label]="'units-page.search-label' | translate"
-    [placeholder]="'units-page.search-label' | translate"
+    [label]="'departments-units.search-label' | translate"
+    [placeholder]="'departments-units.search-label' | translate"
     [showErrors]="false"
     [iconClass]="'fa-solid fa-magnifying-glass'"
   ></app-input-component>
@@ -18,5 +18,5 @@
     <app-card [config]="renderedCardsConfig()"></app-card>
   </div>
 } @else {
-  <p>{{ 'units-page.no-units' | translate }}</p>
+  <p>{{ 'departments-units.no-units' | translate }}</p>
 }

@@ -1,9 +1,9 @@
 {
   "id": "/",
-  "name": "pages.home.name",
+  "name": "home.name",
   "route": "/",
   "meta": {
-    "title": "pages.home.meta.title"
+    "title": "home.meta.title"
   },
   "backgroundColor": "#ecf1f9",
   "sections": [
@@ -32,7 +32,7 @@
               "enabled": true,
               "props": {
                 "id": "home-title",
-                "text": "pages.home.page-title",
+                "text": "home.page-title",
                 "headingTag": "h1",
                 "fontSize": "xxl",
                 "lineHeight": "sm",
@@ -53,7 +53,7 @@
               "enabled": true,
               "props": {
                 "id": "home-info",
-                "text": "pages.home.info-text",
+                "text": "home.info-text",
                 "fontSize": "md",
                 "fontWeight": "normal",
                 "textDecoration": "none",
@@ -76,7 +76,7 @@
                   "value": "https://prod-cms-marche.s3.eu-south-1.amazonaws.com/67ff81fcbf93ca37d29f5ec1-image-b4e0aa2f-5efc-49ec-afe5-fd02e8a82fdd.jfif",
                   "decorative": false,
                   "className": "img-fluid rounded",
-                  "alt": "pages.home.external-image-alt"
+                  "alt": "home.external-image-alt"
                 },
                 "clickable": true,
                 "action": {
@@ -97,7 +97,7 @@
                 "id": "feed_rss",
                 "container": {
                   "title": {
-                    "text": "pages.home.feed-rss.title",
+                    "text": "home.feed-rss.title",
                     "fontSize": "md",
                     "fontWeight": "bold",
                     "color": {
@@ -111,7 +111,7 @@
                 },
                 "itemConfig": {
                   "readMore": {
-                    "text": "pages.home.feed-rss.readMore-button",
+                    "text": "home.feed-rss.readMore-button",
                     "style": {
                       "textStyle": {
                         "fontWeight": "semibold"
@@ -158,12 +158,12 @@
                     "type": "url",
                     "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
                     "decorative": true,
-                    "alt": "pages.home.feed-rss.not-found-image.alt",
+                    "alt": "home.feed-rss.not-found-image.alt",
                     "height": "150px"
                   },
                   "text": {
                     "title": {
-                      "text": "pages.home.feed-rss.not-found-message.title",
+                      "text": "home.feed-rss.not-found-message.title",
                       "fontSize": "xl",
                       "fontWeight": "normal",
                       "color": {
@@ -172,7 +172,7 @@
                       "lineHeight": "normal"
                     },
                     "subTitle": {
-                      "text": "pages.home.feed-rss.not-found-message.sub-title",
+                      "text": "home.feed-rss.not-found-message.sub-title",
                       "fontSize": "md",
                       "fontWeight": "normal",
                       "color": {
@@ -207,13 +207,13 @@
               "props": {
                 "id": "services-section",
                 "className": "services-section",
-                "ariaLabel": "pages.home.services-section.aria-label",
+                "ariaLabel": "home.services-section.aria-label",
                 "header": {
                   "title": {
-                    "text": "pages.home.services-section.title"
+                    "text": "home.services-section.title"
                   },
                   "subTitle": {
-                    "text": "pages.home.services-section.sub-title"
+                    "text": "home.services-section.sub-title"
                   }
                 },
                 "itemsLayout": {
@@ -227,22 +227,24 @@
                   {
                     "id": "vaccination-history",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.vaccination-history.aria-label",
+                    "ariaLabel": "home.services-section.vaccination-history.aria-label",
                     "action": {
                       "type": "comingSoon",
                       "comingSoonMessage": {
-                        "title": { "text": "pages.home.services-section.vaccination-history.coming-soon.title" },
+                        "title": {
+                          "text": "home.services-section.vaccination-history.coming-soon.title"
+                        },
                         "subTitle": {
-                          "text": "pages.home.services-section.vaccination-history.coming-soon.sub-title"
+                          "text": "home.services-section.vaccination-history.coming-soon.sub-title"
                         }
                       }
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.vaccination-history.title"
+                        "text": "home.services-section.vaccination-history.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.vaccination-history.sub-title"
+                        "text": "home.services-section.vaccination-history.sub-title"
                       }
                     },
                     "blocked": false,
@@ -255,17 +257,17 @@
                   {
                     "id": "payments",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.payments.aria-label",
+                    "ariaLabel": "home.services-section.payments.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/payments-pa"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.payments.title"
+                        "text": "home.services-section.payments.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.payments.sub-title"
+                        "text": "home.services-section.payments.sub-title"
                       }
                     },
                     "blocked": true,
@@ -278,17 +280,17 @@
                   {
                     "id": "payments-jcash",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.payments-jcash.aria-label",
+                    "ariaLabel": "home.services-section.payments-jcash.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/payments-jcash"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.payments-jcash.title"
+                        "text": "home.services-section.payments-jcash.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.payments-jcash.sub-title"
+                        "text": "home.services-section.payments-jcash.sub-title"
                       }
                     },
                     "blocked": true,
@@ -301,17 +303,17 @@
                   {
                     "id": "reports",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.reports.aria-label",
+                    "ariaLabel": "home.services-section.reports.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/medical-reports"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.reports.title"
+                        "text": "home.services-section.reports.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.reports.sub-title"
+                        "text": "home.services-section.reports.sub-title"
                       }
                     },
                     "blocked": true,
@@ -324,17 +326,17 @@
                   {
                     "id": "single-reports",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.single-reports.aria-label",
+                    "ariaLabel": "home.services-section.single-reports.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/single-report"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.single-reports.title"
+                        "text": "home.services-section.single-reports.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.single-reports.sub-title"
+                        "text": "home.services-section.single-reports.sub-title"
                       }
                     },
                     "blocked": false,
@@ -347,17 +349,17 @@
                   {
                     "id": "reports-by-triplet",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.reports-by-triplet.aria-label",
+                    "ariaLabel": "home.services-section.reports-by-triplet.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/reports-by-triplet"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.reports-by-triplet.title"
+                        "text": "home.services-section.reports-by-triplet.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.reports-by-triplet.sub-title"
+                        "text": "home.services-section.reports-by-triplet.sub-title"
                       }
                     },
                     "blocked": false,
@@ -370,14 +372,14 @@
                   {
                     "id": "departments",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.departments.aria-label",
+                    "ariaLabel": "home.services-section.departments.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/departments"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.departments.title"
+                        "text": "home.services-section.departments.title"
                       }
                     },
                     "blocked": false,
@@ -390,17 +392,17 @@
                   {
                     "id": "booking-arianna",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.booking-arianna.aria-label",
+                    "ariaLabel": "home.services-section.booking-arianna.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/bookings"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.booking-arianna.title"
+                        "text": "home.services-section.booking-arianna.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.booking-arianna.sub-title"
+                        "text": "home.services-section.booking-arianna.sub-title"
                       }
                     },
                     "blocked": true,
@@ -413,17 +415,17 @@
                   {
                     "id": "booking-hero",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.services-section.booking-hero.aria-label",
+                    "ariaLabel": "home.services-section.booking-hero.aria-label",
                     "action": {
                       "type": "route",
                       "url": "/bookings-hero"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.services-section.booking-hero.title"
+                        "text": "home.services-section.booking-hero.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.services-section.booking-hero.sub-title"
+                        "text": "home.services-section.booking-hero.sub-title"
                       }
                     },
                     "blocked": true,
@@ -444,10 +446,10 @@
               "props": {
                 "id": "services-section1",
                 "className": "services-section",
-                "ariaLabel": "pages.home.external-services-section.aria-label",
+                "ariaLabel": "home.external-services-section.aria-label",
                 "header": {
                   "title": {
-                    "text": "pages.home.external-services-section.header.title",
+                    "text": "home.external-services-section.header.title",
                     "fontSize": "md",
                     "fontWeight": "bold",
                     "color": {
@@ -456,7 +458,7 @@
                     "lineHeight": "md"
                   },
                   "subTitle": {
-                    "text": "pages.home.external-services-section.header.sub-title",
+                    "text": "home.external-services-section.header.sub-title",
                     "fontSize": "md",
                     "fontWeight": "normal",
                     "color": {
@@ -476,17 +478,17 @@
                   {
                     "id": "news",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.external-services-section.news.ariaLabel",
+                    "ariaLabel": "home.external-services-section.news.ariaLabel",
                     "action": {
                       "type": "externalLink",
                       "url": "https://www.salute.gov.it/new/it/sezione/notizie/"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.external-services-section.news.title"
+                        "text": "home.external-services-section.news.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.external-services-section.news.sub-title"
+                        "text": "home.external-services-section.news.sub-title"
                       }
                     },
                     "blocked": false,
@@ -499,17 +501,17 @@
                   {
                     "id": "clinical-records",
                     "type": "mediaText",
-                    "ariaLabel": "pages.home.external-services-section.clinical-records.ariaLabel",
+                    "ariaLabel": "home.external-services-section.clinical-records.ariaLabel",
                     "action": {
                       "type": "externalLink",
                       "url": "https://cds.asl.rieti.it/"
                     },
                     "text": {
                       "title": {
-                        "text": "pages.home.external-services-section.clinical-records.title"
+                        "text": "home.external-services-section.clinical-records.title"
                       },
                       "subTitle": {
-                        "text": "pages.home.external-services-section.clinical-records.sub-title"
+                        "text": "home.external-services-section.clinical-records.sub-title"
                       }
                     },
                     "blocked": false,

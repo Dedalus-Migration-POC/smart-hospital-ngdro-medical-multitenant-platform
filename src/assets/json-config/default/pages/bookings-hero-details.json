@@ -1,6 +1,6 @@
 {
   "id": "/bookings-hero/details",
-  "name": "jsonConfig.default.pages.bookings-hero-details.name",
+  "name": "bookings-hero.booking-details.name",
   "route": "/bookings-hero/details",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
@@ -15,22 +15,22 @@
       }
     },
     "title": {
-      "text": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.title.text"
+      "text": "bookings-hero.booking-details.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.subTitle.text"
+      "text": "bookings-hero.booking-details.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.items.item0.name",
+        "name": "bookings-hero.booking-details.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.items.item1.name",
+        "name": "bookings-hero.booking-details.breadcrumb.items.bookings",
         "routerLink": "/bookings-hero"
       },
       {
-        "name": "jsonConfig.default.pages.bookings-hero-details.breadcrumb.items.item2.name",
+        "name": "bookings-hero.booking-details.breadcrumb.items.details",
         "routerLink": "/bookings-hero/details"
       }
     ]
@@ -104,7 +104,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "bookings-hero.booking-details.fields.physicianName.label"
                         }
                       },
                       {
@@ -121,7 +121,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "bookings-hero.booking-details.fields.unitDescription.label"
                         }
                       },
                       {
@@ -138,7 +138,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text"
+                          "text": "bookings-hero.booking-details.fields.locationAddress.label"
                         }
                       },
                       {
@@ -164,7 +164,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item3.label.text"
+                          "text": "bookings-hero.booking-details.fields.dateTime.label"
                         }
                       },
                       {
@@ -181,7 +181,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item4.label.text"
+                          "text": "bookings-hero.booking-details.fields.locationName.label"
                         }
                       },
                       {
@@ -198,7 +198,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.label.text"
+                          "text": "bookings-hero.booking-details.fields.delegateFiscalCode.label"
                         }
                       },
                       {
@@ -215,7 +215,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item6.label.text"
+                          "text": "bookings-hero.booking-details.fields.finalPrice.label"
                         }
                       },
                       {
@@ -232,7 +232,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item7.label.text"
+                          "text": "bookings-hero.booking-details.fields.agendaPatientText.label"
                         }
                       }
                     ],
@@ -240,7 +240,7 @@
                       {
                         "key": "print",
                         "label": {
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text"
+                          "text": "bookings-hero.booking-details.actions.print"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -253,7 +253,7 @@
                       {
                         "key": "email",
                         "label": {
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.label.text"
+                          "text": "bookings-hero.booking-details.actions.email"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -273,7 +273,7 @@
                       {
                         "key": "reschedule",
                         "label": {
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item2.label.text"
+                          "text": "bookings-hero.booking-details.actions.reschedule"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -292,7 +292,7 @@
                       {
                         "key": "cancel",
                         "label": {
-                          "text": "jsonConfig.default.pages.bookings-hero-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item3.label.text"
+                          "text": "bookings-hero.booking-details.actions.cancel"
                         },
                         "type": "callback",
                         "mode": "bootstrap",
@@ -335,12 +335,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.bookings-hero-details.message.error.image.alt",
+        "alt": "bookings-hero.booking-details.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.bookings-hero-details.message.error.text.title.text",
+          "text": "bookings-hero.booking-details.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -349,7 +349,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.bookings-hero-details.message.error.text.subTitle.text",
+          "text": "bookings-hero.booking-details.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -373,12 +373,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.bookings-hero-details.message.notFound.image.alt",
+        "alt": "bookings-hero.booking-details.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.bookings-hero-details.message.notFound.text.title.text",
+          "text": "bookings-hero.booking-details.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -387,7 +387,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.bookings-hero-details.message.notFound.text.subTitle.text",
+          "text": "bookings-hero.booking-details.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

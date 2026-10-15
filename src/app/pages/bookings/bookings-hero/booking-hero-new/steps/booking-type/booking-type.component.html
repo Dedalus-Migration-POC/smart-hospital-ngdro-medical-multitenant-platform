@@ -17,8 +17,8 @@
           [attr.aria-label]="'bookings-hero.booking-new.booking-type.type' | translate"
           (click)="onCardSelected(card)"
         >
-          <div class="fw-semibold">{{ card.title }}</div>
-          <div class="text-secondary mt-1">{{ card.description }}</div>
+          <div class="fw-semibold">{{ card.title | translate }}</div>
+          <div class="text-secondary mt-1">{{ card.description | translate }}</div>
         </button>
       </div>
     }

@@ -40,7 +40,7 @@ export class CredentialsEffects {
             this.notificationService.error(
               this.translate.instant('commons.error'),
               this.translate.instant(
-                `credentials-reset-password.errors.${userNotFound ? 'userNotFound' : 'generic'}`,
+                `reset-password.messages.errors.${userNotFound ? 'userNotFound' : 'generic'}`,
               ),
               true,
               8000,

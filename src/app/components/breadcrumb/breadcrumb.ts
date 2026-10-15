@@ -11,7 +11,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { BreadcrumbConfig, BreadcrumbContainerStyle } from './model';
 import { LanguageService } from '../../initialize/state/services/language.service';
@@ -45,8 +45,17 @@ export class Breadcrumb {
   });
   private readonly breadcrumbTheme = computed(() => this.appConfig()?.theme.breadcrumb);
   private readonly buttonsTheme = computed(() => this.appConfig()?.theme.buttonsStyle);
-  private langService = inject(LanguageService);
-  lang = this.langService.lang;
+  private readonly langService = inject(LanguageService);
+  private readonly translateService = inject(TranslateService);
+  protected readonly translationParams = computed(() => {
+    this.langService.lang();
+    const params = this.config()?.interpolationParams;
+    if (!params) return undefined;
+
+    return Object.fromEntries(
+      Object.entries(params).map(([key, value]) => [key, this.translateService.instant(value)]),
+    );
+  });
   protected readonly getBackgroundPaletteClass = getBackgroundPaletteClass;
   protected readonly getTextClasses = getTextClasses;
   protected readonly getTextStyles = getTextStyles;

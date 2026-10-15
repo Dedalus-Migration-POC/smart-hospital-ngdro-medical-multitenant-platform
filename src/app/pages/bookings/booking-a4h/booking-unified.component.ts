@@ -11,7 +11,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { DesignAngularKitModule } from 'design-angular-kit';
 import { SmartHospitalState } from 'src/app/store/reducers';
 import { ensureStrutturaSelected } from './ensure-struttura-selected';
@@ -43,7 +43,6 @@ export class BookingUnifiedComponent implements OnInit, OnDestroy {
   private readonly consentPdfService = inject(ConsentPdfService);
   private readonly bookingResumeService = inject(BookingResumeService);
   private breadcrumbService = inject(BreadcrumbService);
-  private translateService = inject(TranslateService);
 
   protected readonly loading = this.store.selectSignal(selectAnyLoading);
   protected readonly bookingType = this.store.selectSignal(selectBookingType);
@@ -64,11 +63,10 @@ export class BookingUnifiedComponent implements OnInit, OnDestroy {
   readonly breadcrumbConfig = computed(() => {
     const config = this.pageConfig();
     const bookingType = this.bookingType();
-    const test = this.translateService.instant('booking-a4h.' + bookingType);
     if (!config?.breadcrumb) return null;
 
     return this.breadcrumbService.interpolateConfig(config.breadcrumb, {
-      bookingType: bookingType ? test : '',
+      bookingType: bookingType ? `booking-a4h.${bookingType}` : '',
     });
   });
 

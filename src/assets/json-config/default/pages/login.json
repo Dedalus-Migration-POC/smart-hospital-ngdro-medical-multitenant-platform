@@ -1,6 +1,6 @@
 {
   "id": "/login",
-  "name": "jsonConfig.default.pages.login.name",
+  "name": "login.name",
   "route": "/login",
   "backgroundColor": "#ecf1f9",
   "sections": [
@@ -29,7 +29,7 @@
               "enabled": true,
               "props": {
                 "id": "auth-title",
-                "text": "jsonConfig.default.pages.login.sections.item0.areas.start.items.item0.props.text",
+                "text": "login.title",
                 "headingTag": "h1",
                 "fontSize": "xxl",
                 "fontWeight": "semibold",
@@ -50,7 +50,7 @@
               "enabled": true,
               "props": {
                 "id": "auth-into",
-                "text": "jsonConfig.default.pages.login.sections.item0.areas.start.items.item1.props.text",
+                "text": "login.description",
                 "fontSize": "md",
                 "fontWeight": "normal",
                 "textDecoration": "none",
@@ -87,10 +87,10 @@
                 "authMethods": [
                   {
                     "type": "SPID",
-                    "title": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item0.title",
-                    "description": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item0.description",
+                    "title": "login.authMethods.spid.title",
+                    "description": "login.authMethods.spid.description",
                     "button": {
-                      "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item0.button.text",
+                      "text": "login.authMethods.spid.button",
                       "showIcon": true,
                       "align": "start"
                     },
@@ -120,10 +120,10 @@
                   },
                   {
                     "type": "CIE",
-                    "title": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item1.title",
-                    "description": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item1.description",
+                    "title": "login.authMethods.cie.title",
+                    "description": "login.authMethods.cie.description",
                     "button": {
-                      "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item1.button.text",
+                      "text": "login.authMethods.cie.button",
                       "showIcon": true,
                       "align": "start"
                     },
@@ -147,10 +147,10 @@
                   },
                   {
                     "type": "MYID",
-                    "title": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item2.title",
-                    "description": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item2.description",
+                    "title": "login.authMethods.myid.title",
+                    "description": "login.authMethods.myid.description",
                     "button": {
-                      "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item2.button.text",
+                      "text": "login.authMethods.myid.button",
                       "showIcon": true,
                       "align": "start"
                     },
@@ -160,10 +160,10 @@
                   },
                   {
                     "type": "LOCAL",
-                    "title": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.title",
-                    "description": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.description",
+                    "title": "login.authMethods.local.title",
+                    "description": "login.authMethods.local.description",
                     "button": {
-                      "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.button.text",
+                      "text": "login.authMethods.local.button",
                       "showIcon": false,
                       "align": "center"
                     },
@@ -172,18 +172,18 @@
                         "buttons": {
                           "align": "center",
                           "confirm": {
-                            "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.config.otp.buttons.confirm.text"
+                            "text": "login.authMethods.local.config.otp.buttons.confirm"
                           },
                           "back": {
-                            "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.config.otp.buttons.back.text",
+                            "text": "login.authMethods.local.config.otp.buttons.back",
                             "showIcon": true
                           }
                         }
                       },
                       "resetPassword": {
-                        "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.config.resetPassword.text",
+                        "text": "login.authMethods.local.config.resetPassword.text",
                         "link": {
-                          "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.config.resetPassword.link.text",
+                          "text": "login.authMethods.local.config.resetPassword.link",
                           "url": "/reset-password",
                           "external": false,
                           "style": {
@@ -197,9 +197,9 @@
                         }
                       },
                       "registration": {
-                        "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.config.registration.text",
+                        "text": "login.authMethods.local.config.registration.text",
                         "link": {
-                          "text": "jsonConfig.default.pages.login.sections.item0.areas.end.items.item0.props.authMethods.item3.config.registration.link.text",
+                          "text": "login.authMethods.local.config.registration.link",
                           "url": "/credentials-registration",
                           "external": false,
                           "style": {

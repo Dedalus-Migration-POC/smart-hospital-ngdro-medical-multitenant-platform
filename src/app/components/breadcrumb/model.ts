@@ -26,6 +26,7 @@ export interface BreadcrumbConfig extends BreadcrumbStyle {
   title: TextConfig;
   subTitle?: TextConfig;
   items: BreadcrumbItem[];
+  interpolationParams?: Record<string, string>;
   button?: ButtonConfig;
 }
 

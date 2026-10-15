@@ -1,6 +1,7 @@
-const staging = "https://polimess-test.smarthospital.cloud";
+const stagingMessina = "https://polimess-test.smarthospital.cloud";
+const stagingMondino = "https://digitalservices-test.mondino.it";
 
-const target = staging;
+const target = stagingMessina;
 
 const proxyRoutes = [
   "/api",

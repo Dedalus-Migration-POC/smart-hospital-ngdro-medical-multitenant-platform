@@ -6,8 +6,8 @@
   <app-input-component
     [control]="searchText"
     [fieldName]="'searchText'"
-    [label]="'departments-page.search-label' | translate"
-    [placeholder]="'departments-page.search-label' | translate"
+    [label]="'departments.search-label' | translate"
+    [placeholder]="'departments.search-label' | translate"
     [showErrors]="false"
     [iconClass]="'fa-solid fa-magnifying-glass'"
   ></app-input-component>
@@ -18,5 +18,5 @@
     <app-card [config]="renderedCardsConfig()"></app-card>
   </div>
 } @else {
-  <p>{{ 'departments-page.no-departments' | translate }}</p>
+  <p>{{ 'departments.no-departments' | translate }}</p>
 }

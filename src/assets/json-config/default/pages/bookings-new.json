@@ -1,61 +1,61 @@
 {
   "id": "/bookings/new",
-  "name": "jsonConfig.default.pages.bookings-new.name",
+  "name": "bookings.booking-new.name",
   "route": "/bookings/new",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
-      "title": {
-        "text": "jsonConfig.default.pages.bookings-new.breadcrumb.title.text"
+    "title": {
+      "text": "bookings.booking-new.breadcrumb.title"
+    },
+    "subTitle": {
+      "text": "bookings.booking-new.breadcrumb.subTitle"
+    },
+    "items": [
+      {
+        "name": "bookings.booking-new.breadcrumb.items.home",
+        "routerLink": "/"
       },
-      "subTitle": {
-        "text": "jsonConfig.default.pages.bookings-new.breadcrumb.subTitle.text"
+      {
+        "name": "bookings.booking-new.breadcrumb.items.bookings",
+        "routerLink": "/bookings"
       },
-      "items": [
-        {
-          "name": "jsonConfig.default.pages.bookings-new.breadcrumb.items.item0.name",
-          "routerLink": "/"
-        },
-        {
-          "name": "jsonConfig.default.pages.bookings-new.breadcrumb.items.item1.name",
-          "routerLink": "/bookings"
-        },
-        {
-          "name": "jsonConfig.default.pages.bookings-new.breadcrumb.items.item2.name",
-          "routerLink": "/bookings/new"
-        }
-      ]
+      {
+        "name": "bookings.booking-new.breadcrumb.items.new",
+        "routerLink": "/bookings/new"
+      }
+    ]
   },
   "modals": {
     "confirmAvailability": {
-        "header": {
-          "title": {
-            "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.header.title.text"
-          }
-        },
-        "body": {
-          "text": {
-            "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.body.text.text"
-          }
-        },
-        "footer": {
-          "actions": [
-            {
-              "button": {
-                "outline": true,
-                "text": {
-                  "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.footer.actions.item0.button.text.text"
-                }
-              }
-            },
-            {
-              "button": {
-                "text": {
-                  "text": "jsonConfig.default.pages.bookings-new.modals.confirmAvailability.footer.actions.item1.button.text.text"
-                }
+      "header": {
+        "title": {
+          "text": "bookings.booking-new.modals.confirmAvailability.header.title"
+        }
+      },
+      "body": {
+        "text": {
+          "text": "bookings.booking-new.modals.confirmAvailability.body.text"
+        }
+      },
+      "footer": {
+        "actions": [
+          {
+            "button": {
+              "outline": true,
+              "text": {
+                "text": "bookings.booking-new.modals.confirmAvailability.footer.actions.cancel"
               }
             }
-          ]
-        }
+          },
+          {
+            "button": {
+              "text": {
+                "text": "bookings.booking-new.modals.confirmAvailability.footer.actions.confirm"
+              }
+            }
+          }
+        ]
       }
+    }
   }
 }

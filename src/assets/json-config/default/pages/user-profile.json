@@ -1,24 +1,24 @@
 {
   "id": "/user-profile",
-  "name": "jsonConfig.default.pages.user-profile.name",
+  "name": "user-profile.name",
   "route": "/user-profile",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "backgroundColor": "#e6e8ea",
     "color": "#333333",
     "title": {
-      "text": "jsonConfig.default.pages.user-profile.breadcrumb.title.text"
+      "text": "user-profile.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.user-profile.breadcrumb.subTitle.text"
+      "text": "user-profile.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.user-profile.breadcrumb.items.item0.name",
+        "name": "user-profile.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.user-profile.breadcrumb.items.item1.name",
+        "name": "user-profile.breadcrumb.items.profile",
         "routerLink": "/user-profile"
       }
     ]
@@ -27,25 +27,25 @@
     "backgroundColor": "#e6e8ea",
     "color": "#333333",
     "title": {
-      "text": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.title.text"
+      "text": "user-profile.breadcrumbRegistration.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.subTitle.text"
+      "text": "user-profile.breadcrumbRegistration.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.items.item0.name",
+        "name": "user-profile.breadcrumbRegistration.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.user-profile.breadcrumbRegistration.items.item1.name",
+        "name": "user-profile.breadcrumbRegistration.items.profile",
         "routerLink": "/user-profile"
       }
     ]
   },
   "sections": [
     {
-      "title": "jsonConfig.default.pages.user-profile.sections.item0.title",
+      "title": "user-profile.sections.account.title",
       "readOnly": true,
       "areas": {
         "center": {
@@ -60,9 +60,7 @@
                   "gap": "gap-3"
                 },
                 "layoutFields": {
-                  "direction": [
-                    "column"
-                  ],
+                  "direction": ["column"],
                   "wrap": "wrap",
                   "gap": "gap-2"
                 },
@@ -77,7 +75,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item0.label"
+                    "label": "user-profile.sections.account.fields.fiscalCode"
                   },
                   {
                     "id": "firstName",
@@ -88,7 +86,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item1.label"
+                    "label": "user-profile.sections.account.fields.firstName"
                   },
                   {
                     "id": "lastName",
@@ -99,7 +97,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item2.label"
+                    "label": "user-profile.sections.account.fields.lastName"
                   },
                   {
                     "id": "date_of_birth",
@@ -110,7 +108,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item0.areas.center.items.item0.props.fields.item3.label"
+                    "label": "user-profile.sections.account.fields.dateOfBirth"
                   }
                 ]
               }
@@ -120,8 +118,8 @@
       }
     },
     {
-      "title": "jsonConfig.default.pages.user-profile.sections.item1.title",
-      "subTitle": "jsonConfig.default.pages.user-profile.sections.item1.subTitle",
+      "title": "user-profile.sections.domicile.title",
+      "subTitle": "user-profile.sections.domicile.subTitle",
       "areas": {
         "center": {
           "items": [
@@ -135,10 +133,7 @@
                   "gap": "gap-3"
                 },
                 "layoutFields": {
-                  "direction": [
-                    "column",
-                    "md-row"
-                  ],
+                  "direction": ["column", "md-row"],
                   "wrap": "wrap",
                   "gap": "gap-2"
                 },
@@ -155,7 +150,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item0.label",
+                    "label": "user-profile.sections.domicile.fields.address",
                     "validators": [
                       {
                         "type": "text"
@@ -174,7 +169,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item1.label",
+                    "label": "user-profile.sections.domicile.fields.city",
                     "validators": [
                       {
                         "type": "text"
@@ -193,7 +188,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item2.label",
+                    "label": "user-profile.sections.domicile.fields.postalCode",
                     "validators": [
                       {
                         "type": "cap"
@@ -212,7 +207,7 @@
                       "basis": "calc(50% - 0.25rem)",
                       "width": "100%"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item1.areas.center.items.item0.props.fields.item3.label",
+                    "label": "user-profile.sections.domicile.fields.province",
                     "validators": [
                       {
                         "type": "text"
@@ -227,8 +222,8 @@
       }
     },
     {
-      "title": "jsonConfig.default.pages.user-profile.sections.item2.title",
-      "subTitle": "jsonConfig.default.pages.user-profile.sections.item2.subTitle",
+      "title": "user-profile.sections.contacts.title",
+      "subTitle": "user-profile.sections.contacts.subTitle",
       "areas": {
         "center": {
           "items": [
@@ -242,10 +237,7 @@
                   "gap": "gap-3"
                 },
                 "layoutFields": {
-                  "direction": [
-                    "column",
-                    "md-row"
-                  ],
+                  "direction": ["column", "md-row"],
                   "wrap": "wrap",
                   "gap": "gap-2"
                 },
@@ -258,7 +250,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item2.areas.center.items.item0.props.fields.item0.label",
+                    "label": "user-profile.sections.contacts.fields.email",
                     "validators": [
                       {
                         "type": "required"
@@ -276,7 +268,7 @@
                       "shrink": "shrink-0",
                       "grow": "grow-1"
                     },
-                    "label": "jsonConfig.default.pages.user-profile.sections.item2.areas.center.items.item0.props.fields.item1.label",
+                    "label": "user-profile.sections.contacts.fields.phoneNumber",
                     "validators": [
                       {
                         "type": "phone_number"
@@ -292,10 +284,10 @@
     }
   ],
   "consents": {
-    "title": "jsonConfig.default.pages.user-profile.consents.title",
-    "subTitle": "jsonConfig.default.pages.user-profile.consents.subTitle"
+    "title": "user-profile.consents.title",
+    "subTitle": "user-profile.consents.subTitle"
   },
   "submitButton": {
-    "label": "jsonConfig.default.pages.user-profile.submitButton.label"
+    "label": "user-profile.submitButton.label"
   }
 }

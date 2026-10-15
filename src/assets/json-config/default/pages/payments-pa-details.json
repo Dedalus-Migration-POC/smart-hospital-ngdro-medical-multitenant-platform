@@ -1,26 +1,26 @@
 {
   "id": "/payments-pa/details",
-  "name": "jsonConfig.default.pages.payments-pa-details.name",
+  "name": "payments-pa-details.name",
   "route": "/payments-pa/details",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {
-      "text": "jsonConfig.default.pages.payments-pa-details.breadcrumb.title.text"
+      "text": "payments-pa-details.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.payments-pa-details.breadcrumb.subTitle.text"
+      "text": "payments-pa-details.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.payments-pa-details.breadcrumb.items.item0.name",
+        "name": "payments-pa-details.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.payments-pa-details.breadcrumb.items.item1.name",
+        "name": "payments-pa-details.breadcrumb.items.payments",
         "routerLink": "/payments-pa"
       },
       {
-        "name": "jsonConfig.default.pages.payments-pa-details.breadcrumb.items.item2.name",
+        "name": "payments-pa-details.breadcrumb.items.details",
         "routerLink": ""
       }
     ]
@@ -95,7 +95,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "payments-pa-details.fields.amount"
                         }
                       },
                       {
@@ -112,25 +112,25 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "payments-pa-details.fields.state.label"
                         },
                         "badgeMap": {
                           "PAYED": {
-                            "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.badgeMap.PAYED.text",
+                            "text": "payments-pa-details.fields.state.badgeMap.PAYED",
                             "lineHeight": "md",
                             "color": {
                               "palette": "success"
                             }
                           },
                           "NOT_PAYED": {
-                            "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.badgeMap.NOT_PAYED.text",
+                            "text": "payments-pa-details.fields.state.badgeMap.NOT_PAYED",
                             "lineHeight": "md",
                             "color": {
                               "palette": "warning"
                             }
                           },
                           "VERIFICATION": {
-                            "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.badgeMap.VERIFICATION.text",
+                            "text": "payments-pa-details.fields.state.badgeMap.VERIFICATION",
                             "lineHeight": "md",
                             "color": {
                               "palette": "danger"
@@ -138,7 +138,7 @@
                           }
                         },
                         "fallbackBadge": {
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.fallbackBadge.text",
+                          "text": "payments-pa-details.fields.state.fallbackBadge",
                           "fontSize": "sm",
                           "color": {
                             "palette": "secondary"
@@ -159,7 +159,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text"
+                          "text": "payments-pa-details.fields.iuv"
                         }
                       },
                       {
@@ -176,7 +176,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item3.label.text"
+                          "text": "payments-pa-details.fields.creditor"
                         }
                       },
                       {
@@ -193,7 +193,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item4.label.text"
+                          "text": "payments-pa-details.fields.taxCode"
                         }
                       }
                     ],
@@ -201,7 +201,7 @@
                       {
                         "key": "pay",
                         "label": {
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text"
+                          "text": "payments-pa-details.actions.pay"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -220,7 +220,7 @@
                       {
                         "key": "download",
                         "label": {
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.label.text"
+                          "text": "payments-pa-details.actions.downloadPdf.label"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -236,7 +236,7 @@
                           }
                         ],
                         "hideMessage": {
-                          "text": "jsonConfig.default.pages.payments-pa-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.hideMessage.text"
+                          "text": "payments-pa-details.actions.downloadPdf.hideMessage"
                         }
                       }
                     ]
@@ -264,12 +264,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.payments-pa-details.message.notFound.image.alt",
+        "alt": "payments-pa-details.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.payments-pa-details.message.notFound.text.title.text",
+          "text": "payments-pa-details.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -278,7 +278,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.payments-pa-details.message.notFound.text.subTitle.text",
+          "text": "payments-pa-details.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -302,12 +302,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.payments-pa-details.message.error.image.alt",
+        "alt": "payments-pa-details.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.payments-pa-details.message.error.text.title.text",
+          "text": "payments-pa-details.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -316,7 +316,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.payments-pa-details.message.error.text.subTitle.text",
+          "text": "payments-pa-details.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

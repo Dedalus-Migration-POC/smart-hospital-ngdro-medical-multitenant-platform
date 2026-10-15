@@ -1,23 +1,23 @@
 {
   "id": "/booking-a4h/appointments/edit",
-  "name": "pages.booking-a4h-appointments-edit.name",
+  "name": "booking-a4h-appointments-edit.name",
   "route": "/booking-a4h/appointments/edit",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
-    "title": { "text": "pages.booking-a4h-appointments-edit.breadcrumb.title" },
+    "title": { "text": "booking-a4h-appointments-edit.breadcrumb.title" },
     "items": [
       {
-        "name": "pages.booking-a4h-appointments-edit.breadcrumb.items.home",
+        "name": "booking-a4h-appointments-edit.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "pages.booking-a4h-appointments-edit.breadcrumb.items.appointments",
+        "name": "booking-a4h-appointments-edit.breadcrumb.items.appointments",
         "routerLink": "/booking-a4h/appointments"
       },
       {
-        "name": "pages.booking-a4h-appointments-edit.breadcrumb.items.edit",
+        "name": "booking-a4h-appointments-edit.breadcrumb.items.edit",
         "routerLink": "/booking-a4h/appointments"
       }
     ]

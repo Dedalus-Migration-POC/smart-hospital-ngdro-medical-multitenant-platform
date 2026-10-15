@@ -1,23 +1,23 @@
 {
   "id": "/consents-a4h",
-  "name": "jsonConfig.default.pages.consents-a4h.name",
+  "name": "consents-a4h.name",
   "route": "/consents-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },
     "itemsStyle": { "color": { "hex": "#333333" } },
-    "title": { "text": "jsonConfig.default.pages.consents-a4h.breadcrumb.title.text" },
+    "title": { "text": "consents-a4h.breadcrumb.title" },
     "subTitle": {
-      "text": "jsonConfig.default.pages.consents-a4h.breadcrumb.subTitle.text"
+      "text": "consents-a4h.breadcrumb.subTitle"
     },
 
     "items": [
       {
-        "name": "jsonConfig.default.pages.consents-a4h.breadcrumb.items.item0.name",
+        "name": "consents-a4h.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.consents-a4h.breadcrumb.items.item1.name",
+        "name": "consents-a4h.breadcrumb.items.consents",
         "routerLink": "/consents-a4h"
       }
     ]
@@ -143,12 +143,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.consents-a4h.message.error.image.alt",
+        "alt": "consents-a4h.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.consents-a4h.message.error.text.title.text",
+          "text": "consents-a4h.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -157,7 +157,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.consents-a4h.message.error.text.subTitle.text",
+          "text": "consents-a4h.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -181,12 +181,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.consents-a4h.message.notFound.image.alt",
+        "alt": "consents-a4h.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.consents-a4h.message.notFound.text.title.text",
+          "text": "consents-a4h.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -195,7 +195,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.consents-a4h.message.notFound.text.subTitle.text",
+          "text": "consents-a4h.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

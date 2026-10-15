@@ -20,7 +20,7 @@
               [ngClass]="getTextClasses(getItemsStyle(config))"
               [ngStyle]="getTextStyles(getItemsStyle(config))"
             >
-              {{ item.name | translate }}
+              {{ item.name | translate: translationParams() }}
             </a>
             <span class="separator">/</span>
           }
@@ -30,7 +30,7 @@
               [ngClass]="getTextClasses(getActiveItemStyle(config))"
               [ngStyle]="getTextStyles(getActiveItemStyle(config))"
             >
-              {{ item.name | translate }}
+              {{ item.name | translate: translationParams() }}
             </span>
           }
         </li>
@@ -43,9 +43,9 @@
           [ngClass]="getTextClasses(getTitleStyle(config))"
           [ngStyle]="getTextStyles(getTitleStyle(config))"
         >
-          {{ config.title.text | translate }}
+          {{ config.title.text | translate: translationParams() }}
         </h1>
-        @if (config.subTitle?.text | translate; as subTitle) {
+        @if (config.subTitle?.text | translate: translationParams(); as subTitle) {
           <p
             class="col-xl-5 col-lg-6 cursor-default"
             [ngClass]="getTextClasses(getSubTitleStyle(config))"

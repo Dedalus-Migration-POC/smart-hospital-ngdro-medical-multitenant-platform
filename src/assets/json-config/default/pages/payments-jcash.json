@@ -1,22 +1,22 @@
 {
   "id": "/payments-jcash",
-  "name": "jsonConfig.default.pages.payments-jcash.name",
+  "name": "payments-jcash.name",
   "route": "/payments-jcash",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {
-      "text": "jsonConfig.default.pages.payments-jcash.breadcrumb.title.text"
+      "text": "payments-jcash.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.payments-jcash.breadcrumb.subTitle.text"
+      "text": "payments-jcash.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.payments-jcash.breadcrumb.items.item0.name",
+        "name": "payments-jcash.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.payments-jcash.breadcrumb.items.item1.name",
+        "name": "payments-jcash.breadcrumb.items.payments",
         "routerLink": ""
       }
     ]
@@ -79,7 +79,7 @@
                           }
                         },
                         "label": {
-                          "text": "jsonConfig.default.pages.payments-jcash.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text",
+                          "text": "payments-jcash.fields.amount",
                           "fontSize": "md",
                           "fontWeight": "normal",
                           "lineHeight": "md",
@@ -101,7 +101,7 @@
                           }
                         },
                         "label": {
-                          "text": "jsonConfig.default.pages.payments-jcash.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text",
+                          "text": "payments-jcash.fields.paymentSystem",
                           "fontSize": "md",
                           "fontWeight": "normal",
                           "lineHeight": "md",
@@ -134,7 +134,7 @@
                           "position": "after"
                         },
                         "label": {
-                          "text": "jsonConfig.default.pages.payments-jcash.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text",
+                          "text": "payments-jcash.actions.view.label",
                           "textTransform": "uppercase",
                           "color": {
                             "hex": "#123c73"
@@ -143,9 +143,7 @@
                         },
                         "callback": {
                           "nameFunction": "goDetail",
-                          "params": [
-                            "codiceDistinta"
-                          ]
+                          "params": ["codiceDistinta"]
                         }
                       }
                     ]
@@ -173,12 +171,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.payments-jcash.message.notFound.image.alt",
+        "alt": "payments-jcash.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.payments-jcash.message.notFound.text.title.text",
+          "text": "payments-jcash.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -187,7 +185,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.payments-jcash.message.notFound.text.subTitle.text",
+          "text": "payments-jcash.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -211,12 +209,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.payments-jcash.message.error.image.alt",
+        "alt": "payments-jcash.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.payments-jcash.message.error.text.title.text",
+          "text": "payments-jcash.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -225,7 +223,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.payments-jcash.message.error.text.subTitle.text",
+          "text": "payments-jcash.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

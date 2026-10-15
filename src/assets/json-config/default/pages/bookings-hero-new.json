@@ -1,38 +1,38 @@
 {
   "id": "/bookings-hero/new",
-  "name": "jsonConfig.default.pages.bookings-hero-new.name",
+  "name": "bookings-hero.booking-new.name",
   "route": "/bookings-hero/new",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
-      "background": {
-        "fill": {
-          "hex": "#e6e8ea"
-        }
+    "background": {
+      "fill": {
+        "hex": "#e6e8ea"
+      }
+    },
+    "itemsStyle": {
+      "color": {
+        "hex": "#333333"
+      }
+    },
+    "title": {
+      "text": "bookings-hero.booking-new.breadcrumb.title"
+    },
+    "subTitle": {
+      "text": "bookings-hero.booking-new.breadcrumb.subTitle"
+    },
+    "items": [
+      {
+        "name": "bookings-hero.booking-new.breadcrumb.items.home",
+        "routerLink": "/"
       },
-      "itemsStyle": {
-        "color": {
-          "hex": "#333333"
-        }
+      {
+        "name": "bookings-hero.booking-new.breadcrumb.items.bookings",
+        "routerLink": "/bookings-hero"
       },
-      "title": {
-        "text": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.title.text"
-      },
-      "subTitle": {
-        "text": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.subTitle.text"
-      },
-      "items": [
-        {
-          "name": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.items.item0.name",
-          "routerLink": "/"
-        },
-        {
-          "name": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.items.item1.name",
-          "routerLink": "/bookings-hero"
-        },
-        {
-          "name": "jsonConfig.default.pages.bookings-hero-new.breadcrumb.items.item2.name",
-          "routerLink": "/bookings-hero/new"
-        }
-      ]
+      {
+        "name": "bookings-hero.booking-new.breadcrumb.items.new",
+        "routerLink": "/bookings-hero/new"
+      }
+    ]
   }
 }

@@ -1,26 +1,26 @@
 {
   "id": "/payments-jcash/details",
-  "name": "jsonConfig.default.pages.payments-jcash-details.name",
+  "name": "payments-jcash-details.name",
   "route": "/payments-jcash/details",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {
-      "text": "jsonConfig.default.pages.payments-jcash-details.breadcrumb.title.text"
+      "text": "payments-jcash-details.breadcrumb.title"
     },
     "subTitle": {
-      "text": "jsonConfig.default.pages.payments-jcash-details.breadcrumb.subTitle.text"
+      "text": "payments-jcash-details.breadcrumb.subTitle"
     },
     "items": [
       {
-        "name": "jsonConfig.default.pages.payments-jcash-details.breadcrumb.items.item0.name",
+        "name": "payments-jcash-details.breadcrumb.items.home",
         "routerLink": "/"
       },
       {
-        "name": "jsonConfig.default.pages.payments-jcash-details.breadcrumb.items.item1.name",
+        "name": "payments-jcash-details.breadcrumb.items.payments",
         "routerLink": "/payments-jcash"
       },
       {
-        "name": "jsonConfig.default.pages.payments-jcash-details.breadcrumb.items.item2.name",
+        "name": "payments-jcash-details.breadcrumb.items.details",
         "routerLink": "/payments-jcash/details"
       }
     ]
@@ -92,7 +92,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item0.label.text"
+                          "text": "payments-jcash-details.fields.amount"
                         }
                       },
                       {
@@ -109,18 +109,18 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.label.text"
+                          "text": "payments-jcash-details.fields.status.label"
                         },
                         "badgeMap": {
                           "PAGATA": {
-                            "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.badgeMap.PAGATA.text",
+                            "text": "payments-jcash-details.fields.status.badgeMap.PAGATA",
                             "lineHeight": "md",
                             "color": {
                               "palette": "success"
                             }
                           },
                           "DA PAGARE": {
-                            "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.badgeMap.DA_PAGARE.text",
+                            "text": "payments-jcash-details.fields.status.badgeMap.DA_PAGARE",
                             "lineHeight": "md",
                             "color": {
                               "palette": "warning"
@@ -128,7 +128,7 @@
                           }
                         },
                         "fallbackBadge": {
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item1.fallbackBadge.text",
+                          "text": "payments-jcash-details.fields.status.fallbackBadge",
                           "fontSize": "sm",
                           "color": {
                             "palette": "secondary"
@@ -149,7 +149,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item2.label.text"
+                          "text": "payments-jcash-details.fields.iuv"
                         }
                       },
                       {
@@ -166,7 +166,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item3.label.text"
+                          "text": "payments-jcash-details.fields.services"
                         }
                       },
                       {
@@ -186,7 +186,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item4.label.text"
+                          "text": "payments-jcash-details.fields.debtor"
                         }
                       },
                       {
@@ -203,7 +203,7 @@
                         },
                         "label": {
                           "fontWeight": "bold",
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.fields.item5.label.text"
+                          "text": "payments-jcash-details.fields.taxCode"
                         }
                       }
                     ],
@@ -211,7 +211,7 @@
                       {
                         "key": "pay",
                         "label": {
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item0.label.text"
+                          "text": "payments-jcash-details.actions.pay"
                         },
                         "type": "callback",
                         "renderAs": "button",
@@ -230,15 +230,13 @@
                       {
                         "key": "download",
                         "label": {
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.label.text"
+                          "text": "payments-jcash-details.actions.downloadReceipt.label"
                         },
                         "type": "callback",
                         "renderAs": "button",
                         "callback": {
                           "nameFunction": "downloadPdf",
-                          "params": [
-                            "iuv"
-                          ]
+                          "params": ["iuv"]
                         },
                         "hideIf": [
                           {
@@ -248,7 +246,7 @@
                           }
                         ],
                         "hideMessage": {
-                          "text": "jsonConfig.default.pages.payments-jcash-details.sections.item0.areas.center.items.item0.props.items.item0.actions.item1.hideMessage.text"
+                          "text": "payments-jcash-details.actions.downloadReceipt.hideMessage"
                         }
                       }
                     ]
@@ -276,12 +274,12 @@
         "type": "url",
         "value": "https://thumbs.dreamstime.com/b/icona-di-errore-16125237.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.payments-jcash-details.message.error.image.alt",
+        "alt": "payments-jcash-details.message.error.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.payments-jcash-details.message.error.text.title.text",
+          "text": "payments-jcash-details.message.error.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -290,7 +288,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.payments-jcash-details.message.error.text.subTitle.text",
+          "text": "payments-jcash-details.message.error.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {
@@ -314,12 +312,12 @@
         "type": "url",
         "value": "https://static.vecteezy.com/ti/vettori-gratis/p1/12181008-documento-dati-file-non-trovato-concetto-illustrazione-piatto-design-vettore-eps10-moderno-grafico-elemento-per-atterraggio-pagina-vuoto-stato-ui-infografica-icona-eccetera-vettoriale.jpg",
         "decorative": true,
-        "alt": "jsonConfig.default.pages.payments-jcash-details.message.notFound.image.alt",
+        "alt": "payments-jcash-details.message.notFound.image-alt",
         "height": "150px"
       },
       "text": {
         "title": {
-          "text": "jsonConfig.default.pages.payments-jcash-details.message.notFound.text.title.text",
+          "text": "payments-jcash-details.message.notFound.title",
           "fontSize": "xl",
           "fontWeight": "normal",
           "color": {
@@ -328,7 +326,7 @@
           "lineHeight": "normal"
         },
         "subTitle": {
-          "text": "jsonConfig.default.pages.payments-jcash-details.message.notFound.text.subTitle.text",
+          "text": "payments-jcash-details.message.notFound.subTitle",
           "fontSize": "md",
           "fontWeight": "normal",
           "color": {

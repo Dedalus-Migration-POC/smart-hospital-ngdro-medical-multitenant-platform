@@ -11,7 +11,6 @@ import {
 } from './dynamic-form.model';
 import { NgxFormValidators } from '../../../validators';
 import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
-import { getLocalizedText } from '../../shared/utility/text.utils';
 import { LocalizedTextLocale } from '../../shared/models/shared_model';
 import { InputComponent } from '../input/input.component';
 import { SelectComponent } from '../select/select.component';
@@ -146,7 +145,7 @@ export class DynamicFormComponent {
 
   getErrorMessage(field: any, errorKey: string): string {
     if (field.errorMessages?.[errorKey]) {
-      return getLocalizedText(field.errorMessages[errorKey], (key) => this.translate.instant(key));
+      return this.getLocalizedLabel(field.errorMessages[errorKey]);
     }
     return `Error: ${errorKey}`;
   }
@@ -157,9 +156,7 @@ export class DynamicFormComponent {
     }
     const resolved: Record<string, string> = {};
     for (const key of Object.keys(field.errorMessages)) {
-      resolved[key] = getLocalizedText(field.errorMessages[key], (translationKey) =>
-        this.translate.instant(translationKey),
-      );
+      resolved[key] = this.getLocalizedLabel(field.errorMessages[key]);
     }
     return resolved;
   }
@@ -169,17 +166,14 @@ export class DynamicFormComponent {
       return '';
     }
 
-    if (typeof value === 'string') {
-      return value;
-    }
-
-    return getLocalizedText(value, (key) => this.translate.instant(key));
+    this.lang();
+    return this.translate.instant(value);
   }
 
   getButtonLabel(): string {
     const buttonConfig = this.formConfig()?.submitButton;
     if (buttonConfig?.label) {
-      return getLocalizedText(buttonConfig.label, (key) => this.translate.instant(key));
+      return this.getLocalizedLabel(buttonConfig.label);
     }
     return 'Submit';
   }
