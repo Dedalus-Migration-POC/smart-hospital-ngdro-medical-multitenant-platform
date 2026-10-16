@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { defaultLanguage, Language, languages } from './i18n/language.model';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, forkJoin, of, switchMap, tap } from 'rxjs';
+import { TranslationObject } from '@ngx-translate/core';
+import { AppConfig } from '../app-config.model';
 
 export type Lang = string;
 
@@ -58,7 +60,7 @@ export class LanguageService {
     return this.current;
   }
 
-  init(config?: { defaultLanguage?: string; supportedLanguages?: string[] }) {
+  init(config?: Partial<NonNullable<AppConfig['translate']['i18n']>>) {
     const supportedLanguages = [...new Set(config?.supportedLanguages?.filter(Boolean) ?? [])];
     const availableLanguages = supportedLanguages.length
       ? supportedLanguages
@@ -74,7 +76,26 @@ export class LanguageService {
       storedLocaleId && availableLanguages.includes(storedLocaleId)
         ? storedLocaleId
         : this.defaultLanguageId;
-    return this.select(selectedLanguage);
+    const backendPrefix = config?.backendPrefix ?? '/api/i18n/';
+    return forkJoin(
+      availableLanguages.map((localeId) =>
+        forkJoin({
+          local: this.translate.currentLoader
+            .getTranslation(localeId)
+            .pipe(catchError(() => of<TranslationObject>({}))),
+          remote: this.http
+            .get<TranslationObject>(
+              `${backendPrefix.replace(/\/$/, '')}/${encodeURIComponent(localeId)}.json`,
+            )
+            .pipe(catchError(() => of<TranslationObject>({}))),
+        }).pipe(
+          tap(({ local, remote }) => {
+            this.translate.setTranslation(localeId, local);
+            this.translate.setTranslation(localeId, remote, true);
+          }),
+        ),
+      ),
+    ).pipe(switchMap(() => this.select(selectedLanguage)));
   }
 
   select(updateLocaleId: string) {

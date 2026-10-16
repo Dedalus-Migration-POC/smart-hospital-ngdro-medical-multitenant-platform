@@ -119,6 +119,7 @@ export interface AppConfig {
     i18n?: {
       defaultLanguage: string;
       supportedLanguages: string[];
+      backendPrefix?: string;
     };
   };
   chatbot?: {

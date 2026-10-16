@@ -1,9 +1,7 @@
 {
   "i18n": {
     "defaultLanguage": "it",
-    "supportedLanguages": [
-      "it",
-      "en"
-    ]
+    "backendPrefix": "/api/i18n/",
+    "supportedLanguages": ["it", "en"]
   }
 }
