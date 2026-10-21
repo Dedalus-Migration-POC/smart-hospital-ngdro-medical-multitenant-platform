@@ -3,7 +3,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Component, computed, inject, input } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
-import { CompiledCardsContainer } from './model';
+import { CardItemsLayout, CompiledCardsContainer } from './model';
 import { LanguageService } from '../../initialize/state/services/language.service';
 import { getFlexLayoutClasses } from '../../shared/utility/layout.utils';
 import { MediaText } from './types/media-text/media-text';
@@ -32,7 +32,7 @@ export class Card {
 
   private readonly containerTheme = computed(() => this.appConfig()?.theme.card?.container);
 
-  readonly itemsLayout = computed(
+  readonly itemsLayout = computed<CardItemsLayout>(
     () => this.config()?.itemsLayout ?? this.containerTheme()?.itemsLayout ?? {},
   );
   readonly itemColBootstrapClasses = computed(

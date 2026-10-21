@@ -1,10 +1,10 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { MediaTextCard } from '../../model';
+import { CardItemsLayout, MediaTextCard } from '../../model';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../../initialize/state/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
-import { ActionConfig, FlexLayoutConfig } from '../../../../shared/models/shared_model';
+import { ActionConfig } from '../../../../shared/models/shared_model';
 import { Router } from '@angular/router';
 import {
   DesignAngularKitModule,
@@ -31,7 +31,7 @@ import { getCardStyles } from '../../../../shared/utility/cards.utils';
 })
 export class MediaText {
   readonly card = input.required<MediaTextCard>();
-  readonly itemsLayout = input.required<FlexLayoutConfig>();
+  readonly itemsLayout = input.required<CardItemsLayout>();
   private readonly store = inject(Store<SmartHospitalState>);
   private readonly appConfig = toSignal(this.store.select(selectAppConfig), { initialValue: null });
   private readonly cardBaseTheme = computed(() => this.appConfig()?.theme.card?.base);
@@ -76,6 +76,10 @@ export class MediaText {
       return;
     }
     switch (action.type) {
+      case 'callback':
+        action.callback?.();
+        break;
+
       case 'comingSoon':
         event.preventDefault();
         event.stopImmediatePropagation();

@@ -29,6 +29,10 @@ export type Card = MediaTextCard | DataCard;
 // Tipi runtime (usati dopo compileActions(), passati ai componenti)
 export type CompiledCard = MediaTextCard | CompiledDataCard;
 
+export interface CardItemsLayout extends FlexLayoutConfig {
+  imageContainerWidth?: string;
+}
+
 // Contenitore delle card — tipo di CONFIGURAZIONE
 // e configurazione layout generale delle card stesse (es. se sono disposte in colonna o in riga, gap tra le card, ecc.)
 // se viene settato un layout è valido per tutte le card, NON si possono settare layout diversi per card
@@ -45,7 +49,7 @@ export interface CardsContainer {
   containerLayout?: FlexLayoutConfig;
 
   // layout interno comune applicato a ogni card, sia mediaText sia data
-  itemsLayout?: FlexLayoutConfig;
+  itemsLayout?: CardItemsLayout;
   // Responsive width della card con le classi di bootstrap
   itemColBootstrapClasses?: string;
   // layout comune delle actions, usato dalle DataCard

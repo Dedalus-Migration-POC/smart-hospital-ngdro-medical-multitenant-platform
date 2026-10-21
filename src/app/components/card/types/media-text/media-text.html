@@ -14,8 +14,13 @@
         (click)="onCardClick($event, card.action)"
       >
         <div class="h-100 w-100" [ngClass]="getFlexLayoutClasses(layout)">
-          <div class="d-flex align-items-start gap-2 w-100">
-            <div class="flex-grow-1">
+          <div
+            class="d-flex align-items-start gap-2"
+            [class.w-100]="!layout.imageContainerWidth"
+            [class.flex-shrink-0]="layout.direction === 'row' && !!layout.imageContainerWidth"
+            [style.width]="layout.imageContainerWidth"
+          >
+            <div [class.flex-grow-1]="!layout.imageContainerWidth">
               @if (card.image) {
                 <app-image-block [config]="toImageBlockConfig(card)"></app-image-block>
               }
@@ -26,7 +31,13 @@
             }
           </div>
 
-          <div class="card-text w-100">
+          <div
+            class="card-text"
+            [class.w-100]="layout.direction !== 'row' || !layout.imageContainerWidth"
+            [class.media-text-row-content]="
+              layout.direction === 'row' && !!layout.imageContainerWidth
+            "
+          >
             @if (card.text.title.text | translate; as titleText) {
               <div
                 [ngClass]="

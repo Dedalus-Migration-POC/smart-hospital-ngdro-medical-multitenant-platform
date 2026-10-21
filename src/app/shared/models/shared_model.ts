@@ -141,12 +141,13 @@ export interface TextStyle {
   padding?: SpacingConfig;
 }
 
-export type ActionType = 'route' | 'externalLink' | 'comingSoon';
+export type ActionType = 'route' | 'externalLink' | 'comingSoon' | 'callback';
 export interface ActionConfig {
   type: ActionType;
   url?: string;
   target?: LinkTarget;
   comingSoonMessage?: TextSection;
+  callback?: () => void;
 }
 
 export type LocalizedTextLocale = string;

@@ -28,5 +28,117 @@
   },
   "content": {
     "selectStructure": true
-  }
+  },
+  "sections": [
+    {
+      "id": "booking-types-section",
+      "areas": {
+        "layout": { "direction": "column" },
+        "start": {
+          "layout": { "direction": "column" },
+          "items": [
+            {
+              "id": "booking-type-cards",
+              "type": "SERVICE_CARDS",
+              "enabled": true,
+              "props": {
+                "id": "booking-type-cards",
+                "className": "",
+                "itemColBootstrapClasses": "col-12 col-md-6 col-xl-4",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "center",
+                  "imageContainerWidth": "auto",
+                  "gap": "gap-3"
+                },
+                "items": [
+                  {
+                    "id": "booking-with-ssn",
+                    "type": "mediaText",
+                    "ariaLabel": "booking-a4h.booking-with-ssn",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "booking-a4h.booking-with-ssn",
+                        "fontSize": "18px",
+                        "fontWeight": "semibold",
+                        "lineHeight": "28px"
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/ricetta_ssn.svg",
+                      "decorative": true,
+                      "height": "78px",
+                      "width": "auto"
+                    }
+                  },
+                  {
+                    "id": "booking-no-doctor-select",
+                    "type": "mediaText",
+                    "ariaLabel": "booking-a4h.booking-no-doctor-select",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "booking-a4h.booking-no-doctor-select",
+                        "fontSize": "18px",
+                        "fontWeight": "semibold",
+                        "lineHeight": "28px"
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/senza_scelta_medico.svg",
+                      "decorative": true,
+                      "height": "78px"
+                    }
+                  },
+                  {
+                    "id": "booking-with-doctor-select",
+                    "type": "mediaText",
+                    "ariaLabel": "booking-a4h.booking-with-doctor-select",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "booking-a4h.booking-with-doctor-select",
+                        "fontSize": "18px",
+                        "fontWeight": "semibold",
+                        "lineHeight": "28px"
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/con_scelta_medico.svg",
+                      "decorative": true,
+                      "height": "78px"
+                    }
+                  },
+                  {
+                    "id": "physicians",
+                    "type": "mediaText",
+                    "ariaLabel": "booking-a4h.physicians",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "booking-a4h.physicians",
+                        "fontSize": "18px",
+                        "fontWeight": "semibold",
+                        "lineHeight": "28px"
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/concept_medici.svg",
+                      "decorative": true,
+                      "height": "78px"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

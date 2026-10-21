@@ -25,6 +25,83 @@
       }
     ]
   },
+  "sections": [
+    {
+      "id": "booking-types-section",
+      "areas": {
+        "layout": { "direction": "column" },
+        "start": {
+          "layout": { "direction": "column" },
+          "items": [
+            {
+              "id": "booking-type-cards",
+              "type": "SERVICE_CARDS",
+              "enabled": true,
+              "props": {
+                "id": "booking-type-cards",
+                "className": "mt-3",
+                "itemColBootstrapClasses": "col-12 col-md-6",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "center",
+                  "imageContainerWidth": "auto",
+                  "gap": "gap-3"
+                },
+                "items": [
+                  {
+                    "id": "1",
+                    "type": "mediaText",
+                    "ariaLabel": "bookings.booking-new.booking-type.ssn.title",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "bookings.booking-new.booking-type.ssn.title",
+                        "fontWeight": "semibold"
+                      },
+                      "subTitle": {
+                        "text": "bookings.booking-new.booking-type.ssn.description",
+                        "color": { "palette": "secondary" }
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/ricetta_ssn.svg",
+                      "decorative": true,
+                      "height": "78px",
+                      "width": "auto"
+                    }
+                  },
+                  {
+                    "id": "2",
+                    "type": "mediaText",
+                    "ariaLabel": "bookings.booking-new.booking-type.private.title",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "bookings.booking-new.booking-type.private.title",
+                        "fontWeight": "semibold"
+                      },
+                      "subTitle": {
+                        "text": "bookings.booking-new.booking-type.private.description",
+                        "color": { "palette": "secondary" }
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/senza_scelta_medico.svg",
+                      "decorative": true,
+                      "height": "78px",
+                      "width": "auto"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "modals": {
     "confirmAvailability": {
       "header": {

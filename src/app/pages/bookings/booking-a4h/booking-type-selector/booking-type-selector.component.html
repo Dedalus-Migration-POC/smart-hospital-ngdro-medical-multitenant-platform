@@ -7,20 +7,7 @@
 <section class="container py-4">
   <h1 class="h3 mb-4">{{ 'booking-a4h.bookingTypeTitle' | translate: { location: '' } }}</h1>
 
-  <div class="cards-container row g-3">
-    @for (card of cards; track card.targetUrl) {
-      <div class="col-12 col-md-6 col-xl-4">
-        <button type="button" class="it-card shadow border-0" (click)="onCardClick(card.targetUrl)">
-          <span class="it-card-body d-flex align-items-center">
-            <img class="button-img me-3" [src]="card.imageUrl" alt="" aria-hidden="true" />
-            <span class="select-service-title d-block mb-0">{{
-              'booking-a4h.' + card.targetUrl | translate
-            }}</span>
-          </span>
-        </button>
-      </div>
-    }
-  </div>
+  <app-card [config]="cards()"></app-card>
 </section>
 @if (struttureLoading()) {
   <app-spinner

@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { DesignAngularKitModule } from 'design-angular-kit';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Breadcrumb } from 'src/app/components/breadcrumb/breadcrumb';
@@ -25,13 +24,15 @@ import {
   selectStruttureLoading,
 } from 'src/app/pages/bookings/booking-a4h/state/struttura/struttura.selectors';
 import { BookingUnifiedModalService } from '../booking-unified-modal.service';
-import { BookingType } from '../models/booking-type';
+import { BookingType, isBookingType } from '../models/booking-type';
 import { PageConfigService } from 'src/app/pages/page-config.service';
 import { Spinner } from 'src/app/components/spinner/spinner';
+import { Card } from 'src/app/components/card/card';
+import { CardsContainer } from 'src/app/components/card/model';
 
 @Component({
   selector: 'app-booking-type-selector',
-  imports: [TranslateModule, DesignAngularKitModule, Breadcrumb, Spinner],
+  imports: [TranslateModule, Breadcrumb, Spinner, Card],
   templateUrl: './booking-type-selector.component.html',
   styleUrls: ['./booking-type-selector.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -108,22 +109,30 @@ export class BookingTypeSelectorComponent {
     this.router.navigate([bookingType], { relativeTo: this.activatedRoute });
   }
 
-  protected readonly cards = [
-    {
-      imageUrl: 'assets/images/ricetta_ssn.svg',
-      targetUrl: BookingType.Ssn,
-    },
-    {
-      imageUrl: 'assets/images/senza_scelta_medico.svg',
-      targetUrl: BookingType.NoDocSelect,
-    },
-    {
-      imageUrl: 'assets/images/con_scelta_medico.svg',
-      targetUrl: BookingType.WithDocSelect,
-    },
-    {
-      imageUrl: 'assets/images/concept_medici.svg',
-      targetUrl: BookingType.Physicians,
-    },
-  ];
+  protected readonly cards = computed<CardsContainer | null>(() => {
+    const config = this.pageConfig()
+      ?.sections?.flatMap((section) =>
+        [section.areas.start, section.areas.center, section.areas.end].flatMap(
+          (area) => area?.items ?? [],
+        ),
+      )
+      .find((item) => item.id === 'booking-type-cards' && item.type === 'SERVICE_CARDS');
+
+    if (!config?.enabled || !config.props) return null;
+
+    const cards = config.props as CardsContainer;
+    return {
+      ...cards,
+      items: cards.items.map((card) => {
+        if (card.type !== 'mediaText' || card.action.type !== 'callback') return card;
+        const bookingType = card.id;
+        if (!isBookingType(bookingType)) return card;
+
+        return {
+          ...card,
+          action: { ...card.action, callback: () => this.onCardClick(bookingType) },
+        };
+      }),
+    };
+  });
 }

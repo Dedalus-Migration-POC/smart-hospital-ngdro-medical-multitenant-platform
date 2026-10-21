@@ -34,5 +34,129 @@
         "routerLink": "/bookings-hero/new"
       }
     ]
-  }
+  },
+  "sections": [
+    {
+      "id": "booking-types-section",
+      "areas": {
+        "layout": { "direction": "column" },
+        "start": {
+          "layout": { "direction": "column" },
+          "items": [
+            {
+              "id": "booking-type-cards",
+              "type": "SERVICE_CARDS",
+              "enabled": true,
+              "props": {
+                "id": "booking-type-cards",
+                "className": "mt-3",
+                "ariaLabel": "bookings-hero.booking-new.booking-type.type",
+                "itemColBootstrapClasses": "col-12 col-md-6",
+                "itemsLayout": {
+                  "direction": "row",
+                  "align": "center",
+                  "imageContainerWidth": "auto",
+                  "gap": "gap-3"
+                },
+                "items": [
+                  {
+                    "id": "nre",
+                    "type": "mediaText",
+                    "ariaLabel": "bookings-hero.booking-new.booking-type.nre-title",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "bookings-hero.booking-new.booking-type.nre-title",
+                        "fontWeight": "semibold"
+                      },
+                      "subTitle": {
+                        "text": "bookings-hero.booking-new.booking-type.nre-description",
+                        "color": { "palette": "secondary" }
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/ricetta_ssn.svg",
+                      "decorative": true,
+                      "height": "78px",
+                      "width": "auto"
+                    }
+                  },
+                  {
+                    "id": "free_prof",
+                    "type": "mediaText",
+                    "ariaLabel": "bookings-hero.booking-new.booking-type.free_prof-title",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "bookings-hero.booking-new.booking-type.free_prof-title",
+                        "fontWeight": "semibold"
+                      },
+                      "subTitle": {
+                        "text": "bookings-hero.booking-new.booking-type.free_prof-description",
+                        "color": { "palette": "secondary" }
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/senza_scelta_medico.svg",
+                      "decorative": true,
+                      "height": "78px",
+                      "width": "auto"
+                    }
+                  },
+                  {
+                    "id": "nre_delegate",
+                    "type": "mediaText",
+                    "ariaLabel": "bookings-hero.booking-new.booking-type.nre_delegate-title",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "bookings-hero.booking-new.booking-type.nre_delegate-title",
+                        "fontWeight": "semibold"
+                      },
+                      "subTitle": {
+                        "text": "bookings-hero.booking-new.booking-type.nre_delegate-description",
+                        "color": { "palette": "secondary" }
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/ricetta_ssn.svg",
+                      "decorative": true,
+                      "height": "78px",
+                      "width": "auto"
+                    }
+                  },
+                  {
+                    "id": "free_prof_delegate",
+                    "type": "mediaText",
+                    "ariaLabel": "bookings-hero.booking-new.booking-type.free_prof_delegate-title",
+                    "action": { "type": "callback" },
+                    "text": {
+                      "title": {
+                        "text": "bookings-hero.booking-new.booking-type.free_prof_delegate-title",
+                        "fontWeight": "semibold"
+                      },
+                      "subTitle": {
+                        "text": "bookings-hero.booking-new.booking-type.free_prof_delegate-description",
+                        "color": { "palette": "secondary" }
+                      }
+                    },
+                    "image": {
+                      "type": "url",
+                      "value": "assets/images/senza_scelta_medico.svg",
+                      "decorative": true,
+                      "height": "78px",
+                      "width": "auto"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

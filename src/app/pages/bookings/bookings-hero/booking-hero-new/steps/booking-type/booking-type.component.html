@@ -2,25 +2,5 @@
   <h2 class="mt-3 fw-semibold">
     {{ 'bookings-hero.booking-new.booking-type.select-type' | translate }}
   </h2>
-  <!-- <app-card
-    [wrapInList]="true"
-    [ariaLabel]="'bookings-hero.booking-new.booking-type.type' | translate"
-    [cards]="cardTextLink"
-    (cardSelected)="onCardSelected($event)"
-  ></app-card> -->
-  <div class="row g-3 mt-1">
-    @for (card of cardTextLink; track card.id) {
-      <div class="col-12 col-md-6">
-        <button
-          type="button"
-          class="w-100 text-start shadow-sm border border-light rounded p-3 bg-white"
-          [attr.aria-label]="'bookings-hero.booking-new.booking-type.type' | translate"
-          (click)="onCardSelected(card)"
-        >
-          <div class="fw-semibold">{{ card.title | translate }}</div>
-          <div class="text-secondary mt-1">{{ card.description | translate }}</div>
-        </button>
-      </div>
-    }
-  </div>
+  <app-card [config]="cards()"></app-card>
 </div>

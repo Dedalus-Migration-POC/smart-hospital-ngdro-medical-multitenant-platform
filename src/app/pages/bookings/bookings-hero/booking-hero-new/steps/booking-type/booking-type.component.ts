@@ -1,74 +1,53 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { DesignAngularKitModule } from 'design-angular-kit';
-// import { Card as CardComponent } from 'src/app/components/card/card';
-// import { Card, CardTextLink, CardType } from 'src/app/components/card/card.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { Card } from 'src/app/components/card/card';
+import { CardsContainer } from 'src/app/components/card/model';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { SmartHospitalState } from 'src/app/store/reducers';
-import { BookingStepId, BookingType, OptionBookingType } from '../../../state/model';
+import { BookingStepId } from '../../../state/model';
 import { setActiveStep, setSummaryBooking } from '../../../state/actions';
 
 @Component({
   selector: 'app-booking-select-type',
-  standalone: true,
-  imports: [DesignAngularKitModule, TranslateModule],
+  imports: [Card, TranslateModule],
   templateUrl: './booking-type.component.html',
   styleUrls: ['./booking-type.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookingTypeComponent implements OnInit {
-  private readonly translate = inject(TranslateService);
+export class BookingTypeComponent {
   private readonly store = inject(Store<SmartHospitalState>);
+  private readonly pageConfigService = inject(PageConfigService);
+  private readonly pageConfig = toSignal(this.pageConfigService.get('/bookings-hero/new'), {
+    initialValue: null,
+  });
 
-  bookingType: OptionBookingType[] = [
-    {
-      id: 'nre',
-      descriptionI18n: 'bookings-hero.booking-new.booking-type.nre-description',
-      titleI18n: 'bookings-hero.booking-new.booking-type.nre-title',
-    },
-    {
-      id: 'free_prof',
-      descriptionI18n: 'bookings-hero.booking-new.booking-type.free_prof-description',
-      titleI18n: 'bookings-hero.booking-new.booking-type.free_prof-title',
-    },
-    {
-      id: 'nre_delegate',
-      descriptionI18n: 'bookings-hero.booking-new.booking-type.nre_delegate-description',
-      titleI18n: 'bookings-hero.booking-new.booking-type.nre_delegate-title',
-    },
-    {
-      id: 'free_prof_delegate',
-      descriptionI18n: 'bookings-hero.booking-new.booking-type.free_prof_delegate-description',
-      titleI18n: 'bookings-hero.booking-new.booking-type.free_prof_delegate-title',
-    },
-  ];
-  cardTextLink: any[] = [];
-  // cardTextLink: Card[] = [];
+  protected readonly cards = computed<CardsContainer | null>(() => {
+    const config = this.pageConfig()
+      ?.sections?.flatMap((section) =>
+        [section.areas.start, section.areas.center, section.areas.end].flatMap(
+          (area) => area?.items ?? [],
+        ),
+      )
+      .find((item) => item.id === 'booking-type-cards' && item.type === 'SERVICE_CARDS');
 
-  ngOnInit(): void {
-    this.cardTextLink = this.setCardTextLink(this.bookingType);
-  }
+    if (!config?.enabled || !config.props) return null;
 
-  // private setCardTextLink(bookingType: OptionBookingType[]): Card[] {
-  private setCardTextLink(bookingType: OptionBookingType[]): any[] {
-    let cardTextLink: any[] = [];
-    // let cardTextLink: Card[] = [];
+    const cards = config.props as CardsContainer;
+    return {
+      ...cards,
+      items: cards.items.map((card) => {
+        if (card.type !== 'mediaText' || card.action.type !== 'callback') return card;
+        return {
+          ...card,
+          action: { ...card.action, callback: () => this.onCardSelected(card) },
+        };
+      }),
+    };
+  });
 
-    bookingType.forEach((value) => {
-      cardTextLink.push({
-        id: value.id.toString(),
-        title: value.titleI18n,
-        description: value.descriptionI18n,
-        showArrow: true,
-        styleClass: 'shadow-sm border-light w-min-50',
-        // type: CardType.TEXT_LINK,
-      });
-    });
-
-    return cardTextLink;
-  }
-
-  // onCardSelected(card: CardTextLink) {
-  onCardSelected(card: any) {
+  onCardSelected(card: { id: string }) {
     switch (card.id) {
       case 'nre':
         this.store.dispatch(

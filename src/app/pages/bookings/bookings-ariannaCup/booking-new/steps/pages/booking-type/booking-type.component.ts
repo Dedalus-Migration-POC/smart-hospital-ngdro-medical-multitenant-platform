@@ -1,8 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { TranslateModule } from '@ngx-translate/core';
-import { DesignAngularKitModule } from 'design-angular-kit';
+import { Card } from 'src/app/components/card/card';
+import { CardsContainer } from 'src/app/components/card/model';
+import { PageConfigService } from 'src/app/pages/page-config.service';
 import { setBookingType } from 'src/app/pages/bookings/bookings-ariannaCup/state/actions';
 import { BookingType } from 'src/app/pages/bookings/bookings-ariannaCup/state/model';
 import { SmartHospitalState } from 'src/app/store/reducers';
@@ -10,44 +12,64 @@ import { SessionStorageKey, SessionStorageUtils } from 'src/app/utility/session-
 
 @Component({
   selector: 'app-booking-select-type',
-  standalone: true,
-  imports: [CommonModule, DesignAngularKitModule, TranslateModule],
+  imports: [Card, TranslateModule],
   templateUrl: './booking-type.component.html',
   styleUrls: ['./booking-type.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookingTypeComponent {
   readonly setActiveStep = input.required<(stepIndex: number) => void>();
   readonly activeStepIndex = input.required<number>();
 
-  bookingType: BookingType[] = [
-    {
-      id: '1',
-      descriptionI18n: 'bookings.booking-new.booking-type.ssn.description',
-      titleI18n: 'bookings.booking-new.booking-type.ssn.title',
-    },
-    {
-      id: '2',
-      descriptionI18n: 'bookings.booking-new.booking-type.private.description',
-      titleI18n: 'bookings.booking-new.booking-type.private.title',
-    },
-  ];
-  constructor(private store: Store<SmartHospitalState>) {}
+  private readonly store = inject(Store<SmartHospitalState>);
+  private readonly pageConfigService = inject(PageConfigService);
+  private readonly pageConfig = toSignal(this.pageConfigService.get('/bookings/new'), {
+    initialValue: null,
+  });
 
-  onCardSelected(card: BookingType) {
-    //console.log(card)
-    const selectedBookingType = this.bookingType.find((bt) => bt.id === card.id);
+  protected readonly cards = computed<CardsContainer | null>(() => {
+    const config = this.pageConfig()
+      ?.sections?.flatMap((section) =>
+        [section.areas.start, section.areas.center, section.areas.end].flatMap(
+          (area) => area?.items ?? [],
+        ),
+      )
+      .find((item) => item.id === 'booking-type-cards' && item.type === 'SERVICE_CARDS');
 
-    // stored session for refresh
+    if (!config?.enabled || !config.props) return null;
+
+    const cards = config.props as CardsContainer;
+    return {
+      ...cards,
+      items: cards.items.map((card) => {
+        if (card.type !== 'mediaText' || card.action.type !== 'callback') return card;
+        return {
+          ...card,
+          action: { ...card.action, callback: () => this.onCardSelected(card) },
+        };
+      }),
+    };
+  });
+
+  onCardSelected(card: { id: string }) {
+    if (card.id !== '1' && card.id !== '2') return;
+    const selectedCard = this.cards()?.items.find((item) => item.id === card.id);
+    if (selectedCard?.type !== 'mediaText') return;
+
+    const selectedBookingType: BookingType = {
+      id: selectedCard.id,
+      titleI18n: selectedCard.text.title.text,
+      descriptionI18n: selectedCard.text.subTitle?.text ?? '',
+    };
+
     SessionStorageUtils.setItem(SessionStorageKey.bookingType, JSON.stringify(selectedBookingType));
 
-    this.store.dispatch(setBookingType({ request: selectedBookingType! }));
+    this.store.dispatch(setBookingType({ request: selectedBookingType }));
 
-    if (selectedBookingType?.id === '1') {
-      // SSN
+    if (selectedBookingType.id === '1') {
       this.setActiveStep()(this.activeStepIndex() + 1);
     } else {
       this.setActiveStep()(4);
     }
   }
 }
-
