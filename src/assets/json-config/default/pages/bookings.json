@@ -1,7 +1,5 @@
 {
-  "id": "/bookings",
   "name": "bookings.bookings-list.name",
-  "route": "/bookings",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "itemsStyle": {

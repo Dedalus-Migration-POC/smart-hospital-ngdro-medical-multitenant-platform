@@ -14,6 +14,8 @@ export const bookingUnifiedRoutes: Routes = [
   {
     // prima di ':bookingType', altrimenti 'appointments' verrebbe letto come tipo di prenotazione
     path: 'appointments',
+    // ID della configurazione per questa route autonoma.
+    data: { pageConfigId: '/booking-a4h/appointments' },
     canActivate: [authenticatedGuard()],
     loadChildren: () =>
       import('./appointments/appointments.routes').then((m) => m.appointmentsRoutes),

@@ -1,7 +1,5 @@
 {
-  "id": "/user-profile",
   "name": "user-profile.name",
-  "route": "/user-profile",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "backgroundColor": "#e6e8ea",

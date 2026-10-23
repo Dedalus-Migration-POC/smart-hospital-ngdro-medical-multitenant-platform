@@ -1,7 +1,5 @@
 {
-  "id": "/single-report",
   "name": "single-report.name",
-  "route": "/single-report",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {

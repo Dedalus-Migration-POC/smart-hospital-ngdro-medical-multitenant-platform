@@ -1,7 +1,5 @@
 {
-  "id": "/booking-a4h/appointments",
   "name": "booking-a4h-appointments.name",
-  "route": "/booking-a4h/appointments",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },

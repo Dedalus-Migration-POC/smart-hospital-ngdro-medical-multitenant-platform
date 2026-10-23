@@ -1,7 +1,5 @@
 {
-  "id": "/",
   "name": "home.name",
-  "route": "/",
   "meta": {
     "title": "home.meta.title"
   },

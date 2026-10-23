@@ -49,9 +49,7 @@ describe('BookingTypeSelectorComponent configured cards', () => {
 
   function createSelector(enabled = true) {
     const pageConfig: PageConfig = {
-      id: '/booking-a4h',
       name: 'booking-a4h.name',
-      route: '/booking-a4h',
       sections: [
         {
           id: 'booking-types-section',

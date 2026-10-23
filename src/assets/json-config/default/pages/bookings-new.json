@@ -1,7 +1,5 @@
 {
-  "id": "/bookings/new",
   "name": "bookings.booking-new.name",
-  "route": "/bookings/new",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {

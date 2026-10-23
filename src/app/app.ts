@@ -17,7 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CookieConsentModal } from './components/cookie-consent-modal/cookie-consent-modal';
 import { CookieConsentService } from './initialize/state/services/cookie-consent.service';
 import { AppConfig } from './initialize/state/app-config.model';
-import { PageConfigService } from './pages/page-config.service';
+import { PageConfigService, resolvePageConfigId } from './pages/page-config.service';
 @Component({
   selector: 'app-root',
   imports: [
@@ -99,7 +99,13 @@ export class App implements OnInit {
 
   // ogni cambio di route risolve la config della pagina corrente (undefined se non mappata)
   private readonly currentPageConfig = toSignal(
-    toObservable(this.currentUrl).pipe(switchMap((url) => this.pageConfigService.getSafe(url))),
+    toObservable(this.currentUrl).pipe(
+      switchMap((url) =>
+        this.pageConfigService.getSafe(
+          resolvePageConfigId(this.router.routerState.snapshot.root, url),
+        ),
+      ),
+    ),
     { initialValue: undefined },
   );
 

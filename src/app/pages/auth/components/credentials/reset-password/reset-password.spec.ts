@@ -159,7 +159,6 @@ describe('ResetPassword', () => {
     component.retryConfig();
     await fixture.whenStable();
     expect(component.configError()).toBe(false);
-    expect(component.pageConfig()?.id).toBe('/reset-password');
     expect(getConfig).toHaveBeenCalledTimes(2);
   });
 });

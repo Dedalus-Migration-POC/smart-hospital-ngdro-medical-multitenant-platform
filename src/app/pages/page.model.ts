@@ -9,8 +9,6 @@ import {
   SpacingConfig,
 } from '../shared/models/shared_model';
 
-export type RoutePage = '/medical-reports' | '/single-report' | '/login' | '/user-profile';
-
 // TODO: VA SPOSTATO IN UN COMPONENTE SUO
 export interface InfoPopupConfig {
   title: LocalizedText;
@@ -19,9 +17,7 @@ export interface InfoPopupConfig {
 }
 
 export interface PageConfig {
-  id: string;
   name: LocalizedText;
-  route: RoutePage | string;
   meta?: PageMetaConfig;
   backgroundColor?: string;
   backgroundImage?: string;

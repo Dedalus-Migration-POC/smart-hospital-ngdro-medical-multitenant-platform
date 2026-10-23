@@ -1,7 +1,5 @@
 {
-  "id": "/booking-a4h",
   "name": "booking-a4h.name",
-  "route": "/booking-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },

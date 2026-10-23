@@ -1,7 +1,5 @@
 {
-  "id": "/departments/units",
   "name": "departments-units.name",
-  "route": "/departments/units",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "itemsStyle": {

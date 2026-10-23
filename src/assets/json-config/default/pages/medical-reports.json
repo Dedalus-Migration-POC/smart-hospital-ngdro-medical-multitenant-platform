@@ -1,7 +1,5 @@
 {
-  "id": "/medical-reports",
   "name": "medical-reports.name",
-  "route": "/medical-reports",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "itemsStyle": {

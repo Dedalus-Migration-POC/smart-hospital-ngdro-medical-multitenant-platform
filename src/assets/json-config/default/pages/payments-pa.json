@@ -1,7 +1,5 @@
 {
-  "id": "/payments-pa",
   "name": "payments-pa.name",
-  "route": "/payments-pa",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {

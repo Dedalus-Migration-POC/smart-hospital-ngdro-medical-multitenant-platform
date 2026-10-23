@@ -1,7 +1,5 @@
 {
-  "id": "/consents-a4h",
   "name": "consents-a4h.name",
-  "route": "/consents-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": { "fill": { "hex": "#e6e8ea" } },

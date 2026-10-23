@@ -1,7 +1,5 @@
 {
-  "id": "/reports-by-triplet",
   "name": "reports-by-triplet.name",
-  "route": "/reports-by-triplet",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {

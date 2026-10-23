@@ -133,6 +133,8 @@ export const routes: Routes = [
   },
   {
     path: 'booking-a4h',
+    // Gli step del flusso riusano questa config; le route autonome possono sovrascriverla.
+    data: { pageConfigId: '/booking-a4h' },
     // canActivate: [authenticatedGuard()],
     loadChildren: () =>
       import('./pages/bookings/booking-a4h/booking-unified.routes').then(

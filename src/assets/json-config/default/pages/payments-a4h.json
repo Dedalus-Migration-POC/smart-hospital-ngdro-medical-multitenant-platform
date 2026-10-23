@@ -1,7 +1,5 @@
 {
-  "id": "/payments-a4h",
   "name": "payments-a4h.name",
-  "route": "/payments-a4h",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {

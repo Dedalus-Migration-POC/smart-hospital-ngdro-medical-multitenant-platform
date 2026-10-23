@@ -149,6 +149,5 @@ describe('ChangePassword', () => {
     component.retryConfig();
     await fixture.whenStable();
     expect(component.configError()).toBe(false);
-    expect(component.pageConfig()?.id).toBe('/change-password');
   });
 });

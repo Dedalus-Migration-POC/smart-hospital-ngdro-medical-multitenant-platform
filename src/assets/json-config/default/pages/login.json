@@ -1,7 +1,5 @@
 {
-  "id": "/login",
   "name": "login.name",
-  "route": "/login",
   "backgroundColor": "#ecf1f9",
   "sections": [
     {

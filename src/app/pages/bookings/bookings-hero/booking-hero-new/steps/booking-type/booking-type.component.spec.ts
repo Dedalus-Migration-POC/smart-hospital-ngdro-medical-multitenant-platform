@@ -48,9 +48,7 @@ describe('BookingTypeComponent configured cards', () => {
 
   function createComponent(enabled = true) {
     const config: PageConfig = {
-      id: '/bookings-hero/new',
       name: 'booking-new',
-      route: '/bookings-hero/new',
       sections: [
         {
           id: 'booking-types-section',

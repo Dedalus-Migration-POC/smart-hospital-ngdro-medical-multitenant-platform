@@ -1,7 +1,5 @@
 {
-  "id": "/payments-jcash",
   "name": "payments-jcash.name",
-  "route": "/payments-jcash",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "title": {

@@ -1,7 +1,5 @@
 {
-  "id": "/bookings-hero/reschedule",
   "name": "bookings-hero.booking-reschedule.name",
-  "route": "/bookings-hero/reschedule",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": {

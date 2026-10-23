@@ -11,6 +11,8 @@ export const appointmentsRoutes: Routes = [
   },
   {
     path: 'details/:id',
+    // ID della configurazione, indipendente dal parametro :id.
+    data: { pageConfigId: '/booking-a4h/appointments/details' },
     loadComponent: () =>
       import('./appointment-details/appointment-details.component').then(
         (m) => m.AppointmentDetailsComponent,
@@ -19,7 +21,11 @@ export const appointmentsRoutes: Routes = [
   {
     path: 'edit/:id',
     // letto dal BookingStepperComponent per selezionare gli step del flusso
-    data: { bookingType: BookingType.EditAppointment },
+    // ID della configurazione, indipendente dal parametro :id.
+    data: {
+      bookingType: BookingType.EditAppointment,
+      pageConfigId: '/booking-a4h/appointments/edit',
+    },
     loadComponent: () =>
       import('./appointment-edit/appointment-edit.component').then(
         (m) => m.AppointmentEditComponent,

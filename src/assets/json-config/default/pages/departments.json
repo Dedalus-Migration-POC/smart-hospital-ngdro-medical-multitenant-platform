@@ -1,7 +1,5 @@
 {
-  "id": "/departments",
   "name": "departments.name",
-  "route": "/departments",
   "breadcrumb": {
     "title": {
       "text": "departments.breadcrumb.title"

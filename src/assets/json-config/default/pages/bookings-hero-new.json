@@ -1,7 +1,5 @@
 {
-  "id": "/bookings-hero/new",
   "name": "bookings-hero.booking-new.name",
-  "route": "/bookings-hero/new",
   "backgroundColor": "#ffffff",
   "breadcrumb": {
     "background": {

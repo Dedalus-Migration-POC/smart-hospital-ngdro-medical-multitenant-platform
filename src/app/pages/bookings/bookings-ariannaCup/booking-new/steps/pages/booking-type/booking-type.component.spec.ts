@@ -47,9 +47,7 @@ describe('BookingTypeComponent configured Arianna cards', () => {
 
   function createComponent(enabled = true) {
     const config: PageConfig = {
-      id: '/bookings/new',
       name: 'booking-new',
-      route: '/bookings/new',
       sections: [
         {
           id: 'booking-types-section',
